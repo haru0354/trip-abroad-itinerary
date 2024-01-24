@@ -7,7 +7,7 @@ import Button from "../components/button/Button";
 const Memo = () => {
     return (
         <main className="flex justify-center p-8">
-            <div className="flex justify-center items-center p-8">
+            <div className="flex justify-center p-8">
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96 " action={addMemo}>
                 <div>
                     <label className="block text-gray-700 text-sm font-bold mb-2">メモの見出し</label>

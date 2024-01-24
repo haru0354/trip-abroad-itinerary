@@ -10,12 +10,10 @@ const Memo = () => {
             <div className="flex justify-center p-8">
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96 " action={addMemo}>
                 <div>
-                    <label className="block text-gray-700 text-sm font-bold mb-2">メモの見出し</label>
-                    <Form />
+                    <Form label={"メモの見出し"} />
                 </div>
                 <div>
-                    <label className="block text-gray-700 text-sm font-bold mb-2 mt-2">メモする内容</label>
-                    <Textarea/>
+                    <Textarea label={"メモする内容"} />
                 </div>
                 <Button>
                     追加

@@ -1,5 +1,6 @@
 'use server';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export const addMemo = async (data: FormData) => {
     const name = data.get('name') as string;
@@ -18,13 +19,12 @@ export const deleteMemo = async (data: FormData) => {
   revalidatePath('/memo');
 };
 
-export const updateMemo = async (data: FormData) => {
-  const id = data.get('id') as string;
+export const updateMemo = async (id: number, data: FormData) => {
   const name = data.get('name') as string;
   const content = data.get('content') as string;
   await prisma.memo.update({
     where: {
-      id: Number(id),
+      id,
     },
     data: {
       name,
@@ -32,4 +32,6 @@ export const updateMemo = async (data: FormData) => {
     },
   });
   revalidatePath('/memo');
+  redirect('/memo');
 };
+

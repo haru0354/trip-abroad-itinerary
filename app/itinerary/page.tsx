@@ -1,7 +1,10 @@
+import ItineraryList from "../components/itinerary/ItineraryList";
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      <ItineraryList />
+    </div>
   )
 }
 

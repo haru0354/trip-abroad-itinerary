@@ -1,5 +1,6 @@
-import prisma from "../../action/prisma";
+import prisma from "../../lib/prisma";
 import Button from "../button/Button.tsx";
+import { deleteItinerary } from "../../action/action-itinerary";
 
 const ItineraryList = async () => {
   const itinerary = await prisma.itinerary.findMany();
@@ -18,9 +19,12 @@ const ItineraryList = async () => {
             <Button>
               編集
             </Button>
+            <form action={deleteItinerary}>
+              <input type="hidden" name="id" value={itinerary.id} />
             <Button>
               削除
             </Button>
+            </form>
           </div>
         )
       })}

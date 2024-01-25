@@ -1,4 +1,4 @@
-import prisma from "../../action/prisma";
+import prisma from "../../lib/prisma";
 import { deleteMemo, updateMemo } from "../../action/action-memo";
 import Button from "../button/Button";
 import Link from 'next/link';

@@ -1,4 +1,4 @@
-import prisma from '../../action/prisma';
+import prisma from '../../lib/prisma';
 import { updateMemo } from '../../action/action-memo';
 import Button from '@/app/components/button/Button';
 import Textarea from '@/app/components/Textarea';

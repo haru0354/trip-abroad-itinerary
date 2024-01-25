@@ -16,3 +16,13 @@ model memo {
   content  String 
   isCompleted Boolean @default(false)
 }
+
+model itinerary {
+  id  Int @id @default(autoincrement())
+  date String
+  time String
+  name String
+  content String 
+  hideContent String
+  isShowContent Boolean @default(false)
+}

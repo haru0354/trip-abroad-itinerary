@@ -1,12 +1,12 @@
 
 type FormProps = {
+    name: string;
     label: string;
-    defaultValue?: string | undefined;
-    name?: string;
+    defaultValue?: string;
     placeholder?: string;
 }
 
-const Form: React.FC<FormProps> = ({ label, defaultValue, placeholder = "メモの見出し", name = "name" }) => {
+const Form: React.FC<FormProps> = ({ name, label, defaultValue, placeholder }) => {
     return (
         <>
             <label className="block text-gray-700 text-sm font-bold mb-2">{label}</label>

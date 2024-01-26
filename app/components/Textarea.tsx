@@ -1,12 +1,12 @@
 
 type TextareaLabel = {
+    name: string;
     label: string;
-    defaultValue?: string | undefined;
-    name?: string;
+    defaultValue?: string;
     placeholder?: string;
 }
 
-const Textarea: React.FC<TextareaLabel> = ({ label, defaultValue, placeholder = "メモする内容を記載してください", name = "content" }) => {
+const Textarea: React.FC<TextareaLabel> = ({ name, label, defaultValue, placeholder }) => {
     return (
         <>
             <label className="block text-gray-700 text-sm font-bold mb-2 mt-2">{label}</label>

@@ -1,6 +1,6 @@
 import prisma from "../../lib/prisma";
 import { deleteMemo, updateMemo } from "../../action/action-memo";
-import Button from "../button/Button";
+import Button from "../Button";
 import Link from 'next/link';
 
 const List = async () => {

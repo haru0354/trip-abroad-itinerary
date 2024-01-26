@@ -2,7 +2,7 @@ import List from "../components/memo/List";
 import Form from "../components/Form";
 import Textarea from "../components/Textarea";
 import { addMemo } from "../action/action-memo";
-import Button from "../components/button/Button";
+import Button from "../components/Button";
 
 const Memo = () => {
     return (

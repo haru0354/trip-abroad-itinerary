@@ -1,5 +1,5 @@
 import prisma from "../../lib/prisma";
-import Button from "../button/Button.tsx";
+import Button from "../Button";
 import { deleteItinerary } from "../../action/action-itinerary";
 
 const ItineraryList = async () => {

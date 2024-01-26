@@ -4,7 +4,7 @@ import Button from '@/app/components/Button';
 import Textarea from '@/app/components/Textarea';
 import Form from '@/app/components/Form';
 
-export default async function Page({ params }: { params: { id: string } }) {
+const Page = async ({ params }: { params: { id: string } }) => {
   const id = Number(params.id);
   const updateMemoId = updateMemo.bind(null, id);
   const memo = await prisma.memo.findUnique({
@@ -38,3 +38,4 @@ export default async function Page({ params }: { params: { id: string } }) {
   );
 }
 
+export default Page

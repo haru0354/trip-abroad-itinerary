@@ -2,6 +2,7 @@
 import Button from "../Button";
 import { deleteItinerary } from "../../action/action-itinerary";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface Itinerary {
   id: number;
@@ -37,9 +38,11 @@ const ItineraryList = ({ itineraryData }: { itineraryData: Itinerary[] }) => {
             <div>{itinerary.name}</div>
             <div>{itinerary.content}</div>
             <div>{itinerary.hideContent}作成中は表示させておく</div>
-            <Button>
-              編集
-            </Button>
+            <Link href={`/itinerary/${itinerary.id}`}>
+              <Button>
+                編集
+              </Button>
+            </Link>
             <form action={deleteItinerary}>
               <input type="hidden" name="id" value={itinerary.id} />
             <Button>

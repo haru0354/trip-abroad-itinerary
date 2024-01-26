@@ -1,4 +1,4 @@
-import List from "../components/memo/List";
+import MemoList from "../components/memo/MemoList";
 import Form from "../components/Form";
 import Textarea from "../components/Textarea";
 import { addMemo } from "../action/action-memo";
@@ -25,7 +25,7 @@ const Memo = () => {
                 </form>
             </div>
             <div>
-                <List />
+                <MemoList />
             </div>
         </main>
     )

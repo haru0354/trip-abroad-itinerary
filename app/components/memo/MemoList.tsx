@@ -3,7 +3,7 @@ import { deleteMemo, updateMemo } from "../../action/action-memo";
 import Button from "../Button";
 import Link from 'next/link';
 
-const List = async () => {
+const MemoList = async () => {
     const memos = await prisma.memo.findMany();
     return (
         <div>
@@ -14,9 +14,9 @@ const List = async () => {
                         <div className="border-b-2">{memo.name}</div>
                         <div className="form-control textarea">{memo.content}</div>
                         <Link href={`/memo/${memo.id}`}>
-                        <Button>
-                            編集
-                        </Button>
+                            <Button>
+                                編集
+                            </Button>
                         </Link>
                         <form action={deleteMemo}>
                         <input type="hidden" name="id" value={memo.id} />  
@@ -31,4 +31,4 @@ const List = async () => {
     )
 }
 
-export default List;
+export default MemoList;

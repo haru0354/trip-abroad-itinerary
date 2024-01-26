@@ -6,7 +6,10 @@ import Time from "../components/Time";
 import Button from "../components/Button";
 import { addItinerary } from "../action/action-itinerary";
 
-const page = () => {
+const page = async () => {
+  // ItineraryListがクライアント側なのでこちらに記述しpropsで渡す
+  const itineraryData = await prisma.itinerary.findMany();
+
   return (
     <main className="flex justify-center p-8">
       <div className="flex justify-center p-8">
@@ -30,8 +33,7 @@ const page = () => {
           </Button>
         </form>
       </div>
-      <ItineraryList />
-
+      <ItineraryList itineraryData={itineraryData} />
     </main>
   )
 }

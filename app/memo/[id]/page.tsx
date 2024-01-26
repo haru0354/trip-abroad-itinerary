@@ -17,23 +17,21 @@ export default async function Page({ params }: { params: { id: string } }) {
     <main className="flex justify-center p-8">
       <div className="flex justify-center p-8">
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96" action={updateMemoId} >
-      <div>
-        <Form 
-          name={"name"}
-          label={"メモの見出し"}
-          defaultValue={memo?.name}
-          placeholder='変更する内容を記載しましょう。'
-        />
-        <Textarea
-          name={"content"}
-          label={"メモする内容"}
-          defaultValue={memo?.content}
-          placeholder='変更する内容を記載しましょう。'
-        />
-      </div>
-      <Button>
-        保存
-      </Button>
+          <Form 
+            name={"name"}
+            label={"メモの見出し"}
+            defaultValue={memo?.name}
+            placeholder='変更する内容を記載しましょう。'
+          />
+          <Textarea
+            name={"content"}
+            label={"メモする内容"}
+            defaultValue={memo?.content}
+            placeholder='変更する内容を記載しましょう。'
+          />
+          <Button>
+            保存
+          </Button>
       </form>
     </div>
     </main>

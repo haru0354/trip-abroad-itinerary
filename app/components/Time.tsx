@@ -1,7 +1,7 @@
 const Time = () => {
   return (
     <>
-    <p>時間(時計マークを選択)</p>
+    <p>時間:</p>
     <input type="time"  name={"time"}/>
     </>
   )

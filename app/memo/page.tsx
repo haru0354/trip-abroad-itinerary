@@ -9,15 +9,19 @@ const Memo = () => {
         <main className="flex justify-center p-8">
             <div className="flex justify-center p-8">
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96 " action={addMemo}>
-                <div>
-                    <Form label={"メモの見出し"} name={"name"} placeholder="メモの見出しを記載しましょう。"/>
-                </div>
-                <div>
-                    <Textarea label={"メモする内容"} name={"content"} placeholder="メモする内容を記載しましょう。"/>
-                </div>
-                <Button>
-                    追加
-                </Button>
+                    <Form 
+                        label={"メモの見出し"} 
+                        name={"name"} 
+                        placeholder="メモの見出しを記載しましょう。"
+                    />
+                    <Textarea 
+                        label={"メモする内容"} 
+                        name={"content"} 
+                        placeholder="メモする内容を記載しましょう。"
+                    />
+                    <Button>
+                        追加
+                    </Button>
                 </form>
             </div>
             <div>

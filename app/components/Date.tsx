@@ -1,7 +1,8 @@
 const Date = () => {
   return (
     <>
-        <p>日付(カレンダーを選択)</p>
+        <p>日付:
+        </p>
         <input type="date" name={"date"} />
     </>
   )

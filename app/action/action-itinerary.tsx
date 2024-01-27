@@ -45,3 +45,16 @@ export const updateItinerary = async (id: number, data:FormData) => {
   redirect('/itinerary');
 }
 
+export const showContent = async (data: FormData) => {
+  const id = data.get("id") as string;
+  const isShowContent = data.get("isShowContent")  === "false";
+  await prisma.itinerary.update({
+    where: {
+      id: Number(id),
+    },
+    data: {
+      isShowContent,
+    },
+  })
+  revalidatePath('/itinerary');
+}

@@ -19,20 +19,3 @@ export const deleteMemo = async (id: number) => {
   redirect('/memo');
 };
 
-export const updateMemo = async (id: number, data: FormData) => {
-
-  const name = data.get('name') as string;
-  const content = data.get('content') as string;
-  await prisma.memo.update({
-    where: {
-      id,
-    },
-    data: {
-      name,
-      content,
-    },
-  });
-  revalidatePath('/memo');
-  redirect('/memo');
-};
-

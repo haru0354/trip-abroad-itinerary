@@ -26,6 +26,7 @@ const Memo = () => {
             </div>
             <div>
                 <MemoList />
+
             </div>
         </main>
     )

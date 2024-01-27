@@ -18,12 +18,6 @@ const MemoList = async () => {
                                 編集
                             </Button>
                         </Link>
-                        <form action={deleteMemo}>
-                        <input type="hidden" name="id" value={memo.id} />  
-                        <Button>
-                            削除
-                        </Button>
-                        </form>      
                     </div>
                 )
             })}  

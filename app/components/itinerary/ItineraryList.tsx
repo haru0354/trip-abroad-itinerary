@@ -57,10 +57,6 @@ const ItineraryList = ({ itineraryData }: { itineraryData: Itinerary[] }) => {
             <Link href={`/itinerary/${itinerary.id}`}>
               <Button>編集</Button>
             </Link>
-            <form action={deleteItinerary}>
-              <input type="hidden" name="id" value={itinerary.id} />
-              <Button>削除</Button>
-            </form>
           </div>
         );
       })}

@@ -1,4 +1,4 @@
-import prisma from "@/app/lib/prisma";
+import prisma from "@/app/components/lib/prisma";
 import { updateItinerary, deleteItinerary } from "@/app/action/action-itinerary";
 import Date from "@/app/components/Date";
 import Form from "@/app/components/Form";

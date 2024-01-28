@@ -14,7 +14,7 @@ interface Itinerary {
   isShowContent: boolean;
 }
 
-const ItineraryList = ({ itineraryData }: { itineraryData: Itinerary[] }) => {
+const ListItinerary = ({ itineraryData }: { itineraryData: Itinerary[] }) => {
   const [sortItinerary, setSortItinerary] = useState<Itinerary[]>([]);
   const [isShowContent, setIsShowContent] = useState(false);
 
@@ -64,4 +64,4 @@ const ItineraryList = ({ itineraryData }: { itineraryData: Itinerary[] }) => {
   );
 };
 
-export default ItineraryList;
+export default ListItinerary;

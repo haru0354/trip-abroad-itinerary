@@ -13,14 +13,14 @@ export const addItinerary = async (data: FormData) => {
   revalidatePath('/itinerary');
 }
 
-export const deleteItinerary = async (data: FormData) => {
-  const id = data.get('id') as string;
+export const deleteItinerary = async (id: number) => {
   await prisma.itinerary.delete({
     where: {
-      id: Number(id),
+      id,
     },
   });
   revalidatePath('/itinerary');
+  redirect('/itinerary');
 };
 
 export const updateItinerary = async (id: number, data:FormData) => {

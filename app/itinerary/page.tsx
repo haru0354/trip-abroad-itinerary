@@ -1,4 +1,4 @@
-import ItineraryList from "../components/itinerary/ItineraryList";
+import ListItinerary from "../components/itinerary/ListItinerary";
 import Form from "../components/Form";
 import Textarea from "../components/Textarea";
 import Date from "../components/Date";
@@ -33,7 +33,7 @@ const page = async () => {
           </Button>
         </form>
       </div>
-      <ItineraryList itineraryData={itineraryData} />
+      <ListItinerary itineraryData={itineraryData} />
     </main>
   )
 }

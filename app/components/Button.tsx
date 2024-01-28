@@ -6,7 +6,7 @@ import { useFormStatus } from 'react-dom';
 
 type ButtonChildren = {
     children: ReactNode;
-    formAction?: (data: FormData) => Promise<void> | Promise<never>;
+    formAction?: (data: FormData) => Promise<void> | Promise<never> | null;
     onClick?: () => void; 
 }
 

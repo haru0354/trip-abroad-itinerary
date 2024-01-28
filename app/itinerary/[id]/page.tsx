@@ -6,11 +6,11 @@ import Textarea from "@/app/components/Textarea";
 import Time from "@/app/components/Time";
 import Button from "@/app/components/Button";
 import FormItinerary from "@/app/components/itinerary/FormItinerary";
+import DeleteItineraryModal from "@/app/components/itinerary/DeleteItineraryModal";
 
 const page = async ({ params }: { params: { id: string } }) => {
   const id = Number(params.id);
   const updateItineraryWithId = updateItinerary.bind(null, id);
-  const deleteItineraryWithId = deleteItinerary.bind(null, id);
   const itinerary = await prisma.itinerary.findUnique({
     where: {
       id,
@@ -25,7 +25,7 @@ const page = async ({ params }: { params: { id: string } }) => {
           <Button formAction={updateItineraryWithId}>
             保存
           </Button>
-          <Button formAction={deleteItineraryWithId}>削除</Button>
+          <DeleteItineraryModal itinerary={itinerary}/>
         </form>
       </div>
     </main>

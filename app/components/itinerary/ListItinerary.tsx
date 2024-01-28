@@ -1,59 +1,33 @@
-"use client";
+import prisma from "../lib/prisma";
 import Button from "../Button";
-import { deleteItinerary, showContent } from "../../action/action-itinerary";
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import HideContent from "./HideContent";
 
-interface Itinerary {
-  id: number;
+type Itinerary = {
   date: string;
   time: string;
-  name: string;
-  content: string;
-  hideContent: string;
-  isShowContent: boolean;
-}
+};
 
-const ListItinerary = ({ itineraryData }: { itineraryData: Itinerary[] }) => {
-  const [sortItinerary, setSortItinerary] = useState<Itinerary[]>([]);
-  const [isShowContent, setIsShowContent] = useState(false);
+const ListItinerary = async () => {
+  const itinerary = await prisma.itinerary.findMany();
+  const sortItineraryByDateTime = (a: Itinerary, b: Itinerary) =>
+    new Date(a.date + " " + a.time).getTime() -
+    new Date(b.date + " " + b.time).getTime();
 
-  useEffect(() => {
-    const sortByDateTime = (a: Itinerary, b: Itinerary) => {
-      const dateA = new Date(`${a.date} ${a.time}`);
-      const dateB = new Date(`${b.date} ${b.time}`);
-      return dateA.getTime() - dateB.getTime();
-    };
-    const sortedData = [...itineraryData].sort(sortByDateTime);
-    setSortItinerary(sortedData);
-  }, [itineraryData]);
+  const sortedItinerary = itinerary.sort(sortItineraryByDateTime);
 
-  const toggleShowContent = () => {
-    setIsShowContent((isShowContent) => !isShowContent);
-  };
-
+  
   return (
     <div>
       <h2>旅程表</h2>
-      {sortItinerary.map((itinerary) => {
+      {sortedItinerary.map((itinerary) => {
         return (
           <div key={itinerary.id}>
             <div>{itinerary.date}</div>
             <div>{itinerary.time}</div>
             <div>{itinerary.name}</div>
             <div>{itinerary.content}</div>
-            {itinerary.hideContent && (
-              <>
-                {isShowContent ? (
-                  <>
-                    <p>{itinerary.hideContent}</p>
-                    <Button onClick={toggleShowContent}>閉じる</Button>
-                  </>
-                ) : (
-                  <Button onClick={toggleShowContent}>補足情報を開く</Button>
-                )}
-              </>
-            )}
+            <HideContent itinerary={itinerary} />
             <Link href={`/itinerary/${itinerary.id}`}>
               <Button>編集</Button>
             </Link>

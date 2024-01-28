@@ -5,6 +5,7 @@ import Form from "@/app/components/Form";
 import Textarea from "@/app/components/Textarea";
 import Time from "@/app/components/Time";
 import Button from "@/app/components/Button";
+import FormItinerary from "@/app/components/itinerary/FormItinerary";
 
 const page = async ({ params }: { params: { id: string } }) => {
   const id = Number(params.id);
@@ -20,11 +21,7 @@ const page = async ({ params }: { params: { id: string } }) => {
     <main className="flex justify-center p-8">
       <div className="flex justify-center p-8">
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96">
-          <Date defaultValue={itinerary?.date}/>
-          <Time defaultValue={itinerary?.time}/>
-          <Form label={"目的"} name={"name"} defaultValue={itinerary?.name} />
-          <Textarea label={"補足説明"} name={"content"} defaultValue={itinerary?.content}  />
-          <Textarea label={"補足説明"} name={"hideContent"} defaultValue={itinerary?.hideContent}  />
+          <FormItinerary itinerary={itinerary} />
           <Button formAction={updateItineraryWithId}>
             保存
           </Button>

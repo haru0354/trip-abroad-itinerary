@@ -1,19 +1,17 @@
-import Image from "next/image";
 import Link from "next/link";
+import HeaderItinerary from "./components/HeaderItinerary";
+import FooterMenu from "./components/FooterMenu";
 
 export default function Home() {
   return (
     <main>
+      <HeaderItinerary />
       <div>
         <div>
-        <Link href="./memo">
-          memo        
-        </Link>
+        
         </div>
         <div>
-        <Link href="./itinerary">
-          itinerary
-        </Link>
+        <FooterMenu/>
         </div>
       </div>
     </main>

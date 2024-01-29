@@ -8,7 +8,7 @@ type FormProps = {
 
 const Form: React.FC<FormProps> = ({ name, label, defaultValue, placeholder }) => {
     return (
-        <>
+        <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2">{label}</label>
             <input 
                 type="text" 
@@ -16,7 +16,7 @@ const Form: React.FC<FormProps> = ({ name, label, defaultValue, placeholder }) =
                 name={name} 
                 defaultValue={defaultValue} 
                 placeholder={placeholder}/>
-        </>
+        </div>
     )
 }
 

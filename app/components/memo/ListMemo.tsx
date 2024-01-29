@@ -12,9 +12,9 @@ const ListMemo = async () => {
             <h2>メモの一覧</h2>
             {sortedMemos.map(memo => {
                 return (
-                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80" key={memo.id} >
+                    <div className="bg-blue-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80" key={memo.id} >
                         <div className="border-b-2">{memo.name}</div>
-                        <div className="form-control textarea">{memo.content}</div>
+                        <div className=" textarea">{memo.content}</div>
                         <Link href={`/memo/${memo.id}`}>
                             <Button>
                                 編集

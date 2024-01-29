@@ -16,17 +16,18 @@ const ListItinerary = async () => {
 
   const sortedItinerary = itinerary.sort(sortItineraryByDateTime);
 
-  
   return (
     <div>
       <h2>旅程表</h2>
-      {sortedItinerary.map((itinerary) => {
+      {sortedItinerary.map((itinerary, index) => {
+        const isFirstItem =
+          index === 0 || itinerary.date !== sortedItinerary[index - 1].date;
         return (
           <div key={itinerary.id}>
-            <div>{itinerary.date}</div>
-            <div>{itinerary.time}</div>
-            <div>{itinerary.name}</div>
-            <div>{itinerary.content}</div>
+            {isFirstItem && <div className="bg-green-300 text-xl bold mb-2">{itinerary.date}</div>}
+            <p>{itinerary.time}</p>
+            <p>{itinerary.name}</p>
+            <p>{itinerary.content}</p>
             <HideContent itinerary={itinerary} />
             <Link href={`/itinerary/${itinerary.id}`}>
               <Button>編集</Button>

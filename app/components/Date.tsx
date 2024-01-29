@@ -1,15 +1,14 @@
 type DateProps = {
   defaultValue?: string;
-}
+};
 
-const Date:React.FC<DateProps> = ({defaultValue}) => {
+const Date: React.FC<DateProps> = ({ defaultValue }) => {
   return (
     <>
-        <p>日付:
-        </p>
-        <input type="date" name={"date"} defaultValue={defaultValue} />
+      <p>日付:</p>
+      <input type="date" name={"date"} defaultValue={defaultValue} />
     </>
-  )
-}
+  );
+};
 
-export default Date
+export default Date;

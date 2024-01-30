@@ -1,5 +1,8 @@
 import prisma from "@/app/components/lib/prisma";
-import { updateItinerary, deleteItinerary } from "@/app/action/action-itinerary";
+import {
+  updateItinerary,
+  deleteItinerary,
+} from "@/app/action/action-itinerary";
 import Date from "@/app/components/Date";
 import Form from "@/app/components/Form";
 import Textarea from "@/app/components/Textarea";
@@ -18,18 +21,20 @@ const page = async ({ params }: { params: { id: string } }) => {
   });
 
   return (
-    <main className="flex justify-center p-8">
-      <div className="flex justify-center p-8">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96">
-          <FormItinerary itinerary={itinerary} />
-          <Button formAction={updateItineraryWithId}>
-            保存
-          </Button>
-          <DeleteItineraryModal itinerary={itinerary}/>
-        </form>
+    <main>
+      <div className="main-contents-area">
+        <div className="contents-area">
+          <div>
+          <form>
+            <FormItinerary itinerary={itinerary} />
+            <Button formAction={updateItineraryWithId}>保存</Button>
+            <DeleteItineraryModal itinerary={itinerary} />
+          </form>
+          </div>
+        </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default page
+export default page;

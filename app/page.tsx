@@ -5,10 +5,9 @@ import FooterMenu from "./components/FooterMenu";
 export default function Home() {
   return (
     <main>
-      <HeaderItinerary />
       <div>
         <div>
-        
+        旅のコレクション、トラベラーズ・ダイアリー、「旅のメモリーブック」-海外旅行のしおりアプリ-
         </div>
         <div>
         <FooterMenu/>

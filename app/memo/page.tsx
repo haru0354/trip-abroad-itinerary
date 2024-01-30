@@ -5,16 +5,18 @@ import FormMemo from "../components/memo/FormMemo";
 
 const Memo = async () => {
   return (
-    <main className="flex justify-center">
-      <div className="p-8">
-        <div className="flex flex-col space-y-4">
-          <form action={addMemo}>
-            <FormMemo />
-            <Button>追加</Button>
-          </form>
-        </div>
-        <div>
-          <ListMemo />
+    <main>
+      <div className="main-contents-area">
+        <div className="contents-area">
+          <div>
+            <form action={addMemo}>
+              <FormMemo />
+              <Button>追加</Button>
+            </form>
+          </div>
+          <div>
+            <ListMemo />
+          </div>
         </div>
       </div>
     </main>

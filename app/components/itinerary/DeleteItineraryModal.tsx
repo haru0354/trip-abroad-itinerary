@@ -36,9 +36,9 @@ const DeleteItineraryModal: React.FC<DeleteModalProps> = ({ itinerary }) => {
       </div>
       {isDeleteModalOpen && (
         <div className="bg-gray-300 bg-opacity-30 fixed z-50 w-full h-full flex justify-center items-center inset-0 ">
-          <div className=" max-w-sm max-h-52 mx-auto py-7 px-7 bg-blue-100 shadow-lg rounded-md w-9/12 h-4/5 mt-12">
-            <div className="flex flex-col items-center h-40">
-              <h3 className="text-xl">
+        <div className=" max-w-sm max-h-52 mx-auto py-7 px-7 bg-blue-100 shadow-lg rounded-md w-9/12 h-4/5 mt-12">
+          <div className="flex flex-col items-center h-40">
+            <h3 className="text-xl">
                 {itinerary && <p>[{itinerary.name}]を削除しますか？</p>}
               </h3>
               <div className="flex justify-center mt-auto mr-5">

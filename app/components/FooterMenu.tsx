@@ -3,37 +3,46 @@ import {
   faPlane,
   faPenToSquare,
   faHouse,
+  faCircleUp,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 const FooterMenu = () => {
   return (
-    <div className="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-300 dark:bg-gray-700 dark:border-gray-600">
-      <div className="flex h-full max-w-lg justify-center items-center mx-auto ">
-        <Link href="./">
-          <button className="inline-flex flex-col items-center justify-center px-10 border-gray-300 border-r hover:bg-gray-200 hover:py-4">
+    <div className="fixed bottom-0 z-50 w-full h-16 bg-white border-t border-gray-400 dark:bg-gray-700 dark:border-gray-600">
+      <div className="max-w-lg flex h-full  justify-center items-center mx-auto ">
+        <div className="w-full h-full">
+        <Link href="../">
+          <button className="w-full h-full flex-1 inline-flex flex-col items-center justify-center hover:bg-gray-200 border-gray-400 border-r">
             <FontAwesomeIcon icon={faHouse} />
-            <span className="items-center text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
-              ホーム
-            </span>
+            <span className=" text-gray-500">ホーム</span>
           </button>
         </Link>
+        </div>
+        <div className="w-full h-full">
         <Link href="../itinerary">
-          <button className="inline-flex flex-col items-center justify-center px-10 border-gray-300 border-r hover:bg-gray-200 hover:py-4">
+        <button className="w-full h-full flex-1 inline-flex flex-col items-center justify-center hover:bg-gray-200 border-gray-400 border-r">
             <FontAwesomeIcon icon={faPlane} />
-            <span className="items-center text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
-              旅程表
-            </span>
+            <span className=" text-gray-500">旅程表</span>
           </button>
         </Link>
+        </div>
+        <div className="w-full h-full">
         <Link href="../memo">
-          <button className="inline-flex flex-col items-center justify-center px-10 border-gray-300 hover:bg-gray-200 hover:py-4">
+        <button className="w-full h-full flex-1 inline-flex flex-col items-center justify-center hover:bg-gray-200 border-gray-400 border-r">
             <FontAwesomeIcon icon={faPenToSquare} />
-            <span className="items-center text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
-              メモ帳
-            </span>
+            <span className=" text-gray-500">メモ帳</span>
           </button>
         </Link>
+        </div>
+        <div className="w-full h-full">
+        <Link href="#">
+          <button className="w-full h-full flex-1 inline-flex flex-col items-center justify-center hover:bg-gray-200">
+            <FontAwesomeIcon icon={faCircleUp} />
+            <span className=" text-gray-500">TOP</span>
+          </button>
+        </Link>
+        </div>
       </div>
     </div>
   );

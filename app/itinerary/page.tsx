@@ -5,9 +5,10 @@ import Button from "../components/Button";
 
 const page = async () => {
   return (
-    <main className="flex justify-center">
-    <div className="p-8">
-      <div className="flex flex-col space-y-4">
+    <main>
+      <div className="main-contents-area">
+        <div className="contents-area">
+          <div>
           <form action={addItinerary}>
             <FormItinerary />
             <Button>追加</Button>
@@ -15,6 +16,7 @@ const page = async () => {
         </div>
         <div>
           <ListItinerary />
+          </div>
         </div>
       </div>
     </main>

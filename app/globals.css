@@ -2,8 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+main {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+  background-color: #eff6ff;
+}
 
-.textarea {
-  white-space: pre-line;
+.main-contents-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  width: 100%;
+  height: 100%; 
+  max-width: 72rem;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+}
+
+.contents-area {
+  width: 100%;
+  height: 100%; 
+  margin-bottom: 0.75rem;
+  max-width: 42rem;
 }
 

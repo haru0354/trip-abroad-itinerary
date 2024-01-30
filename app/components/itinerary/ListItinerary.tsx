@@ -23,7 +23,7 @@ const ListItinerary = async () => {
         const isFirstItem =
           index === 0 || itinerary.date !== sortedItinerary[index - 1].date;
         return (
-          <div key={itinerary.id}>
+          <div className="bg-blue-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80" key={itinerary.id}>
             {isFirstItem && <div className="bg-green-300 text-xl bold mb-2">{itinerary.date}</div>}
             <p>{itinerary.time}</p>
             <p>{itinerary.name}</p>

@@ -1,5 +1,7 @@
 import Form from "../Form";
 import Textarea from "../Textarea";
+import { addMemo } from "@/app/action/action-memo";
+import Button from "../Button";
 
 type Memo = {
   id: number;
@@ -14,22 +16,18 @@ type FormMemoProps = {
 const FormMemo: React.FC<FormMemoProps> = ({ memo }) => {
   return (
     <div>
-      <div>
         <Form
           label={"メモの見出し"}
           name={"name"}
           placeholder="メモの見出しを記載しましょう。"
           defaultValue={memo?.name}
         />
-      </div>
-      <div className="mb-6 ">
         <Textarea
           label={"メモする内容"}
           name={"content"}
           placeholder="メモする内容を記載しましょう。"
           defaultValue={memo?.content}
         />
-      </div>
     </div>
   );
 };

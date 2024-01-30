@@ -15,18 +15,20 @@ const Page = async ({ params }: { params: { id: string } }) => {
     },
   });
 
-
   return (
-    <main className="flex justify-center">
-      <div className="p-8">
-        <div className="flex flex-col space-y-4">
-          <form className="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96">
-            <FormMemo memo={memo} />
-            <Button formAction={updateMemoWidthId}>保存</Button>
-
-          </form>
+    <main>
+      <div className="main-contents-area">
+        <div className="contents-area">
+          <div>
+            <form>
+              <FormMemo memo={memo} />
+              <Button formAction={updateMemoWidthId}>保存</Button>
+            </form>
+          </div>
+          <div>
+            <DeleteModal memo={memo} />
+          </div>
         </div>
-        <DeleteModal memo={memo} />
       </div>
     </main>
   );

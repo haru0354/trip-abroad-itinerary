@@ -21,14 +21,14 @@ const ListItinerary = async () => {
 
   return (
     <div>
-      <h2>旅程表</h2>
+      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-2 p-5">旅程表</h2>
       {sortedItinerary.map((itinerary, index) => {
         const isFirstItem =
           index === 0 || itinerary.date !== sortedItinerary[index - 1].date;
         return (
           <div key={itinerary.id}>
             {isFirstItem && (
-              <div className="bg-blue-200 text-xl bold mt-10 mb-2 p-3">
+              <div className="border-b border-blue-400 text-xl bold mt-10 mb-2 p-3">
                 {itinerary.date}
               </div>
             )}

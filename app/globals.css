@@ -44,26 +44,26 @@ main {
 }
 
 .btn.blue {
-  background-color: #3498db;
+  background-color: #002fcf;
 
   &:hover {
-    background-color: #ababab;
+    background-color: #3757c3;
   }
 }
 
 .btn.red {
-  background-color: #f13939;
+  background-color: #cf0000;
   
   &:hover {
-    background-color: #ababab;
+    background-color: #cf6262;
   }
 }
 
 .btn.gray {
-  background-color: #ababab;
+  background-color: #6e6e6e;
 
   &:hover {
-    background-color: #3498db;
+    background-color: #a1a1a1;
   }
 }
 

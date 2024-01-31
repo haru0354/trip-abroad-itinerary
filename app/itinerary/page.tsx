@@ -11,7 +11,10 @@ const page = async () => {
           <div>
           <form action={addItinerary}>
             <FormItinerary />
-            <Button>追加</Button>
+
+            <Button  className="btn blue mx-auto">追加</Button>
+
+
           </form>
         </div>
         <div>

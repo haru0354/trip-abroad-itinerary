@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Button from "../Button";
 import { deleteMemo } from "../../action/action-memo";
+import Image from "next/image";
 
 type Memo = {
   id: number;
@@ -24,26 +25,45 @@ const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
 
   const deleteMemoWithId = deleteMemo.bind(null, memo.id);
 
+  const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
+    if (e.target === e.currentTarget) {
+      toggleDeleteModal();
+    }
+  }
+
   return (
     <div>
       <div className="flex justify-center items-center">
         {isDeleteModalOpen || (
-          <Button onClick={toggleDeleteModal}>メモを削除</Button>
+          <Button onClick={toggleDeleteModal} className="btn red">
+            メモを削除
+          </Button>
         )}
       </div>
       {isDeleteModalOpen && (
-        <div className="bg-gray-300 bg-opacity-30 fixed z-50 w-full h-full flex justify-center items-center inset-0 ">
-        <div className=" max-w-sm max-h-52 mx-auto py-7 px-7 bg-blue-100 shadow-lg rounded-md w-9/12 h-4/5 mt-12">
-          <div className="flex flex-col items-center h-40">
-            <h3 className="text-xl">
-                {memo && <p>[{memo.name}]を削除しますか？</p>}
-              </h3>
-              <div className="flex justify-center mt-auto mr-5">
-                <Button onClick={toggleDeleteModal}>キャンセル</Button>
-                <form>
-                  <Button formAction={deleteMemoWithId}>削除</Button>
-                </form>
-              </div>
+        <div className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0" onClick={closeModal}>
+          <div className="border rounded mx-auto bg-blue-100 w-[250px]">
+            <div>
+              <Image
+                src="/WS000000.JPG"
+                alt="削除する"
+                width={250}
+                height={250}
+                objectFit="contain"
+              ></Image>
+            </div>
+            <div>
+              <p className="text-center p-4 font-bold">{memo.name}</p>
+            </div>
+            <div>
+              <Button onClick={toggleDeleteModal} className="btn gray">
+                キャンセル
+              </Button>
+              <form>
+                <Button formAction={deleteMemoWithId} className="btn red ">
+                  削除
+                </Button>
+              </form>
             </div>
           </div>
         </div>

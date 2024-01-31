@@ -7,19 +7,20 @@ type ButtonChildren = {
   children: ReactNode;
   formAction?: (data: FormData) => Promise<void> | Promise<never> | null;
   onClick?: () => void;
-
+  className?: string;
 };
 
 const Button: React.FC<ButtonChildren> = ({
   children,
   formAction,
-  onClick
+  onClick,
+  className
 }) => {
   const { pending } = useFormStatus();
-
+  {`btn ${className}`}
   return (
     <button
-      className={`bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
+      className={`${className} ${
         pending ? "opacity-30" : ""
       }`}
       type="submit"

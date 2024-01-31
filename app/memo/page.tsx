@@ -11,7 +11,7 @@ const Memo = async () => {
           <div>
             <form action={addMemo}>
               <FormMemo />
-              <Button>追加</Button>
+              <Button  className="btn blue">追加</Button>
             </form>
           </div>
           <div>

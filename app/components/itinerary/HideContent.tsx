@@ -27,10 +27,10 @@ const HideContent: React.FC<HideContentProps> = ({ itinerary }) => {
           {isShowContent ? (
             <>
               <p>{itinerary?.hideContent}</p>
-              <Button onClick={toggleShowContent}>閉じる</Button>
+              <Button onClick={toggleShowContent}  className="btn-switch">閉じる</Button>
             </>
           ) : (
-            <Button onClick={toggleShowContent}>補足情報を開く</Button>
+            <Button onClick={toggleShowContent}   className="btn-switch">補足情報を開く</Button>
           )}
         </>
       )}

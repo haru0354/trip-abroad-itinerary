@@ -25,11 +25,13 @@ const page = async ({ params }: { params: { id: string } }) => {
       <div className="main-contents-area">
         <div className="contents-area">
           <div>
-          <form>
-            <FormItinerary itinerary={itinerary} />
-            <Button formAction={updateItineraryWithId}>保存</Button>
+            <form>
+              <FormItinerary itinerary={itinerary} />
+              <Button formAction={updateItineraryWithId}  className="btn blue">保存</Button>
+            </form>
+          </div>
+          <div>
             <DeleteItineraryModal itinerary={itinerary} />
-          </form>
           </div>
         </div>
       </div>

@@ -22,7 +22,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
           <div>
             <form>
               <FormMemo memo={memo} />
-              <Button formAction={updateMemoWidthId}>保存</Button>
+              <Button formAction={updateMemoWidthId}  className="btn blue">保存</Button>
             </form>
           </div>
           <div>

@@ -31,7 +31,7 @@ const DeleteItineraryModal: React.FC<DeleteModalProps> = ({ itinerary }) => {
     <div>
       <div className="flex justify-center items-center">
         {isDeleteModalOpen || (
-          <Button onClick={toggleDeleteModal}>メモを削除</Button>
+          <Button onClick={toggleDeleteModal} className="btn red">メモを削除</Button>
         )}
       </div>
       {isDeleteModalOpen && (
@@ -42,9 +42,9 @@ const DeleteItineraryModal: React.FC<DeleteModalProps> = ({ itinerary }) => {
                 {itinerary && <p>[{itinerary.name}]を削除しますか？</p>}
               </h3>
               <div className="flex justify-center mt-auto mr-5">
-                <Button onClick={toggleDeleteModal}>キャンセル</Button>
+                <Button onClick={toggleDeleteModal} className="btn gray">キャンセル</Button>
                 <form>
-                  <Button formAction={deleteItineraryWithId}>削除</Button>
+                  <Button formAction={deleteItineraryWithId} className="btn red" >削除</Button>
                 </form>
               </div>
             </div>

@@ -1,6 +1,5 @@
 import ListMemo from "../components/memo/ListMemo";
 import { addMemo } from "../action/action-memo";
-import Button from "../components/Button";
 import FormMemo from "../components/memo/FormMemo";
 
 const Memo = async () => {
@@ -9,10 +8,7 @@ const Memo = async () => {
       <div className="main-contents-area">
         <div className="contents-area">
           <div>
-            <form action={addMemo}>
-              <FormMemo />
-              <Button  className="btn blue">追加</Button>
-            </form>
+              <FormMemo formAction={addMemo} buttonName="追加"/>
           </div>
           <div>
             <ListMemo />

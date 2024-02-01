@@ -45,27 +45,29 @@ main {
 
 .btn.blue {
   background-color: #002fcf;
+}
 
-  &:hover {
-    background-color: #3757c3;
-  }
+.btn.blue:hover {
+  background-color: #3757c3;
 }
 
 .btn.red {
   background-color: #cf0000;
-  
-  &:hover {
-    background-color: #cf6262;
-  }
 }
+
+.btn.red:hover {
+  background-color: #cf6262;
+}
+
 
 .btn.gray {
   background-color: #6e6e6e;
-
-  &:hover {
-    background-color: #a1a1a1;
-  }
 }
+
+.btn.gray:hover {
+  background-color: #a1a1a1;
+}
+
 
 .btn-small {
   padding-left: 1rem;
@@ -80,7 +82,6 @@ main {
 
 btn-switch {
   padding-left: 1rem;
-
 }
 
 .btn-footer {
@@ -91,10 +92,10 @@ btn-switch {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
 
-  &:hover {
-    background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-  }
+.btn-footer:hover {
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
 

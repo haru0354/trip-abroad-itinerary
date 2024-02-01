@@ -1,13 +1,5 @@
 import prisma from "@/app/components/lib/prisma";
-import {
-  updateItinerary,
-  deleteItinerary,
-} from "@/app/action/action-itinerary";
-import Date from "@/app/components/Date";
-import Form from "@/app/components/Form";
-import Textarea from "@/app/components/Textarea";
-import Time from "@/app/components/Time";
-import Button from "@/app/components/Button";
+import { updateItinerary } from "@/app/action/action-itinerary";
 import FormItinerary from "@/app/components/itinerary/FormItinerary";
 import DeleteItineraryModal from "@/app/components/itinerary/DeleteItineraryModal";
 
@@ -25,10 +17,11 @@ const page = async ({ params }: { params: { id: string } }) => {
       <div className="main-contents-area">
         <div className="contents-area">
           <div>
-            <form>
-              <FormItinerary itinerary={itinerary} />
-              <Button formAction={updateItineraryWithId}  className="btn blue">保存</Button>
-            </form>
+            <FormItinerary
+              itinerary={itinerary}
+              formAction={updateItineraryWithId}
+              buttonName={"保存"}
+            />
           </div>
           <div>
             <DeleteItineraryModal itinerary={itinerary} />

@@ -1,7 +1,5 @@
 import prisma from "../../components/lib/prisma";
-import { updateMemo, deleteMemo } from "../../action/action-memo";
-import Button from "@/app/components/Button";
-
+import { updateMemo } from "../../action/action-memo";
 import FormMemo from "@/app/components/memo/FormMemo";
 import DeleteModal from "@/app/components/memo/DeleteMemoModal";
 
@@ -20,10 +18,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
       <div className="main-contents-area">
         <div className="contents-area">
           <div>
-            <form>
-              <FormMemo memo={memo} />
-              <Button formAction={updateMemoWidthId}  className="btn blue">保存</Button>
-            </form>
+              <FormMemo formAction={updateMemoWidthId} memo={memo} buttonName={"保存"}/>
           </div>
           <div>
             <DeleteModal memo={memo} />

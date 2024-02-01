@@ -42,7 +42,6 @@ const ListItinerary = async () => {
                   <div className="h-full w-1 bg-blue-100"></div>
                 </div>
               </div>
-
               <div className="w-full flex-1 ml-8 my-2 p-5 shadow flex flex-col">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center">
@@ -51,10 +50,9 @@ const ListItinerary = async () => {
                       className="inline-block mr-2"
                     />
                     <p className="text-gray-600 mb-0 inline-block">
-                      時間：{itinerary.time}
+                      {itinerary.time}
                     </p>
                   </div>
-
                   <Link href={`/itinerary/${itinerary.id}`}>
                     <Button className="btn-small">
                       <FontAwesomeIcon
@@ -65,7 +63,6 @@ const ListItinerary = async () => {
                     </Button>
                   </Link>
                 </div>
-
                 <h3 className="text-gray-900 mb-4 text-xl font-medium">
                   {itinerary.name}
                 </h3>

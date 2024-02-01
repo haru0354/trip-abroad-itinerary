@@ -15,9 +15,9 @@ type Itinerary = {
 
 type FormItineraryProps = {
   itinerary?: Itinerary | null;
-}
+};
 
-const FormItinerary: React.FC<FormItineraryProps> = ({itinerary}) => {
+const FormItinerary: React.FC<FormItineraryProps> = ({ itinerary }) => {
   return (
     <div>
       <Date defaultValue={itinerary?.date} />

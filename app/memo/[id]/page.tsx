@@ -1,5 +1,5 @@
 import prisma from "../../components/lib/prisma";
-import { updateMemo, deleteMemo } from "../../action/action-memo";
+import { updateMemo } from "../../action/action-memo";
 import Button from "@/app/components/Button";
 
 import FormMemo from "@/app/components/memo/FormMemo";

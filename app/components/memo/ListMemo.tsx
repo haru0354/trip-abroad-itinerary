@@ -23,7 +23,6 @@ const ListMemo = async () => {
                 </Button>
               </Link>
             </div>
-
             <div>{memo.content}</div>
           </div>
         );

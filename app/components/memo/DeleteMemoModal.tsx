@@ -29,7 +29,7 @@ const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
     if (e.target === e.currentTarget) {
       toggleDeleteModal();
     }
-  }
+  };
 
   return (
     <div>
@@ -41,7 +41,10 @@ const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
         )}
       </div>
       {isDeleteModalOpen && (
-        <div className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0" onClick={closeModal}>
+        <div
+          className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
+          onClick={closeModal}
+        >
           <div className="border rounded mx-auto bg-blue-100 w-[250px]">
             <div>
               <Image

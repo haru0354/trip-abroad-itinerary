@@ -8,10 +8,10 @@ const Memo = async () => {
       <div className="main-contents-area">
         <div className="contents-area">
           <div>
-              <FormMemo formAction={addMemo} buttonName="追加"/>
+            <ListMemo />
           </div>
           <div>
-            <ListMemo />
+            <FormMemo formAction={addMemo} buttonName="追加" />
           </div>
         </div>
       </div>

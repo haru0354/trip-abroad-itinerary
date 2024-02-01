@@ -1,6 +1,9 @@
+"use client";
+
+import { useState, ChangeEvent } from "react";
 import Button from "../Button";
 import Form from "../Form";
-import Textarea from "../Textarea";
+import TextArea from "../TextArea";
 
 type Memo = {
   id: number;
@@ -14,22 +17,49 @@ type FormMemoProps = {
   formAction: (data: FormData) => Promise<void> | Promise<never> | null;
 };
 
-const FormMemo: React.FC<FormMemoProps> = ({ memo, buttonName, formAction }) => {
+const FormMemo: React.FC<FormMemoProps> = ({
+  memo,
+  buttonName,
+  formAction,
+}) => {
+  const [inputValue, setInputValue] = useState<string>(memo?.name || "");
+  const [textAreaValue, setTextareaChange] = useState<string>(
+    memo?.content || ""
+  );
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setTextareaChange(e.target.value);
+  };
+
+  const addMemo = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault;
+    setInputValue("");
+    setTextareaChange("");
+  };
 
   return (
     <div>
-      <form action={formAction}>
+      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
+        メモの追加
+      </h2>
+      <form action={formAction} onSubmit={addMemo}>
         <Form
           label={"メモの見出し"}
           name={"name"}
           placeholder="メモの見出しを記載しましょう。"
-          defaultValue={memo?.name}
+          value={inputValue}
+          onChange={handleInputChange}
         />
-        <Textarea
+        <TextArea
           label={"メモする内容"}
           name={"content"}
           placeholder="メモする内容を記載しましょう。"
-          defaultValue={memo?.content}
+          value={textAreaValue}
+          onChange={handleTextareaChange}
         />
         <Button className="btn blue">{buttonName}</Button>
       </form>

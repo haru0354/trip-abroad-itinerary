@@ -1,18 +1,15 @@
 import Link from "next/link";
 import HeaderItinerary from "./components/HeaderItinerary";
 import FooterMenu from "./components/FooterMenu";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 export default function Home() {
   return (
-    <main>
-      <div>
-        <div>
-        旅のコレクション、トラベラーズ・ダイアリー、「旅のメモリーブック」-海外旅行のしおりアプリ-
-        </div>
-        <div>
-        <FooterMenu/>
-        </div>
-      </div>
-    </main>
+    <>
+      <Header />
+      <Footer />
+      <FooterMenu />
+    </>
   );
 }

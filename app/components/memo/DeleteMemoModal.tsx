@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Button from "../Button";
+import Button from "../ui/Button";
 import { deleteMemo } from "../../action/action-memo";
 import Image from "next/image";
 

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Button from "../Button";
+import Button from "../ui/Button";
 import { deleteItinerary } from "@/app/action/action-itinerary";
 import Image from "next/image";
 

@@ -1,6 +1,13 @@
 const Header = () => {
   return (
-    <div>header</div>
+  <>
+    <header>
+      <div>
+      旅のコレクション、トラベラーズ・ダイアリー、「旅のメモリーブック」-海外旅行のしおりアプリ-
+      </div>
+    </header>
+  </>
+    
   )
 }
 

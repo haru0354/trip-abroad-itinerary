@@ -1,5 +1,5 @@
 import prisma from "../lib/prisma";
-import Button from "../Button";
+import Button from "../ui/Button";
 import Link from "next/link";
 import HideContent from "./HideContent";
 import { faCircleDown } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +21,9 @@ const ListItinerary = async () => {
 
   return (
     <div>
-      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-2 p-5">旅程表</h2>
+      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-2 p-5">
+        旅程表
+      </h2>
       {sortedItinerary.map((itinerary, index) => {
         const isFirstItem =
           index === 0 || itinerary.date !== sortedItinerary[index - 1].date;
@@ -55,10 +57,7 @@ const ListItinerary = async () => {
                   </div>
                   <Link href={`/itinerary/${itinerary.id}`}>
                     <Button className="btn-small">
-                      <FontAwesomeIcon
-                        icon={faPenToSquare}
-                        className="mr-2"
-                      />
+                      <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
                       編集
                     </Button>
                   </Link>

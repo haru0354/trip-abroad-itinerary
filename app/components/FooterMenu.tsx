@@ -39,7 +39,7 @@ const FooterMenu = () => {
         <Link href="#">
           <button className="btn-footer">
             <FontAwesomeIcon icon={faCircleUp} />
-            <span className=" text-gray-500">TOP</span>
+            <span className=" text-gray-500">追加</span>
           </button>
         </Link>
         </div>

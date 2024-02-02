@@ -1,8 +1,11 @@
+
 type TimeProps = {
-  defaultValue?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+
 };
 
-const Time: React.FC<TimeProps> = ({ defaultValue }) => {
+const Time: React.FC<TimeProps> = ({ value, onChange }) => {
   return (
     <div>
       <label
@@ -15,7 +18,8 @@ const Time: React.FC<TimeProps> = ({ defaultValue }) => {
         type="time"
         name="time"
         id="time"
-        defaultValue={defaultValue}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );

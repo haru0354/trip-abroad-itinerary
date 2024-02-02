@@ -10,7 +10,9 @@ const ListMemo = async () => {
 
   return (
     <>
-      <h2>メモの一覧</h2>
+      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
+        メモの一覧
+      </h2>
       {sortedMemos.map((memo) => {
         return (
           <div className="bg-blue-200 shadow-md rounded px-8 py-8 mb-10 ">

@@ -42,7 +42,7 @@ const ListItinerary = async () => {
                   <div className="h-full w-1 bg-blue-100"></div>
                 </div>
               </div>
-              <div className="w-full flex-1 ml-8 my-2 p-5 shadow flex flex-col">
+              <div className="w-full flex-1 ml-8 my-2 p-5 shadow flex flex-col bg-blue-50">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center">
                     <FontAwesomeIcon

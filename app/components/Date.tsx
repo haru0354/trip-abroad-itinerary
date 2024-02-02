@@ -1,8 +1,11 @@
+
+
 type DateProps = {
-  defaultValue?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 };
 
-const Date: React.FC<DateProps> = ({ defaultValue }) => {
+const Date: React.FC<DateProps> = ({ value, onChange }) => {
   return (
     <div>
       <label
@@ -11,7 +14,7 @@ const Date: React.FC<DateProps> = ({ defaultValue }) => {
       >
         日付:
       </label>
-      <input type="date" id="date" name={"date"} defaultValue={defaultValue} />
+      <input type="date" id="date" name={"date"} value={value} onChange={onChange} />
     </div>
   );
 };

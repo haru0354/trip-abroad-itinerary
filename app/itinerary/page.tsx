@@ -8,10 +8,10 @@ const page = async () => {
       <div className="main-contents-area">
         <div className="contents-area">
           <div>
-              <FormItinerary buttonName="追加" formAction={addItinerary} />
+            <ListItinerary />
           </div>
           <div>
-            <ListItinerary />
+            <FormItinerary buttonName="追加" formAction={addItinerary} />
           </div>
         </div>
       </div>

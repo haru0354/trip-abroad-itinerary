@@ -28,11 +28,11 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   buttonName,
   formAction,
 }) => {
-  const [dateValue, setDateValue] = useState(itinerary?.date || "");
-  const [timeValue, setTimeValue] = useState(itinerary?.time || "");
-  const [inputValue, setInputValue] = useState(itinerary?.name || "");
-  const [TextAreaValue, setTextAreaValue] = useState(itinerary?.content || "");
-  const [hideTextAreaValue, setHideTextAreaValue] = useState(
+  const [dateValue, setDateValue] = useState<string>(itinerary?.date || "");
+  const [timeValue, setTimeValue] = useState<string>(itinerary?.time || "");
+  const [inputValue, setInputValue] = useState<string>(itinerary?.name || "");
+  const [TextAreaValue, setTextAreaValue] = useState<string>(itinerary?.content || "");
+  const [hideTextAreaValue, setHideTextAreaValue] = useState<string>(
     itinerary?.hideContent || ""
   );
 
@@ -68,9 +68,9 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   };
 
   return (
-    <div>
+    <div id="add">
       <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
-        旅程表の追加
+        旅程の追加
       </h2>
       <form action={formAction} onSubmit={addItinerary}>
         <Date value={dateValue} onChange={handleDateChange} />

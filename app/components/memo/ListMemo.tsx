@@ -1,5 +1,5 @@
 import prisma from "../lib/prisma";
-import Button from "../Button";
+import Button from "../ui/Button";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";

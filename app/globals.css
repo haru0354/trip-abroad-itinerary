@@ -5,7 +5,6 @@
 main {
   display: flex;
   justify-content: center;
-  margin-bottom: 4rem;
   background-color: #eff6ff;
 }
 
@@ -14,14 +13,16 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 0 1rem;
   width: 100%;
   height: 100%;
   max-width: 72rem;
   border-left-width: 1px;
   border-right-width: 1px;
   border-radius: 0.25rem;
-  background-color: #ffffff;
+  background-color: #f8fbff;
 }
 
 .contents-area {
@@ -59,7 +60,6 @@ main {
   background-color: #cf6262;
 }
 
-
 .btn.gray {
   background-color: #6e6e6e;
 }
@@ -67,7 +67,6 @@ main {
 .btn.gray:hover {
   background-color: #a1a1a1;
 }
-
 
 .btn-small {
   padding-left: 1rem;
@@ -97,5 +96,3 @@ btn-switch {
 .btn-footer:hover {
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
-
-

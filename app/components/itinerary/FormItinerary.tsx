@@ -1,10 +1,10 @@
 "use client";
 
-import Form from "../Form";
-import TextArea from "../TextArea";
-import Date from "../Date";
-import Time from "../Time";
-import Button from "../Button";
+import Form from "../ui/Form";
+import TextArea from "../ui/TextArea";
+import Date from "../ui/Date";
+import Time from "../ui/Time";
+import Button from "../ui/Button";
 import { useState, ChangeEvent } from "react";
 
 type Itinerary = {
@@ -31,7 +31,9 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   const [dateValue, setDateValue] = useState<string>(itinerary?.date || "");
   const [timeValue, setTimeValue] = useState<string>(itinerary?.time || "");
   const [inputValue, setInputValue] = useState<string>(itinerary?.name || "");
-  const [TextAreaValue, setTextAreaValue] = useState<string>(itinerary?.content || "");
+  const [TextAreaValue, setTextAreaValue] = useState<string>(
+    itinerary?.content || ""
+  );
   const [hideTextAreaValue, setHideTextAreaValue] = useState<string>(
     itinerary?.hideContent || ""
   );

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, ChangeEvent } from "react";
-import Button from "../Button";
-import Form from "../Form";
-import TextArea from "../TextArea";
+import Button from "../ui/Button";
+import Form from "../ui/Form";
+import TextArea from "../ui/TextArea";
 
 type Memo = {
   id: number;

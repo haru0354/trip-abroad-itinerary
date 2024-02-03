@@ -2,19 +2,17 @@ import Link from "next/link";
 
 const HeaderItinerary = () => {
   return (
-    <header className="header">
-      <div className="header__inner">
+    <header>
+      <div className="flex justify-between items-center border-b h-16 mx-10">
         <Link href="../">HOME </Link>
-        <nav className="header__nav">
-          <ul className="header__ul">
-            <li className="header__list">
-              <Link href="../memo">memo</Link>
-            </li>
-            <li className="header__list">
-              <Link href="../itinerary">itinerary</Link>
-            </li>
-          </ul>
-        </nav>
+        <ul className="flex">
+          <li className="ml-4">
+            <Link href="../memo">ログイン</Link>
+          </li>
+          <li className="ml-4">
+            <Link href="../itinerary">itinerary</Link>
+          </li>
+        </ul>
       </div>
     </header>
   );

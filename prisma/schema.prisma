@@ -10,11 +10,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserRole {
+  ADMIN
+  USER
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  password      String?
+  role          UserRole @default(USER)
+  memos         memo[]  
+  itinerary     itinerary[]   
+}
+
 model memo {
-  id  Int @id @default(autoincrement())
+  id       Int     @id @default(autoincrement())
   name  String
   content  String 
-  isCompleted Boolean @default(false)
+  isCompleted  Boolean @default(false)
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
 }
 
 model itinerary {
@@ -25,4 +43,6 @@ model itinerary {
   content String 
   hideContent String
   isShowContent Boolean @default(false)
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
 }

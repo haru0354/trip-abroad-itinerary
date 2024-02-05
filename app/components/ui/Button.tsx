@@ -1,10 +1,9 @@
 "use client";
 
-import { ReactNode } from "react";
 import { useFormStatus } from "react-dom";
 
 type ButtonChildren = {
-  children: ReactNode;
+  children: React.ReactNode;
   formAction?: (data: FormData) => Promise<void> | Promise<never> | null;
   onClick?: () => void;
   className?: string;

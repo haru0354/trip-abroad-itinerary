@@ -5,7 +5,7 @@ const SignUp = () => {
   return (
     <div className="flex">
       <div className="flex items-center">
-        <form action="">
+        <form action="">000
           <Form label={"ニックネーム"} />
           <Form label={"メールアドレス"} />
           <Form label={"パスワード"} />

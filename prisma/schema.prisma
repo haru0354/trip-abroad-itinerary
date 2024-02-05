@@ -10,39 +10,54 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum UserRole {
-  ADMIN
-  USER
-}
-
 model User {
-  id            String    @id @default(cuid())
+  id            String    @id @default(uuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime?
   password      String?
-  role          UserRole @default(USER)
-  memos         memo[]  
-  itinerary     itinerary[]   
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  accounts      Account[]
+  memos         Memo[]
+  itineraries   Itinerary[]
 }
 
-model memo {
-  id       Int     @id @default(autoincrement())
-  name  String
-  content  String 
+model Account {
+  id                  String    @id @default(uuid())
+  userId              String
+  type                String
+  provider            String
+  providerAccountId   String
+  refresh_token       String?
+  access_token        String?
+  expires_at          Int?
+  token_type          String?
+  scope               String?
+  id_token            String?
+  session_state       String?
+  user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
+  
+  @@unique([provider, providerAccountId])
+}
+
+model Memo {
+  id           Int     @id @default(autoincrement())
+  name         String
+  content      String
   isCompleted  Boolean @default(false)
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String
+  userId       String
+  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model itinerary {
-  id  Int @id @default(autoincrement())
-  date String
-  time String
-  name String
-  content String 
-  hideContent String
+model Itinerary {
+  id            Int     @id @default(autoincrement())
+  date          String
+  time          String
+  name          String
+  content       String
+  hideContent   String
   isShowContent Boolean @default(false)
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String
+  userId        String
+  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

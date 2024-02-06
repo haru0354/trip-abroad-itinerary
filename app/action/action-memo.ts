@@ -1,11 +1,13 @@
 'use server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import prisma from "../components/lib/prisma"
 
 export const addMemo = async (data: FormData) => {
     const name = data.get('name') as string;
     const content = data.get('content') as string; 
-    await prisma.memo.create({ data: { name, content } });
+    const userId = data.get('userId') as string; 
+    await prisma.memo.create({ data: { name, content, userId } });
     revalidatePath('/memo');
   };
 

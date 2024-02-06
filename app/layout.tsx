@@ -6,7 +6,9 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import AuthContext from "./context/AuthContext";
 import getCurrentUser from "./action/getCurrentUser";
 import HeaderItinerary from "./components/HeaderItinerary";
-import Navigation from "./components/navigation/Navigation";
+import Navigation from "./(auth)/navigation/Navigation";
+import SignupModal from "./(auth)/authUi/SignupModal";
+import ToastContext from "./context/ToastContext";
 
 config.autoAddCss = false;
 
@@ -22,13 +24,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentUser = await getCurrentUser()
+  const currentUser = await getCurrentUser();
 
   return (
     <html lang="jp">
       <body className={inter.className}>
+        <AuthContext>
+        <ToastContext />
+        <SignupModal />
         <Navigation currentUser={currentUser} />
         {children}
+        </AuthContext>
       </body>
     </html>
   );

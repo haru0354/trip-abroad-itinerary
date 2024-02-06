@@ -6,6 +6,7 @@ import MenuItem from "./MenuItem";
 import useLoginModal from "../hooks/useLoginModal";
 import useSignupModal from "../hooks/useSignupModal";
 import useProfileModal from "../hooks/useProfile";
+import { signOut } from "next-auth/react";
 
 type MenuProps = {
   currentUser: User | null;
@@ -24,10 +25,8 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   return (
     <div>
       <div onClick={toggleOpen}>
-        <Image src={"/default.png"} alt="avatar"   width={100}
-  height={100} />
+        <Image src={"/default.png"} alt="avatar" width={30} height={30} />
       </div>
-
       {isOpen && (
         <div>
           <div>
@@ -43,7 +42,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
                 <MenuItem
                   label="ログアウト"
                   onClick={() => {
-                    profileModal.onOpen();
+                    signOut();
                     setIsOpen(false);
                   }}
                 />

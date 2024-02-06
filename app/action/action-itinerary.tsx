@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import prisma from "../components/lib/prisma"
 
 export const addItinerary = async (data: FormData) => {
   const date = data.get("date") as string;
@@ -9,7 +10,8 @@ export const addItinerary = async (data: FormData) => {
   const name = data.get("name") as string;
   const content = data.get("content") as string;
   const hideContent = data.get("hideContent") as string;
-  await prisma.itinerary.create({ data: { date, time, name, content, hideContent } })
+  const userId = data.get('userId') as string; 
+  await prisma.itinerary.create({ data: { date, time, name, content, hideContent, userId } })
   revalidatePath('/itinerary');
 }
 

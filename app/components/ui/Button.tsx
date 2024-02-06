@@ -2,18 +2,18 @@
 
 import { useFormStatus } from "react-dom";
 
-type ButtonChildren = {
+type ButtonProps = {
   children: React.ReactNode;
   formAction?: (data: FormData) => Promise<void> | Promise<never> | null;
   onClick?: () => void;
   className?: string;
 };
 
-const Button: React.FC<ButtonChildren> = ({
+const Button: React.FC<ButtonProps> = ({
   children,
   formAction,
   onClick,
-  className
+  className,
 }) => {
   const { pending } = useFormStatus();
   {`btn ${className}`}

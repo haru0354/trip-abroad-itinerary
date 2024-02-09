@@ -46,8 +46,8 @@ model Memo {
   name         String
   content      String
   isCompleted  Boolean @default(false)
-  userId       String
-  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdBy     User     @relation(fields: [createdById], references: [id])
+  createdById   String   // メモを作成したユーザーのID
 }
 
 model Itinerary {
@@ -58,6 +58,6 @@ model Itinerary {
   content       String
   hideContent   String
   isShowContent Boolean @default(false)
-  userId        String
-  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdBy     User     @relation(fields: [createdById], references: [id])
+  createdById   String   // メモを作成したユーザーのID
 }

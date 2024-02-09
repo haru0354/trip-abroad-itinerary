@@ -11,6 +11,8 @@ export const addMemo = async (data: FormData) => {
     revalidatePath('/memo');
   };
 
+
+
 export const deleteMemo = async (id: number) => {
   await prisma.memo.delete({
     where: {

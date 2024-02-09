@@ -1,7 +1,7 @@
 import FooterMenu from "./components/FooterMenu";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Navigation from "./(auth)/navigation/Navigation";
+import Navigation from "./components/auth/navigation/Navigation";
 import getCurrentUser from "./action/getCurrentUser";
 
 export default async function Home() {

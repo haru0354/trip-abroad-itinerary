@@ -41,3 +41,15 @@ blog の投稿
 SNS での共有
 編集はできないが閲覧のみできるページを作る。
 そして、それを SNS にアップロードして他人にも見てもらえる。
+
+
+export const addMemo = async (userId: string, data: FormData) => {
+  const name = data.get('name') as string;
+  const content = data.get('content') as string; 
+  await prisma.memo.create({ data: { 
+    name, 
+    content,
+    createdBy: { connect: { id: userId } } // ユーザーIDを使用して関連付ける
+} });
+  revalidatePath('/memo');
+};

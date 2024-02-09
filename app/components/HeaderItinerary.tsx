@@ -16,7 +16,7 @@ const HeaderItinerary: React.FC<HeaderItineraryProps> = ({ currentUser }) => {
             <Link href="/">ログイン</Link>
           </li>
           <li className="ml-4">
-            <Link href="../itinerary">itinerary</Link>
+            <Link href="../itinerary">登録</Link>
           </li>
         </ul>
       </div>

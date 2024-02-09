@@ -18,7 +18,11 @@ const Page = async ({ params }: { params: { id: string } }) => {
       <div className="main-contents-area">
         <div className="contents-area">
           <div>
-              <FormMemo formAction={updateMemoWidthId} memo={memo} buttonName={"保存"}/>
+            <FormMemo
+              formAction={updateMemoWidthId}
+              memo={memo}
+              buttonName={"保存"}
+            />
           </div>
           <div>
             <DeleteModal memo={memo} />

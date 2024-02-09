@@ -14,7 +14,7 @@ type Memo = {
 type FormMemoProps = {
   memo?: Memo | null;
   buttonName: string;
-  formAction: (data: FormData) => Promise<void> | Promise<never> | null;
+  formAction: (userId?: string, data: FormData ) => Promise<void> | Promise<never> 
 };
 
 const FormMemo: React.FC<FormMemoProps> = ({
@@ -35,7 +35,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
     setTextareaChange(e.target.value);
   };
 
-  const addMemo = (e: React.FormEvent<HTMLFormElement>) => {
+  const addMemoClear = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault;
     setInputValue("");
     setTextareaChange("");
@@ -46,7 +46,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
       <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
         メモの追加
       </h2>
-      <form action={formAction} onSubmit={addMemo}>
+      <form action={formAction} onSubmit={addMemoClear}>
         <Form
           label={"メモの見出し"}
           name={"name"}

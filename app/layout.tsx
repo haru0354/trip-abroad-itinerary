@@ -5,10 +5,10 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import AuthContext from "./context/AuthContext";
 import getCurrentUser from "./action/getCurrentUser";
-import HeaderItinerary from "./components/HeaderItinerary";
-import Navigation from "./(auth)/navigation/Navigation";
-import SignupModal from "./(auth)/authUi/SignupModal";
+import Navigation from "./components/auth/navigation/Navigation";
+import SignupModal from "./components/auth/authUi/SignupModal";
 import ToastContext from "./context/ToastContext";
+import LoginModal from "./components/auth/authUi/LoginModal";
 
 config.autoAddCss = false;
 
@@ -30,10 +30,11 @@ export default async function RootLayout({
     <html lang="jp">
       <body className={inter.className}>
         <AuthContext>
-        <ToastContext />
-        <SignupModal />
-        <Navigation currentUser={currentUser} />
-        {children}
+          <ToastContext />
+          <SignupModal />
+          <LoginModal />
+          <Navigation currentUser={currentUser} />
+          {children}
         </AuthContext>
       </body>
     </html>

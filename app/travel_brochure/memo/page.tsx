@@ -1,6 +1,6 @@
-import ListMemo from "../components/memo/ListMemo";
-import { addMemo } from "../action/action-memo";
-import FormMemo from "../components/memo/FormMemo";
+import ListMemo from "../../components/memo/ListMemo";
+import { addMemo } from "../../action/action-memo";
+import FormMemo from "../../components/memo/FormMemo";
 
 const Memo = async () => {
   return (

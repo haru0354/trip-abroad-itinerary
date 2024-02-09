@@ -14,7 +14,7 @@ type Memo = {
 type FormMemoProps = {
   memo?: Memo | null;
   buttonName: string;
-  formAction: (userId?: string, data: FormData ) => Promise<void> | Promise<never> 
+  formAction?: (data: FormData, userId?: string ) => Promise<void> | Promise<never> 
 };
 
 const FormMemo: React.FC<FormMemoProps> = ({

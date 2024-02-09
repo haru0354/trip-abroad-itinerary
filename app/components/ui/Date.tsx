@@ -12,7 +12,7 @@ const Date: React.FC<DateProps> = ({ value, onChange }) => {
       >
         日付:
       </label>
-      <input type="date" id="date" name={"date"} value={value} onChange={onChange} />
+      <input type="date" id="date" name={"date"} value={value} onChange={onChange} className="shadow border rounded py-2 px-2" />
     </div>
   );
 };

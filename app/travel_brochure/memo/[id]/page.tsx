@@ -1,5 +1,5 @@
-import prisma from "../../components/lib/prisma";
-import { updateMemo } from "../../action/action-memo";
+import prisma from "../../../components/lib/prisma";
+import { updateMemo } from "../../../action/action-memo";
 import FormMemo from "@/app/components/memo/FormMemo";
 import DeleteModal from "@/app/components/memo/DeleteMemoModal";
 

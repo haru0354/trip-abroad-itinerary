@@ -6,6 +6,7 @@ import Date from "../ui/Date";
 import Time from "../ui/Time";
 import Button from "../ui/Button";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 type Itinerary = {
   id: number;
@@ -21,7 +22,7 @@ type FormItineraryProps = {
   itinerary?: Itinerary | null;
   buttonName: string;
   formAction: (data: FormData) => Promise<void> | Promise<never> | null;
-  userId: number | undefined;
+  userId?: number | undefined;
 };
 
 const FormItinerary: React.FC<FormItineraryProps> = ({
@@ -69,6 +70,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     setInputValue("");
     setTextAreaValue("");
     setHideTextAreaValue("");
+    toast.success("旅程を保存しました！")
   };
 
   return (

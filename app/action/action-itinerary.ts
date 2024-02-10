@@ -20,7 +20,7 @@ export const addItinerary = async (data: FormData) => {
       hideContent,
       user: { connect: { id: Number(userId) } }  },
   });
-  revalidatePath("/itinerary");
+  revalidatePath("/travel_brochure/itinerary");
 };
 
 export const deleteItinerary = async (id: number) => {
@@ -29,8 +29,8 @@ export const deleteItinerary = async (id: number) => {
       id,
     },
   });
-  revalidatePath("/itinerary");
-  redirect("/itinerary");
+  revalidatePath("/travel_brochure/itinerary");
+  redirect("/travel_brochure/itinerary");
 };
 
 export const updateItinerary = async (id: number, data: FormData) => {
@@ -51,8 +51,8 @@ export const updateItinerary = async (id: number, data: FormData) => {
       hideContent,
     },
   });
-  revalidatePath("/itinerary");
-  redirect("/itinerary");
+  revalidatePath("/travel_brochure/itinerary");
+  redirect("/travel_brochure/itinerary");
 };
 
 export const showContent = async (data: FormData) => {
@@ -66,5 +66,5 @@ export const showContent = async (data: FormData) => {
       isShowContent,
     },
   });
-  revalidatePath("/itinerary");
+  revalidatePath("/travel_brochure/itinerary");
 };

@@ -5,7 +5,7 @@ import TextArea from "../ui/TextArea";
 import Date from "../ui/Date";
 import Time from "../ui/Time";
 import Button from "../ui/Button";
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
 
 type Itinerary = {
   id: number;
@@ -21,12 +21,14 @@ type FormItineraryProps = {
   itinerary?: Itinerary | null;
   buttonName: string;
   formAction: (data: FormData) => Promise<void> | Promise<never> | null;
+  userId: number | undefined;
 };
 
 const FormItinerary: React.FC<FormItineraryProps> = ({
   itinerary,
   buttonName,
   formAction,
+  userId,
 }) => {
   const [dateValue, setDateValue] = useState<string>(itinerary?.date || "");
   const [timeValue, setTimeValue] = useState<string>(itinerary?.time || "");
@@ -102,6 +104,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
           value={hideTextAreaValue}
           onChange={handleHideTextareaChange}
         />
+        <input type="hidden" name="userId" value={userId} />
         <Button className="btn blue">{buttonName}</Button>
       </form>
     </div>

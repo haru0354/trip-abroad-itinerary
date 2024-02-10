@@ -11,7 +11,7 @@ export const addMemo = async (data: FormData) => {
     name, 
     content,
     user: { connect: { id: Number(userId) } } 
-} });
+  }});
   revalidatePath('/travel_brochure/memo');
 };
 

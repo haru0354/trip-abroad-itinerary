@@ -5,6 +5,7 @@ import Button from "../ui/Button";
 import Form from "../ui/Form";
 import TextArea from "../ui/TextArea";
 
+
 type Memo = {
   id: number;
   name: string;
@@ -14,7 +15,7 @@ type Memo = {
 type FormMemoProps = {
   memo?: Memo | null;
   buttonName: string;
-  formAction: (userId?: string, data: FormData ) => Promise<void> | Promise<never> 
+  formAction?: (data: FormData, userId?: string ) => Promise<void> | Promise<never> 
 };
 
 const FormMemo: React.FC<FormMemoProps> = ({
@@ -27,6 +28,8 @@ const FormMemo: React.FC<FormMemoProps> = ({
     memo?.content || ""
   );
 
+
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
@@ -35,7 +38,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
     setTextareaChange(e.target.value);
   };
 
-  const addMemoClear = (e: React.FormEvent<HTMLFormElement>) => {
+  const addMemoClear = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault;
     setInputValue("");
     setTextareaChange("");

@@ -49,7 +49,7 @@ export const addMemo = async (userId: string, data: FormData) => {
   await prisma.memo.create({ data: { 
     name, 
     content,
-    createdBy: { connect: { id: userId } } // ユーザーIDを使用して関連付ける
+    user: { connect: { id: userId } } // ユーザーIDを使用して関連付ける
 } });
   revalidatePath('/memo');
 };

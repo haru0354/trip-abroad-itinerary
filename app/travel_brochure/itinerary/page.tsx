@@ -1,6 +1,6 @@
-import { addItinerary } from "../action/action-itinerary";
-import FormItinerary from "../components/itinerary/FormItinerary";
-import ListItinerary from "../components/itinerary/ListItinerary";
+import { addItinerary } from "../../action/action-itinerary";
+import FormItinerary from "../../components/itinerary/FormItinerary";
+import ListItinerary from "../../components/itinerary/ListItinerary";
 
 const page = async () => {
   return (

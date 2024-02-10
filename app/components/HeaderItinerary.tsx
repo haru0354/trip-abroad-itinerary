@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { User } from "@prisma/client";
+import Menu from "./auth/navigation/Menu";
 
 type HeaderItineraryProps = {
   currentUser: User | null
@@ -8,17 +9,10 @@ type HeaderItineraryProps = {
 const HeaderItinerary: React.FC<HeaderItineraryProps> = ({ currentUser }) => {
 
   return (
-    <header>
-      <div className="flex justify-between items-center border-b h-16 mx-10">
+    <header className="border-b">
+      <div className="flex justify-between items-center h-16 mx-10">
         <Link href="../">HOME </Link>
-        <ul className="flex">
-          <li className="ml-4">
-            <Link href="/">ログイン</Link>
-          </li>
-          <li className="ml-4">
-            <Link href="../itinerary">登録</Link>
-          </li>
-        </ul>
+        <Menu currentUser={currentUser} />
       </div>
     </header>
   );

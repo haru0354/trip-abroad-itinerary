@@ -13,8 +13,8 @@ import useSignupModal from "../hooks/useSignupModal";
 import useLoginModal from "../hooks/useLoginModal";
 import axios from "axios";
 import Modal from "./Modal";
-import AuthButton from "./AuthButton";
 import AuthInput from "./AuthInput";
+import Button from "../../ui/Button";
 
 // 入力データの検証ルールを定義
 const schema = z.object({
@@ -105,15 +105,12 @@ const SignupModal = () => {
 
   // フッターの内容
   const footerContent = (
-    <div>
-      {/* googleログイン */}
-      <AuthButton
-        outline
-        label="Googleでログイン"
-        onClick={() => signIn("google")}
-      />
-      <div>
-        <div onClick={onToggle}>ログインする</div>
+    <div className="w-full px-4 my-6 ">
+      <Button onClick={() => signIn("google")} className="border border-gray-400 p-1 w-full bg-white rounded-full">       
+        Googleでログイン
+      </Button>
+      <div className="my-4 border-t">
+        <p onClick={onToggle} className="text-center text-gray-500 text-sm pt-2 cursor-pointer ">ログインする</p>
       </div>
     </div>
   );
@@ -122,8 +119,8 @@ const SignupModal = () => {
     <Modal
       disabled={loading}
       isOpen={signupModal.isOpen}
-      title="サインアップ"
-      primaryLabel="サインアップ"
+      title="アカウント作成"
+      primaryLabel="アカウント作成"
       onClose={signupModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}

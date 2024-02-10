@@ -20,6 +20,7 @@ const Time: React.FC<TimeProps> = ({ value, onChange }) => {
         id="time"
         value={value}
         onChange={onChange}
+        className="shadow border rounded py-2 px-2" 
       />
     </div>
   );

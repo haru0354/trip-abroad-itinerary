@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import { User } from "@prisma/client";
-import { useCallback, useState } from "react";
-import MenuItem from "./MenuItem";
+import { useCallback, useState, useEffect } from "react";
 import useLoginModal from "../hooks/useLoginModal";
 import useSignupModal from "../hooks/useSignupModal";
 import useProfileModal from "../hooks/useProfile";
@@ -22,53 +21,70 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
     setIsOpen((value) => !value);
   }, []);
 
+  useEffect(() => {
+    setIsOpen(false); // isOpenをfalseに設定して再レンダリングをトリガーする
+  }, [currentUser]); // currentUserが変更された時に再レンダリングする
+
   return (
-    <div>
-      <div onClick={toggleOpen}>
-        <Image src={"/default.png"} alt="avatar" width={30} height={30} />
-      </div>
-      {isOpen && (
-        <div>
-          <div>
-            {currentUser ? (
-              <>
-                <MenuItem
-                  label="プロフィール"
+    <>
+      {currentUser ? (
+        <>
+          <div onClick={toggleOpen}>
+            <Image src={"/default.png"} alt="avatar" width={50} height={50} />
+          </div>
+          {isOpen && (
+            <ul className="absolute right-0 mt-36 w-40 p-2 bg-white rounded-md overflow-hidden shadow-lg z-10 text-base ">
+              <li className="pb-2">
+                <p
                   onClick={() => {
                     profileModal.onOpen();
                     setIsOpen(false);
                   }}
-                />
-                <MenuItem
-                  label="ログアウト"
+                >
+                  プロフィール
+                </p>
+              </li>
+              <li>
+                <p
+                  className="cursor-pointer"
                   onClick={() => {
                     signOut();
                     setIsOpen(false);
                   }}
-                />
-              </>
-            ) : (
-              <>
-                <MenuItem
-                  label="ログイン"
-                  onClick={() => {
-                    loginModal.onOpen();
-                    setIsOpen(false);
-                  }}
-                />
-                <MenuItem
-                  label="サインアップ"
-                  onClick={() => {
-                    signupModal.onOpen();
-                    setIsOpen(false);
-                  }}
-                />
-              </>
-            )}
-          </div>
-        </div>
+                >
+                  ログアウト
+                </p>
+              </li>
+            </ul>
+          )}
+        </>
+      ) : (
+        <ul className="flex">
+          <li className="ml-4">
+            <p
+              className="cursor-pointer"
+              onClick={() => {
+                loginModal.onOpen();
+                setIsOpen(true);
+              }}
+            >
+              ログイン
+            </p>
+          </li>
+          <li className="ml-4">
+            <p
+              className="cursor-pointer "
+              onClick={() => {
+                signupModal.onOpen();
+                setIsOpen(true);
+              }}
+            >
+              登録
+            </p>
+          </li>
+        </ul>
       )}
-    </div>
+    </>
   );
 };
 

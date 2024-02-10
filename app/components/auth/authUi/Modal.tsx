@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import AuthButton from "./AuthButton";
+import Button from "../../ui/Button";
 
 type ModalProps = {
   isOpen?: boolean;
@@ -62,37 +62,30 @@ const Modal: React.FC<ModalProps> = ({
     return null;
   }
 
+  const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  };
+
+
   return (
     <>
-      <div>
-        <div>
+      <div onClick={closeModal} className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0">
+        <div className="border rounded mx-auto bg-white w-[350px]">
+          <div className="p-3">
+            <div onClick={handleClose}></div>
+            <div className="text-center border-b font-bold pb-2">{title}</div>
+          </div>
+          <div className="mb-8">{body}</div>
           <div>
-            <div>
-              <div>
-                <div onClick={handleClose}></div>
-                <div>{title}</div>
-              </div>
-              <div>{body}</div>
-              <div>
-                <div>
-                  {secondaryAction && secondaryLabel && (
-                    <AuthButton
-                    disabled={disabled}
-                    label={secondaryLabel}
-                    onClick={handleSecondaryAction}
-                    outline             
-                    />
-                  )}
-                      <AuthButton
-                    disabled={disabled}
-                    label={primaryLabel}
-                    onClick={handleSubmit}
-                    del={del}             
-                    />
-                </div>
-                  {footer}
-              </div>
+            <div className="px-4">
+              {secondaryAction && secondaryLabel && (
+              <Button onClick={handleSecondaryAction} className="border p-1 w-full bg-[#002fcf] text-white rounded-full">{secondaryLabel}</Button>
+              )}
+              <Button onClick={handleSubmit} className="border p-1 w-full bg-[#002fcf] text-white rounded-full">{primaryLabel}</Button>
             </div>
+            {footer}
           </div>
         </div>
       </div>

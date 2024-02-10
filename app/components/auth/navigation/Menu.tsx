@@ -2,12 +2,10 @@
 import Image from "next/image";
 import { User } from "@prisma/client";
 import { useCallback, useState, useEffect } from "react";
-import MenuItem from "./MenuItem";
 import useLoginModal from "../hooks/useLoginModal";
 import useSignupModal from "../hooks/useSignupModal";
 import useProfileModal from "../hooks/useProfile";
 import { signOut } from "next-auth/react";
-import Button from "../../ui/Button";
 
 type MenuProps = {
   currentUser: User | null;

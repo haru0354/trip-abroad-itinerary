@@ -4,7 +4,6 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import AuthContext from "../context/AuthContext";
 import getCurrentUser from "../action/getCurrentUser";
-import Navigation from "../components/auth/navigation/Navigation";
 import SignupModal from "../components/auth/authUi/SignupModal";
 import ToastContext from "../context/ToastContext";
 import LoginModal from "../components/auth/authUi/LoginModal";
@@ -36,8 +35,8 @@ export default async function RootLayout({
           <SignupModal />
           <LoginModal />
           <HeaderItinerary currentUser={currentUser}  />
-          {children}
           {currentUser ? <div>認証中</div> : <div>未認証</div>}
+          {children}
           <Footer />
           <FooterMenu />
         </AuthContext>

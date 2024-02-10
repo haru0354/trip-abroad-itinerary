@@ -23,8 +23,8 @@ const AuthInput: React.FC<InputProps> = ({
     errors,
 }) => {
   return (
-    <div>
-        <div>
+    <div className="px-4">
+        <div className="block text-gray-600 text-sm font-bold  mb-1 mt-4">
             {label}
         </div>
         <input
@@ -33,7 +33,7 @@ const AuthInput: React.FC<InputProps> = ({
         {...register(id,{ required })}
         placeholder=""
         type={type}
-        className={`
+        className={`shadow border rounded w-full py-2 px-4
             ${
         errors[id]
             ? 'border-red-500 focus:border-red-500'

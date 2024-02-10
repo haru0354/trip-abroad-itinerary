@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "../ui/Button";
 import { deleteMemo } from "../../action/action-memo";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 type Memo = {
   id: number;
@@ -29,6 +30,10 @@ const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
     if (e.target === e.currentTarget) {
       toggleDeleteModal();
     }
+  };
+
+  const deleteToast = async () => {
+    toast.success("メモを削除しました！")
   };
 
   return (
@@ -62,7 +67,7 @@ const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
               <Button onClick={toggleDeleteModal} className="btn gray">
                 キャンセル
               </Button>
-              <form>
+              <form onSubmit={deleteToast} >
                 <Button formAction={deleteMemoWithId} className="btn red ">
                   削除
                 </Button>

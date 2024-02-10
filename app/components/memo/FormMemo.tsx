@@ -4,7 +4,7 @@ import { useState, ChangeEvent } from "react";
 import Button from "../ui/Button";
 import Form from "../ui/Form";
 import TextArea from "../ui/TextArea";
-
+import toast from "react-hot-toast";
 
 type Memo = {
   id: number;
@@ -15,20 +15,20 @@ type Memo = {
 type FormMemoProps = {
   memo?: Memo | null;
   buttonName: string;
-  formAction?: (data: FormData, userId?: string ) => Promise<void> | Promise<never> 
+  formAction?: (data: FormData) => Promise<void> | Promise<never> 
+  userId?: number | undefined;
 };
 
 const FormMemo: React.FC<FormMemoProps> = ({
   memo,
   buttonName,
   formAction,
+  userId,
 }) => {
   const [inputValue, setInputValue] = useState<string>(memo?.name || "");
   const [textAreaValue, setTextareaChange] = useState<string>(
     memo?.content || ""
   );
-
-
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -42,6 +42,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
     e.preventDefault;
     setInputValue("");
     setTextareaChange("");
+    toast.success("メモを保存しました！");
   };
 
   return (
@@ -64,6 +65,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
           value={textAreaValue}
           onChange={handleTextareaChange}
         />
+        <input type="hidden" name="userId" value={userId} />
         <Button className="btn blue">{buttonName}</Button>
       </form>
     </div>

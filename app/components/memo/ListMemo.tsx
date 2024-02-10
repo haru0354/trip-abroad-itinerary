@@ -4,8 +4,17 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 
-const ListMemo = async () => {
-  const memos = await prisma.memo.findMany();
+type ListMemoProps = {
+  userId: number | undefined;
+}
+
+const ListMemo: React.FC<ListMemoProps> = async ({ userId }) => {
+  const memos = await prisma.memo.findMany({
+    where: {
+      userId 
+    }
+  });
+
   const sortedMemos = memos.sort((a, b) => a.id - b.id);
 
   return (
@@ -18,7 +27,7 @@ const ListMemo = async () => {
           <div className="bg-blue-200 shadow-md rounded px-8 py-8 mb-10 ">
             <div className="flex justify-between border-b-2 mb-2">
               <div>{memo.name}</div>
-              <Link href={`/memo/${memo.id}`}>
+              <Link href={`/travel_brochure/memo/${memo.id}`}>
                 <Button className="btn-small flex items-center">
                   <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
                   編集

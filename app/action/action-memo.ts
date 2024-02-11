@@ -4,13 +4,16 @@ import { redirect } from 'next/navigation';
 import prisma from "../components/lib/prisma"
 
 export const addMemo = async (data: FormData) => {
-    const name = data.get('name') as string;
-    const content = data.get('content') as string; 
-    const userId = data.get('userId') as string; 
-    await prisma.memo.create({ data: { name, content, userId } });
-    revalidatePath('/memo');
-  };
-
+  const name = data.get('name') as string;
+  const content = data.get('content') as string; 
+  const userId = data.get('userId') as string; 
+  await prisma.memo.create({ data: { 
+    name, 
+    content,
+    user: { connect: { id: Number(userId) } } 
+  }});
+  revalidatePath('/travel_brochure/memo');
+};
 
 
 export const deleteMemo = async (id: number) => {
@@ -19,8 +22,8 @@ export const deleteMemo = async (id: number) => {
       id,
     },
   });
-  revalidatePath('/memo');
-  redirect('/memo');
+  revalidatePath('/travel_brochure/memo');
+  redirect('/travel_brochure/memo');
 };
 
 export const updateMemo = async (id: number, data: FormData) => {
@@ -35,6 +38,6 @@ export const updateMemo = async (id: number, data: FormData) => {
       content,
     },
   });
-  revalidatePath('/memo');
-  redirect('/memo');
+  revalidatePath('/travel_brochure/memo');
+  redirect('/travel_brochure/memo');
 };

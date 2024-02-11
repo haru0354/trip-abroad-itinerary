@@ -12,7 +12,6 @@ import { z } from "zod";
 import useSignupModal from "../hooks/useSignupModal";
 import useLoginModal from "../hooks/useLoginModal";
 import Modal from "./Modal";
-import AuthButton from "./AuthButton";
 import AuthInput from "./AuthInput";
 import Button from "../../ui/Button";
 

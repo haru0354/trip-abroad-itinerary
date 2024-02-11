@@ -11,8 +11,17 @@ type Itinerary = {
   time: string;
 };
 
-const ListItinerary = async () => {
-  const itinerary = await prisma.itinerary.findMany();
+type ListItineraryProps = {
+  userId: number | undefined;
+};
+
+const ListItinerary: React.FC<ListItineraryProps> = async ({ userId }) => {
+  const itinerary = await prisma.itinerary.findMany({
+    where: {
+      userId,
+    },
+  });
+
   const sortItineraryByDateTime = (a: Itinerary, b: Itinerary) =>
     new Date(a.date + " " + a.time).getTime() -
     new Date(b.date + " " + b.time).getTime();
@@ -55,7 +64,7 @@ const ListItinerary = async () => {
                       {itinerary.time}
                     </p>
                   </div>
-                  <Link href={`/itinerary/${itinerary.id}`}>
+                  <Link href={`/travel_brochure/itinerary/${itinerary.id}`}>
                     <Button className="btn-small">
                       <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
                       編集

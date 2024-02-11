@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "../ui/Button";
 import { deleteItinerary } from "@/app/action/action-itinerary";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 type Itinerary = {
   id: number;
@@ -33,6 +34,10 @@ const DeleteItineraryModal: React.FC<DeleteModalProps> = ({ itinerary }) => {
       toggleDeleteModal();
     }
   };
+
+  const deleteToast = () => {
+    toast.success("旅程を削除しました！")
+  }
 
   return (
     <div>
@@ -65,7 +70,7 @@ const DeleteItineraryModal: React.FC<DeleteModalProps> = ({ itinerary }) => {
               <Button onClick={toggleDeleteModal} className="btn gray">
                 キャンセル
               </Button>
-              <form>
+              <form onSubmit={deleteToast}>
                 <Button formAction={deleteItineraryWithId} className="btn red ">
                   削除
                 </Button>

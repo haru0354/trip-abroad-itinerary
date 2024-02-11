@@ -5,18 +5,17 @@ import getCurrentUser from "@/app/action/getCurrentUser";
 
 const Memo = async () => {
   const currentUser = await getCurrentUser();
+  const userId = currentUser?.id
 
   return (
     <main>
       <div className="main-contents-area">
         <div className="contents-area">
           <div>
-            <FormMemo formAction={addMemo} buttonName="追加" />
+            <FormMemo formAction={addMemo} buttonName="追加" userId={userId}/>
           </div>
           <div>
-          {currentUser ? <div>認証中</div> : <div>未認証</div>}
-
-            <ListMemo />
+            <ListMemo userId={userId}/>
           </div>
         </div>
       </div>

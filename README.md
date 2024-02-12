@@ -4,18 +4,11 @@
 ⇒ 現状 form action での DB への制御となるので client と server 側のコンポーネントの関係で難しい。
 
 .home
-ダッシュボード
-旅程表
-メモ
-blog(カテゴリ)
-
-ログインの実装
-ダッシュボードの作成
 アプリの登録ページの作成
-
 サイトの TOP のブログを作成
-blog の投稿
+ダッシュボード
 画像のアップロード
+blog の投稿
 
 画像
 ・旅程表の下部に画像を追加。選択式によって画像が変わる。画像のいめーじは public フォルダにある。
@@ -41,15 +34,3 @@ blog の投稿
 SNS での共有
 編集はできないが閲覧のみできるページを作る。
 そして、それを SNS にアップロードして他人にも見てもらえる。
-
-
-export const addMemo = async (userId: string, data: FormData) => {
-  const name = data.get('name') as string;
-  const content = data.get('content') as string; 
-  await prisma.memo.create({ data: { 
-    name, 
-    content,
-    user: { connect: { id: userId } } // ユーザーIDを使用して関連付ける
-} });
-  revalidatePath('/memo');
-};

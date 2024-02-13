@@ -27,9 +27,9 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
         </div>
         <div className="w-full py-4 mx-14 max-w-[400px] justify-center items-center">
           <h3 className="text-gray-700 mb-6 text-2xl font-semibold ">
-            {name}a
+            {name}
           </h3>
-          <p className="text-gray-700 mb-6">{content}a</p>
+          <p className="text-gray-700 mb-6">{content}</p>
         </div>
       </div>
     </>

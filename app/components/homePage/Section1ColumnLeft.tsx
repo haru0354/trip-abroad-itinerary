@@ -20,7 +20,7 @@ const Section1ColumnLeft: React.FC<Section1ColumnLeftProps> = ({
           <h3 className="text-gray-700 mb-6 text-2xl font-semibold ">
             {name}
           </h3>
-          <p className="text-gray-700 mb-6">{content}a</p>
+          <p className="text-gray-700 mb-6">{content}</p>
         </div>
         <div className="w-full flex justify-center items-center py-4  max-w-[400px] ">
           <Image

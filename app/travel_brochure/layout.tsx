@@ -35,7 +35,6 @@ export default async function RootLayout({
           <SignupModal />
           <LoginModal />
           <HeaderItinerary currentUser={currentUser}  />
-          {currentUser ? <div>認証中</div> : <div>未認証</div>}
           {children}
           <Footer />
           <FooterMenu />

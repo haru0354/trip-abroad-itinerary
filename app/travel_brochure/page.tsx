@@ -1,4 +1,3 @@
-import Section1ColumnLeft from "../components/homePage/Section1ColumnLeft";
 import Section1ColumnRight from "../components/homePage/Section1ColumnRight";
 import Section3Column from "../components/homePage/Section3Column";
 import SectionText from "../components/homePage/SectionText";

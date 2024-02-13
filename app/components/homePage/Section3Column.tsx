@@ -25,14 +25,14 @@ const Section3Column: React.FC<Section3ColumnProps> = ({
   content3,
 }) => {
   return (
-    <div className="w-full my-20 py-10 bg-white rounded">
+    <div className="w-full py-4 bg-white rounded">
       <div className="text-center my-6">
         <h2 className="text-2xl my-10 text-gray-700 mb-6 font-semibold">
           {title}
         </h2>
       </div>
-      <div className="flex w-full">
-        <div className="border-2 border-sky-600 rounded w-[32%] mx-3 p-4 flex flex-col ">
+      <div className="flex w-full my-10 flex-wrap items-center justify-center">
+        <div className="border-2 border-sky-600 rounded w-[30%] mx-3 my-6 px-8 py-10 flex flex-col min-w-[330px]">
           <span className="text-blue-500  flex justify-center mb-6">
             <FontAwesomeIcon icon={faEarthAsia} style={{ fontSize: "2em" }} />
           </span>
@@ -41,7 +41,7 @@ const Section3Column: React.FC<Section3ColumnProps> = ({
           </h3>
           <p className="text-gray-700 mb-6">{content1}</p>
         </div>
-        <div className="border-2 border-sky-600 rounded w-[32%] mx-3 p-4 flex flex-col ">
+        <div className="border-2 border-sky-600 rounded w-[30%] mx-3 my-6 px-8 py-10 flex flex-col min-w-[330px]">
           <span className="text-blue-500  flex justify-center mb-6">
             <FontAwesomeIcon
               icon={faPlaneDeparture}
@@ -53,7 +53,7 @@ const Section3Column: React.FC<Section3ColumnProps> = ({
           </h3>
           <p className="text-gray-700 mb-6">{content2}</p>
         </div>
-        <div className="border-2 border-sky-600 rounded w-[32%] mx-3 p-4 flex flex-col ">
+        <div className="border-2 border-sky-600 rounded w-[30%] mx-3 my-6 px-8 py-10 flex flex-col min-w-[330px]">
           <span className="text-blue-500  flex justify-center mb-6">
             <FontAwesomeIcon
               icon={faCartFlatbedSuitcase}

@@ -7,23 +7,30 @@ type Section1ColumnProps = {
   content: string;
 };
 
-const Section1Column: React.FC<Section1ColumnProps> = ({ src, alt, name, content }) => {
+const Section1Column: React.FC<Section1ColumnProps> = ({
+  src,
+  alt,
+  name,
+  content,
+}) => {
   return (
     <>
-      <div>
-          <div>
-            <Image
-                src={src}
-                alt={alt}
-                width={250}
-                height={250}
-                objectFit="contain"
-              ></Image>
-          </div>
-          <div>
-            <h2>{name}</h2>
-            <p>{content}</p>
-          </div>
+      <div className="flex w-full my-20 border border-sky-600 bg-white rounded">
+        <div className="w-[50%] flex justify-center  py-20">
+          <Image
+            src={src}
+            alt={alt}
+            width={350}
+            height={250}
+            objectFit="contain"
+          />
+        </div>
+        <div className="w-[50%] py-20">
+          <h2 className="text-gray-700 mb-6 text-2xl font-semibold ">
+            {name}a
+          </h2>
+          <p className="text-gray-700 mb-6">{content}a</p>
+        </div>
       </div>
     </>
   );

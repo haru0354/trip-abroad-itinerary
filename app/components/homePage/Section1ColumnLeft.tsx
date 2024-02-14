@@ -5,6 +5,8 @@ type Section1ColumnLeftProps = {
   alt: string;
   name: string;
   content: string;
+  content2?: string;
+  content3?: string;
 };
 
 const Section1ColumnLeft: React.FC<Section1ColumnLeftProps> = ({
@@ -12,6 +14,8 @@ const Section1ColumnLeft: React.FC<Section1ColumnLeftProps> = ({
   alt,
   name,
   content,
+  content2,
+  content3,
 }) => {
   return (
     <>
@@ -21,6 +25,9 @@ const Section1ColumnLeft: React.FC<Section1ColumnLeftProps> = ({
             {name}
           </h3>
           <p className="text-gray-700 mb-6">{content}</p>
+          <p className="text-gray-700 mb-6">{content2}</p>
+          <p className="text-gray-700 mb-6">{content3}</p>
+
         </div>
         <div className="w-full flex justify-center items-center py-4  max-w-[400px] ">
           <Image

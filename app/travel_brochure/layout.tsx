@@ -34,8 +34,7 @@ export default async function RootLayout({
           <ToastContext />
           <SignupModal />
           <LoginModal />
-          <HeaderItinerary currentUser={currentUser}  />
-          {currentUser ? <div>認証中</div> : <div>未認証</div>}
+          <HeaderItinerary currentUser={currentUser} />
           {children}
           <Footer />
           <FooterMenu />

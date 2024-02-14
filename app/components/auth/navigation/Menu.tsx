@@ -29,34 +29,37 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
     <>
       {currentUser ? (
         <>
-          <div onClick={toggleOpen}>
-            <Image src={"/default.png"} alt="avatar" width={50} height={50} />
+          <div style={{ position: "relative" }}>
+            <div onClick={toggleOpen}>
+              <Image src={"/default.png"} alt="avatar" width={50} height={50} />
+            </div>
+            {isOpen && (
+              <ul className="absolute right-0 mt-2 w-40 p-2 bg-white  overflow-hidden shadow-lg z-10 text-base ">
+                <li className="pb-2">
+                  <p
+                    className="cursor-pointer text-sky-700 hover:bg-gray-200 p-2"
+                    onClick={() => {
+                      profileModal.onOpen();
+                      setIsOpen(false);
+                    }}
+                  >
+                    プロフィール
+                  </p>
+                </li>
+                <li>
+                  <p
+                    className="cursor-pointer text-sky-700 hover:bg-gray-200 p-2"
+                    onClick={() => {
+                      signOut();
+                      setIsOpen(false);
+                    }}
+                  >
+                    ログアウト
+                  </p>
+                </li>
+              </ul>
+            )}
           </div>
-          {isOpen && (
-            <ul className="absolute right-0 mt-36 w-40 p-2 bg-white rounded-md overflow-hidden shadow-lg z-10 text-base ">
-              <li className="pb-2">
-                <p
-                  onClick={() => {
-                    profileModal.onOpen();
-                    setIsOpen(false);
-                  }}
-                >
-                  プロフィール
-                </p>
-              </li>
-              <li>
-                <p
-                  className="cursor-pointer"
-                  onClick={() => {
-                    signOut();
-                    setIsOpen(false);
-                  }}
-                >
-                  ログアウト
-                </p>
-              </li>
-            </ul>
-          )}
         </>
       ) : (
         <ul className="flex">

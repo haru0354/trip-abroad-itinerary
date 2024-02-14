@@ -1,4 +1,4 @@
-import Button from "../ui/Button";
+import SignupButton from "../ui/SignupButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 
@@ -24,22 +24,22 @@ const SectionText: React.FC<SectionTextProps> = ({
           <h3 className="text-center text-gray-700 mb-6 text-2xl font-semibold ">
             {title}
           </h3>
-          <ul className="my-8">
-            <li className="mb-4">
+          <ul className="my-12 px-4">
+            <li className="mb-4  text-red-500">
               <FontAwesomeIcon
                 icon={faPenToSquare}
                 className="text-sky-700 mr-4"
               />
               {name1}
             </li>
-            <li className="mb-4">
+            <li className="mb-4 text-red-500">
               <FontAwesomeIcon
                 icon={faPenToSquare}
                 className="text-sky-700 mr-4"
               />
               {name2}
             </li>
-            <li className="mb-4">
+            <li className="mb-4  text-red-500">
               <FontAwesomeIcon
                 icon={faPenToSquare}
                 className="text-sky-700 mr-4"
@@ -48,7 +48,9 @@ const SectionText: React.FC<SectionTextProps> = ({
             </li>
           </ul>
           <p className="text-center text-gray-700 mb-6">{content}</p>
-          <Button className="btn blue">利用する</Button>
+          <div className="text-center py-4">
+            <SignupButton />
+          </div>
         </div>
       </div>
     </>

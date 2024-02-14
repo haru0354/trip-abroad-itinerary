@@ -1,17 +1,25 @@
 import Link from "next/link";
 import { User } from "@prisma/client";
 import Menu from "./auth/navigation/Menu";
+import Image from "next/image";
 
 type HeaderItineraryProps = {
-  currentUser: User | null
-}
+  currentUser: User | null;
+};
 
 const HeaderItinerary: React.FC<HeaderItineraryProps> = ({ currentUser }) => {
-
   return (
-    <header className="border-b">
+    <header className="max-w-[76rem] mx-auto">
       <div className="flex justify-between items-center h-16 mx-10">
-        <Link href="../">HOME </Link>
+        <Link href="../">
+          <Image
+            src="/logo.JPG"
+            alt="削除する"
+            width={250}
+            height={250}
+            objectFit="contain"
+          ></Image>
+        </Link>
         <Menu currentUser={currentUser} />
       </div>
     </header>

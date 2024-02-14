@@ -56,7 +56,7 @@ const DeleteItineraryModal: React.FC<DeleteModalProps> = ({ itinerary }) => {
           <div className="border rounded mx-auto bg-blue-100 w-[250px]">
             <div>
               <Image
-                src="/WS000000.JPG"
+                src="/delete-modal.JPG"
                 alt="削除する"
                 width={250}
                 height={250}

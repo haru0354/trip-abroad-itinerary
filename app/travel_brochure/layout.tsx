@@ -34,7 +34,7 @@ export default async function RootLayout({
           <ToastContext />
           <SignupModal />
           <LoginModal />
-          <HeaderItinerary currentUser={currentUser}  />
+          <HeaderItinerary currentUser={currentUser} />
           {children}
           <Footer />
           <FooterMenu />

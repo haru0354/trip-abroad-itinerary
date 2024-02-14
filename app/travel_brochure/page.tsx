@@ -1,7 +1,6 @@
 import Section1ColumnRight from "../components/homePage/Section1ColumnRight";
 import Section3Column from "../components/homePage/Section3Column";
 import SectionText from "../components/homePage/SectionText";
-import Button from "../components/ui/Button";
 import QA from "../components/homePage/QA";
 import Hero from "../components/homePage/Hero";
 import SignupButton from "../components/ui/SignupButton";
@@ -15,7 +14,7 @@ export default async function Home() {
       <Hero />
       <main>
         <div className="main-contents-area">
-          <div className="">
+          <div>
             <h2 className="text-2xl bg-sky-400 text-center my-8 py-2">
               旅程表作成のしおりアプリ「旅のメモリーブック」
             </h2>

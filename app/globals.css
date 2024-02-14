@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (max-width: 639px) {
+  .md:flex-wrap {
+    flex-direction: column;
+  }
+}
+
 main {
   display: flex;
   justify-content: center;

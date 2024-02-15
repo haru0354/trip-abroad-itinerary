@@ -4,10 +4,11 @@ type FormProps = {
   label: string;
   placeholder?: string;
   value?: string;
+  defaultValue?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Form: React.FC<FormProps> = ({ name, label, placeholder, value, onChange }) => {
+const Form: React.FC<FormProps> = ({ name, label, placeholder, value, onChange, defaultValue }) => {
     return (
         <div>
       <label
@@ -24,6 +25,7 @@ const Form: React.FC<FormProps> = ({ name, label, placeholder, value, onChange }
         value={value}
         placeholder={placeholder}
         onChange={onChange}
+        defaultValue={defaultValue}
       />
     </div>
   );

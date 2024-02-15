@@ -67,8 +67,11 @@ export default async function Home() {
               title="本当に無料で利用できますか？"
               content="旅のメモリーブックは完全に無料で利用できるアプリとなっています。アカウントを10秒ほどで作成後はすぐにアプリの全機能を利用することが可能で、すぐにでも国内・海外旅行のしおりとして旅程表の作成などできます。"
             />
-            <QA title="a" content="a" />
-            <QA title="a" content="a" />
+            <QA 
+            title="「iphone」や「android」で使用できますか？" 
+            content="はい。もちろん可能です。PC・スマートフォン・タブレットとあらゆる端末で使用をすることができます。そのため、iphone・androidだけでなく、同じアカウントを使用してPCのwindowsやmacでの使用もできます。" />
+            <QA title="pcで作成したのをスマホで閲覧できますか？" content="PC・スマホ・タブレットと端末に関係なく、あらゆる端末で閲覧・作成ができます。作成したアカウントでログインをすればどの端末からでも閲覧・作成・編集が可能です。
+            " />
             <div className="text-center py-4">
               <SignupButton />
             </div>

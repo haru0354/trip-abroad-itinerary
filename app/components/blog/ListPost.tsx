@@ -14,7 +14,7 @@ const ListPost = async () => {
               {post.createdDate}
             </p>
             <p className="border-r border-gray-500 py-1 px-40">{post.title}</p>
-            <Link href={`/post/${post.id}`}>
+            <Link href={`/home/${post.id}`}>
             <Button className="px-8 py-1 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
               編集
             </Button>

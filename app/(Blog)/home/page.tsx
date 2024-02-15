@@ -1,10 +1,8 @@
 import Link from "next/link";
+import ListPost from "@/app/components/blog/ListPost";
 import Button from "@/app/components/ui/Button";
-import prisma from "@/app/components/lib/prisma";
 
 const page = async () => {
-  const posts = await prisma.post.findMany();
-
   return (
     <>
       <div>
@@ -18,31 +16,11 @@ const page = async () => {
             </Button>
           </Link>
         </div>
-
-        <div  className="flex border border-gray-500 p-4 my-10">
-          <p className="border-r border-gray-500 py-1 px-10">
-            投稿日
-          </p>
-          <p className="border-r border-gray-500 py-1 px-40">
-            記事タイトル
-          </p>
+        <div className="flex border border-gray-500 p-4 my-10">
+          <p className="border-r border-gray-500 py-1 px-10">投稿日</p>
+          <p className="border-r border-gray-500 py-1 px-40">記事タイトル</p>
         </div>
-
-        {posts.map((post) => {
-          return (
-            <div key={post.id} className="flex border-b border-gray-500 p-4">
-              <p className="border-r border-gray-500 py-1 px-10">
-                {post.createdDate}
-              </p>
-              <p className="border-r border-gray-500 py-1 px-40">
-                {post.title}
-              </p>
-              <Button className="px-8 py-1 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
-                編集
-              </Button>
-            </div>
-          );
-        })}
+        <ListPost />
       </div>
     </>
   );

@@ -2,9 +2,10 @@ type DateProps = {
   name: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  defaultValue?: string;
 };
 
-const Date: React.FC<DateProps> = ({ name, value, onChange }) => {
+const Date: React.FC<DateProps> = ({ name, value, onChange, defaultValue }) => {
   return (
     <div>
       <label
@@ -13,7 +14,7 @@ const Date: React.FC<DateProps> = ({ name, value, onChange }) => {
       >
         日付:
       </label>
-      <input type="date" id="date" name={name} value={value} onChange={onChange} className="shadow border rounded py-2 px-2" />
+      <input type="date" id="date" name={name} value={value} defaultValue={defaultValue} onChange={onChange} className="shadow border rounded py-2 px-2" />
     </div>
   );
 };

@@ -4,10 +4,11 @@ type TextAreaProps = {
     label: string;
     placeholder?: string;
     value?: string;
+    defaultValue?: string;
     onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const TextArea: React.FC<TextAreaProps> = ({ name, label, placeholder, value, onChange }) => {
+const TextArea: React.FC<TextAreaProps> = ({ name, label, placeholder, value, onChange, defaultValue }) => {
     return (
         <div>
             <label className="block text-gray-600 text-sm font-bold mb-1 mt-4" htmlFor={label}>{label}</label>
@@ -17,7 +18,10 @@ const TextArea: React.FC<TextAreaProps> = ({ name, label, placeholder, value, on
                 id={label}
                 placeholder={placeholder} 
                 value={value}
-                onChange={onChange} />
+                onChange={onChange} 
+                defaultValue={defaultValue}
+                />
+                
         </div>
     )
 }

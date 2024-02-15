@@ -7,6 +7,7 @@ import Time from "../ui/Time";
 import Button from "../ui/Button";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { date } from "zod";
 
 type Itinerary = {
   id: number;
@@ -79,7 +80,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         旅程の追加
       </h2>
       <form action={formAction} onSubmit={addItinerary}>
-        <Date value={dateValue} onChange={handleDateChange} />
+        <Date name={"date"} value={dateValue} onChange={handleDateChange} />
         <Time value={timeValue} onChange={handleTimeChange} />
         <Form
           label={"目的"}

@@ -3,8 +3,8 @@ type TextAreaProps = {
     name: string;
     label: string;
     placeholder?: string;
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const TextArea: React.FC<TextAreaProps> = ({ name, label, placeholder, value, onChange }) => {

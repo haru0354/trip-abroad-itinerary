@@ -43,22 +43,32 @@ model Account {
 }
 
 model Memo {
-  id           Int     @id @default(autoincrement())
-  name         String
-  content      String
-  isCompleted  Boolean @default(false)
-  user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
-  userId  Int
+  id                 Int     @id @default(autoincrement())
+  name               String
+  content            String
+  isCompleted        Boolean @default(false)
+  user               User @relation(fields: [userId], references: [id], onDelete:Cascade)
+  userId             Int
 }
 
 model Itinerary {
-  id            Int     @id @default(autoincrement())
-  date          String
-  time          String
-  name          String
-  content       String
-  hideContent   String
-  isShowContent Boolean @default(false)
-  user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
-  userId  Int
+  id                 Int     @id @default(autoincrement())
+  date               String
+  time               String
+  name               String
+  content            String
+  hideContent        String
+  isShowContent      Boolean @default(false)
+  user               User @relation(fields: [userId], references: [id], onDelete:Cascade)
+  userId             Int
+}
+
+model Post {
+  id                Int     @id @default(autoincrement())
+  createdDate       String  
+  updatedDate       String  
+  title             String
+  content           String
+  category          String
+  slug              String
 }

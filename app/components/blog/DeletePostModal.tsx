@@ -1,30 +1,39 @@
-"use client";
+"use client"
+
 import { useState } from "react";
 import Button from "../ui/Button";
-import { deleteMemo } from "../../action/action-memo";
 import Image from "next/image";
+import { deletePost } from "@/app/action/action-post";
 import toast from "react-hot-toast";
 
-type Memo = {
+type Post = {
   id: number;
-  name: string;
+  createdDate: string;
+  updatedDate: string;
+  category: string;
+  slug: string;
+  title: string;
   content: string;
-  isCompleted: boolean;
-};
+}
 
-type DeleteModalProps = {
-  memo?: Memo | null;
-};
+type DeletePostModalProps = {
+  post?: Post | null;
+}
 
-const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
-  if (!memo) {
-    return <p>削除対象のメモがありません。</p>;
+const DeletePostModal:React.FC<DeletePostModalProps> = ({ post }) => {
+
+  if (!post) {
+    return <p>削除対象の記事がありません。</p>;
   }
 
-  const [ isDeleteModalOpen, setIsDeleteModalOpen ] = useState<boolean>(false);
-  const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
+  const deletePostWithId = deletePost.bind(null, post.id);
 
-  const deleteMemoWithId = deleteMemo.bind(null, memo.id);
+
+  const [ isDeleteModalOpen, setIsDeleteModalOpen ] = useState<boolean>(false) 
+
+  const toggleDeleteModal = () => {
+    setIsDeleteModalOpen((isDeleteModalOpen) => !isDeleteModalOpen)
+  }
 
   const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
     if (e.target === e.currentTarget) {
@@ -33,15 +42,16 @@ const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
   };
 
   const deleteToast = async () => {
-    toast.success("メモを削除しました！")
+    toast.success("記事を削除しました！")
   };
 
   return (
+    <>
     <div>
       <div className="flex justify-center items-center">
         {isDeleteModalOpen || (
           <Button onClick={toggleDeleteModal} className="btn red">
-            メモを削除
+            ブログの記事を削除
           </Button>
         )}
       </div>
@@ -61,14 +71,14 @@ const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
               ></Image>
             </div>
             <div>
-              <p className="text-center p-4 font-bold">{memo.name}</p>
+              <p className="text-center p-4 font-bold">{post.title}</p>
             </div>
             <div>
               <Button onClick={toggleDeleteModal} className="btn gray">
                 キャンセル
               </Button>
               <form onSubmit={deleteToast} >
-                <Button formAction={deleteMemoWithId} className="btn red ">
+                <Button formAction={deletePostWithId} className="btn red ">
                   削除
                 </Button>
               </form>
@@ -77,7 +87,8 @@ const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
         </div>
       )}
     </div>
-  );
-};
+    </>
+)
+}
 
-export default DeleteMemoModal;
+export default DeletePostModal

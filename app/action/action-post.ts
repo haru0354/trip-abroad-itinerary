@@ -23,6 +23,16 @@ export const addPost = async (data:FormData) => {
     redirect("/home")
 }
 
+export const deletePost = async (id: number) => {
+    await prisma.post.delete({
+        where: {
+            id
+        }
+    })
+    revalidatePath("/home");
+    redirect("/home")
+}
+
 export const updatePost = async (id: number, data: FormData) => {
     const updatedDate = data.get("updatedDate") as string;
     const title = data.get("title") as string;

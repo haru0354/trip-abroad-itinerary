@@ -28,6 +28,7 @@ const Form: React.FC<FormProps> = ({ name, label, placeholder, value, onChange, 
         defaultValue={defaultValue}
       />
     </div>
+    
   );
 };
 

@@ -28,8 +28,7 @@ export default async function RootLayout({
   const currentUser = await getCurrentUser();
 
   return (
-    <html lang="jp">
-      <body className={inter.className}>
+    <>
         <AuthContext>
           <ToastContext />
           <SignupModal />
@@ -39,7 +38,6 @@ export default async function RootLayout({
           <Footer />
           <FooterMenu />
         </AuthContext>
-      </body>
-    </html>
+    </>
   );
 }

@@ -5,15 +5,16 @@ export default function Home() {
     <>
       <p>このページはサイトのtopページにする</p>
       <ul>
-        <li>
-        <a href="./kaigaiapp/">ブログへ</a>
+      <li>
+          <Link href="./home/">ブログ管理</Link>
         </li>
         <li>
-          <a href="./travel_brochure/">アプリtop</a>
+          <Link href="./kaigai/">ブログへ</Link>
         </li>
         <li>
-        <a href="./travel_brochure/itinerary">旅程表</a>
-
+          <Link href="./travel_brochure/">アプリtop</Link>
+        </li>
+        <li>
           <Link href="./travel_brochure/itinerary">旅程表</Link>
         </li>
       </ul>

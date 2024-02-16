@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 type ArticleTopProps = {
-    title: string;
+    title: string | undefined;
     src: string;
     alt: string;
 }

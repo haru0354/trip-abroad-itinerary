@@ -44,18 +44,23 @@ const FormPost: React.FC<FormPostProps> = ({
             label={"カテゴリ"}
             defaultValue={post?.category}
           />
-        <Form name={"slug"} label={"スラッグ"} defaultValue={post?.slug} placeholder={"スラッグを入力してください"}/>
         <Form
           name={"title"}
           label={"記事のタイトル"}
           defaultValue={post?.title}
-          placeholder={"記事のタイトルを入力してください。"}
+          placeholder={"記事のタイトルを31文字を目安に入力してください。"}
         />
         <TextArea
           name={"content"}
           label={"記事の内容"}
           defaultValue={post?.content}
           placeholder={"記事の内容をこちらに入力してください。"}
+        />
+        <TextArea
+          name={"description"}
+          label={"記事の説明(description)"}
+          defaultValue={post?.content}
+          placeholder={"120文字を目安に記入してください。"}
         />
         <Button className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
           {buttonName}

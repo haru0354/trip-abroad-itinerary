@@ -70,5 +70,5 @@ model Post {
   title             String
   content           String
   category          String
-  slug              String
+  description       String
 }

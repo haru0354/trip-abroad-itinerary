@@ -2,7 +2,7 @@ import Image from "next/image";
 
 type Post = {
   title: string;
-  content: string;
+  description: string;
 };
 
 type CardProps = {
@@ -24,7 +24,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
         </div>
         <div className="w-[70%]  px-4 py-6">
           <h3 className="text-lg font-bold text-gray-700 mb-4">{post.title}</h3>
-          <p>{post.content}</p>
+          <p>{post.description.length > 72 ? `${post.description.slice(0, 72)}...` : post.description}</p>
         </div>
       </div>
     </>

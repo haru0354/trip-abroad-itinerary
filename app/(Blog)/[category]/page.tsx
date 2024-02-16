@@ -1,4 +1,5 @@
 import ArticleTop from "@/app/components/blog/ArticleTop";
+import Card from "@/app/components/blog/Card";
 import prisma from "@/app/components/lib/prisma";
 import Link from "next/link";
 
@@ -22,13 +23,7 @@ const page = async ({ params }: { params: { category: string } }) => {
         {posts
           .filter((post) => post.category === category)
           .map((post) => {
-            return (
-              <div key={post.id}>
-                <Link href={`/${post.category}/${post.id}`}>
-                  <p>{post.title}</p>
-                </Link>
-              </div>
-            );
+            return <Card key={post.id} post={post} />;
           })}
       </div>
     </>

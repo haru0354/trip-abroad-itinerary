@@ -1,10 +1,9 @@
-import prisma from "../lib/prisma";
+
 import TextArea from "@/app/components/ui/TextArea";
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
 import Date from "@/app/components/ui/Date";
 import Select from "../ui/Select";
-import CategoryForm from "./CategoryForm";
 
 type Post = {
   id: number;
@@ -34,26 +33,29 @@ const FormPost: React.FC<FormPostProps> = ({
     <>
       <form action={formAction}>
         <Date name={dateName} defaultValue={post?.updatedDate} />
+        <Form
+            name={"category"}
+            label={"カテゴリ"}
+            defaultValue={post?.category}
+            placeholder={"新規カテゴリを追加する場合はこちらに入力。既存のカテゴリは下記より選択。"}
+        />
         <Select
             name={"category"}
             label={"カテゴリ"}
             defaultValue={post?.category}
           />
-        <Form
-            name={"category"}
-            label={"カテゴリ"}
-            defaultValue={post?.category}
-        />
-        <Form name={"slug"} label={"スラッグ"} defaultValue={post?.slug} />
+        <Form name={"slug"} label={"スラッグ"} defaultValue={post?.slug} placeholder={"スラッグを入力してください"}/>
         <Form
           name={"title"}
           label={"記事のタイトル"}
           defaultValue={post?.title}
+          placeholder={"記事のタイトルを入力してください。"}
         />
         <TextArea
           name={"content"}
           label={"記事の内容"}
           defaultValue={post?.content}
+          placeholder={"記事の内容をこちらに入力してください。"}
         />
         <Button className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
           {buttonName}

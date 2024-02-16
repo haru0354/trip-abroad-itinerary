@@ -64,7 +64,7 @@ model Itinerary {
 }
 
 model Post {
-  id                Int     @id @default(autoincrement())
+  id                 Int     @id @default(autoincrement())
   createdDate       String  
   updatedDate       String  
   title             String

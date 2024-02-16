@@ -6,6 +6,10 @@ const page = async ({ params }: { params: { category: string } }) => {
   const category = params.category;
   const posts = await prisma.post.findMany();
 
+  if (!category) {
+    return <p>削除対象のメモがありません。</p>;
+  }
+
   return (
     <>
       <div className="p-8 mx-4 bg-white rounded">
@@ -20,7 +24,7 @@ const page = async ({ params }: { params: { category: string } }) => {
           .map((post) => {
             return (
               <div key={post.id}>
-                <Link href={`/${post.category}/${post.slug}`}>
+                <Link href={`/${post.category}/${post.id}`}>
                   <p>{post.title}</p>
                 </Link>
               </div>

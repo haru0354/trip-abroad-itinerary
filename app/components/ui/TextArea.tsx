@@ -21,7 +21,6 @@ const TextArea: React.FC<TextAreaProps> = ({ name, label, placeholder, value, on
                 onChange={onChange} 
                 defaultValue={defaultValue}
                 />
-                
         </div>
     )
 }

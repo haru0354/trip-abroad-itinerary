@@ -19,11 +19,13 @@ const page = async ({ params }: { params: { category: string } }) => {
           src={"/008.jpg"}
           alt={"a"}
         />
+        
         <h2 className="p-2 text-3xl">{category}の記事一覧</h2>
         {posts
           .filter((post) => post.category === category)
           .map((post) => {
-            return <Card key={post.id} post={post} />;
+            return <Link href={`/${post.category}/${post.id}`}>
+            <Card key={post.id} post={post} /></Link>;
           })}
       </div>
     </>

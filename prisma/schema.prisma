@@ -70,5 +70,6 @@ model Post {
   title             String
   content           String
   category          String
+  categorySlag      String
   description       String
 }

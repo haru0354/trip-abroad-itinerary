@@ -1,16 +1,14 @@
-
 import TextArea from "@/app/components/ui/TextArea";
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
 import Date from "@/app/components/ui/Date";
-import Select from "../ui/Select";
 
 type Post = {
   id: number;
   title: string;
   content: string;
   category: string;
-  slug: string;
+  categorySlag: string;
   updatedDate: string;
 };
 
@@ -27,23 +25,26 @@ const FormPost: React.FC<FormPostProps> = ({
   buttonName,
   dateName,
 }) => {
-
-  
   return (
     <>
       <form action={formAction}>
         <Date name={dateName} defaultValue={post?.updatedDate} />
         <Form
-            name={"category"}
-            label={"カテゴリ"}
-            defaultValue={post?.category}
-            placeholder={"新規カテゴリを追加する場合はこちらに入力。既存のカテゴリは下記より選択。"}
+          name={"category"}
+          label={"カテゴリ"}
+          defaultValue={post?.category}
+          placeholder={
+            "新規カテゴリを追加する場合はこちらに入力。既存のカテゴリは下記より選択。"
+          }
         />
-        <Select
-            name={"category"}
-            label={"カテゴリ"}
-            defaultValue={post?.category}
-          />
+        <Form
+          name={"categorySlag"}
+          label={"カテゴリのスラッグ"}
+          defaultValue={post?.categorySlag}
+          placeholder={
+            "カテゴリのスラッグを入力してください"
+          }
+        />
         <Form
           name={"title"}
           label={"記事のタイトル"}

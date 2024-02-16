@@ -11,7 +11,6 @@ type Post = {
   createdDate: string;
   updatedDate: string;
   category: string;
-  slug: string;
   title: string;
   content: string;
 }

@@ -15,7 +15,7 @@ const NewArticles = async () => {
         {latestPosts.map((post) => {
           return (
             <li className="my-6 pb-6 border hover:bg-gray-200">
-              <Link href={`/${post.category}/${post.id}`}>
+              <Link href={`/${post.categorySlag}/${post.id}`}>
                 <Image
                   src="/new-article.JPG"
                   alt="削除する"

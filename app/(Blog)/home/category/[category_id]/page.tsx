@@ -1,13 +1,14 @@
-import FormPost from "@/app/components/blog/FormPost";
 import prisma from "@/app/components/lib/prisma";
 import { updatePost } from "@/app/action/action-post";
-import DeletePostModal from "@/app/components/blog/DeletePostModal";
+import DeleteCategoryModal from "@/app/components/blog/DeleteCategoryModal";
+import FormCategory from "@/app/components/blog/FormCategory";
+import { updateCategory } from "@/app/action/action-category";
 
 const page = async ({ params }: { params: { category_id: string } }) => {
   const id = Number(params.category_id);
-  const updatePostWidthId = updatePost.bind(null, id);
+  const updateCategoryWidthId = updateCategory.bind(null, id);
 
-  const post = await prisma.post.findUnique({
+  const category = await prisma.category.findUnique({
     where: {
       id,
     },
@@ -20,12 +21,12 @@ const page = async ({ params }: { params: { category_id: string } }) => {
           <h2 className="bg-green-600 text-xl bold text-white rounded mt-10 mb-12 p-5 font-bold">
             記事の編集
           </h2>
-          <FormPost
-            formAction={updatePostWidthId}
-            post={post}
+          <FormCategory
+            formAction={updateCategoryWidthId}
+            category={category}
             buttonName={"編集内容を保存"}
           />
-          <DeletePostModal post={post} />
+          <DeleteCategoryModal category={category} />
         </div>
       </div>
     </>

@@ -8,11 +8,7 @@ import toast from "react-hot-toast";
 
 type Post = {
   id: number;
-  createdDate: string;
-  updatedDate: string;
-  category: string;
   title: string;
-  content: string;
 }
 
 type DeletePostModalProps = {

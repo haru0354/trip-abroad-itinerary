@@ -8,9 +8,8 @@ type Post = {
   id: number;
   title: string;
   content: string;
-  category: string;
-  slag: string;
-  updatedDate: string;
+  slug: string;
+  description: string;
 };
 
 type FormPostProps = {
@@ -37,7 +36,7 @@ const FormPost: React.FC<FormPostProps> = ({
         <Form
           name={"slug"}
           label={"スラッグ"}
-          defaultValue={post?.slag}
+          defaultValue={post?.slug}
           placeholder={"記事のスラッグを入力してください。"}
         />
         <TextArea

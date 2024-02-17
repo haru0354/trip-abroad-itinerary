@@ -52,17 +52,3 @@ export const updatePost = async (id: number, data: FormData) => {
     redirect("/home");
 }
 
-export const addCategory = async (data:FormData) => {
-    const name = data.get("name") as string;
-    const slug = data.get("slug") as string;
-    const content = data.get("content") as string;
-    const description = data.get("description") as string;
-    await prisma.category.create({ data: {  
-        name,
-        slug,
-        content,
-        description,
-    }});
-    revalidatePath("/home");
-    redirect("/home")
-}

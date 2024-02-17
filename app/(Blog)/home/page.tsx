@@ -14,12 +14,12 @@ const page = async () => {
           <div className="mx-auto flex justify-center items-center">
             <Link href="./home/new-post">
               <Button className="px-16 mx-6 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
-                記事を追加する
+                記事を追加
               </Button>
             </Link>
-            <Link href="./home/new-category">
+            <Link href="./home/category">
               <Button className="px-16 mx-6 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
-                カテゴリを追加する
+                カテゴリの確認・追加
               </Button>
             </Link>
           </div>

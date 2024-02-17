@@ -26,6 +26,16 @@ const ListCategory = async () => {
               <p className="border-gray-500 py-1 px-2 min-w-[110px] max-w-[550px]">
                 {category.description}
               </p>
+              <Link href={`/${category.slug}`}>
+                <Button className="min-w-[100px] px-6 py-1 mx-2 shadow font-bold bg-blue-700 text-white hover:bg-white hover:text-black border border-sky-900">
+                  ページへ
+                </Button>
+              </Link>
+              <Link href={`/home/${category.slug}/${category.id}`}>
+                <Button className="min-w-[100px] px-6 py-1 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-sky-900">
+                  編集
+                </Button>
+              </Link>
             </div>
           );
         })}

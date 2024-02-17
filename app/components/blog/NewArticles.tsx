@@ -14,7 +14,7 @@ const NewArticles = async () => {
       <ul>
         {latestPosts.map((post) => {
           return (
-            <li className="my-6 pb-6 border hover:bg-gray-200">
+            <li className="my-6 pb-2 border-b border-gray-600 border-dashed hover:bg-gray-200">
               <Link href={`/${post.categorySlag}/${post.id}`}>
                 <Image
                   src="/new-article.JPG"
@@ -22,7 +22,7 @@ const NewArticles = async () => {
                   width={240}
                   height={140}
                 />
-                <p className="text-gray-600 ">{post.title}</p>
+                <p className="text-gray-600 my-2">{post.title}</p>
               </Link>
             </li>
           );

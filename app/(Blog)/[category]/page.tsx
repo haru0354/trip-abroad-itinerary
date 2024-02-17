@@ -10,11 +10,6 @@ const page = async ({ params }: { params: { category: string } }) => {
   return (
     <>
       <div className="p-8 mx-4 bg-white rounded">
-        <ArticleTop
-          title={"海外旅行に必要な英語力はどれぐらい？どの程度話せれば良いのか"}
-          src={"/008.jpg"}
-          alt={"a"}
-        />
         <h2 className="p-2 text-3xl">{category}の記事一覧</h2>
         {posts
           .filter((post) => post.categorySlag === category)

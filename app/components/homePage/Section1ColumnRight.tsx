@@ -19,7 +19,7 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
 }) => {
   return (
     <>
-      <div className="flex justify-center  w-full py-8  bg-white rounded flex-wrap">
+      <div className="flex justify-center  w-full py-8  rounded flex-wrap">
         <div className="w-full flex justify-center items-center py-4  max-w-[400px] ">
           <Image
             src={src}

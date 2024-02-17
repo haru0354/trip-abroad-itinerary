@@ -17,28 +17,25 @@ type FormPostProps = {
   post?: Post | null;
   formAction?: (data: FormData) => Promise<void> | Promise<never>;
   buttonName: string;
-  dateName: string;
 };
 
 const FormPost: React.FC<FormPostProps> = ({
   post,
   formAction,
   buttonName,
-  dateName,
 }) => {
   return (
     <>
       <form action={formAction}>
-        <Date name={dateName} defaultValue={post?.updatedDate} />
-        <Select label={"カテゴリ"} name={"categoryId"}/>
         <Form
           name={"title"}
           label={"記事のタイトル"}
           defaultValue={post?.title}
           placeholder={"記事のタイトルを31文字を目安に入力してください。"}
         />
+        <Select label={"カテゴリ"} name={"categoryId"}/>
         <Form
-          name={"slag"}
+          name={"slug"}
           label={"スラッグ"}
           defaultValue={post?.slag}
           placeholder={"記事のスラッグを入力してください。"}

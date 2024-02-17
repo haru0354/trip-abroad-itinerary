@@ -6,7 +6,6 @@ type SelectProps = {
 };
 
 const Select: React.FC<SelectProps> = async ({ label, name }) => {
-
   const categories = await prisma.category.findMany();
 
   return (

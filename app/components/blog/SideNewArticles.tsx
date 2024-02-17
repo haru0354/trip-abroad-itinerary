@@ -21,7 +21,7 @@ const SideNewArticles = async () => {
         {posts.map((post) => {
           return (
             <li className="my-6 pb-2 border-b border-gray-600 border-dashed hover:bg-gray-200">
-              <Link href={`/${post.category.slag}/${post.slag}`}>
+              <Link href={`/${post.category.slug}/${post.slug}`}>
                 <Image
                   src="/new-article.JPG"
                   alt="削除する"

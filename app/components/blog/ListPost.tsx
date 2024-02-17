@@ -13,13 +13,14 @@ const ListPost = async () => {
     <>
     <div className="mb-10">
       {posts.map((post) => {
+          const formattedCreatedDate = new Date(post.createdDate).toLocaleDateString();
         return (
           <div
             key={post.id}
             className="flex border-b border-gray-500 py-4"
           >
             <p className="border-r border-gray-500 py-1 px-2 min-w-[110px]">
-              {post.createdDate}
+              {formattedCreatedDate}
             </p>
             <p className="flex-grow border-r border-gray-500 py-1 px-2 min-w-[110px] max-w-[550px]">
               {post.title}
@@ -27,7 +28,7 @@ const ListPost = async () => {
             <p className="py-1 px-2 border-r border-gray-500 min-w-[130px] max-w-[130px]">
               {post.category.name}
             </p>
-            <Link href={`/${post.category.slag}/${post.slag}`}>
+            <Link href={`/${post.category.slug}/${post.slug}`}>
               <Button className="min-w-[100px] px-6 py-1 mx-2 shadow font-bold bg-blue-700 text-white hover:bg-white hover:text-black border border-sky-900">
                 ページへ
               </Button>

@@ -14,7 +14,6 @@ const page = () => {
           <FormPost
             buttonName="記事を追加する"
             formAction={addPost}
-            dateName="createdDate"
           />
           <Link href="/home">
             <Button className="px-24 my-8 py-3 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-sky-900">

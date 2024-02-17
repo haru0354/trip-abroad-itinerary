@@ -5,21 +5,17 @@ import { redirect } from 'next/navigation';
 import prisma from "../components/lib/prisma"
 
 export const addPost = async (data:FormData) => {
-    const createdDate = data.get("createdDate") as string;
-    const updatedDate = data.get("createdDate") as string;
     const title = data.get("title") as string;
     const content = data.get("content") as string;
-    const category = data.get("category") as string;
-    const categorySlag = data.get("categorySlag") as string;
     const description = data.get("description") as string; 
+    const slug = data.get("slug") as string; 
+    const categoryId = data.get("categoryId") as string; 
     await prisma.post.create({ data: {  
-        createdDate,
-        updatedDate,
         title,
         content,
-        category,
         description,
-        categorySlag,
+        slug,
+        category: { connect: { id: Number(categoryId) } }
     }});
     revalidatePath("/home");
     redirect("/home")
@@ -36,24 +32,23 @@ export const deletePost = async (id: number) => {
 }
 
 export const updatePost = async (id: number, data: FormData) => {
-    const updatedDate = data.get("updatedDate") as string;
     const title = data.get("title") as string;
     const content = data.get("content") as string;
-    const category = data.get("category") as string;
-    const categorySlag = data.get("categorySlag") as string;
     const description = data.get("description") as string; 
+    const slug = data.get("slug") as string; 
+    const categoryId = data.get("categoryId") as string; 
     await prisma.post.update({ 
         where: {
             id,
         },
         data: {
-            updatedDate,
             title,
             content,
-            category,
-            categorySlag,
             description,
+            slug,
+            category: { connect: { id: Number(categoryId) } }
     }})
     revalidatePath("/home");
     redirect("/home");
 }
+

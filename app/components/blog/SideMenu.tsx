@@ -1,5 +1,5 @@
 import SideCategoryMenu from "./SideCategoryMenu";
-import NewArticles from "./NewArticles";
+import SideNewArticles from "./SideNewArticles";
 import SideTop from "./SideTop";
 
 const SideMenu = () => {
@@ -7,7 +7,7 @@ const SideMenu = () => {
     <div className="flex flex-col justify-center items-center bg-white rounded py-2">
       <SideTop />
       <SideCategoryMenu />
-      <NewArticles />
+      <SideNewArticles />
     </div>
   );
 };

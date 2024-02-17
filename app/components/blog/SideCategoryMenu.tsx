@@ -2,11 +2,7 @@ import Link from "next/link";
 import prisma from "../lib/prisma";
 
 const SideCategoryMenu = async () => {
-  const posts = await prisma.post.findMany({
-    orderBy: {
-      category: 'asc'
-    }
-  });
+  const categories = await prisma.category.findMany();
 
   return (
     <div className="w-full p-2">
@@ -26,18 +22,14 @@ const SideCategoryMenu = async () => {
       <h3 className="bg-green-600 text-white font-bold px-2 py-4">
         カテゴリー
       </h3>
-      {posts.map((post, index) => {
-        const isFirstItem =
-        index === 0 || post.category !== posts[index - 1].category;
+      {categories.map((category) => {
         return (
-          <ul key={post.id}>
-            {isFirstItem && (
+          <ul key={category.id}>
               <li className="py-4 hover:bg-gray-200">
-                <Link href={`/${post.categorySlag}`}>
-                  <p className="text-gray-600">{post.category}</p>
+                <Link href={`/${category.slug}`}>
+                  <p className="text-gray-600">{category.name}</p>
                 </Link>
               </li>
-            )}
           </ul>
         );
       })}

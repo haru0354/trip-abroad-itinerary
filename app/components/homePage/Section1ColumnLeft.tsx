@@ -19,7 +19,7 @@ const Section1ColumnLeft: React.FC<Section1ColumnLeftProps> = ({
 }) => {
   return (
     <>
-      <div className="flex justify-center  w-full  my-20 py-16 border border-sky-600 bg-white rounded flex-wrap">
+      <div className="flex justify-center  w-full  my-20 py-16 border border-sky-600  rounded flex-wrap">
       <div className="w-full py-4 mx-14 max-w-[400px] justify-center items-center">
           <h3 className="text-gray-700 mb-6 text-2xl font-semibold ">
             {name}

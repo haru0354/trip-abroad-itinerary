@@ -11,7 +11,6 @@ type Post = {
   createdDate: string;
   updatedDate: string;
   category: string;
-  slug: string;
   title: string;
   content: string;
 }
@@ -50,7 +49,7 @@ const DeletePostModal:React.FC<DeletePostModalProps> = ({ post }) => {
     <div>
       <div className="flex justify-center items-center">
         {isDeleteModalOpen || (
-          <Button onClick={toggleDeleteModal} className="btn red">
+          <Button onClick={toggleDeleteModal} className="px-24 my-8 py-3 shadow font-bold bg-red-700 text-white hover:bg-white hover:text-black border border-red-900">
             ブログの記事を削除
           </Button>
         )}
@@ -78,7 +77,7 @@ const DeletePostModal:React.FC<DeletePostModalProps> = ({ post }) => {
                 キャンセル
               </Button>
               <form onSubmit={deleteToast} >
-                <Button formAction={deletePostWithId} className="btn red ">
+                <Button formAction={deletePostWithId} className="btn red">
                   削除
                 </Button>
               </form>

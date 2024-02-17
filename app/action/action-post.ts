@@ -10,14 +10,16 @@ export const addPost = async (data:FormData) => {
     const title = data.get("title") as string;
     const content = data.get("content") as string;
     const category = data.get("category") as string;
-    const slug = data.get("slug") as string; 
+    const categorySlag = data.get("categorySlag") as string;
+    const description = data.get("description") as string; 
     await prisma.post.create({ data: {  
         createdDate,
         updatedDate,
         title,
         content,
         category,
-        slug,
+        description,
+        categorySlag,
     }});
     revalidatePath("/home");
     redirect("/home")
@@ -38,7 +40,8 @@ export const updatePost = async (id: number, data: FormData) => {
     const title = data.get("title") as string;
     const content = data.get("content") as string;
     const category = data.get("category") as string;
-    const slug = data.get("slug") as string; 
+    const categorySlag = data.get("categorySlag") as string;
+    const description = data.get("description") as string; 
     await prisma.post.update({ 
         where: {
             id,
@@ -48,7 +51,8 @@ export const updatePost = async (id: number, data: FormData) => {
             title,
             content,
             category,
-            slug,
+            categorySlag,
+            description,
     }})
     revalidatePath("/home");
     redirect("/home");

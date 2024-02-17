@@ -3,26 +3,43 @@ import Button from "../ui/Button";
 import Link from "next/link";
 
 const ListPost = async () => {
-  const posts = await prisma.post.findMany();
-
+  const posts = await prisma.post.findMany({
+    orderBy: {
+      createdDate: "asc",
+    },
+  });
   return (
     <>
+    <div className="mb-10">
       {posts.map((post) => {
         return (
-          <div key={post.id} className="flex border-b border-gray-500 p-4">
-            <p className="border-r border-gray-500 py-1 px-10">
+          <div
+            key={post.id}
+            className="flex border-b border-gray-500 py-4"
+          >
+            <p className="border-r border-gray-500 py-1 px-2 min-w-[110px]">
               {post.createdDate}
             </p>
-            <p className="border-r border-gray-500 py-1 px-40">{post.title}</p>
-            <p className="border-r border-gray-500 py-1 px-40">{post.category}</p>
+            <p className="flex-grow border-r border-gray-500 py-1 px-2 min-w-[110px] max-w-[550px]">
+              {post.title}
+            </p>
+            <p className="py-1 px-2 border-r border-gray-500 min-w-[130px] max-w-[130px]">
+              {post.category}
+            </p>
+            <Link href={`/${post.categorySlag}/${post.id}`}>
+              <Button className="min-w-[100px] px-6 py-1 mx-2 shadow font-bold bg-blue-700 text-white hover:bg-white hover:text-black border border-sky-900">
+                ページへ
+              </Button>
+            </Link>
             <Link href={`/home/${post.id}`}>
-            <Button className="px-8 py-1 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
-              編集
-            </Button>
+              <Button className="min-w-[100px] px-6 py-1 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-sky-900">
+                編集
+              </Button>
             </Link>
           </div>
         );
       })}
+    </div>
     </>
   );
 };

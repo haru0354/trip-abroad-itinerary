@@ -64,11 +64,12 @@ model Itinerary {
 }
 
 model Post {
-  id                Int     @id @default(autoincrement())
+  id                 Int     @id @default(autoincrement())
   createdDate       String  
   updatedDate       String  
   title             String
   content           String
   category          String
-  slug              String
+  categorySlag      String
+  description       String
 }

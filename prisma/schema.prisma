@@ -64,12 +64,20 @@ model Itinerary {
 }
 
 model Post {
-  id                 Int     @id @default(autoincrement())
+  id                Int     @id @default(autoincrement())
   createdDate       String  
   updatedDate       String  
   title             String
   content           String
-  category          String
-  categorySlag      String
+  category          Category @relation(fields: [categoryId], references: [id])
+  categoryId        Int
   description       String
+  slag              String
+}
+
+model Category {
+  id        Int     @id @default(autoincrement())
+  name      String
+  slag      String
+  posts     Post[]
 }

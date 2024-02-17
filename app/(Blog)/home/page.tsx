@@ -17,6 +17,11 @@ const page = async () => {
                 記事を追加する
               </Button>
             </Link>
+            <Link href="./home/new-category">
+              <Button className="px-16 mx-6 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
+                カテゴリを追加する
+              </Button>
+            </Link>
           </div>
           <div className="flex border border-gray-500 py-4 mt-10">
             <p className="text-center border-r border-gray-500 py-1 px-2 min-w-[110px]">

@@ -1,12 +1,12 @@
 import ArticleTop from "@/app/components/blog/ArticleTop";
 import prisma from "@/app/components/lib/prisma";
 
-const Page = async ({ params }: { params: { article: string } }) => {
-  const id = Number(params.article);
+const Page = async ({ params }: { params: { slag: string } }) => {
+  const slag = params.slag;
 
   const post = await prisma.post.findUnique({
     where: {
-      id,
+      slag,
     },
   });
   

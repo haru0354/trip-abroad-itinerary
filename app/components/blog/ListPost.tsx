@@ -4,10 +4,11 @@ import Link from "next/link";
 
 const ListPost = async () => {
   const posts = await prisma.post.findMany({
-    orderBy: {
-      createdDate: "asc",
+    include: {
+      category: true, // リレーションされたCategoryモデルの情報を含める
     },
   });
+
   return (
     <>
     <div className="mb-10">
@@ -24,9 +25,9 @@ const ListPost = async () => {
               {post.title}
             </p>
             <p className="py-1 px-2 border-r border-gray-500 min-w-[130px] max-w-[130px]">
-              {post.category}
+              {post.category.name}
             </p>
-            <Link href={`/${post.categorySlag}/${post.id}`}>
+            <Link href={`/${post.category.slag}/${post.slag}`}>
               <Button className="min-w-[100px] px-6 py-1 mx-2 shadow font-bold bg-blue-700 text-white hover:bg-white hover:text-black border border-sky-900">
                 ページへ
               </Button>

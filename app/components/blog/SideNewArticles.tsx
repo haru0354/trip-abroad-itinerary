@@ -2,8 +2,14 @@ import Link from "next/link";
 import prisma from "../lib/prisma";
 import Image from "next/image";
 
-const NewArticles = async () => {
-  const posts = await prisma.post.findMany();
+const SideNewArticles = async () => {
+  const posts = await prisma.post.findMany({
+    take: 5, // 最新の5つの投稿を取得
+    include: {
+      category: true, // リレーションされたCategoryモデルの情報を含める
+    },
+  });
+
 
   // 5件を取り出す
   const latestPosts = posts.slice(0, 5);
@@ -12,10 +18,10 @@ const NewArticles = async () => {
     <div className="w-full p-2">
       <h3 className="bg-green-600 text-white font-bold px-2 py-4">新着記事</h3>
       <ul>
-        {latestPosts.map((post) => {
+        {posts.map((post) => {
           return (
             <li className="my-6 pb-2 border-b border-gray-600 border-dashed hover:bg-gray-200">
-              <Link href={`/${post.categorySlag}/${post.id}`}>
+              <Link href={`/${post.category.slag}/${post.slag}`}>
                 <Image
                   src="/new-article.JPG"
                   alt="削除する"
@@ -32,4 +38,4 @@ const NewArticles = async () => {
   );
 };
 
-export default NewArticles;
+export default SideNewArticles;

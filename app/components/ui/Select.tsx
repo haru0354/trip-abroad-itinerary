@@ -1,16 +1,13 @@
 import prisma from "../lib/prisma";
 
 type SelectProps = {
-  name: string;
   label: string;
-  defaultValue?: string;
+  name: string;
 };
 
-const Select: React.FC<SelectProps> = async ({ label, defaultValue, name }) => {
-  const posts = await prisma.post.findMany();
+const Select: React.FC<SelectProps> = async ({ label, name }) => {
 
-  const onceCategories = new Set(posts.map((post) => post.category));
-  const onceCategoriesArray = Array.from(onceCategories);
+  const categories = await prisma.category.findMany();
 
   return (
     <>
@@ -20,14 +17,12 @@ const Select: React.FC<SelectProps> = async ({ label, defaultValue, name }) => {
       >
         {label}
       </label>
-      <select
-        name={name}
-        defaultValue={defaultValue}
-        className="shadow border rounded py-2 px-3"
-      >
-        {onceCategoriesArray.map((category) => {
-          return <option key={category}>{category}</option>;
-        })}
+      <select className="shadow border rounded py-2 px-3" name={name} >
+        {categories.map((category) => (
+          <option key={category.id} value={category.id} >
+            {category.name}
+          </option>
+        ))}
       </select>
     </>
   );

@@ -9,8 +9,8 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
   const posts = await prisma.post.findMany({
     where: {
       category: {
-        slug: categorySlug
-      }
+        slug: categorySlug,
+      },
     },
     include: {
       category: true,
@@ -28,20 +28,24 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
   });
 
   // カテゴリ名の取得。カテゴリ名がない場合はエラーメッセージを設定する
-  const retrievedCategoryName = processedPosts.length > 0 ? processedPosts[0].categoryName + "の記事一覧" : "カテゴリがありません";
-  const retrievedCategoryContent = processedPosts.length > 0 ? processedPosts[0].categoryContent : "";
+  const retrievedCategoryName =
+    processedPosts.length > 0
+      ? processedPosts[0].categoryName + "の記事一覧"
+      : "カテゴリがありません";
+  const retrievedCategoryContent =
+    processedPosts.length > 0 ? processedPosts[0].categoryContent : "";
 
   return (
     <>
-      <div className="p-8 mx-4 bg-white rounded">
-        <h2 className="p-2 text-3xl">{retrievedCategoryName}</h2>
-        <p>{retrievedCategoryContent}</p>
-        {posts
-          .map((post) => {
-            return <Link href={`/${post.category.slug}/${post.slug}`}>
-            <Card key={post.id} post={post} /></Link>;
-          })}
-      </div>
+      <h2 className="p-2 text-3xl">{retrievedCategoryName}</h2>
+      <p>{retrievedCategoryContent}</p>
+      {posts.map((post) => {
+        return (
+          <Link href={`/${post.category.slug}/${post.slug}`}>
+            <Card key={post.id} post={post} />
+          </Link>
+        );
+      })}
     </>
   );
 };

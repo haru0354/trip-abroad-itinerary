@@ -16,9 +16,7 @@ const page = async ({ params }: { params: { category_id: string } }) => {
 
   return (
     <>
-      <div className="max-w-screen-lg flex justify-center items-center mx-auto">
-        <div className="w-full">
-          <h2 className="bg-green-600 text-xl bold text-white rounded mt-10 mb-12 p-5 font-bold">
+          <h2 className="bg-green-600 text-xl bold text-white rounded mb-12 p-5 font-bold">
             記事の編集
           </h2>
           <FormCategory
@@ -27,8 +25,6 @@ const page = async ({ params }: { params: { category_id: string } }) => {
             buttonName={"編集内容を保存"}
           />
           <DeleteCategoryModal category={category} />
-        </div>
-      </div>
     </>
   );
 };

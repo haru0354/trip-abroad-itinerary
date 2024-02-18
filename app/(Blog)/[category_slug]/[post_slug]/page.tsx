@@ -12,7 +12,6 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
 
   return (
     <>
-      <div className="p-8 mx-4 bg-white rounded">
         {posts.map((post) => {
           return (
             <>
@@ -21,7 +20,6 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
             </>
           );
         })}
-      </div>
     </>
   );
 };

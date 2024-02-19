@@ -1,3 +1,4 @@
+import NotFound from "@/app/NotFound";
 import ArticleTop from "@/app/components/blog/ArticleTop";
 import Card from "@/app/components/blog/Card";
 import prisma from "@/app/components/lib/prisma";
@@ -29,9 +30,14 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
 
   // カテゴリ名の取得。カテゴリ名がない場合はエラーメッセージを設定する
   const retrievedCategoryName =
-    processedPosts.length > 0
-      ? processedPosts[0].categoryName + "の記事一覧"
-      : "カテゴリがありません";
+    processedPosts.length > 0 ? (
+      processedPosts[0].categoryName + "の記事一覧"
+    ) : (
+      <>
+        <NotFound/>
+        <p>カテゴリがありません</p>
+      </>
+    );
   const retrievedCategoryContent =
     processedPosts.length > 0 ? processedPosts[0].categoryContent : "";
 

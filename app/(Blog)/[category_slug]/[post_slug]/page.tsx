@@ -27,10 +27,10 @@ export const generateMetadata = async ({
   });
 
   // タイトルとディスクリプションを特定
-  const retrievedPostTitle =
+const retrievedPostTitle =
     processedPosts.length > 0 ? processedPosts[0].postTitle : "";
   const retrievedDescription =
-    processedPosts.length > 0 ? processedPosts[0].postDescription : "";
+    processedPosts.length > 0 ? processedPosts[0].postDescription : "";  
 
   return {
     title: retrievedPostTitle,

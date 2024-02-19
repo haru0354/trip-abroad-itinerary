@@ -12,7 +12,7 @@ type CardProps = {
 const Card: React.FC<CardProps> = ({ post }) => {
   return (
     <>
-      <div className="flex h-full border border-gray-300 my-8 hover:bg-gray-200">
+      <div className="flex border border-sky-300 my-8 hover:bg-sky-100">
         <div className="w-[30%] flex items-center justify-center px-4 py-6">
           <Image
             src="/card.JPG"

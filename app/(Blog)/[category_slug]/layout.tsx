@@ -18,10 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <div className="bg-gray-100">
-        <div className="max-w-screen-lg  mx-auto flex flex-col md:flex-row">
-          <div className="w-full md:w-3/4 py-4">{children}</div>
-          <div className="w-full md:w-1/4 py-4">
+      <div className="bg-sky-50">
+        <div className="max-w-screen-lg mx-auto flex flex-col md:flex-row mb-8">
+          <div className="w-full md:w-3/4 bg-white rounded p-4 mr-8 ">
+            {children}
+          </div>
+          <div className="w-full md:w-1/4 py-4 bg-white rounded  ">
             <SideMenu />
           </div>
         </div>

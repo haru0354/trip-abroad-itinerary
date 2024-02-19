@@ -4,7 +4,7 @@ type TextAreaProps = {
     label: string;
     placeholder?: string;
     value?: string;
-    defaultValue?: string;
+    defaultValue?: string | undefined;
     onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 

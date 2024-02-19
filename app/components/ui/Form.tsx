@@ -4,7 +4,7 @@ type FormProps = {
   label: string;
   placeholder?: string;
   value?: string;
-  defaultValue?: string;
+  defaultValue?: string | number | readonly string[] | undefined; 
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 

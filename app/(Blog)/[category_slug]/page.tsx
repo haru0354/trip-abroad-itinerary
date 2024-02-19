@@ -1,8 +1,8 @@
 import NotFound from "@/app/NotFound";
-import ArticleTop from "@/app/components/blog/ArticleTop";
 import Card from "@/app/components/blog/Card";
 import prisma from "@/app/components/lib/prisma";
 import Link from "next/link";
+import { Metadata } from "next";
 
 const page = async ({ params }: { params: { category_slug: string } }) => {
   const categorySlug = params.category_slug;
@@ -38,8 +38,7 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
         <p>カテゴリがありません</p>
       </>
     );
-  const retrievedCategoryContent =
-    processedPosts.length > 0 ? processedPosts[0].categoryContent : "";
+  const retrievedCategoryContent = processedPosts.length > 0 ? processedPosts[0].categoryContent : "";
 
   return (
     <>

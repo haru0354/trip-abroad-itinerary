@@ -2,7 +2,11 @@ import Link from "next/link";
 import prisma from "../lib/prisma";
 
 const SideCategoryMenu = async () => {
-  const categories = await prisma.category.findMany();
+  const categories = await prisma.category.findMany({
+    include: {
+      posts: true,
+    },
+  });
 
   return (
     <div className="w-full p-2">
@@ -23,7 +27,10 @@ const SideCategoryMenu = async () => {
         カテゴリー
       </h3>
       {categories.map((category) => {
-        return (
+         if (category.posts.length === 0) {
+          return null;
+        }
+        return ( 
           <ul key={category.id}>
               <li className="py-4 hover:bg-gray-200">
                 <Link href={`/${category.slug}`}>

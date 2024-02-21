@@ -37,7 +37,7 @@ const DeleteCategoryModal:React.FC<DeleteCategoryModalProps> = ({ category }) =>
   };
 
   const deleteToast = async () => {
-    toast.success("記事を削除しました！")
+    toast.success("メモを削除しました！")
   };
 
   return (
@@ -46,7 +46,7 @@ const DeleteCategoryModal:React.FC<DeleteCategoryModalProps> = ({ category }) =>
       <div className="flex justify-center items-center">
         {isDeleteModalOpen || (
           <Button onClick={toggleDeleteModal} className="px-24 my-8 py-3 shadow font-bold bg-red-700 text-white hover:bg-white hover:text-black border border-red-900">
-            ブログの記事を削除
+            カテゴリを削除
           </Button>
         )}
       </div>
@@ -72,8 +72,8 @@ const DeleteCategoryModal:React.FC<DeleteCategoryModalProps> = ({ category }) =>
               <Button onClick={toggleDeleteModal} className="btn gray">
                 キャンセル
               </Button>
-              <form onSubmit={deleteToast} >
-                <Button formAction={deleteCategoryWithId} className="btn red">
+              <form action={deleteCategoryWithId} onSubmit={deleteToast} >
+                <Button  className="btn red">
                   削除
                 </Button>
               </form>

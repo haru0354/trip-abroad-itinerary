@@ -18,7 +18,7 @@ type FormState = {
     name?: string;
     slug?: string;
   };
-}
+};
 
 type FormCategoryProps = {
   category?: Category | null;
@@ -31,22 +31,20 @@ const FormCategory: React.FC<FormCategoryProps> = ({
   buttonName,
   formAction,
 }) => {
-  const initialState = { message: null, errors: { name: "", slug: "", } };
+  const initialState = { message: null, errors: { name: "", slug: "" } };
   const [state, dispatch] = useFormState<FormState>(formAction, initialState);
 
   return (
     <>
       <form action={dispatch}>
-      {state.message && <p className="text-red-500">{state.message}</p>}
+        {state.message && <p className="text-red-500">{state.message}</p>}
         <Form
           name={"name"}
           label={"カテゴリ名"}
           placeholder={"カテゴリ名を入力してください。"}
           defaultValue={category?.name}
         />
-        {state.errors && state.errors.name !== undefined && (
-          <p className="text-red-500">{state.errors.name}</p>
-        )}
+        {state.errors && <p className="text-red-500">{state.errors.name}</p>}
         <Form
           name={"slug"}
           label={"スラッグ"}
@@ -55,9 +53,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
           }
           defaultValue={category?.slug}
         />
-        {state.errors &&  (
-          <p className="text-red-500">{state.errors.slug}</p>
-        )}
+        {state.errors && <p className="text-red-500">{state.errors.slug}</p>}
 
         <TextArea
           name={"content"}

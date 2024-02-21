@@ -11,7 +11,11 @@ const page = async ({ params }: { params: { post_id: string } }) => {
     where: {
       id,
     },
+    include: {
+      category: true,
+    },
   });
+  const categories = await prisma.category.findMany();
 
   return (
     <>
@@ -21,6 +25,7 @@ const page = async ({ params }: { params: { post_id: string } }) => {
           <FormPost
             formAction={updatePostWidthId}
             post={post}
+            categories={categories}
             buttonName={"編集内容を保存"}
           />
           <DeletePostModal post={post} />

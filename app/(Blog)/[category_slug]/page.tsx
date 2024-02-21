@@ -4,7 +4,11 @@ import prisma from "@/app/components/lib/prisma";
 import Link from "next/link";
 import { Metadata } from "next";
 
-export const generateMetadata = async ({ params }: { params: { category_slug: string } }): Promise<Metadata> => {
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { category_slug: string };
+}): Promise<Metadata> => {
   const categorySlug = params.category_slug;
 
   const posts = await prisma.post.findMany({
@@ -30,9 +34,11 @@ export const generateMetadata = async ({ params }: { params: { category_slug: st
 
   // カテゴリ名の取得。カテゴリ名がない場合はエラーメッセージを設定する
   const retrievedCategoryTitle =
-  processedCategory.length > 0 ? processedCategory[0].categoryName : "";
-const retrievedCategoryDescription =
-processedCategory.length > 0 ? processedCategory[0].categoryDescription : "";  
+    processedCategory.length > 0 ? processedCategory[0].categoryName : "";
+  const retrievedCategoryDescription =
+    processedCategory.length > 0
+      ? processedCategory[0].categoryDescription
+      : "";
 
   return {
     title: retrievedCategoryTitle,
@@ -66,15 +72,16 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
 
   // カテゴリ名の取得。カテゴリ名がない場合はエラーメッセージを設定する
   const retrievedCategoryName =
-  processedCategory.length > 0 ? (
-    processedCategory[0].categoryName + "の記事一覧"
+    processedCategory.length > 0 ? (
+      processedCategory[0].categoryName + "の記事一覧"
     ) : (
       <>
-        <NotFound/>
+        <NotFound />
         <p>カテゴリがありません</p>
       </>
     );
-  const retrievedCategoryContent = processedCategory.length > 0 ? processedCategory[0].categoryContent : "";
+  const retrievedCategoryContent =
+    processedCategory.length > 0 ? processedCategory[0].categoryContent : "";
 
   return (
     <>

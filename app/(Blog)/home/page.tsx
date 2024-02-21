@@ -7,7 +7,7 @@ const page = async () => {
   return (
     <>
         <h2 className="bg-green-600 text-xl bold text-white rounded mb-12 p-5 font-bold">
-          投稿の一覧
+          記事の一覧
         </h2>
         <div className="mx-auto flex justify-center items-center">
           <Link href="./home/new-post">

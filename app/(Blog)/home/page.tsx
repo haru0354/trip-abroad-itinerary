@@ -17,7 +17,7 @@ const page = async () => {
           </Link>
           <Link href="./home/category">
             <Button className="px-16 mx-6 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
-              カテゴリの確認・追加
+              カテゴリの一覧
             </Button>
           </Link>
         </div>

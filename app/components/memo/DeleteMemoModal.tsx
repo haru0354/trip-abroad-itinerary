@@ -32,7 +32,7 @@ const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
     }
   };
 
-  const deleteToast = async () => {
+  const deleteToast = () => {
     toast.success("メモを削除しました！")
   };
 

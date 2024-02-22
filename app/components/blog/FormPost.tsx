@@ -9,7 +9,7 @@ import { useFormState } from "react-dom";
 type FormPostProps = {
   post?: Post & { category: Category } | null;
   categories?: Category[] | null;
-  formAction: (state: FormState) => FormState | Promise<FormState>;
+  formAction: (state: FormState, data: FormData) => Promise<FormState>;
   buttonName: string;
 };
 
@@ -27,13 +27,13 @@ type Post = {
 };
 
 type FormState = {
-  message: string | null;
-  errors: {
-    title?: string;
-    categoryId?: string;
-    slug?: string;
-    content?: string;
-    description?: string;
+  message?: string | null;
+  errors?: {
+    title?: string[] | undefined;
+    content?: string[] | undefined;
+    slug?: string[] | undefined;
+    description?: string[] | undefined;
+    categoryId?: string[] | undefined;
   };
 };
 
@@ -46,15 +46,18 @@ const FormPost: React.FC<FormPostProps> = ({
   const initialState = {
     message: null,
     errors: {
-      title: "",
-      categoryId: "",
-      slug: "",
-      content: "",
-      description: "",
+      title: undefined,
+      categoryId: undefined,
+      slug: undefined,
+      content: undefined,
+      description: undefined,
     },
   };
-  const [state, dispatch] = useFormState<FormState>(formAction, initialState);
-  const category = post?.category;
+  const [state, dispatch] = useFormState<FormState, FormData>(
+    formAction,
+    initialState
+  );
+    const category = post?.category;
 
   return (
     <>

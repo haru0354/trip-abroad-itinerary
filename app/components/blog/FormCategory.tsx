@@ -13,17 +13,17 @@ type Category = {
 };
 
 type FormState = {
-  message: string | null;
-  errors: {
-    name?: string;
-    slug?: string;
+  message?: string | null;
+  errors?: {
+    name?: string[] | undefined;
+    slug?: string[] | undefined;
   };
 };
 
 type FormCategoryProps = {
   category?: Category | null;
   buttonName: string;
-  formAction: (state: FormState, payload: FormData) => Promise<FormState>
+  formAction: (state: FormState, data: FormData) => Promise<FormState>;
 };
 
 const FormCategory: React.FC<FormCategoryProps> = ({
@@ -31,9 +31,11 @@ const FormCategory: React.FC<FormCategoryProps> = ({
   buttonName,
   formAction,
 }) => {
-  const initialState = { message: null, errors: { name: "", slug: "" } };
-  const [state, dispatch] = useFormState<FormState, FormData>(formAction, initialState);
-
+  const initialState = { message: null, errors: { name: undefined, slug: undefined, } };
+  const [state, dispatch] = useFormState<FormState, FormData>(
+    formAction,
+    initialState
+  );
   return (
     <>
       <form action={dispatch}>

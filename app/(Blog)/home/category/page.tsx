@@ -11,9 +11,14 @@ const page = () => {
         カテゴリの一覧
       </h2>
       <div className="mx-auto flex justify-center items-center">
+        <Link href="/home/category/new-category">
+          <Button className="px-16 mx-6 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
+            カテゴリを追加
+          </Button>
+        </Link>
         <Link href="/home">
           <Button className="px-16 mx-6 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
-            記事の確認・追加
+            記事の一覧
           </Button>
         </Link>
       </div>

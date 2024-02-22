@@ -8,17 +8,17 @@ import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 
-type FormMemoProps = {
-  memo?: Memo | null;
-  buttonName: string;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
-  userId?: number | undefined;
-};
-
 type Memo = {
   id: number;
   name: string;
   content: string;
+};
+
+type FormMemoProps = {
+  memo?: Memo | null;
+  buttonName: string;
+  userId?: number | undefined;
+  formAction: (state: FormState, data: FormData) => Promise<FormState>;
 };
 
 type FormState = {
@@ -30,7 +30,7 @@ type FormState = {
   };
 };
 
-const FormMemo: React.FC<FormMemoProps> = ({
+const FormMemoModal: React.FC<FormMemoProps> = ({
   memo,
   buttonName,
   formAction,
@@ -43,6 +43,14 @@ const FormMemo: React.FC<FormMemoProps> = ({
     initialState
   );
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
+
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
+  const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
+    if (e.target === e.currentTarget) {
+      toggleDeleteModal();
+    }
+  };
 
   const [inputValue, setInputValue] = useState<string>(memo?.name || "");
   const [textAreaValue, setTextareaChange] = useState<string>(
@@ -79,30 +87,43 @@ const FormMemo: React.FC<FormMemoProps> = ({
 
   return (
     <div>
-      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
-        メモの追加
-      </h2>
-      <form action={dispatch} onSubmit={handleSubmit}>
-        <Form
-          label={"メモの見出し"}
-          name={"name"}
-          placeholder="メモの見出しを記載しましょう。"
-          value={inputValue}
-          onChange={handleInputChange}
-        />
-        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-        <TextArea
-          label={"メモする内容"}
-          name={"content"}
-          placeholder="メモする内容を記載しましょう。"
-          value={textAreaValue}
-          onChange={handleTextareaChange}
-        />
-        <input type="hidden" name="userId" value={userId} />
-        <Button className="btn blue">{buttonName}</Button>
-      </form>
+      <div className="flex justify-center items-center">
+        {isDeleteModalOpen || (
+          <Button onClick={toggleDeleteModal} className="btn blue">
+            旅程を追加する
+          </Button>
+        )}
+      </div>
+      {isDeleteModalOpen && (
+        <div
+          className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
+          onClick={closeModal}
+        >
+          <div className="bg-white">
+            <form action={dispatch} onSubmit={handleSubmit}>
+              <Form
+                label={"メモの見出し"}
+                name={"name"}
+                placeholder="メモの見出しを記載しましょう。"
+                value={inputValue}
+                onChange={handleInputChange}
+              />
+              {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+              <TextArea
+                label={"メモする内容"}
+                name={"content"}
+                placeholder="メモする内容を記載しましょう。"
+                value={textAreaValue}
+                onChange={handleTextareaChange}
+              />
+              <input type="hidden" name="userId" value={userId} />
+              <Button className="btn blue">{buttonName}</Button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default FormMemo;
+export default FormMemoModal;

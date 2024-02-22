@@ -2,6 +2,7 @@ import ListMemo from "../../components/memo/ListMemo";
 import { addMemo } from "../../action/action-memo";
 import FormMemo from "../../components/memo/FormMemo";
 import getCurrentUser from "@/app/action/getCurrentUser";
+import FormMemoModal from "@/app/components/memo/FormMemoModal";
 
 const Memo = async () => {
   const currentUser = await getCurrentUser();
@@ -16,6 +17,7 @@ const Memo = async () => {
           </div>
           <div>
             <ListMemo userId={userId}/>
+            <FormMemoModal  formAction={addMemo} buttonName="追加" userId={userId}/>
           </div>
         </div>
       </div>

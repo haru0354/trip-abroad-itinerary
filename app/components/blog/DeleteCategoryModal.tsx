@@ -36,8 +36,8 @@ const DeleteCategoryModal:React.FC<DeleteCategoryModalProps> = ({ category }) =>
     }
   };
 
-  const deleteToast = async () => {
-    toast.success("メモを削除しました！")
+  const deleteToast = () => {
+    toast.success("カテゴリを削除しました！")
   };
 
   return (
@@ -72,8 +72,8 @@ const DeleteCategoryModal:React.FC<DeleteCategoryModalProps> = ({ category }) =>
               <Button onClick={toggleDeleteModal} className="btn gray">
                 キャンセル
               </Button>
-              <form action={deleteCategoryWithId} onSubmit={deleteToast} >
-                <Button  className="btn red">
+              <form onSubmit={deleteToast} >
+                <Button formAction={deleteCategoryWithId} className="btn red">
                   削除
                 </Button>
               </form>

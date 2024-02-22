@@ -1,18 +1,17 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
 
 type FormState = {
-  message: string | null;
-  errors: {
-    name?: string;
-    categoryId?: string;
-    slug?: string;
-    content?: string;
-    description?: string;
+  message?: string | null;
+  errors?: {
+    title?: string[] | undefined;
+    content?: string[] | undefined;
+    slug?: string[] | undefined;
+    description?: string[] | undefined;
+    categoryId?: string[] | undefined;
   };
 };
 

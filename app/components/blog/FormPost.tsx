@@ -1,8 +1,22 @@
+"use client";
+
 import TextArea from "@/app/components/ui/TextArea";
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
-import Date from "@/app/components/ui/Date";
 import Select from "../ui/Select";
+import { useFormState } from "react-dom";
+
+type FormPostProps = {
+  post?: Post & { category: Category } | null;
+  categories?: Category[] | null;
+  formAction: (state: FormState) => FormState | Promise<FormState>;
+  buttonName: string;
+};
+
+type Category = {
+  id: number;
+  name: string;
+};
 
 type Post = {
   id: number;
@@ -12,45 +26,69 @@ type Post = {
   description: string;
 };
 
-type FormPostProps = {
-  post?: Post | null;
-  formAction?: (data: FormData) => Promise<void> | Promise<never>;
-  buttonName: string;
+type FormState = {
+  message: string | null;
+  errors: {
+    title?: string;
+    categoryId?: string;
+    slug?: string;
+    content?: string;
+    description?: string;
+  };
 };
 
 const FormPost: React.FC<FormPostProps> = ({
   post,
+  categories,
   formAction,
   buttonName,
 }) => {
+  const initialState = {
+    message: null,
+    errors: {
+      title: "",
+      categoryId: "",
+      slug: "",
+      content: "",
+      description: "",
+    },
+  };
+  const [state, dispatch] = useFormState<FormState>(formAction, initialState);
+  const category = post?.category;
+
   return (
     <>
-      <form action={formAction}>
+      <form action={dispatch}>
         <Form
           name={"title"}
           label={"記事のタイトル"}
           defaultValue={post?.title}
           placeholder={"記事のタイトルを31文字を目安に入力してください。"}
         />
-        <Select label={"カテゴリ"} name={"categoryId"}/>
+        {state.errors && <p className="text-red-500">{state.errors.title}</p>}
+        <Select label={"カテゴリ"} name={"categoryId"} categories={categories} 
+        defaultValue={category?.id}/>
         <Form
           name={"slug"}
           label={"スラッグ"}
           defaultValue={post?.slug}
           placeholder={"記事のスラッグを入力してください。"}
         />
+        {state.errors && <p className="text-red-500">{state.errors.slug}</p>}
         <TextArea
           name={"content"}
           label={"記事の内容"}
           defaultValue={post?.content}
           placeholder={"記事の内容をこちらに入力してください。"}
         />
+        {state.errors && <p className="text-red-500">{state.errors.content}</p>}
         <TextArea
           name={"description"}
           label={"記事の説明(description)"}
-          defaultValue={post?.content}
+          defaultValue={post?.description}
           placeholder={"120文字を目安に記入してください。"}
         />
+        {state.errors && <p className="text-red-500">{state.errors.description}</p>}
         <Button className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
           {buttonName}
         </Button>

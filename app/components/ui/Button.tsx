@@ -4,7 +4,7 @@ import { useFormStatus } from "react-dom";
 
 type ButtonProps = {
   children: React.ReactNode;
-  formAction?: (data: FormData) => Promise<void> | Promise<never> | null;
+  formAction?: (data: FormData) => Promise<{ message: string; }>;
   onClick?: () => void;
   className?: string;
 };

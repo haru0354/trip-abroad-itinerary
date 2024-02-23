@@ -1,5 +1,4 @@
 import prisma from "@/app/components/lib/prisma";
-import { updatePost } from "@/app/action/action-post";
 import DeleteCategoryModal from "@/app/components/blog/DeleteCategoryModal";
 import FormCategory from "@/app/components/blog/FormCategory";
 import { updateCategory } from "@/app/action/action-category";

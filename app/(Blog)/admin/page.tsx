@@ -5,6 +5,7 @@ import Button from "@/app/components/ui/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
+import toast from "react-hot-toast";
 
 const page = () => {
   const { data: session, status } = useSession();
@@ -25,6 +26,7 @@ const page = () => {
     });
     if (!result?.error) {
       // ログイン成功時の処理
+      toast.success("ログインしました！");
       console.log("Login success:", result);
     } else {
       // ログイン失敗時の処理
@@ -33,7 +35,8 @@ const page = () => {
   };
 
   const handleLogout = async () => {
-    await signOut({ callbackUrl: '/admin' });
+    await signOut({ callbackUrl: "/admin" });
+    toast.success("ログアウトしました！");
     console.log("Logged out");
   };
 
@@ -44,27 +47,35 @@ const page = () => {
   return (
     <>
       <div className="flex items-center justify-center">
-        <div className="w-[350px] border p-4 my-10 border-gray-400">
+        <div className="w-[350px] border p-4 my-10 border-gray-400 rounded">
           <h2 className="text-center border-b pb-4 border-gray-400 text-gray-600 font-bold">
             ログインフォーム
           </h2>
-          <div>
-            <form onSubmit={handleLogin}>
-              <input
-                type="text"
+          <div className="flex">
+            <form onSubmit={handleLogin} className="w-full">
+              <Form
+                label="ユーザー名"
                 name="username"
-                placeholder="Username"
-                required
+                placeholder="ユーザー名"
               />
-              <input
-                type="password"
+              <Form
+                label="パスワード"
                 name="password"
-                placeholder="Password"
-                required
+                placeholder="パスワード"
+                type="password"
               />
-              <button type="submit">Login</button>
+              <Button className="flex mx-auto items-center justify-center transition duration-300 my-6 w-[180px]  py-2 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900 rounded-sm">
+                ログイン
+              </Button>
             </form>
-            <button onClick={handleLogout}>ログアウト</button>
+          </div>
+          <div className="flex">
+            <Button
+              onClick={handleLogout}
+              className="flex mx-auto justify-center transition duration-300 mb-6 w-[180px]  py-2 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-gray-900 rounded-sm"
+            >
+              ログアウト
+            </Button>
           </div>
         </div>
       </div>

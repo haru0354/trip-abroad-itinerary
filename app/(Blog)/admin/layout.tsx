@@ -1,6 +1,7 @@
 "use client";
 
 import AuthContext from "@/app/context/AuthContext";
+import ToastContext from "@/app/context/ToastContext";
 
 export default function RootLayout({
   children,
@@ -9,7 +10,10 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <AuthContext>{children}</AuthContext>
+      <AuthContext>
+        <ToastContext />
+        {children}
+      </AuthContext>
     </>
   );
 }

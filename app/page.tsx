@@ -47,6 +47,9 @@ export default function Home() {
                 <Link href="./home/">ブログ管理</Link>
               </li>
               <li>
+                <Link href="./admin/">ブログログイン</Link>
+              </li>
+              <li>
                 <Link href="./travel_brochure/">アプリtop</Link>
               </li>
               <li>

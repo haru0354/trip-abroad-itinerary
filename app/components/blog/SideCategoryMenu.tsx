@@ -22,21 +22,20 @@ const SideCategoryMenu = async () => {
           </Link>
         </li>
       </ul>
-
-      <h3 className="bg-green-600 text-white font-bold px-2 py-4">
+      <h3 className="bg-blue-500 text-white font-bold text-lg px-2 py-4 rounded-sm">
         カテゴリー
       </h3>
       {categories.map((category) => {
-         if (category.posts.length === 0) {
+        if (category.posts.length === 0) {
           return null;
         }
-        return ( 
+        return (
           <ul key={category.id}>
-              <li className="py-4 hover:bg-gray-200">
-                <Link href={`/${category.slug}`}>
-                  <p className="text-gray-600">{category.name}</p>
-                </Link>
-              </li>
+            <li className="py-4 hover:bg-gray-200">
+              <Link href={`/${category.slug}`}>
+                <p className="text-gray-600">{category.name}</p>
+              </Link>
+            </li>
           </ul>
         );
       })}

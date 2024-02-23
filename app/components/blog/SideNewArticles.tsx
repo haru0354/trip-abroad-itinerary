@@ -10,17 +10,18 @@ const SideNewArticles = async () => {
     },
   });
 
-
   // 5件を取り出す
   const latestPosts = posts.slice(0, 5);
 
   return (
     <div className="w-full p-2">
-      <h3 className="bg-green-600 text-white font-bold px-2 py-4">新着記事</h3>
+      <h3 className="bg-blue-500 text-white font-bold text-lg px-2 py-4 rounded-sm">
+        新着記事
+      </h3>
       <ul>
         {posts.map((post) => {
           return (
-            <li className="my-6 pb-2 border-b border-gray-600 border-dashed hover:bg-gray-200">
+            <li className="my-6 p-3 border-b border-gray-600 border-dashed hover:bg-gray-200">
               <Link href={`/${post.category.slug}/${post.slug}`}>
                 <Image
                   src="/new-article.JPG"

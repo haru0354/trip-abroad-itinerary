@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
+import ToastContext from "@/app/context/ToastContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -15,8 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <div className="bg-sky-50">
-        <div className="max-w-screen-lg flex justify-center items-center mx-auto bg-white">
+    <ToastContext />
+      <div className="bg-sky-50 py-8">
+        <div className="max-w-[1150px] flex justify-center items-center mx-auto bg-white">
           <div className="w-full p-4">{children}</div>
         </div>
       </div>

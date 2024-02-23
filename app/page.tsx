@@ -7,15 +7,6 @@ export default function Home() {
   return (
     <>
       <Header />
-
-      <Section1ColumnRight
-              src="/app-gazou.JPG"
-              alt="aa"
-              name="「旅のメモリーブック」"
-              content="PC・スマホ・タブレットで利用できる無料の国内旅行・海外旅行しおりアプリ。"
-              content2="あああ"
-              content3="あああ"
-            />
       <main>
         <div className="main-contents-area">
           <div className="w-full bg-white">

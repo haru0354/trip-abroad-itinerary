@@ -16,8 +16,8 @@ export default function RootLayout({
   return (
     <>
     <ToastContext />
-      <div className="bg-sky-50">
-        <div className="max-w-screen-lg flex justify-center items-center mx-auto bg-white">
+      <div className="bg-sky-50 py-8">
+        <div className="max-w-[1150px] flex justify-center items-center mx-auto bg-white">
           <div className="w-full p-4">{children}</div>
         </div>
       </div>

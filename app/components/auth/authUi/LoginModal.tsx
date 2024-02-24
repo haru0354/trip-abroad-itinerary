@@ -49,7 +49,7 @@ const LoginModal = () => {
     setLoading(true);
     try {
       // ログイン
-      const res = await signIn("credentials", {
+      const res = await signIn("itinerary", {
         ...data,
         redirect: false,
       });

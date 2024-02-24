@@ -20,13 +20,14 @@ export const authOptions: NextAuthOptions = {
     
     // メールアドレス認証
     CredentialsProvider({
-      name: "credentials",
+      id: 'itinerary',
+      name: "itinerary",
       credentials: {
         email: { label: "email", type: "text" },
         password: { label: "password", type: "password" },
       },
 
-      async authorize(credentials) {
+      async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) {
           throw new Error("メールアドレスとパスワードが存在しません");
         }
@@ -54,29 +55,28 @@ export const authOptions: NextAuthOptions = {
       },     
     }),
     
-    CredentialsProvider({
-      id: 'app2',
-      name: 'App 2',
-      credentials: {
-        username: { label: "Username", type: "text" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials, req) {
-        const { ADMIN_USERNAME, ADMIN_PASSWORD } = process.env;
-        const { username, password } = credentials || {};
-        
-        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-          return { id: ADMIN_USERNAME || '', name: ADMIN_USERNAME || '' }; // idが必須なので、undefinedの場合は空文字列になるように設定
-        } else if (username !== ADMIN_USERNAME) {
-          throw new Error("ユーザー名が間違っています");
-        } else if (password !== ADMIN_PASSWORD) {
-          throw new Error("パスワードが間違っています");
-        } else {
-          return null;
+      CredentialsProvider({
+        id: 'blog',
+        name: 'blog',
+        credentials: {
+          username: { label: "Username", type: "text" },
+          password: { label: "Password", type: "password" },
+        },
+        async authorize(credentials, req) {
+          const { ADMIN_USERNAME, ADMIN_PASSWORD } = process.env;
+          const { username, password } = credentials || {};
+          
+          if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+            return { id: ADMIN_USERNAME || '', name: ADMIN_USERNAME || '' }; // idが必須なので、undefinedの場合は空文字列になるように設定
+          } else if (username !== ADMIN_USERNAME) {
+            throw new Error("ユーザー名が間違っています");
+          } else if (password !== ADMIN_PASSWORD) {
+            throw new Error("パスワードが間違っています");
+          } else {
+            return null;
+          }
         }
-      }
-    }),
-
+      }),
   ],
   session: {
     strategy: "jwt",
@@ -84,6 +84,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 };
 
+
 const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST};

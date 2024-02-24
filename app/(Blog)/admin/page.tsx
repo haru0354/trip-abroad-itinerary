@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 
 const page = () => {
   const { data: session, status } = useSession();
-  const router = useRouter();
   const [ errorMessage, setErrorMessage ] = useState<string>("");
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
@@ -21,11 +20,7 @@ const page = () => {
       e.currentTarget.elements.namedItem("password") as HTMLInputElement
     )?.value; // パスワードフィールドの値を取得
 
-    const result = await signIn("app2", {
-      redirect: false,
-      username,
-      password,
-    });
+    const result = await signIn('blog', { username, password, callbackUrl: '/home' });
 
     if (!result?.error) {
       toast.success("ログインしました！");
@@ -36,7 +31,6 @@ const page = () => {
 
   const handleLogout = async () => {
     await signOut({ callbackUrl: "/admin" });
-    toast.success("ログアウトしました！");
   };
 
   if (status === "loading") {

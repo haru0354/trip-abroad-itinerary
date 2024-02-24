@@ -27,19 +27,16 @@ export const authOptions: NextAuthOptions = {
       },
 
       async authorize(credentials) {
-        //　メールアドレスとパスワードがない場合はエラー
         if (!credentials?.email || !credentials?.password) {
           throw new Error("メールアドレスとパスワードが存在しません");
         }
 
-        //ユーザー取得
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.email,
           },
         });
 
-        //ユーザーが存在しない場合はエラー
         if (!user || !user?.hashedPassword) {
           throw new Error("ユーザーが存在しません");
         }
@@ -70,6 +67,10 @@ export const authOptions: NextAuthOptions = {
         
         if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
           return { id: ADMIN_USERNAME || '', name: ADMIN_USERNAME || '' }; // idが必須なので、undefinedの場合は空文字列になるように設定
+        } else if (username !== ADMIN_USERNAME) {
+          throw new Error("ユーザー名が間違っています");
+        } else if (password !== ADMIN_PASSWORD) {
+          throw new Error("パスワードが間違っています");
         } else {
           return null;
         }

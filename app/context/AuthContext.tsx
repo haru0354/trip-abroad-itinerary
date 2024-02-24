@@ -3,10 +3,10 @@
 import { SessionProvider } from "next-auth/react"
 
 type AuthContextProps = {
-    children: React.ReactNode
+    children: React.ReactNode;
 }
 
-const AuthContext = ({ children }: AuthContextProps) => {
+const AuthContext:React.FC<AuthContextProps> = ({ children }: AuthContextProps) => {
   return (
     <SessionProvider>{children}</SessionProvider>
   )

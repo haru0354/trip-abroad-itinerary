@@ -4,12 +4,12 @@ import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 
 const page = () => {
   const { data: session, status } = useSession();
-  const router = useRouter();
+  const [ errorMessage, setErrorMessage ] = useState<string>("");
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,25 +19,18 @@ const page = () => {
     const password = (
       e.currentTarget.elements.namedItem("password") as HTMLInputElement
     )?.value; // パスワードフィールドの値を取得
-    const result = await signIn("app2", {
-      redirect: false,
-      username,
-      password,
-    });
+
+    const result = await signIn('blog', { username, password, callbackUrl: '/home' });
+
     if (!result?.error) {
-      // ログイン成功時の処理
       toast.success("ログインしました！");
-      console.log("Login success:", result);
     } else {
-      // ログイン失敗時の処理
-      console.error("Login error:", result.error);
+      setErrorMessage(result.error);
     }
   };
 
   const handleLogout = async () => {
     await signOut({ callbackUrl: "/admin" });
-    toast.success("ログアウトしました！");
-    console.log("Logged out");
   };
 
   if (status === "loading") {
@@ -64,6 +57,7 @@ const page = () => {
                 placeholder="パスワード"
                 type="password"
               />
+              {errorMessage && <p className="text-red-500 pt-4">{errorMessage}</p>}
               <Button className="flex mx-auto items-center justify-center transition duration-300 my-6 w-[180px]  py-2 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900 rounded-sm">
                 ログイン
               </Button>

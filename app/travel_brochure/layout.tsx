@@ -29,7 +29,7 @@ export default async function RootLayout({
 
   return (
     <>
-        <AuthContext>
+      <AuthContext>
           <ToastContext />
           <SignupModal />
           <LoginModal />
@@ -37,7 +37,7 @@ export default async function RootLayout({
           {children}
           <Footer />
           <FooterMenu />
-        </AuthContext>
+      </AuthContext>
     </>
   );
 }

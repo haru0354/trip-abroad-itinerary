@@ -3,6 +3,11 @@ import FormCategory from "@/app/components/blog/FormCategory";
 import ListCategory from "@/app/components/blog/ListCategory";
 import Button from "@/app/components/ui/Button";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "カテゴリの一覧",
+};
 
 const page = () => {
   return (

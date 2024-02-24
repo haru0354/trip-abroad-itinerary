@@ -3,7 +3,6 @@
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 

@@ -2,6 +2,11 @@ import { addCategory } from "@/app/action/action-category";
 import FormCategory from "@/app/components/blog/FormCategory";
 import Button from "@/app/components/ui/Button";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "カテゴリの追加",
+};
 
 const page = async () => {
   return (

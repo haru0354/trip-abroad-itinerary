@@ -56,7 +56,6 @@ const FormCategory: React.FC<FormCategoryProps> = ({
           defaultValue={category?.slug}
         />
         {state.errors && <p className="text-red-500">{state.errors.slug}</p>}
-
         <TextArea
           name={"content"}
           label={"カテゴリの内容"}

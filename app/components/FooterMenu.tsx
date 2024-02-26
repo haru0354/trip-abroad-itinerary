@@ -13,7 +13,7 @@ const FooterMenu = () => {
     <div className="fixed z-50 bottom-0 w-full h-16  bg-white border-t border-gray-300 shadow">
       <div className="max-w-lg flex h-full  justify-center items-center mx-auto ">
         <div className="w-full h-full">
-        <Link href="../travel_brochure">
+        <Link href="/travel_brochure">
           <Button className="btn-footer">
             <FontAwesomeIcon icon={faHouse} />
             <span className=" text-gray-500">ホーム</span>
@@ -21,7 +21,7 @@ const FooterMenu = () => {
         </Link>
         </div>
         <div className="w-full h-full">
-        <Link href="../travel_brochure/itinerary">
+        <Link href="/travel_brochure/itinerary">
         <Button className="btn-footer">
             <FontAwesomeIcon icon={faPlane} />
             <span className=" text-gray-500">旅程表</span>
@@ -29,7 +29,7 @@ const FooterMenu = () => {
         </Link>
         </div>
         <div className="w-full h-full">
-        <Link href="../travel_brochure/memo">
+        <Link href="/travel_brochure/memo">
         <Button className="btn-footer">
             <FontAwesomeIcon icon={faPenToSquare} />
             <span className=" text-gray-500">メモ帳</span>

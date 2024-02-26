@@ -2,6 +2,11 @@ import FormPost from "@/app/components/blog/FormPost";
 import prisma from "../../../components/lib/prisma";
 import { updatePost } from "@/app/action/action-post";
 import DeletePostModal from "@/app/components/blog/DeletePostModal";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "記事の編集",
+};
 
 const page = async ({ params }: { params: { post_id: string } }) => {
   const id = Number(params.post_id);

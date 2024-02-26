@@ -74,6 +74,7 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
         setInputValue("");
         setTextareaChange("");
         toast.success("メモを保存しました！");
+        toggleDeleteModal();
       } else if (result.message === "edit") {
         toast.success("メモを編集しました！");
         router.replace("/travel_brochure/memo");

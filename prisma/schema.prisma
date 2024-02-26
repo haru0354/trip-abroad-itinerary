@@ -22,6 +22,7 @@ model User {
   accounts            Account[]
   memos               Memo[]
   itineraries         Itinerary[]
+  userImages          UserImage[]
 }
 
 model Account {
@@ -49,6 +50,7 @@ model Memo {
   isCompleted        Boolean @default(false)
   user               User @relation(fields: [userId], references: [id], onDelete:Cascade)
   userId             Int
+  userImage          UserImage[] @relation("UserImageToMemo")
 }
 
 model Itinerary {
@@ -62,6 +64,8 @@ model Itinerary {
   imageUrl           String?
   user               User @relation(fields: [userId], references: [id], onDelete:Cascade)
   userId             Int
+  userImage        UserImage[] @relation("UserImageToItinerary")
+
 }
 
 model Post {
@@ -74,7 +78,8 @@ model Post {
   categoryId        Int
   description       String
   slug              String
-  imageUrl          String?
+  postImage         PostImage? @relation(fields: [postImageId], references: [id])
+  postImageId       Int?
 }
 
 model Category {
@@ -83,6 +88,27 @@ model Category {
   slug             String
   content          String?
   description      String
-  imageUrl         String?
   posts            Post[]
+  postImage        PostImage? @relation(fields: [postImageId], references: [id])
+  postImageId      Int?
 }
+
+model PostImage {
+  id            Int      @id @default(autoincrement())
+  url           String
+  altText       String
+  posts         Post[] 
+  categories    Category[] 
+}
+
+model UserImage {
+  id            Int      @id @default(autoincrement())
+  url           String
+  altText       String
+  user          User     @relation(fields: [userId], references: [id])
+  userId        Int
+  memoImages         Memo[]      @relation("UserImageToMemo")
+  itineraryImages    Itinerary[] @relation("UserImageToItinerary")
+}
+
+

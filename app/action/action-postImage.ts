@@ -1,12 +1,11 @@
 "use server";
-import { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
 import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
-import { log } from "console";
 import * as fs from "fs";
 import * as path from "path";
 import * as os from "os";
+import multer from "multer";
 
 type File = {
   size: number;
@@ -15,92 +14,117 @@ type File = {
   lastModified: number;
 };
 
-interface FormidableFile {
-  path: string;
-  name: string;
-  type?: string;
-  lastModifiedDate?: Date;
-}
-
 export const addImage = async (formData: FormData) => {
   console.error("受信完了");
 
   const altText = formData.get("altText") as string;
   const file = formData.get("image") as File;
-  console.error("ファイル:", file);
+  const blob = formData.get("blob") as File;
+  const file00 = formData.get("file00") as File;
+
   console.error("フォームデータ", formData);
-
-  // 画像を保存するディレクトリのパス
+  console.error("ファイル:", file);
+  console.error("blob", blob);
+  console.error("file00", file00);
+  const fileName = `${Date.now()}_${file.name}`;
   const uploadDirectory = path.join(process.cwd(), "public", "postImage");
+  console.error("uploadDirectory", uploadDirectory);
 
-  try {
-    if (!file) {
-      console.error("Image file is missing");
+  // ファイルの保存先とファイル名の設定
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, uploadDirectory); // アップロード先のディレクトリを指定
+    },
+    filename: function (req, file, cb) {
+      cb(null, fileName); // ファイル名はオリジナルの名前を使用
+    },
+  });
+
+  // multerの設定
+  const upload = multer({ storage: storage });
+  console.error("upload", upload);
+  const res = console.error("res", upload);
+
+  // ファイルの受け取りと保存
+  const addImageMiddleware = upload.single("image"); // 'image'はFormData内のフィールド名
+  console.error("addImageMiddleware", addImageMiddleware);
+  addImageMiddleware(file, res, (err) => {
+    if (err) {
+      console.error("エラー", upload);
       return;
     }
-
-    // 画像の保存パスを生成
-    const imagePath = path.join(uploadDirectory, file.name);
-
-    // ファイルのデータを読み取るためのFileReaderを作成
-    const reader = new FileReader();
-
-    // ファイルの読み込みが完了したときの処理
-    reader.onload = async () => {
-      // ファイルのデータを取得
-      const fileData = reader.result as ArrayBuffer;
-      console.error("ファイルのデータを取得", fileData);
-
-    };
-
-    // ファイルを保存し、URL を取得
-    const uploadedImageUrl = await saveFileAndGetUrl(file);
-
-    if (!altText || !uploadedImageUrl) {
-      console.error("Alt text or image URL is missing");
-      return;
-    }
-    // 画像情報をデータベースに保存
-    await prisma.postImage.create({
-      data: {
-        url: uploadedImageUrl,
-        altText,
-      },
-    });
-  } catch (error) {
-    console.error("Error adding image", error);
-  }
+    console.error("成功", upload);
+  });
 };
 
-const saveFileAndGetUrl = async (file: File) => {
-  try {
+const saveFileAndGetUrl = async (file: File, blob: File) => {
+  if (file) {
     // 画像を保存するディレクトリのパス
     const uploadDirectory = path.join(process.cwd(), "public", "postImage");
     console.log("画像を保存するディレクトリのパス:", uploadDirectory);
-    // ファイル名を生成
-    const fileName = `${Date.now()}_${file.name}`;
-    // ファイルの一時フルパスを生成
-    const filePath = path.join(uploadDirectory, fileName);
-    console.log("ファイルの一時フルパスを生成:", uploadDirectory);
 
-    await fs.promises.writeFile(filePath, file);
+    try {
+      // ファイル名を生成
+      const fileName = `${Date.now()}_${file.name}`;
+      // ファイルパスを生成
+      const filePath = path.join(uploadDirectory, fileName);
+      console.log("ファイルパス:", filePath);
+      // Blob を画像ファイルとして保存
 
+      saveBlobAsImage(blob, filePath)
+        .then((savedFilePath) => {
+          console.log(`画像ファイルを保存しました: ${savedFilePath}`);
+        })
+        .catch((err) => {
+          console.error("画像ファイルの保存に失敗しました:", err);
+        });
+
+      // 保存したファイルの URL を生成する
+      const fileUrl = `/postImage/${fileName}`;
+      console.log("保存したファイルの URL を生成する:", fileUrl);
+
+      return fileUrl;
+    } catch (err) {
+      console.error("ファイルの保存中にエラーが発生しました:", err);
+    }
+  }
+};
+
+// Blob オブジェクトを画像ファイルとして保存する関数
+async function saveBlobAsImage(blob: File, filePath: string) {
+  console.log("saveBlobAsImageの呼び出し:", saveBlobAsImage);
+
+  return new Promise((resolve, reject) => {
     // ファイルの一時ディレクトリのパスを読み込み
     const tmpDir = os.tmpdir();
     console.log("一時ディレクトリのパス:", tmpDir);
+    // 一時ファイル名
+    const tmpFileName = `${Date.now()}_${blob.name}`;
+    console.log("一時ファイル名:", tmpFileName);
+    // 一時ファイルのパスを生成
+    const tmpFilePath = path.join(tmpDir, tmpFileName);
+    console.log("一時ファイルのパス:", tmpFilePath);
 
-    // ファイルのバッファを読み込む
+    const reader = fs.createReadStream(blob.path); // ファイルの読み込みストリームを作成
+    console.log("一時ファイル名:reader", reader);
 
-    // バッファを使ってファイルを保存
-    await fs.promises.writeFile(filePath, fileBuffer);
-    console.log("ファイルのバッファを取得:", reader);
+    const writer = fs.createWriteStream(filePath); // ファイルの書き込みストリームを作成
+    console.log("一時ファイル名:writer", writer);
 
-    // 保存したファイルの URL を生成する
-    const fileUrl = `/postImage/${fileName}`;
-    // 保存したファイルの URL を返す
-    return fileUrl;
-  } catch (error) {
-    console.error("Error saving file", error);
-    throw error;
-  }
-};
+    reader.on("error", reject); // 読み込みストリームのエラーを処理
+    writer.on("error", reject); // 書き込みストリームのエラーを処理
+
+    // ファイルに Buffer を書き込み
+    writer.on("finish", () => {
+      fs.rename(tmpFilePath, filePath, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(filePath); // 書き込みが完了したらPromiseを解決する
+        }
+      });
+    });
+
+    reader.pipe(writer); // 読み込みストリームから書き込みストリームにデータをパイプする
+  });
+}

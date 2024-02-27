@@ -24,76 +24,58 @@ const FormImage: React.FC<FormImageProps> = ({
   const [file, setFile] = useState<File | null>(null);
   const [fileData, setFileData] = useState<ArrayBuffer | null>(null);
 
+  const [image, setImage] = useState<{ preview: string; data: File | string }>({
+    preview: "",
+    data: "",
+  });
+
   const handleUploadClick = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files ? e.target.files[0] : null;
 
     if (selectedFile) {
-      setFile(selectedFile);
-      console.log("ファイルを選択完了");
-
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const data = e.target?.result;
-        if (data instanceof ArrayBuffer) {
-          setFileData(data); // バッファーデータをセット
-        } else {
-          console.error("ファイルをバッファーデータに変換できませんでした");
-        }
+      const img = {
+        preview: URL.createObjectURL(selectedFile),
+        data: selectedFile,
       };
-      reader.readAsArrayBuffer(selectedFile); // 読み込みをArrayBufferとして実行
+      setImage(img);
     } else {
       console.error("ファイルが選択されていません");
       return;
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!file) {
-      console.error("File not selected");
-      return;
-    }
-
-    // ArrayBuffer を Blob に変換
-    let blob = null;
-    if (fileData instanceof ArrayBuffer) {
-      blob = new Blob([fileData]);
-    } else {
-      console.error('バッファーデータが null です');
-      return;
-    }
-
-    // フォームデータを作成
+  const handleSubmit = async (data: FormData) => {
     const formData = new FormData();
-    console.log(blob);
+    formData.append("file0", image.data);
 
-    // ファイルが存在する場合のみ追加
-    if (file && blob) {
-      formData.append("image", blob, file.name); // Blob を追加。第三引数にファイル名を指定
+    // 元のフォームデータを含めるようにする
+    for (const [key, value] of data.entries()) {
+      formData.append(key, value);
     }
+    console.log("image.dataの内容だよ", image.data);
 
-    console.log("ファイルを送信？");
-    console.log(file);
+    addImage(formData);
   };
 
   return (
     <div>
-      {fileData && (
-        <img
-          src={`data:image/jpeg;base64,${Buffer.from(fileData).toString(
-            "base64"
-          )}`}
+      {image.preview && <img src={image.preview} width="300" height="300" />}
+      <form action={handleSubmit}>
+        <input
+          type="file"
+          accept="image/*"
+          name="image"
+          onChange={handleUploadClick}
         />
-      )}
-      <form action={addImage} >
-        <input type="file" name="image" onChange={handleUploadClick} />
         <Form
           label="画像の名前"
           name="altText"
           placeholder="画像の名前を入力してください。"
           defaultValue={postImage?.altText}
         />
-        <button onClick={handleSubmit}>{buttonName}</button>
+        <Button className="px-24 my-8 py-3 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-sky-900">
+          {buttonName}
+        </Button>
       </form>
     </div>
   );

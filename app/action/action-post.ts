@@ -38,9 +38,6 @@ export const addPost = async (state: FormState, data: FormData) => {
   const postImageId = data.get("postImageId") as File;
   const altText = data.get("altText") as string;
 
-  console.log(postImageId);
-  console.log(data);
-
   const validatedFields = schema.safeParse({
     title,
     content,
@@ -56,6 +53,7 @@ export const addPost = async (state: FormState, data: FormData) => {
     console.log(errors);
     return errors;
   }
+  
   const postData: any = {
     title,
     content,
@@ -75,15 +73,11 @@ export const addPost = async (state: FormState, data: FormData) => {
     });
     postData.postImage = { connect: { id: createdImage.id } };
   }
-  console.log(postData);
   
   try {
-
-
     await prisma.post.create({
       data: postData,
     });
-
   } catch (error) {
     console.error("記事を投稿する際にエラーが発生しました");
     return { message: "記事を投稿する際にエラーが発生しました" };

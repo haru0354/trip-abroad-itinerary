@@ -105,7 +105,6 @@ const FormImage: React.FC<FormImageProps> = ({
       </div>
       <form onSubmit={handleSubmit}>
         {state.message && <p className="text-red-500">{state.message}</p>}
-
         <Form
           label="画像を選択"
           type="file"

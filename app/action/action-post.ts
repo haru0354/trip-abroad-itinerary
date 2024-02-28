@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
+import { FileSaveUtils } from "../components/lib/FileSaveUtils";
 
 type FormState = {
   message?: string | null;
@@ -34,6 +35,11 @@ export const addPost = async (state: FormState, data: FormData) => {
   const description = data.get("description") as string;
   const slug = data.get("slug") as string;
   const categoryId = data.get("categoryId") as string;
+  const postImageId = data.get("postImageId") as File;
+  const altText = data.get("altText") as string;
+
+  console.log(postImageId);
+  console.log(data);
 
   const validatedFields = schema.safeParse({
     title,
@@ -50,17 +56,34 @@ export const addPost = async (state: FormState, data: FormData) => {
     console.log(errors);
     return errors;
   }
+  const postData: any = {
+    title,
+    content,
+    description,
+    slug,
+    category: { connect: { id: Number(categoryId) } },
+  };
 
-  try {
-    await prisma.post.create({
+  if (postImageId) {
+    const { fileUrl, fileName } = await FileSaveUtils(postImageId);
+    const createdImage = await prisma.postImage.create({
       data: {
-        title,
-        content,
-        description,
-        slug,
-        category: { connect: { id: Number(categoryId) } },
+        name: fileName,
+        url: fileUrl,
+        altText,
       },
     });
+    postData.postImage = { connect: { id: createdImage.id } };
+  }
+  console.log(postData);
+  
+  try {
+
+
+    await prisma.post.create({
+      data: postData,
+    });
+
   } catch (error) {
     console.error("記事を投稿する際にエラーが発生しました");
     return { message: "記事を投稿する際にエラーが発生しました" };
@@ -82,7 +105,11 @@ export const deletePost = async (id: number) => {
   redirect("/home");
 };
 
-export const updatePost = async (id: number, state: FormState, data: FormData) => {
+export const updatePost = async (
+  id: number,
+  state: FormState,
+  data: FormData
+) => {
   const title = data.get("title") as string;
   const content = data.get("content") as string;
   const description = data.get("description") as string;

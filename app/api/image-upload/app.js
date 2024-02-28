@@ -4,6 +4,8 @@ const port = 5000;
 const cors = require('cors');
 const multer = require('multer');
 
+// このファイルは後々削除する。expressを使用して画像を保存するファイル
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, '../../../public/postImage');

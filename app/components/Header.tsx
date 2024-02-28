@@ -13,6 +13,11 @@ const Header = () => {
                 alt="サイトタイトルに変更する"
                 width={250}
                 height={70}
+                priority
+                style={{
+                  width: "100%",
+                  height: "auto",
+                }}
               />
             </h1>
           </Link>

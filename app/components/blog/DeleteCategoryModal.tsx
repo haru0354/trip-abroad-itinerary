@@ -62,8 +62,7 @@ const DeleteCategoryModal:React.FC<DeleteCategoryModalProps> = ({ category }) =>
                 alt="削除する"
                 width={250}
                 height={250}
-                objectFit="contain"
-              ></Image>
+              />
             </div>
             <div>
               <p className="text-center p-4 font-bold">{category.name}</p>

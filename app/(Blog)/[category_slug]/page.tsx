@@ -89,7 +89,7 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
       <p>{retrievedCategoryContent}</p>
       {posts.map((post) => {
         return (
-          <Link href={`/${post.category.slug}/${post.slug}`}>
+          <Link href={`/${post.category.slug}/${post.slug}`} key={post.id}>
             <Card key={post.id} post={post} />
           </Link>
         );

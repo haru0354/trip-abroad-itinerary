@@ -43,7 +43,6 @@ const FormImage: React.FC<FormImageProps> = ({
     preview: "",
     data: "",
   });
-  const [status, setStatus] = useState("");
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files ? e.target.files[0] : null;
@@ -62,11 +61,9 @@ const FormImage: React.FC<FormImageProps> = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append("file", image.data);
     formData.append("altText", e.currentTarget.altText.value);
-
     dispatch(formData);
   };
 

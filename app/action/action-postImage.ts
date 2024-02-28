@@ -1,12 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
-import { writeFile } from "fs/promises";
-import { join } from "path";
 import { z } from "zod";
 import { promises as fsPromises } from 'fs';
+import { FileSaveUtils } from "../components/lib/FileSaveUtils";
 
 const { unlink } = fsPromises;
 
@@ -47,13 +45,7 @@ export const addPostImage = async (state: FormState, data: FormData) => {
   }
 
   try {
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    const fileName = `${Date.now()}_${file.name}`;
-
-    const path = join("./", "public", "postImage", fileName);
-    await writeFile(path, buffer);
-    const fileUrl = `/postImage/${fileName}`;
+    const { fileUrl, fileName } = await FileSaveUtils(file); 
 
     await prisma.postImage.create({
       data: {
@@ -78,7 +70,8 @@ export const deletePostImage = async (id: number) => {
     });
 
     if (!postImage) {
-      throw new Error('指定された画像が見つかりませんでした');
+      console.error("指定した画像が見つかりませんでした。");
+      return;
     }
 
     await prisma.postImage.delete({
@@ -87,8 +80,7 @@ export const deletePostImage = async (id: number) => {
       },
     });
 
-    await unlink(`./public/postImage/${postImage.name}`);
-
+    await unlink(`./public/postImage/${postImage?.name}`);
   } catch (error) {
     console.error("画像の削除中にエラーが発生しました:", error);
     return { message: "画像の削除中にエラーが発生しました" };
@@ -137,15 +129,8 @@ export const updatePostImage = async (
   // 画像がある場合は保存してfileUrlを変更
   if (file) {
     try {
-      const bytes = await file.arrayBuffer();
-      const buffer = Buffer.from(bytes);
-      const fileName = `${Date.now()}_${file.name}`;
-
-      const path = join("./", "public", "postImage", fileName);
-      await writeFile(path, buffer);
-
-      const fileUrl = `/postImage/${fileName}`;
-
+      const { fileUrl } = await FileSaveUtils(file); 
+    
       await prisma.postImage.update({
         where: {
           id,

@@ -18,6 +18,7 @@ const page = async ({ params }: { params: { post_id: string } }) => {
     },
     include: {
       category: true,
+      postImage: true,
     },
   });
   const categories = await prisma.category.findMany();

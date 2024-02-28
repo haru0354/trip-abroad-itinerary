@@ -25,8 +25,11 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
             src={src}
             alt={alt}
             width={350}
-            height={250}
-            objectFit="contain"
+            height={253}
+            style={{
+              width: '350px',
+              height: 'auto',
+            }}
           />
         </div>
         <div className="w-full py-4 mx-14 max-w-[400px] justify-center items-center">

@@ -1,4 +1,4 @@
-import ImagesList from "@/app/components/blog/ImagesList";
+import ListImages from "@/app/components/blog/ListImages";
 import Link from "next/link";
 import Button from "@/app/components/ui/Button";
 
@@ -11,7 +11,7 @@ const page = () => {
         </Button>
       </Link>
       <h2>画像ライブラリー</h2>
-      <ImagesList />
+      <ListImages />
     </div>
   );
 };

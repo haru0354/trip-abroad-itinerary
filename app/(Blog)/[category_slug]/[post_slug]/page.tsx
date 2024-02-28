@@ -27,10 +27,10 @@ export const generateMetadata = async ({
   });
 
   // タイトルとディスクリプションを特定
-const retrievedPostTitle =
+  const retrievedPostTitle =
     processedPosts.length > 0 ? processedPosts[0].postTitle : "";
   const retrievedDescription =
-    processedPosts.length > 0 ? processedPosts[0].postDescription : "";  
+    processedPosts.length > 0 ? processedPosts[0].postDescription : "";
 
   return {
     title: retrievedPostTitle,
@@ -58,8 +58,10 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
         posts.map((post) => {
           return (
             <>
-              <ArticleTop title={post.title} src={"/008.jpg"} alt={"a"} />
-              <p> {post.content}</p>
+              <div key={post.id}>
+                <ArticleTop title={post.title} src={"/008.jpg"} alt={"a"} />
+                <p> {post.content}</p>
+              </div>
             </>
           );
         })

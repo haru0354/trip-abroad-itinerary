@@ -35,7 +35,6 @@ const Section1ColumnLeft: React.FC<Section1ColumnLeftProps> = ({
             alt={alt}
             width={350}
             height={250}
-            objectFit="contain"
           />
         </div>
       </div>

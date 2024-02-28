@@ -1,5 +1,4 @@
 "use client";
-import { addImage } from "@/app/action/action-postImage";
 
 import Form from "../ui/Form";
 import Button from "../ui/Button";
@@ -8,7 +7,7 @@ import { useState } from "react";
 type FormImageProps = {
   postImage?: PostImage | null;
   buttonName: string;
-  formAction?: (formData: FormData) => Promise<void>;
+  formAction: (formData: FormData) => Promise<void>;
 };
 
 type PostImage = {
@@ -21,15 +20,13 @@ const FormImage: React.FC<FormImageProps> = ({
   buttonName,
   formAction,
 }) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [fileData, setFileData] = useState<ArrayBuffer | null>(null);
-
   const [image, setImage] = useState<{ preview: string; data: File | string }>({
     preview: "",
     data: "",
   });
+  const [status, setStatus] = useState("");
 
-  const handleUploadClick = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files ? e.target.files[0] : null;
 
     if (selectedFile) {
@@ -44,36 +41,35 @@ const FormImage: React.FC<FormImageProps> = ({
     }
   };
 
-  const handleSubmit = async (data: FormData) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     const formData = new FormData();
-    formData.append("file0", image.data);
+    formData.append("file", image.data);
+    formData.append("altText", e.currentTarget.altText.value);
 
-    // 元のフォームデータを含めるようにする
-    for (const [key, value] of data.entries()) {
-      formData.append(key, value);
-    }
-    console.log("image.dataの内容だよ", image.data);
-
-    addImage(formData);
+    formAction(formData);
   };
 
   return (
     <div>
       {image.preview && <img src={image.preview} width="300" height="300" />}
-      <form action={handleSubmit}>
-        <input
+      <form onSubmit={handleSubmit}>
+        <Form
+          label="画像を追加"
           type="file"
-          accept="image/*"
-          name="image"
-          onChange={handleUploadClick}
+          name="file"
+          onChange={handleFileChange}
         />
         <Form
-          label="画像の名前"
+          label="画像の名前(alt)"
           name="altText"
-          placeholder="画像の名前を入力してください。"
           defaultValue={postImage?.altText}
+          placeholder={
+            "どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます"
+          }
         />
-        <Button className="px-24 my-8 py-3 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-sky-900">
+        <Button className="px-24 my-8 py-3 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-gray-900">
           {buttonName}
         </Button>
       </form>

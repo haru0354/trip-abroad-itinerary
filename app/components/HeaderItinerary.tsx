@@ -16,8 +16,9 @@ const HeaderItinerary: React.FC<HeaderItineraryProps> = ({ currentUser }) => {
             src="/logo.JPG"
             alt="削除する"
             width={250}
-            height={250}
-            objectFit="contain"
+            height={60}
+            priority
+            
           ></Image>
         </Link>
         <Menu currentUser={currentUser} />

@@ -24,6 +24,11 @@ const page = () => {
             記事の一覧
           </Button>
         </Link>
+        <Link href="/home/image">
+          <Button className="px-16 mx-6 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
+            画像の一覧
+          </Button>
+        </Link>
       </div>
       <div className="flex border border-gray-500 py-4 mt-10">
         <p className="border-r border-gray-500 py-1 px-2 min-w-[110px]">

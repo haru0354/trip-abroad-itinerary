@@ -77,7 +77,7 @@ const FormImage: React.FC<FormImageProps> = ({
           <>
             <div className="mr-10 w-full">
               <p className="text-lg font-bold border-b pb-2 mb-6 bold text-gray-900">
-                変更後の画像
+                保存する画像
               </p>
               <img
                 src={image.preview}

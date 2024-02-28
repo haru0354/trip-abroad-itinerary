@@ -6,6 +6,9 @@ import prisma from "../components/lib/prisma";
 import { writeFile } from "fs/promises";
 import { join } from "path";
 import { z } from "zod";
+import { promises as fsPromises } from 'fs';
+
+const { unlink } = fsPromises;
 
 type FormState = {
   message?: string | null;
@@ -54,6 +57,7 @@ export const addPostImage = async (state: FormState, data: FormData) => {
 
     await prisma.postImage.create({
       data: {
+        name: fileName,
         url: fileUrl,
         altText,
       },
@@ -67,11 +71,24 @@ export const addPostImage = async (state: FormState, data: FormData) => {
 
 export const deletePostImage = async (id: number) => {
   try {
+    const postImage = await prisma.postImage.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!postImage) {
+      throw new Error('指定された画像が見つかりませんでした');
+    }
+
     await prisma.postImage.delete({
       where: {
         id,
       },
     });
+
+    await unlink(`./public/postImage/${postImage.name}`);
+
   } catch (error) {
     console.error("画像の削除中にエラーが発生しました:", error);
     return { message: "画像の削除中にエラーが発生しました" };

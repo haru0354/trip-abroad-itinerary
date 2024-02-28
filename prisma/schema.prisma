@@ -95,6 +95,7 @@ model Category {
 
 model PostImage {
   id            Int      @id @default(autoincrement())
+  name          String
   url           String
   altText       String
   posts         Post[] 

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import DashboardSideMenu from "../components/blog/(dashboard)/DashboardSideMenu";
 
 export const metadata: Metadata = {
   title: {
@@ -14,6 +13,5 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return <>
-  <DashboardSideMenu />
   {children}</>;
 }

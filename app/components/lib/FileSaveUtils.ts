@@ -11,7 +11,7 @@ export const FileSaveUtils = async (file: File) => {
     const fileUrl = `/postImage/${fileName}`;
     return { fileUrl, fileName };
   } catch (error) {
-    console.error("記事を投稿する際にエラーが発生しました", error);
+    console.error("画像を保存時にエラーが発生しました", error);
     throw error;
   }
 };

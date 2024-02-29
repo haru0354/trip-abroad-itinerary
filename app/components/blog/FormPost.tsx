@@ -43,6 +43,7 @@ type FormState = {
     slug?: string[] | undefined;
     description?: string[] | undefined;
     categoryId?: string[] | undefined;
+    altText?: string[] | undefined;
   };
 };
 
@@ -60,6 +61,7 @@ const FormPost: React.FC<FormPostProps> = ({
       slug: undefined,
       content: undefined,
       description: undefined,
+      altText: undefined,
     },
   };
   const category = post?.category;
@@ -108,7 +110,9 @@ const FormPost: React.FC<FormPostProps> = ({
           defaultValue={post?.title}
           placeholder="記事のタイトルを31文字を目安に入力してください。"
         />
-        {state.errors && <p className="text-red-500">{state.errors.title}</p>}
+        {state.errors && state.errors.title && (
+          <p className="text-red-500">{state.errors.title}</p>
+        )}
         <Select
           label="カテゴリ"
           name="categoryId"
@@ -121,20 +125,27 @@ const FormPost: React.FC<FormPostProps> = ({
           defaultValue={post?.slug}
           placeholder="記事のスラッグを入力してください。"
         />
-        {state.errors && <p className="text-red-500">{state.errors.slug}</p>}
+        {state.errors && state.errors.slug && (
+          <p className="text-red-500">{state.errors.slug}</p>
+        )}
         <TextArea
           name="content"
           label="記事の内容"
           defaultValue={post?.content}
           placeholder="記事の内容をこちらに入力してください。"
         />
-        {state.errors && <p className="text-red-500">{state.errors.content}</p>}
+        {state.errors && state.errors.content && (
+          <p className="text-red-500">{state.errors.content}</p>
+        )}
         <TextArea
           name="description"
           label="記事の説明(description)"
           defaultValue={post?.description}
           placeholder="120文字を目安に記入してください。"
         />
+        {state.errors && state.errors.description && (
+          <p className="text-red-500">{state.errors.description}</p>
+        )}
         <div className="flex mx-auto">
           {image.preview && (
             <>
@@ -182,8 +193,8 @@ const FormPost: React.FC<FormPostProps> = ({
           placeholder="画像の名前を入力してください。"
           defaultValue={post?.postImage?.altText}
         />
-        {state.errors && (
-          <p className="text-red-500">{state.errors.description}</p>
+        {state.errors && state.errors.altText && (
+          <p className="text-red-500">{state.errors.altText}</p>
         )}
         <Button className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
           {buttonName}

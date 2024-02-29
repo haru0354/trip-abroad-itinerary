@@ -59,7 +59,7 @@ export const addCategory = async (state: FormState, data: FormData) => {
     console.error("カテゴリを追加する際にエラーが発生しました");
     return { message: "カテゴリを追加する際にエラーが発生しました" };
   }
-  redirect("/home/category");
+  redirect("/dashboard/category");
 };
 
 export const deleteCategory = async (id: number) => {
@@ -73,7 +73,7 @@ export const deleteCategory = async (id: number) => {
     console.error("カテゴリの削除中にエラーが発生しました:", error);
     return { message: "カテゴリの削除中にエラーが発生しました" };
   }
-  redirect("/home/category");
+  redirect("/dashboard/category");
 };
 
 export const updateCategory = async (
@@ -113,10 +113,9 @@ export const updateCategory = async (
         slug,
       },
     });
-    revalidatePath("/home/category");
   } catch (error) {
     console.error("カテゴリを編集する際にエラーが発生しました");
     return { message: "カテゴリを編集する際にエラーが発生しました" };
   }
-  redirect("/home/category");
+  redirect("/dashboard/category");
 };

@@ -10,7 +10,7 @@ const ListImages = async () => {
       <div className="flex flex-wrap w-full">
         {images.map((image) => {
           return (
-            <Link href={`/home/image/${image.id}`}>
+            <Link href={`/dashboard/image/${image.id}`}>
               <div key={image.id} className="mx-4 my-4">
                 <Image
                   src={image.url}

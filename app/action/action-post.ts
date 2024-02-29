@@ -106,7 +106,7 @@ export const addPost = async (state: FormState, data: FormData) => {
     console.error("記事を投稿する際にエラーが発生しました", error);
     return { message: "記事を投稿する際にエラーが発生しました" };
   }
-  redirect("/home");
+  redirect("/dashboard");
 };
 
 export const deletePost = async (id: number) => {
@@ -121,7 +121,7 @@ export const deletePost = async (id: number) => {
     console.error("記事の削除中にエラーが発生しました:", error);
     return { message: "記事の削除中にエラーが発生しました" };
   }
-  redirect("/home");
+  redirect("/dashboard");
 };
 
 export const updatePost = async (
@@ -191,5 +191,5 @@ export const updatePost = async (
     console.error("記事を編集する際にエラーが発生しました", error);
     return { message: "記事を編集する際にエラーが発生しました" };
   }
-  redirect("/home");
+  redirect("/dashboard");
 };

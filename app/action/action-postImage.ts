@@ -58,7 +58,7 @@ export const addPostImage = async (state: FormState, data: FormData) => {
     console.error("画像を追加する際にエラーが発生しました");
     return { message: "画像を追加する際にエラーが発生しました" };
   }
-  redirect("/home/image");
+  redirect("/dashboard/image");
 };
 
 export const deletePostImage = async (id: number) => {
@@ -85,7 +85,7 @@ export const deletePostImage = async (id: number) => {
     console.error("画像の削除中にエラーが発生しました:", error);
     return { message: "画像の削除中にエラーが発生しました" };
   }
-  redirect("/home/image");
+  redirect("/dashboard/image");
 };
 
 export const updatePostImage = async (
@@ -144,5 +144,5 @@ export const updatePostImage = async (
       return { message: "画像を編集する際にエラーが発生しました" };
     }
   }
-  redirect("/home/image");
+  redirect("/dashboard/image");
 };

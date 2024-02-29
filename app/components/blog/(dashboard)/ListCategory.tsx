@@ -31,7 +31,7 @@ const ListCategory = async () => {
                   ページへ
                 </Button>
               </Link>
-              <Link href={`/home/category/${category.id}`}>
+              <Link href={`/dashboard/category/${category.id}`}>
                 <Button className="min-w-[100px] px-6 py-1 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-sky-900">
                   編集
                 </Button>

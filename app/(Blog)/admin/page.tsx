@@ -19,7 +19,7 @@ const page = () => {
       e.currentTarget.elements.namedItem("password") as HTMLInputElement
     )?.value; // パスワードフィールドの値を取得
 
-    const result = await signIn('blog', { username, password, callbackUrl: '/home' });
+    const result = await signIn('blog', { username, password, callbackUrl: '/dashboard' });
 
     if (!result?.error) {
       toast.success("ログインしました！");

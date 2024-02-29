@@ -1,5 +1,5 @@
 import prisma from "@/app/components/lib/prisma";
-import Button from "../ui/Button";
+import Button from "../../ui/Button";
 import Link from "next/link";
 
 const ListCategory = async () => {

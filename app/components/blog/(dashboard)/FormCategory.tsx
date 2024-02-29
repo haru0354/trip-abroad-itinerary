@@ -1,8 +1,8 @@
 "use client";
 
-import Form from "../ui/Form";
-import Button from "../ui/Button";
-import TextArea from "../ui/TextArea";
+import Form from "../../ui/Form";
+import Button from "../../ui/Button";
+import TextArea from "../../ui/TextArea";
 import { useFormState } from "react-dom";
 
 type Category = {
@@ -31,7 +31,10 @@ const FormCategory: React.FC<FormCategoryProps> = ({
   buttonName,
   formAction,
 }) => {
-  const initialState = { message: null, errors: { name: undefined, slug: undefined, } };
+  const initialState = {
+    message: null,
+    errors: { name: undefined, slug: undefined },
+  };
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
     initialState

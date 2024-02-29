@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Button from "../ui/Button";
+import Button from "../../ui/Button";
 import Image from "next/image";
 import { deletePostImage } from "@/app/action/action-postImage";
 import toast from "react-hot-toast";
@@ -76,7 +76,10 @@ const DeletePostImageModal: React.FC<DeletePostImageModalProps> = ({
                   キャンセル
                 </Button>
                 <form onSubmit={deleteToast}>
-                  <Button formAction={deletePostImageWithId} className="btn red">
+                  <Button
+                    formAction={deletePostImageWithId}
+                    className="btn red"
+                  >
                     削除
                   </Button>
                 </form>

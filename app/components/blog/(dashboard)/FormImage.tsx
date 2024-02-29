@@ -1,7 +1,7 @@
 "use client";
 
-import Form from "../ui/Form";
-import Button from "../ui/Button";
+import Form from "../../ui/Form";
+import Button from "../../ui/Button";
 import { useState } from "react";
 import { useFormState } from "react-dom";
 import Image from "next/image";

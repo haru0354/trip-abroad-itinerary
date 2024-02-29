@@ -1,8 +1,8 @@
 import prisma from "@/app/components/lib/prisma";
 import { updatePostImage } from "@/app/action/action-postImage";
 import type { Metadata } from "next";
-import FormImage from "@/app/components/blog/FormImage";
-import DeletePostImageModal from "@/app/components/blog/DeletePostImageModal";
+import FormImage from "@/app/components/blog/(dashboard)/FormImage";
+import DeletePostImageModal from "@/app/components/blog/(dashboard)/DeletePostImageModal";
 
 export const metadata: Metadata = {
   title: "画像の編集",

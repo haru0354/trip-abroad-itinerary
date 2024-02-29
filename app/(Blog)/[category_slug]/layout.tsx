@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import SideMenu from "../../components/blog/SideMenu";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,6 +12,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
+    <Header />
       <div className="bg-blue-50 py-8">
         <div className="max-w-[1150px] mx-auto flex flex-col md:flex-row mb-8">
           <div className="w-full md:w-3/4 bg-white rounded-sm py-8 px-12 mr-8 ">
@@ -21,6 +23,7 @@ export default function RootLayout({
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

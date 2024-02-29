@@ -1,4 +1,4 @@
-import ListImages from "@/app/components/blog/ListImages";
+import ListImages from "@/app/components/blog/(dashboard)/ListImages";
 import Link from "next/link";
 import Button from "@/app/components/ui/Button";
 

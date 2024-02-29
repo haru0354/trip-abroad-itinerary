@@ -1,7 +1,7 @@
 "use client";
 
 import { addPostImage } from "@/app/action/action-postImage";
-import FormImage from "@/app/components/blog/FormImage";
+import FormImage from "@/app/components/blog/(dashboard)/FormImage";
 import { useState } from "react";
 
 const page = () => {

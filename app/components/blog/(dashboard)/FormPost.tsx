@@ -3,7 +3,7 @@
 import TextArea from "@/app/components/ui/TextArea";
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
-import Select from "../ui/Select";
+import Select from "../../ui/Select";
 import { useFormState } from "react-dom";
 import { useState } from "react";
 import Image from "next/image";

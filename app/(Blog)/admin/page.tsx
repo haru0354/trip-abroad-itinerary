@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const page = () => {
   const { data: session, status } = useSession();
-  const [ errorMessage, setErrorMessage ] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,7 +19,11 @@ const page = () => {
       e.currentTarget.elements.namedItem("password") as HTMLInputElement
     )?.value; // パスワードフィールドの値を取得
 
-    const result = await signIn('blog', { username, password, callbackUrl: '/dashboard' });
+    const result = await signIn("blog", {
+      username,
+      password,
+      callbackUrl: "/dashboard",
+    });
 
     if (!result?.error) {
       toast.success("ログインしました！");
@@ -33,13 +37,13 @@ const page = () => {
   };
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <div className="bg-sky-50">Loading...</div>;
   }
 
   return (
     <>
-      <div className="flex items-center justify-center">
-        <div className="w-[350px] border p-4 my-10 border-gray-400 rounded">
+      <div className="flex items-center justify-center bg-sky-50">
+        <div className="w-[350px] border p-4 my-10 border-gray-400 rounded bg-white">
           <h2 className="text-center border-b pb-4 border-gray-400 text-gray-600 font-bold">
             ログインフォーム
           </h2>
@@ -56,23 +60,17 @@ const page = () => {
                 placeholder="パスワード"
                 type="password"
               />
-              {errorMessage && <p className="text-red-500 pt-4">{errorMessage}</p>}
+              {errorMessage && (
+                <p className="text-red-500 pt-4">{errorMessage}</p>
+              )}
               <Button className="flex mx-auto items-center justify-center transition duration-300 my-6 w-[180px]  py-2 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900 rounded-sm">
                 ログイン
               </Button>
             </form>
           </div>
-          <div className="flex">
-            <Button
-              onClick={handleLogout}
-              className="flex mx-auto justify-center transition duration-300 mb-6 w-[180px]  py-2 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-gray-900 rounded-sm"
-            >
-              ログアウト
-            </Button>
-          </div>
+          <div className="flex"></div>
         </div>
       </div>
-      <div>{session ? <div>ログイン中</div> : <div>未ログイン</div>}</div>
     </>
   );
 };

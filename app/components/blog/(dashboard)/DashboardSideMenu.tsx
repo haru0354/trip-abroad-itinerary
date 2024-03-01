@@ -65,7 +65,7 @@ const DashboardSideMenu = () => {
                     カテゴリー一覧
                   </li>
                 </Link>
-                <Link href="/dashboard/category/new-post">
+                <Link href="/dashboard/category/new-category">
                   <li className="py-2 hover:bg-gray-300 hover:text-gray-900">
                     カテゴリー追加
                   </li>
@@ -78,7 +78,7 @@ const DashboardSideMenu = () => {
                     画像一覧
                   </li>
                 </Link>
-                <Link href="/dashboard/image/new-post">
+                <Link href="/dashboard/image/new-image">
                   <li className="py-2 hover:bg-gray-300 hover:text-gray-900">
                     画像追加
                   </li>

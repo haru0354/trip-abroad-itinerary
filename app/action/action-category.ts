@@ -52,7 +52,7 @@ export const addCategory = async (state: FormState, data: FormData) => {
     return errors;
   }
 
-  const postData: any = {
+  const CategoryData: any = {
     name,
     slug,
     content,
@@ -81,7 +81,7 @@ export const addCategory = async (state: FormState, data: FormData) => {
           altText,
         },
       });
-      postData.postImage = { connect: { id: createdImage.id } };
+      CategoryData.postImage = { connect: { id: createdImage.id } };
     }
     console.log("画像の追加に成功しました。");
   } catch (error) {
@@ -91,9 +91,9 @@ export const addCategory = async (state: FormState, data: FormData) => {
 
   try {
     await prisma.category.create({
-      data: postData,
+      data: CategoryData,
     });
-    console.log("カテゴリーの登録に成功しました。");
+    console.log("カテゴリの登録に成功しました。");
   } catch (error) {
     console.error("カテゴリを追加する際にエラーが発生しました");
     return { message: "カテゴリを追加する際にエラーが発生しました" };
@@ -108,6 +108,7 @@ export const deleteCategory = async (id: number) => {
         id,
       },
     });
+    console.log("カテゴリが正常に削除されました。");
   } catch (error) {
     console.error("カテゴリの削除中にエラーが発生しました:", error);
     return { message: "カテゴリの削除中にエラーが発生しました" };
@@ -124,6 +125,8 @@ export const updateCategory = async (
   const content = data.get("content") as string;
   const description = data.get("description") as string;
   const slug = data.get("slug") as string;
+  const postImageId = data.get("postImageId") as File;
+  const altText = data.get("altText") as string;
 
   const validatedFields = schema.safeParse({
     name,
@@ -140,18 +143,39 @@ export const updateCategory = async (
     return errors;
   }
 
+  const CategoryData: any = {
+    name,
+    slug,
+    content,
+    description,
+  };
+
+  if (postImageId) {
+    try {
+      const { fileUrl, fileName } = await FileSaveUtils(postImageId);
+      const createdImage = await prisma.postImage.create({
+        data: {
+          name: fileName,
+          url: fileUrl,
+          altText,
+        },
+      });
+      CategoryData.postImage = { connect: { id: createdImage.id } };
+      console.log("画像が正常に追加されました。");
+    } catch (error) {
+      console.log("画像の追加にエラーが発生しました。", error);
+      return { message: "画像の追加時にエラーが発生しました。" };
+    }
+  }
+
   try {
     await prisma.category.update({
       where: {
         id,
       },
-      data: {
-        name,
-        content,
-        description,
-        slug,
-      },
+      data: CategoryData,
     });
+    console.log("カテゴリが正常に編集されました。");
   } catch (error) {
     console.error("カテゴリを編集する際にエラーが発生しました");
     return { message: "カテゴリを編集する際にエラーが発生しました" };

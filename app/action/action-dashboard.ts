@@ -9,25 +9,21 @@ type FormState = {
   errors?: {
     name?: string[] | undefined;
     content?: string[] | undefined;
-    userId?: string[] | undefined;
   };
 };
 
 const schema = z.object({
   name: z.string().min(1, { message: "タイトルの入力は必須です" }),
   content: z.string().optional(),
-  userId: z.string().transform((val) => Number(val)),
 });
 
-export const addMemo = async (state: FormState, data: FormData) => {
+export const addDashboardMemo = async (state: FormState, data: FormData) => {
   const name = data.get("name") as string;
   const content = data.get("content") as string;
-  const userId = data.get("userId") as string;
 
   const validatedFields = schema.safeParse({
     name,
     content,
-    userId,
   });
 
   if (!validatedFields.success) {
@@ -40,14 +36,13 @@ export const addMemo = async (state: FormState, data: FormData) => {
   }
 
   try {
-    await prisma.memo.create({
+    await prisma.dashboardMemo.create({
       data: {
         name,
         content,
-        user: { connect: { id: Number(userId) } },
       },
     });
-    revalidatePath("/travel_brochure/memo");
+    revalidatePath("/dashboard/");
     return { message: "add" };
   } catch {
     console.error("メモを追加する際にエラーが発生しました");
@@ -55,9 +50,9 @@ export const addMemo = async (state: FormState, data: FormData) => {
   }
 };
 
-export const deleteMemo = async (id: number) => {
+export const deleteDashboardMemo = async (id: number) => {
   try {
-    await prisma.memo.delete({
+    await prisma.dashboardMemo.delete({
       where: {
         id,
       },
@@ -66,18 +61,16 @@ export const deleteMemo = async (id: number) => {
     console.error("メモの削除中にエラーが発生しました:", error);
     return { message: "メモの削除中にエラーが発生しました" };
   }
-  redirect("/travel_brochure/memo");
+  redirect("/dashboard");
 };
 
-export const updateMemo = async (id: number, state: FormState, data: FormData) => {
+export const updateDashboardMemo = async (id: number, state: FormState, data: FormData) => {
   const name = data.get("name") as string;
   const content = data.get("content") as string;
-  const userId = data.get("userId") as string;
 
   const validatedFields = schema.safeParse({
     name,
     content,
-    userId,
   });
 
   if (!validatedFields.success) {
@@ -90,7 +83,7 @@ export const updateMemo = async (id: number, state: FormState, data: FormData) =
   }
   
   try {
-    await prisma.memo.update({
+    await prisma.dashboardMemo.update({
       where: {
         id,
       },
@@ -99,7 +92,7 @@ export const updateMemo = async (id: number, state: FormState, data: FormData) =
         content,
       },
     });
-    revalidatePath("/travel_brochure/memo");
+    revalidatePath("/dashboard");
     return { message: "edit" };
   } catch {
     console.error("メモを編集する際にエラーが発生しました");

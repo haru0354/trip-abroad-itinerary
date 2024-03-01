@@ -65,7 +65,16 @@ model Itinerary {
   user               User @relation(fields: [userId], references: [id], onDelete:Cascade)
   userId             Int
   userImage        UserImage[] @relation("UserImageToItinerary")
+}
 
+model UserImage {
+  id            Int      @id @default(autoincrement())
+  url           String
+  altText       String
+  user          User     @relation(fields: [userId], references: [id])
+  userId        Int
+  memoImages         Memo[]      @relation("UserImageToMemo")
+  itineraryImages    Itinerary[] @relation("UserImageToItinerary")
 }
 
 model Post {
@@ -93,6 +102,13 @@ model Category {
   postImageId      Int?
 }
 
+model DashboardMemo {
+  id                 Int     @id @default(autoincrement())
+  name               String
+  content            String
+  isCompleted        Boolean @default(false)
+}
+
 model PostImage {
   id            Int      @id @default(autoincrement())
   name          String
@@ -102,14 +118,6 @@ model PostImage {
   categories    Category[] 
 }
 
-model UserImage {
-  id            Int      @id @default(autoincrement())
-  url           String
-  altText       String
-  user          User     @relation(fields: [userId], references: [id])
-  userId        Int
-  memoImages         Memo[]      @relation("UserImageToMemo")
-  itineraryImages    Itinerary[] @relation("UserImageToItinerary")
-}
+
 
 

@@ -39,27 +39,29 @@ const DashboardSideMenu = () => {
             </button>
             <div className="fixed top-0 left-0 w-full h-screen bg-gray-500 px-10 pt-20 ">
               <ul className="text-white" onClick={toggleMenu}>
+                <li className="py-2 border-b">ダッシュボード</li>
                 <Link href="/">
-                  <li className="py-2 hover:bg-gray-300 hover:text-gray-900">
+                  <li className="py-2  hover:bg-gray-300 hover:text-gray-900">
                     ブログTOP
                   </li>
                 </Link>
-                <li className="py-2 border-b">
-                  記事
-                </li>
                 <Link href="/dashboard">
+                  <li className="py-2 hover:bg-gray-300 hover:text-gray-900">
+                    サイト制作のメモ
+                  </li>
+                </Link>
+                <li className="py-2 border-b mt-3">記事</li>
+                <Link href="/dashboard/post">
                   <li className="py-2 hover:bg-gray-300 hover:text-gray-900">
                     記事一覧
                   </li>
                 </Link>
-                <Link href="/dashboard/new-post">
+                <Link href="/dashboard/post/new-post">
                   <li className="py-2 hover:bg-gray-300 hover:text-gray-900">
                     新規記事
                   </li>
                 </Link>
-                <li className="py-2 mt-2 border-b">
-                  カテゴリー
-                </li>
+                <li className="py-2 mt-3 border-b">カテゴリー</li>
                 <Link href="/dashboard/category">
                   <li className="py-2 hover:bg-gray-300 hover:text-gray-900">
                     カテゴリー一覧
@@ -70,9 +72,7 @@ const DashboardSideMenu = () => {
                     カテゴリー追加
                   </li>
                 </Link>
-                <li className="py-2 mt-2 border-b">
-                  画像
-                </li>
+                <li className="py-2 mt-3 border-b">画像</li>
                 <Link href="/dashboard/image">
                   <li className="py-2 hover:bg-gray-300 hover:text-gray-900">
                     画像一覧
@@ -101,6 +101,12 @@ const DashboardSideMenu = () => {
                   <p className="mx-2">ブログTOP</p>
                 </li>
               </Link>
+              <Link href="/dashboard">
+                <li className="flex py-4 px-2 my-1 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                  <FontAwesomeIcon icon={faHouse} className="mr-2 w-5" />
+                  <p className="mx-2">サイト制作のメモ</p>
+                </li>
+              </Link>
             </ul>
           </div>
           <div className="mb-6">
@@ -108,13 +114,13 @@ const DashboardSideMenu = () => {
               記事
             </h3>
             <ul>
-              <Link href="/dashboard">
+              <Link href="/dashboard/post">
                 <li className="flex py-4 px-2 my-1 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faPen} className="mr-2 w-5" />
                   <p className="mx-2">記事一覧</p>
                 </li>
               </Link>
-              <Link href="/dashboard/new-post">
+              <Link href="/dashboard/post/new-post">
                 <li className="flex py-4 px-2 my-1 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faPen} className="mr-2 w-5" />
                   <p className="mx-2">新規記事</p>

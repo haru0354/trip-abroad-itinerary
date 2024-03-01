@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-      <h2 className="bg-green-600 text-xl bold text-white rounded mb-12 p-5 font-bold">
+      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
         カテゴリの一覧
       </h2>
       <div className="flex border border-gray-500 py-4 mt-10">

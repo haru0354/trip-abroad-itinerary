@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
-import { log } from "console";
 
 type FormState = {
   message?: string | null;

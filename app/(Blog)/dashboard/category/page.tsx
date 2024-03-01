@@ -1,6 +1,4 @@
 import ListCategory from "@/app/components/blog/(dashboard)/ListCategory";
-import Button from "@/app/components/ui/Button";
-import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

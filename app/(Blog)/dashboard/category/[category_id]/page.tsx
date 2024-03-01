@@ -16,6 +16,9 @@ const page = async ({ params }: { params: { category_id: string } }) => {
     where: {
       id,
     },
+    include:{
+      postImage: true,
+    }
   });
 
   return (

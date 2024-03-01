@@ -35,7 +35,7 @@ export default function Home() {
 
             <ul>
               <li>
-                <Link href="./home/">ブログ管理</Link>
+                <Link href="./dashboard/">ブログ管理</Link>
               </li>
               <li>
                 <Link href="./admin/">ブログログイン</Link>

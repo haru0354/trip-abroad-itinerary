@@ -16,7 +16,7 @@ const FooterMenu = () => {
         <Link href="/travel_brochure">
           <Button className="btn-footer">
             <FontAwesomeIcon icon={faHouse} />
-            <span className=" text-gray-500">ホーム</span>
+            <span className="text-gray-500">ホーム</span>
           </Button>
         </Link>
         </div>
@@ -24,7 +24,7 @@ const FooterMenu = () => {
         <Link href="/travel_brochure/itinerary">
         <Button className="btn-footer">
             <FontAwesomeIcon icon={faPlane} />
-            <span className=" text-gray-500">旅程表</span>
+            <span className="text-gray-500">旅程表</span>
           </Button>
         </Link>
         </div>
@@ -32,7 +32,7 @@ const FooterMenu = () => {
         <Link href="/travel_brochure/memo">
         <Button className="btn-footer">
             <FontAwesomeIcon icon={faPenToSquare} />
-            <span className=" text-gray-500">メモ帳</span>
+            <span className="text-gray-500">メモ帳</span>
           </Button>
         </Link>
         </div>
@@ -40,7 +40,7 @@ const FooterMenu = () => {
         <Link href="#">
           <Button className="btn-footer">
             <FontAwesomeIcon icon={faCircleUp} />
-            <span className=" text-gray-500">追加</span>
+            <span className="text-gray-500">追加</span>
           </Button>
         </Link>
         </div>

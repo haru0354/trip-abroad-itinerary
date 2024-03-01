@@ -45,6 +45,9 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
     where: {
       slug: postSlug,
     },
+    include: {
+      postImage: true,
+    },
   });
 
   return (
@@ -56,11 +59,15 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
         </>
       ) : (
         posts.map((post) => {
+          const formattedCreatedDate = new Date(
+            post.createdDate
+          ).toLocaleDateString();
           return (
             <>
               <div key={post.id}>
-                <ArticleTop title={post.title} src={"/008.jpg"} alt={"a"} />
-                <p> {post.content}</p>
+                <ArticleTop title={post.title} src={post.postImage?.url} alt={post.postImage?.altText} />
+                <span className="text-gray-500">記事の投稿日：{formattedCreatedDate}</span>
+                <p>{post.content}</p>
               </div>
             </>
           );

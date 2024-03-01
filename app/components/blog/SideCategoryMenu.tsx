@@ -17,7 +17,7 @@ const SideCategoryMenu = async () => {
           </Link>
         </li>
         <li className="py-4 hover:bg-gray-200">
-          <Link href="/home">
+          <Link href="/dashboard">
             <p className="text-gray-600">管理画面</p>
           </Link>
         </li>

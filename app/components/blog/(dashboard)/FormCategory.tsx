@@ -4,6 +4,14 @@ import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import TextArea from "../../ui/TextArea";
 import { useFormState } from "react-dom";
+import { useState } from "react";
+import Image from "next/image";
+
+type FormCategoryProps = {
+  category?: (Category & { postImage: PostImage | null }) | null;
+  buttonName: string;
+  formAction: (state: FormState, data: FormData) => Promise<FormState>;
+};
 
 type Category = {
   name: string;
@@ -12,18 +20,20 @@ type Category = {
   description: string;
 };
 
+type PostImage = {
+  id: number;
+  altText: string;
+  name: string;
+  url: string;
+};
+
 type FormState = {
   message?: string | null;
   errors?: {
     name?: string[] | undefined;
     slug?: string[] | undefined;
+    altText?: string[] | undefined;
   };
-};
-
-type FormCategoryProps = {
-  category?: Category | null;
-  buttonName: string;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
 };
 
 const FormCategory: React.FC<FormCategoryProps> = ({
@@ -39,9 +49,42 @@ const FormCategory: React.FC<FormCategoryProps> = ({
     formAction,
     initialState
   );
+
+  const [image, setImage] = useState<{ preview: string; data: File | string }>({
+    preview: "",
+    data: "",
+  });
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files ? e.target.files[0] : null;
+
+    if (selectedFile) {
+      const img = {
+        preview: URL.createObjectURL(selectedFile),
+        data: selectedFile,
+      };
+      setImage(img);
+    } else {
+      console.error("ファイルが選択されていません");
+      return;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    if (!(image.data instanceof File)) {
+      formData.delete("postImageId");
+      formData.delete("altText");
+    }
+    dispatch(formData);
+  };
+
+
+
   return (
     <>
-      <form action={dispatch}>
+      <form onSubmit={handleSubmit}>
         {state.message && <p className="text-red-500">{state.message}</p>}
         <Form
           name={"name"}
@@ -75,6 +118,56 @@ const FormCategory: React.FC<FormCategoryProps> = ({
           }
           defaultValue={category?.description}
         />
+        <div className="flex mx-auto">
+          {image.preview && (
+            <>
+              <div className="mr-10 w-full">
+                <p className="text-lg font-bold border-b pb-2 mb-6 bold text-gray-900">
+                  保存する画像
+                </p>
+                <img
+                  src={image.preview}
+                  width="300"
+                  height="300"
+                  className="pb-2 mb-6"
+                />
+              </div>
+            </>
+          )}
+          {category?.postImage && (
+            <div className="w-full">
+              <p className="text-lg font-bold border-b pb-2 mb-6 bold text-gray-900">
+                選択してる画像
+              </p>
+              <Image
+                src={category?.postImage.url}
+                alt={category?.postImage.altText}
+                width={300}
+                height={300}
+                style={{
+                  width: "300px",
+                  height: "auto",
+                }}
+              />
+            </div>
+          )}
+        </div>
+        <Form
+          name="postImageId"
+          type="file"
+          label="アイキャッチ画像"
+          placeholder="記事のスラッグを入力してください。"
+          onChange={handleFileChange}
+        />
+        <Form
+          name="altText"
+          label="画像の名前（alt）"
+          placeholder="画像の名前を入力してください。"
+          defaultValue={category?.postImage?.altText}
+        />
+        {state.errors && state.errors.altText && (
+          <p className="text-red-500">{state.errors.altText}</p>
+        )}
         <Button className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
           {buttonName}
         </Button>

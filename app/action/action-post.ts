@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
-import { log } from "console";
 
 type FormState = {
   message?: string | null;
@@ -90,6 +89,7 @@ export const addPost = async (state: FormState, data: FormData) => {
         },
       });
       postData.postImage = { connect: { id: createdImage.id } };
+      console.log(postData);
     }
     console.log("画像の追加に成功しました。");
   } catch (error) {

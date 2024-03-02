@@ -3,21 +3,22 @@
 import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
-import { promises as fsPromises } from 'fs';
+import { promises as fsPromises } from "fs";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
+import { validateFile } from "../components/lib/ValidateFile ";
 
 const { unlink } = fsPromises;
 
 type FormState = {
   message?: string | null;
   errors?: {
-    file?: string[] | undefined;
+    image?: string[] | undefined;
     altText?: string[] | undefined;
   };
 };
 
 const schema = z.object({
-  file: z.unknown().refine((value) => value instanceof File, {
+  image: z.unknown().refine((value) => value instanceof File || !value, {
     message: "画像の選択は必須です",
   }),
   altText: z.string().min(1, { message: "画像の名前の入力は必須です。" }),
@@ -28,11 +29,11 @@ const updateSchema = z.object({
 });
 
 export const addPostImage = async (state: FormState, data: FormData) => {
-  const file = data.get("file") as File;
+  const image = data.get("image") as File;
   const altText = data.get("altText") as string;
 
   const validatedFields = schema.safeParse({
-    file,
+    image,
     altText,
   });
 
@@ -45,7 +46,21 @@ export const addPostImage = async (state: FormState, data: FormData) => {
   }
 
   try {
-    const { fileUrl, fileName } = await FileSaveUtils(file); 
+    const isValidFile = await validateFile(image);
+
+    if (!isValidFile) {
+      const errors = {
+        errors: {
+          image: [
+            "画像ファイルが無効です。有効な画像ファイルを選択してください。",
+          ],
+        },
+      };
+      console.log(errors);
+      return errors;
+    }
+
+    const { fileUrl, fileName } = await FileSaveUtils(image);
 
     await prisma.postImage.create({
       data: {
@@ -54,6 +69,7 @@ export const addPostImage = async (state: FormState, data: FormData) => {
         altText,
       },
     });
+    console.log("画像の追加に成功しました");
   } catch (error) {
     console.error("画像を追加する際にエラーが発生しました");
     return { message: "画像を追加する際にエラーが発生しました" };
@@ -93,7 +109,7 @@ export const updatePostImage = async (
   state: FormState,
   data: FormData
 ) => {
-  const file = data.get("file") as File;
+  const image = data.get("image") as File;
   const altText = data.get("altText") as string;
   console.log("data:", data);
 
@@ -127,9 +143,9 @@ export const updatePostImage = async (
   }
 
   // 画像がある場合は保存してfileUrlを変更
-  if (file) {
+  if (image) {
     try {
-      const { fileUrl } = await FileSaveUtils(file); 
+      const { fileUrl } = await FileSaveUtils(image); 
     
       await prisma.postImage.update({
         where: {

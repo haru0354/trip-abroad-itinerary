@@ -1,11 +1,14 @@
+"use server";
+
 import { writeFile } from "fs/promises";
 import { join } from "path";
 
-export const FileSaveUtils = async (file: File) => {
+// ファイルをディレクトリに保存
+export const FileSaveUtils = async (image: File) => {
   try {
-    const bytes = await file.arrayBuffer();
+    const bytes = await image.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    const fileName = `${Date.now()}_${file.name}`;
+    const fileName = `${Date.now()}_${image.name}`;
     const path = join("./", "public", "postImage", fileName);
     await writeFile(path, buffer);
     const fileUrl = `/postImage/${fileName}`;

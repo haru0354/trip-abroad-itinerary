@@ -95,8 +95,9 @@ model Category {
   id               Int     @id @default(autoincrement())
   name             String
   slug             String
+  title            String?
   content          String?
-  description      String
+  description      String?
   posts            Post[]
   postImage        PostImage? @relation(fields: [postImageId], references: [id])
   postImageId      Int?

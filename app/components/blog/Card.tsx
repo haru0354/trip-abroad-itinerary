@@ -12,7 +12,7 @@ type CardProps = {
 const Card: React.FC<CardProps> = ({ post }) => {
   return (
     <>
-      <div className="flex border border-sky-300 my-8 hover:bg-sky-100">
+      <div className="flex border border-gray-400 my-8 hover:bg-gray-100">
         <div className="w-[30%] flex items-center justify-center px-4 py-6">
           <Image
             src="/card.JPG"
@@ -23,7 +23,9 @@ const Card: React.FC<CardProps> = ({ post }) => {
           ></Image>
         </div>
         <div className="w-[70%]  px-4 py-6">
-          <h3 className="text-lg font-bold text-gray-700 mb-4">{post.title}</h3>
+        {post.title && post.title.length > 36
+                      ? <h3 className="text-lg font-bold text-gray-700 mb-4">{post.title.slice(0, 36)}...</h3>
+                      : <h3 className="text-lg font-bold text-gray-700 mb-4">{post.title}</h3>}
           <p>{post.description.length > 72 ? `${post.description.slice(0, 72)}...` : post.description}</p>
         </div>
       </div>

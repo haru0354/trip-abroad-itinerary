@@ -1,8 +1,9 @@
+import { Metadata } from "next";
 import NotFound from "@/app/NotFound";
 import Card from "@/app/components/blog/Card";
 import prisma from "@/app/components/lib/prisma";
 import Link from "next/link";
-import { Metadata } from "next";
+import ArticleTop from "@/app/components/blog/ArticleTop";
 
 export const generateMetadata = async ({
   params,
@@ -56,7 +57,11 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
       },
     },
     include: {
-      category: true,
+      category: {
+        include: {
+          postImage: true,
+        },
+      },
     },
   });
 
@@ -64,9 +69,15 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
   const processedCategory = posts.map((post) => {
     const categoryName = post.category.name;
     const categoryContent = post.category.content;
+    const categoryPostImageTitle = post.category.title;
+    const categoryPostImageUrl = post.category?.postImage?.url;
+    const categoryPostImageAltText = post.category?.postImage?.altText;
     return {
       categoryName,
       categoryContent,
+      categoryPostImageTitle,
+      categoryPostImageUrl,
+      categoryPostImageAltText,
     };
   });
 
@@ -80,18 +91,29 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
         <p>カテゴリがありません</p>
       </>
     );
+
   const retrievedCategoryContent =
     processedCategory.length > 0 ? processedCategory[0].categoryContent : "";
 
   return (
     <>
-      <h2 className="p-2 text-3xl">{retrievedCategoryName}</h2>
+      {processedCategory.length > 0 &&
+        processedCategory[0].categoryPostImageUrl && (
+          <ArticleTop
+            title={processedCategory[0].categoryPostImageTitle}
+            src={processedCategory[0].categoryPostImageUrl}
+            alt={processedCategory[0].categoryPostImageAltText}
+          />
+        )}
       <p>{retrievedCategoryContent}</p>
+      <h2 className="p-2 mt-10 text-3xl">{retrievedCategoryName}</h2>
       {posts.map((post) => {
         return (
-          <Link href={`/${post.category.slug}/${post.slug}`} key={post.id}>
-            <Card key={post.id} post={post} />
-          </Link>
+          <>
+            <Link href={`/${post.category.slug}/${post.slug}`} key={post.id}>
+              <Card key={post.id} post={post} />
+            </Link>
+          </>
         );
       })}
     </>

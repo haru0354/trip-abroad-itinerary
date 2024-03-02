@@ -4,9 +4,9 @@ import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import TextArea from "../../ui/TextArea";
 import { useFormState } from "react-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-
+import { validateFile } from "../../lib/ValidateFile ";
 type FormCategoryProps = {
   category?: (Category & { postImage: PostImage | null }) | null;
   buttonName: string;
@@ -18,6 +18,7 @@ type Category = {
   slug: string;
   content: string | null;
   description: string;
+  title: string | null;
 };
 
 type PostImage = {
@@ -33,6 +34,7 @@ type FormState = {
     name?: string[] | undefined;
     slug?: string[] | undefined;
     altText?: string[] | undefined;
+    image?: string[] | undefined;
   };
 };
 
@@ -43,7 +45,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
 }) => {
   const initialState = {
     message: null,
-    errors: { name: undefined, slug: undefined },
+    errors: { name: undefined, slug: undefined, altText: undefined, image: undefined  },
   };
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
@@ -55,15 +57,32 @@ const FormCategory: React.FC<FormCategoryProps> = ({
     data: "",
   });
 
+  const [error, setError] = useState<string>("");
+
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const imageTypes = ["image/jpeg", "image/png", "image/gif"];
     const selectedFile = e.target.files ? e.target.files[0] : null;
+    const maxSizeInBytes = 1024 * 1024;
 
     if (selectedFile) {
+      if (!imageTypes.includes(selectedFile.type)) {
+        setError("JPEG、PNG、GIF形式の画像ファイルを選択してください");
+        e.target.value = "";
+        return;
+      }
+
+      if (selectedFile.size > maxSizeInBytes) {
+        setError("ファイルサイズが大きすぎます。");
+        e.target.value = "";
+        return;
+      }
+
       const img = {
         preview: URL.createObjectURL(selectedFile),
         data: selectedFile,
       };
       setImage(img);
+      setError("");
     } else {
       console.error("ファイルが選択されていません");
       return;
@@ -74,13 +93,11 @@ const FormCategory: React.FC<FormCategoryProps> = ({
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     if (!(image.data instanceof File)) {
-      formData.delete("postImageId");
+      formData.delete("image");
       formData.delete("altText");
     }
     dispatch(formData);
   };
-
-
 
   return (
     <>
@@ -103,20 +120,31 @@ const FormCategory: React.FC<FormCategoryProps> = ({
         />
         {state.errors && <p className="text-red-500">{state.errors.slug}</p>}
         <TextArea
-          name={"content"}
-          label={"カテゴリの内容"}
-          placeholder={
-            "カテゴリの内容を入力してください。カテゴリページに表示がされます。この項目は必須ではありません。"
-          }
-          defaultValue={category?.content || undefined}
-        />
-        <TextArea
           name={"description"}
           label={"カテゴリの説明(description)"}
           placeholder={
             "カテゴリの説明(description)を入力してください。この項目は必須ではありません。"
           }
           defaultValue={category?.description}
+        />
+        <p className="border-b my-5 pb-2 font-semibold">
+          カテゴリを記事にする(カテゴリにコンテンツを表示)
+        </p>
+        <TextArea
+          name={"title"}
+          label={"カテゴリのタイトル"}
+          placeholder={
+            "カテゴリのタイトルを入力してください。カテゴリページにタイトルが表示されます。この項目は必須ではありません。"
+          }
+          defaultValue={category?.title || undefined}
+        />
+        <TextArea
+          name={"content"}
+          label={"カテゴリの内容"}
+          placeholder={
+            "カテゴリの内容を入力してください。カテゴリページに表示がされます。この項目は必須ではありません。"
+          }
+          defaultValue={category?.content || undefined}
         />
         <div className="flex mx-auto">
           {image.preview && (
@@ -153,12 +181,15 @@ const FormCategory: React.FC<FormCategoryProps> = ({
           )}
         </div>
         <Form
-          name="postImageId"
+          name="image"
           type="file"
           label="アイキャッチ画像"
-          placeholder="記事のスラッグを入力してください。"
           onChange={handleFileChange}
         />
+        {error && <p className="text-red-500">{error}</p>}
+        {state.errors && state.errors.image && (
+          <p className="text-red-500">{state.errors.image}</p>
+        )}
         <Form
           name="altText"
           label="画像の名前（alt）"

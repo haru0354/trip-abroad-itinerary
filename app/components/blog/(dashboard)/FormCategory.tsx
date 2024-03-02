@@ -62,6 +62,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const imageTypes = ["image/jpeg", "image/png", "image/gif"];
     const selectedFile = e.target.files ? e.target.files[0] : null;
+    const maxSizeInBytes = 1024 * 1024;
 
     if (selectedFile) {
       if (!imageTypes.includes(selectedFile.type)) {
@@ -70,11 +71,17 @@ const FormCategory: React.FC<FormCategoryProps> = ({
         return;
       }
 
+      if (selectedFile.size > maxSizeInBytes) {
+        setError("ファイルサイズが大きすぎます。");
+        e.target.value = "";
+        return;
+      }
+      
       if (!validateFile(selectedFile)) {
         e.target.value = ""; 
         return;
       }
-      
+
       const img = {
         preview: URL.createObjectURL(selectedFile),
         data: selectedFile,

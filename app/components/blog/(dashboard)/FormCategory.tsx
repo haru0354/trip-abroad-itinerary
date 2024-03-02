@@ -6,7 +6,8 @@ import TextArea from "../../ui/TextArea";
 import { useFormState } from "react-dom";
 import { useState } from "react";
 import Image from "next/image";
-
+import { validateFile
+ } from "../../lib/ValidateFile ";
 type FormCategoryProps = {
   category?: (Category & { postImage: PostImage | null }) | null;
   buttonName: string;
@@ -69,6 +70,11 @@ const FormCategory: React.FC<FormCategoryProps> = ({
         return;
       }
 
+      if (!validateFile(selectedFile)) {
+        e.target.value = ""; 
+        return;
+      }
+      
       const img = {
         preview: URL.createObjectURL(selectedFile),
         data: selectedFile,

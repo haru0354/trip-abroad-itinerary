@@ -1,6 +1,9 @@
+"use server";
+
 import { writeFile } from "fs/promises";
 import { join } from "path";
 
+// ファイルをディレクトリに保存
 export const FileSaveUtils = async (file: File) => {
   try {
     const bytes = await file.arrayBuffer();

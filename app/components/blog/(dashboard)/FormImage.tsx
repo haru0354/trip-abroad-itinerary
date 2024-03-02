@@ -5,6 +5,7 @@ import Button from "../../ui/Button";
 import { useState } from "react";
 import { useFormState } from "react-dom";
 import Image from "next/image";
+import { validateFile } from "../../lib/ValidateFile ";
 
 type FormImageProps = {
   postImage?: PostImage | null;
@@ -53,6 +54,11 @@ const FormImage: React.FC<FormImageProps> = ({
     if (selectedFile) {
       if (!imageTypes.includes(selectedFile.type)) {
         setError("JPEG、PNG、GIF形式の画像ファイルを選択してください");
+        e.target.value = ""; 
+        return;
+      }
+
+      if (!validateFile(selectedFile)) {
         e.target.value = ""; 
         return;
       }

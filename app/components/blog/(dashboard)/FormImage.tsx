@@ -44,15 +44,25 @@ const FormImage: React.FC<FormImageProps> = ({
     data: "",
   });
 
+  const [error, setError] = useState<string>("");
+
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const imageTypes = ["image/jpeg", "image/png", "image/gif"];
     const selectedFile = e.target.files ? e.target.files[0] : null;
 
     if (selectedFile) {
+      if (!imageTypes.includes(selectedFile.type)) {
+        setError("JPEG、PNG、GIF形式の画像ファイルを選択してください");
+        e.target.value = ""; 
+        return;
+      }
+
       const img = {
         preview: URL.createObjectURL(selectedFile),
         data: selectedFile,
       };
       setImage(img);
+      setError("");
     } else {
       console.error("ファイルが選択されていません");
       return;
@@ -111,6 +121,7 @@ const FormImage: React.FC<FormImageProps> = ({
           name="file"
           onChange={handleFileChange}
         />
+        {error && <p className="text-red-500">{error}</p>}
         {state.errors && <p className="text-red-500">{state.errors.file}</p>}
         <Form
           label="画像の名前(alt)"

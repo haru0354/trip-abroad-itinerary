@@ -55,16 +55,26 @@ const FormCategory: React.FC<FormCategoryProps> = ({
     preview: "",
     data: "",
   });
+  
+  const [error, setError] = useState<string>("");
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const imageTypes = ["image/jpeg", "image/png", "image/gif"];
     const selectedFile = e.target.files ? e.target.files[0] : null;
 
     if (selectedFile) {
+      if (!imageTypes.includes(selectedFile.type)) {
+        setError("JPEG、PNG、GIF形式の画像ファイルを選択してください");
+        e.target.value = ""; 
+        return;
+      }
+
       const img = {
         preview: URL.createObjectURL(selectedFile),
         data: selectedFile,
       };
       setImage(img);
+      setError("");
     } else {
       console.error("ファイルが選択されていません");
       return;
@@ -166,9 +176,9 @@ const FormCategory: React.FC<FormCategoryProps> = ({
           name="postImageId"
           type="file"
           label="アイキャッチ画像"
-          placeholder="記事のスラッグを入力してください。"
           onChange={handleFileChange}
         />
+        {error && <p className="text-red-500">{error}</p>}
         <Form
           name="altText"
           label="画像の名前（alt）"

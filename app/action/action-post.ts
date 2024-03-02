@@ -89,7 +89,6 @@ export const addPost = async (state: FormState, data: FormData) => {
         },
       });
       postData.postImage = { connect: { id: createdImage.id } };
-      console.log(postData);
     }
     console.log("画像の追加に成功しました。");
   } catch (error) {

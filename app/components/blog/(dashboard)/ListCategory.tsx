@@ -7,36 +7,52 @@ const ListCategory = async () => {
 
   return (
     <>
+      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
+        カテゴリの一覧
+      </h2>
+      <div className="flex flex-col border border-gray-500 sm:flex-row py-4 items-center w-full sm:w-auto">
+        <p className="sm:border-r border-gray-500  w-full py-1 px-2 sm:w-auto min-w-[120px]">
+          カテゴリ名
+        </p>
+        <p className="sm:border-r flex-wrap  w-full border-gray-500 py-1 px-2 sm:w-auto min-w-[120px]">
+          スラッグ
+        </p>
+        <p className=" flex-wrap  w-full border-gray-500 py-1 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">
+          説明文
+        </p>
+      </div>
       <div className="mb-10">
         {categories.map((category) => {
           return (
-            <div
-              key={category.id}
-              className="flex border-b border-gray-500 py-4"
-            >
-              <p className="border-r border-gray-500 py-1 px-2 min-w-[110px]">
-                {category.name}
-              </p>
-              <p className="border-r border-gray-500 py-1 px-2 min-w-[110px] max-w-[550px]">
-                {category.slug}
-              </p>
-              <p className="border-r border-gray-500 py-1 px-2 min-w-[110px] max-w-[550px]">
-                {category.content}
-              </p>
-              <p className="border-gray-500 py-1 px-2 min-w-[110px] max-w-[550px]">
-                {category.description}
-              </p>
-              <Link href={`/${category.slug}`}>
-                <Button className="min-w-[100px] px-6 py-1 mx-2 shadow font-bold bg-blue-700 text-white hover:bg-white hover:text-black border border-sky-900">
-                  ページへ
-                </Button>
-              </Link>
-              <Link href={`/dashboard/category/${category.id}`}>
-                <Button className="min-w-[100px] px-6 py-1 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-sky-900">
-                  編集
-                </Button>
-              </Link>
-            </div>
+            <>
+              <div className="flex justify-between flex-col sm:flex-row border-b border-gray-500 w-full">
+                <div className="flex flex-col  sm:flex-row py-4 items-center w-full sm:w-auto">
+                  <p className="sm:border-r border-gray-500  w-full py-1 px-2 sm:w-auto min-w-[120px]">
+                    {category.name}
+                  </p>
+                  <p className="sm:border-r flex-wrap  w-full border-gray-500 py-1 px-2 sm:w-auto min-w-[120px]">
+                    {category.slug}
+                  </p>
+                  <p className="py-1 px-2 w-full sm:w-auto min-w-[250px] max-w-[650px]">
+                    {category.description && category.description.length > 72
+                      ? `${category.description.slice(0, 72)}...`
+                      : category.description}
+                  </p>
+                </div>
+                <div className="flex sm:justify-end items-center my-4 sm:max-w-[240px]">
+                  <Link href={`/${category.slug}`}>
+                    <Button className="min-w-[100px] px-6 py-1 mx-2 shadow font-bold bg-blue-700 text-white hover:bg-white hover:text-black border border-sky-900">
+                      ページ
+                    </Button>
+                  </Link>
+                  <Link href={`/dashboard/category/${category.id}`}>
+                    <Button className="min-w-[100px] px-6 py-1 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-gray-900">
+                      編集
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </>
           );
         })}
       </div>

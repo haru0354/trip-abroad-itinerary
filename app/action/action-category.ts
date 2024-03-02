@@ -23,6 +23,7 @@ const schema = z.object({
     }),
   content: z.string().optional(),
   description: z.string().optional(),
+  title: z.string().optional(),
 });
 
 const ImageSchema = z.object({
@@ -36,12 +37,14 @@ export const addCategory = async (state: FormState, data: FormData) => {
   const description = data.get("description") as string;
   const postImageId = data.get("postImageId") as File;
   const altText = data.get("altText") as string;
+  const title = data.get("title") as string;
 
   const validatedFields = schema.safeParse({
     name,
     slug,
     content,
     description,
+    title,
   });
 
   if (!validatedFields.success) {
@@ -57,6 +60,7 @@ export const addCategory = async (state: FormState, data: FormData) => {
     slug,
     content,
     description,
+    title,
   };
 
   try {
@@ -127,12 +131,14 @@ export const updateCategory = async (
   const slug = data.get("slug") as string;
   const postImageId = data.get("postImageId") as File;
   const altText = data.get("altText") as string;
+  const title = data.get("title") as string;
 
   const validatedFields = schema.safeParse({
     name,
     slug,
     content,
     description,
+    title,
   });
 
   if (!validatedFields.success) {
@@ -148,6 +154,7 @@ export const updateCategory = async (
     slug,
     content,
     description,
+    title,
   };
 
   if (postImageId) {

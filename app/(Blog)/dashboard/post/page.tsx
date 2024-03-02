@@ -8,23 +8,6 @@ export const metadata: Metadata = {
 const page = async () => {
   return (
     <>
-      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
-        記事の一覧
-      </h2>
-      <div className="flex border border-gray-500 py-4 mt-10">
-        <p className="text-center border-r border-gray-500 py-1 px-2 min-w-[110px]">
-          投稿日
-        </p>
-        <p className="text-center border-r flex-grow border-gray-500 py-1 px-2 min-w-[110px] max-w-[550px]">
-          記事タイトル
-        </p>
-        <p className="text-center border-r border-gray-500 py-1 px-2 min-w-[130px] max-w-[130px]">
-          カテゴリ
-        </p>
-        <p className="text-center py-1 px-2 min-w-[130px] max-w-[130px]">
-          その他
-        </p>
-      </div>
       <ListPost />
     </>
   );

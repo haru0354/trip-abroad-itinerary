@@ -29,7 +29,9 @@ const SideNewArticles = async () => {
                   width={240}
                   height={140}
                 />
-                <p className="text-gray-600 my-2">{post.title}</p>
+                        {post.title && post.title.length > 36
+                      ? <p className="text-gray-600 my-2">{post.title.slice(0, 36)}...</p>
+                      : <p className="text-gray-600 my-2">{post.title}</p>}
               </Link>
             </li>
           );

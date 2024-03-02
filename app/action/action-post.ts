@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
+import { validateFile } from "../components/lib/ValidateFile ";
 
 type FormState = {
   message?: string | null;
@@ -13,6 +14,7 @@ type FormState = {
     slug?: string[] | undefined;
     description?: string[] | undefined;
     categoryId?: string[] | undefined;
+    image?: string[] | undefined;
   };
 };
 
@@ -30,7 +32,9 @@ const schema = z.object({
 });
 
 const ImageSchema = z.object({
-  altText: z.string().min(1, { message: "画像の追加時は名前の入力は必須です。" }),
+  altText: z
+    .string()
+    .min(1, { message: "画像の追加時は名前の入力は必須です。" }),
 });
 
 export const addPost = async (state: FormState, data: FormData) => {
@@ -39,7 +43,7 @@ export const addPost = async (state: FormState, data: FormData) => {
   const description = data.get("description") as string;
   const slug = data.get("slug") as string;
   const categoryId = data.get("categoryId") as string;
-  const postImageId = data.get("postImageId") as File;
+  const image = data.get("image") as File;
   const altText = data.get("altText") as string;
 
   const validatedFields = schema.safeParse({
@@ -66,8 +70,22 @@ export const addPost = async (state: FormState, data: FormData) => {
     category: { connect: { id: Number(categoryId) } },
   };
 
-  try {
-    if (postImageId) {
+  if (image) {
+    try {
+      const isValidFile = await validateFile(image);
+
+      if (!isValidFile) {
+        const errors = {
+          errors: {
+            image: [
+              "画像ファイルが無効です。有効な画像ファイルを選択してください。",
+            ],
+          },
+        };
+        console.log(errors);
+        return errors;
+      }
+
       const validatedFields = ImageSchema.safeParse({
         altText,
       });
@@ -79,8 +97,8 @@ export const addPost = async (state: FormState, data: FormData) => {
         console.log(errors);
         return errors;
       }
-    
-      const { fileUrl, fileName } = await FileSaveUtils(postImageId);
+
+      const { fileUrl, fileName } = await FileSaveUtils(image);
       const createdImage = await prisma.postImage.create({
         data: {
           name: fileName,
@@ -89,11 +107,12 @@ export const addPost = async (state: FormState, data: FormData) => {
         },
       });
       postData.postImage = { connect: { id: createdImage.id } };
+
+      console.log("画像の追加に成功しました。");
+    } catch (error) {
+      console.error("画像の追加時にエラーが発生しました", error);
+      return { message: "画像の追加時にエラーが発生しました" };
     }
-    console.log("画像の追加に成功しました。");
-  } catch (error) {
-    console.error("画像の追加時にエラーが発生しました", error);
-    return { message: "画像の追加時にエラーが発生しました" };
   }
 
   try {
@@ -133,7 +152,7 @@ export const updatePost = async (
   const description = data.get("description") as string;
   const slug = data.get("slug") as string;
   const categoryId = data.get("categoryId") as string;
-  const postImageId = data.get("postImageId") as File;
+  const image = data.get("image") as File;
   const altText = data.get("altText") as string;
 
   const validatedFields = schema.safeParse({
@@ -160,9 +179,23 @@ export const updatePost = async (
     category: { connect: { id: Number(categoryId) } },
   };
 
-  if (postImageId) {
+  if (image) {
     try {
-      const { fileUrl, fileName } = await FileSaveUtils(postImageId);
+      const isValidFile = await validateFile(image);
+
+      if (!isValidFile) {
+        const errors = {
+          errors: {
+            image: [
+              "画像ファイルが無効です。有効な画像ファイルを選択してください。",
+            ],
+          },
+        };
+        console.log(errors);
+        return errors;
+      }
+
+      const { fileUrl, fileName } = await FileSaveUtils(image);
       const createdImage = await prisma.postImage.create({
         data: {
           name: fileName,

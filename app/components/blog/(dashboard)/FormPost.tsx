@@ -7,7 +7,6 @@ import Select from "../../ui/Select";
 import { useFormState } from "react-dom";
 import { useState } from "react";
 import Image from "next/image";
-import { validateFile } from "../../lib/ValidateFile ";
 
 type FormPostProps = {
   post?: (Post & { category: Category; postImage: PostImage | null }) | null;
@@ -43,7 +42,7 @@ type FormState = {
     content?: string[] | undefined;
     slug?: string[] | undefined;
     description?: string[] | undefined;
-    categoryId?: string[] | undefined;
+    image?: string[] | undefined;
     altText?: string[] | undefined;
   };
 };
@@ -87,7 +86,7 @@ const FormPost: React.FC<FormPostProps> = ({
     if (selectedFile) {
       if (!imageTypes.includes(selectedFile.type)) {
         setError("JPEG、PNG、GIF形式の画像ファイルを選択してください");
-        e.target.value = ""; 
+        e.target.value = "";
         return;
       }
 
@@ -96,12 +95,7 @@ const FormPost: React.FC<FormPostProps> = ({
         e.target.value = "";
         return;
       }
-      
-      if (!validateFile(selectedFile)) {
-        e.target.value = ""; 
-        return;
-      }
-  
+
       const img = {
         preview: URL.createObjectURL(selectedFile),
         data: selectedFile,
@@ -118,7 +112,7 @@ const FormPost: React.FC<FormPostProps> = ({
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     if (!(image.data instanceof File)) {
-      formData.delete("postImageId");
+      formData.delete("image");
       formData.delete("altText");
     }
     dispatch(formData);
@@ -204,12 +198,15 @@ const FormPost: React.FC<FormPostProps> = ({
           )}
         </div>
         <Form
-          name="postImageId"
+          name="image"
           type="file"
           label="アイキャッチ"
           onChange={handleFileChange}
         />
         {error && <p className="text-red-500">{error}</p>}
+        {state.errors && state.errors.image && (
+          <p className="text-red-500">{state.errors.image}</p>
+        )}
         <Form
           name="altText"
           label="画像の名前（alt）"

@@ -5,7 +5,6 @@ import Button from "../../ui/Button";
 import { useState } from "react";
 import { useFormState } from "react-dom";
 import Image from "next/image";
-import { validateFile } from "../../lib/ValidateFile ";
 
 type FormImageProps = {
   postImage?: PostImage | null;
@@ -21,7 +20,7 @@ type PostImage = {
 type FormState = {
   message?: string | null;
   errors?: {
-    file?: string[] | undefined;
+    image?: string[] | undefined;
     altText?: string[] | undefined;
   };
 };
@@ -33,7 +32,7 @@ const FormImage: React.FC<FormImageProps> = ({
 }) => {
   const initialState = {
     message: null,
-    errors: { file: undefined, altText: undefined },
+    errors: { image: undefined, altText: undefined },
   };
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
@@ -59,18 +58,12 @@ const FormImage: React.FC<FormImageProps> = ({
         return;
       }
 
-
       if (selectedFile.size > maxSizeInBytes) {
         setError("ファイルサイズが大きすぎます。");
         e.target.value = "";
         return;
       }
 
-      if (!validateFile(selectedFile)) {
-        e.target.value = "";
-        return;
-      }
-      
       const img = {
         preview: URL.createObjectURL(selectedFile),
         data: selectedFile,
@@ -85,9 +78,11 @@ const FormImage: React.FC<FormImageProps> = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("file", image.data);
-    formData.append("altText", e.currentTarget.altText.value);
+    const formData = new FormData(e.currentTarget);
+    if (!(image.data instanceof File)) {
+      formData.delete("image");
+      formData.delete("altText");
+    }
     dispatch(formData);
   };
 
@@ -130,13 +125,15 @@ const FormImage: React.FC<FormImageProps> = ({
       <form onSubmit={handleSubmit}>
         {state.message && <p className="text-red-500">{state.message}</p>}
         <Form
+          name="image"
           label="画像を選択"
           type="file"
-          name="file"
           onChange={handleFileChange}
         />
         {error && <p className="text-red-500">{error}</p>}
-        {state.errors && <p className="text-red-500">{state.errors.file}</p>}
+        {state.errors && state.errors.image && (
+          <p className="text-red-500">{state.errors.image}</p>
+        )}
         <Form
           label="画像の名前(alt)"
           name="altText"
@@ -145,7 +142,9 @@ const FormImage: React.FC<FormImageProps> = ({
             "どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます"
           }
         />
-        {state.errors && <p className="text-red-500">{state.errors.altText}</p>}
+        {state.errors && state.errors.altText && (
+          <p className="text-red-500">{state.errors.altText}</p>
+        )}
         <Button className="px-24 my-8 py-3 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-gray-900">
           {buttonName}
         </Button>

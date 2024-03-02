@@ -4,10 +4,9 @@ import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import TextArea from "../../ui/TextArea";
 import { useFormState } from "react-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { validateFile
- } from "../../lib/ValidateFile ";
+import { validateFile } from "../../lib/ValidateFile ";
 type FormCategoryProps = {
   category?: (Category & { postImage: PostImage | null }) | null;
   buttonName: string;
@@ -35,6 +34,7 @@ type FormState = {
     name?: string[] | undefined;
     slug?: string[] | undefined;
     altText?: string[] | undefined;
+    image?: string[] | undefined;
   };
 };
 
@@ -45,7 +45,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
 }) => {
   const initialState = {
     message: null,
-    errors: { name: undefined, slug: undefined },
+    errors: { name: undefined, slug: undefined, altText: undefined, image: undefined  },
   };
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
@@ -56,7 +56,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
     preview: "",
     data: "",
   });
-  
+
   const [error, setError] = useState<string>("");
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,18 +67,13 @@ const FormCategory: React.FC<FormCategoryProps> = ({
     if (selectedFile) {
       if (!imageTypes.includes(selectedFile.type)) {
         setError("JPEG、PNG、GIF形式の画像ファイルを選択してください");
-        e.target.value = ""; 
+        e.target.value = "";
         return;
       }
 
       if (selectedFile.size > maxSizeInBytes) {
         setError("ファイルサイズが大きすぎます。");
         e.target.value = "";
-        return;
-      }
-      
-      if (!validateFile(selectedFile)) {
-        e.target.value = ""; 
         return;
       }
 
@@ -98,13 +93,11 @@ const FormCategory: React.FC<FormCategoryProps> = ({
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     if (!(image.data instanceof File)) {
-      formData.delete("postImageId");
+      formData.delete("image");
       formData.delete("altText");
     }
     dispatch(formData);
   };
-
-
 
   return (
     <>
@@ -134,7 +127,9 @@ const FormCategory: React.FC<FormCategoryProps> = ({
           }
           defaultValue={category?.description}
         />
-        <p className="border-b my-5 pb-2 font-semibold">カテゴリを記事にする(カテゴリにコンテンツを表示)</p>
+        <p className="border-b my-5 pb-2 font-semibold">
+          カテゴリを記事にする(カテゴリにコンテンツを表示)
+        </p>
         <TextArea
           name={"title"}
           label={"カテゴリのタイトル"}
@@ -186,12 +181,15 @@ const FormCategory: React.FC<FormCategoryProps> = ({
           )}
         </div>
         <Form
-          name="postImageId"
+          name="image"
           type="file"
           label="アイキャッチ画像"
           onChange={handleFileChange}
         />
         {error && <p className="text-red-500">{error}</p>}
+        {state.errors && state.errors.image && (
+          <p className="text-red-500">{state.errors.image}</p>
+        )}
         <Form
           name="altText"
           label="画像の名前（alt）"

@@ -21,6 +21,7 @@ export const validateFile = async (file: File) => {
     return false;
   }
 
+  console.log("ファイルの拡張子とmineタイプの検証完了");
   return true;
 };
 

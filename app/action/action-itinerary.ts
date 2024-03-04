@@ -65,8 +65,8 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     });
     revalidatePath("/travel_brochure/itinerary");
     return { message: "add" };
-  } catch {
-    console.error("旅程を追加する際にエラーが発生しました");
+  } catch (error) {
+    console.error("旅程を追加する際にエラーが発生しました:", error);
     return { message: "旅程を追加する際にエラーが発生しました" };
   }
 };
@@ -126,8 +126,8 @@ export const updateItinerary = async (id: number, state: FormState, data: FormDa
     });
     revalidatePath("/travel_brochure/itinerary");
     return { message: "edit" };
-  } catch {
-    console.error("旅程を編集する際にエラーが発生しました");
+  } catch (error) {
+    console.error("旅程を編集する際にエラーが発生しました:", error);
     return { message: "旅程を編集する際にエラーが発生しました" };
   }
 };

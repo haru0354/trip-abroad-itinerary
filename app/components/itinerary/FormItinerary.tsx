@@ -33,9 +33,6 @@ type FormState = {
     date?: string[] | undefined;
     time?: string[] | undefined;
     name?: string[] | undefined;
-    content?: string[] | undefined;
-    hideContent?: string[] | undefined;
-    userId?: string[] | undefined;
   };
 };
 
@@ -46,20 +43,15 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   userId,
 }) => {
   const router = useRouter();
-  const initialState = { message: null, errors: { name: undefined } };
+  const initialState = {
+    message: null,
+    errors: { date: undefined, time: undefined, name: undefined },
+  };
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
     initialState
   );
-  const [dateErrorMessage, setDateErrorMessage] = useState<
-    string | undefined
-  >();
-  const [timeErrorMessage, setTimeErrorMessage] = useState<
-    string | undefined
-  >();
-  const [nameErrorMessage, setNameErrorMessage] = useState<
-    string | undefined
-  >();
+  const [errorMessage, setErrorMessage] = useState<FormState>();
 
   const [dateValue, setDateValue] = useState<string>(itinerary?.date || "");
   const [timeValue, setTimeValue] = useState<string>(itinerary?.time || "");
@@ -97,30 +89,22 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const result = await formAction(state, formData);
-    if ("message" in result) {
-      if (result.message === "add") {
+    switch (result.message) {
+      case "add":
         setDateValue("");
         setTimeValue("");
         setInputValue("");
         setTextAreaValue("");
         setHideTextAreaValue("");
         toast.success("旅程を保存しました！");
-      } else if (result.message === "edit") {
+        break;
+      case "edit":
         toast.success("旅程を編集しました！");
         router.replace("/travel_brochure/itinerary");
-      } else if (result.message === "failure") {
-        if (result.errors) {
-          if (result.errors.date) {
-            setDateErrorMessage(result.errors.date[0]);
-          }
-          if (result.errors.time) {
-            setTimeErrorMessage(result.errors.time[0]);
-          }
-          if (result.errors.name) {
-            setNameErrorMessage(result.errors.name[0]);
-          }
-        }
-      }
+        break;
+      default:
+        setErrorMessage(result);
+        break;
     }
   };
 
@@ -129,11 +113,15 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
       <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
         旅程の追加
       </h2>
-      <form action={dispatch} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <Date name={"date"} value={dateValue} onChange={handleDateChange} />
-        {dateErrorMessage && <p className="text-red-500">{dateErrorMessage}</p>}
+        {errorMessage && errorMessage.errors && errorMessage.errors.date && (
+          <p className="text-red-500">{errorMessage.errors.date}</p>
+        )}
         <Time value={timeValue} onChange={handleTimeChange} />
-        {timeErrorMessage && <p className="text-red-500">{timeErrorMessage}</p>}
+        {errorMessage && errorMessage.errors && errorMessage.errors.time && (
+          <p className="text-red-500">{errorMessage.errors.time}</p>
+        )}
         <Form
           label={"目的"}
           placeholder={"飛行機・食事・観光など"}
@@ -141,7 +129,9 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
           value={inputValue}
           onChange={handleInputChange}
         />
-        {nameErrorMessage && <p className="text-red-500">{nameErrorMessage}</p>}
+        {errorMessage && errorMessage.errors && errorMessage.errors.name && (
+          <p className="text-red-500">{errorMessage.errors.name}</p>
+        )}
         <TextArea
           label={"補足情報"}
           placeholder={
@@ -161,6 +151,9 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
           onChange={handleHideTextareaChange}
         />
         <input type="hidden" name="userId" value={userId} />
+        {errorMessage && errorMessage.message !== "failure" && (
+          <p className="text-red-500">{errorMessage.message}</p>
+        )}
         <Button className="btn blue">{buttonName}</Button>
       </form>
     </div>

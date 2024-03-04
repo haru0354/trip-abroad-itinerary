@@ -44,79 +44,78 @@ model Account {
 }
 
 model Memo {
-  id                 Int     @id @default(autoincrement())
-  name               String
-  content            String
-  isCompleted        Boolean @default(false)
-  user               User @relation(fields: [userId], references: [id], onDelete:Cascade)
-  userId             Int
-  userImage          UserImage[] @relation("UserImageToMemo")
+  id                  Int     @id @default(autoincrement())
+  name                String
+  content             String
+  isCompleted         Boolean @default(false)
+  user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
+  userId              Int
+  userImage           UserImage[]
 }
 
 model Itinerary {
-  id                 Int     @id @default(autoincrement())
-  date               String
-  time               String
-  name               String
-  content            String
-  hideContent        String
-  isShowContent      Boolean @default(false)
-  imageUrl           String?
-  user               User @relation(fields: [userId], references: [id], onDelete:Cascade)
-  userId             Int
-  userImage        UserImage[] @relation("UserImageToItinerary")
+  id                  Int     @id @default(autoincrement())
+  date                String
+  time                String
+  name                String
+  content             String
+  hideContent         String
+  isShowContent       Boolean @default(false)
+  user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
+  userId              Int
+  ItineraryImages     ItineraryImage[]
+  userImageId         Int?
 }
 
-model UserImage {
-  id            Int      @id @default(autoincrement())
-  url           String
-  altText       String
-  user          User     @relation(fields: [userId], references: [id])
-  userId        Int
-  memoImages         Memo[]      @relation("UserImageToMemo")
-  itineraryImages    Itinerary[] @relation("UserImageToItinerary")
+model ItineraryImage {
+  id                  Int      @id @default(autoincrement())
+  name                String
+  url                 String
+  altText             String
+  itineraries         Itinerary @relation(fields: [itineraryId], references: [id], onDelete: Cascade)
+  itineraryId         Int
 }
 
 model Post {
-  id                Int     @id @default(autoincrement())
-  createdDate       DateTime  @default(now())  
-  updatedDate       DateTime  @updatedAt  
-  title             String
-  content           String
-  category          Category @relation(fields: [categoryId], references: [id])
-  categoryId        Int
-  description       String
-  slug              String
-  postImage         PostImage? @relation(fields: [postImageId], references: [id])
-  postImageId       Int?
+  id                  Int     @id @default(autoincrement())
+  createdDate         DateTime  @default(now())  
+  updatedDate         DateTime  @updatedAt  
+  title               String
+  content             String
+  category            Category @relation(fields: [categoryId], references: [id])
+  categoryId          Int
+  description         String
+  slug                String
+  postImage           PostImage? @relation(fields: [postImageId], references: [id])
+  postImageId         Int?
 }
 
 model Category {
-  id               Int     @id @default(autoincrement())
-  name             String
-  slug             String
-  title            String?
-  content          String?
-  description      String?
-  posts            Post[]
-  postImage        PostImage? @relation(fields: [postImageId], references: [id])
-  postImageId      Int?
+  id                  Int     @id @default(autoincrement())
+  name                String
+  slug                String
+  title               String?
+  content             String?
+  description         String?
+  posts               Post[]
+  postImage           PostImage? @relation(fields: [postImageId], references: [id])
+  postImageId         Int?
 }
 
 model DashboardMemo {
-  id                 Int     @id @default(autoincrement())
-  name               String
-  content            String
-  isCompleted        Boolean @default(false)
+  id                  Int     @id @default(autoincrement())
+  name                String
+  content             String
+  isCompleted         Boolean @default(false)
 }
 
 model PostImage {
-  id            Int      @id @default(autoincrement())
-  name          String
-  url           String
-  altText       String
-  posts         Post[] 
-  categories    Category[] 
+  id                  Int      @id @default(autoincrement())
+  name                String
+  url                 String
+  altText             String
+  posts               Post[] 
+  categories          Category[] 
 }
 
 

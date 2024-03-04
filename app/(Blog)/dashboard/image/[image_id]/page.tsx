@@ -1,7 +1,7 @@
 import prisma from "@/app/components/lib/prisma";
 import { updatePostImage } from "@/app/action/action-postImage";
 import type { Metadata } from "next";
-import FormImage from "@/app/components/blog/(dashboard)/FormImage";
+import FormPostImage from "@/app/components/blog/(dashboard)/FormPostImage";
 import DeletePostImageModal from "@/app/components/blog/(dashboard)/DeletePostImageModal";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ const page = async ({ params }: { params: { image_id: string } }) => {
       <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
         画像の編集
       </h2>
-      <FormImage
+      <FormPostImage
         formAction={updatePostImageWidthId}
         postImage={postImage}
         buttonName={"編集内容を保存"}

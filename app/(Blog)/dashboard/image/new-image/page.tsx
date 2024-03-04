@@ -1,7 +1,7 @@
 "use client";
 
 import { addPostImage } from "@/app/action/action-postImage";
-import FormImage from "@/app/components/blog/(dashboard)/FormImage";
+import FormPostImage from "@/app/components/blog/(dashboard)/FormPostImage";
 import { useState } from "react";
 
 const page = () => {
@@ -42,7 +42,7 @@ const page = () => {
       <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
         画像の追加(action)
       </h2>
-      <FormImage buttonName="画像を追加" formAction={addPostImage} />
+      <FormPostImage buttonName="画像を追加" formAction={addPostImage} />
     </>
   );
 };

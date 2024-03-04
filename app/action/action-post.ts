@@ -70,7 +70,7 @@ export const addPost = async (state: FormState, data: FormData) => {
     category: { connect: { id: Number(categoryId) } },
   };
 
-  if (image) {
+  if (image && image.size > 0 ) {
     try {
       const isValidFile = await validateFile(image);
 
@@ -179,7 +179,7 @@ export const updatePost = async (
     category: { connect: { id: Number(categoryId) } },
   };
 
-  if (image) {
+  if (image && image.size > 0 ) {
     try {
       const isValidFile = await validateFile(image);
 

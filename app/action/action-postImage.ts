@@ -31,7 +31,6 @@ const updateSchema = z.object({
 export const addPostImage = async (state: FormState, data: FormData) => {
   const image = data.get("image") as File;
   const altText = data.get("altText") as string;
-
   const validatedFields = schema.safeParse({
     image,
     altText,
@@ -142,21 +141,23 @@ export const updatePostImage = async (
   }
 
   // 画像がある場合は保存してfileUrlを変更
-  if (image) {
+  if (image && image.size > 0 ) {
     try {
       const postImage = await prisma.postImage.findUnique({
         where: {
           id,
         },
       });
+
       await unlink(`./public/postImage/${postImage?.name}`);
-      const { fileUrl } = await FileSaveUtils(image); 
-    
+      const { fileUrl, fileName } = await FileSaveUtils(image); 
+
       await prisma.postImage.update({
         where: {
           id,
         },
         data: {
+          name: fileName,
           url: fileUrl,
         },
       });

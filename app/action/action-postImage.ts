@@ -111,7 +111,6 @@ export const updatePostImage = async (
 ) => {
   const image = data.get("image") as File;
   const altText = data.get("altText") as string;
-  console.log("data:", data);
 
   const validatedFields = updateSchema.safeParse({
     altText,
@@ -145,6 +144,12 @@ export const updatePostImage = async (
   // 画像がある場合は保存してfileUrlを変更
   if (image) {
     try {
+      const postImage = await prisma.postImage.findUnique({
+        where: {
+          id,
+        },
+      });
+      await unlink(`./public/postImage/${postImage?.name}`);
       const { fileUrl } = await FileSaveUtils(image); 
     
       await prisma.postImage.update({

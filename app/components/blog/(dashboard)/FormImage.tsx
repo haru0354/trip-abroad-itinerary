@@ -81,7 +81,6 @@ const FormImage: React.FC<FormImageProps> = ({
     const formData = new FormData(e.currentTarget);
     if (!(image.data instanceof File)) {
       formData.delete("image");
-      formData.delete("altText");
     }
     dispatch(formData);
   };

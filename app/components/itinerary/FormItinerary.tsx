@@ -9,6 +9,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+import FormImage from "../ui/FormImage";
 
 type FormItineraryProps = {
   itinerary?: Itinerary | null;
@@ -22,9 +23,11 @@ type Itinerary = {
   date: string;
   time: string;
   name: string;
-  content: string;
-  hideContent: string;
+  content?: string | null;
+  hideContent?: string | null;
   isShowContent: boolean;
+  url?: string | null;
+  altText?: string | null;
 };
 
 type FormState = {
@@ -33,6 +36,8 @@ type FormState = {
     date?: string[] | undefined;
     time?: string[] | undefined;
     name?: string[] | undefined;
+    altText?: string[] | undefined;
+    image?: string[] | undefined;
   };
 };
 
@@ -45,7 +50,12 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   const router = useRouter();
   const initialState = {
     message: null,
-    errors: { date: undefined, time: undefined, name: undefined },
+    errors: {
+      date: undefined,
+      time: undefined,
+      name: undefined,
+      altText: undefined,
+    },
   };
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
@@ -62,6 +72,9 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   const [hideTextAreaValue, setHideTextAreaValue] = useState<string>(
     itinerary?.hideContent || ""
   );
+  const [altTextValue, setAltTextValue] = useState<string>(itinerary?.altText || "");
+
+  const [selectedFile, setSelectedFile] = useState("");
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDateValue(e.target.value);
@@ -79,11 +92,17 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     setTextAreaValue(e.target.value);
   };
 
+
   const handleHideTextareaChange = (
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setHideTextAreaValue(e.target.value);
   };
+
+  const handleAltTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAltTextValue(e.target.value);
+  };
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -96,6 +115,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         setInputValue("");
         setTextAreaValue("");
         setHideTextAreaValue("");
+        setSelectedFile("");
         toast.success("旅程を保存しました！");
         break;
       case "edit":
@@ -123,8 +143,8 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
           <p className="text-red-500">{errorMessage.errors.time}</p>
         )}
         <Form
-          label={"目的"}
-          placeholder={"飛行機・食事・観光など"}
+          label={"目的（何をするのか）"}
+          placeholder={"移動・食事・観光など"}
           name={"name"}
           value={inputValue}
           onChange={handleInputChange}
@@ -149,6 +169,12 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
           name={"hideContent"}
           value={hideTextAreaValue}
           onChange={handleHideTextareaChange}
+        />
+        <FormImage
+          state={state}
+          selectImage={itinerary}
+          altTextValue={altTextValue}
+          onChangeAltText={handleAltTextChange}
         />
         <input type="hidden" name="userId" value={userId} />
         {errorMessage && errorMessage.message !== "failure" && (

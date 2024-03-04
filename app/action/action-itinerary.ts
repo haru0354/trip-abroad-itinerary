@@ -4,6 +4,11 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
+import {
+  FileSaveItineraryUtils,
+  FileSaveUtils,
+} from "../components/lib/FileSaveUtils";
+import { validateFile } from "../components/lib/ValidateFile ";
 
 type FormState = {
   message?: string | null;
@@ -14,6 +19,7 @@ type FormState = {
     content?: string[] | undefined;
     hideContent?: string[] | undefined;
     userId?: string[] | undefined;
+    image?: string[] | undefined;
   };
 };
 
@@ -26,12 +32,20 @@ const schema = z.object({
   userId: z.string().transform((val) => Number(val)),
 });
 
+const ImageSchema = z.object({
+  altText: z
+    .string()
+    .min(1, { message: "画像の追加時は「何の画像か」の入力は必須です。" }),
+});
+
 export const addItinerary = async (state: FormState, data: FormData) => {
   const date = data.get("date") as string;
   const time = data.get("time") as string;
   const name = data.get("name") as string;
   const content = data.get("content") as string;
   const hideContent = data.get("hideContent") as string;
+  const image = data.get("image") as File;
+  const altText = data.get("altText") as string;
   const userId = data.get("userId") as string;
 
   const validatedFields = schema.safeParse({
@@ -52,16 +66,59 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     return errors;
   }
 
+  const ItineraryData: any = {
+    date,
+    time,
+    name,
+    content,
+    hideContent,
+    user: { connect: { id: Number(userId) } },
+  };
+
+  if (image && image.size > 0) {
+    try {
+      const isValidFile = await validateFile(image);
+
+      if (!isValidFile) {
+        const errors = {
+          errors: {
+            image: [
+              "画像ファイルが無効です。有効な画像ファイルを選択してください。",
+            ],
+          },
+        };
+        console.log(errors);
+        return errors;
+      }
+
+      const validatedFields = ImageSchema.safeParse({
+        altText,
+      });
+
+      if (!validatedFields.success) {
+        const errors = {
+          errors: validatedFields.error.flatten().fieldErrors,
+        };
+        console.log(errors);
+        return errors;
+      }
+
+      const { fileUrl, fileName } = await FileSaveItineraryUtils(image, userId);
+      
+      ItineraryData.url = fileUrl;
+      ItineraryData.imageName = fileName;
+      ItineraryData.altText = altText;
+
+      console.log("画像の追加に成功しました。");
+    } catch (error) {
+      console.error("画像の追加時にエラーが発生しました", error);
+      return { message: "画像の追加時にエラーが発生しました" };
+    }
+  }
+  console.log(ItineraryData);
   try {
     await prisma.itinerary.create({
-      data: {
-        date,
-        time,
-        name,
-        content,
-        hideContent,
-        user: { connect: { id: Number(userId) } },
-      },
+      data: ItineraryData,
     });
     revalidatePath("/travel_brochure/itinerary");
     return { message: "add" };
@@ -85,7 +142,11 @@ export const deleteItinerary = async (id: number) => {
   redirect("/travel_brochure/itinerary");
 };
 
-export const updateItinerary = async (id: number, state: FormState, data: FormData) => {
+export const updateItinerary = async (
+  id: number,
+  state: FormState,
+  data: FormData
+) => {
   const date = data.get("date") as string;
   const time = data.get("time") as string;
   const name = data.get("name") as string;

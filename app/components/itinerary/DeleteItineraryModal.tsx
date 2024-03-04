@@ -10,8 +10,8 @@ type Itinerary = {
   date: string;
   time: string;
   name: string;
-  content: string;
-  hideContent: string;
+  content: string | null;
+  hideContent: string | null;
   isShowContent: boolean;
 };
 

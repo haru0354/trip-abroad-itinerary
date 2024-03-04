@@ -98,6 +98,7 @@ export const addPost = async (state: FormState, data: FormData) => {
         return errors;
       }
 
+      
       const { fileUrl, fileName } = await FileSaveUtils(image);
       const createdImage = await prisma.postImage.create({
         data: {

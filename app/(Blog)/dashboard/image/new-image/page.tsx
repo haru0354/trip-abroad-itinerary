@@ -2,40 +2,8 @@
 
 import { addPostImage } from "@/app/action/action-postImage";
 import FormPostImage from "@/app/components/blog/(dashboard)/FormPostImage";
-import { useState } from "react";
 
 const page = () => {
-  const [image, setImage] = useState<{ preview: string; data: File | string }>({
-    preview: "",
-    data: "",
-  });
-  const [status, setStatus] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    let formData = new FormData();
-    formData.append("file", image.data);
-    const response = await fetch("http://localhost:5000/image", {
-      method: "POST",
-      body: formData,
-    });
-    if (response) setStatus(response.statusText);
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files ? e.target.files[0] : null;
-
-    if (selectedFile) {
-      const img = {
-        preview: URL.createObjectURL(selectedFile),
-        data: selectedFile,
-      };
-      setImage(img);
-    } else {
-      console.error("ファイルが選択されていません");
-      return;
-    }
-  };
 
   return (
     <>

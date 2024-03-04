@@ -16,7 +16,7 @@ type Category = {
   name: string;
   slug: string;
   content: string | null;
-  description: string;
+  description: string | null;
   title: string | null;
 };
 
@@ -32,8 +32,8 @@ type FormState = {
   errors?: {
     name?: string[] | undefined;
     slug?: string[] | undefined;
-    altText?: string[] | undefined;
     image?: string[] | undefined;
+    altText?: string[] | undefined;
   };
 };
 
@@ -44,7 +44,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
 }) => {
   const initialState = {
     message: null,
-    errors: { name: undefined, slug: undefined, altText: undefined, image: undefined  },
+    errors: { name: undefined, slug: undefined, altText: undefined, },
   };
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
@@ -83,8 +83,8 @@ const FormCategory: React.FC<FormCategoryProps> = ({
           placeholder={
             "カテゴリの説明(description)を入力してください。この項目は必須ではありません。"
           }
-          defaultValue={category?.description}
-        />
+          defaultValue={category?.description ?? ''}
+          />
         <p className="border-b my-5 pb-2 font-semibold">
           カテゴリを記事にする(カテゴリにコンテンツを表示)
         </p>

@@ -5,6 +5,7 @@ import HideContent from "./HideContent";
 import { faCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { faClock, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 
 type Itinerary = {
   date: string;
@@ -55,6 +56,16 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({ userId }) => {
               </div>
               <div className="w-full flex-1 ml-8 my-2 p-5 shadow flex flex-col bg-blue-50">
                 <div className="flex items-center justify-between mb-2">
+                  {itinerary &&
+                    itinerary.url &&
+                    itinerary.altText && (
+                      <Image
+                        src={itinerary.url}
+                        alt={itinerary.altText}
+                        width={250}
+                        height={250}
+                      />
+                    )}
                   <div className="flex items-center">
                     <FontAwesomeIcon
                       icon={faClock}

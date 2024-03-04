@@ -5,6 +5,9 @@ import { useState } from "react";
 type FormImageProps = {
   state?: State;
   selectImage?: PostImage | null;
+  altTextValue?: string;
+  imageValue?: string;
+  onChangeAltText?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 type State = {
@@ -16,11 +19,11 @@ type State = {
 };
 
 type PostImage = {
-  url: string;
-  altText: string;
+  url?: string | null;
+  altText?: string | null;
 };
 
-const FormImage: React.FC<FormImageProps> = ({ state, selectImage }) => {
+const FormImage: React.FC<FormImageProps> = ({ state, selectImage, altTextValue, imageValue, onChangeAltText}) => {
   const [error, setError] = useState<string>("");
   const [image, setImage] = useState<{ preview: string; data: File | string }>({
     preview: "",
@@ -75,7 +78,7 @@ const FormImage: React.FC<FormImageProps> = ({ state, selectImage }) => {
             </div>
           </>
         )}
-        {selectImage && (
+        {selectImage && selectImage.url && selectImage.altText &&(
           <div className="w-full">
             <p className="text-lg font-bold border-b pb-2 mb-6 bold text-gray-900">
               選択してる画像
@@ -107,10 +110,11 @@ const FormImage: React.FC<FormImageProps> = ({ state, selectImage }) => {
       <Form
         label="画像の名前(alt)"
         name="altText"
-        defaultValue={selectImage?.altText}
+        value={altTextValue}
         placeholder={
           "どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます"
         }
+        onChange={onChangeAltText}
       />
       {state?.errors && state.errors.altText && (
         <p className="text-red-500">{state.errors.altText}</p>

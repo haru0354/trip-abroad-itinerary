@@ -1,10 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import Form from "./Form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type FormImageProps = {
   state?: State;
   selectImage?: PostImage | null;
+  altTextValue?: string;
+  formSubmitted?: boolean;
+  onChangeAltText?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  label: string;
+  placeholder: string;
 };
 
 type State = {
@@ -16,16 +23,25 @@ type State = {
 };
 
 type PostImage = {
-  url: string;
-  altText: string;
+  url?: string | null;
+  altText?: string | null;
 };
 
-const FormImage: React.FC<FormImageProps> = ({ state, selectImage }) => {
-  const [error, setError] = useState<string>("");
-  const [image, setImage] = useState<{ preview: string; data: File | string }>({
+const FormImage: React.FC<FormImageProps> = ({
+  state,
+  selectImage,
+  altTextValue,
+  formSubmitted,
+  onChangeAltText,
+  label,
+  placeholder,
+}) => {
+  const [ error, setError ] = useState<string>("");
+  const [ image, setImage ] = useState<{ preview: string; data: File | string }>({
     preview: "",
     data: "",
   });
+  const [ fileInputKey, setFileInputKey ] = useState(Date.now());
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const imageTypes = ["image/jpeg", "image/png", "image/gif"];
@@ -57,6 +73,11 @@ const FormImage: React.FC<FormImageProps> = ({ state, selectImage }) => {
     }
   };
 
+  useEffect(() => {
+    setImage({ preview: "", data: "" });
+    setFileInputKey(Date.now());
+  }, [formSubmitted]);
+
   return (
     <>
       <div className="flex mx-auto">
@@ -75,7 +96,7 @@ const FormImage: React.FC<FormImageProps> = ({ state, selectImage }) => {
             </div>
           </>
         )}
-        {selectImage && (
+        {selectImage && selectImage.url && selectImage.altText && (
           <div className="w-full">
             <p className="text-lg font-bold border-b pb-2 mb-6 bold text-gray-900">
               選択してる画像
@@ -93,24 +114,23 @@ const FormImage: React.FC<FormImageProps> = ({ state, selectImage }) => {
           </div>
         )}
       </div>
-      {state?.message && <p className="text-red-500">{state.message}</p>}
       <Form
         name="image"
         label="画像を選択"
         type="file"
         onChange={handleFileChange}
+        key={fileInputKey}
       />
       {error && <p className="text-red-500">{error}</p>}
       {state?.errors && state.errors.image && (
         <p className="text-red-500">{state.errors.image}</p>
       )}
       <Form
-        label="画像の名前(alt)"
+        label={label}
         name="altText"
-        defaultValue={selectImage?.altText}
-        placeholder={
-          "どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます"
-        }
+        value={altTextValue}
+        placeholder={placeholder}
+        onChange={onChangeAltText}
       />
       {state?.errors && state.errors.altText && (
         <p className="text-red-500">{state.errors.altText}</p>

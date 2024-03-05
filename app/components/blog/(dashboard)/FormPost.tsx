@@ -121,7 +121,12 @@ const FormPost: React.FC<FormPostProps> = ({
         {state.errors && state.errors.description && (
           <p className="text-red-500">{state.errors.description}</p>
         )}
-        <FormImage selectImage={post?.postImage} state={state} />
+        <FormImage
+          selectImage={post?.postImage}
+          state={state}
+          label="画像の名前(alt)"
+          placeholder="どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます"
+        />
         <Button className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
           {buttonName}
         </Button>

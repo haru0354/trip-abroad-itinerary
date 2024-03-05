@@ -42,7 +42,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
     formAction,
     initialState
   );
-  const [errorMessage, setErrorMessage] = useState<string | undefined>();
+  const [errorMessage, setErrorMessage] = useState<FormState>();
 
   const [inputValue, setInputValue] = useState<string>(memo?.name || "");
   const [textAreaValue, setTextareaChange] = useState<string>(
@@ -61,19 +61,19 @@ const FormMemo: React.FC<FormMemoProps> = ({
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const result = await formAction(state, formData);
-    if ("message" in result) {
-      if (result.message === "add") {
+    switch (result.message) {
+      case "add":
         setInputValue("");
         setTextareaChange("");
         toast.success("メモを保存しました！");
-      } else if (result.message === "edit") {
+        break;
+      case "edit":
         toast.success("メモを編集しました！");
         router.replace("/travel_brochure/memo");
-      } else if (result.message === "failure") {
-        if (result.errors && result.errors.name) {
-          setErrorMessage(result.errors.name[0]);
-        }
-      }
+        break;
+      default:
+        setErrorMessage(result);
+        break;
     }
   };
 
@@ -82,7 +82,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
       <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
         メモの追加
       </h2>
-      <form action={dispatch} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <Form
           label={"メモの見出し"}
           name={"name"}
@@ -90,7 +90,9 @@ const FormMemo: React.FC<FormMemoProps> = ({
           value={inputValue}
           onChange={handleInputChange}
         />
-        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+        {errorMessage && errorMessage.errors && errorMessage.errors.name && (
+          <p className="text-red-500">{errorMessage.errors.name}</p>
+        )}
         <TextArea
           label={"メモする内容"}
           name={"content"}
@@ -99,6 +101,9 @@ const FormMemo: React.FC<FormMemoProps> = ({
           onChange={handleTextareaChange}
         />
         <input type="hidden" name="userId" value={userId} />
+        {errorMessage && errorMessage.message !== "failure" && (
+          <p className="text-red-500">{errorMessage.message}</p>
+        )}
         <Button className="btn blue">{buttonName}</Button>
       </form>
     </div>

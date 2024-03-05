@@ -49,8 +49,8 @@ export const addMemo = async (state: FormState, data: FormData) => {
     });
     revalidatePath("/travel_brochure/memo");
     return { message: "add" };
-  } catch {
-    console.error("メモを追加する際にエラーが発生しました");
+  } catch (error) {
+    console.error("メモを追加する際にエラーが発生しました:", error);
     return { message: "メモを追加する際にエラーが発生しました" };
   }
 };
@@ -101,8 +101,8 @@ export const updateMemo = async (id: number, state: FormState, data: FormData) =
     });
     revalidatePath("/travel_brochure/memo");
     return { message: "edit" };
-  } catch {
-    console.error("メモを編集する際にエラーが発生しました");
+  } catch (error) {
+    console.error("メモを編集する際にエラーが発生しました:", error);
     return { message: "メモを編集する際にエラーが発生しました" };
   }
 };

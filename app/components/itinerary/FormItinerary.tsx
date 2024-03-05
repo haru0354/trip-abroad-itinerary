@@ -9,6 +9,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+import FormImage from "../ui/FormImage";
 
 type FormItineraryProps = {
   itinerary?: Itinerary | null;
@@ -22,9 +23,11 @@ type Itinerary = {
   date: string;
   time: string;
   name: string;
-  content: string;
-  hideContent: string;
+  content?: string | null;
+  hideContent?: string | null;
   isShowContent: boolean;
+  url?: string | null;
+  altText?: string | null;
 };
 
 type FormState = {
@@ -33,9 +36,8 @@ type FormState = {
     date?: string[] | undefined;
     time?: string[] | undefined;
     name?: string[] | undefined;
-    content?: string[] | undefined;
-    hideContent?: string[] | undefined;
-    userId?: string[] | undefined;
+    altText?: string[] | undefined;
+    image?: string[] | undefined;
   };
 };
 
@@ -46,20 +48,20 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   userId,
 }) => {
   const router = useRouter();
-  const initialState = { message: null, errors: { name: undefined } };
+  const initialState = {
+    message: null,
+    errors: {
+      date: undefined,
+      time: undefined,
+      name: undefined,
+      altText: undefined,
+    },
+  };
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
     initialState
   );
-  const [dateErrorMessage, setDateErrorMessage] = useState<
-    string | undefined
-  >();
-  const [timeErrorMessage, setTimeErrorMessage] = useState<
-    string | undefined
-  >();
-  const [nameErrorMessage, setNameErrorMessage] = useState<
-    string | undefined
-  >();
+  const [errorMessage, setErrorMessage] = useState<FormState>();
 
   const [dateValue, setDateValue] = useState<string>(itinerary?.date || "");
   const [timeValue, setTimeValue] = useState<string>(itinerary?.time || "");
@@ -70,6 +72,11 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   const [hideTextAreaValue, setHideTextAreaValue] = useState<string>(
     itinerary?.hideContent || ""
   );
+  const [altTextValue, setAltTextValue] = useState<string>(
+    itinerary?.altText || ""
+  );
+ 
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDateValue(e.target.value);
@@ -93,34 +100,32 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     setHideTextAreaValue(e.target.value);
   };
 
+  const handleAltTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAltTextValue(e.target.value);
+  };
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const result = await formAction(state, formData);
-    if ("message" in result) {
-      if (result.message === "add") {
+    switch (result.message) {
+      case "add":
         setDateValue("");
         setTimeValue("");
         setInputValue("");
         setTextAreaValue("");
-        setHideTextAreaValue("");
+        setHideTextAreaValue(""); 
+        setAltTextValue("");
+        setFormSubmitted((prev) => !prev);
         toast.success("旅程を保存しました！");
-      } else if (result.message === "edit") {
+        break;
+      case "edit":
         toast.success("旅程を編集しました！");
         router.replace("/travel_brochure/itinerary");
-      } else if (result.message === "failure") {
-        if (result.errors) {
-          if (result.errors.date) {
-            setDateErrorMessage(result.errors.date[0]);
-          }
-          if (result.errors.time) {
-            setTimeErrorMessage(result.errors.time[0]);
-          }
-          if (result.errors.name) {
-            setNameErrorMessage(result.errors.name[0]);
-          }
-        }
-      }
+        break;
+      default:
+        setErrorMessage(result);
+        break;
     }
   };
 
@@ -129,23 +134,29 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
       <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
         旅程の追加
       </h2>
-      <form action={dispatch} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <Date name={"date"} value={dateValue} onChange={handleDateChange} />
-        {dateErrorMessage && <p className="text-red-500">{dateErrorMessage}</p>}
+        {errorMessage && errorMessage.errors && errorMessage.errors.date && (
+          <p className="text-red-500">{errorMessage.errors.date}</p>
+        )}
         <Time value={timeValue} onChange={handleTimeChange} />
-        {timeErrorMessage && <p className="text-red-500">{timeErrorMessage}</p>}
+        {errorMessage && errorMessage.errors && errorMessage.errors.time && (
+          <p className="text-red-500">{errorMessage.errors.time}</p>
+        )}
         <Form
-          label={"目的"}
-          placeholder={"飛行機・食事・観光など"}
+          label={"目的（何をするのか）"}
+          placeholder={"移動・食事・観光など"}
           name={"name"}
           value={inputValue}
           onChange={handleInputChange}
         />
-        {nameErrorMessage && <p className="text-red-500">{nameErrorMessage}</p>}
+        {errorMessage && errorMessage.errors && errorMessage.errors.name && (
+          <p className="text-red-500">{errorMessage.errors.name}</p>
+        )}
         <TextArea
           label={"補足情報"}
           placeholder={
-            "観光地なら服装の注意。料理ならおすすめの料理などメモを記載しましょう。"
+            "観光地なら服装の注意。レストランなら食べる予定の料理名などメモを記載しましょう。"
           }
           name={"content"}
           value={TextAreaValue}
@@ -154,13 +165,25 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         <TextArea
           label={"補足情報2"}
           placeholder={
-            "ここに記載したのは最初は非常時でボタンをクリックで表示されます。旅程表とは関係のない観光地の情報や乗り換え方法など記載しましょう。"
+            "ここに記載したのはボタンをクリックで表示されます。旅程表とは関係のない観光地の情報や乗り換え方法など記載しましょう。"
           }
           name={"hideContent"}
           value={hideTextAreaValue}
           onChange={handleHideTextareaChange}
         />
+        <FormImage
+          state={errorMessage}
+          selectImage={itinerary}
+          formSubmitted={formSubmitted}
+          altTextValue={altTextValue}
+          onChangeAltText={handleAltTextChange}
+          label="画像の名前(何の画像)"
+          placeholder="例)観光地の写真⇒観光地名を入力、料理の写真⇒料理名を入力" 
+        />
         <input type="hidden" name="userId" value={userId} />
+        {errorMessage && errorMessage.message !== "failure" && (
+          <p className="text-red-500">{errorMessage.message}</p>
+        )}
         <Button className="btn blue">{buttonName}</Button>
       </form>
     </div>

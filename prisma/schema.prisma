@@ -22,7 +22,6 @@ model User {
   accounts            Account[]
   memos               Memo[]
   itineraries         Itinerary[]
-  userImages          UserImage[]
 }
 
 model Account {
@@ -50,7 +49,6 @@ model Memo {
   isCompleted         Boolean @default(false)
   user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
   userId              Int
-  userImage           UserImage[]
 }
 
 model Itinerary {
@@ -58,22 +56,14 @@ model Itinerary {
   date                String
   time                String
   name                String
-  content             String
-  hideContent         String
+  content             String?
+  hideContent         String?
   isShowContent       Boolean @default(false)
   user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
   userId              Int
-  ItineraryImages     ItineraryImage[]
-  userImageId         Int?
-}
-
-model ItineraryImage {
-  id                  Int      @id @default(autoincrement())
-  name                String
-  url                 String
-  altText             String
-  itineraries         Itinerary @relation(fields: [itineraryId], references: [id], onDelete: Cascade)
-  itineraryId         Int
+  imageName           String?
+  url                 String?
+  altText             String?
 }
 
 model Post {

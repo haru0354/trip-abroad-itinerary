@@ -9,8 +9,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type Itinerary = {
-  hideContent: string;
-  isShowContent: boolean;
+  hideContent: string | null;
+  isShowContent: boolean | null;
 };
 
 type HideContentProps = {

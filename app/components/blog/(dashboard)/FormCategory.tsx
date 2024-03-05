@@ -16,7 +16,7 @@ type Category = {
   name: string;
   slug: string;
   content: string | null;
-  description: string;
+  description: string | null;
   title: string | null;
 };
 
@@ -32,8 +32,8 @@ type FormState = {
   errors?: {
     name?: string[] | undefined;
     slug?: string[] | undefined;
-    altText?: string[] | undefined;
     image?: string[] | undefined;
+    altText?: string[] | undefined;
   };
 };
 
@@ -44,7 +44,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
 }) => {
   const initialState = {
     message: null,
-    errors: { name: undefined, slug: undefined, altText: undefined, image: undefined  },
+    errors: { name: undefined, slug: undefined, altText: undefined, },
   };
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
@@ -83,8 +83,8 @@ const FormCategory: React.FC<FormCategoryProps> = ({
           placeholder={
             "カテゴリの説明(description)を入力してください。この項目は必須ではありません。"
           }
-          defaultValue={category?.description}
-        />
+          defaultValue={category?.description ?? ''}
+          />
         <p className="border-b my-5 pb-2 font-semibold">
           カテゴリを記事にする(カテゴリにコンテンツを表示)
         </p>
@@ -104,7 +104,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
           }
           defaultValue={category?.content || undefined}
         />
-        <FormImage  selectImage={category?.postImage} state={state}/>
+        <FormImage  selectImage={category?.postImage} state={state} label="画像の名前(alt)" placeholder="どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます" />
         <Button className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
           {buttonName}
         </Button>

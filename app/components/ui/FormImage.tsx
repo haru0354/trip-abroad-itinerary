@@ -96,7 +96,6 @@ const FormImage: React.FC<FormImageProps> = ({ state, selectImage, altTextValue,
           </div>
         )}
       </div>
-      {state?.message && <p className="text-red-500">{state.message}</p>}
       <Form
         name="image"
         label="画像を選択"

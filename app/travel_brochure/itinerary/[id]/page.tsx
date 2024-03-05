@@ -2,6 +2,7 @@ import prisma from "@/app/components/lib/prisma";
 import { updateItinerary } from "@/app/action/action-itinerary";
 import FormItinerary from "@/app/components/itinerary/FormItinerary";
 import DeleteItineraryModal from "@/app/components/itinerary/DeleteItineraryModal";
+import getCurrentUser from "@/app/action/getCurrentUser";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -18,6 +19,9 @@ const page = async ({ params }: { params: { id: string } }) => {
       id,
     },
   });
+  const currentUser = await getCurrentUser();
+  const userId = currentUser?.id;
+
 
   return (
     <main>
@@ -28,6 +32,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               itinerary={itinerary}
               formAction={updateItineraryWithId}
               buttonName={"保存"}
+              userId={userId}
             />
           </div>
           <div>

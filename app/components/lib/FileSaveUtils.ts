@@ -31,8 +31,8 @@ export const FileSaveItineraryUtils = async (image: File, userId: string) => {
     await mkdir(directory, { recursive: true });
     await writeFile(path, buffer);
     const fileUrl = `/itinerary/${userId}/${fileName}`;
-    return { fileUrl, fileName };    
     console.log("画像の保存に成功しました。");
+    return { fileUrl, fileName };    
   } catch (error) {
     console.error("画像を保存時にエラーが発生しました", error);
     throw error;

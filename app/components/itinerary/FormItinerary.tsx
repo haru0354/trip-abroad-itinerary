@@ -171,7 +171,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
           onChange={handleHideTextareaChange}
         />
         <FormImage
-          state={state}
+          state={errorMessage}
           selectImage={itinerary}
           altTextValue={altTextValue}
           onChangeAltText={handleAltTextChange}

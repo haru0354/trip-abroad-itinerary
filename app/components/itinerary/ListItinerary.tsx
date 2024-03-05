@@ -1,4 +1,3 @@
-import prisma from "../lib/prisma";
 import Button from "../ui/Button";
 import Link from "next/link";
 import HideContent from "./HideContent";
@@ -7,36 +6,38 @@ import { faClock, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 
-type Itinerary = {
+type ListItineraryProps = {
+  itineraryHomeId: number | undefined;
+  itineraries: Itineraries[] | undefined;
+};
+
+type Itineraries = {
+  id: number;
   date: string;
   time: string;
-};
+  name: string;
+  content: string | null;
+  hideContent: string | null;
+  isShowContent: boolean | null;
+  url: string | null;
+  altText: string | null;
+}
 
-type ListItineraryProps = {
-  userId: number | undefined;
-};
-
-const ListItinerary: React.FC<ListItineraryProps> = async ({ userId }) => {
-  const itinerary = await prisma.itinerary.findMany({
-    where: {
-      userId,
-    },
-  });
-
-  const sortItineraryByDateTime = (a: Itinerary, b: Itinerary) =>
+const ListItinerary: React.FC<ListItineraryProps> = async ({ itineraryHomeId, itineraries }) => {
+  const sortItineraryByDateTime = (a: Itineraries, b: Itineraries) =>
     new Date(a.date + " " + a.time).getTime() -
     new Date(b.date + " " + b.time).getTime();
 
-  const sortedItinerary = itinerary.sort(sortItineraryByDateTime);
+  const sortedItineraries = itineraries?.sort(sortItineraryByDateTime);
 
   return (
     <div>
       <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-2 p-5">
         旅程表
       </h2>
-      {sortedItinerary.map((itinerary, index) => {
+      {sortedItineraries?.map((itinerary, index) => {
         const isFirstItem =
-          index === 0 || itinerary.date !== sortedItinerary[index - 1].date;
+          index === 0 || itinerary.date !== sortedItineraries[index - 1].date;
         return (
           <div key={itinerary.id}>
             {isFirstItem && (
@@ -75,7 +76,7 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({ userId }) => {
                       {itinerary.time}
                     </p>
                   </div>
-                  <Link href={`/travel_brochure/itinerary/${itinerary.id}`}>
+                  <Link href={`/travel_brochure/${itineraryHomeId}/itinerary/${itinerary.id}`}>
                     <Button className="btn-small">
                       <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
                       編集

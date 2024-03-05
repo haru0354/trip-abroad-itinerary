@@ -17,9 +17,15 @@ type Itinerary = {
 
 type DeleteModalProps = {
   itinerary?: Itinerary | null;
+  itineraryHomeId?: number | undefined;
+  userId?: number | undefined;
 };
 
-const DeleteItineraryModal: React.FC<DeleteModalProps> = ({ itinerary }) => {
+const DeleteItineraryModal: React.FC<DeleteModalProps> = ({
+  itinerary,
+  itineraryHomeId,
+  userId,
+}) => {
   if (!itinerary) {
     return <p>削除対象の旅程がありません。</p>;
   }
@@ -36,8 +42,8 @@ const DeleteItineraryModal: React.FC<DeleteModalProps> = ({ itinerary }) => {
   };
 
   const deleteToast = () => {
-    toast.success("旅程を削除しました！")
-  }
+    toast.success("旅程を削除しました！");
+  };
 
   return (
     <div>
@@ -71,6 +77,12 @@ const DeleteItineraryModal: React.FC<DeleteModalProps> = ({ itinerary }) => {
                 キャンセル
               </Button>
               <form onSubmit={deleteToast}>
+                <input
+                  type="hidden"
+                  name="itineraryHomeId"
+                  value={itineraryHomeId}
+                />
+                <input type="hidden" name="userId" value={userId} />
                 <Button formAction={deleteItineraryWithId} className="btn red ">
                   削除
                 </Button>

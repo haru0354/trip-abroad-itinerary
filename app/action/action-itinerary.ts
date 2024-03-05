@@ -9,6 +9,9 @@ import {
   FileSaveUtils,
 } from "../components/lib/FileSaveUtils";
 import { validateFile } from "../components/lib/ValidateFile ";
+import { promises as fsPromises } from "fs";
+
+const { unlink } = fsPromises;
 
 type FormState = {
   message?: string | null;
@@ -104,7 +107,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
       }
 
       const { fileUrl, fileName } = await FileSaveItineraryUtils(image, userId);
-      
+
       ItineraryData.url = fileUrl;
       ItineraryData.imageName = fileName;
       ItineraryData.altText = altText;
@@ -130,11 +133,25 @@ export const addItinerary = async (state: FormState, data: FormData) => {
 
 export const deleteItinerary = async (id: number) => {
   try {
+    const itinerary = await prisma.itinerary.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!itinerary) {
+      console.error("指定した旅程が見つかりませんでした。");
+      return;
+    }
+
     await prisma.itinerary.delete({
       where: {
         id,
       },
     });
+
+    await unlink(`./public/${itinerary?.url}`);
+    console.log("旅程と画像を削除しました。");
   } catch (error) {
     console.error("旅程の削除中にエラーが発生しました:", error);
     return { message: "旅程の削除中にエラーが発生しました" };

@@ -75,8 +75,8 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   const [altTextValue, setAltTextValue] = useState<string>(
     itinerary?.altText || ""
   );
-
-  const [selectedFile, setSelectedFile] = useState("");
+ 
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDateValue(e.target.value);
@@ -103,7 +103,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   const handleAltTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAltTextValue(e.target.value);
   };
-
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -114,8 +114,9 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         setTimeValue("");
         setInputValue("");
         setTextAreaValue("");
-        setHideTextAreaValue("");
-        setSelectedFile("");
+        setHideTextAreaValue(""); 
+        setAltTextValue("");
+        setFormSubmitted((prev) => !prev);
         toast.success("旅程を保存しました！");
         break;
       case "edit":
@@ -173,6 +174,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         <FormImage
           state={errorMessage}
           selectImage={itinerary}
+          formSubmitted={formSubmitted}
           altTextValue={altTextValue}
           onChangeAltText={handleAltTextChange}
           label="画像の名前(何の画像)"

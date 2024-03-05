@@ -1,12 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Form from "./Form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type FormImageProps = {
   state?: State;
   selectImage?: PostImage | null;
   altTextValue?: string;
-  imageValue?: string;
+  formSubmitted?: boolean;
   onChangeAltText?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   label: string;
   placeholder: string;
@@ -25,12 +27,21 @@ type PostImage = {
   altText?: string | null;
 };
 
-const FormImage: React.FC<FormImageProps> = ({ state, selectImage, altTextValue, imageValue, onChangeAltText, label, placeholder }) => {
-  const [error, setError] = useState<string>("");
-  const [image, setImage] = useState<{ preview: string; data: File | string }>({
+const FormImage: React.FC<FormImageProps> = ({
+  state,
+  selectImage,
+  altTextValue,
+  formSubmitted,
+  onChangeAltText,
+  label,
+  placeholder,
+}) => {
+  const [ error, setError ] = useState<string>("");
+  const [ image, setImage ] = useState<{ preview: string; data: File | string }>({
     preview: "",
     data: "",
   });
+  const [ fileInputKey, setFileInputKey ] = useState(Date.now());
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const imageTypes = ["image/jpeg", "image/png", "image/gif"];
@@ -62,6 +73,11 @@ const FormImage: React.FC<FormImageProps> = ({ state, selectImage, altTextValue,
     }
   };
 
+  useEffect(() => {
+    setImage({ preview: "", data: "" });
+    setFileInputKey(Date.now());
+  }, [formSubmitted]);
+
   return (
     <>
       <div className="flex mx-auto">
@@ -80,7 +96,7 @@ const FormImage: React.FC<FormImageProps> = ({ state, selectImage, altTextValue,
             </div>
           </>
         )}
-        {selectImage && selectImage.url && selectImage.altText &&(
+        {selectImage && selectImage.url && selectImage.altText && (
           <div className="w-full">
             <p className="text-lg font-bold border-b pb-2 mb-6 bold text-gray-900">
               選択してる画像
@@ -103,6 +119,7 @@ const FormImage: React.FC<FormImageProps> = ({ state, selectImage, altTextValue,
         label="画像を選択"
         type="file"
         onChange={handleFileChange}
+        key={fileInputKey}
       />
       {error && <p className="text-red-500">{error}</p>}
       {state?.errors && state.errors.image && (

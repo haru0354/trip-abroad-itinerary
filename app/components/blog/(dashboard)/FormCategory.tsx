@@ -104,7 +104,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
           }
           defaultValue={category?.content || undefined}
         />
-        <FormImage  selectImage={category?.postImage} state={state}/>
+        <FormImage  selectImage={category?.postImage} state={state} label="画像の名前(alt)" placeholder="どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます" />
         <Button className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
           {buttonName}
         </Button>

@@ -72,7 +72,9 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   const [hideTextAreaValue, setHideTextAreaValue] = useState<string>(
     itinerary?.hideContent || ""
   );
-  const [altTextValue, setAltTextValue] = useState<string>(itinerary?.altText || "");
+  const [altTextValue, setAltTextValue] = useState<string>(
+    itinerary?.altText || ""
+  );
 
   const [selectedFile, setSelectedFile] = useState("");
 
@@ -92,7 +94,6 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     setTextAreaValue(e.target.value);
   };
 
-
   const handleHideTextareaChange = (
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
@@ -102,7 +103,6 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   const handleAltTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAltTextValue(e.target.value);
   };
-
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -155,7 +155,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         <TextArea
           label={"補足情報"}
           placeholder={
-            "観光地なら服装の注意。料理ならおすすめの料理などメモを記載しましょう。"
+            "観光地なら服装の注意。レストランなら食べる予定の料理名などメモを記載しましょう。"
           }
           name={"content"}
           value={TextAreaValue}
@@ -164,7 +164,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         <TextArea
           label={"補足情報2"}
           placeholder={
-            "ここに記載したのは最初は非常時でボタンをクリックで表示されます。旅程表とは関係のない観光地の情報や乗り換え方法など記載しましょう。"
+            "ここに記載したのはボタンをクリックで表示されます。旅程表とは関係のない観光地の情報や乗り換え方法など記載しましょう。"
           }
           name={"hideContent"}
           value={hideTextAreaValue}
@@ -175,6 +175,8 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
           selectImage={itinerary}
           altTextValue={altTextValue}
           onChangeAltText={handleAltTextChange}
+          label="画像の名前(何の画像)"
+          placeholder="例)観光地の写真⇒観光地名を入力、料理の写真⇒料理名を入力" 
         />
         <input type="hidden" name="userId" value={userId} />
         {errorMessage && errorMessage.message !== "failure" && (

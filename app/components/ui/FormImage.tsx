@@ -8,6 +8,8 @@ type FormImageProps = {
   altTextValue?: string;
   imageValue?: string;
   onChangeAltText?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  label: string;
+  placeholder: string;
 };
 
 type State = {
@@ -23,7 +25,7 @@ type PostImage = {
   altText?: string | null;
 };
 
-const FormImage: React.FC<FormImageProps> = ({ state, selectImage, altTextValue, imageValue, onChangeAltText}) => {
+const FormImage: React.FC<FormImageProps> = ({ state, selectImage, altTextValue, imageValue, onChangeAltText, label, placeholder }) => {
   const [error, setError] = useState<string>("");
   const [image, setImage] = useState<{ preview: string; data: File | string }>({
     preview: "",
@@ -107,12 +109,10 @@ const FormImage: React.FC<FormImageProps> = ({ state, selectImage, altTextValue,
         <p className="text-red-500">{state.errors.image}</p>
       )}
       <Form
-        label="画像の名前(alt)"
+        label={label}
         name="altText"
         value={altTextValue}
-        placeholder={
-          "どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます"
-        }
+        placeholder={placeholder}
         onChange={onChangeAltText}
       />
       {state?.errors && state.errors.altText && (

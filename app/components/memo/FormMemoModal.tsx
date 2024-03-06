@@ -8,17 +8,18 @@ import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 
+type FormMemoProps = {
+  memos?: Memo[] | undefined | null;
+  memo?: Memo | null;
+  buttonName: string;
+  formAction: (state: FormState, data: FormData) => Promise<FormState>;
+  itineraryHomeId?: number | undefined;
+};
+
 type Memo = {
   id: number;
   name: string;
   content: string;
-};
-
-type FormMemoProps = {
-  memo?: Memo | null;
-  buttonName: string;
-  userId?: number | undefined;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
 };
 
 type FormState = {
@@ -34,16 +35,9 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
   memo,
   buttonName,
   formAction,
-  userId,
+  itineraryHomeId,
 }) => {
   const router = useRouter();
-  const initialState = { message: null, errors: { name: undefined } };
-  const [state, dispatch] = useFormState<FormState, FormData>(
-    formAction,
-    initialState
-  );
-  const [errorMessage, setErrorMessage] = useState<string | undefined>();
-
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
   const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -51,6 +45,13 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
       toggleDeleteModal();
     }
   };
+
+  const initialState = { message: null, errors: { name: undefined } };
+  const [state, dispatch] = useFormState<FormState, FormData>(
+    formAction,
+    initialState
+  );
+  const [errorMessage, setErrorMessage] = useState<FormState>();
 
   const [inputValue, setInputValue] = useState<string>(memo?.name || "");
   const [textAreaValue, setTextareaChange] = useState<string>(
@@ -69,20 +70,20 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const result = await formAction(state, formData);
-    if ("message" in result) {
-      if (result.message === "add") {
+    switch (result.message) {
+      case "add":
         setInputValue("");
         setTextareaChange("");
         toast.success("メモを保存しました！");
         toggleDeleteModal();
-      } else if (result.message === "edit") {
+        break;
+      case "edit":
         toast.success("メモを編集しました！");
-        router.replace("/travel_brochure/memo");
-      } else if (result.message === "failure") {
-        if (result.errors && result.errors.name) {
-          setErrorMessage(result.errors.name[0]);
-        }
-      }
+        router.replace(`/travel_brochure/${itineraryHomeId}/memo`);
+        break;
+      default:
+        setErrorMessage(result);
+        break;
     }
   };
 
@@ -90,7 +91,7 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
     <div>
       <div className="flex justify-center items-center">
         {isDeleteModalOpen || (
-          <Button onClick={toggleDeleteModal} className="btn blue">
+          <Button onClick={toggleDeleteModal} className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
             旅程を追加する
           </Button>
         )}
@@ -100,26 +101,44 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
           className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
           onClick={closeModal}
         >
-          <div className="bg-white">
-            <form action={dispatch} onSubmit={handleSubmit}>
-              <Form
-                label={"メモの見出し"}
-                name={"name"}
-                placeholder="メモの見出しを記載しましょう。"
-                value={inputValue}
-                onChange={handleInputChange}
-              />
-              {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-              <TextArea
-                label={"メモする内容"}
-                name={"content"}
-                placeholder="メモする内容を記載しましょう。"
-                value={textAreaValue}
-                onChange={handleTextareaChange}
-              />
-              <input type="hidden" name="userId" value={userId} />
-              <Button className="btn blue">{buttonName}</Button>
-            </form>
+          <div className="flex items-center justify-center w-[620px]">
+            <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px]">
+              <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-bold">
+                メモのフォーム
+              </p>
+              <form onSubmit={handleSubmit} className="w-full py-3">
+                <Form
+                  label={"メモの見出し"}
+                  name={"name"}
+                  placeholder="メモの見出しを記載しましょう。"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                />
+                {errorMessage &&
+                  errorMessage.errors &&
+                  errorMessage.errors.name && (
+                    <p className="text-red-500">{errorMessage.errors.name}</p>
+                  )}
+                <TextArea
+                  label={"メモする内容"}
+                  name={"content"}
+                  placeholder="メモする内容を記載しましょう。"
+                  value={textAreaValue}
+                  onChange={handleTextareaChange}
+                />
+                <input
+                  type="hidden"
+                  name="itineraryHomeId"
+                  value={itineraryHomeId}
+                />
+                {errorMessage && errorMessage.message !== "failure" && (
+                  <p className="text-red-500">{errorMessage.message}</p>
+                )}
+                <Button className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
+                  {buttonName}
+                </Button>
+              </form>
+            </div>
           </div>
         </div>
       )}

@@ -136,59 +136,77 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
       <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
         旅程の追加
       </h2>
-      <form onSubmit={handleSubmit}>
-        <Date name={"date"} value={dateValue} onChange={handleDateChange} />
-        {errorMessage && errorMessage.errors && errorMessage.errors.date && (
-          <p className="text-red-500">{errorMessage.errors.date}</p>
-        )}
-        <Time value={timeValue} onChange={handleTimeChange} />
-        {errorMessage && errorMessage.errors && errorMessage.errors.time && (
-          <p className="text-red-500">{errorMessage.errors.time}</p>
-        )}
-        <Form
-          label={"目的（何をするのか）"}
-          placeholder={"移動・食事・観光など"}
-          name={"name"}
-          value={inputValue}
-          onChange={handleInputChange}
-        />
-        {errorMessage && errorMessage.errors && errorMessage.errors.name && (
-          <p className="text-red-500">{errorMessage.errors.name}</p>
-        )}
-        <TextArea
-          label={"補足情報"}
-          placeholder={
-            "観光地なら服装の注意。レストランなら食べる予定の料理名などメモを記載しましょう。"
-          }
-          name={"content"}
-          value={TextAreaValue}
-          onChange={handleTextareaChange}
-        />
-        <TextArea
-          label={"補足情報2"}
-          placeholder={
-            "ここに記載したのはボタンをクリックで表示されます。旅程表とは関係のない観光地の情報や乗り換え方法など記載しましょう。"
-          }
-          name={"hideContent"}
-          value={hideTextAreaValue}
-          onChange={handleHideTextareaChange}
-        />
-        <FormImage
-          state={errorMessage}
-          selectImage={itinerary}
-          formSubmitted={formSubmitted}
-          altTextValue={altTextValue}
-          onChangeAltText={handleAltTextChange}
-          label="画像の名前(何の画像)"
-          placeholder="例)観光地の写真⇒観光地名を入力、料理の写真⇒料理名を入力"
-        />
-        <input type="hidden" name="userId" value={userId} />
-        <input type="hidden" name="itineraryHomeId" value={itineraryHomeId} />
-        {errorMessage && errorMessage.message !== "failure" && (
-          <p className="text-red-500">{errorMessage.message}</p>
-        )}
-        <Button className="btn blue">{buttonName}</Button>
-      </form>
+
+      <div className="flex items-center justify-center">
+        <div className="w-full border py-4 px-6 border-gray-300 rounded bg-white max-w-[620px]">
+          <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-bold">
+            旅程表のフォーム
+          </p>
+          <form onSubmit={handleSubmit} className="w-full py-3">
+            <Date name={"date"} value={dateValue} onChange={handleDateChange} />
+            {errorMessage &&
+              errorMessage.errors &&
+              errorMessage.errors.date && (
+                <p className="text-red-500">{errorMessage.errors.date}</p>
+              )}
+            <Time value={timeValue} onChange={handleTimeChange} />
+            {errorMessage &&
+              errorMessage.errors &&
+              errorMessage.errors.time && (
+                <p className="text-red-500">{errorMessage.errors.time}</p>
+              )}
+            <Form
+              label={"目的（何をするのか）"}
+              placeholder={"移動・食事・観光など"}
+              name={"name"}
+              value={inputValue}
+              onChange={handleInputChange}
+            />
+            {errorMessage &&
+              errorMessage.errors &&
+              errorMessage.errors.name && (
+                <p className="text-red-500">{errorMessage.errors.name}</p>
+              )}
+            <TextArea
+              label={"補足情報"}
+              placeholder={
+                "観光地なら服装の注意。レストランなら食べる予定の料理名などメモを記載しましょう。"
+              }
+              name={"content"}
+              value={TextAreaValue}
+              onChange={handleTextareaChange}
+            />
+            <TextArea
+              label={"補足情報2"}
+              placeholder={
+                "ここに記載したのはボタンをクリックで表示されます。旅程表とは関係のない観光地の情報や乗り換え方法など記載しましょう。"
+              }
+              name={"hideContent"}
+              value={hideTextAreaValue}
+              onChange={handleHideTextareaChange}
+            />
+            <FormImage
+              state={errorMessage}
+              selectImage={itinerary}
+              formSubmitted={formSubmitted}
+              altTextValue={altTextValue}
+              onChangeAltText={handleAltTextChange}
+              label="画像の名前(何の画像)"
+              placeholder="例)観光地の写真⇒観光地名を入力、料理の写真⇒料理名を入力"
+            />
+            <input type="hidden" name="userId" value={userId} />
+            <input
+              type="hidden"
+              name="itineraryHomeId"
+              value={itineraryHomeId}
+            />
+            {errorMessage && errorMessage.message !== "failure" && (
+              <p className="text-red-500">{errorMessage.message}</p>
+            )}
+            <Button className="btn blue">{buttonName}</Button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

@@ -95,45 +95,57 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
 
   return (
     <div>
+      <h2 className="text-center font-semibold text-xl text-gray-600 mt-4 py-2 border-b border-sky-700">
+        {itineraryHome?.name}
+      </h2>
       <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
         旅行の追加
       </h2>
-      <form onSubmit={handleSubmit}>
-        <Date
-          name="startDate"
-          label="出発日"
-          onChange={handleStartDateChange}
-          value={startDateValue}
-        />
-        <Date
-          name="endDate"
-          label="帰宅日"
-          onChange={handleEndDateChange}
-          value={endDateValue}
-        />
-        <Form
-          label="旅行タイトル"
-          name="name"
-          placeholder="旅行タイトルを入力しましょう"
-          onChange={handleNameChange}
-          value={nameValue}
-        />
-        {errorMessage && errorMessage.errors && errorMessage.errors.name && (
-          <p className="text-red-500">{errorMessage.errors.name}</p>
-        )}
-        <Form
-          label="旅行先"
-          name="destination"
-          placeholder="メインの旅行先を入力しましょう"
-          onChange={handleDestinationChange}
-          value={destinationValue}
-        />
-        <input type="hidden" name="userId" value={userId} />
-        {errorMessage && errorMessage.message !== "failure" && (
-          <p className="text-red-500">{errorMessage.message}</p>
-        )}
-        <Button className="btn blue">{buttonName}</Button>
-      </form>
+      <div className="flex items-center justify-center">
+        <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px]">
+          <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-bold">
+            旅行のフォーム
+          </p>
+          <form onSubmit={handleSubmit} className="w-full py-3">
+            <Date
+              name="startDate"
+              label="出発日"
+              onChange={handleStartDateChange}
+              value={startDateValue}
+            />
+            <Date
+              name="endDate"
+              label="帰宅日"
+              onChange={handleEndDateChange}
+              value={endDateValue}
+            />
+            <Form
+              label="旅行タイトル"
+              name="name"
+              placeholder="旅行タイトルを入力しましょう"
+              onChange={handleNameChange}
+              value={nameValue}
+            />
+            {errorMessage &&
+              errorMessage.errors &&
+              errorMessage.errors.name && (
+                <p className="text-red-500">{errorMessage.errors.name}</p>
+              )}
+            <Form
+              label="旅行先"
+              name="destination"
+              placeholder="メインの旅行先を入力しましょう"
+              onChange={handleDestinationChange}
+              value={destinationValue}
+            />
+            <input type="hidden" name="userId" value={userId} />
+            {errorMessage && errorMessage.message !== "failure" && (
+              <p className="text-red-500">{errorMessage.message}</p>
+            )}
+            <Button className="btn blue">{buttonName}</Button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

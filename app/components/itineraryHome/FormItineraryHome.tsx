@@ -18,10 +18,10 @@ type FormItineraryHomeProps = {
 
 type ItineraryHome = {
   id: number;
-  startDate?: string;
-  endDate?: string;
+  startDate?: string | null;
+  endDate?: string | null;
   name: string;
-  destination?: string;
+  destination?: string | null;
 };
 
 type FormState = {
@@ -46,8 +46,30 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
     formAction,
     initialState
   );
-
   const [errorMessage, setErrorMessage] = useState<FormState>();
+  const [startDateValue, setStartDateValue] = useState<string>(
+    itineraryHome?.startDate || ""
+  );
+  const [endDateValue, setEndDateValue] = useState<string>(
+    itineraryHome?.endDate || ""
+  );
+  const [nameValue, setNameValue] = useState<string>(itineraryHome?.name || "");
+  const [destinationValue, setDestinationValue] = useState<string>(
+    itineraryHome?.destination || ""
+  );
+
+  const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStartDateValue(e.target.value);
+  };
+  const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEndDateValue(e.target.value);
+  };
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNameValue(e.target.value);
+  };
+  const handleDestinationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDestinationValue(e.target.value);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,6 +77,11 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
     const result = await formAction(state, formData);
     switch (result.message) {
       case "add":
+        setStartDateValue("");
+        setEndDateValue("");
+        setNameValue("");
+        setDestinationValue("");
+
         toast.success("旅行を保存しました！");
         break;
       case "edit":
@@ -73,12 +100,24 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
         旅行の追加
       </h2>
       <form onSubmit={handleSubmit}>
-        <Date name="startDate" label="旅行開始日" />
-        <Date name="endDate" label="旅行終了日" />
+        <Date
+          name="startDate"
+          label="旅行開始日"
+          onChange={handleStartDateChange}
+          value={startDateValue}
+        />
+        <Date
+          name="endDate"
+          label="旅行終了日"
+          onChange={handleEndDateChange}
+          value={endDateValue}
+        />
         <Form
-          label="タイトル"
+          label="旅行タイトル"
           name="name"
           placeholder="旅行タイトルを入力しましょう"
+          onChange={handleNameChange}
+          value={nameValue}
         />
         {errorMessage && errorMessage.errors && errorMessage.errors.name && (
           <p className="text-red-500">{errorMessage.errors.name}</p>
@@ -87,6 +126,8 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
           label="旅行先"
           name="destination"
           placeholder="メインの旅行先を入力しましょう"
+          onChange={handleDestinationChange}
+          value={destinationValue}
         />
         <input type="hidden" name="userId" value={userId} />
         {errorMessage && errorMessage.message !== "failure" && (

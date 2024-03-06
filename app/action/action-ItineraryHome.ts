@@ -62,41 +62,33 @@ export const addItineraryHome = async (state: FormState, data: FormData) => {
   }
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-export const deleteMemo = async (id: number) => {
+export const deleteItineraryHome = async (id: number) => {
   try {
-    await prisma.memo.delete({
+    await prisma.itineraryHome.delete({
       where: {
         id,
       },
     });
+    console.log("旅行の削除をしました。");
   } catch (error) {
-    console.error("メモの削除中にエラーが発生しました:", error);
-    return { message: "メモの削除中にエラーが発生しました" };
+    console.error("旅行の削除中にエラーが発生しました:", error);
+    return { message: "旅行の削除中にエラーが発生しました" };
   }
-  redirect("/travel_brochure/memo");
+  redirect("/travel_brochure/home");
 };
 
-export const updateMemo = async (id: number, state: FormState, data: FormData) => {
+export const updateItineraryHome = async (id: number, state: FormState, data: FormData) => {
+  const startDate = data.get("startDate") as string;
+  const endDate = data.get("endDate") as string;
   const name = data.get("name") as string;
-  const content = data.get("content") as string;
+  const destination = data.get("destination") as string;
   const userId = data.get("userId") as string;
 
   const validatedFields = schema.safeParse({
+    startDate,
+    endDate,
     name,
-    content,
-    userId,
+    destination,
   });
 
   if (!validatedFields.success) {
@@ -109,19 +101,22 @@ export const updateMemo = async (id: number, state: FormState, data: FormData) =
   }
   
   try {
-    await prisma.memo.update({
+    await prisma.itineraryHome.update({
       where: {
         id,
       },
       data: {
+        startDate,
+        endDate,
         name,
-        content,
+        destination,
+        user: { connect: { id: Number(userId) } },
       },
     });
-    revalidatePath("/travel_brochure/memo");
+    revalidatePath("/travel_brochure/home");
     return { message: "edit" };
   } catch (error) {
-    console.error("メモを編集する際にエラーが発生しました:", error);
-    return { message: "メモを編集する際にエラーが発生しました" };
+    console.error("旅行を編集する際にエラーが発生しました:", error);
+    return { message: "旅行を編集する際にエラーが発生しました" };
   }
 };

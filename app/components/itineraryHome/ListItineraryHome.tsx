@@ -43,7 +43,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
               <p>{itineraryHome.startDate}</p>
               <p>{itineraryHome.endDate}</p>
               <p>{itineraryHome.destination}</p>
-              <Link href={`/travel_brochure/home/${itineraryHome.id}`}>
+              <Link href={`/travel_brochure/${itineraryHome.id}`}>
                 <Button className="btn-small flex items-center">
                   <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
                   編集

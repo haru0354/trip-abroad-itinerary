@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
 import Button from "../ui/Button";
 import Form from "../ui/Form";
-import TextArea from "../ui/TextArea";
 import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
@@ -102,13 +101,13 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
       <form onSubmit={handleSubmit}>
         <Date
           name="startDate"
-          label="旅行開始日"
+          label="出発日"
           onChange={handleStartDateChange}
           value={startDateValue}
         />
         <Date
           name="endDate"
-          label="旅行終了日"
+          label="帰宅日"
           onChange={handleEndDateChange}
           value={endDateValue}
         />

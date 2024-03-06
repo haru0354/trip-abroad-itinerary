@@ -3,6 +3,7 @@ import Button from "../ui/Button";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
 
 type ListItineraryHomeProps = {
   userId?: number | undefined;
@@ -32,27 +33,35 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
 
   return (
     <>
-      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
+      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-8 p-5">
         旅行の一覧
       </h2>
-      {sortedItineraryHomes.map((itineraryHome) => {
-        return (
-          <div className="bg-blue-200 shadow-md rounded px-8 py-8 mb-10 ">
-            <div className="flex justify-between border-b-2 mb-2">
-              <p>{itineraryHome.name}</p>
-              <p>{itineraryHome.startDate}</p>
-              <p>{itineraryHome.endDate}</p>
-              <p>{itineraryHome.destination}</p>
-              <Link href={`/travel_brochure/${itineraryHome.id}`}>
-                <Button className="btn-small flex items-center">
-                  <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
-                  編集
-                </Button>
-              </Link>
-            </div>
-          </div>
-        );
-      })}
+      <div className="w-full bg-white rounded">
+        <div className="flex w-full my-10 flex-wrap items-center justify-center">
+          {sortedItineraryHomes.map((itineraryHome) => {
+            return (
+              <>
+                <Link href={`/travel_brochure/${itineraryHome.id}/itinerary`}>
+                  <div className="border-2 border-sky-600 rounded mx-5 my-6 px-8 py-10 flex flex-col min-w-[330px]">
+                    <span className="text-blue-500  flex justify-center mb-6">
+                      <FontAwesomeIcon
+                        icon={faPlaneDeparture}
+                        style={{ fontSize: "2em" }}
+                      />
+                    </span>
+                    <h3 className="text-gray-700 mb-6 text-center text-xl font-semibold">
+                      {itineraryHome.name}
+                    </h3>
+                    <p>出発日：{itineraryHome.startDate}</p>
+                    <p>帰宅日：{itineraryHome.endDate}</p>
+                    <p>旅行先：{itineraryHome.destination}</p>
+                  </div>
+                </Link>
+              </>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 };

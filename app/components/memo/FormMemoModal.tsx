@@ -17,12 +17,6 @@ type FormMemoProps = {
   itineraryHomeId?: number | undefined;
 };
 
-type Memo = {
-  id: number;
-  name: string;
-  content: string;
-};
-
 type FormState = {
   message?: string | null;
   errors?: {
@@ -38,8 +32,8 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
   itineraryHomeId,
 }) => {
   const router = useRouter();
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-  const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const toggleDeleteModal = () => setIsModalOpen((prev) => !prev);
   const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
     if (e.target === e.currentTarget) {
       toggleDeleteModal();
@@ -106,7 +100,7 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
           </Button>
         </>
       )}
-      {isDeleteModalOpen && (
+      {isModalOpen && (
         <div
           className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
           onClick={closeModal}

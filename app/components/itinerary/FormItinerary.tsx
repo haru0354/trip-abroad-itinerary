@@ -179,7 +179,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
             <TextArea
               label={"補足情報2"}
               placeholder={
-                "ここに記載したのはボタンをクリックで表示されます。旅程表とは関係のない観光地の情報や乗り換え方法など記載しましょう。"
+                "ボタンクリックで表示されるエリアです。電車なら乗り換え方法など必要な場面でのみ見たい情報を入力。"
               }
               name={"hideContent"}
               value={hideTextAreaValue}

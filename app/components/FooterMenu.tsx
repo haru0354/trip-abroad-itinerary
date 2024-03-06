@@ -11,12 +11,32 @@ import Link from "next/link";
 import Button from "./ui/Button";
 import FormMemoModal from "./memo/FormMemoModal";
 import { usePathname } from "next/navigation";
+import FormItineraryModal from "./itinerary/FormItineraryModal";
+import { addItinerary } from "../action/action-itinerary";
 
 type FooterMenuProps = {
   itineraryHomeId: number;
+  userId?: number | undefined;
+  itinerary?: Itinerary | null | undefined;
 };
 
-const FooterMenu: React.FC<FooterMenuProps> = ({ itineraryHomeId }) => {
+type Itinerary = {
+  id: number;
+  date: string;
+  time: string;
+  name: string;
+  content?: string | null;
+  hideContent?: string | null;
+  isShowContent: boolean;
+  url?: string | null;
+  altText?: string | null;
+};
+
+const FooterMenu: React.FC<FooterMenuProps> = ({
+  itineraryHomeId,
+  userId,
+  itinerary,
+}) => {
   const path = usePathname();
 
   return (
@@ -50,13 +70,16 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ itineraryHomeId }) => {
           <FormMemoModal
             itineraryHomeId={itineraryHomeId}
             buttonName="追加"
-            buttonName2="メモの追加"
+            buttonName2="メモを追加"
           />
         ) : path === `/travel_brochure/${itineraryHomeId}/itinerary` ? (
-          <FormMemoModal
+          <FormItineraryModal
             itineraryHomeId={itineraryHomeId}
-            buttonName="0"
-            buttonName2="メモの追加"
+            buttonName="追加"
+            buttonName2="旅程を追加"
+            userId={userId}
+            itinerary={itinerary}
+            formAction={addItinerary}
           />
         ) : null}
       </div>

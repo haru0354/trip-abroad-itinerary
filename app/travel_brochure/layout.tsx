@@ -33,13 +33,12 @@ export default async function RootLayout({
   return (
     <>
       <AuthContext>
-        <ToastContext />
-        <SignupModal />
-        <LoginModal />
-        <HeaderItinerary currentUser={currentUser} />
-        {children}
-        <Footer />
-        <FooterMenu />
+          <SignupModal />
+          <LoginModal />
+          <ToastContext />
+          <HeaderItinerary currentUser={currentUser} />
+          {children}
+          <Footer />
       </AuthContext>
     </>
   );

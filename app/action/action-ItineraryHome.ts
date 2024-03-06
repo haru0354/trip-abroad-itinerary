@@ -7,27 +7,32 @@ import { z } from "zod";
 type FormState = {
   message?: string | null;
   errors?: {
+    startDate?: string[] | undefined;
+    endDate?: string[] | undefined;
     name?: string[] | undefined;
-    content?: string[] | undefined;
-    itineraryHomeId?: string[] | undefined;
+    destination?: string[] | undefined;
   };
 };
 
 const schema = z.object({
-  name: z.string().min(1, { message: "タイトルの入力は必須です" }),
-  content: z.string().optional(),
-  itineraryHomeId: z.string().transform((val) => Number(val)),
+    startDate: z.string().optional(),
+    endDate: z.string().optional(),
+    name: z.string().min(1, { message: "タイトルの入力は必須です" }),
+    destination: z.string().optional(),
 });
 
-export const addMemo = async (state: FormState, data: FormData) => {
+export const addItineraryHome = async (state: FormState, data: FormData) => {
+  const startDate = data.get("startDate") as string;
+  const endDate = data.get("endDate") as string;
   const name = data.get("name") as string;
-  const content = data.get("content") as string;
-  const itineraryHomeId = data.get("itineraryHomeId") as string;
+  const destination = data.get("destination") as string;
+  const userId = data.get("userId") as string;
 
   const validatedFields = schema.safeParse({
+    startDate,
+    endDate,
     name,
-    content,
-    itineraryHomeId,
+    destination,
   });
 
   if (!validatedFields.success) {
@@ -40,24 +45,36 @@ export const addMemo = async (state: FormState, data: FormData) => {
   }
 
   try {
-    await prisma.memo.create({
+    await prisma.itineraryHome.create({
       data: {
+        startDate,
+        endDate,
         name,
-        content,
-        itineraryHome: { connect: { id: Number(itineraryHomeId) } },
+        destination,
+        user: { connect: { id: Number(userId) } },
       },
     });
-    revalidatePath(`/travel_brochure/${itineraryHomeId}/memo`);
+    revalidatePath("/travel_brochure/home");
     return { message: "add" };
   } catch (error) {
-    console.error("メモを追加する際にエラーが発生しました:", error);
-    return { message: "メモを追加する際にエラーが発生しました" };
+    console.error("旅行を追加する際にエラーが発生しました:", error);
+    return { message: "旅行を追加する際にエラーが発生しました" };
   }
 };
 
-export const deleteMemo = async (id: number, data: FormData) => {
-  const itineraryHomeId = data.get("itineraryHomeId") as string;
 
+
+
+
+
+
+
+
+
+
+
+
+export const deleteMemo = async (id: number) => {
   try {
     await prisma.memo.delete({
       where: {
@@ -68,18 +85,18 @@ export const deleteMemo = async (id: number, data: FormData) => {
     console.error("メモの削除中にエラーが発生しました:", error);
     return { message: "メモの削除中にエラーが発生しました" };
   }
-  redirect(`/travel_brochure/${itineraryHomeId}/memo`);
+  redirect("/travel_brochure/memo");
 };
 
 export const updateMemo = async (id: number, state: FormState, data: FormData) => {
   const name = data.get("name") as string;
   const content = data.get("content") as string;
-  const itineraryHomeId = data.get("itineraryHomeId") as string;
+  const userId = data.get("userId") as string;
 
   const validatedFields = schema.safeParse({
     name,
     content,
-    itineraryHomeId,
+    userId,
   });
 
   if (!validatedFields.success) {
@@ -101,7 +118,7 @@ export const updateMemo = async (id: number, state: FormState, data: FormData) =
         content,
       },
     });
-    revalidatePath(`/travel_brochure/${itineraryHomeId}/memo`);
+    revalidatePath("/travel_brochure/memo");
     return { message: "edit" };
   } catch (error) {
     console.error("メモを編集する際にエラーが発生しました:", error);

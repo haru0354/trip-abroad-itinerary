@@ -14,14 +14,18 @@ type Memo = {
 
 type DeleteModalProps = {
   memo?: Memo | null;
+  itineraryHomeId?: number | undefined;
 };
 
-const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
+const DeleteMemoModal: React.FC<DeleteModalProps> = ({
+  memo,
+  itineraryHomeId,
+}) => {
   if (!memo) {
     return <p>削除対象のメモがありません。</p>;
   }
 
-  const [ isDeleteModalOpen, setIsDeleteModalOpen ] = useState<boolean>(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
 
   const deleteMemoWithId = deleteMemo.bind(null, memo.id);
@@ -33,7 +37,7 @@ const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
   };
 
   const deleteToast = () => {
-    toast.success("メモを削除しました！")
+    toast.success("メモを削除しました！");
   };
 
   return (
@@ -67,7 +71,12 @@ const DeleteMemoModal: React.FC<DeleteModalProps> = ({ memo }) => {
               <Button onClick={toggleDeleteModal} className="btn gray">
                 キャンセル
               </Button>
-              <form onSubmit={deleteToast} >
+              <form onSubmit={deleteToast}>
+                <input
+                  type="hidden"
+                  name="itineraryHomeId"
+                  value={itineraryHomeId}
+                />
                 <Button formAction={deleteMemoWithId} className="btn red ">
                   削除
                 </Button>

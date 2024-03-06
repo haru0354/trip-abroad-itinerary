@@ -7,36 +7,38 @@ import TextArea from "../ui/TextArea";
 import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+import Date from "../ui/Date";
 
-type FormMemoProps = {
-  memos?: Memo[] | undefined | null;
-  memo?: Memo | null;
+type FormItineraryHomeProps = {
+  itineraryHome?: ItineraryHome | null;
   buttonName: string;
+  userId?: number | undefined;
   formAction: (state: FormState, data: FormData) => Promise<FormState>;
-  itineraryHomeId?: number | undefined;
 };
 
-type Memo = {
+type ItineraryHome = {
   id: number;
+  startDate?: string;
+  endDate?: string;
   name: string;
-  content: string;
-}
+  destination?: string;
+};
 
 type FormState = {
   message?: string | null;
   errors?: {
+    startDate?: string[] | undefined;
+    endDate?: string[] | undefined;
     name?: string[] | undefined;
-    content?: string[] | undefined;
-    userId?: string[] | undefined;
+    destination?: string[] | undefined;
   };
 };
 
-const FormMemo: React.FC<FormMemoProps> = ({
-  memo,
-  memos,
+const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
+  itineraryHome,
   buttonName,
+  userId,
   formAction,
-  itineraryHomeId,
 }) => {
   const router = useRouter();
   const initialState = { message: null, errors: { name: undefined } };
@@ -44,20 +46,8 @@ const FormMemo: React.FC<FormMemoProps> = ({
     formAction,
     initialState
   );
+
   const [errorMessage, setErrorMessage] = useState<FormState>();
-
-  const [inputValue, setInputValue] = useState<string>(memo?.name || "");
-  const [textAreaValue, setTextareaChange] = useState<string>(
-    memo?.content || ""
-  );
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setTextareaChange(e.target.value);
-  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,13 +55,11 @@ const FormMemo: React.FC<FormMemoProps> = ({
     const result = await formAction(state, formData);
     switch (result.message) {
       case "add":
-        setInputValue("");
-        setTextareaChange("");
-        toast.success("メモを保存しました！");
+        toast.success("旅行を保存しました！");
         break;
       case "edit":
-        toast.success("メモを編集しました！");
-        router.replace(`/travel_brochure/${itineraryHomeId}/memo`);
+        toast.success("旅行を編集しました！");
+        router.replace("/travel_brochure/home");
         break;
       default:
         setErrorMessage(result);
@@ -82,27 +70,25 @@ const FormMemo: React.FC<FormMemoProps> = ({
   return (
     <div>
       <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
-        メモの追加
+        旅行の追加
       </h2>
       <form onSubmit={handleSubmit}>
+        <Date name="startDate" label="旅行開始日" />
+        <Date name="endDate" label="旅行終了日" />
         <Form
-          label={"メモの見出し"}
-          name={"name"}
-          placeholder="メモの見出しを記載しましょう。"
-          value={inputValue}
-          onChange={handleInputChange}
+          label="タイトル"
+          name="name"
+          placeholder="旅行タイトルを入力しましょう"
         />
         {errorMessage && errorMessage.errors && errorMessage.errors.name && (
           <p className="text-red-500">{errorMessage.errors.name}</p>
         )}
-        <TextArea
-          label={"メモする内容"}
-          name={"content"}
-          placeholder="メモする内容を記載しましょう。"
-          value={textAreaValue}
-          onChange={handleTextareaChange}
+        <Form
+          label="旅行先"
+          name="destination"
+          placeholder="メインの旅行先を入力しましょう"
         />
-        <input type="hidden" name="itineraryHomeId" value={itineraryHomeId} />
+        <input type="hidden" name="userId" value={userId} />
         {errorMessage && errorMessage.message !== "failure" && (
           <p className="text-red-500">{errorMessage.message}</p>
         )}
@@ -112,4 +98,4 @@ const FormMemo: React.FC<FormMemoProps> = ({
   );
 };
 
-export default FormMemo;
+export default FormItineraryHome;

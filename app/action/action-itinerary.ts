@@ -18,7 +18,7 @@ type FormState = {
     name?: string[] | undefined;
     content?: string[] | undefined;
     hideContent?: string[] | undefined;
-    userId?: string[] | undefined;
+    itineraryHomeId?: string[] | undefined;
     image?: string[] | undefined;
   };
 };
@@ -29,6 +29,7 @@ const schema = z.object({
   name: z.string().min(1, { message: "タイトルの入力は必須です" }),
   content: z.string().optional(),
   hideContent: z.string().optional(),
+  itineraryHomeId: z.string().transform((val) => Number(val)),
   userId: z.string().transform((val) => Number(val)),
 });
 
@@ -46,6 +47,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
   const hideContent = data.get("hideContent") as string;
   const image = data.get("image") as File;
   const altText = data.get("altText") as string;
+  const itineraryHomeId = data.get("itineraryHomeId") as string;
   const userId = data.get("userId") as string;
 
   const validatedFields = schema.safeParse({
@@ -54,6 +56,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     name,
     content,
     hideContent,
+    itineraryHomeId,
     userId,
   });
 
@@ -72,7 +75,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     name,
     content,
     hideContent,
-    user: { connect: { id: Number(userId) } },
+    itineraryHome: { connect: { id: Number(itineraryHomeId) } },
   };
 
   if (image && image.size > 0) {
@@ -119,7 +122,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     await prisma.itinerary.create({
       data: ItineraryData,
     });
-    revalidatePath("/travel_brochure/itinerary");
+    revalidatePath(`/travel_brochure/${itineraryHomeId}/itinerary/`);
     return { message: "add" };
   } catch (error) {
     console.error("旅程を追加する際にエラーが発生しました:", error);
@@ -127,32 +130,35 @@ export const addItinerary = async (state: FormState, data: FormData) => {
   }
 };
 
-export const deleteItinerary = async (id: number) => {
+export const deleteItinerary = async (id: number, data: FormData) => {
+  const userId = data.get("userId") as string;
+  const itineraryHomeId = data.get("itineraryHomeId") as string;
+  
+  const itinerary = await prisma.itinerary.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (!itinerary) {
+    console.error("指定した旅程が見つかりませんでした。");
+    return;
+  }
+
   try {
-    const itinerary = await prisma.itinerary.findUnique({
-      where: {
-        id,
-      },
-    });
-
-    if (!itinerary) {
-      console.error("指定した旅程が見つかりませんでした。");
-      return;
-    }
-
     await prisma.itinerary.delete({
       where: {
         id,
       },
     });
 
-    await unlink(`./public/${itinerary?.url}`);
+    await unlink(`./public/itinerary/${userId}/${itinerary?.imageName}`);
     console.log("旅程と画像を削除しました。");
   } catch (error) {
     console.error("旅程の削除中にエラーが発生しました:", error);
     return { message: "旅程の削除中にエラーが発生しました" };
   }
-  redirect("/travel_brochure/itinerary");
+  redirect(`/travel_brochure/${itineraryHomeId}/itinerary/`);
 };
 
 export const updateItinerary = async (
@@ -167,6 +173,7 @@ export const updateItinerary = async (
   const hideContent = data.get("hideContent") as string;
   const image = data.get("image") as File;
   const altText = data.get("altText") as string;
+  const itineraryHomeId = data.get("itineraryHomeId") as string;
   const userId = data.get("userId") as string;
 
   const validatedFields = schema.safeParse({
@@ -175,6 +182,7 @@ export const updateItinerary = async (
     name,
     content,
     hideContent,
+    itineraryHomeId,
     userId,
   });
 
@@ -193,7 +201,7 @@ export const updateItinerary = async (
     name,
     content,
     hideContent,
-    user: { connect: { id: Number(userId) } },
+    itineraryHome: { connect: { id: Number(itineraryHomeId) } },
   };
 
   if (image && image.size > 0) {
@@ -252,7 +260,7 @@ export const updateItinerary = async (
       },
       data: ItineraryData,
     });
-    revalidatePath("/travel_brochure/itinerary");
+    revalidatePath(`/travel_brochure/${itineraryHomeId}/itinerary/`);
     return { message: "edit" };
   } catch (error) {
     console.error("旅程を追加する際にエラーが発生しました:", error);

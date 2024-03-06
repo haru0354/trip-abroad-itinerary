@@ -15,7 +15,8 @@ type FormItineraryProps = {
   itinerary?: Itinerary | null;
   buttonName: string;
   formAction: (state: FormState, data: FormData) => Promise<FormState>;
-  userId?: number | undefined;
+  itineraryHomeId?: number | undefined;
+  userId: number | undefined;
 };
 
 type Itinerary = {
@@ -45,6 +46,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   itinerary,
   buttonName,
   formAction,
+  itineraryHomeId,
   userId,
 }) => {
   const router = useRouter();
@@ -75,7 +77,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   const [altTextValue, setAltTextValue] = useState<string>(
     itinerary?.altText || ""
   );
- 
+
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,7 +105,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   const handleAltTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAltTextValue(e.target.value);
   };
-  
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -114,14 +116,14 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         setTimeValue("");
         setInputValue("");
         setTextAreaValue("");
-        setHideTextAreaValue(""); 
+        setHideTextAreaValue("");
         setAltTextValue("");
         setFormSubmitted((prev) => !prev);
         toast.success("旅程を保存しました！");
         break;
       case "edit":
         toast.success("旅程を編集しました！");
-        router.replace("/travel_brochure/itinerary");
+        router.replace(`/travel_brochure/${itineraryHomeId}/itinerary/`);
         break;
       default:
         setErrorMessage(result);
@@ -178,9 +180,10 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
           altTextValue={altTextValue}
           onChangeAltText={handleAltTextChange}
           label="画像の名前(何の画像)"
-          placeholder="例)観光地の写真⇒観光地名を入力、料理の写真⇒料理名を入力" 
+          placeholder="例)観光地の写真⇒観光地名を入力、料理の写真⇒料理名を入力"
         />
         <input type="hidden" name="userId" value={userId} />
+        <input type="hidden" name="itineraryHomeId" value={itineraryHomeId} />
         {errorMessage && errorMessage.message !== "failure" && (
           <p className="text-red-500">{errorMessage.message}</p>
         )}

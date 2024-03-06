@@ -7,12 +7,13 @@ import TextArea from "../ui/TextArea";
 import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import { addMemo } from "@/app/action/action-memo";
 
 type FormMemoProps = {
-  memos?: Memo[] | undefined | null;
-  memo?: Memo | null;
   buttonName: string;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
+  buttonName2: string;
   itineraryHomeId?: number | undefined;
 };
 
@@ -32,9 +33,8 @@ type FormState = {
 };
 
 const FormMemoModal: React.FC<FormMemoProps> = ({
-  memo,
   buttonName,
-  formAction,
+  buttonName2,
   itineraryHomeId,
 }) => {
   const router = useRouter();
@@ -48,15 +48,13 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
 
   const initialState = { message: null, errors: { name: undefined } };
   const [state, dispatch] = useFormState<FormState, FormData>(
-    formAction,
+    addMemo,
     initialState
   );
   const [errorMessage, setErrorMessage] = useState<FormState>();
 
-  const [inputValue, setInputValue] = useState<string>(memo?.name || "");
-  const [textAreaValue, setTextareaChange] = useState<string>(
-    memo?.content || ""
-  );
+  const [inputValue, setInputValue] = useState<string>("");
+  const [textAreaValue, setTextareaChange] = useState<string>("");
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -69,7 +67,7 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const result = await formAction(state, formData);
+    const result = await addMemo(state, formData);
     switch (result.message) {
       case "add":
         setInputValue("");
@@ -88,14 +86,26 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
   };
 
   return (
-    <div>
-      <div className="flex justify-center items-center">
-        {isDeleteModalOpen || (
-          <Button onClick={toggleDeleteModal} className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
-            旅程を追加する
+    <>
+      {buttonName === "追加" ? (
+        <>
+          <div className="w-full h-full">
+            <Button onClick={toggleDeleteModal} className="btn-footer">
+              <FontAwesomeIcon icon={faSquarePlus} />
+              <span className="text-gray-500">{buttonName}</span>
+            </Button>
+          </div>
+        </>
+      ) : (
+        <>
+          <Button
+            onClick={toggleDeleteModal}
+            className="block mx-auto px-16  mb-10 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900"
+          >
+            {buttonName}
           </Button>
-        )}
-      </div>
+        </>
+      )}
       {isDeleteModalOpen && (
         <div
           className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
@@ -134,15 +144,15 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
                 {errorMessage && errorMessage.message !== "failure" && (
                   <p className="text-red-500">{errorMessage.message}</p>
                 )}
-                <Button className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
-                  {buttonName}
+                <Button className="block mx-auto px-16 py-3 mt-5 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
+                  {buttonName2}
                 </Button>
               </form>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -27,7 +27,7 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
       <div className="main-contents-area">
         <div className="contents-area">
           <div>
-            <h2 className="text-center font-semibold text-xl text-gray-600 mt-4 py-2 border-b border-sky-700">
+            <h2 className="text-center font-semibold text-xl text-gray-00 mt-4 py-2 border-b border-sky-700">
               {itineraryHome?.name}
             </h2>
             <FormMemo
@@ -43,10 +43,9 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
               itineraryHomeId={itineraryHome?.id}
             />
             <FormMemoModal
-              memos={itineraryHome?.memos}
               itineraryHomeId={itineraryHome?.id}
-              formAction={addMemo}
-              buttonName="追加"
+              buttonName="メモの追加"
+              buttonName2="メモの追加"
             />
           </div>
         </div>

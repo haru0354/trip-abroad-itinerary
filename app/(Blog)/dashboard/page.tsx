@@ -1,8 +1,7 @@
 import { addDashboardMemo } from "@/app/action/action-dashboard";
-import FormMemoModal from "@/app/components/memo/FormMemoModal";
 import { Metadata } from "next";
-import FormDashboardMemo from "@/app/components/blog/(dashboard)/FormDashboardMemo";
-import ListDashboardMemo from "@/app/components/blog/(dashboard)/ListDashboardMemo";
+import FormDashboardMemo from "@/app/components/blog/dashboard/FormDashboardMemo";
+import ListDashboardMemo from "@/app/components/blog/dashboard/ListDashboardMemo";
 
 export const metadata: Metadata = {
   title: "ダッシュボード",

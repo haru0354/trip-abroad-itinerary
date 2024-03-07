@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import FormDashboardMemo from "@/app/components/blog/(dashboard)/FormDashboardMemo";
-import DeleteDashboardMemoModal from "@/app/components/blog/(dashboard)/DeleteDashboardMemoModal";
+import FormDashboardMemo from "@/app/components/blog/dashboard/FormDashboardMemo";
+import DeleteDashboardMemoModal from "@/app/components/blog/dashboard/DeleteDashboardMemoModal";
 import prisma from "../../../components/lib/prisma";
 import { updateDashboardMemo } from "@/app/action/action-dashboard";
 

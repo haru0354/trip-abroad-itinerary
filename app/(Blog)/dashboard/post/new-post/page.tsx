@@ -1,5 +1,5 @@
 import { addPost } from "@/app/action/action-post";
-import FormPost from "@/app/components/blog/(dashboard)/FormPost";
+import FormPost from "@/app/components/blog/dashboard/FormPost";
 import Button from "@/app/components/ui/Button";
 import Link from "next/link";
 import prisma from "@/app/components/lib/prisma";

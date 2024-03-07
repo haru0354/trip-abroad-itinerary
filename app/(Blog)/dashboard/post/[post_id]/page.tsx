@@ -1,7 +1,7 @@
-import FormPost from "@/app/components/blog/(dashboard)/FormPost";
+import FormPost from "@/app/components/blog/dashboard/FormPost";
 import prisma from "../../../../components/lib/prisma";
 import { updatePost } from "@/app/action/action-post";
-import DeletePostModal from "@/app/components/blog/(dashboard)/DeletePostModal";
+import DeletePostModal from "@/app/components/blog/dashboard/DeletePostModal";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

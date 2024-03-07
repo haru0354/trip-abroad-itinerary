@@ -13,7 +13,7 @@ const NewArticleTop = async () => {
 
   return (
     <>
-      <h3 className="bg-blue-500 text-white font-bold text-lg px-2 py-4 rounded-sm">
+      <h3 className="bg-sky-600 text-white font-bold text-lg px-2 py-4 rounded-sm">
         新着記事
       </h3>
       <div className="flex w-full my-8 flex-wrap items-center justify-center">
@@ -23,7 +23,7 @@ const NewArticleTop = async () => {
               <div key={post.id} className="flex flex-col items-center">
                 <Link href={`/${post.category.slug}/${post.slug}`}>
                   <div className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[330px] min-w-[330px]">
-                    <div className="min-h-[230px] h-[230px]  justify-centers">
+                    <div className="min-h-[220px] max-h-[220px]  justify-centers">
                       {post.postImage ? (
                         <Image
                           src={post.postImage.url}

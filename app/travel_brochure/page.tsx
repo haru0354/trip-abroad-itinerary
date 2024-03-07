@@ -1,5 +1,5 @@
 import Section1ColumnRight from "../components/homePage/Section1ColumnRight";
-import Section3Column from "../components/homePage/Section3Column";
+import Section3ColumnIcon from "../components/homePage/Section3ColumnIcon";
 import SectionText from "../components/homePage/SectionText";
 import QA from "../components/homePage/QA";
 import Hero from "../components/homePage/Hero";
@@ -8,6 +8,7 @@ import getCurrentUser from "../action/getCurrentUser";
 import HeaderItinerary from "../components/HeaderItinerary";
 import LoginModal from "../components/auth/authUi/LoginModal";
 import SignupModal from "../components/auth/authUi/SignupModal";
+import Section3ColumnImage from "../components/homePage/Section3ColumnImage";
 
 export default async function Home() {
   const currentUser = await getCurrentUser();
@@ -21,6 +22,23 @@ export default async function Home() {
       <main>
         <div className="main-contents-area">
           <div>
+            <h2 className="text-2xl bg-sky-400 text-center my-8 py-2">
+              旅程表作成のしおりアプリ「旅のメモリーブック」で出来ること
+            </h2>
+            <Section3ColumnImage
+              title1="旅程表の作成"
+              title2="メモの作成"
+              title3="表示切替メモ機能"
+              content1="旅程表が簡単に作成可能!!日付や時間で自動で並び変えるので面倒な作業はいりません。必要なのは「いつ・何をする」を記載することだけです。"
+              content2="旅行となると準備も必要となります。旅行日までに用意しなければいけない物やパスポートの取得など様々です。簡単にメモができるので必要なことがすぐに確認可能。"
+              content3="非表示からボタンクリックで表示に切り替えるメモ機能があります。旅程表の見やすさやデザインを損なわずにメモをすることができるようになっています"
+              image1Url="/008.jpg"
+              image2Url="/008.jpg"
+              image3Url="/008.jpg"
+              image1Alt="aa"
+              image2Alt="aa"
+              image3Alt="aa"
+            />
             <h2 className="text-2xl bg-sky-400 text-center my-8 py-2">
               旅程表作成のしおりアプリ「旅のメモリーブック」
             </h2>
@@ -47,7 +65,7 @@ export default async function Home() {
               name3="国内旅行だけでなく英語が話せない人の海外旅行のしおりとしての機能"
               content="表示切替ボタンにより、必要なタイミングで必要なメモを閲覧が可能。英語が話せない人でも「目的地への具体的な行き方（乗り換え方法・バス番号・時間）」をはじめ、「食事予定のメニューの英語名や呼び方」など、事前にメモをすることで安心して海外旅行が可能。"
             />
-            <Section3Column
+            <Section3ColumnIcon
               title="旅のメモリーブック3つの特徴"
               name1="旅程表の作成"
               name2="メモの作成"

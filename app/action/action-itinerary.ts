@@ -152,7 +152,9 @@ export const deleteItinerary = async (id: number, data: FormData) => {
       },
     });
 
+    if (itinerary.url) {
     await unlink(`./public/itinerary/${userId}/${itinerary?.imageName}`);
+    }
     console.log("旅程と画像を削除しました。");
   } catch (error) {
     console.error("旅程の削除中にエラーが発生しました:", error);

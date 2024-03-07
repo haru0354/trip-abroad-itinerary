@@ -19,6 +19,12 @@ const Page = async ({
 
   const updateMemoWidthId = updateMemo.bind(null, id);
 
+  const itineraryHome = await prisma.itineraryHome.findUnique({
+    where: {
+      id: itineraryHomeId,
+    },
+  });
+
   const memo = await prisma.memo.findUnique({
     where: {
       id,
@@ -30,6 +36,9 @@ const Page = async ({
       <div className="main-contents-area">
         <div className="contents-area">
           <div>
+            <h2 className="text-center font-semibold text-xl text-gray-600 mt-4 py-2 border-b border-sky-700">
+              {itineraryHome?.name}
+            </h2>
             <FormMemo
               formAction={updateMemoWidthId}
               memo={memo}

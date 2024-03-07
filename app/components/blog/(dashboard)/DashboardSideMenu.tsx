@@ -37,13 +37,13 @@ const DashboardSideMenu = () => {
             <ul>
               <Link href="/">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faHouse} className="mr-2 w-5" />
+                  <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 h-4 mt-1" />
                   <p className="mx-2">ブログTOP</p>
                 </li>
               </Link>
               <Link href="/dashboard">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faHouse} className="mr-2 w-5" />
+                  <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 h-4 mt-1" />
                   <p className="mx-2">サイト制作のメモ</p>
                 </li>
               </Link>
@@ -56,13 +56,13 @@ const DashboardSideMenu = () => {
             <ul>
               <Link href="/dashboard/post">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faPen} className="mr-2 w-5" />
+                  <FontAwesomeIcon icon={faPen} className="mr-2 w-5 h-4 mt-1" />
                   <p className="mx-2">記事一覧</p>
                 </li>
               </Link>
               <Link href="/dashboard/post/new-post">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faPen} className="mr-2 w-5" />
+                  <FontAwesomeIcon icon={faPen} className="mr-2 w-5 h-4 mt-1" />
                   <p className="mx-2">新規記事</p>
                 </li>
               </Link>
@@ -75,13 +75,13 @@ const DashboardSideMenu = () => {
             <ul>
               <Link href="/dashboard/category">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faList} className="mr-2 w-5" />
+                  <FontAwesomeIcon icon={faList} className="mr-2 w-5 h-4 mt-1" />
                   <p className="mx-2">カテゴリー一覧</p>
                 </li>
               </Link>
               <Link href="/dashboard/category/new-category">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faList} className="mr-2 w-5" />
+                  <FontAwesomeIcon icon={faList} className="mr-2 w-5 h-4 mt-1" />
                   <p className="mx-2">新規カテゴリー</p>
                 </li>
               </Link>
@@ -94,13 +94,13 @@ const DashboardSideMenu = () => {
             <ul>
               <Link href="/dashboard/image">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faImage} className="mr-2 w-5" />
+                  <FontAwesomeIcon icon={faImage} className="mr-2 w-5 h-4 mt-1" />
                   <p className="mx-2">画像一覧</p>
                 </li>
               </Link>
               <Link href="/dashboard/image/new-image">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faImage} className="mr-2 w-5" />
+                  <FontAwesomeIcon icon={faImage} className="mr-2 w-5 h-4 mt-1" />
                   <p className="mx-2">新規画像</p>
                 </li>
               </Link>

@@ -20,7 +20,7 @@ type Memo = {
   id: number;
   name: string;
   content: string;
-}
+};
 
 type FormState = {
   message?: string | null;
@@ -33,7 +33,6 @@ type FormState = {
 
 const FormMemo: React.FC<FormMemoProps> = ({
   memo,
-  memos,
   buttonName,
   formAction,
   itineraryHomeId,
@@ -84,30 +83,43 @@ const FormMemo: React.FC<FormMemoProps> = ({
       <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
         メモの追加
       </h2>
-      <form onSubmit={handleSubmit}>
-        <Form
-          label={"メモの見出し"}
-          name={"name"}
-          placeholder="メモの見出しを記載しましょう。"
-          value={inputValue}
-          onChange={handleInputChange}
-        />
-        {errorMessage && errorMessage.errors && errorMessage.errors.name && (
-          <p className="text-red-500">{errorMessage.errors.name}</p>
-        )}
-        <TextArea
-          label={"メモする内容"}
-          name={"content"}
-          placeholder="メモする内容を記載しましょう。"
-          value={textAreaValue}
-          onChange={handleTextareaChange}
-        />
-        <input type="hidden" name="itineraryHomeId" value={itineraryHomeId} />
-        {errorMessage && errorMessage.message !== "failure" && (
-          <p className="text-red-500">{errorMessage.message}</p>
-        )}
-        <Button className="btn blue">{buttonName}</Button>
-      </form>
+      <div className="flex items-center justify-center">
+        <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px]">
+          <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-bold">
+            メモのフォーム
+          </p>
+          <form onSubmit={handleSubmit} className="w-full py-3">
+            <Form
+              label={"メモの見出し"}
+              name={"name"}
+              placeholder="メモの見出しを記載しましょう。"
+              value={inputValue}
+              onChange={handleInputChange}
+            />
+            {errorMessage &&
+              errorMessage.errors &&
+              errorMessage.errors.name && (
+                <p className="text-red-500">{errorMessage.errors.name}</p>
+              )}
+            <TextArea
+              label={"メモする内容"}
+              name={"content"}
+              placeholder="メモする内容を記載しましょう。"
+              value={textAreaValue}
+              onChange={handleTextareaChange}
+            />
+            <input
+              type="hidden"
+              name="itineraryHomeId"
+              value={itineraryHomeId}
+            />
+            {errorMessage && errorMessage.message !== "failure" && (
+              <p className="text-red-500">{errorMessage.message}</p>
+            )}
+            <Button className="btn blue">{buttonName}</Button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

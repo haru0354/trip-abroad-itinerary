@@ -17,29 +17,29 @@ const ListDashboardMemo = async () => {
         </h2>
         <p>ここではサイト制作時のメモが簡単に追加できます。</p>
         <ul className="my-6 px-4 border p-4">
-          <li className="mb-4  text-red-500">
+          <li className="flex py-3 px-2 text-red-500  ">
             <FontAwesomeIcon
               icon={faPenToSquare}
-              className="text-sky-700 mr-4"
+              className="text-sky-700 mr-4 w-5 h-4 mt-1"
               style={{ width: "15px" }}
             />
-            今後作成予定のページ
+            <p>今後作成予定のページ</p>
           </li>
-          <li className="mb-4 text-red-500">
+          <li className="flex py-3 px-2 text-red-500  ">
             <FontAwesomeIcon
               icon={faPenToSquare}
-              className="text-sky-700 mr-4"
+              className="text-sky-700 mr-4 w-5 h-4 mt-1"
               style={{ width: "15px" }}
             />
-            上位表示を狙っているキーワード
+            <p>上位表示を狙っているキーワード</p>
           </li>
-          <li className="text-red-500">
+          <li className="flex py-3 px-2 text-red-500  ">
             <FontAwesomeIcon
               icon={faPenToSquare}
-              className="text-sky-700 mr-4"
+              className="text-sky-700 mr-4 w-5 h-4 mt-1"
               style={{ width: "15px" }}
             />
-            上位表示させる為に編集をする予定のページ
+            <p>上位表示させる為に編集をする予定のページ</p>
           </li>
         </ul>
         <p>
@@ -50,8 +50,8 @@ const ListDashboardMemo = async () => {
         </p>
         <p className="pb-6"></p>
         例）
-        <div className="bg-gray-200 shadow-md rounded px-8 py-8 mb-10 ">
-          <div className="flex justify-between border-b-2 border-gray-300 mb-2">
+        <div className="bg-gray-100 shadow-md rounded px-8 py-8 mb-10 border border-gray-200">
+          <div className="flex justify-between border-b border-gray-500 mb-2">
             <div>
               <p className="text-red-500">メモの見出しエリア</p>
               <p>今後作成していく記事のメインキーワード</p>

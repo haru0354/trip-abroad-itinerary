@@ -15,8 +15,6 @@ import Modal from "./Modal";
 import AuthInput from "./AuthInput";
 import Button from "../../ui/Button";
 
-
-
 // 入力データの検証ルールを定義
 const schema = z.object({
   email: z.string().email({ message: "メールアドレスの形式ではありません。" }),
@@ -51,7 +49,7 @@ const LoginModal = () => {
       // ログイン
       const res = await signIn("itinerary", {
         ...data,
-        redirect: false,
+        callbackUrl: "/travel_brochure/home",
       });
 
       if (res?.error) {
@@ -94,17 +92,28 @@ const LoginModal = () => {
   // フッターの内容
   const footerContent = (
     <div className="w-full px-4 my-6 ">
-      <Button onClick={() => signIn("google")} className="border border-gray-400 p-1 w-full bg-white rounded-full">       
+      <Button
+        onClick={() =>
+          signIn("google", {
+            callbackUrl: "/travel_brochure/home",
+          })
+        }
+        className="border border-gray-400 p-1 w-full bg-white rounded-full"
+      >
         Googleでログイン
       </Button>
       <div className="my-4 border-t">
-        <p onClick={onToggle} className="text-center text-gray-500 text-sm pt-2 cursor-pointer ">アカウントを作成する</p>
+        <p
+          onClick={onToggle}
+          className="text-center text-gray-500 text-sm pt-2 cursor-pointer "
+        >
+          アカウントを作成する
+        </p>
       </div>
     </div>
   );
 
   return (
-    
     <Modal
       disabled={loading}
       isOpen={loginModal.isOpen}

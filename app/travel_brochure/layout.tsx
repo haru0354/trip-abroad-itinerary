@@ -4,12 +4,11 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import AuthContext from "../context/AuthContext";
 import getCurrentUser from "../action/getCurrentUser";
-import SignupModal from "../components/auth/authUi/SignupModal";
+
 import ToastContext from "../context/ToastContext";
-import LoginModal from "../components/auth/authUi/LoginModal";
-import FooterMenu from "../components/FooterMenu";
+
 import Footer from "../components/Footer";
-import HeaderItinerary from "../components/HeaderItinerary";
+
 
 config.autoAddCss = false;
 
@@ -33,13 +32,9 @@ export default async function RootLayout({
   return (
     <>
       <AuthContext>
-        <ToastContext />
-        <SignupModal />
-        <LoginModal />
-        <HeaderItinerary currentUser={currentUser} />
-        {children}
-        <Footer />
-        <FooterMenu />
+          <ToastContext />
+          {children}
+          <Footer />
       </AuthContext>
     </>
   );

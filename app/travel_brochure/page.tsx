@@ -5,12 +5,18 @@ import QA from "../components/homePage/QA";
 import Hero from "../components/homePage/Hero";
 import SignupButton from "../components/ui/SignupButton";
 import getCurrentUser from "../action/getCurrentUser";
+import HeaderItinerary from "../components/HeaderItinerary";
+import LoginModal from "../components/auth/authUi/LoginModal";
+import SignupModal from "../components/auth/authUi/SignupModal";
 
 export default async function Home() {
   const currentUser = await getCurrentUser();
 
   return (
     <>
+      <SignupModal />
+      <LoginModal />
+      <HeaderItinerary currentUser={currentUser} />
       <Hero />
       <main>
         <div className="main-contents-area">
@@ -67,11 +73,15 @@ export default async function Home() {
               title="本当に無料で利用できますか？"
               content="旅のメモリーブックは完全に無料で利用できるアプリとなっています。アカウントを10秒ほどで作成後はすぐにアプリの全機能を利用することが可能で、すぐにでも国内・海外旅行のしおりとして旅程表の作成などできます。"
             />
-            <QA 
-            title="「iphone」や「android」で使用できますか？" 
-            content="はい。もちろん可能です。PC・スマートフォン・タブレットとあらゆる端末で使用をすることができます。そのため、iphone・androidだけでなく、同じアカウントを使用してPCのwindowsやmacでの使用もできます。" />
-            <QA title="pcで作成したのをスマホで閲覧できますか？" content="PC・スマホ・タブレットと端末に関係なく、あらゆる端末で閲覧・作成ができます。作成したアカウントでログインをすればどの端末からでも閲覧・作成・編集が可能です。
-            " />
+            <QA
+              title="「iphone」や「android」で使用できますか？"
+              content="はい。もちろん可能です。PC・スマートフォン・タブレットとあらゆる端末で使用をすることができます。そのため、iphone・androidだけでなく、同じアカウントを使用してPCのwindowsやmacでの使用もできます。"
+            />
+            <QA
+              title="pcで作成したのをスマホで閲覧できますか？"
+              content="PC・スマホ・タブレットと端末に関係なく、あらゆる端末で閲覧・作成ができます。作成したアカウントでログインをすればどの端末からでも閲覧・作成・編集が可能です。
+            "
+            />
             <div className="text-center py-4">
               <SignupButton />
             </div>

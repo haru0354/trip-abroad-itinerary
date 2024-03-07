@@ -68,7 +68,6 @@ const page = () => {
               </Button>
             </form>
           </div>
-          <div className="flex"></div>
         </div>
       </div>
     </>

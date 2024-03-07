@@ -7,18 +7,14 @@ import TextArea from "../ui/TextArea";
 import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-
-type Memo = {
-  id: number;
-  name: string;
-  content: string;
-};
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import { addMemo } from "@/app/action/action-memo";
 
 type FormMemoProps = {
-  memo?: Memo | null;
   buttonName: string;
-  userId?: number | undefined;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
+  buttonName2: string;
+  itineraryHomeId?: number | undefined;
 };
 
 type FormState = {
@@ -31,31 +27,28 @@ type FormState = {
 };
 
 const FormMemoModal: React.FC<FormMemoProps> = ({
-  memo,
   buttonName,
-  formAction,
-  userId,
+  buttonName2,
+  itineraryHomeId,
 }) => {
   const router = useRouter();
-  const initialState = { message: null, errors: { name: undefined } };
-  const [state, dispatch] = useFormState<FormState, FormData>(
-    formAction,
-    initialState
-  );
-  const [errorMessage, setErrorMessage] = useState<string | undefined>();
-
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-  const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const toggleDeleteModal = () => setIsModalOpen((prev) => !prev);
   const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
     if (e.target === e.currentTarget) {
       toggleDeleteModal();
     }
   };
 
-  const [inputValue, setInputValue] = useState<string>(memo?.name || "");
-  const [textAreaValue, setTextareaChange] = useState<string>(
-    memo?.content || ""
+  const initialState = { message: null, errors: { name: undefined } };
+  const [state, dispatch] = useFormState<FormState, FormData>(
+    addMemo,
+    initialState
   );
+  const [errorMessage, setErrorMessage] = useState<FormState>();
+
+  const [inputValue, setInputValue] = useState<string>("");
+  const [textAreaValue, setTextareaChange] = useState<string>("");
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -68,62 +61,92 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const result = await formAction(state, formData);
-    if ("message" in result) {
-      if (result.message === "add") {
+    const result = await addMemo(state, formData);
+    switch (result.message) {
+      case "add":
         setInputValue("");
         setTextareaChange("");
         toast.success("メモを保存しました！");
         toggleDeleteModal();
-      } else if (result.message === "edit") {
+        break;
+      case "edit":
         toast.success("メモを編集しました！");
-        router.replace("/travel_brochure/memo");
-      } else if (result.message === "failure") {
-        if (result.errors && result.errors.name) {
-          setErrorMessage(result.errors.name[0]);
-        }
-      }
+        router.replace(`/travel_brochure/${itineraryHomeId}/memo`);
+        break;
+      default:
+        setErrorMessage(result);
+        break;
     }
   };
 
   return (
-    <div>
-      <div className="flex justify-center items-center">
-        {isDeleteModalOpen || (
-          <Button onClick={toggleDeleteModal} className="btn blue">
-            旅程を追加する
+    <>
+      {buttonName === "追加" ? (
+        <>
+          <div className="w-full h-full">
+            <Button onClick={toggleDeleteModal} className="btn-footer">
+              <FontAwesomeIcon icon={faSquarePlus} />
+              <span className="text-gray-500">{buttonName}</span>
+            </Button>
+          </div>
+        </>
+      ) : (
+        <>
+          <Button
+            onClick={toggleDeleteModal}
+            className="block mx-auto px-16  mb-10 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900"
+          >
+            {buttonName}
           </Button>
-        )}
-      </div>
-      {isDeleteModalOpen && (
+        </>
+      )}
+      {isModalOpen && (
         <div
           className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
           onClick={closeModal}
         >
-          <div className="bg-white">
-            <form action={dispatch} onSubmit={handleSubmit}>
-              <Form
-                label={"メモの見出し"}
-                name={"name"}
-                placeholder="メモの見出しを記載しましょう。"
-                value={inputValue}
-                onChange={handleInputChange}
-              />
-              {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-              <TextArea
-                label={"メモする内容"}
-                name={"content"}
-                placeholder="メモする内容を記載しましょう。"
-                value={textAreaValue}
-                onChange={handleTextareaChange}
-              />
-              <input type="hidden" name="userId" value={userId} />
-              <Button className="btn blue">{buttonName}</Button>
-            </form>
+          <div className="flex items-center justify-center w-[620px]">
+            <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px]">
+              <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-bold">
+                メモのフォーム
+              </p>
+              <form onSubmit={handleSubmit} className="w-full py-3">
+                <Form
+                  label={"メモの見出し"}
+                  name={"name"}
+                  placeholder="メモの見出しを記載しましょう。"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                />
+                {errorMessage &&
+                  errorMessage.errors &&
+                  errorMessage.errors.name && (
+                    <p className="text-red-500">{errorMessage.errors.name}</p>
+                  )}
+                <TextArea
+                  label={"メモする内容"}
+                  name={"content"}
+                  placeholder="メモする内容を記載しましょう。"
+                  value={textAreaValue}
+                  onChange={handleTextareaChange}
+                />
+                <input
+                  type="hidden"
+                  name="itineraryHomeId"
+                  value={itineraryHomeId}
+                />
+                {errorMessage && errorMessage.message !== "failure" && (
+                  <p className="text-red-500">{errorMessage.message}</p>
+                )}
+                <Button className="block mx-auto px-16 py-3 mt-5 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
+                  {buttonName2}
+                </Button>
+              </form>
+            </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

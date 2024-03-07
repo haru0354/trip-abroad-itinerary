@@ -5,7 +5,6 @@ import {
   faPlane,
   faPenToSquare,
   faHouse,
-  faCircleUp,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Button from "./ui/Button";
@@ -17,25 +16,12 @@ import { addItinerary } from "../action/action-itinerary";
 type FooterMenuProps = {
   itineraryHomeId: number;
   userId?: number | undefined;
-  itinerary?: Itinerary | null | undefined;
 };
 
-type Itinerary = {
-  id: number;
-  date: string;
-  time: string;
-  name: string;
-  content?: string | null;
-  hideContent?: string | null;
-  isShowContent: boolean;
-  url?: string | null;
-  altText?: string | null;
-};
 
 const FooterMenu: React.FC<FooterMenuProps> = ({
   itineraryHomeId,
   userId,
-  itinerary,
 }) => {
   const path = usePathname();
 
@@ -78,7 +64,6 @@ const FooterMenu: React.FC<FooterMenuProps> = ({
             buttonName="追加"
             buttonName2="旅程を追加"
             userId={userId}
-            itinerary={itinerary}
             formAction={addItinerary}
           />
         ) : null}

@@ -8,22 +8,12 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { itineraryHome_id: string; itinerary_id: string };
+  params: { itineraryHome_id: string };
 }>) {
   const currentUser = await getCurrentUser();
   const userId = currentUser?.id;
-  const itineraryId = Number(params.itinerary_id);
   const itineraryHomeId = Number(params.itineraryHome_id);
-  let itinerary = null;
   
-  if (itineraryId) {
-    const itinerary = await prisma.itinerary.findUnique({
-      where: {
-        id: itineraryId,
-      },
-    });
-  }
-
   return (
     <>
       <ItineraryAuthGuard currentUser={currentUser}>
@@ -31,7 +21,6 @@ export default async function RootLayout({
         <FooterMenu
           itineraryHomeId={itineraryHomeId}
           userId={userId}
-          itinerary={itinerary}
         />
       </ItineraryAuthGuard>
     </>

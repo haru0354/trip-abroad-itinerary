@@ -2,6 +2,9 @@ import Link from "next/link";
 import Header from "./components/Header";
 import Section1ColumnRight from "./components/homePage/Section1ColumnRight";
 import Button from "./components/ui/Button";
+import SideNewArticles from "./components/blog/sideMenu/SideNewArticles";
+import CategoryTop from "./components/blog/CategoryTop";
+import NewArticleTop from "./components/blog/NewArticleTop";
 
 export default function Home() {
   return (
@@ -21,6 +24,13 @@ export default function Home() {
               content2="あああ"
               content3="あああ"
             />
+
+
+            <NewArticleTop/>
+            <CategoryTop />
+
+
+
             <div className="flex justify-center">
               <Link href="./travel_brochure/">
                 <Button className="px-16 mx-6 mb-10 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
@@ -32,7 +42,6 @@ export default function Home() {
             ここに新着記事を3列2行で表示
             <h3>カテゴリ</h3>
             ここにカテゴリを3列で表示
-
             <ul>
               <li>
                 <Link href="./dashboard/">ブログ管理</Link>

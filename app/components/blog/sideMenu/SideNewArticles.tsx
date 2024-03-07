@@ -4,14 +4,11 @@ import Image from "next/image";
 
 const SideNewArticles = async () => {
   const posts = await prisma.post.findMany({
-    take: 5, // 最新の5つの投稿を取得
+    take: 5,
     include: {
-      category: true, // リレーションされたCategoryモデルの情報を含める
+      category: true,
     },
   });
-
-  // 5件を取り出す
-  const latestPosts = posts.slice(0, 5);
 
   return (
     <div className="w-full p-2">
@@ -26,8 +23,9 @@ const SideNewArticles = async () => {
                 <Image
                   src="/new-article.JPG"
                   alt="削除する"
-                  width={240}
+                  width={280}
                   height={140}
+                  className="block mx-auto"
                 />
                 {post.title && post.title.length > 36 ? (
                   <p className="text-gray-600 my-2">

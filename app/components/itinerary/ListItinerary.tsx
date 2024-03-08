@@ -67,14 +67,14 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
                 </div>
               </div>
               <div className="flex-1 flex-col  ml-8 my-2 p-2 shadow flex  bg-sky-50 ">
-                <div className="flex items-start justify-center mb-2 flex-wrap md:flex-nowrap">
+                <div className="flex items-start  mb-2 flex-wrap md:flex-nowrap justify-center md:justify-start ">
                   {itinerary && itinerary.url && itinerary.altText && (
-                    <div className="min-w-[250px]">
+                    <div className="min-w-[250px] max-w-[250px]">
                       <Image
                         src={itinerary.url}
                         alt={itinerary.altText}
-                        width={250}
-                        height={250}
+                        width={260}
+                        height={180}
                       />
                     </div>
                   )}

@@ -36,12 +36,12 @@ const FormImage: React.FC<FormImageProps> = ({
   label,
   placeholder,
 }) => {
-  const [ error, setError ] = useState<string>("");
-  const [ image, setImage ] = useState<{ preview: string; data: File | string }>({
+  const [error, setError] = useState<string>("");
+  const [image, setImage] = useState<{ preview: string; data: File | string }>({
     preview: "",
     data: "",
   });
-  const [ fileInputKey, setFileInputKey ] = useState(Date.now());
+  const [fileInputKey, setFileInputKey] = useState(Date.now());
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const imageTypes = ["image/jpeg", "image/png", "image/gif"];
@@ -105,9 +105,9 @@ const FormImage: React.FC<FormImageProps> = ({
               src={selectImage.url}
               alt={selectImage.altText}
               width={300}
-              height={300}
+              height={180}
               style={{
-                width: "300px",
+                width: "280px",
                 height: "auto",
               }}
             />

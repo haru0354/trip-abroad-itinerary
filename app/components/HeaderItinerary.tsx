@@ -9,17 +9,16 @@ type HeaderItineraryProps = {
 
 const HeaderItinerary: React.FC<HeaderItineraryProps> = ({ currentUser }) => {
   return (
-    <header className="max-w-[76rem] mx-auto">
-      <div className="flex justify-between items-center h-16 mx-10">
-        <Link href="../">
+    <header className="max-w-[1150px] mx-auto">
+      <div className="flex justify-between items-center h-16 ">
+        <Link href="/travel_brochure">
           <Image
-            src="/logo.JPG"
-            alt="削除する"
-            width={250}
-            height={60}
+            src="/logo_itinerary.png"
+            alt="旅のメモリーブック"
+            width={220}
+            height={52}
             priority
-            
-          ></Image>
+          />
         </Link>
         <Menu currentUser={currentUser} />
       </div>

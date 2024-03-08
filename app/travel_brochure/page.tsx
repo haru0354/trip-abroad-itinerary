@@ -33,7 +33,7 @@ export default async function Home() {
               content2="旅行日までに用意しなければいけない物やパスポートの取得、旅行中の海外旅行保険の連絡先など様々です。簡単にメモができるので必要なことがすぐに確認可能。"
               content3="非表示からボタンクリックで表示に切り替えるメモ機能があります。旅程表の見やすさやデザインを損なわずにメモをすることができるようになっています"
               image1Url="/008.jpg"
-              image2Url="/008.jpg"
+              image2Url="/memo-create.jpg"
               image3Url="/008.jpg"
               image1Alt="aa"
               image2Alt="aa"
@@ -43,7 +43,7 @@ export default async function Home() {
               「旅のメモリーブック」はこんな人に使って欲しい
             </h2>
             <Section1ColumnRight
-              src="/app-gazou.JPG"
+              src="/002.jpg"
               alt="aa"
               name="英語が話せない人でも海外旅行へ"
               content="英語が話せない人でも安心して海外旅行へをコンセプトに作成されたアプリです。"
@@ -51,7 +51,7 @@ export default async function Home() {
               content3="現地で必要なタイミングでメモを閲覧できるので、言語の壁があっても安心して旅行が可能です。"
             />
             <Section1ColumnRight
-              src="/app-gazou.JPG"
+              src="/005.jpg"
               alt="aa"
               name="旅行費用を安くしたい10代・20代・30代"
               content="PC・スマホ・タブレットから完全無料で利用が可能な国内旅行・海外旅行のしおりアプリです。"
@@ -75,7 +75,7 @@ export default async function Home() {
               content3="旅程表は複数作成可能となっています。旅行は1度だけでなく何度も良く人は多いです。複数の旅行にそれぞれの旅程表が作成できるようになっています。"
             />
             <h2 className="text-center text-gray-700 mb-6 text-2xl font-semibold">
-             思い出の旅行記になるアプリ
+              思い出の旅行記になるアプリ
             </h2>
             <Section1ColumnRight
               src="/app-gazou.JPG"
@@ -84,7 +84,6 @@ export default async function Home() {
               content="旅のメモリーブックは各旅程の写真を載せることができるようになっています。"
               content2="旅行中や旅行後には撮影した観光地や料理など様々な写真を載せましょう。"
               content3="作ったら終わりの旅程表を作成できるアプリではなく、思い出に残るアルバムを作成するのを楽しめるアプリになっています。"
-
             />
             <h2 className="text-center text-gray-700 my-10 text-2xl font-semibold">
               よくある質問

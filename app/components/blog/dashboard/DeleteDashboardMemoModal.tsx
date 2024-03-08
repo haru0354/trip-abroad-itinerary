@@ -12,17 +12,20 @@ type DashboardMemo = {
 };
 
 type DeleteDashboardMemoModalProps = {
-    dashboardMemo: DashboardMemo | null;
+  dashboardMemo: DashboardMemo | null;
 };
 
 const DeleteDashboardMemoModal: React.FC<DeleteDashboardMemoModalProps> = ({
-    dashboardMemo,
+  dashboardMemo,
 }) => {
   if (!dashboardMemo) {
     return <p>削除対象のメモがありません。</p>;
   }
 
-  const deleteDashboardMemoWithId = deleteDashboardMemo.bind(null, dashboardMemo.id);
+  const deleteDashboardMemoWithId = deleteDashboardMemo.bind(
+    null,
+    dashboardMemo.id
+  );
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
 
@@ -58,24 +61,29 @@ const DeleteDashboardMemoModal: React.FC<DeleteDashboardMemoModalProps> = ({
             className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
             onClick={closeModal}
           >
-            <div className="border rounded mx-auto bg-blue-100 w-[250px]">
+            <div className="border rounded mx-auto bg-blue-100 w-[300px]">
               <div>
                 <Image
                   src="/delete-modal.JPG"
                   alt="削除する"
-                  width={250}
+                  width={300}
                   height={250}
                 />
               </div>
               <div>
-                <p className="text-center p-4 font-bold">{dashboardMemo.name}</p>
+                <p className="text-center p-4 font-bold">
+                  「{dashboardMemo.name}」を削除しますか？
+                </p>
               </div>
               <div>
                 <Button onClick={toggleDeleteModal} className="btn gray">
                   キャンセル
                 </Button>
                 <form onSubmit={deleteToast}>
-                  <Button formAction={deleteDashboardMemoWithId} className="btn red">
+                  <Button
+                    formAction={deleteDashboardMemoWithId}
+                    className="btn red"
+                  >
                     削除
                   </Button>
                 </form>

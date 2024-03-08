@@ -4,11 +4,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import AuthContext from "../context/AuthContext";
 import getCurrentUser from "../action/getCurrentUser";
-
 import ToastContext from "../context/ToastContext";
-
-import Footer from "../components/Footer";
-
 
 config.autoAddCss = false;
 
@@ -34,7 +30,6 @@ export default async function RootLayout({
       <AuthContext>
           <ToastContext />
           {children}
-          <Footer />
       </AuthContext>
     </>
   );

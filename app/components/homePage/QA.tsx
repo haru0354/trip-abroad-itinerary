@@ -18,7 +18,7 @@ const QA: React.FC<QAProps> = ({ title, content }) => {
 
   return (
     <>
-      <div className="border border-sky-600 my-10 p-8 rounded cursor-pointer" onClick={toggleShowContent}>
+      <div className="border border-gray-600 my-10 p-8 rounded cursor-pointer" onClick={toggleShowContent}>
         {isShowContent ? (
           <>
             <div

@@ -1,5 +1,5 @@
 import { addCategory } from "@/app/action/action-category";
-import FormCategory from "@/app/components/blog/(dashboard)/FormCategory";
+import FormCategory from "@/app/components/blog/dashboard/FormCategory";
 import Button from "@/app/components/ui/Button";
 import Link from "next/link";
 import type { Metadata } from "next";

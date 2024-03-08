@@ -14,24 +14,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 
 type FormItineraryProps = {
-  itinerary?: Itinerary | null;
   buttonName: string;
   buttonName2: string;
-  itineraryHomeId?: number | undefined;
+  itineraryHomeId: number | undefined;
   userId: number | undefined;
   formAction: (state: FormState, data: FormData) => Promise<FormState>;
-};
-
-type Itinerary = {
-  id: number;
-  date: string;
-  time: string;
-  name: string;
-  content?: string | null;
-  hideContent?: string | null;
-  isShowContent: boolean;
-  url?: string | null;
-  altText?: string | null;
 };
 
 type FormState = {
@@ -50,7 +37,6 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
   buttonName2,
   itineraryHomeId,
   userId,
-  itinerary,
   formAction,
 }) => {
   const router = useRouter();
@@ -153,7 +139,7 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
         <>
           <Button
             onClick={toggleDeleteModal}
-            className="block mx-auto px-16  mb-10 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900"
+            className="block mx-auto px-16  mt-10 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900"
           >
             {buttonName}
           </Button>
@@ -218,7 +204,6 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
                 />
                 <FormImage
                   state={errorMessage}
-                  selectImage={itinerary}
                   formSubmitted={formSubmitted}
                   altTextValue={altTextValue}
                   onChangeAltText={handleAltTextChange}

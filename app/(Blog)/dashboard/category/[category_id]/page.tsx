@@ -1,6 +1,6 @@
 import prisma from "@/app/components/lib/prisma";
-import DeleteCategoryModal from "@/app/components/blog/(dashboard)/DeleteCategoryModal";
-import FormCategory from "@/app/components/blog/(dashboard)/FormCategory";
+import DeleteCategoryModal from "@/app/components/blog/dashboard/DeleteCategoryModal";
+import FormCategory from "@/app/components/blog/dashboard/FormCategory";
 import { updateCategory } from "@/app/action/action-category";
 import type { Metadata } from "next";
 
@@ -16,9 +16,9 @@ const page = async ({ params }: { params: { category_id: string } }) => {
     where: {
       id,
     },
-    include:{
+    include: {
       postImage: true,
-    }
+    },
   });
 
   return (

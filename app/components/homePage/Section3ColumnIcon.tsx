@@ -5,7 +5,7 @@ import {
   faCartFlatbedSuitcase,
 } from "@fortawesome/free-solid-svg-icons";
 
-type Section3ColumnProps = {
+type Section3ColumnIconProps = {
   title: string;
   name1: string;
   name2: string;
@@ -15,7 +15,7 @@ type Section3ColumnProps = {
   content3: string;
 };
 
-const Section3Column: React.FC<Section3ColumnProps> = ({
+const Section3ColumnIcon: React.FC<Section3ColumnIconProps> = ({
   title,
   name1,
   name2,
@@ -70,4 +70,4 @@ const Section3Column: React.FC<Section3ColumnProps> = ({
   );
 };
 
-export default Section3Column;
+export default Section3ColumnIcon;

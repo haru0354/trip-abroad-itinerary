@@ -21,13 +21,17 @@ const CategoryTop = async () => {
               <div key={category.id} className="flex flex-col items-center">
                 <Link href={`/${category.slug}`}>
                   <div className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[330px] min-w-[330px]">
-                    <div className="min-h-[220px] max-h-[220px] justify-centers">
+                  <div className="min-h-[220px] max-h-[220px] border justify-centers">
                       {category.postImage ? (
                         <Image
                           src={category.postImage.url}
                           alt={category.postImage.altText}
                           width={330}
                           height={220}
+                          style={{
+                            width: "330px",
+                            height: "auto",
+                          }}
                         />
                       ) : (
                         <Image
@@ -35,6 +39,10 @@ const CategoryTop = async () => {
                           alt="aa"
                           width={330}
                           height={220}
+                          style={{
+                            width: "330px",
+                            height: "auto",
+                          }}
                         />
                       )}
                     </div>

@@ -25,26 +25,22 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   });
 
   return (
-    <main>
-      <div className="main-contents-area">
-        <div className="contents-area">
-          <h2 className="text-center font-semibold text-xl text-gray-600 mt-4 py-2 border-b border-sky-700">
-            {itineraryHome?.name}
-          </h2>
-          <ListItinerary
-            itineraries={itineraryHome?.itineraries}
-            itineraryHomeId={itineraryHome?.id}
-          />
-          <FormItineraryModal
-            itineraryHomeId={itineraryHome?.id}
-            buttonName="旅程を追加"
-            buttonName2="旅程を追加"
-            userId={userId}
-            formAction={addItinerary}
-          />
-        </div>
-      </div>
-    </main>
+    <>
+      <h2 className="text-center font-semibold text-xl text-gray-600 mt-4 py-2 border-b border-sky-700">
+        {itineraryHome?.name}
+      </h2>
+      <ListItinerary
+        itineraries={itineraryHome?.itineraries}
+        itineraryHomeId={itineraryHome?.id}
+      />
+      <FormItineraryModal
+        itineraryHomeId={itineraryHome?.id}
+        buttonName="旅程を追加"
+        buttonName2="旅程を追加"
+        userId={userId}
+        formAction={addItinerary}
+      />
+    </>
   );
 };
 

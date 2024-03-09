@@ -4,18 +4,19 @@ import { User } from "@prisma/client";
 import { useCallback, useState, useEffect } from "react";
 import useLoginModal from "../hooks/useLoginModal";
 import useSignupModal from "../hooks/useSignupModal";
-import useProfileModal from "../hooks/useProfile";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 type MenuProps = {
   currentUser: User | null;
 };
 
 const Menu: React.FC<MenuProps> = ({ currentUser }) => {
+  const userId = currentUser?.id;
+
   const [isOpen, setIsOpen] = useState(false);
   const loginModal = useLoginModal();
   const signupModal = useSignupModal();
-  const profileModal = useProfileModal();
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -35,27 +36,17 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
             </div>
             {isOpen && (
               <ul className="absolute right-0 mt-2 w-40 p-2 bg-white  overflow-hidden shadow-lg z-10 text-base ">
-                <li className="pb-2">
-                  <p
-                    className="cursor-pointer text-sky-700 hover:bg-gray-200 p-2"
-                    onClick={() => {
-                      profileModal.onOpen();
-                      setIsOpen(false);
-                    }}
-                  >
-                    プロフィール
-                  </p>
-                </li>
-                <li>
-                  <p
-                    className="cursor-pointer text-sky-700 hover:bg-gray-200 p-2"
-                    onClick={() => {
-                      signOut();
-                      setIsOpen(false);
-                    }}
-                  >
-                    ログアウト
-                  </p>
+                <li className="cursor-pointer text-sky-700 hover:bg-gray-200 p-2">
+                  <Link href="/travel_brochure/home">管理画面</Link>
+                </li>                
+                <li
+                  onClick={() => {
+                    signOut();
+                    setIsOpen(false);
+                  }}
+                  className="cursor-pointer text-sky-700 hover:bg-gray-200 p-2"
+                >
+                  ログアウト
                 </li>
               </ul>
             )}

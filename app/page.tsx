@@ -17,7 +17,7 @@ export default function Home() {
               リリース情報
             </h2>
             <Section1ColumnRight
-              src="/app-gazou.JPG"
+              src="/travelogue.jpg"
               alt="aa"
               name="「旅のメモリーブック」"
               content="PC・スマホ・タブレットで利用できる無料の国内旅行・海外旅行しおりアプリ。"

@@ -23,24 +23,20 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   });
 
   return (
-    <main>
-      <div className="main-contents-area">
-        <div className="contents-area">
-          <h2 className="text-center font-semibold text-xl text-gray-00 mt-4 py-2 border-b border-sky-700">
-            {itineraryHome?.name}
-          </h2>
-          <ListMemo
-            memos={itineraryHome?.memos}
-            itineraryHomeId={itineraryHome?.id}
-          />
-          <FormMemoModal
-            itineraryHomeId={itineraryHome?.id}
-            buttonName="メモの追加"
-            buttonName2="メモの追加"
-          />
-        </div>
-      </div>
-    </main>
+    <>
+      <h2 className="text-center font-semibold text-xl text-gray-00 mt-4 py-2 border-b border-sky-700">
+        {itineraryHome?.name}
+      </h2>
+      <ListMemo
+        memos={itineraryHome?.memos}
+        itineraryHomeId={itineraryHome?.id}
+      />
+      <FormMemoModal
+        itineraryHomeId={itineraryHome?.id}
+        buttonName="メモの追加"
+        buttonName2="メモの追加"
+      />
+    </>
   );
 };
 

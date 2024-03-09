@@ -27,7 +27,7 @@ const Section3ColumnIcon: React.FC<Section3ColumnIconProps> = ({
   return (
     <div className="w-full py-4 bg-white rounded">
       <div className="text-center my-6">
-        <h2 className="text-2xl my-10 text-gray-700 mb-6 font-semibold">
+      <h2 className="bg-blue-400 text-xl font-semibold text-white rounded my-10 p-5">
           {title}
         </h2>
       </div>

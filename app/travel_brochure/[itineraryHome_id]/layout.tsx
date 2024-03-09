@@ -1,7 +1,8 @@
 import ItineraryAuthGuard from "@/app/components/auth/authGuard/ItineraryAuthGuard";
 import getCurrentUser from "@/app/action/getCurrentUser";
 import FooterMenu from "@/app/components/FooterMenu";
-import prisma from "@/app/components/lib/prisma";
+import HeaderItinerary from "@/app/components/HeaderItinerary";
+import FooterItinerary from "@/app/components/FooterItinerary";
 
 export default async function RootLayout({
   children,
@@ -13,15 +14,18 @@ export default async function RootLayout({
   const currentUser = await getCurrentUser();
   const userId = currentUser?.id;
   const itineraryHomeId = Number(params.itineraryHome_id);
-  
+
   return (
     <>
       <ItineraryAuthGuard currentUser={currentUser}>
-        {children}
-        <FooterMenu
-          itineraryHomeId={itineraryHomeId}
-          userId={userId}
-        />
+        <HeaderItinerary currentUser={currentUser} />
+        <main>
+          <div className="main-contents-area">
+            <div className="contents-area">{children}</div>
+          </div>
+        </main>
+        <FooterItinerary />
+        <FooterMenu itineraryHomeId={itineraryHomeId} userId={userId} />
       </ItineraryAuthGuard>
     </>
   );

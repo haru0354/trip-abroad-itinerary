@@ -56,18 +56,17 @@ const DeletePostModal: React.FC<DeletePostModalProps> = ({ post }) => {
             className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
             onClick={closeModal}
           >
-            <div className="border rounded mx-auto bg-blue-100 w-[250px]">
+            <div className="border rounded mx-auto bg-blue-100 w-[300px]">
               <div>
                 <Image
                   src="/delete-modal.JPG"
                   alt="削除する"
-                  width={250}
+                  width={300}
                   height={250}
-                  objectFit="contain"
-                ></Image>
+                />
               </div>
               <div>
-                <p className="text-center p-4 font-bold">{post.title}</p>
+                <p className="text-center p-4 font-bold">「{post.title}」を削除しますか？</p>
               </div>
               <div>
                 <Button onClick={toggleDeleteModal} className="btn gray">

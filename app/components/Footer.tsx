@@ -1,7 +1,6 @@
 const Footer = () => {
   return (
     <footer className="bg-blue-500">
-      <div className="bg-footer-image bg-cover bg-center h-[140px]"></div>
       <div>
         <ul className="flex items-center justify-center">
           <li className="pt-2 px-6 text-xs">プライバシーポリシー</li>

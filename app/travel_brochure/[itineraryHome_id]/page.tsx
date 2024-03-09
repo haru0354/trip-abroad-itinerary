@@ -14,7 +14,7 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   const id = Number(params.itineraryHome_id);
   const updateItineraryHomeWidthId = updateItineraryHome.bind(null, id);
   const currentUser = await getCurrentUser();
-  const userId = currentUser?.id
+  const userId = currentUser?.id;
 
   const itineraryHome = await prisma.itineraryHome.findUnique({
     where: {
@@ -23,23 +23,16 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   });
 
   return (
-    <main>
-      <div className="main-contents-area">
-        <div className="contents-area">
-          <div>
-            <FormItineraryHome
-              formAction={updateItineraryHomeWidthId}
-              itineraryHome={itineraryHome}
-              buttonName="保存"
-              userId={userId}
-            />
-          </div>
-          <div>
-            <DeleteItineraryHomeModal itineraryHome={itineraryHome} />
-          </div>
-        </div>
-      </div>
-    </main>
+    <>
+      <FormItineraryHome
+        formAction={updateItineraryHomeWidthId}
+        itineraryHome={itineraryHome}
+        buttonName="保存"
+        userId={userId}
+      />
+
+      <DeleteItineraryHomeModal itineraryHome={itineraryHome} />
+    </>
   );
 };
 

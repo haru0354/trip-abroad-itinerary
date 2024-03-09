@@ -21,9 +21,12 @@ type Itineraries = {
   isShowContent: boolean | null;
   url: string | null;
   altText: string | null;
-}
+};
 
-const ListItinerary: React.FC<ListItineraryProps> = async ({ itineraryHomeId, itineraries }) => {
+const ListItinerary: React.FC<ListItineraryProps> = async ({
+  itineraryHomeId,
+  itineraries,
+}) => {
   const sortItineraryByDateTime = (a: Itineraries, b: Itineraries) =>
     new Date(a.date + " " + a.time).getTime() -
     new Date(b.date + " " + b.time).getTime();
@@ -45,7 +48,15 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({ itineraryHomeId, it
                 {itinerary.date}
               </div>
             )}
-            <div className=" flex w-full  ">
+            <Link
+              href={`/travel_brochure/${itineraryHomeId}/itinerary/${itinerary.id}`}
+            >
+              <Button className="btn-small block ml-auto mb-[-8px]">
+                <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
+                編集
+              </Button>
+            </Link>
+            <div className="flex w-full ">
               <div className="relative  text-white items-center justify-center flex">
                 <FontAwesomeIcon
                   icon={faCircleDown}
@@ -55,38 +66,36 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({ itineraryHomeId, it
                   <div className="h-full w-1 bg-blue-100"></div>
                 </div>
               </div>
-              <div className="w-full flex-1 ml-8 my-2 p-5 shadow flex flex-col bg-blue-50">
-                <div className="flex items-center justify-between mb-2">
-                  {itinerary &&
-                    itinerary.url &&
-                    itinerary.altText && (
+              <div className="flex-1 flex-col  ml-8 my-2 p-2 shadow flex  bg-sky-50 ">
+                <div className="flex items-start  mb-2 flex-wrap md:flex-nowrap justify-center md:justify-start ">
+                  {itinerary && itinerary.url && itinerary.altText && (
+                    <div className="min-w-[250px] max-w-[250px]">
                       <Image
                         src={itinerary.url}
                         alt={itinerary.altText}
-                        width={250}
-                        height={250}
+                        width={260}
+                        height={180}
                       />
-                    )}
-                  <div className="flex items-center">
-                    <FontAwesomeIcon
-                      icon={faClock}
-                      className="inline-block mr-2"
-                    />
-                    <p className="text-gray-600 mb-0 inline-block">
-                      {itinerary.time}
-                    </p>
+                    </div>
+                  )}
+                  <div className="flex flex-col px-4">
+                    <h3 className="text-gray-700 my-4 text-xl font-semibold">
+                      {itinerary.name}
+                    </h3>
+                    <div className="flex items-center mb-2">
+                      <FontAwesomeIcon
+                        icon={faClock}
+                        className="inline-block mr-2"
+                      />
+                      <p className="text-gray-700 mb-0 inline-block">
+                        {itinerary.time}
+                      </p>
+                    </div>
+                    <div className="flex">
+                      <p className="text-gray-700">{itinerary.content}</p>
+                    </div>
                   </div>
-                  <Link href={`/travel_brochure/${itineraryHomeId}/itinerary/${itinerary.id}`}>
-                    <Button className="btn-small">
-                      <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
-                      編集
-                    </Button>
-                  </Link>
                 </div>
-                <h3 className="text-gray-900 mb-4 text-xl font-medium">
-                  {itinerary.name}
-                </h3>
-                <p className="text-gray-600 mb-4">{itinerary.content}</p>
                 <HideContent itinerary={itinerary} />
               </div>
             </div>

@@ -32,26 +32,19 @@ const Page = async ({
   });
 
   return (
-    <main>
-      <div className="main-contents-area">
-        <div className="contents-area">
-          <div>
-            <h2 className="text-center font-semibold text-xl text-gray-600 mt-4 py-2 border-b border-sky-700">
-              {itineraryHome?.name}
-            </h2>
-            <FormMemo
-              formAction={updateMemoWidthId}
-              memo={memo}
-              buttonName="保存"
-              itineraryHomeId={itineraryHomeId}
-            />
-          </div>
-          <div>
-            <DeleteModal memo={memo} itineraryHomeId={itineraryHomeId} />
-          </div>
-        </div>
-      </div>
-    </main>
+    <>
+      <h2 className="text-center font-semibold text-xl text-gray-600 mt-4 py-2 border-b border-sky-700">
+        {itineraryHome?.name}
+      </h2>
+      <FormMemo
+        formAction={updateMemoWidthId}
+        memo={memo}
+        buttonName="保存"
+        itineraryHomeId={itineraryHomeId}
+      />
+
+      <DeleteModal memo={memo} itineraryHomeId={itineraryHomeId} />
+    </>
   );
 };
 

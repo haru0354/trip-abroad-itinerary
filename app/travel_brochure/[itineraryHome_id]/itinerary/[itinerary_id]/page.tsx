@@ -35,31 +35,24 @@ const page = async ({
   const userId = currentUser?.id;
 
   return (
-    <main>
-      <div className="main-contents-area">
-        <div className="contents-area">
-          <div>
-            <h2 className="text-center font-semibold text-xl text-gray-600 mt-4 py-2 border-b border-sky-700">
-              {itineraryHome?.name}
-            </h2>
-            <FormItinerary
-              itinerary={itinerary}
-              formAction={updateItineraryWithId}
-              buttonName="保存"
-              itineraryHomeId={itineraryHomeId}
-              userId={userId}
-            />
-          </div>
-          <div>
-            <DeleteItineraryModal
-              itinerary={itinerary}
-              itineraryHomeId={itineraryHomeId}
-              userId={userId}
-            />
-          </div>
-        </div>
-      </div>
-    </main>
+    <>
+      <h2 className="text-center font-semibold text-xl text-gray-600 mt-4 py-2 border-b border-sky-700">
+        {itineraryHome?.name}
+      </h2>
+      <FormItinerary
+        itinerary={itinerary}
+        formAction={updateItineraryWithId}
+        buttonName="保存"
+        itineraryHomeId={itineraryHomeId}
+        userId={userId}
+      />
+
+      <DeleteItineraryModal
+        itinerary={itinerary}
+        itineraryHomeId={itineraryHomeId}
+        userId={userId}
+      />
+    </>
   );
 };
 

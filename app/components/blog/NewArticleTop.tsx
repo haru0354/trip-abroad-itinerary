@@ -23,13 +23,17 @@ const NewArticleTop = async () => {
               <div key={post.id} className="flex flex-col items-center">
                 <Link href={`/${post.category.slug}/${post.slug}`}>
                   <div className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[330px] min-w-[330px]">
-                    <div className="min-h-[220px] max-h-[220px]  justify-centers">
+                  <div className="min-h-[220px] max-h-[220px] border justify-centers">
                       {post.postImage ? (
                         <Image
                           src={post.postImage.url}
                           alt={post.postImage.altText}
                           width={330}
                           height={220}
+                          style={{
+                            width: "330px",
+                            height: "auto",
+                          }}
                         />
                       ) : (
                         <Image
@@ -37,6 +41,10 @@ const NewArticleTop = async () => {
                           alt="aa"
                           width={330}
                           height={220}
+                          style={{
+                            width: "330px",
+                            height: "auto",
+                          }}
                         />
                       )}
                     </div>

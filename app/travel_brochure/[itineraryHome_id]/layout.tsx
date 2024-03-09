@@ -19,8 +19,12 @@ export default async function RootLayout({
     <>
       <ItineraryAuthGuard currentUser={currentUser}>
         <HeaderItinerary currentUser={currentUser} />
-        {children}
-        <FooterItinerary/>
+        <main>
+          <div className="main-contents-area">
+            <div className="contents-area">{children}</div>
+          </div>
+        </main>
+        <FooterItinerary />
         <FooterMenu itineraryHomeId={itineraryHomeId} userId={userId} />
       </ItineraryAuthGuard>
     </>

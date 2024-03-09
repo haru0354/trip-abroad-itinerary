@@ -77,7 +77,7 @@ const SignupModal = () => {
     <div>
       <AuthInput
         id="name"
-        label="名前"
+        label="名前(ニックネーム)"
         disabled={loading}
         register={register}
         errors={errors}

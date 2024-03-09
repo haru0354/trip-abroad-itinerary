@@ -141,6 +141,8 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
                 <Button className="block mx-auto px-16 py-3 mt-5 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
                   {buttonName2}
                 </Button>
+                <Button className="btn blue">{buttonName}</Button>
+
               </form>
             </div>
           </div>

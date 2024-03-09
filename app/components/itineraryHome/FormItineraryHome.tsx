@@ -95,9 +95,6 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
 
   return (
     <div>
-      <h2 className="text-center font-semibold text-xl text-gray-600 mt-4 py-2 border-b border-sky-700">
-        {itineraryHome?.name}
-      </h2>
       <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
         旅行の追加
       </h2>

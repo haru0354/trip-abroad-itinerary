@@ -4,8 +4,6 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlaneDeparture,
-  faPen,
-  faImage,
   faHouse,
   faBars,
   faXmark,
@@ -51,7 +49,7 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
                   <p className="mx-2">ブログTOP</p>
                 </li>
               </Link>
-              <Link href="/dashboard">
+              <Link href="/travel_brochure/home/profile">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
                   <p className="mx-2">プロフィール</p>

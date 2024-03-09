@@ -43,7 +43,7 @@ export default async function Home() {
               「旅のメモリーブック」がおすすめな人
             </h2>
             <Section1ColumnRight
-              src="/overseas_trip.jpg"
+              src="/overseas_trip01.jpg"
               alt="海外旅行"
               name="英語が話せない人でも海外旅行へ"
               content="英語が話せない人でも安心して海外旅行へをコンセプトに作成されたアプリです。"

@@ -5,17 +5,19 @@ import Image from "next/image";
 const NewArticleTop = async () => {
   const posts = await prisma.post.findMany({
     take: 6,
+    orderBy: {
+      createdDate: 'desc'
+    },
     include: {
       category: true,
       postImage: true,
     },
   });
-
   return (
     <>
-      <h3 className="bg-sky-600 text-white font-bold text-lg px-2 py-4 rounded-sm">
+      <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
         新着記事
-      </h3>
+      </h2>
       <div className="flex w-full my-8 flex-wrap items-center justify-center">
         {posts.map((post) => {
           return (
@@ -23,7 +25,7 @@ const NewArticleTop = async () => {
               <div key={post.id} className="flex flex-col items-center">
                 <Link href={`/${post.category.slug}/${post.slug}`}>
                   <div className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[330px] min-w-[330px]">
-                  <div className="min-h-[220px] max-h-[220px] border justify-centers">
+                    <div className="min-h-[220px] max-h-[220px] border justify-centers">
                       {post.postImage ? (
                         <Image
                           src={post.postImage.url}
@@ -37,8 +39,8 @@ const NewArticleTop = async () => {
                         />
                       ) : (
                         <Image
-                          src="/008.jpg"
-                          alt="aa"
+                          src="/no_image.jpg"
+                          alt="画像の準備中"
                           width={330}
                           height={220}
                           style={{

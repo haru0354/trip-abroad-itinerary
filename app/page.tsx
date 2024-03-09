@@ -2,7 +2,6 @@ import Link from "next/link";
 import Header from "./components/Header";
 import Section1ColumnRight from "./components/homePage/Section1ColumnRight";
 import Button from "./components/ui/Button";
-import SideNewArticles from "./components/blog/sideMenu/SideNewArticles";
 import CategoryTop from "./components/blog/CategoryTop";
 import NewArticleTop from "./components/blog/NewArticleTop";
 
@@ -13,12 +12,12 @@ export default function Home() {
       <main>
         <div className="main-contents-area">
           <div className="w-full bg-white">
-            <h2 className="text-2xl font-semibold shadow text-white bg-sky-500 text-center my-8 py-2">
-              リリース情報
+          <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
+              国内・海外の旅行の旅程表を作成するしおりアプリをリリース
             </h2>
             <Section1ColumnRight
-              src="/travelogue.jpg"
-              alt="aa"
+              src="/travel_memory_thumbnail.jpg"
+              alt="旅のメモリーブックのサムネイル"
               name="「旅のメモリーブック」"
               content="PC・スマホ・タブレットで利用できる無料の国内旅行・海外旅行しおりアプリ。"
               content2="簡単に旅程表を作成でき、旅行中に撮影した写真を掲載し、旅の思い出のしおりして残すことができます。"

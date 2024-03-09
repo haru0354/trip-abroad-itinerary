@@ -11,9 +11,9 @@ const CategoryTop = async () => {
 
   return (
     <>
-      <h3 className="bg-sky-600 text-white font-bold text-lg px-2 py-4 rounded-sm">
+      <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
         カテゴリ
-      </h3>
+      </h2>
       <div className="flex w-full my-8 flex-wrap items-center justify-center">
         {categories.map((category) => {
           return (
@@ -21,7 +21,7 @@ const CategoryTop = async () => {
               <div key={category.id} className="flex flex-col items-center">
                 <Link href={`/${category.slug}`}>
                   <div className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[330px] min-w-[330px]">
-                  <div className="min-h-[220px] max-h-[220px] border justify-centers">
+                    <div className="min-h-[220px] max-h-[220px] border justify-centers">
                       {category.postImage ? (
                         <Image
                           src={category.postImage.url}
@@ -35,8 +35,8 @@ const CategoryTop = async () => {
                         />
                       ) : (
                         <Image
-                          src="/008.jpg"
-                          alt="aa"
+                          src="/no_image.jpg"
+                          alt="画像の準備中"
                           width={330}
                           height={220}
                           style={{

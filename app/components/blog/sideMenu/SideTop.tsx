@@ -7,10 +7,15 @@ const SideTop = () => {
       <div className="hover:bg-gray-200 mb-4">
         <Link href="/travel_brochure">
           <Image
-            src="/new-article.JPG"
-            alt="削除する"
+            src="/travel_memory_thumbnail.jpg"
+            alt="旅のメモリーブックのサムネイル"
             width={240}
-            height={140}
+            height={174}
+            style={{
+              width: "240px",
+              height: "auto",
+            }}
+            className="block mx-auto"
           />
           <p className="my-2 text-center">海外旅行のしおりアプリ</p>
         </Link>

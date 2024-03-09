@@ -9,12 +9,12 @@ const page = async () => {
 
   return (
     <>
+      <ListItineraryHome userId={userId} />
       <FormItineraryHome
         buttonName="追加"
         userId={userId}
         formAction={addItineraryHome}
       />
-      <ListItineraryHome userId={userId} />
     </>
   );
 };

@@ -120,7 +120,7 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
                 <Link href="/">
                   <li className="py-2 mx-4">ブログTOP</li>
                 </Link>
-                <Link href="/dashboard">
+                <Link href="/travel_brochure/home/profile">
                   <li className="py-2 mx-4">プロフィール</li>
                 </Link>
               </ul>

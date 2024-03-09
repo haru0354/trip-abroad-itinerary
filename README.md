@@ -4,9 +4,7 @@
 
 CSRF（Cross-Site Request Forgery）対策: アップロード機能にCSRFトークンを実装して、不正なリクエストから保護します。
 
-プロフィールのページの作成　
-git push
-HEROセクションの作成
+
 サイトタイトルの決定
 metaタグの設定⇒サイトのトップページ・サイトタイトルが決定したらblogのlayout.tsxで変更・アプリのtop
 サイトの TOP のブログを作成

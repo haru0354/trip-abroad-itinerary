@@ -20,7 +20,7 @@ export default async function Home() {
       <HeaderItinerary currentUser={currentUser} />
       <Hero />
       <main>
-        <div className="w-[1150px] bg-white">
+        <div className="main-contents-area">
           <div>
             <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
               旅程表作成のしおりアプリ「旅のメモリーブック」で出来ること

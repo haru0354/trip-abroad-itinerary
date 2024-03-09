@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: {
-    default: "英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」",
-    template: "%s | トラベルメモリー",
-  },
+  title: "画像の追加",
 };
 
 export default function RootLayout({

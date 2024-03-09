@@ -2,7 +2,11 @@ import ItineraryAuthGuard from "@/app/components/auth/authGuard/ItineraryAuthGua
 import getCurrentUser from "@/app/action/getCurrentUser";
 import prisma from "@/app/components/lib/prisma";
 import DashboardItinerarySideMenu from "@/app/components/itineraryHome/DashboardItinerarySideMenu";
-import FooterItinerary from "@/app/components/FooterItinerary";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "旅行の一覧",
+};
 
 export default async function RootLayout({
   children,

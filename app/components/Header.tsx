@@ -10,7 +10,7 @@ const Header = () => {
             <h1>
               <Image
                 src="/top.JPG"
-                alt="サイトタイトルに変更する"
+                alt="英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」"
                 width={250}
                 height={70}
                 priority

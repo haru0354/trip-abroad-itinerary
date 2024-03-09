@@ -1,12 +1,7 @@
 import prisma from "@/app/components/lib/prisma";
 import { updatePostImage } from "@/app/action/action-postImage";
-import type { Metadata } from "next";
 import FormPostImage from "@/app/components/blog/dashboard/FormPostImage";
 import DeletePostImageModal from "@/app/components/blog/dashboard/DeletePostImageModal";
-
-export const metadata: Metadata = {
-  title: "画像の編集",
-};
 
 const page = async ({ params }: { params: { image_id: string } }) => {
   const id = Number(params.image_id);

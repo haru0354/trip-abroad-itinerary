@@ -1,8 +1,5 @@
 import getCurrentUser from "@/app/action/getCurrentUser";
-import DashboardItinerarySideMenu from "@/app/components/itineraryHome/DashboardItinerarySideMenu";
-import FormProfile from "@/app/components/itineraryHome/FormProfile";
 import prisma from "@/app/components/lib/prisma";
-import { updateProfile } from "@/app/action/action-profile";
 import ListProfile from "@/app/components/itineraryHome/ListProfile";
 
 const page = async () => {

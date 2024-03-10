@@ -83,7 +83,9 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
           </div>
           <Button
             onClick={handleLogout}
-            className="flex mx-auto justify-center transition duration-300 mb-6 my-10 w-[180px]  py-2 shadow font-bold bg-gray-500 text-white hover:bg-white hover:text-black border border-gray-900 rounded-sm"
+            color="white"
+            size="normal"
+            className="rounded mt-4"
           >
             ログアウト
           </Button>
@@ -140,7 +142,9 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
               })}
               <Button
                 onClick={handleLogout}
-                className="flex mx-auto justify-center transition duration-300 mb-6 my-6 w-[180px]  py-2 shadow font-bold bg-gray-400 text-white border border-gray-900 rounded-sm"
+                color="white"
+                size="normal"
+                className="rounded mt-4"
               >
                 ログアウト
               </Button>

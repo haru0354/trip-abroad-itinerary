@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { addMemo } from "@/app/action/action-memo";
+import ButtonImage from "../ui/ButtonImage";
 
 type FormMemoProps = {
   buttonName: string;
@@ -84,17 +85,17 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
       {buttonName === "追加" ? (
         <>
           <div className="w-full h-full">
-            <Button onClick={toggleDeleteModal} className="btn-footer">
-              <FontAwesomeIcon icon={faSquarePlus} />
-              <span className="text-gray-500">{buttonName}</span>
-            </Button>
+            <ButtonImage icon="plus" size="footer" onClick={toggleDeleteModal}>
+              {buttonName}
+            </ButtonImage>
           </div>
         </>
       ) : (
         <>
           <Button
             onClick={toggleDeleteModal}
-            className="block mx-auto px-16  mb-10 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900"
+            color="blue"
+            size="normal"
           >
             {buttonName}
           </Button>
@@ -138,11 +139,9 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
                 {errorMessage && errorMessage.message !== "failure" && (
                   <p className="text-red-500">{errorMessage.message}</p>
                 )}
-                <Button className="block mx-auto px-16 py-3 mt-5 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
+                <Button color="blue" size="normal" className="rounded mt-4">
                   {buttonName2}
                 </Button>
-                <Button className="btn blue">{buttonName}</Button>
-
               </form>
             </div>
           </div>

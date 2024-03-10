@@ -106,11 +106,26 @@ const SignupModal = () => {
   // フッターの内容
   const footerContent = (
     <div className="w-full px-4 my-6 ">
-      <Button onClick={() => signIn("google")} className="border border-gray-400 p-1 w-full bg-white rounded-full">       
+      <Button
+        onClick={() =>
+          signIn("google", {
+            callbackUrl: "/travel_brochure/home",
+          })
+        }
+        color="gray"
+        size="auth"
+        className=" rounded mt-4"
+      >
         Googleでログイン
       </Button>
-      <div className="my-4 border-t">
-        <p onClick={onToggle} className="text-center text-gray-500 text-sm pt-2 cursor-pointer ">ログインする</p>
+
+      <div className="my-8 border-t border-dashed border-gray-600">
+        <p
+          onClick={onToggle}
+          className="text-center text-gray-600 pt-2 cursor-pointer "
+        >
+          ログインする
+        </p>
       </div>
     </div>
   );

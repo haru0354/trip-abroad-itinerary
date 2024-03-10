@@ -32,7 +32,9 @@ const ListProfile: React.FC<ListProfileProps> = async ({
             </p>
             <p className=" text-gray-700 my-4">{userEmail}</p>
             <Link href={`/travel_brochure/home/profile/${userId}`}>
-              <Button className="btn blue">変更する</Button>
+              <Button color="blue" size="normal" className="rounded mt-4">
+                変更する
+              </Button>
             </Link>
           </div>
         </div>

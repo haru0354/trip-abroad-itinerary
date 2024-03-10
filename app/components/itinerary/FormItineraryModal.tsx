@@ -10,8 +10,7 @@ import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import FormImage from "../ui/FormImage";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import ButtonImage from "../ui/ButtonImage";
 
 type FormItineraryProps = {
   buttonName: string;
@@ -129,18 +128,14 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
       {buttonName === "追加" ? (
         <>
           <div className="w-full h-full">
-            <Button onClick={toggleDeleteModal} className="btn-footer">
-              <FontAwesomeIcon icon={faSquarePlus} />
-              <span className="text-gray-500">{buttonName}</span>
-            </Button>
+            <ButtonImage icon="plus" size="footer" onClick={toggleDeleteModal}>
+              {buttonName}
+            </ButtonImage>
           </div>
         </>
       ) : (
         <>
-          <Button
-            onClick={toggleDeleteModal}
-            className="block mx-auto px-16  mt-10 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900"
-          >
+          <Button onClick={toggleDeleteModal} color="blue" size="normal" className="mt-8">
             {buttonName}
           </Button>
         </>
@@ -219,7 +214,7 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
                 {errorMessage && errorMessage.message !== "failure" && (
                   <p className="text-red-500">{errorMessage.message}</p>
                 )}
-                <Button className="block mx-auto px-16 py-3 mt-5 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
+                <Button color="blue" size="normal" className="rounded mt-4">
                   {buttonName2}
                 </Button>
               </form>

@@ -4,6 +4,7 @@ import Section1ColumnRight from "./components/homePage/Section1ColumnRight";
 import Button from "./components/ui/Button";
 import CategoryTop from "./components/blog/CategoryTop";
 import NewArticleTop from "./components/blog/NewArticleTop";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
       <main>
         <div className="main-contents-area">
           <div className="w-full bg-white">
-          <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
+            <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
               国内・海外の旅行の旅程表を作成するしおりアプリをリリース
             </h2>
             <Section1ColumnRight
@@ -24,13 +25,12 @@ export default function Home() {
               content3="特に「英語が話せない人の海外旅行」向けに事前にメモできる項目が多く設定されています。"
             />
             <Link href="./travel_brochure/">
-              <Button className="px-16 mx-auto block mb-10 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
+              <Button color="blue" size="normal">
                 旅のメモリーブックへ
               </Button>
             </Link>
             <NewArticleTop />
             <CategoryTop />
-
             <div className="flex justify-center"></div>
             <h3>新着記事</h3>
             ここに新着記事を3列2行で表示
@@ -53,6 +53,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

@@ -41,7 +41,9 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
   );
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
 
-  const [inputValue, setInputValue] = useState<string>(dashboardMemo?.name || "");
+  const [inputValue, setInputValue] = useState<string>(
+    dashboardMemo?.name || ""
+  );
   const [textAreaValue, setTextareaChange] = useState<string>(
     dashboardMemo?.content || ""
   );
@@ -75,29 +77,35 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
   };
 
   return (
-    <div>
+    <>
       <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
         メモの追加
       </h2>
-      <form action={dispatch} onSubmit={handleSubmit}>
-        <Form
-          label={"メモの見出し"}
-          name={"name"}
-          placeholder="メモの見出しを記載しましょう。"
-          value={inputValue}
-          onChange={handleInputChange}
-        />
-        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-        <TextArea
-          label={"メモする内容"}
-          name={"content"}
-          placeholder="メモする内容を記載しましょう。"
-          value={textAreaValue}
-          onChange={handleTextareaChange}
-        />
-        <Button className="btn blue">{buttonName}</Button>
-      </form>
-    </div>
+      <div className="flex items-center justify-center">
+        <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-full">
+          <form action={dispatch} onSubmit={handleSubmit}>
+            <Form
+              label={"メモの見出し"}
+              name={"name"}
+              placeholder="メモの見出しを記載しましょう。"
+              value={inputValue}
+              onChange={handleInputChange}
+            />
+            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+            <TextArea
+              label={"メモする内容"}
+              name={"content"}
+              placeholder="メモする内容を記載しましょう。"
+              value={textAreaValue}
+              onChange={handleTextareaChange}
+            />
+            <Button color="blue" size="normal" className="rounded mt-4">
+              {buttonName}
+            </Button>
+          </form>
+        </div>
+      </div>
+    </>
   );
 };
 

@@ -2,6 +2,8 @@ import prisma from "@/app/components/lib/prisma";
 import { updateMemo } from "@/app/action/action-memo";
 import FormMemo from "@/app/components/memo/FormMemo";
 import DeleteModal from "@/app/components/memo/DeleteMemoModal";
+import Link from "next/link";
+import Button from "@/app/components/ui/Button";
 
 const Page = async ({
   params,
@@ -36,7 +38,11 @@ const Page = async ({
         buttonName="保存"
         itineraryHomeId={itineraryHomeId}
       />
-
+      <Link href={`/travel_brochure/${itineraryHomeId}/memo`}>
+        <Button color="gray" size="normal" className="rounded mt-4">
+          キャンセル
+        </Button>
+      </Link>
       <DeleteModal memo={memo} itineraryHomeId={itineraryHomeId} />
     </>
   );

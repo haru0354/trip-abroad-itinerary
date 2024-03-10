@@ -1,6 +1,8 @@
 import prisma from "@/app/components/lib/prisma";
 import { updateProfile } from "@/app/action/action-profile";
 import FormProfile from "@/app/components/itineraryHome/FormProfile";
+import Link from "next/link";
+import Button from "@/app/components/ui/Button";
 
 const Page = async ({ params }: { params: { user_id: string } }) => {
   const id = Number(params.user_id);
@@ -20,6 +22,13 @@ const Page = async ({ params }: { params: { user_id: string } }) => {
         userName={user?.name || undefined}
         userEmail={user?.email || undefined}
       />
+            <Link href="/travel_brochure/home/profile/">
+        <Button color="gray" size="normal" className="rounded mt-4">
+          キャンセル
+        </Button>
+      </Link>
+
+
     </>
   );
 };

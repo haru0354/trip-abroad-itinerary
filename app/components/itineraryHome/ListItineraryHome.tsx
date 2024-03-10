@@ -62,7 +62,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                     </div>
                   </Link>
                   <Link href={`/travel_brochure/${itineraryHome.id}`}>
-                    <Button className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900">
+                    <Button color="blue" size="normal">
                       編集
                     </Button>
                   </Link>

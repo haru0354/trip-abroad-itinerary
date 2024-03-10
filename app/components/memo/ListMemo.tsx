@@ -1,7 +1,5 @@
-import Button from "../ui/Button";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import ButtonImage from "../ui/ButtonImage";
 
 type ListMemoProps = {
   itineraryHomeId: number | undefined;
@@ -29,14 +27,20 @@ const ListMemo: React.FC<ListMemoProps> = async ({
         return (
           <>
             <Link href={`/travel_brochure/${itineraryHomeId}/memo/${memo.id}`}>
-              <Button className="btn-small block ml-auto">
-                <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
+              <ButtonImage
+                className="rounded"
+                size="small"
+                icon="pen"
+                iconClassName="mr-2"
+              >
                 編集
-              </Button>
+              </ButtonImage>
             </Link>
             <div className="bg-sky-50 shadow-md rounded px-8 py-8 mb-10 ">
               <div className="border-b border-gray-400 pb-2">
-                <h3 className="text-center font-bold text-gray-700">{memo.name}</h3>
+                <h3 className="text-center font-bold text-gray-700">
+                  {memo.name}
+                </h3>
               </div>
               <div className="mt-4 text-gray-700">{memo.content}</div>
             </div>

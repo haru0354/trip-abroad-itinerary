@@ -45,9 +45,11 @@ const DeletePostModal: React.FC<DeletePostModalProps> = ({ post }) => {
           {isDeleteModalOpen || (
             <Button
               onClick={toggleDeleteModal}
-              className="px-24 my-8 py-3 shadow font-bold bg-red-700 text-white hover:bg-white hover:text-black border border-red-900"
+              color="red"
+              size="normal"
+              className="rounded mt-4"
             >
-              ブログの記事を削除
+              削除
             </Button>
           )}
         </div>
@@ -65,15 +67,26 @@ const DeletePostModal: React.FC<DeletePostModalProps> = ({ post }) => {
                   height={250}
                 />
               </div>
-              <div>
-                <p className="text-center p-4 font-bold">「{post.title}」を削除しますか？</p>
+              <div className="my-6 text-center">
+                <p className="py-2 font-bold">「{post.title}」を</p>
+                <p className="font-bold">削除しますか？</p>
               </div>
-              <div>
-                <Button onClick={toggleDeleteModal} className="btn gray">
+              <div className="pb-8">
+                <Button
+                  onClick={toggleDeleteModal}
+                  color="gray"
+                  size="normal"
+                  className="rounded mt-4"
+                >
                   キャンセル
                 </Button>
                 <form onSubmit={deleteToast}>
-                  <Button formAction={deletePostWithId} className="btn red">
+                  <Button
+                    formAction={deletePostWithId}
+                    color="red"
+                    size="normal"
+                    className="rounded mt-4"
+                  >
                     削除
                   </Button>
                 </form>

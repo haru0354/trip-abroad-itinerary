@@ -5,6 +5,7 @@ import { faCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { faClock, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
+import ButtonImage from "../ui/ButtonImage";
 
 type ListItineraryProps = {
   itineraryHomeId: number | undefined;
@@ -51,10 +52,14 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
             <Link
               href={`/travel_brochure/${itineraryHomeId}/itinerary/${itinerary.id}`}
             >
-              <Button className="btn-small block ml-auto mb-[-8px]">
-                <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
+              <ButtonImage
+                className="rounded mb-[-8px]"
+                size="small"
+                icon="pen"
+                iconClassName="mr-2"
+              >
                 編集
-              </Button>
+              </ButtonImage>
             </Link>
             <div className="flex w-full ">
               <div className="relative  text-white items-center justify-center flex">

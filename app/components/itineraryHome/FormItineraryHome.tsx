@@ -139,7 +139,9 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
             {errorMessage && errorMessage.message !== "failure" && (
               <p className="text-red-500">{errorMessage.message}</p>
             )}
-            <Button className="btn blue">{buttonName}</Button>
+            <Button color="blue" size="normal" className="rounded mt-4">
+              {buttonName}
+            </Button>
           </form>
         </div>
       </div>

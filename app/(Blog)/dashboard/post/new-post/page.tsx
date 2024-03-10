@@ -13,15 +13,10 @@ const page = async () => {
         記事の追加
       </h2>
       <FormPost
-        buttonName="記事を追加する"
+        buttonName="記事を追加"
         formAction={addPost}
         categories={categories}
       />
-      <Link href="/home">
-        <Button className="px-24 my-8 py-3 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-sky-900">
-          戻る
-        </Button>
-      </Link>
     </>
   );
 };

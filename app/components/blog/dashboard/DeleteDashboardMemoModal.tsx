@@ -64,7 +64,7 @@ const DeleteDashboardMemoModal: React.FC<DeleteDashboardMemoModalProps> = ({
             <div className="border rounded mx-auto bg-blue-100 w-[300px]">
               <div>
                 <Image
-                  src="/delete-modal.JPG"
+                  src="/delete-modal01.JPG"
                   alt="削除する"
                   width={300}
                   height={250}

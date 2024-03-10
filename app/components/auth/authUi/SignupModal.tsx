@@ -57,10 +57,9 @@ const SignupModal = () => {
       }
 
       //　ログイン
-
-      await signIn("credentials", {
+      await signIn("itinerary", {
         ...data,
-        redirect: false,
+        callbackUrl: "/travel_brochure/home",
       });
 
       signupModal.onClose();

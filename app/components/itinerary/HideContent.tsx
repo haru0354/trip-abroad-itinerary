@@ -1,12 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Button from "../ui/Button";
-import {
-  faSquareCaretDown,
-  faSquareCaretUp,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ButtonImage from "../ui/ButtonImage";
 
 type Itinerary = {

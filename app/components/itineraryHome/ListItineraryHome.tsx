@@ -2,7 +2,6 @@ import prisma from "../lib/prisma";
 import Button from "../ui/Button";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
 
 type ListItineraryHomeProps = {
@@ -30,6 +29,40 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
     }
     return new Date(a.startDate).getTime() - new Date(b.startDate).getTime();
   });
+
+  if (sortedItineraryHomes && sortedItineraryHomes.length === 0) {
+    return (
+      <>
+        <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-10 p-5">
+          アプリの使い方
+        </h2>
+        <div className="border border-dashed border-gray-600 my-4 p-4 text-center text-gray-700">
+          まずは1つ目の旅行プランを作成しましょう。下記のフォームより作成ができます。
+        </div>
+        <p className="pt-6 text-gray-700 text-center">サンプル</p>
+        <div className="w-full bg-white rounded">
+          <div className="flex w-full my-2 flex-wrap items-center justify-center">
+            <div className="flex flex-col items-center max-w-[350px]">
+              <div className="border-2 border-sky-600 rounded mx-5 my-6 px-8 py-10 flex flex-col min-w-[330px]">
+                <span className="text-blue-500  flex justify-center mb-6">
+                  <FontAwesomeIcon
+                    icon={faPlaneDeparture}
+                    style={{ fontSize: "2em" }}
+                  />
+                </span>
+                <h3 className="text-gray-700 mb-6 text-center text-xl font-semibold ">
+                  タイトル：初海外旅行 in シンガポール
+                </h3>
+                <p>出発日:03月08日</p>
+                <p>帰宅日:03月11日</p>
+                <p>旅行先：シンガポール</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>

@@ -32,13 +32,18 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
         <>
           <div style={{ position: "relative" }}>
             <div onClick={toggleOpen}>
-              <Image src={"/default.png"} alt="avatar" width={50} height={50} />
+              <Image
+                src={"/user_logo01.png"}
+                alt="avatar"
+                width={50}
+                height={50}
+              />
             </div>
             {isOpen && (
               <ul className="absolute right-0 mt-2 w-40 p-2 bg-white  overflow-hidden shadow-lg z-10 text-base ">
                 <li className="cursor-pointer text-sky-700 hover:bg-gray-200 p-2">
                   <Link href="/travel_brochure/home">管理画面</Link>
-                </li>                
+                </li>
                 <li
                   onClick={() => {
                     signOut();

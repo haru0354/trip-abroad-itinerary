@@ -44,7 +44,7 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
         return (
           <div key={itinerary.id}>
             {isFirstItem && (
-              <div className="border-b border-blue-400 text-xl bold mt-10 mb-2 p-3">
+              <div className="border-b border-sky-600 text-xl text-center bold mt-10 mb-2 p-3">
                 {itinerary.date}
               </div>
             )}
@@ -66,7 +66,7 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
                   <div className="h-full w-1 bg-blue-100"></div>
                 </div>
               </div>
-              <div className="flex-1 flex-col  ml-8 my-2 p-2 shadow flex  bg-sky-50 ">
+              <div className="flex-1 flex-col  ml-8 my-2 p-2 shadow flex bg-sky-50">
                 <div className="flex items-start  mb-2 flex-wrap md:flex-nowrap justify-center md:justify-start ">
                   {itinerary && itinerary.url && itinerary.altText && (
                     <div className="min-w-[250px] max-w-[250px]">

@@ -1,8 +1,13 @@
+import { Metadata } from "next";
 import ItineraryAuthGuard from "@/app/components/auth/authGuard/ItineraryAuthGuard";
 import getCurrentUser from "@/app/action/getCurrentUser";
 import FooterMenu from "@/app/components/FooterMenu";
 import HeaderItinerary from "@/app/components/HeaderItinerary";
 import FooterItinerary from "@/app/components/FooterItinerary";
+
+export const metadata: Metadata = {
+  title: "旅行の一覧",
+};
 
 export default async function RootLayout({
   children,

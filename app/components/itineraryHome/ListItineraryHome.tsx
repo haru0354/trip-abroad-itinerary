@@ -46,7 +46,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                   className="flex flex-col items-center"
                 >
                   <Link href={`/travel_brochure/${itineraryHome.id}/itinerary`}>
-                    <div className="border-2 border-sky-600 rounded mx-5 my-6 px-8 py-10 flex flex-col min-w-[330px]">
+                    <div className="border-2 border-sky-600 rounded mx-5 my-6 px-8 py-10 flex flex-col min-w-[330px] hover:bg-sky-200">
                       <span className="text-blue-500  flex justify-center mb-6">
                         <FontAwesomeIcon
                           icon={faPlaneDeparture}

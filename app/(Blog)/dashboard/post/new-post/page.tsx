@@ -3,11 +3,6 @@ import FormPost from "@/app/components/blog/dashboard/FormPost";
 import Button from "@/app/components/ui/Button";
 import Link from "next/link";
 import prisma from "@/app/components/lib/prisma";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "記事の追加",
-};
 
 const page = async () => {
   const categories = await prisma.category.findMany();

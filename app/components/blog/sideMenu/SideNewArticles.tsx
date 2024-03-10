@@ -5,8 +5,12 @@ import Image from "next/image";
 const SideNewArticles = async () => {
   const posts = await prisma.post.findMany({
     take: 5,
+    orderBy: {
+      createdDate: 'desc'
+    },
     include: {
       category: true,
+      postImage: true,
     },
   });
 
@@ -20,13 +24,21 @@ const SideNewArticles = async () => {
           return (
             <li className="my-6 p-3 border-b border-gray-600 border-dashed hover:bg-gray-200">
               <Link href={`/${post.category.slug}/${post.slug}`}>
-                <Image
-                  src="/new-article.JPG"
-                  alt="削除する"
-                  width={280}
-                  height={140}
-                  className="block mx-auto"
-                />
+                {post.postImage &&
+                  post.postImage.url &&
+                  post.postImage.altText && (
+                    <Image
+                      src={post.postImage.url}
+                      alt={post.postImage.altText}
+                      width={240}
+                      height={140}
+                      style={{
+                        width: "240px",
+                        height: "auto",
+                      }}
+                      className="block mx-auto"
+                    />
+                  )}
                 {post.title && post.title.length > 36 ? (
                   <p className="text-gray-600 my-2">
                     {post.title.slice(0, 36)}...

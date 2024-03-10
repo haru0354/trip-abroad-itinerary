@@ -20,7 +20,7 @@ export default async function Home() {
       <HeaderItinerary currentUser={currentUser} />
       <Hero />
       <main>
-        <div className="w-[1150px] bg-white">
+        <div className="main-contents-area">
           <div>
             <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
               旅程表作成のしおりアプリ「旅のメモリーブック」で出来ること
@@ -43,7 +43,7 @@ export default async function Home() {
               「旅のメモリーブック」がおすすめな人
             </h2>
             <Section1ColumnRight
-              src="/overseas_trip.jpg"
+              src="/overseas_trip01.jpg"
               alt="海外旅行"
               name="英語が話せない人でも海外旅行へ"
               content="英語が話せない人でも安心して海外旅行へをコンセプトに作成されたアプリです。"

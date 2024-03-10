@@ -1,10 +1,12 @@
-import { Inter } from "next/font/google";
+import { Metadata } from "next";
 import ToastContext from "@/app/context/ToastContext";
 import AuthContext from "@/app/context/AuthContext";
 import AuthGuard from "@/app/components/auth/authGuard/BlogAuthGuard";
 import DashboardSideMenu from "@/app/components/blog/dashboard/DashboardSideMenu";
 
-const inter = Inter({ subsets: ["latin"] });
+export const metadata: Metadata = {
+  title: "ダッシュボード",
+};
 
 export default async function RootLayout({
   children,

@@ -26,7 +26,10 @@ const DeleteItineraryHomeModal: React.FC<DeleteModalProps> = ({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
 
-  const deleteItineraryHomeWithId = deleteItineraryHome.bind(null, itineraryHome.id);
+  const deleteItineraryHomeWithId = deleteItineraryHome.bind(
+    null,
+    itineraryHome.id
+  );
 
   const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
     if (e.target === e.currentTarget) {
@@ -42,7 +45,12 @@ const DeleteItineraryHomeModal: React.FC<DeleteModalProps> = ({
     <div>
       <div className="flex justify-center items-center">
         {isDeleteModalOpen || (
-          <Button onClick={toggleDeleteModal} className="btn red">
+          <Button
+            onClick={toggleDeleteModal}
+            color="red"
+            size="normal"
+            className="rounded mt-4"
+          >
             旅行を削除
           </Button>
         )}
@@ -55,17 +63,23 @@ const DeleteItineraryHomeModal: React.FC<DeleteModalProps> = ({
           <div className="border rounded mx-auto bg-blue-100 w-[300px]">
             <div>
               <Image
-                src="/delete-modal.JPG"
+                src="/delete-modal01.JPG"
                 alt="削除する"
                 width={300}
                 height={250}
-                />
+              />
             </div>
-            <div>
-              <p className="text-center p-4 font-bold">「{itineraryHome.name}」を削除しますか？</p>
+            <div className="my-6 text-center">
+              <p className="py-2 font-bold">「{itineraryHome.name}」を</p>
+              <p className="font-bold">削除しますか？</p>
             </div>
-            <div>
-              <Button onClick={toggleDeleteModal} className="btn gray">
+            <div className="pb-8">
+              <Button
+                onClick={toggleDeleteModal}
+                color="gray"
+                size="normal"
+                className="rounded mt-4"
+              >
                 キャンセル
               </Button>
               <form onSubmit={deleteToast}>
@@ -74,7 +88,12 @@ const DeleteItineraryHomeModal: React.FC<DeleteModalProps> = ({
                   name="itineraryHomeId"
                   value={itineraryHomeId}
                 />
-                <Button formAction={deleteItineraryHomeWithId} className="btn red ">
+                <Button
+                  formAction={deleteItineraryHomeWithId}
+                  color="red"
+                  size="normal"
+                  className="rounded mt-4"
+                >
                   削除
                 </Button>
               </form>

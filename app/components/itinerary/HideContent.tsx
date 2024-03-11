@@ -1,12 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Button from "../ui/Button";
-import {
-  faSquareCaretDown,
-  faSquareCaretUp,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ButtonImage from "../ui/ButtonImage";
 
 type Itinerary = {
   hideContent: string | null;
@@ -33,25 +28,26 @@ const HideContent: React.FC<HideContentProps> = ({ itinerary }) => {
               <div className="border border-dashed border-gray-500 rounded p-4 mt-6">
                 <p className="text-gray-700">{itinerary?.hideContent}</p>
               </div>
-              <Button
+              <ButtonImage
                 onClick={toggleShowContent}
-                className="btn-small block m-auto py-1 my-4"
+                icon="up"
+                size="small"
+                className="m-auto py-1 mt-4 mb-2"
+                iconClassName="mr-2"
               >
-                <FontAwesomeIcon icon={faSquareCaretUp} />
                 閉じる
-              </Button>
+              </ButtonImage>
             </>
           ) : (
-            <Button
+            <ButtonImage
               onClick={toggleShowContent}
-              className="btn-small m-auto py-1 mt-4 mb-2"
+              icon="down"
+              size="small"
+              className="m-auto py-1 mt-4 mb-2"
+              iconClassName="mr-2"
             >
-              <FontAwesomeIcon
-                icon={faSquareCaretDown}
-                className="mr-2 w-auto inline-block"
-              />
               補足情報を開く
-            </Button>
+            </ButtonImage>
           )}
         </>
       )}

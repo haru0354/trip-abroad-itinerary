@@ -157,7 +157,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
               )}
             <Form
               label={"目的（何をするのか）"}
-              placeholder={"移動・食事・観光など"}
+              placeholder={"観光なら「観光地名」移動なら「電車名」など"}
               name={"name"}
               value={inputValue}
               onChange={handleInputChange}
@@ -203,7 +203,9 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
             {errorMessage && errorMessage.message !== "failure" && (
               <p className="text-red-500">{errorMessage.message}</p>
             )}
-            <Button className="btn blue">{buttonName}</Button>
+            <Button color="blue" size="normal" className="rounded mt-4">
+              {buttonName}
+            </Button>
           </form>
         </div>
       </div>

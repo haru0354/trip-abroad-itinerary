@@ -2,6 +2,8 @@ import FormPost from "@/app/components/blog/dashboard/FormPost";
 import prisma from "../../../../components/lib/prisma";
 import { updatePost } from "@/app/action/action-post";
 import DeletePostModal from "@/app/components/blog/dashboard/DeletePostModal";
+import Button from "@/app/components/ui/Button";
+import Link from "next/link";
 
 const page = async ({ params }: { params: { post_id: string } }) => {
   const id = Number(params.post_id);
@@ -29,6 +31,11 @@ const page = async ({ params }: { params: { post_id: string } }) => {
         categories={categories}
         buttonName={"編集内容を保存"}
       />
+      <Link href="/dashboard/post/">
+        <Button color="gray" size="normal" className="rounded mt-4">
+          キャンセル
+        </Button>
+      </Link>
       <DeletePostModal post={post} />
     </>
   );

@@ -47,9 +47,11 @@ const DeleteCategoryModal: React.FC<DeleteCategoryModalProps> = ({
           {isDeleteModalOpen || (
             <Button
               onClick={toggleDeleteModal}
-              className="px-24 my-8 py-3 shadow font-bold bg-red-700 text-white hover:bg-white hover:text-black border border-red-900"
+              color="red"
+              size="normal"
+              className="rounded mt-4"
             >
-              カテゴリを削除
+              削除
             </Button>
           )}
         </div>
@@ -61,21 +63,32 @@ const DeleteCategoryModal: React.FC<DeleteCategoryModalProps> = ({
             <div className="border rounded mx-auto bg-blue-100 w-[300px]">
               <div>
                 <Image
-                  src="/delete-modal.JPG"
+                  src="/delete-modal01.JPG"
                   alt="削除する"
                   width={300}
                   height={250}
                 />
               </div>
-              <div>
-                <p className="text-center p-4 font-bold">「{category.name}」を削除しますか？</p>
+              <div className="my-6 text-center">
+                <p className="py-2 font-bold">「{category.name}」を</p>
+                <p className="font-bold">削除しますか？</p>
               </div>
-              <div>
-                <Button onClick={toggleDeleteModal} className="btn gray">
+              <div className="pb-8">
+                <Button
+                  onClick={toggleDeleteModal}
+                  color="gray"
+                  size="normal"
+                  className="rounded mt-4"
+                >
                   キャンセル
                 </Button>
                 <form onSubmit={deleteToast}>
-                  <Button formAction={deleteCategoryWithId} className="btn red">
+                  <Button
+                    formAction={deleteCategoryWithId}
+                    color="red"
+                    size="normal"
+                    className="rounded mt-4"
+                  >
                     削除
                   </Button>
                 </form>

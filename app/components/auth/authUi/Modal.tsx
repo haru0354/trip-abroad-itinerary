@@ -81,9 +81,14 @@ const Modal: React.FC<ModalProps> = ({
           <div>
             <div className="px-4">
               {secondaryAction && secondaryLabel && (
-              <Button onClick={handleSecondaryAction} className="border p-1 w-full bg-[#002fcf] text-white rounded-full">{secondaryLabel}</Button>
+                <Button onClick={handleSecondaryAction} color="blue" size="auth" className="rounded mt-4">
+                  {secondaryLabel}
+                </Button>
               )}
-              <Button onClick={handleSubmit} className="border p-1 w-full bg-[#002fcf] text-white rounded-full">{primaryLabel}</Button>
+              
+              <Button onClick={handleSubmit} color="blue" size="auth" className="rounded mt-4">
+              {primaryLabel}
+                </Button>
             </div>
             {footer}
           </div>

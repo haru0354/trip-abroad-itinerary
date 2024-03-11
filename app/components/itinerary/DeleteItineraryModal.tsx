@@ -49,7 +49,12 @@ const DeleteItineraryModal: React.FC<DeleteModalProps> = ({
     <div>
       <div className="flex justify-center items-center">
         {isDeleteModalOpen || (
-          <Button onClick={toggleDeleteModal} className="btn red">
+          <Button
+            onClick={toggleDeleteModal}
+            color="red"
+            size="normal"
+            className="rounded mt-4"
+          >
             旅程を削除
           </Button>
         )}
@@ -62,17 +67,23 @@ const DeleteItineraryModal: React.FC<DeleteModalProps> = ({
           <div className="border rounded mx-auto bg-blue-100 w-[300px]">
             <div>
               <Image
-                src="/delete-modal.JPG"
+                src="/delete-modal01.JPG"
                 alt="削除する"
                 width={300}
                 height={250}
               />
             </div>
-            <div>
-              <p className="text-center p-4 font-bold">「{itinerary.name}」を削除しますか？</p>
+            <div className="my-6 text-center">
+              <p className="py-2 font-bold">「{itinerary.name}」を</p>
+              <p className="font-bold">削除しますか？</p>
             </div>
-            <div>
-              <Button onClick={toggleDeleteModal} className="btn gray">
+            <div className="pb-8">
+              <Button
+                onClick={toggleDeleteModal}
+                color="gray"
+                size="normal"
+                className="rounded mt-4"
+              >
                 キャンセル
               </Button>
               <form onSubmit={deleteToast}>
@@ -82,7 +93,12 @@ const DeleteItineraryModal: React.FC<DeleteModalProps> = ({
                   value={itineraryHomeId}
                 />
                 <input type="hidden" name="userId" value={userId} />
-                <Button formAction={deleteItineraryWithId} className="btn red ">
+                <Button
+                  formAction={deleteItineraryWithId}
+                  color="red"
+                  size="normal"
+                  className="rounded mt-4"
+                >
                   削除
                 </Button>
               </form>

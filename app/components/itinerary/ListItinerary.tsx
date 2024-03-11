@@ -1,10 +1,11 @@
-import Button from "../ui/Button";
 import Link from "next/link";
 import HideContent from "./HideContent";
 import { faCircleDown } from "@fortawesome/free-solid-svg-icons";
-import { faClock, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
+import ButtonImage from "../ui/ButtonImage";
+import Manual from "../manual";
 
 type ListItineraryProps = {
   itineraryHomeId: number | undefined;
@@ -33,6 +34,44 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
 
   const sortedItineraries = itineraries?.sort(sortItineraryByDateTime);
 
+  if (sortedItineraries && sortedItineraries.length === 0) {
+    return (
+      <>
+        <Manual
+          title="旅程表の使い方"
+          content1="このページでは旅程表を登録することができます。"
+          content2="まずは試しに登録をしてみてください。"
+          li1="「いつ・何をするのか」登録をしていきましょう。"
+          li2="補足情報には色々とメモしたい項目を登録できます。"
+        />
+        <div className="flex flex-col justify-center items-center border border-dashed border-gray-600 my-4 p-4 text-center text-gray-700">
+          pc・スマホ・タブレット共に画面最下部の「追加」より旅程表の登録ができます。
+          <Image
+            src="/manual.JPG"
+            alt="マニュアル"
+            width={347}
+            height={57}
+            style={{
+              width: "347px",
+              height: "auto",
+            }}
+          />
+        </div>
+        <p className="pt-6 text-gray-700">サンプル</p>
+        <Image
+          src="/itinerary_sample.JPG"
+          alt="マニュアル"
+          width={778}
+          height={715}
+          style={{
+            width: "100%",
+            height: "auto",
+          }}
+        />
+      </>
+    );
+  }
+
   return (
     <div>
       <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-2 p-5">
@@ -51,10 +90,14 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
             <Link
               href={`/travel_brochure/${itineraryHomeId}/itinerary/${itinerary.id}`}
             >
-              <Button className="btn-small block ml-auto mb-[-8px]">
-                <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
+              <ButtonImage
+                className="rounded mb-[-8px]"
+                size="small"
+                icon="pen"
+                iconClassName="mr-2"
+              >
                 編集
-              </Button>
+              </ButtonImage>
             </Link>
             <div className="flex w-full ">
               <div className="relative  text-white items-center justify-center flex">
@@ -96,7 +139,9 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
                     </div>
                   </div>
                 </div>
-                <HideContent itinerary={itinerary} />
+                {itinerary && itinerary.hideContent && (
+                  <HideContent itinerary={itinerary} />
+                )}
               </div>
             </div>
           </div>

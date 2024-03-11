@@ -44,14 +44,23 @@ const FormPostImage: React.FC<FormPostImageProps> = ({
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <FormImage selectImage={postImage} state={state} label="画像の名前(alt)" placeholder="どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます" />
-        <Button className="px-24 my-8 py-3 shadow font-bold bg-gray-700 text-white hover:bg-white hover:text-black border border-gray-900">
-          {buttonName}
-        </Button>
-      </form>
-    </div>
+    <>
+      <div className="flex items-center justify-center">
+        <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-full">
+          <form onSubmit={handleSubmit}>
+            <FormImage
+              selectImage={postImage}
+              state={state}
+              label="画像の名前(alt)"
+              placeholder="どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます"
+            />
+            <Button color="blue" size="normal" className="rounded mt-4">
+              {buttonName}
+            </Button>
+          </form>
+        </div>
+      </div>
+    </>
   );
 };
 

@@ -9,7 +9,6 @@ import {
   faHouse,
   faBars,
   faXmark,
-  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { signOut } from "next-auth/react";
@@ -28,7 +27,7 @@ const DashboardSideMenu = () => {
 
   return (
     <>
-       <div className="hidden sm:block fixed top-0 left-0 h-screen w-72 flex-col sm:flex-row sm:justify-around bg-gray-700">
+      <div className="hidden sm:block fixed top-0 left-0 h-screen w-72 flex-col sm:flex-row sm:justify-around bg-gray-700">
         <nav className="px-6 mt-10 w-full">
           <div className="mb-6">
             <h3 className="w-full pb-2 mb-2 border-b-2 border-gray-300 text-white text-lg">
@@ -37,13 +36,19 @@ const DashboardSideMenu = () => {
             <ul>
               <Link href="/">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 h-4 mt-1" />
+                  <FontAwesomeIcon
+                    icon={faHouse}
+                    className="mr-2 w-5 h-4 mt-1"
+                  />
                   <p className="mx-2">ブログTOP</p>
                 </li>
               </Link>
               <Link href="/dashboard">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 h-4 mt-1" />
+                  <FontAwesomeIcon
+                    icon={faHouse}
+                    className="mr-2 w-5 h-4 mt-1"
+                  />
                   <p className="mx-2">サイト制作のメモ</p>
                 </li>
               </Link>
@@ -75,13 +80,19 @@ const DashboardSideMenu = () => {
             <ul>
               <Link href="/dashboard/category">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faList} className="mr-2 w-5 h-4 mt-1" />
+                  <FontAwesomeIcon
+                    icon={faList}
+                    className="mr-2 w-5 h-4 mt-1"
+                  />
                   <p className="mx-2">カテゴリー一覧</p>
                 </li>
               </Link>
               <Link href="/dashboard/category/new-category">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faList} className="mr-2 w-5 h-4 mt-1" />
+                  <FontAwesomeIcon
+                    icon={faList}
+                    className="mr-2 w-5 h-4 mt-1"
+                  />
                   <p className="mx-2">新規カテゴリー</p>
                 </li>
               </Link>
@@ -94,13 +105,19 @@ const DashboardSideMenu = () => {
             <ul>
               <Link href="/dashboard/image">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faImage} className="mr-2 w-5 h-4 mt-1" />
+                  <FontAwesomeIcon
+                    icon={faImage}
+                    className="mr-2 w-5 h-4 mt-1"
+                  />
                   <p className="mx-2">画像一覧</p>
                 </li>
               </Link>
               <Link href="/dashboard/image/new-image">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faImage} className="mr-2 w-5 h-4 mt-1" />
+                  <FontAwesomeIcon
+                    icon={faImage}
+                    className="mr-2 w-5 h-4 mt-1"
+                  />
                   <p className="mx-2">新規画像</p>
                 </li>
               </Link>
@@ -108,14 +125,16 @@ const DashboardSideMenu = () => {
           </div>
           <Button
             onClick={handleLogout}
-            className="flex mx-auto justify-center transition duration-300 mb-6 my-10 w-[180px]  py-2 shadow font-bold bg-gray-500 text-white hover:bg-white hover:text-black border border-gray-900 rounded-sm"
+            color="white"
+            size="normal"
+            className="rounded mt-4"
           >
             ログアウト
           </Button>
         </nav>
       </div>
-           {/* ハンバーガーメニュー */}
-           <div>
+      {/* ハンバーガーメニュー */}
+      <div>
         <button
           className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-gray-700 border-gray-800 fixed"
           onClick={toggleMenu}
@@ -185,7 +204,9 @@ const DashboardSideMenu = () => {
               </ul>
               <Button
                 onClick={handleLogout}
-                className="flex mx-auto justify-center transition duration-300 mb-6 my-6 w-[180px]  py-2 shadow font-bold bg-gray-400 text-white border border-gray-900 rounded-sm"
+                color="white"
+                size="normal"
+                className="rounded mt-4"
               >
                 ログアウト
               </Button>

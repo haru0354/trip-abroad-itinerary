@@ -45,7 +45,7 @@ export const addItineraryHome = async (state: FormState, data: FormData) => {
   }
 
   try {
-    await prisma.itineraryHome.create({
+    const createdItineraryHome = await prisma.itineraryHome.create({
       data: {
         startDate,
         endDate,
@@ -54,8 +54,9 @@ export const addItineraryHome = async (state: FormState, data: FormData) => {
         user: { connect: { id: Number(userId) } },
       },
     });
+    const createdItineraryHomeId = createdItineraryHome.id   
     revalidatePath("/travel_brochure/home");
-    return { message: "add" };
+    return { message: "add", createdItineraryHomeId: createdItineraryHomeId };
   } catch (error) {
     console.error("旅行を追加する際にエラーが発生しました:", error);
     return { message: "旅行を追加する際にエラーが発生しました" };

@@ -31,6 +31,7 @@ type FormState = {
     name?: string[] | undefined;
     destination?: string[] | undefined;
   };
+  createdItineraryHomeId?: number | null;
 };
 
 const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
@@ -76,12 +77,9 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
     const result = await formAction(state, formData);
     switch (result.message) {
       case "add":
-        setStartDateValue("");
-        setEndDateValue("");
-        setNameValue("");
-        setDestinationValue("");
-
         toast.success("旅行を保存しました！");
+        const createdItineraryHomeId = result.createdItineraryHomeId;
+        router.replace(`/travel_brochure/${createdItineraryHomeId}/itinerary`);
         break;
       case "edit":
         toast.success("旅行を編集しました！");
@@ -106,20 +104,20 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
           <form onSubmit={handleSubmit} className="w-full py-3">
             <Date
               name="startDate"
-              label="出発日"
+              label="出発日(未記入も可)"
               onChange={handleStartDateChange}
               value={startDateValue}
             />
             <Date
               name="endDate"
-              label="帰宅日"
+              label="帰宅日(未記入も可)"
               onChange={handleEndDateChange}
               value={endDateValue}
             />
             <Form
               label="旅行タイトル"
               name="name"
-              placeholder="旅行タイトルを入力しましょう"
+              placeholder="旅行タイトルを入力。例)初海外旅行"
               onChange={handleNameChange}
               value={nameValue}
             />
@@ -129,9 +127,9 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
                 <p className="text-red-500">{errorMessage.errors.name}</p>
               )}
             <Form
-              label="旅行先"
+              label="旅行先(未記入も可)"
               name="destination"
-              placeholder="メインの旅行先を入力しましょう"
+              placeholder="旅行先が決まっていれば入力"
               onChange={handleDestinationChange}
               value={destinationValue}
             />
@@ -139,7 +137,9 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
             {errorMessage && errorMessage.message !== "failure" && (
               <p className="text-red-500">{errorMessage.message}</p>
             )}
-            <Button className="btn blue">{buttonName}</Button>
+            <Button color="blue" size="normal" className="rounded mt-4">
+              {buttonName}
+            </Button>
           </form>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import prisma from "../../lib/prisma";
-import Button from "../../ui/Button";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import ButtonImage from "../../ui/ButtonImage";
 
 const ListDashboardMemo = async () => {
   const dashboardMemos = await prisma.dashboardMemo.findMany();
@@ -77,18 +77,24 @@ const ListDashboardMemo = async () => {
       </h2>
       {sortedDashboardMemos.map((memo) => {
         return (
-          <div className="bg-gray-200 shadow-md rounded px-8 py-8 mb-10 ">
-            <div className="flex justify-between border-b-2 border-gray-300 mb-2">
-              <div>{memo.name}</div>
-              <Link href={`/dashboard/${memo.id}`}>
-                <Button className="btn-small flex items-center">
-                  <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
-                  編集
-                </Button>
-              </Link>
+          <>
+            <Link href={`/dashboard/${memo.id}`}>
+              <ButtonImage
+                className="rounded"
+                size="small"
+                icon="pen"
+                iconClassName="mr-2"
+              >
+                編集
+              </ButtonImage>
+            </Link>
+            <div className="bg-gray-200 shadow-md rounded px-8 py-8 mb-10 ">
+              <div className="flex justify-between border-b-2 border-gray-300 mb-2">
+                <div>{memo.name}</div>
+              </div>
+              <div>{memo.content}</div>
             </div>
-            <div>{memo.content}</div>
-          </div>
+          </>
         );
       })}
     </>

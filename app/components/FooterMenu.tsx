@@ -1,17 +1,11 @@
 "use client";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlane,
-  faPenToSquare,
-  faHouse,
-} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import Button from "./ui/Button";
 import FormMemoModal from "./memo/FormMemoModal";
 import { usePathname } from "next/navigation";
 import FormItineraryModal from "./itinerary/FormItineraryModal";
 import { addItinerary } from "../action/action-itinerary";
+import ButtonImage from "./ui/ButtonImage";
 
 type FooterMenuProps = {
   itineraryHomeId: number;
@@ -30,26 +24,17 @@ const FooterMenu: React.FC<FooterMenuProps> = ({
       <div className="max-w-lg flex h-full  justify-center items-center mx-auto ">
         <div className="w-full h-full">
           <Link href="/travel_brochure/home">
-            <Button className="btn-footer">
-              <FontAwesomeIcon icon={faHouse} />
-              <span className="text-gray-500">ホーム</span>
-            </Button>
+            <ButtonImage size="footer" icon="house">ホーム</ButtonImage>
           </Link>
         </div>
         <div className="w-full h-full">
           <Link href={`/travel_brochure/${itineraryHomeId}/itinerary`}>
-            <Button className="btn-footer">
-              <FontAwesomeIcon icon={faPlane} />
-              <span className="text-gray-500">旅程表</span>
-            </Button>
+          <ButtonImage size="footer" icon="plane" >旅程表</ButtonImage>
           </Link>
         </div>
         <div className="w-full h-full">
           <Link href={`/travel_brochure/${itineraryHomeId}/memo`}>
-            <Button className="btn-footer">
-              <FontAwesomeIcon icon={faPenToSquare} />
-              <span className="text-gray-500">メモ帳</span>
-            </Button>
+          <ButtonImage size="footer" icon="pen">メモ帳</ButtonImage>
           </Link>
         </div>
         {path === `/travel_brochure/${itineraryHomeId}/memo` ? (

@@ -3,7 +3,8 @@ import { updateItinerary } from "@/app/action/action-itinerary";
 import FormItinerary from "@/app/components/itinerary/FormItinerary";
 import DeleteItineraryModal from "@/app/components/itinerary/DeleteItineraryModal";
 import getCurrentUser from "@/app/action/getCurrentUser";
-
+import Link from "next/link";
+import Button from "@/app/components/ui/Button";
 
 const page = async ({
   params,
@@ -41,7 +42,11 @@ const page = async ({
         itineraryHomeId={itineraryHomeId}
         userId={userId}
       />
-
+      <Link href={`/travel_brochure/${itineraryHomeId}/itinerary`}>
+        <Button color="gray" size="normal" className="rounded mt-4">
+          キャンセル
+        </Button>
+      </Link>
       <DeleteItineraryModal
         itinerary={itinerary}
         itineraryHomeId={itineraryHomeId}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import ButtonImage from "../../ui/ButtonImage";
+import React from "react";
 
 const ListDashboardMemo = async () => {
   const dashboardMemos = await prisma.dashboardMemo.findMany();
@@ -77,7 +78,7 @@ const ListDashboardMemo = async () => {
       </h2>
       {sortedDashboardMemos.map((memo) => {
         return (
-          <>
+          <React.Fragment key={memo.id}>
             <Link href={`/dashboard/${memo.id}`}>
               <ButtonImage
                 className="rounded"
@@ -94,7 +95,7 @@ const ListDashboardMemo = async () => {
               </div>
               <div>{memo.content}</div>
             </div>
-          </>
+          </React.Fragment>
         );
       })}
     </>

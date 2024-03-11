@@ -22,7 +22,7 @@ const SideNewArticles = async () => {
       <ul>
         {posts.map((post) => {
           return (
-            <li className="my-6 p-3 border-b border-gray-600 border-dashed hover:bg-gray-200">
+            <li key={post.id} className="my-6 p-3 border-b border-gray-600 border-dashed hover:bg-gray-200">
               <Link href={`/${post.category.slug}/${post.slug}`}>
                 {post.postImage &&
                   post.postImage.url &&

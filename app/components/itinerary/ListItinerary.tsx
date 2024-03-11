@@ -60,7 +60,7 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
         <p className="pt-6 text-gray-700">サンプル</p>
         <Image
           src="/itinerary_sample.JPG"
-          alt="マニュアル"
+          alt="旅程表のサンプル"
           width={778}
           height={715}
           style={{

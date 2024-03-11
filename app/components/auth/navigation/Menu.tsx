@@ -23,8 +23,8 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   }, []);
 
   useEffect(() => {
-    setIsOpen(false); // isOpenをfalseに設定して再レンダリングをトリガーする
-  }, [currentUser]); // currentUserが変更された時に再レンダリングする
+    setIsOpen(false); 
+  }, [currentUser]); 
 
   return (
     <>
@@ -33,8 +33,8 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           <div style={{ position: "relative" }}>
             <div onClick={toggleOpen}>
               <Image
-                src={"/user_logo01.png"}
-                alt="avatar"
+                src="/user_logo01.png"
+                alt="アバター"
                 width={50}
                 height={50}
               />

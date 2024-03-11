@@ -5,7 +5,6 @@
 CSRF（Cross-Site Request Forgery）対策: アップロード機能にCSRFトークンを実装して、不正なリクエストから保護します。
 
 
-listのKEY
 フッターの作成
 フォームの表示にHTML
 アプリのアップロード

@@ -6,6 +6,7 @@ import Button from "@/app/components/ui/Button";
 import Select from "../../ui/Select";
 import { useFormState } from "react-dom";
 import FormImage from "../../ui/FormImage";
+import DOMPurify from "dompurify";
 
 type FormPostProps = {
   post?: (Post & { category: Category; postImage: PostImage | null }) | null;
@@ -73,7 +74,14 @@ const FormPost: React.FC<FormPostProps> = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    dispatch(formData);
+
+    const sanitizedFormData = new FormData();
+    for (const [key, value] of formData.entries()) {
+      const sanitizedValue = DOMPurify.sanitize(value.toString());
+      sanitizedFormData.append(key, sanitizedValue);
+    }
+
+    dispatch(sanitizedFormData);
   };
 
   return (

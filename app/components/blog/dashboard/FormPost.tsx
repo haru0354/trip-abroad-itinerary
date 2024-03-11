@@ -77,7 +77,8 @@ const FormPost: React.FC<FormPostProps> = ({
 
     const sanitizedFormData = new FormData();
     for (const [key, value] of formData.entries()) {
-      const sanitizedValue = DOMPurify.sanitize(value.toString());
+      let sanitizedValue = DOMPurify.sanitize(value.toString());
+      sanitizedValue = sanitizedValue.replace(/\n/g, "<br>");
       sanitizedFormData.append(key, sanitizedValue);
     }
 

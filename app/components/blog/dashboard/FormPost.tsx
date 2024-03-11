@@ -77,11 +77,12 @@ const FormPost: React.FC<FormPostProps> = ({
 
     const sanitizedFormData = new FormData();
     for (const [key, value] of formData.entries()) {
-      let sanitizedValue = DOMPurify.sanitize(value.toString());
-      sanitizedValue = sanitizedValue.replace(/\n/g, "<br>");
+      let sanitizedValue = value;
+      if (key !== 'image') { 
+        sanitizedValue = DOMPurify.sanitize(value.toString());
+      }
       sanitizedFormData.append(key, sanitizedValue);
     }
-
     dispatch(sanitizedFormData);
   };
 

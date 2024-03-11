@@ -13,7 +13,8 @@ const ArticleContentArea: React.FC<ArticleContentAreaProps> = ({ content }) => {
 
   useEffect(() => {
     const sanitized = DOMPurify.sanitize(content);
-    setSanitizedContent(sanitized);
+    const formattedContent = sanitized.replace(/\n/g, "<br>");
+    setSanitizedContent(formattedContent);
   }, [content]);
 
   return <>{parse(sanitizedContent)}</>;

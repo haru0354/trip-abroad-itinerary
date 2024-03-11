@@ -78,7 +78,7 @@ const FormPost: React.FC<FormPostProps> = ({
     const sanitizedFormData = new FormData();
     for (const [key, value] of formData.entries()) {
       let sanitizedValue = value;
-      if (key !== 'image') { 
+      if (key !== "image") {
         sanitizedValue = DOMPurify.sanitize(value.toString());
       }
       sanitizedFormData.append(key, sanitizedValue);
@@ -120,6 +120,7 @@ const FormPost: React.FC<FormPostProps> = ({
               label="記事の内容"
               defaultValue={post?.content}
               placeholder="記事の内容をこちらに入力してください。"
+              rows={12}
             />
             {state.errors && state.errors.content && (
               <p className="text-red-500">{state.errors.content}</p>

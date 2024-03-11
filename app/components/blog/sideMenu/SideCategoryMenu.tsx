@@ -22,7 +22,7 @@ const SideCategoryMenu = async () => {
           </Link>
         </li>
       </ul>
-      <h3 className="bg-blue-500 text-white font-bold text-lg px-2 py-4 rounded-sm">
+      <h3 className="bg-blue-400 text-white font-bold text-lg px-2 py-4 rounded-sm">
         カテゴリー
       </h3>
       {categories.map((category) => {

@@ -27,19 +27,28 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
           const formattedCreatedDate = new Date(
             post.createdDate
           ).toLocaleDateString();
+          if (post.draft) {
+            // draftがfalseの場合のみ記事を表示する
+            return (
+              <div key={post.id}>
+                <h1>{post.title}</h1>
+                <ArticleTop
+                  src={post.postImage?.url}
+                  alt={post.postImage?.altText}
+                />
+                <p className="text-gray-500 mb-5">
+                  記事の投稿日：{formattedCreatedDate}
+                </p>
+                <ArticleContentArea content={post.content} />
+              </div>
+            );
+          }
           return (
-            <div key={post.id}>
-              <h1>{post.title}</h1>
-              <ArticleTop
-                src={post.postImage?.url}
-                alt={post.postImage?.altText}
-              />
-              <p className="text-gray-500 mb-5">
-                記事の投稿日：{formattedCreatedDate}
-              </p>
-              <ArticleContentArea content={post.content} />
-            </div>
-          );
+            <>
+              <NotFound />
+              <p>記事がありません。</p>
+            </>
+          ); 
         })
       )}
     </>

@@ -45,6 +45,7 @@ export const addPost = async (state: FormState, data: FormData) => {
   const categoryId = data.get("categoryId") as string;
   const image = data.get("image") as File;
   const altText = data.get("altText") as string;
+  const draft = data.get("draft") === "true";
 
   const validatedFields = schema.safeParse({
     title,
@@ -67,6 +68,7 @@ export const addPost = async (state: FormState, data: FormData) => {
     content,
     description,
     slug,
+    draft,
     category: { connect: { id: Number(categoryId) } },
   };
 
@@ -154,6 +156,7 @@ export const updatePost = async (
   const categoryId = data.get("categoryId") as string;
   const image = data.get("image") as File;
   const altText = data.get("altText") as string;
+  const draft = data.get("draft") === "true";
 
   const validatedFields = schema.safeParse({
     title,
@@ -176,6 +179,7 @@ export const updatePost = async (
     content,
     description,
     slug,
+    draft,
     category: { connect: { id: Number(categoryId) } },
   };
 

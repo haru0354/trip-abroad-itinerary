@@ -47,7 +47,6 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
     ) : (
       <>
         <NotFound />
-        <p>カテゴリがありません</p>
       </>
     );
 

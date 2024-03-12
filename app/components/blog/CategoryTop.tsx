@@ -6,6 +6,7 @@ const CategoryTop = async () => {
   const categories = await prisma.category.findMany({
     include: {
       postImage: true,
+      posts: true,
     },
   });
 
@@ -16,6 +17,9 @@ const CategoryTop = async () => {
       </h2>
       <div className="flex w-full my-8 flex-wrap items-center justify-center">
         {categories.map((category) => {
+          if (category.posts.length === 0) {
+            return null;
+          }
           return (
             <div key={category.id} className="flex flex-col items-center">
               <Link href={`/${category.slug}`}>

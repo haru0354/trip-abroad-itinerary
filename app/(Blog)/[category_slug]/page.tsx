@@ -19,6 +19,7 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
           postImage: true,
         },
       },
+      postImage: true,
     },
   });
 
@@ -67,7 +68,7 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
       {posts.map((post) => {
         return (
           <>
-            <Link href={`/${post.category.slug}/${post.slug}`} key={post.id}>
+            <Link href={`/${post.category.slug}/${post.slug}`} >
               <Card key={post.id} post={post} />
             </Link>
           </>

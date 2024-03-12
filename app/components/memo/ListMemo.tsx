@@ -2,6 +2,7 @@ import Link from "next/link";
 import ButtonImage from "../ui/ButtonImage";
 import Manual from "../manual";
 import Image from "next/image";
+import React from 'react';
 
 type ListMemoProps = {
   itineraryHomeId: number | undefined;
@@ -65,7 +66,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
       </h2>
       {sortedMemos?.map((memo) => {
         return (
-          <>
+          <React.Fragment key={memo.id}>
             <Link href={`/travel_brochure/${itineraryHomeId}/memo/${memo.id}`}>
               <ButtonImage
                 className="rounded"
@@ -84,7 +85,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
               </div>
               <div className="mt-4 text-gray-700">{memo.content}</div>
             </div>
-          </>
+          </React.Fragment>
         );
       })}
     </>

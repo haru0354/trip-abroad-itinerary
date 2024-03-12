@@ -70,7 +70,7 @@ export const addPost = async (state: FormState, data: FormData) => {
     category: { connect: { id: Number(categoryId) } },
   };
 
-  if (image && image.size > 0 ) {
+  if (image && image.size > 0) {
     try {
       const isValidFile = await validateFile(image);
 
@@ -98,7 +98,6 @@ export const addPost = async (state: FormState, data: FormData) => {
         return errors;
       }
 
-      
       const { fileUrl, fileName } = await FileSaveUtils(image);
       const createdImage = await prisma.postImage.create({
         data: {
@@ -180,7 +179,7 @@ export const updatePost = async (
     category: { connect: { id: Number(categoryId) } },
   };
 
-  if (image && image.size > 0 ) {
+  if (image && image.size > 0) {
     try {
       const isValidFile = await validateFile(image);
 
@@ -191,6 +190,18 @@ export const updatePost = async (
               "画像ファイルが無効です。有効な画像ファイルを選択してください。",
             ],
           },
+        };
+        console.log(errors);
+        return errors;
+      }
+
+      const validatedFields = ImageSchema.safeParse({
+        altText,
+      });
+
+      if (!validatedFields.success) {
+        const errors = {
+          errors: validatedFields.error.flatten().fieldErrors,
         };
         console.log(errors);
         return errors;

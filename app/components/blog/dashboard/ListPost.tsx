@@ -5,7 +5,7 @@ import Link from "next/link";
 const ListPost = async () => {
   const posts = await prisma.post.findMany({
     include: {
-      category: true, 
+      category: true,
     },
   });
 
@@ -31,35 +31,36 @@ const ListPost = async () => {
             post.createdDate
           ).toLocaleDateString();
           return (
-            <>
-              <div className="flex justify-between flex-col sm:flex-row border-b border-gray-500 w-full">
-                <div className="flex flex-col  sm:flex-row py-4 items-center w-full sm:w-auto">
-                  <p className="sm:border-r border-gray-500  w-full py-1 px-2 sm:w-auto min-w-[120px]">
-                    {formattedCreatedDate}
-                  </p>
-                  <p className="sm:border-r flex-wrap  w-full border-gray-500 py-1 px-2 sm:w-auto min-w-[120px]">
-                    {post.category.name}
-                  </p>
-                  <p className="py-1 px-2 w-full sm:w-auto min-w-[250px] max-w-[650px]">
-                    {post.title && post.title.length > 36
-                      ? `${post.title.slice(0, 36)}...`
-                      : post.title}
-                  </p>
-                </div>
-                <div className="flex sm:justify-end items-center my-4 sm:max-w-[240px]">
-                  <Link href={`/${post.category.slug}/${post.slug}`}>
-                    <Button color="blue" size="small">
-                      ページ
-                    </Button>
-                  </Link>
-                  <Link href={`/dashboard/post/${post.id}`}>
-                    <Button color="gray" size="small">
-                      編集
-                    </Button>
-                  </Link>
-                </div>
+            <div
+              key={post.id}
+              className="flex justify-between flex-col sm:flex-row border-b border-gray-500 w-full"
+            >
+              <div className="flex flex-col  sm:flex-row py-4 items-center w-full sm:w-auto">
+                <p className="sm:border-r border-gray-500  w-full py-1 px-2 sm:w-auto min-w-[120px]">
+                  {formattedCreatedDate}
+                </p>
+                <p className="sm:border-r flex-wrap  w-full border-gray-500 py-1 px-2 sm:w-auto min-w-[120px]">
+                  {post.category.name}
+                </p>
+                <p className="py-1 px-2 w-full sm:w-auto min-w-[250px] max-w-[650px]">
+                  {post.title && post.title.length > 36
+                    ? `${post.title.slice(0, 36)}...`
+                    : post.title}
+                </p>
               </div>
-            </>
+              <div className="flex sm:justify-end items-center my-4 sm:max-w-[240px]">
+                <Link href={`/${post.category.slug}/${post.slug}`}>
+                  <Button color="blue" size="small">
+                    ページ
+                  </Button>
+                </Link>
+                <Link href={`/dashboard/post/${post.id}`}>
+                  <Button color="gray" size="small">
+                    編集
+                  </Button>
+                </Link>
+              </div>
+            </div>
           );
         })}
       </div>

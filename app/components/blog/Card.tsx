@@ -3,6 +3,10 @@ import Image from "next/image";
 type Post = {
   title: string;
   description: string;
+  postImage?: {
+    url: string;
+    altText: string;
+  } | null;
 };
 
 type CardProps = {
@@ -12,21 +16,39 @@ type CardProps = {
 const Card: React.FC<CardProps> = ({ post }) => {
   return (
     <>
-      <div className="flex border border-gray-400 my-8 hover:bg-gray-100">
-        <div className="w-[30%] flex items-center justify-center px-4 py-6">
-          <Image
-            src="/card.JPG"
-            alt="削除する"
-            width={170}
-            height={110}
-            objectFit="contain"
-          ></Image>
-        </div>
-        <div className="w-[70%]  px-4 py-6">
-        {post.title && post.title.length > 36
-                      ? <h3 className="text-lg font-bold text-gray-700 mb-4">{post.title.slice(0, 36)}...</h3>
-                      : <h3 className="text-lg font-bold text-gray-700 mb-4">{post.title}</h3>}
-          <p>{post.description.length > 72 ? `${post.description.slice(0, 72)}...` : post.description}</p>
+      <div className="flex flex-wrap md:flex-nowrap  border w-full border-gray-400 my-8 hover:bg-gray-100">
+        {post.postImage && (
+          <>
+            <div className="w-full md:w-auto pt-3 md:pt-0 min-w-[260px]">
+              <Image
+                src={post.postImage.url}
+                alt={post.postImage.altText}
+                width={260}
+                height={171}
+                style={{
+                  width: "260px",
+                  height: "auto",
+                }}
+                className="block mx-auto"
+              />
+            </div>
+          </>
+        )}
+        <div className="w-full md:flex-auto px-4 py-3">
+          {post.title && post.title.length > 31 ? (
+            <h3 className="text-lg font-bold text-gray-700 mb-4">
+              {post.title.slice(0, 31)}...
+            </h3>
+          ) : (
+            <h3 className="text-lg font-bold text-gray-700 mb-4">
+              {post.title}
+            </h3>
+          )}
+          <p>
+            {post.description.length > 72
+              ? `${post.description.slice(0, 72)}...`
+              : post.description}
+          </p>
         </div>
       </div>
     </>

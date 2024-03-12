@@ -36,20 +36,8 @@ export default function Home() {
             ここに新着記事を3列2行で表示
             <h3>カテゴリ</h3>
             ここにカテゴリを3列で表示
-            <ul>
-              <li>
-                <Link href="./dashboard/">ブログ管理</Link>
-              </li>
-              <li>
-                <Link href="./admin/">ブログログイン</Link>
-              </li>
-              <li>
-                <Link href="./travel_brochure/">アプリtop</Link>
-              </li>
-              <li>
-                <Link href="./travel_brochure/itinerary">旅程表</Link>
-              </li>
-            </ul>
+            <Link href="./dashboard/">ブログ管理</Link>
+            <Link href="./admin/">ブログログイン</Link>
           </div>
         </div>
       </main>

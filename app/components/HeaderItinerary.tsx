@@ -12,13 +12,14 @@ const HeaderItinerary: React.FC<HeaderItineraryProps> = ({ currentUser }) => {
     <header className="max-w-[1150px] mx-auto">
       <div className="flex justify-between items-center h-16 pr-3">
         <Link href="/travel_brochure">
-          <h1><Image
-            src="/logo_itinerary.png"
-            alt="国内旅行・海外旅行の旅程表作成しおりアプリ「旅のメモリーブック」"
-            width={220}
-            height={52}
-            priority
-          /></h1>
+          <h1>
+            <img
+              src="/logo_itinerary.png"
+              alt="国内旅行・海外旅行の旅程表作成しおりアプリ「旅のメモリーブック」"
+              width="220"
+              height="52"
+            />
+          </h1>
         </Link>
         <Menu currentUser={currentUser} />
       </div>

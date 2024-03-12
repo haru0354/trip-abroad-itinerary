@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "プロフィール",
+  title: {
+    default: "プロフィール",
+    template: "%s | 旅のメモリーブック",
+  },
 };
 
 export default function RootLayout({

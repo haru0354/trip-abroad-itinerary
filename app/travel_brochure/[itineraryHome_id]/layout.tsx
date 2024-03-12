@@ -6,8 +6,10 @@ import HeaderItinerary from "@/app/components/HeaderItinerary";
 import FooterItinerary from "@/app/components/FooterItinerary";
 
 export const metadata: Metadata = {
-  title: "旅行の一覧",
-};
+  title: {
+    default: "旅行の編集",
+    template: "%s | 旅のメモリーブック",
+  },};
 
 export default async function RootLayout({
   children,

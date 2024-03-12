@@ -26,24 +26,37 @@ export const generateMetadata = async ({
   const processedCategory = posts.map((post) => {
     const categoryName = post.category.name;
     const categoryDescription = post.category.description;
+    const categoryTitle = post.category.title;
     return {
       categoryName,
       categoryDescription,
+      categoryTitle,
     };
   });
 
-  // カテゴリ名の取得。カテゴリ名がない場合はエラーメッセージを設定する
-  const retrievedCategoryTitle =
+  // カテゴリの項目を取得
+  const retrievedCategoryName =
     processedCategory.length > 0 ? processedCategory[0].categoryName : "";
   const retrievedCategoryDescription =
     processedCategory.length > 0
       ? processedCategory[0].categoryDescription
       : "";
+  const retrievedCategoryTitle =
+    processedCategory.length > 0 ? processedCategory[0].categoryTitle : "";
 
-  return {
-    title: retrievedCategoryTitle,
-    description: retrievedCategoryDescription,
-  };
+    if(retrievedCategoryTitle) {
+      return {
+        title: retrievedCategoryTitle,
+        description: retrievedCategoryDescription,
+      };
+    } else {
+      return {
+        title: retrievedCategoryName,
+        description: retrievedCategoryDescription,
+      };
+    }
+
+
 };
 
 export default function RootLayout({

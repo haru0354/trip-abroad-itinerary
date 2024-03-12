@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "旅程表",
+  title: {
+    default: "旅程表",
+    template: "%s | 旅のメモリーブック",
+  },
 };
 
 export default function RootLayout({
@@ -9,6 +12,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>
-  {children}</>;
+  return <>{children}</>;
 }

@@ -93,7 +93,7 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
 
   return (
     <div>
-      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
+      <h2>
         旅行の追加
       </h2>
       <div className="flex items-center justify-center">

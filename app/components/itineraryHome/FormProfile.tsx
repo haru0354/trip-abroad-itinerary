@@ -67,8 +67,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
 
   return (
     <>
-      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
-        プロフィールの変更
+      <h2>
       </h2>
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px]">

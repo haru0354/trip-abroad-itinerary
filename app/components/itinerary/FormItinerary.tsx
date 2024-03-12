@@ -133,7 +133,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
 
   return (
     <div id="add">
-      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
+      <h2>
         旅程の追加
       </h2>
 

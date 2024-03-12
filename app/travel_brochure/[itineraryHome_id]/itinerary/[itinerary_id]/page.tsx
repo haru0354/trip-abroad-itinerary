@@ -32,7 +32,7 @@ const page = async ({
 
   return (
     <>
-      <h2 className="text-center font-semibold text-xl text-gray-600 mt-4 py-2 border-b border-sky-700">
+      <h2 className="bg-white text-2xl text-center text-black border-b border-solid border-blue-800">
         {itineraryHome?.name}
       </h2>
       <FormItinerary

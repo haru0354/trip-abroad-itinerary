@@ -22,7 +22,7 @@ export default async function Home() {
       <main>
         <div className="main-contents-area">
           <div>
-            <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
+            <h2 className="text-center">
               旅程表作成のしおりアプリ「旅のメモリーブック」で出来ること
             </h2>
             <Section3ColumnImage
@@ -39,7 +39,7 @@ export default async function Home() {
               image2Alt="旅行準備のメモ"
               image3Alt="メモの切り替え"
             />
-            <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
+            <h2 className="text-center">
               「旅のメモリーブック」がおすすめな人
             </h2>
             <Section1ColumnRight
@@ -74,7 +74,7 @@ export default async function Home() {
               content2="旅程表を作成できるだけではありません。旅行中や帰国後にも思い出を残せるように設定がされています。旅行前は旅程表から、帰国後は思い出の記録へと残せます"
               content3="旅程表は複数作成可能となっています。旅行は1度だけでなく何度も良く人は多いです。複数の旅行にそれぞれの旅程表が作成できるようになっています。"
             />
-            <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
+            <h2 className="text-center">
               思い出の旅行記になるアプリ
             </h2>
             <Section1ColumnRight
@@ -93,7 +93,7 @@ export default async function Home() {
               content2="旅行は当日だけでなく、「どんな旅行をしたいか？」旅程表を作るのもたのしみのひとつです。"
               content3="いつか行って見たい旅行プランの作成を楽しむましょう。また、実際の旅行が決まったのなら新しい旅程表を作成することもできます。"
             />
-            <h2 className="bg-blue-400 text-xl font-semibold text-white rounded my-8 p-5 text-center">
+            <h2 className="text-center">
               よくある質問
             </h2>
             <QA

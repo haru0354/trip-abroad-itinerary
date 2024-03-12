@@ -29,15 +29,15 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
           ).toLocaleDateString();
           return (
             <div key={post.id}>
+              <h1>{post.title}</h1>
               <ArticleTop
-                title={post.title}
                 src={post.postImage?.url}
                 alt={post.postImage?.altText}
               />
               <p className="text-gray-500 mb-5">
                 記事の投稿日：{formattedCreatedDate}
               </p>
-              <ArticleContentArea content={post.content}/>
+              <ArticleContentArea content={post.content} />
             </div>
           );
         })

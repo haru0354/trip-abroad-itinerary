@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 export default function Home() {
   return (
     <>
-      <Header />
+      <Header isTopPage={true}/>
       <main>
         <div className="main-contents-area">
           <div className="w-full bg-white">

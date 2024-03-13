@@ -9,6 +9,7 @@ import HeaderItinerary from "../components/HeaderItinerary";
 import LoginModal from "../components/auth/authUi/LoginModal";
 import SignupModal from "../components/auth/authUi/SignupModal";
 import Section3ColumnImage from "../components/homePage/Section3ColumnImage";
+import FooterItinerary from "../components/FooterItinerary";
 
 export default async function Home() {
   const currentUser = await getCurrentUser();

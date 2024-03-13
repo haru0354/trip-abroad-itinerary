@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import Date from "../ui/Date";
+import Checkbox from "../ui/Checkbox";
 
 type FormItineraryHomeProps = {
   itineraryHome?: ItineraryHome | null;
@@ -21,6 +22,7 @@ type ItineraryHome = {
   endDate?: string | null;
   name: string;
   destination?: string | null;
+  share: boolean;
 };
 
 type FormState = {
@@ -45,6 +47,10 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
     initialState
+  );
+
+  const [isShare, setIsShare] = useState<boolean>(
+    itineraryHome?.share ?? false
   );
   const [errorMessage, setErrorMessage] = useState<FormState>();
   const [startDateValue, setStartDateValue] = useState<string>(
@@ -71,6 +77,10 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
     setDestinationValue(e.target.value);
   };
 
+  const handleToggle = () => {
+    setIsShare(!isShare);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -93,9 +103,7 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
 
   return (
     <div>
-      <h2>
-        旅行の追加
-      </h2>
+      <h2>旅行の追加</h2>
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px]">
           <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-bold">
@@ -132,6 +140,15 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
               placeholder="旅行先が決まっていれば入力"
               onChange={handleDestinationChange}
               value={destinationValue}
+            />
+            <Checkbox
+              name="share"
+              item="共有する(作成した旅程表を他の人が見れるようにします)"
+              checked={isShare}
+              label="共有設定"
+              onChange={handleToggle}
+              explanation="作成した旅程表が公開されるので「SNSでの共有」「同行者との旅程表の共有」などあなた以外も旅程表が観れる設定になります。"
+              explanation2="作成した旅程表には必ず「個人情報」や「画像」など知られたくない情報を記載しないようにしましょう。"
             />
             <input type="hidden" name="userId" value={userId} />
             {errorMessage && errorMessage.message !== "failure" && (

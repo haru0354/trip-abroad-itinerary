@@ -52,6 +52,7 @@ model ItineraryHome {
   memos               Memo[]
   itineraries         Itinerary[]
   blog                Boolean @default(false)
+  share               Boolean @default(false)
 }
 
 model Memo {

@@ -15,10 +15,10 @@ type FormState = {
 };
 
 const schema = z.object({
-    startDate: z.string().optional(),
-    endDate: z.string().optional(),
-    name: z.string().min(1, { message: "タイトルの入力は必須です" }),
-    destination: z.string().optional(),
+  startDate: z.string().optional(),
+  endDate: z.string().optional(),
+  name: z.string().min(1, { message: "タイトルの入力は必須です" }),
+  destination: z.string().optional(),
 });
 
 export const addItineraryHome = async (state: FormState, data: FormData) => {
@@ -54,7 +54,7 @@ export const addItineraryHome = async (state: FormState, data: FormData) => {
         user: { connect: { id: Number(userId) } },
       },
     });
-    const createdItineraryHomeId = createdItineraryHome.id   
+    const createdItineraryHomeId = createdItineraryHome.id;
     revalidatePath("/travel_brochure/home");
     return { message: "add", createdItineraryHomeId: createdItineraryHomeId };
   } catch (error) {
@@ -78,7 +78,11 @@ export const deleteItineraryHome = async (id: number) => {
   redirect("/travel_brochure/home");
 };
 
-export const updateItineraryHome = async (id: number, state: FormState, data: FormData) => {
+export const updateItineraryHome = async (
+  id: number,
+  state: FormState,
+  data: FormData
+) => {
   const startDate = data.get("startDate") as string;
   const endDate = data.get("endDate") as string;
   const name = data.get("name") as string;
@@ -100,7 +104,7 @@ export const updateItineraryHome = async (id: number, state: FormState, data: Fo
     console.log(errors);
     return errors;
   }
-  
+
   try {
     await prisma.itineraryHome.update({
       where: {
@@ -120,4 +124,27 @@ export const updateItineraryHome = async (id: number, state: FormState, data: Fo
     console.error("旅行を編集する際にエラーが発生しました:", error);
     return { message: "旅行を編集する際にエラーが発生しました" };
   }
+};
+
+export const updateShare = async (id: number, data: FormData) => {
+  const share = data.get("share") === "on";
+  const userId = data.get("userId") as string;
+  console.log("data", data);
+  console.log("id", id);
+  console.log("share", share);
+
+  try {
+    await prisma.itineraryHome.update({
+      where: {
+        id,
+      },
+      data: {
+        share: share,
+        user: { connect: { id: Number(userId) } },
+      },
+    });
+  } catch {
+    console.log("共有の変更に失敗しました");
+  }
+  redirect("/travel_brochure/home");
 };

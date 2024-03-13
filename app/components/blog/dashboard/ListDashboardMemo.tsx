@@ -84,7 +84,7 @@ const ListDashboardMemo = async () => {
                 className="rounded"
                 size="small"
                 icon="pen"
-                iconClassName="mr-2"
+                iconClassName="mr-2 w-[13px] h-[13px]"
               >
                 編集
               </ButtonImage>

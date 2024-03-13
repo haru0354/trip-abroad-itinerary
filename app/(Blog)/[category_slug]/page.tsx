@@ -27,13 +27,14 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
   const processedCategory = posts.map((post) => {
     const categoryName = post.category.name;
     const categoryContent = post.category.content;
-    const categoryPostImageTitle = post.category.title;
+    const categoryTitle = post.category?.title;
     const categoryPostImageUrl = post.category?.postImage?.url;
     const categoryPostImageAltText = post.category?.postImage?.altText;
     return {
+      id: post.id,
       categoryName,
       categoryContent,
-      categoryPostImageTitle,
+      categoryTitle,
       categoryPostImageUrl,
       categoryPostImageAltText,
     };
@@ -46,7 +47,6 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
     ) : (
       <>
         <NotFound />
-        <p>カテゴリがありません</p>
       </>
     );
 
@@ -55,23 +55,29 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
 
   return (
     <>
+      {processedCategory.length > 0 && processedCategory[0].categoryTitle ? (
+        <h1>{processedCategory[0].categoryTitle}</h1>
+      ) : (
+        <h1>
+          {processedCategory.length > 0
+            ? processedCategory[0].categoryName + "のカテゴリ"
+            : "カテゴリが見つかりません"}
+        </h1>
+      )}
       {processedCategory.length > 0 &&
         processedCategory[0].categoryPostImageUrl && (
           <ArticleTop
-            title={processedCategory[0].categoryPostImageTitle}
             src={processedCategory[0].categoryPostImageUrl}
             alt={processedCategory[0].categoryPostImageAltText}
           />
         )}
-      <p>{retrievedCategoryContent}</p>
+      {retrievedCategoryContent && <p>{retrievedCategoryContent}</p>}
       <h2 className="p-2 mt-10 text-3xl">{retrievedCategoryName}</h2>
       {posts.map((post) => {
         return (
-          <>
-            <Link href={`/${post.category.slug}/${post.slug}`} >
+            <Link href={`/${post.category.slug}/${post.slug}`}>
               <Card key={post.id} post={post} />
             </Link>
-          </>
         );
       })}
     </>

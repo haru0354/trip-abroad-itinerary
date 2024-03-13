@@ -14,7 +14,7 @@ const ListProfile: React.FC<ListProfileProps> = async ({
 }) => {
   return (
     <>
-      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-12 p-5">
+      <h2>
         プロフィール
       </h2>
 

@@ -33,7 +33,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
   if (sortedItineraryHomes && sortedItineraryHomes.length === 0) {
     return (
       <>
-        <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-10 p-5">
+        <h2>
           アプリの使い方
         </h2>
         <div className="border border-dashed border-gray-600 my-4 p-4 text-center text-gray-700">
@@ -66,7 +66,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
 
   return (
     <>
-      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-8 p-5">
+      <h2>
         旅行の一覧
       </h2>
       <div className="w-full bg-white rounded">

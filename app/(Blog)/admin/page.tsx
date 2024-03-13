@@ -46,7 +46,7 @@ const page = () => {
     <>
       <div className="flex items-center justify-center bg-sky-50">
         <div className="w-[350px] border p-4 my-10 border-gray-400 rounded bg-white">
-          <h2 className="text-center border-b pb-4 border-gray-400 text-gray-600 font-bold">
+          <h2 className="text-center text-base border-b py-1 my-1 bg-white border-gray-400 text-gray-600 font-bold">
             ログインフォーム
           </h2>
           <div className="flex">
@@ -65,7 +65,7 @@ const page = () => {
               {errorMessage && (
                 <p className="text-red-500 pt-4">{errorMessage}</p>
               )}
-              <Button className="flex mx-auto items-center justify-center transition duration-300 my-6 w-[180px]  py-2 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900 rounded-sm">
+              <Button color="blue" size="auth" className="rounded mt-4">
                 ログイン
               </Button>
             </form>

@@ -74,7 +74,7 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
 
   return (
     <div>
-      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-2 p-5">
+      <h2>
         旅程表
       </h2>
       {sortedItineraries?.map((itinerary, index) => {

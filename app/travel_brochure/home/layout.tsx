@@ -5,7 +5,10 @@ import DashboardItinerarySideMenu from "@/app/components/itineraryHome/Dashboard
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "旅行の一覧",
+  title: {
+    default: "旅行の一覧",
+    template: "%s | 旅のメモリーブック",
+  },
 };
 
 export default async function RootLayout({

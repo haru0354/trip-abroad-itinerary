@@ -51,6 +51,7 @@ model ItineraryHome {
   userId              Int
   memos               Memo[]
   itineraries         Itinerary[]
+  blog                Boolean @default(false)
 }
 
 model Memo {
@@ -69,6 +70,7 @@ model Itinerary {
   name                String
   content             String?
   hideContent         String?
+  blogContent         String?
   isShowContent       Boolean @default(false)
   imageName           String?
   url                 String?
@@ -89,6 +91,7 @@ model Post {
   slug                String
   postImage           PostImage? @relation(fields: [postImageId], references: [id])
   postImageId         Int?
+  draft               Boolean @default(false)
 }
 
 model Category {

@@ -7,6 +7,8 @@ import Select from "../../ui/Select";
 import { useFormState } from "react-dom";
 import FormImage from "../../ui/FormImage";
 import DOMPurify from "dompurify";
+import Checkbox from "../../ui/Checkbox";
+import { useState } from "react";
 
 type FormPostProps = {
   post?: (Post & { category: Category; postImage: PostImage | null }) | null;
@@ -33,6 +35,7 @@ type Post = {
   content: string;
   slug: string;
   description: string;
+  draft: boolean;
 };
 
 type FormState = {
@@ -70,6 +73,11 @@ const FormPost: React.FC<FormPostProps> = ({
     formAction,
     initialState
   );
+  const [isDraft, setIsDraft] = useState<boolean>(post?.draft ?? false); 
+
+  const handleToggle = () => {
+    setIsDraft(!isDraft); 
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -83,6 +91,8 @@ const FormPost: React.FC<FormPostProps> = ({
       }
       sanitizedFormData.append(key, sanitizedValue);
     }
+    sanitizedFormData.set("draft", isDraft.toString());
+
     dispatch(sanitizedFormData);
   };
 
@@ -139,6 +149,13 @@ const FormPost: React.FC<FormPostProps> = ({
               state={state}
               label="画像の名前(alt)"
               placeholder="どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます"
+            />
+            <Checkbox
+              checked={isDraft}
+              name="draft"
+              item="公開(未選択状態は下書き保存されます)"
+              label="記事の公開設定"
+              onChange={handleToggle}
             />
             <Button color="blue" size="normal" className="rounded mt-4">
               {buttonName}

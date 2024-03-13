@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "個別のメモ",
+  title: "メモの編集",
 };
 
 export default function RootLayout({

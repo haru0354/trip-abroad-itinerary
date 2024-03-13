@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   robots: {
     index: false, // noindexの設定
   },
-  };
+};
 
 export default async function RootLayout({
   children,
@@ -19,13 +19,13 @@ export default async function RootLayout({
 
   return (
     <>
-        <HeaderItinerary currentUser={currentUser} />
-        <main>
-          <div className="main-contents-area">
-            <div className="contents-area">{children}</div>
-          </div>
-        </main>
-        <FooterItinerary />
+      <HeaderItinerary currentUser={currentUser} />
+      <main>
+        <div className="main-contents-area">
+          <div className="contents-area">{children}</div>
+        </div>
+      </main>
+      <FooterItinerary isTopAppDirectory={true} />
     </>
   );
 }

@@ -26,14 +26,12 @@ export default async function RootLayout({
 
   return (
     <>
-      <ItineraryAuthGuard currentUser={currentUser}>
         <div className="flex bg-sky-50">
           <DashboardItinerarySideMenu itineraryHomes={itineraryHomes} />
           <div className="flex justify-center items-center mx-auto w-full max-w-[1200px] ml-0 sm:ml-96 bg-white border rounded border-gray-200 p-5 mt-8">
             <div className="w-full">{children}</div>
           </div>
         </div>
-      </ItineraryAuthGuard>
     </>
   );
 }

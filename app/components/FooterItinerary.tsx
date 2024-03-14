@@ -1,5 +1,5 @@
 type FooterItineraryProps = {
-  isTopAppDirectory: boolean;
+  isTopAppDirectory?: boolean;
 };
 
 const FooterItinerary: React.FC<FooterItineraryProps> = ({ isTopAppDirectory }) => {

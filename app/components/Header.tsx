@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 type HeaderProps = {
-  isTopPage: boolean;
+  isTopPage?: boolean;
 };
 
 const Header: React.FC<HeaderProps> = ({ isTopPage }) => {

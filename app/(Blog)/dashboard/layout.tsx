@@ -16,7 +16,6 @@ export default async function RootLayout({
   return (
     <>
       <AuthContext>
-        <AuthGuard>
           <ToastContext />
           <div className="flex bg-sky-50">
             <DashboardSideMenu />
@@ -24,7 +23,6 @@ export default async function RootLayout({
               <div className="w-full">{children}</div>
             </div>
           </div>
-        </AuthGuard>
       </AuthContext>
     </>
   );

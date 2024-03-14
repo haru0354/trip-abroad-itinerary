@@ -1,6 +1,5 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-
 import CredentialsProvider from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import bcrypt from "bcrypt";
@@ -10,6 +9,8 @@ import prisma from "@/app/components/lib/prisma";
 export const authOptions: NextAuthOptions = {
   //Prismaを使うための設定
   adapter: PrismaAdapter(prisma),
+  session: { strategy: "jwt" },
+
   //認証プロバイダーの設定
   providers: [
     // Google認証
@@ -17,10 +18,10 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
-    
+
     // メールアドレス認証
     CredentialsProvider({
-      id: 'itinerary',
+      id: "itinerary",
       name: "itinerary",
       credentials: {
         email: { label: "email", type: "text" },
@@ -52,39 +53,50 @@ export const authOptions: NextAuthOptions = {
           throw new Error("パスワードが一致しません");
         }
         return user;
-      },     
+      },
     }),
-    
-      CredentialsProvider({
-        id: 'blog',
-        name: 'blog',
-        credentials: {
-          username: { label: "Username", type: "text" },
-          password: { label: "Password", type: "password" },
-        },
-        async authorize(credentials, req) {
-          const { ADMIN_USERNAME, ADMIN_PASSWORD } = process.env;
-          const { username, password } = credentials || {};
-          
-          if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-            return { id: ADMIN_USERNAME || '', name: ADMIN_USERNAME || '' }; // idが必須なので、undefinedの場合は空文字列になるように設定
-          } else if (username !== ADMIN_USERNAME) {
-            throw new Error("ユーザー名が間違っています");
-          } else if (password !== ADMIN_PASSWORD) {
-            throw new Error("パスワードが間違っています");
-          } else {
-            return null;
-          }
+
+    CredentialsProvider({
+      id: "blog",
+      name: "blog",
+      credentials: {
+        username: { label: "Username", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials, req) {
+        const { ADMIN_USERNAME, ADMIN_PASSWORD } = process.env;
+        const { username, password } = credentials || {};
+
+        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+          return {
+            id: ADMIN_USERNAME || "",
+            role: "admin",
+          };
+        } else if (username !== ADMIN_USERNAME) {
+          throw new Error("ユーザー名が間違っています");
+        } else if (password !== ADMIN_PASSWORD) {
+          throw new Error("パスワードが間違っています");
+        } else {
+          return null;
         }
-      }),
+      },
+    }),
   ],
-  session: {
-    strategy: "jwt",
+  callbacks: {
+    jwt: async ({ token, user, }) => {
+      if (user) {
+        token.user = user;
+        const u = user as any;
+        token.role = u.role;
+      }
+
+      return token;
+    },
   },
+
   secret: process.env.NEXTAUTH_SECRET,
 };
 
-
 const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST};
+export { handler as GET, handler as POST };

@@ -2,15 +2,15 @@
 
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { FormEvent, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-
-
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const { data: session, status } = useSession();
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const router = useRouter();
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,20 +22,17 @@ const page = () => {
     )?.value; // パスワードフィールドの値を取得
 
     const result = await signIn("blog", {
+      redirect: false,
       username,
       password,
-      callbackUrl: "/dashboard",
     });
 
     if (!result?.error) {
       toast.success("ログインしました！");
+      router.replace(`/dashboard/`);
     } else {
       setErrorMessage(result.error);
     }
-  };
-
-  const handleLogout = async () => {
-    await signOut({ callbackUrl: "/admin" });
   };
 
   if (status === "loading") {

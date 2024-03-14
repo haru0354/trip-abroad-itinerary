@@ -3,8 +3,8 @@ import { authOptions } from "../api/auth/[...nextauth]/route"
 import prisma from "../components/lib/prisma"
 
 const getCurrentUser = async () => {
+
     try{
-    //　セッション情報を取得
     const session = await getServerSession(authOptions)
 
     // ログインしていない場合

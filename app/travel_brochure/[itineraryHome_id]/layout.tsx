@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import ItineraryAuthGuard from "@/app/components/auth/authGuard/ItineraryAuthGuard";
 import getCurrentUser from "@/app/action/getCurrentUser";
 import FooterMenu from "@/app/components/FooterMenu";
 import HeaderItinerary from "@/app/components/HeaderItinerary";

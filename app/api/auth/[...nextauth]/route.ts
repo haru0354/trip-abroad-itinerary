@@ -22,11 +22,12 @@ export const authOptions: NextAuthOptions = {
     // メールアドレス認証
     CredentialsProvider({
       id: "itinerary",
-      name: "itinerary",
+      name: "itinerary",    
       credentials: {
         email: { label: "email", type: "text" },
         password: { label: "password", type: "password" },
       },
+
 
       async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) {
@@ -38,6 +39,10 @@ export const authOptions: NextAuthOptions = {
             email: credentials.email,
           },
         });
+
+        if (!user) {
+          throw new Error("ユーザーが存在しません");
+        }
 
         if (!user || !user?.hashedPassword) {
           throw new Error("ユーザーが存在しません");
@@ -52,7 +57,11 @@ export const authOptions: NextAuthOptions = {
         if (!isCorrectPassword) {
           throw new Error("パスワードが一致しません");
         }
-        return user;
+
+        return {
+          id: user.id.toString(),
+          role: "itineraryUser", 
+        };
       },
     }),
 
@@ -63,9 +72,13 @@ export const authOptions: NextAuthOptions = {
         username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
+
       async authorize(credentials, req) {
         const { ADMIN_USERNAME, ADMIN_PASSWORD } = process.env;
-        const { username, password } = credentials || {};
+        const { username, password } = credentials || {
+          username: "",
+          password: "",
+        };
 
         if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
           return {
@@ -83,17 +96,18 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    jwt: async ({ token, user, }) => {
+    jwt: async ({ token, user }) => {
       if (user) {
         token.user = user;
         const u = user as any;
         token.role = u.role;
       }
-
       return token;
     },
   },
-
+  pages: {
+    signIn: "/travel_brochure",
+  },
   secret: process.env.NEXTAUTH_SECRET,
 };
 

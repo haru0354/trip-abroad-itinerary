@@ -1,4 +1,3 @@
-import ItineraryAuthGuard from "@/app/components/auth/authGuard/ItineraryAuthGuard";
 import getCurrentUser from "@/app/action/getCurrentUser";
 import prisma from "@/app/components/lib/prisma";
 import DashboardItinerarySideMenu from "@/app/components/itineraryHome/DashboardItinerarySideMenu";

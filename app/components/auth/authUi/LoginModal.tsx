@@ -15,7 +15,6 @@ import Modal from "./Modal";
 import AuthInput from "./AuthInput";
 import Button from "../../ui/Button";
 
-// 入力データの検証ルールを定義
 const schema = z.object({
   email: z.string().email({ message: "メールアドレスの形式ではありません。" }),
   password: z.string().min(6, { message: "6文字以上入力する必要があります。" }),
@@ -26,15 +25,14 @@ const LoginModal = () => {
   const signupModal = useSignupModal();
   const loginModal = useLoginModal();
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-  // react hook formでフォームの状態を管理
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: { email: "", password: "" },
-    // 入力値の検証
     resolver: zodResolver(schema),
   });
 
@@ -46,20 +44,20 @@ const LoginModal = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setLoading(true);
     try {
-      // ログイン
       const res = await signIn("itinerary", {
         ...data,
-        callbackUrl: "/travel_brochure/home",
+        redirect: false,
       });
 
       if (res?.error) {
         toast.error("エラーが発生しました。" + res.error);
+        setErrorMessage(res.error);
         return;
       }
 
       toast.success("ログインしました！");
       loginModal.onClose();
-      router.refresh();
+      router.replace(`/travel_brochure/home`);
     } catch (error) {
       toast.error("エラーが発生しました。" + error);
     } finally {
@@ -86,10 +84,10 @@ const LoginModal = () => {
         errors={errors}
         required
       />
+      {errorMessage && <p className="text-red-500 pt-4 px-4">{errorMessage}</p>}
     </div>
   );
 
-  // フッターの内容
   const footerContent = (
     <div className="w-full px-4 my-6 ">
       <Button

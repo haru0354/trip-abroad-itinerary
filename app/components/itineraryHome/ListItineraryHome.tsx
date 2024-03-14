@@ -33,9 +33,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
   if (sortedItineraryHomes && sortedItineraryHomes.length === 0) {
     return (
       <>
-        <h2>
-          アプリの使い方
-        </h2>
+        <h2>アプリの使い方</h2>
         <div className="border border-dashed border-gray-600 my-4 p-4 text-center text-gray-700">
           まずは1つ目の旅行プランを作成しましょう。下記のフォームより作成ができます。
         </div>
@@ -66,28 +64,28 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
 
   return (
     <>
-      <h2>
-        旅行の一覧
-      </h2>
+      <h2>旅行の一覧</h2>
       <div className="w-full bg-white rounded">
         <div className="flex w-full my-10 flex-wrap items-center justify-center">
           {sortedItineraryHomes.map((itineraryHome) => {
             return (
               <div
                 key={itineraryHome.id}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center max-w-[370px] "
               >
                 <Link href={`/travel_brochure/${itineraryHome.id}/itinerary`}>
-                  <div className="border-2 border-sky-600 rounded mx-5 my-6 px-8 py-10 flex flex-col min-w-[330px] hover:bg-sky-200">
+                  <div className="border-2 border-sky-600 rounded mx-5 my-6 px-8 py-6 flex flex-col min-w-[340px] min-h-[300px] hover:bg-sky-200">
                     <span className="text-blue-500  flex justify-center mb-6">
                       <FontAwesomeIcon
                         icon={faPlaneDeparture}
                         style={{ fontSize: "2em" }}
                       />
                     </span>
-                    <h3 className="text-gray-700 mb-6 text-center text-xl font-semibold">
-                      {itineraryHome.name}
-                    </h3>
+                    <div className="flex items-center justify-center min-h-[110px] ">
+                      <h3 className="text-gray-700 mb-6 text-center text-xl font-semibold">
+                        {itineraryHome.name}
+                      </h3>
+                    </div>
                     <p>出発日：{itineraryHome.startDate}</p>
                     <p>帰宅日：{itineraryHome.endDate}</p>
                     <p>旅行先：{itineraryHome.destination}</p>

@@ -10,6 +10,7 @@ import Manual from "../manual";
 type ListItineraryProps = {
   itineraryHomeId: number | undefined;
   itineraries: Itineraries[] | undefined;
+  isShare?: boolean;
 };
 
 type Itineraries = {
@@ -27,6 +28,7 @@ type Itineraries = {
 const ListItinerary: React.FC<ListItineraryProps> = async ({
   itineraryHomeId,
   itineraries,
+  isShare,
 }) => {
   const sortItineraryByDateTime = (a: Itineraries, b: Itineraries) =>
     new Date(a.date + " " + a.time).getTime() -
@@ -74,9 +76,7 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
 
   return (
     <div>
-      <h2>
-        旅程表
-      </h2>
+      <h2>旅程表</h2>
       {sortedItineraries?.map((itinerary, index) => {
         const isFirstItem =
           index === 0 || itinerary.date !== sortedItineraries[index - 1].date;
@@ -87,18 +87,20 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
                 {itinerary.date}
               </div>
             )}
-            <Link
-              href={`/travel_brochure/${itineraryHomeId}/itinerary/${itinerary.id}`}
-            >
-              <ButtonImage
-                className="rounded mb-[-8px]"
-                size="small"
-                icon="pen"
-                iconClassName="mr-2"
+            {isShare || (
+              <Link
+                href={`/travel_brochure/${itineraryHomeId}/itinerary/${itinerary.id}`}
               >
-                編集
-              </ButtonImage>
-            </Link>
+                <ButtonImage
+                  className="rounded mb-[-8px]"
+                  size="small"
+                  icon="pen"
+                  iconClassName="mr-2"
+                >
+                  編集
+                </ButtonImage>
+              </Link>
+            )}
             <div className="flex w-full ">
               <div className="relative  text-white items-center justify-center flex">
                 <FontAwesomeIcon

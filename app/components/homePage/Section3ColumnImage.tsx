@@ -31,7 +31,7 @@ const Section3ColumnImage: React.FC<Section3ColumnImageProps> = ({
 }) => {
   return (
     <div className="flex w-full my-8 flex-wrap items-center justify-center">
-      <div className="flex flex-col items-center mx-5 max-w-[330px] min-w-[330px]">
+      <div className="flex flex-col items-center mx-3 max-w-[330px] min-w-[330px]">
         <div className="min-h-[220px] max-h-[220px] border justify-centers">
           <Image
             src={image1Url}

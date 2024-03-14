@@ -1,4 +1,8 @@
-const FooterItinerary = () => {
+type FooterItineraryProps = {
+  isTopAppDirectory: boolean;
+};
+
+const FooterItinerary: React.FC<FooterItineraryProps> = ({ isTopAppDirectory }) => {
   return (
     <footer className="bg-blue-400">
       <div>
@@ -7,7 +11,11 @@ const FooterItinerary = () => {
           <li className="pt-2 px-6 text-xs">お問い合わせ</li>
         </ul>
       </div>
-      <div className="flex items-center justify-center mb-[65px]">
+      <div
+        className={`flex items-center justify-center ${
+          isTopAppDirectory || "mb-[65px]"
+        }`}
+      >
         <p className="p-3 text-xs">
           &copy;国内旅行・海外旅行のしおりアプリ「旅のメモリーブック」
         </p>

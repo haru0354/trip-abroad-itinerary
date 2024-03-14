@@ -20,21 +20,19 @@ const Card: React.FC<CardProps> = ({ post }) => {
       {post.draft && (
         <div className="flex flex-wrap md:flex-nowrap  border w-full border-gray-400 my-8 hover:bg-gray-100">
           {post.postImage ? (
-            <>
-              <div className="w-full md:w-auto pt-3 md:pt-0 min-w-[260px]">
-                <Image
-                  src={post.postImage.url}
-                  alt={post.postImage.altText}
-                  width={260}
-                  height={171}
-                  style={{
-                    width: "260px",
-                    height: "auto",
-                  }}
-                  className="block mx-auto"
-                />
-              </div>
-            </>
+            <div className="w-full md:w-auto pt-3 md:pt-0 min-w-[260px]">
+              <Image
+                src={post.postImage.url}
+                alt={post.postImage.altText}
+                width={260}
+                height={171}
+                style={{
+                  width: "260px",
+                  height: "auto",
+                }}
+                className="block mx-auto"
+              />
+            </div>
           ) : (
             <div className="w-full md:w-auto pt-3 md:pt-0 min-w-[260px]">
               <Image

@@ -105,16 +105,16 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
               <div className="relative  text-white items-center justify-center flex">
                 <FontAwesomeIcon
                   icon={faCircleDown}
-                  className="z-20 bg-blue-500"
+                  className="z-20 bg-blue-500 w-[16px] h-[16px]"
                 />
                 <div className="h-full w-4  absolute inset-0 flex items-center justify-center z-10">
                   <div className="h-full w-1 bg-blue-100"></div>
                 </div>
               </div>
-              <div className="flex-1 flex-col  ml-8 my-2 p-2 shadow flex bg-sky-50">
-                <div className="flex items-start  mb-2 flex-wrap md:flex-nowrap justify-center md:justify-start ">
+              <div className="flex-1 flex-col  ml-8 my-2 p-2 shadow bg-sky-50 border border-gray-100 rounded">
+                <div className="flex mb-2 flex-wrap md:flex-nowrap  ">
                   {itinerary && itinerary.url && itinerary.altText && (
-                    <div className="min-w-[250px] max-w-[250px]">
+                    <div className="min-w-[250px] max-w-[250px] m-auto md:m-0">
                       <Image
                         src={itinerary.url}
                         alt={itinerary.altText}
@@ -130,7 +130,7 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
                     <div className="flex items-center mb-2">
                       <FontAwesomeIcon
                         icon={faClock}
-                        className="inline-block mr-2"
+                        className="inline-block mr-2 w-[16px] h-[16px]"
                       />
                       <p className="text-gray-700 mb-0 inline-block">
                         {itinerary.time}

@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import ToastContext from "@/app/context/ToastContext";
 import AuthContext from "@/app/context/AuthContext";
-import AuthGuard from "@/app/components/auth/authGuard/BlogAuthGuard";
 import DashboardSideMenu from "@/app/components/blog/dashboard/DashboardSideMenu";
 
 export const metadata: Metadata = {
@@ -16,7 +15,6 @@ export default async function RootLayout({
   return (
     <>
       <AuthContext>
-        <AuthGuard>
           <ToastContext />
           <div className="flex bg-sky-50">
             <DashboardSideMenu />
@@ -24,7 +22,6 @@ export default async function RootLayout({
               <div className="w-full">{children}</div>
             </div>
           </div>
-        </AuthGuard>
       </AuthContext>
     </>
   );

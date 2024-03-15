@@ -33,7 +33,7 @@ const HideContent: React.FC<HideContentProps> = ({ itinerary }) => {
                 icon="up"
                 size="small"
                 className="m-auto py-1 mt-4 mb-2"
-                iconClassName="mr-2"
+                iconClassName="mr-2 w-[12px] h-[12px]"
               >
                 閉じる
               </ButtonImage>
@@ -44,7 +44,7 @@ const HideContent: React.FC<HideContentProps> = ({ itinerary }) => {
               icon="down"
               size="small"
               className="m-auto py-1 mt-4 mb-2"
-              iconClassName="mr-2"
+              iconClassName="mr-2 w-[12px] h-[12px]"
             >
               補足情報を開く
             </ButtonImage>

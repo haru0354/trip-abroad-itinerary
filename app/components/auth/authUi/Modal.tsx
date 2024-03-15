@@ -68,10 +68,12 @@ const Modal: React.FC<ModalProps> = ({
     }
   };
 
-
   return (
     <>
-      <div onClick={closeModal} className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0">
+      <div
+        onClick={closeModal}
+        className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
+      >
         <div className="border rounded mx-auto bg-white w-[350px]">
           <div className="p-3">
             <div onClick={handleClose}></div>
@@ -81,14 +83,24 @@ const Modal: React.FC<ModalProps> = ({
           <div>
             <div className="px-4">
               {secondaryAction && secondaryLabel && (
-                <Button onClick={handleSecondaryAction} color="blue" size="auth" className="rounded mt-4">
+                <Button
+                  onClick={handleSecondaryAction}
+                  color="blue"
+                  size="auth"
+                  className="rounded mt-4"
+                >
                   {secondaryLabel}
                 </Button>
               )}
-              
-              <Button onClick={handleSubmit} color="blue" size="auth" className="rounded mt-4">
-              {primaryLabel}
-                </Button>
+
+              <Button
+                onClick={handleSubmit}
+                color="blue"
+                size="auth"
+                className="rounded mt-4"
+              >
+                {primaryLabel}
+              </Button>
             </div>
             {footer}
           </div>

@@ -19,6 +19,7 @@ model User {
   hashedPassword      String?
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
+  role                String?
   accounts            Account[]
   ItineraryHomes      ItineraryHome[]
 }
@@ -37,7 +38,8 @@ model Account {
   id_token            String?
   session_state       String?
   user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
-  
+  role                String?
+
   @@unique([provider, providerAccountId])
 }
 
@@ -89,7 +91,7 @@ model Post {
   category            Category @relation(fields: [categoryId], references: [id])
   categoryId          Int
   description         String
-  slug                String
+  slug                String  @unique
   postImage           PostImage? @relation(fields: [postImageId], references: [id])
   postImageId         Int?
   draft               Boolean @default(false)
@@ -98,7 +100,7 @@ model Post {
 model Category {
   id                  Int     @id @default(autoincrement())
   name                String
-  slug                String
+  slug                String  @unique
   title               String?
   content             String?
   description         String?

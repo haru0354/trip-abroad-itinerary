@@ -10,13 +10,14 @@ export async function POST(request: Request) {
 
         //　パスワードのハッシュ化
         const hashedPassword = await bcrypt.hash(password, 12)
-
-        // ユーザーの作成
+        const role = "itineraryUser"
+        
         const response = await prisma.user.create({
             data: {
                 email,
                 name,
                 hashedPassword,
+                role,
             }
         })
 

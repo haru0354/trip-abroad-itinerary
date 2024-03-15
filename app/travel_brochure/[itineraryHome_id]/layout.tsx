@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import ItineraryAuthGuard from "@/app/components/auth/authGuard/ItineraryAuthGuard";
 import getCurrentUser from "@/app/action/getCurrentUser";
 import FooterMenu from "@/app/components/FooterMenu";
 import HeaderItinerary from "@/app/components/HeaderItinerary";
@@ -24,7 +23,6 @@ export default async function RootLayout({
 
   return (
     <>
-      <ItineraryAuthGuard currentUser={currentUser}>
         <HeaderItinerary currentUser={currentUser} />
         <main>
           <div className="main-contents-area">
@@ -33,7 +31,6 @@ export default async function RootLayout({
         </main>
         <FooterItinerary />
         <FooterMenu itineraryHomeId={itineraryHomeId} userId={userId} />
-      </ItineraryAuthGuard>
     </>
   );
 }

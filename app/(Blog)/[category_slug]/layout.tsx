@@ -11,52 +11,23 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const categorySlug = params.category_slug;
 
-  const posts = await prisma.post.findMany({
+  const category = await prisma.category.findUnique({
     where: {
-      category: {
-        slug: categorySlug,
-      },
-    },
-    include: {
-      category: true,
+      slug: categorySlug,
     },
   });
 
-  // カテゴリ名を取り出して新しいオブジェクトに変換
-  const processedCategory = posts.map((post) => {
-    const categoryName = post.category.name;
-    const categoryDescription = post.category.description;
-    const categoryTitle = post.category.title;
+  if (category?.title) {
     return {
-      categoryName,
-      categoryDescription,
-      categoryTitle,
+      title: `${category?.title} | トラベルメモリー`,
+      description: category?.description,
     };
-  });
-
-  // カテゴリの項目を取得
-  const retrievedCategoryName =
-    processedCategory.length > 0 ? processedCategory[0].categoryName : "";
-  const retrievedCategoryDescription =
-    processedCategory.length > 0
-      ? processedCategory[0].categoryDescription
-      : "";
-  const retrievedCategoryTitle =
-    processedCategory.length > 0 ? processedCategory[0].categoryTitle : "";
-
-    if(retrievedCategoryTitle) {
-      return {
-        title: retrievedCategoryTitle,
-        description: retrievedCategoryDescription,
-      };
-    } else {
-      return {
-        title: retrievedCategoryName,
-        description: retrievedCategoryDescription,
-      };
-    }
-
-
+  } else {
+    return {
+      title: `${category?.name} | トラベルメモリー`,
+      description: category?.description,
+    };
+  }
 };
 
 export default function RootLayout({

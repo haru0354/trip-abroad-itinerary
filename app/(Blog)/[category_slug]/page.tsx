@@ -7,77 +7,45 @@ import ArticleTop from "@/app/components/blog/ArticleTop";
 const page = async ({ params }: { params: { category_slug: string } }) => {
   const categorySlug = params.category_slug;
 
-  const posts = await prisma.post.findMany({
+  const category = await prisma.category.findUnique({
     where: {
-      category: {
-        slug: categorySlug,
-      },
+      slug: categorySlug,
     },
     include: {
-      category: {
-        include: {
-          postImage: true,
-        },
-      },
+      posts: true,
       postImage: true,
     },
   });
 
-  // カテゴリ名を取り出して新しいオブジェクトに変換
-  const processedCategory = posts.map((post) => {
-    const categoryName = post.category.name;
-    const categoryContent = post.category.content;
-    const categoryTitle = post.category?.title;
-    const categoryPostImageUrl = post.category?.postImage?.url;
-    const categoryPostImageAltText = post.category?.postImage?.altText;
-    return {
-      id: post.id,
-      categoryName,
-      categoryContent,
-      categoryTitle,
-      categoryPostImageUrl,
-      categoryPostImageAltText,
-    };
-  });
-
-  // カテゴリ名の取得。カテゴリ名がない場合はエラーメッセージを設定する
-  const retrievedCategoryName =
-    processedCategory.length > 0 ? (
-      processedCategory[0].categoryName + "の記事一覧"
-    ) : (
+  if (!category || (category.posts.length > 0 && category.posts.every(post => !post.draft))) {
+    return (
       <>
         <NotFound />
+        <p>カテゴリが存在しないか削除された可能性があります。</p>
       </>
     );
-
-  const retrievedCategoryContent =
-    processedCategory.length > 0 ? processedCategory[0].categoryContent : "";
+  }
 
   return (
     <>
-      {processedCategory.length > 0 && processedCategory[0].categoryTitle ? (
-        <h1>{processedCategory[0].categoryTitle}</h1>
+      {category?.title ? (
+        <h1>{category?.title}</h1>
       ) : (
-        <h1>
-          {processedCategory.length > 0
-            ? processedCategory[0].categoryName + "のカテゴリ"
-            : "カテゴリが見つかりません"}
-        </h1>
+        <h1>「{category?.name} 」のカテゴリ</h1>
       )}
-      {processedCategory.length > 0 &&
-        processedCategory[0].categoryPostImageUrl && (
-          <ArticleTop
-            src={processedCategory[0].categoryPostImageUrl}
-            alt={processedCategory[0].categoryPostImageAltText}
-          />
-        )}
-      {retrievedCategoryContent && <p>{retrievedCategoryContent}</p>}
-      <h2 className="p-2 mt-10 text-3xl">{retrievedCategoryName}</h2>
-      {posts.map((post) => {
+      {category.postImage?.url && (
+        <ArticleTop
+          src={category.postImage?.url}
+          alt={category.postImage?.altText}
+        />
+      )}
+      {category.content && <p>{category.content}</p>}
+      <h2 className="p-2 mt-10 text-3xl">{category?.name}の記事一覧</h2>
+      {category.posts.map((post) => {
         return (
-            <Link href={`/${post.category.slug}/${post.slug}`}>
-              <Card key={post.id} post={post} />
-            </Link>
+          <Link href={`/${category.slug}/${post.slug}`}>
+            <Card key={post.id} post={post} />
+          </Link>
         );
       })}
     </>

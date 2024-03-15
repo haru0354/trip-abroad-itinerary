@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     default: "旅行の一覧",
     template: "%s | 旅のメモリーブック",
   },
+  robots: {
+    index: false, 
+  },
 };
 
 export default async function RootLayout({

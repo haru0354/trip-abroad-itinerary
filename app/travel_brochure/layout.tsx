@@ -15,6 +15,8 @@ export const metadata: Metadata = {
     default: "国内旅行・海外旅行の旅程表作成しおりアプリ「旅のメモリーブック」",
     template: "%s | 旅のメモリーブック",
   },
+
+
 };
 
 export default async function RootLayout({

@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   title: {
     default: "旅行の編集",
     template: "%s | 旅のメモリーブック",
-  },};
+  },
+  robots: {
+    index: false,
+  },
+};
 
 export default async function RootLayout({
   children,
@@ -23,14 +27,14 @@ export default async function RootLayout({
 
   return (
     <>
-        <HeaderItinerary currentUser={currentUser} />
-        <main>
-          <div className="main-contents-area">
-            <div className="contents-area">{children}</div>
-          </div>
-        </main>
-        <FooterItinerary />
-        <FooterMenu itineraryHomeId={itineraryHomeId} userId={userId} />
+      <HeaderItinerary currentUser={currentUser} />
+      <main>
+        <div className="main-contents-area">
+          <div className="contents-area">{children}</div>
+        </div>
+      </main>
+      <FooterItinerary />
+      <FooterMenu itineraryHomeId={itineraryHomeId} userId={userId} />
     </>
   );
 }

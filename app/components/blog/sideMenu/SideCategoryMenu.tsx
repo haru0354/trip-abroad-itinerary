@@ -14,7 +14,12 @@ const SideCategoryMenu = async () => {
         カテゴリー
       </h3>
       {categories.map((category) => {
-        if (category.posts.length === 0) {
+        if (
+          !category ||
+          ((!category.title || category.title === "") &&
+            category.posts.length > 0 &&
+            category.posts.every((post) => !post.draft))
+        ) {
           return null;
         }
         return (

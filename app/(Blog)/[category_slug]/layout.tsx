@@ -20,23 +20,23 @@ export const generateMetadata = async ({
     },
   });
 
-  if (
+  if (category?.title) {
+    return {
+      title: category?.title,
+      description: category?.description,
+    };
+  } else if (
     !category ||
     (category.posts.length > 0 && category.posts.every((post) => !post.draft))
   ) {
     return {
       title: "カテゴリが存在しません",
       description:
-    "海外旅行は記憶に残る最高の思い出になります。そのためにも必要となるのが旅行前の準備と当日の計画をしておくことです。特に英語が話せない人には必要なことでもあります。「トラベルメモリー」では初めての海外旅行や英語が話せない人向けに旅行計画の準備を紹介してます。",
+        "海外旅行は記憶に残る最高の思い出になります。そのためにも必要となるのが旅行前の準備と当日の計画をしておくことです。特に英語が話せない人には必要なことでもあります。「トラベルメモリー」では初めての海外旅行や英語が話せない人向けに旅行計画の準備を紹介してます。",
 
       robots: {
         index: false,
       },
-    };
-  } else if (category?.title) {
-    return {
-      title: category?.title,
-      description: category?.description,
     };
   } else {
     return {

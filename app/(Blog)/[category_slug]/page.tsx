@@ -17,7 +17,7 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
     },
   });
 
-  if (!category || (category.posts.length > 0 && category.posts.every(post => !post.draft))) {
+  if (!category || (!category.title && category.posts.length > 0 && category.posts.every(post => !post.draft))) {
     return (
       <>
         <NotFound />
@@ -48,6 +48,7 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
           </Link>
         );
       })}
+
     </>
   );
 };

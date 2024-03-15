@@ -17,7 +17,12 @@ const CategoryTop = async () => {
       </h2>
       <div className="flex w-full my-8 flex-wrap items-center justify-center">
         {categories.map((category) => {
-          if (category.posts.length === 0) {
+          if (
+            !category ||
+            ((!category.title || category.title === "") &&
+              category.posts.length > 0 &&
+              category.posts.every((post) => !post.draft))
+          ) {
             return null;
           }
           return (

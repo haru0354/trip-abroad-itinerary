@@ -16,7 +16,7 @@ import Modal from "./Modal";
 import AuthInput from "./AuthInput";
 import Button from "../../ui/Button";
 
-// 入力データの検証ルールを定義
+
 const schema = z.object({
   name: z.string().min(2, { message: "2文字以上入力する必要があります。" }),
   email: z.string().email({ message: "メールアドレスの形式ではありません。" }),
@@ -29,14 +29,12 @@ const SignupModal = () => {
   const loginModal = useLoginModal();
   const [loading, setLoading] = useState(false);
 
-  // react hook formでフォームの状態を管理
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: { name: "", email: "", password: "" },
-    // 入力値の検証
     resolver: zodResolver(schema),
   });
 
@@ -45,7 +43,6 @@ const SignupModal = () => {
     loginModal.onOpen();
   }, [signupModal, loginModal]);
 
-  // 送信
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setLoading(true);
     try {
@@ -76,7 +73,7 @@ const SignupModal = () => {
     <div>
       <AuthInput
         id="name"
-        label="名前(ニックネーム)"
+        label="ニックネーム"
         disabled={loading}
         register={register}
         errors={errors}

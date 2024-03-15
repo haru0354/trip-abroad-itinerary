@@ -11,15 +11,12 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
 
-  //認証プロバイダーの設定
   providers: [
-    // Google認証
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
 
-    // メールアドレス認証
     CredentialsProvider({
       id: "itinerary",
       name: "itinerary",    
@@ -40,15 +37,10 @@ export const authOptions: NextAuthOptions = {
           },
         });
 
-        if (!user) {
-          throw new Error("ユーザーが存在しません");
-        }
-
         if (!user || !user?.hashedPassword) {
           throw new Error("ユーザーが存在しません");
         }
 
-        //パスワードが一致しない場合はエラー
         const isCorrectPassword = await bcrypt.compare(
           credentials.password,
           user.hashedPassword
@@ -58,10 +50,11 @@ export const authOptions: NextAuthOptions = {
           throw new Error("パスワードが一致しません");
         }
 
-        return {
-          id: user.id.toString(),
-          role: "itineraryUser", 
-        };
+        if (user) {
+          return user;
+        } else {
+          return null;
+        }
       },
     }),
 

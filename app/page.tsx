@@ -12,7 +12,7 @@ export default function Home() {
       <Header isTopPage={true} />
       <main>
         <div className="main-contents-area">
-          <div className="w-full bg-white">
+          <div className="w-full bg-white px-4 md:px-8">
             <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
               国内・海外の旅行の旅程表を作成するしおりアプリをリリース
             </h2>

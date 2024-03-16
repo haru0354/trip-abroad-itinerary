@@ -46,13 +46,13 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
               <Link href="/">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
-                  <p className="mx-2">ブログTOP</p>
+                  ブログTOP
                 </li>
               </Link>
               <Link href="/memorybook/home/profile">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
-                  <p className="mx-2">プロフィール</p>
+                  プロフィール
                 </li>
               </Link>
             </ul>
@@ -71,7 +71,7 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
                           icon={faPlaneDeparture}
                           className="mr-2 w-5 mt-1"
                         />
-                        <p className="mx-2">{itineraryHome.name}</p>
+                        {itineraryHome.name}
                       </li>
                     </Link>
                   </div>

@@ -51,9 +51,9 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                 <h3 className="text-gray-700 mb-6 text-center text-xl font-semibold ">
                   タイトル：初海外旅行 in シンガポール
                 </h3>
-                <p>出発日:03月08日</p>
-                <p>帰宅日:03月11日</p>
-                <p>旅行先：シンガポール</p>
+                出発日:03月08日
+                帰宅日:03月11日
+                旅行先：シンガポール
               </div>
             </div>
           </div>
@@ -86,9 +86,11 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                         {itineraryHome.name}
                       </h3>
                     </div>
-                    <p>出発日：{itineraryHome.startDate}</p>
-                    <p>帰宅日：{itineraryHome.endDate}</p>
-                    <p>旅行先：{itineraryHome.destination}</p>
+                    <ul>
+                      <li>出発日：{itineraryHome.startDate}</li>
+                      <li>帰宅日：{itineraryHome.endDate}</li>
+                      <li>旅行先：{itineraryHome.destination}</li>
+                    </ul>
                   </div>
                 </Link>
                 <Link href={`/memorybook/${itineraryHome.id}`}>

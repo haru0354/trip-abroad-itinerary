@@ -1,14 +1,17 @@
+import Link from "next/link";
+
 const Footer = () => {
   return (
-    <footer className="bg-blue-400">
-      <div>
-        <ul className="flex items-center justify-center">
-          <li className="pt-2 px-6 text-xs">プライバシーポリシー</li>
-          <li className="pt-2 px-6 text-xs">お問い合わせ</li>
+    <footer className="bg-blue-400 mx-auto">
+      <div className="flex items-center justify-center pt-4">
+        <ul>
+          <li className="text-xs text-blue-800">
+            <Link href="/privacypolicy">プライバシーポリシー・免責事項</Link>
+          </li>
         </ul>
       </div>
       <div className="flex items-center justify-center">
-        <p className="p-3 text-xs">
+      <p className="text-xs py-2 h-4">
           &copy;英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」
         </p>
       </div>

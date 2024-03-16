@@ -6,7 +6,7 @@ import FooterItinerary from "@/app/components/FooterItinerary";
 export const metadata: Metadata = {
   title: "共有された旅行記 | 旅のメモリーブック",
   robots: {
-    index: false, // noindexの設定
+    index: false, 
   },
 };
 

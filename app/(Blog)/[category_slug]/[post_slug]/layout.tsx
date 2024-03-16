@@ -8,32 +8,28 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const postSlug = params.post_slug;
 
-  const posts = await prisma.post.findMany({
+  const post = await prisma.post.findUnique({
     where: {
       slug: postSlug,
     },
   });
 
-  // タイトルとディスクリプションを新しいオブジェクトへ変換
-  const processedPosts = posts.map((post) => {
-    const postTitle = post.title;
-    const postDescription = post.description;
+  if (!post?.draft) {
     return {
-      postTitle,
-      postDescription,
+      title: "投稿が存在しません | トラベルメモリー",
+      description:
+    "海外旅行は記憶に残る最高の思い出になります。そのためにも必要となるのが旅行前の準備と当日の計画をしておくことです。特に英語が話せない人には必要なことでもあります。「トラベルメモリー」では初めての海外旅行や英語が話せない人向けに旅行計画の準備を紹介してます。",
+
+      robots: {
+        index: false,
+      },
     };
-  });
-
-  // タイトルとディスクリプションを特定
-  const retrievedPostTitle =
-    processedPosts.length > 0 ? processedPosts[0].postTitle : "";
-  const retrievedDescription =
-    processedPosts.length > 0 ? processedPosts[0].postDescription : "";
-
-  return {
-    title: `${retrievedPostTitle} | トラベルメモリー`,
-    description: retrievedDescription,
-  };
+  } else {
+    return {
+      title: `${post?.title} | トラベルメモリー`,
+      description: post?.description,
+    };
+  }
 };
 
 export default function RootLayout({

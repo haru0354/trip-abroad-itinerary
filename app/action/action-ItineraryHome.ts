@@ -129,9 +129,6 @@ export const updateItineraryHome = async (
 export const updateShare = async (id: number, data: FormData) => {
   const share = data.get("share") === "on";
   const userId = data.get("userId") as string;
-  console.log("data", data);
-  console.log("id", id);
-  console.log("share", share);
 
   try {
     await prisma.itineraryHome.update({

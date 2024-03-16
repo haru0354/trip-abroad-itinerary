@@ -5,6 +5,9 @@ import DashboardSideMenu from "@/app/components/blog/dashboard/DashboardSideMenu
 
 export const metadata: Metadata = {
   title: "ダッシュボード",
+  robots: {
+    index: false, 
+  },
 };
 
 export default async function RootLayout({

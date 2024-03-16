@@ -1,12 +1,14 @@
+import Link from "next/link";
+
 const page = () => {
   return (
     <>
       <h2>プライバシーポリシー</h2>
       <p>
-        このプライバシーポリシーは、旅程表作成アプリ(旅のメモリーブック)とブログ(トラベルメモリー)の利用に関する情報収集、利用、および開示に関する方針を説明します。
+        このプライバシーポリシーは、旅程表作成アプリ(<Link href="/memorybook">旅のメモリーブック</Link>)とブログ(<Link href="/">トラベルメモリー</Link>)の利用に関する情報収集、利用、および開示に関する方針を説明します。
       </p>
       <h3 className="font-bold text-lg my-6">1. 収集される情報</h3>
-      <ul className="border border-dashed border-gray-500 p-6 mb-6 mx-8">
+      <ul className="border border-dashed border-gray-500 p-6 mb-6 mx-1 md:mx-16">
         <li className="my-2">
           <p className="font-bold">ニックネーム</p>
           <p>
@@ -40,7 +42,7 @@ const page = () => {
       <h3 className="font-bold text-lg my-6">2.収集された情報の利用</h3>
 
       <p>収集された情報は、以下の目的で利用されます</p>
-      <ol className="border border-dashed border-gray-500 py-4 px-10 mb-6 mx-8 list-decimal">
+      <ol className="border border-dashed border-gray-500 py-4 px-10 mb-6 mx-1 md:mx-16 list-decimal">
         <li className="my-2">ユーザーアカウントの作成および管理。</li>
         <li className="my-2">ユーザーに関連する通知や重要な情報の提供。</li>
         <li className="my-2">

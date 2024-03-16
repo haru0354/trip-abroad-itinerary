@@ -59,7 +59,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
         <ul className="flex">
           <li className="ml-4">
             <p
-              className="cursor-pointer"
+              className="cursor-pointer mb-0"
               onClick={() => {
                 loginModal.onOpen();
                 setIsOpen(true);
@@ -70,7 +70,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           </li>
           <li className="ml-4">
             <p
-              className="cursor-pointer "
+              className="cursor-pointer mb-0"
               onClick={() => {
                 signupModal.onOpen();
                 setIsOpen(true);

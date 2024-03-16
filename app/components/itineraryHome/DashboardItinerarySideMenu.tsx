@@ -44,13 +44,19 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
             </h3>
             <ul>
               <Link href="/">
-                <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-2 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
                   ブログTOP
                 </li>
               </Link>
+              <Link href="/memorybook/home/">
+                <li className="flex py-2 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                  <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
+                  ダッシュボード
+                </li>
+              </Link>
               <Link href="/memorybook/home/profile">
-                <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-2 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
                   プロフィール
                 </li>
@@ -66,7 +72,7 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
                 return (
                   <div key={itineraryHome.id}>
                     <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
-                      <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                      <li className="flex py-2 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                         <FontAwesomeIcon
                           icon={faPlaneDeparture}
                           className="mr-2 w-5 mt-1"

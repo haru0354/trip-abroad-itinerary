@@ -35,7 +35,7 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
             }}
           />
         </div>
-        <div className="w-full py-4 mx-6 max-w-[400px] justify-center items-center">
+        <div className="w-full py-8 md:mx-6 max-w-[400px] justify-center items-center">
           <p className="text-gray-700 mb-6">{content}</p>
           <p className="text-gray-700 mb-6">{content2}</p>
           <p className="text-gray-700 mb-6">{content3}</p>

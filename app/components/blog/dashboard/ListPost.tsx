@@ -15,13 +15,13 @@ const ListPost = async () => {
         記事の一覧
       </h2>
       <div className="flex flex-col border border-gray-500 sm:flex-row py-4 items-center w-full sm:w-auto">
-        <p className="sm:border-r border-gray-500  w-full py-1 px-2 sm:w-auto min-w-[120px]">
+        <p className="sm:border-r border-gray-500  w-full px-2 mb-0 sm:w-auto min-w-[120px]">
           投稿日
         </p>
-        <p className="sm:border-r flex-wrap  w-full border-gray-500 py-1 px-2 sm:w-auto min-w-[120px]">
+        <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2  sm:w-auto min-w-[120px]">
           カテゴリ
         </p>
-        <p className=" flex-wrap  w-full border-gray-500 py-1 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">
+        <p className=" flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">
           タイトル
         </p>
       </div>
@@ -36,13 +36,13 @@ const ListPost = async () => {
               className="flex justify-between flex-col sm:flex-row border-b border-gray-500 w-full"
             >
               <div className="flex flex-col  sm:flex-row py-4 items-center w-full sm:w-auto">
-                <p className="sm:border-r border-gray-500  w-full py-1 px-2 sm:w-auto min-w-[120px]">
+                <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[120px]">
                   {formattedCreatedDate}
                 </p>
-                <p className="sm:border-r flex-wrap  w-full border-gray-500 py-1 px-2 sm:w-auto min-w-[120px]">
+                <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[120px]">
                   {post.category.name}
                 </p>
-                <p className="py-1 px-2 w-full sm:w-auto min-w-[250px] max-w-[650px]">
+                <p className="mb-0 px-2 w-full sm:w-auto min-w-[250px] max-w-[650px]">
                   {post.title && post.title.length > 36
                     ? `${post.title.slice(0, 36)}...`
                     : post.title}

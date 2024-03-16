@@ -26,7 +26,7 @@ const SideCategoryMenu = async () => {
           <ul key={category.id}>
             <li className="py-4 hover:bg-gray-200">
               <Link href={`/${category.slug}`}>
-                <p className="text-gray-600">{category.name}</p>
+                <p className="text-gray-600 mb-1 px-3">{category.name}</p>
               </Link>
             </li>
           </ul>

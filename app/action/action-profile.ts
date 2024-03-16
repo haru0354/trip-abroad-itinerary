@@ -3,6 +3,7 @@
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 type FormState = {
   message?: string | null;
@@ -16,6 +17,21 @@ const schema = z.object({
   name: z.string().min(2, { message: "2文字以上入力する必要があります。" }),
   email: z.string().email({ message: "メールアドレスの形式ではありません。" }),
 });
+
+export const deleteUser = async (id: number) => {
+
+  try {
+    await prisma.user.delete({
+      where: {
+        id,
+      },
+    });
+  } catch (error) {
+    console.error("アカウントの削除中にエラーが発生しました:", error);
+    return { message: "アカウントの削除中にエラーが発生しました" };
+  }
+  redirect(`/memorybook/`);
+};
 
 export const updateProfile = async (
   id: number,

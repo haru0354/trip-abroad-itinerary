@@ -3,6 +3,7 @@ import { updateProfile } from "@/app/action/action-profile";
 import FormProfile from "@/app/components/itineraryHome/FormProfile";
 import Link from "next/link";
 import Button from "@/app/components/ui/Button";
+import DeleteUserModal from "@/app/components/itineraryHome/DeleteUserModal";
 
 const Page = async ({ params }: { params: { user_id: string } }) => {
   const id = Number(params.user_id);
@@ -27,6 +28,7 @@ const Page = async ({ params }: { params: { user_id: string } }) => {
           キャンセル
         </Button>
       </Link>
+      <DeleteUserModal userId={id}/>
     </>
   );
 };

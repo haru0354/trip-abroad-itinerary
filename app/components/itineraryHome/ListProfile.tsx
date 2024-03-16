@@ -35,6 +35,7 @@ const ListProfile: React.FC<ListProfileProps> = async ({
           </Link>
         </div>
       </div>
+      <p className="mt-8">プロフィール変更・パスワードの変更・アカウントの削除は上記ボタンをクリックしてください。</p>
     </>
   );
 };

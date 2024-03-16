@@ -12,8 +12,6 @@ type MenuProps = {
 };
 
 const Menu: React.FC<MenuProps> = ({ currentUser }) => {
-  const userId = currentUser?.id;
-
   const [isOpen, setIsOpen] = useState(false);
   const loginModal = useLoginModal();
   const signupModal = useSignupModal();

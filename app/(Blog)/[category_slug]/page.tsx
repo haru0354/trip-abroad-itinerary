@@ -43,12 +43,11 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
       <h2 className="p-2 mt-10 text-3xl">{category?.name}の記事一覧</h2>
       {category.posts.map((post) => {
         return (
-          <Link href={`/${category.slug}/${post.slug}`}>
-            <Card key={post.id} post={post} />
+          <Link href={`/${category.slug}/${post.slug}`} key={post.id}>
+            <Card post={post} />
           </Link>
         );
       })}
-
     </>
   );
 };

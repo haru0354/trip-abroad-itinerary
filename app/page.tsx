@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 export default function Home() {
   return (
     <>
-      <Header isTopPage={true}/>
+      <Header isTopPage={true} />
       <main>
         <div className="main-contents-area">
           <div className="w-full bg-white">
@@ -24,7 +24,7 @@ export default function Home() {
               content2="簡単に旅程表を作成でき、旅行中に撮影した写真を掲載し、旅の思い出のしおりして残すことができます。"
               content3="特に「英語が話せない人の海外旅行」向けに事前にメモできる項目が多く設定されています。"
             />
-            <Link href="./travel_brochure/">
+            <Link href="./memorybook/">
               <Button color="blue" size="normal">
                 旅のメモリーブックへ
               </Button>
@@ -41,7 +41,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }

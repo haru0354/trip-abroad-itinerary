@@ -14,9 +14,7 @@ const ListProfile: React.FC<ListProfileProps> = async ({
 }) => {
   return (
     <>
-      <h2>
-        プロフィール
-      </h2>
+      <h2>プロフィール</h2>
 
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px]">
@@ -31,7 +29,7 @@ const ListProfile: React.FC<ListProfileProps> = async ({
             メールアドレス
           </p>
           <p className=" text-gray-700 my-4">{userEmail}</p>
-          <Link href={`/travel_brochure/home/profile/${userId}`}>
+          <Link href={`/memorybook/home/profile/${userId}`}>
             <Button color="blue" size="normal" className="rounded mt-4">
               変更する
             </Button>

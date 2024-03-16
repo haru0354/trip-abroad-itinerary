@@ -57,7 +57,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
     switch (result.message) {
       case "edit":
         toast.success("プロフィールを編集しました！");
-        router.replace("/travel_brochure/home/profile");
+        router.replace("/memorybook/home/profile");
         break;
       default:
         setErrorMessage(result);
@@ -67,8 +67,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
 
   return (
     <>
-      <h2>
-      </h2>
+      <h2></h2>
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px]">
           <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-bold">

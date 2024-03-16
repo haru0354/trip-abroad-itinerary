@@ -38,7 +38,7 @@ const Page = async ({
         buttonName="保存"
         itineraryHomeId={itineraryHomeId}
       />
-      <Link href={`/travel_brochure/${itineraryHomeId}/memo`}>
+      <Link href={`/memorybook/${itineraryHomeId}/memo`}>
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル
         </Button>

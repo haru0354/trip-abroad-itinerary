@@ -72,7 +72,7 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
         break;
       case "edit":
         toast.success("メモを編集しました！");
-        router.replace(`/travel_brochure/${itineraryHomeId}/memo`);
+        router.replace(`/memorybook/${itineraryHomeId}/memo`);
         break;
       default:
         setErrorMessage(result);
@@ -92,11 +92,7 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
         </>
       ) : (
         <>
-          <Button
-            onClick={toggleDeleteModal}
-            color="blue"
-            size="normal"
-          >
+          <Button onClick={toggleDeleteModal} color="blue" size="normal">
             {buttonName}
           </Button>
         </>

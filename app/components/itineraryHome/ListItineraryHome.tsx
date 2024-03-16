@@ -73,7 +73,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                 key={itineraryHome.id}
                 className="flex flex-col items-center max-w-[370px] "
               >
-                <Link href={`/travel_brochure/${itineraryHome.id}/itinerary`}>
+                <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
                   <div className="border-2 border-sky-600 rounded mx-5 my-6 px-8 py-6 flex flex-col min-w-[340px] min-h-[300px] hover:bg-sky-200">
                     <span className="text-blue-500  flex justify-center mb-6">
                       <FontAwesomeIcon
@@ -91,7 +91,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                     <p>旅行先：{itineraryHome.destination}</p>
                   </div>
                 </Link>
-                <Link href={`/travel_brochure/${itineraryHome.id}`}>
+                <Link href={`/memorybook/${itineraryHome.id}`}>
                   <Button color="blue" size="normal">
                     編集
                   </Button>

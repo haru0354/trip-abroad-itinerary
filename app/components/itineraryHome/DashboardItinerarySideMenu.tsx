@@ -31,7 +31,7 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
   };
 
   const handleLogout = async () => {
-    await signOut({ callbackUrl: "/travel_brochure" });
+    await signOut({ callbackUrl: "/memorybook" });
   };
 
   return (
@@ -49,7 +49,7 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
                   <p className="mx-2">ブログTOP</p>
                 </li>
               </Link>
-              <Link href="/travel_brochure/home/profile">
+              <Link href="/memorybook/home/profile">
                 <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
                   <p className="mx-2">プロフィール</p>
@@ -65,9 +65,7 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
               {itineraryHomes.map((itineraryHome) => {
                 return (
                   <div key={itineraryHome.id}>
-                    <Link
-                      href={`/travel_brochure/${itineraryHome.id}/itinerary`}
-                    >
+                    <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
                       <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                         <FontAwesomeIcon
                           icon={faPlaneDeparture}
@@ -122,7 +120,7 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
                 <Link href="/">
                   <li className="py-2 mx-4">ブログTOP</li>
                 </Link>
-                <Link href="/travel_brochure/home/profile">
+                <Link href="/memorybook/home/profile">
                   <li className="py-2 mx-4">プロフィール</li>
                 </Link>
               </ul>
@@ -130,9 +128,7 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
               {itineraryHomes.map((itineraryHome) => {
                 return (
                   <ul key={itineraryHome.id} className="text-white">
-                    <Link
-                      href={`/travel_brochure/${itineraryHome.id}/itinerary`}
-                    >
+                    <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
                       <li key={itineraryHome.id} className="py-2 mx-4">
                         {itineraryHome.name}
                       </li>

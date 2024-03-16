@@ -5,7 +5,7 @@ const SideTop = () => {
   return (
     <>
       <div className="hover:bg-gray-200 mb-4">
-        <Link href="/travel_brochure">
+        <Link href="/memorybook">
           <Image
             src="/travel_memory_thumbnail.jpg"
             alt="旅のメモリーブックのサムネイル"

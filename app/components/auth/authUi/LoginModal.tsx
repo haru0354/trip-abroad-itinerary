@@ -57,7 +57,7 @@ const LoginModal = () => {
 
       toast.success("ログインしました！");
       loginModal.onClose();
-      router.replace(`/travel_brochure/home`);
+      router.replace(`/memorybook/home`);
     } catch (error) {
       toast.error("エラーが発生しました。" + error);
     } finally {
@@ -93,7 +93,7 @@ const LoginModal = () => {
       <Button
         onClick={() =>
           signIn("google", {
-            callbackUrl: "/travel_brochure/home",
+            callbackUrl: "/memorybook/home",
           })
         }
         color="gray"

@@ -19,12 +19,11 @@ export const authOptions: NextAuthOptions = {
 
     CredentialsProvider({
       id: "itinerary",
-      name: "itinerary",    
+      name: "itinerary",
       credentials: {
         email: { label: "email", type: "text" },
         password: { label: "password", type: "password" },
       },
-
 
       async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) {
@@ -99,7 +98,7 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/travel_brochure",
+    signIn: "/memorybook",
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

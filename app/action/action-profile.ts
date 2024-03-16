@@ -50,7 +50,7 @@ export const updateProfile = async (
         email,
       },
     });
-    revalidatePath("/travel_brochure/home/profile");
+    revalidatePath("/memorybook/home/profile");
     return { message: "edit" };
   } catch (error) {
     console.error("プロフィールを編集する際にエラーが発生しました:", error);

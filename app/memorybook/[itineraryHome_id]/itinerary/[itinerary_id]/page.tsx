@@ -42,7 +42,7 @@ const page = async ({
         itineraryHomeId={itineraryHomeId}
         userId={userId}
       />
-      <Link href={`/travel_brochure/${itineraryHomeId}/itinerary`}>
+      <Link href={`/memorybook/${itineraryHomeId}/itinerary`}>
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル
         </Button>

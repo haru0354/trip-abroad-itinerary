@@ -123,7 +123,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         break;
       case "edit":
         toast.success("旅程を編集しました！");
-        router.replace(`/travel_brochure/${itineraryHomeId}/itinerary/`);
+        router.replace(`/memorybook/${itineraryHomeId}/itinerary/`);
         break;
       default:
         setErrorMessage(result);
@@ -133,9 +133,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
 
   return (
     <div id="add">
-      <h2>
-        旅程の追加
-      </h2>
+      <h2>旅程の追加</h2>
 
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6 border-gray-300 rounded bg-white max-w-[620px]">

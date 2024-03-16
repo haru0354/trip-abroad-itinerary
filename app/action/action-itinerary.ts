@@ -122,7 +122,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     await prisma.itinerary.create({
       data: ItineraryData,
     });
-    revalidatePath(`/travel_brochure/${itineraryHomeId}/itinerary/`);
+    revalidatePath(`/memorybook/${itineraryHomeId}/itinerary/`);
     return { message: "add" };
   } catch (error) {
     console.error("旅程を追加する際にエラーが発生しました:", error);
@@ -133,7 +133,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
 export const deleteItinerary = async (id: number, data: FormData) => {
   const userId = data.get("userId") as string;
   const itineraryHomeId = data.get("itineraryHomeId") as string;
-  
+
   const itinerary = await prisma.itinerary.findUnique({
     where: {
       id,
@@ -153,14 +153,14 @@ export const deleteItinerary = async (id: number, data: FormData) => {
     });
 
     if (itinerary.url) {
-    await unlink(`./public/itinerary/${userId}/${itinerary?.imageName}`);
+      await unlink(`./public/itinerary/${userId}/${itinerary?.imageName}`);
     }
     console.log("旅程と画像を削除しました。");
   } catch (error) {
     console.error("旅程の削除中にエラーが発生しました:", error);
     return { message: "旅程の削除中にエラーが発生しました" };
   }
-  redirect(`/travel_brochure/${itineraryHomeId}/itinerary/`);
+  redirect(`/memorybook/${itineraryHomeId}/itinerary/`);
 };
 
 export const updateItinerary = async (
@@ -262,7 +262,7 @@ export const updateItinerary = async (
       },
       data: ItineraryData,
     });
-    revalidatePath(`/travel_brochure/${itineraryHomeId}/itinerary/`);
+    revalidatePath(`/memorybook/${itineraryHomeId}/itinerary/`);
     return { message: "edit" };
   } catch (error) {
     console.error("旅程を追加する際にエラーが発生しました:", error);
@@ -281,5 +281,5 @@ export const showContent = async (data: FormData) => {
       isShowContent,
     },
   });
-  revalidatePath("/travel_brochure/itinerary");
+  revalidatePath("/memorybook/itinerary");
 };

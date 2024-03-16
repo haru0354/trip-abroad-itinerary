@@ -48,7 +48,7 @@ const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
                   </Button>
                 </Link>
               )}
-              <Link href={`/travel_brochure/home/${itineraryHome.id}`}>
+              <Link href={`/memorybook/home/${itineraryHome.id}`}>
                 <Button color="gray" size="small">
                   編集
                 </Button>

@@ -22,13 +22,11 @@ const Page = async ({ params }: { params: { user_id: string } }) => {
         userName={user?.name || undefined}
         userEmail={user?.email || undefined}
       />
-            <Link href="/travel_brochure/home/profile/">
+      <Link href="/memorybook/home/profile/">
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル
         </Button>
       </Link>
-
-
     </>
   );
 };

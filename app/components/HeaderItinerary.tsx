@@ -11,7 +11,7 @@ const HeaderItinerary: React.FC<HeaderItineraryProps> = ({ currentUser }) => {
   return (
     <header className="max-w-[1150px] mx-auto">
       <div className="flex justify-between items-center h-16 pr-3">
-        <Link href="/travel_brochure">
+        <Link href="/memorybook">
           <h1>
             <img
               src="/logo_itinerary.png"

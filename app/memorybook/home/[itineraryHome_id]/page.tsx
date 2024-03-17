@@ -1,7 +1,5 @@
 import prisma from "@/app/components/lib/prisma";
-import FormItineraryHome from "@/app/components/itineraryHome/FormItineraryHome";
 import { updateShare } from "@/app/action/action-ItineraryHome";
-import DeleteItineraryHomeModal from "@/app/components/itineraryHome/DeleteItineraryHomeModal";
 import getCurrentUser from "@/app/action/getCurrentUser";
 import Button from "@/app/components/ui/Button";
 import Link from "next/link";

@@ -76,11 +76,13 @@ export const addPostImage = async (state: FormState, data: FormData) => {
   redirect("/dashboard/image");
 };
 
-export const deletePostImage = async (id: number) => {
+export const deletePostImage = async (data: FormData) => {
+  const id = data.get("id") as string;
+
   try {
     const postImage = await prisma.postImage.findUnique({
       where: {
-        id,
+        id: Number(id),
       },
     });
 
@@ -91,7 +93,7 @@ export const deletePostImage = async (id: number) => {
 
     await prisma.postImage.delete({
       where: {
-        id,
+        id: Number(id),
       },
     });
 

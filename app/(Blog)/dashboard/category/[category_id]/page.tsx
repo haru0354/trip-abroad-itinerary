@@ -1,10 +1,12 @@
-import prisma from "@/app/components/lib/prisma";
-import DeleteCategoryModal from "@/app/components/blog/dashboard/DeleteCategoryModal";
-import FormCategory from "@/app/components/blog/dashboard/FormCategory";
-import { updateCategory } from "@/app/action/action-category";
 import type { Metadata } from "next";
 import Link from "next/link";
+import prisma from "@/app/components/lib/prisma";
+
+import FormCategory from "@/app/components/blog/dashboard/FormCategory";
 import Button from "@/app/components/ui/Button";
+import DeleteModal from "@/app/components/ui/DeleteModal";
+
+import { updateCategory, deleteCategory } from "@/app/action/action-category";
 
 export const metadata: Metadata = {
   title: "カテゴリの編集",
@@ -38,7 +40,12 @@ const page = async ({ params }: { params: { category_id: string } }) => {
           キャンセル
         </Button>
       </Link>
-      <DeleteCategoryModal category={category} />
+      <DeleteModal
+        DeleteName="カテゴリ"
+        name={category?.name}
+        formAction={deleteCategory}
+        id={category?.id}
+      />
     </>
   );
 };

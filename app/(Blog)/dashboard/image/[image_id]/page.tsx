@@ -1,9 +1,14 @@
-import prisma from "@/app/components/lib/prisma";
-import { updatePostImage } from "@/app/action/action-postImage";
-import FormPostImage from "@/app/components/blog/dashboard/FormPostImage";
-import DeletePostImageModal from "@/app/components/blog/dashboard/DeletePostImageModal";
 import Link from "next/link";
+import prisma from "@/app/components/lib/prisma";
+
+import FormPostImage from "@/app/components/blog/dashboard/FormPostImage";
 import Button from "@/app/components/ui/Button";
+import DeleteModal from "@/app/components/ui/DeleteModal";
+
+import {
+  deletePostImage,
+  updatePostImage,
+} from "@/app/action/action-postImage";
 
 const page = async ({ params }: { params: { image_id: string } }) => {
   const id = Number(params.image_id);
@@ -30,7 +35,12 @@ const page = async ({ params }: { params: { image_id: string } }) => {
           キャンセル
         </Button>
       </Link>
-      <DeletePostImageModal postImage={postImage} />
+      <DeleteModal
+        DeleteName="画像"
+        name={postImage?.name}
+        formAction={deletePostImage}
+        id={postImage?.id}
+      />
     </>
   );
 };

@@ -1,10 +1,13 @@
-import prisma from "@/app/components/lib/prisma";
-import { updateItinerary } from "@/app/action/action-itinerary";
-import FormItinerary from "@/app/components/itinerary/FormItinerary";
-import DeleteItineraryModal from "@/app/components/itinerary/DeleteItineraryModal";
-import getCurrentUser from "@/app/action/getCurrentUser";
 import Link from "next/link";
+import prisma from "@/app/components/lib/prisma";
+
+import FormItinerary from "@/app/components/itinerary/FormItinerary";
 import Button from "@/app/components/ui/Button";
+import DeleteModal from "@/app/components/ui/DeleteModal";
+
+import { updateItinerary } from "@/app/action/action-itinerary";
+import { deleteItinerary } from "@/app/action/action-itinerary";
+import getCurrentUser from "@/app/action/getCurrentUser";
 
 const page = async ({
   params,
@@ -47,9 +50,12 @@ const page = async ({
           キャンセル
         </Button>
       </Link>
-      <DeleteItineraryModal
-        itinerary={itinerary}
+      <DeleteModal
+        DeleteName="旅程"
+        name={itinerary?.name}
         itineraryHomeId={itineraryHomeId}
+        formAction={deleteItinerary}
+        id={itinerary?.id}
         userId={userId}
       />
     </>

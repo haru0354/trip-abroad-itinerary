@@ -63,11 +63,13 @@ export const addItineraryHome = async (state: FormState, data: FormData) => {
   }
 };
 
-export const deleteItineraryHome = async (id: number) => {
+export const deleteItineraryHome = async (data: FormData) => {
+  const id = data.get("id") as string;
+
   try {
     await prisma.itineraryHome.delete({
       where: {
-        id,
+        id: Number(id),
       },
     });
     console.log("旅行の削除をしました。");

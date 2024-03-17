@@ -1,9 +1,13 @@
-import prisma from "@/app/components/lib/prisma";
-import { updateMemo } from "@/app/action/action-memo";
-import FormMemo from "@/app/components/memo/FormMemo";
-import DeleteModal from "@/app/components/memo/DeleteMemoModal";
 import Link from "next/link";
+import prisma from "@/app/components/lib/prisma";
+
+import FormMemo from "@/app/components/memo/FormMemo";
+import DeleteModal from "@/app/components/ui/DeleteModal";
 import Button from "@/app/components/ui/Button";
+
+import { deleteMemo } from "@/app/action/action-memo";
+import { updateMemo } from "@/app/action/action-memo";
+
 
 const Page = async ({
   params,
@@ -12,8 +16,6 @@ const Page = async ({
 }) => {
   const id = Number(params.memo_id);
   const itineraryHomeId = Number(params.itineraryHome_id);
-
-  const updateMemoWidthId = updateMemo.bind(null, id);
 
   const itineraryHome = await prisma.itineraryHome.findUnique({
     where: {
@@ -26,6 +28,8 @@ const Page = async ({
       id,
     },
   });
+
+  const updateMemoWidthId = updateMemo.bind(null, id);
 
   return (
     <>
@@ -43,7 +47,13 @@ const Page = async ({
           キャンセル
         </Button>
       </Link>
-      <DeleteModal memo={memo} itineraryHomeId={itineraryHomeId} />
+      <DeleteModal
+        DeleteName="メモ"
+        name={memo?.name}
+        itineraryHomeId={itineraryHomeId}
+        formAction={deleteMemo}
+        id={memo?.id}
+      />
     </>
   );
 };

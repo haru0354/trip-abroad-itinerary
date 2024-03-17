@@ -25,11 +25,12 @@ const SectionCTA: React.FC<SectionCTAProps> = ({
       <div className="flex flex-col items-center justify-center bg-white py-6 px-4">
         <AnimatedItem
           elementType="h3"
+          animation="fadeInVariants"
           className="text-gray-700  w-[90%] py-2 text-2xl font-semibold border-b border-sky-700 text-center"
         >
           {title}
         </AnimatedItem>
-        <AnimatedItem elementType="div">
+        <AnimatedItem elementType="div" animation="fadeInAndScaleVariants">
           <ul className="my-12 p-6 border border-dashed border-gray-500">
             <li className="mb-4 text-red-500">
               <FontAwesomeIcon

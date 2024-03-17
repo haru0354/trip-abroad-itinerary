@@ -18,13 +18,15 @@ const QA: React.FC<QAProps> = ({ title, content }) => {
 
   return (
     <>
-      <AnimatedItem elementType="div" className="border border-gray-600 my-10 p-8 rounded cursor-pointer" onClick={toggleShowContent}>
+      <AnimatedItem
+        elementType="div"
+        animation="fadeInVariants"
+        className="border border-gray-600 my-10 p-8 rounded cursor-pointer"
+        onClick={toggleShowContent}
+      >
         {isShowContent ? (
           <>
-            <div
-              className="flex items-center mb-4 w-full"
-              
-            >
+            <div className="flex items-center mb-4 w-full">
               <FontAwesomeIcon icon={faQ} className="mr-4" />
               <h3 className="border-b border-dashed border-gray-600 py-2 w-full">
                 {title}
@@ -38,16 +40,12 @@ const QA: React.FC<QAProps> = ({ title, content }) => {
           </>
         ) : (
           <>
-            <div
-              className="flex items-center mb-4 w-full"
-              
-            >
+            <div className="flex items-center mb-4 w-full">
               <FontAwesomeIcon icon={faQ} className="mr-4" />
               <h3 className="border-b border-dashed border-gray-600 py-2 w-full">
                 {title}
               </h3>
               <FontAwesomeIcon icon={faPlus} />
-
             </div>
           </>
         )}

@@ -12,7 +12,6 @@ import Section3ColumnImage from "../components/homePage/Section3ColumnImage";
 import FooterItinerary from "../components/FooterItinerary";
 import AnimatedItem from "../components/lib/AnimatedItem";
 
-
 export default async function Home() {
   const currentUser = await getCurrentUser();
 
@@ -24,8 +23,12 @@ export default async function Home() {
       <Hero />
       <main>
         <div className="main-contents-area">
-        <div className="w-full bg-white md:px-8">
-            <AnimatedItem elementType="h2" className="text-center">
+          <div className="w-full bg-white md:px-8">
+            <AnimatedItem
+              elementType="h2"
+              animation="fadeInVariants"
+              className="text-center"
+            >
               旅程表作成のしおりアプリ「旅のメモリーブック」で出来る一部を紹介
             </AnimatedItem>
             <Section3ColumnImage
@@ -42,7 +45,11 @@ export default async function Home() {
               image2Alt="旅行準備のメモ"
               image3Alt="メモの切り替え"
             />
-            <AnimatedItem elementType="h2" className="text-center">
+            <AnimatedItem
+              elementType="h2"
+              animation="fadeInVariants"
+              className="text-center"
+            >
               「旅のメモリーブック」がおすすめな人
             </AnimatedItem>
             <Section1ColumnRight
@@ -77,7 +84,11 @@ export default async function Home() {
               content2="旅程表を作成できるだけではありません。旅行中や帰国後にも思い出を残せるように設定がされています。旅行前は旅程表から、帰国後は思い出の記録へと残せます"
               content3="非表示からボタンクリックで表示に切り替えるメモ機能があります。旅程表の見やすさやデザインを損なわずにメモをすることができるようになっています。"
             />
-            <AnimatedItem elementType="h2" className="text-center">
+            <AnimatedItem
+              elementType="h2"
+              animation="fadeInVariants"
+              className="text-center"
+            >
               思い出の旅行記になるアプリ
             </AnimatedItem>
             <Section1ColumnRight
@@ -96,7 +107,11 @@ export default async function Home() {
               content2="旅行は当日だけでなく、「どんな旅行をしたいか？」旅程表を作るのもたのしみのひとつです。"
               content3="いつか行って見たい旅行プランの作成を楽しむましょう。また、実際の旅行が決まったのなら新しい旅程表を作成することもできます。"
             />
-            <AnimatedItem elementType="h2" className="text-center">
+            <AnimatedItem
+              elementType="h2"
+              animation="fadeInVariants"
+              className="text-center"
+            >
               よくある質問
             </AnimatedItem>
             <QA
@@ -116,13 +131,17 @@ export default async function Home() {
               content="PC・スマホ・タブレットで閲覧・作成ができます。作成したアカウントでログインをすればどの端末からでも閲覧・作成・編集が可能です。
             "
             />
-            <AnimatedItem elementType="div" className="text-center py-4">
+            <AnimatedItem
+              elementType="div"
+              animation="fadeInAndScaleVariants"
+              className="text-center py-4"
+            >
               <SignupButton />
             </AnimatedItem>
           </div>
         </div>
       </main>
-      <FooterItinerary isTopAppDirectory={true}/>
+      <FooterItinerary isTopAppDirectory={true} />
     </>
   );
 }

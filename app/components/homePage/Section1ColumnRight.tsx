@@ -25,12 +25,14 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
       <div>
         <AnimatedItem
           elementType="h3"
+          animation="fadeInVariants"
           className="text-gray-700 mb-6 w-[80%] flex justify-center text-2xl font-semibold border-b text-center border-sky-700 mx-auto"
         >
           {name}
         </AnimatedItem>
         <AnimatedItem
           elementType="div"
+          animation="fadeInAndScaleVariants"
           className="flex justify-center w-full py-1 md:py-4 mb-4 rounded flex-wrap"
         >
           <div className="w-full flex justify-center items-center py-4  max-w-[400px] ">

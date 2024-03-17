@@ -8,8 +8,8 @@ type AnimatedItemProps = {
   elementType: "div" | "h2" | "h3" | "li" | "p";
   className?: string;
   children: ReactNode;
-  onClick?: () => void;
-  animation: "fadeInVariants" | "fadeInAndScaleVariants";
+  animation: "fadeInVariants" | "fadeInAndScaleVariants" | "fadeInLeftVariants";
+  onClick?: (e: React.MouseEvent) => void;
 };
 
 const AnimatedItem: React.FC<AnimatedItemProps> = ({
@@ -17,29 +17,41 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
   children,
   elementType,
   animation,
+  onClick,
 }) => {
   const [hasAnimated, setHasAnimated] = useState(false);
   const MotionComponent = motion[elementType];
 
   const fadeInVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 60 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1.5,
+        duration: 1.0,
       },
     },
   };
 
   const fadeInAndScaleVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0 },
+    hidden: { opacity: 0, y: 20, scale: 0.5 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 1.5,
+        duration: 1.0,
+      },
+    },
+  };
+
+  const fadeInLeftVariants = {
+    hidden: { opacity: 0, x: -300 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 1.8,
       },
     },
   };
@@ -47,6 +59,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
   const animations = {
     fadeInVariants,
     fadeInAndScaleVariants,
+    fadeInLeftVariants,
   };
 
   return (
@@ -56,6 +69,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       initial={hasAnimated ? "visible" : "hidden"}
       whileInView="visible"
       className={className}
+      onClick={onClick}
     >
       {children}
     </MotionComponent>

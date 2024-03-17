@@ -30,7 +30,7 @@ const DeleteMemoModal: React.FC<DeleteModalProps> = ({
 
   const deleteMemoWithId = deleteMemo.bind(null, memo.id);
 
-  const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
+  const closeModal = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       toggleDeleteModal();
     }

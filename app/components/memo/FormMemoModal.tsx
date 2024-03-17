@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { addMemo } from "@/app/action/action-memo";
 import ButtonImage from "../ui/ButtonImage";
+import AnimatedItem from "../lib/AnimatedItem";
 
 type FormMemoProps = {
   buttonName: string;
@@ -35,7 +36,7 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const toggleDeleteModal = () => setIsModalOpen((prev) => !prev);
-  const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
+  const closeModal = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       toggleDeleteModal();
     }
@@ -98,8 +99,10 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
         </>
       )}
       {isModalOpen && (
-        <div
-          className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
+        <AnimatedItem
+          elementType="div"
+          animation="fadeInVariants"
+          className="bg-gray-400  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
           onClick={closeModal}
         >
           <div className="flex items-center justify-center w-[620px]">
@@ -141,7 +144,7 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
               </form>
             </div>
           </div>
-        </div>
+        </AnimatedItem>
       )}
     </>
   );

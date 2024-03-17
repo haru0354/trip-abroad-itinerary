@@ -89,7 +89,7 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
             )}
             {isShare || (
               <Link
-                href={`/travel_brochure/${itineraryHomeId}/itinerary/${itinerary.id}`}
+                href={`/memorybook/${itineraryHomeId}/itinerary/${itinerary.id}`}
               >
                 <ButtonImage
                   className="rounded mb-[-8px]"

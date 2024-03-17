@@ -51,9 +51,9 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                 <h3 className="text-gray-700 mb-6 text-center text-xl font-semibold ">
                   タイトル：初海外旅行 in シンガポール
                 </h3>
-                <p>出発日:03月08日</p>
-                <p>帰宅日:03月11日</p>
-                <p>旅行先：シンガポール</p>
+                出発日:03月08日
+                帰宅日:03月11日
+                旅行先：シンガポール
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                 key={itineraryHome.id}
                 className="flex flex-col items-center max-w-[370px] "
               >
-                <Link href={`/travel_brochure/${itineraryHome.id}/itinerary`}>
+                <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
                   <div className="border-2 border-sky-600 rounded mx-5 my-6 px-8 py-6 flex flex-col min-w-[340px] min-h-[300px] hover:bg-sky-200">
                     <span className="text-blue-500  flex justify-center mb-6">
                       <FontAwesomeIcon
@@ -86,12 +86,14 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                         {itineraryHome.name}
                       </h3>
                     </div>
-                    <p>出発日：{itineraryHome.startDate}</p>
-                    <p>帰宅日：{itineraryHome.endDate}</p>
-                    <p>旅行先：{itineraryHome.destination}</p>
+                    <ul>
+                      <li>出発日：{itineraryHome.startDate}</li>
+                      <li>帰宅日：{itineraryHome.endDate}</li>
+                      <li>旅行先：{itineraryHome.destination}</li>
+                    </ul>
                   </div>
                 </Link>
-                <Link href={`/travel_brochure/${itineraryHome.id}`}>
+                <Link href={`/memorybook/${itineraryHome.id}`}>
                   <Button color="blue" size="normal">
                     編集
                   </Button>

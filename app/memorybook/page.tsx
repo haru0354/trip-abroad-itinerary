@@ -22,7 +22,7 @@ export default async function Home() {
       <Hero />
       <main>
         <div className="main-contents-area">
-          <div>
+        <div className="w-full bg-white md:px-8">
             <h2 className="text-center">
               旅程表作成のしおりアプリ「旅のメモリーブック」で出来る一部を紹介
             </h2>

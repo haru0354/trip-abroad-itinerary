@@ -70,7 +70,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
         break;
       case "edit":
         toast.success("メモを編集しました！");
-        router.replace(`/travel_brochure/${itineraryHomeId}/memo`);
+        router.replace(`/memorybook/${itineraryHomeId}/memo`);
         break;
       default:
         setErrorMessage(result);
@@ -80,9 +80,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
 
   return (
     <div>
-      <h2>
-        メモの追加
-      </h2>
+      <h2>メモの追加</h2>
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px]">
           <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-bold">

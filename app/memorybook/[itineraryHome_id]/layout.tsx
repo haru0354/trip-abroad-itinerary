@@ -30,7 +30,7 @@ export default async function RootLayout({
       <HeaderItinerary currentUser={currentUser} />
       <main>
         <div className="main-contents-area">
-          <div className="contents-area">{children}</div>
+          <div className="px-1 md:px-8 w-full">{children}</div>
         </div>
       </main>
       <FooterItinerary />

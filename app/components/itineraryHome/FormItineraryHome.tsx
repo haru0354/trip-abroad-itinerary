@@ -89,11 +89,11 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
       case "add":
         toast.success("旅行を保存しました！");
         const createdItineraryHomeId = result.createdItineraryHomeId;
-        router.replace(`/travel_brochure/${createdItineraryHomeId}/itinerary`);
+        router.replace(`/memorybook/${createdItineraryHomeId}/itinerary`);
         break;
       case "edit":
         toast.success("旅行を編集しました！");
-        router.replace("/travel_brochure/home");
+        router.replace("/memorybook/home");
         break;
       default:
         setErrorMessage(result);

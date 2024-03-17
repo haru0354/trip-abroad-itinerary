@@ -115,7 +115,7 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
         break;
       case "edit":
         toast.success("旅程を編集しました！");
-        router.replace(`/travel_brochure/${itineraryHomeId}/itinerary/`);
+        router.replace(`/memorybook/${itineraryHomeId}/itinerary/`);
         break;
       default:
         setErrorMessage(result);
@@ -135,7 +135,12 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
         </>
       ) : (
         <>
-          <Button onClick={toggleDeleteModal} color="blue" size="normal" className="mt-8">
+          <Button
+            onClick={toggleDeleteModal}
+            color="blue"
+            size="normal"
+            className="mt-8"
+          >
             {buttonName}
           </Button>
         </>

@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import AuthContext from "../context/AuthContext";
-import getCurrentUser from "../action/getCurrentUser";
 import ToastContext from "../context/ToastContext";
 
 config.autoAddCss = false;
@@ -24,7 +23,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentUser = await getCurrentUser();
 
   return (
     <>

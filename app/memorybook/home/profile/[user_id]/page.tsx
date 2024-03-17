@@ -1,12 +1,16 @@
 import prisma from "@/app/components/lib/prisma";
 import { updateProfile } from "@/app/action/action-profile";
+import { updatePassword } from "@/app/action/action-profile";
 import FormProfile from "@/app/components/itineraryHome/FormProfile";
 import Link from "next/link";
 import Button from "@/app/components/ui/Button";
+import DeleteUserModal from "@/app/components/itineraryHome/DeleteUserModal";
+import FormPassword from "@/app/components/itineraryHome/FormPassword";
 
 const Page = async ({ params }: { params: { user_id: string } }) => {
   const id = Number(params.user_id);
   const updateProfileWidthId = updateProfile.bind(null, id);
+  const updatePasswordWidthId = updatePassword.bind(null, id);
 
   const user = await prisma.user.findUnique({
     where: {
@@ -22,13 +26,13 @@ const Page = async ({ params }: { params: { user_id: string } }) => {
         userName={user?.name || undefined}
         userEmail={user?.email || undefined}
       />
-            <Link href="/travel_brochure/home/profile/">
+      <Link href="/memorybook/home/profile/">
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル
         </Button>
       </Link>
-
-
+      <FormPassword formAction={updatePasswordWidthId} buttonName="保存する" />
+      <DeleteUserModal userId={id} />
     </>
   );
 };

@@ -20,7 +20,7 @@ const SectionCTA: React.FC<SectionCTAProps> = ({
   return (
     <>
       <div className="flex flex-col items-center justify-center bg-white py-6 px-4">
-        <h3 className="text-gray-700  w-[80%] py-2 text-2xl font-semibold border-b border-sky-700 text-center">
+        <h3 className="text-gray-700  w-[90%] py-2 text-2xl font-semibold border-b border-sky-700 text-center">
           {title}
         </h3>
         <ul className="my-12 p-6 border border-dashed border-gray-500">

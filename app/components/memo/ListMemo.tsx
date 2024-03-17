@@ -2,7 +2,7 @@ import Link from "next/link";
 import ButtonImage from "../ui/ButtonImage";
 import Manual from "../manual";
 import Image from "next/image";
-import React from 'react';
+import React from "react";
 
 type ListMemoProps = {
   itineraryHomeId: number | undefined;
@@ -61,13 +61,11 @@ const ListMemo: React.FC<ListMemoProps> = async ({
 
   return (
     <>
-      <h2>
-        メモの一覧
-      </h2>
+      <h2>メモの一覧</h2>
       {sortedMemos?.map((memo) => {
         return (
           <React.Fragment key={memo.id}>
-            <Link href={`/travel_brochure/${itineraryHomeId}/memo/${memo.id}`}>
+            <Link href={`/memorybook/${itineraryHomeId}/memo/${memo.id}`}>
               <ButtonImage
                 className="rounded"
                 size="small"

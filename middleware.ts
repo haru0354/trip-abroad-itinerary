@@ -23,7 +23,7 @@ export default async function middleware(
     return adminMiddleware(req as NextRequestWithAuth, event);
   }
 
-  if (req.nextUrl.pathname.startsWith("/travel_brochure/")) {
+  if (req.nextUrl.pathname.startsWith("/memorybook/")) {
     return itineraryUserMiddleware(req as NextRequestWithAuth, event);
   }
 
@@ -33,7 +33,7 @@ export default async function middleware(
 export const config = {
   matcher: [
     "/dashboard/:path*",
-    "/travel_brochure/home/:path*",
-    "/travel_brochure/:path*",
+    "/memorybook/home/:path*",
+    "/memorybook/:path*",
   ],
 };

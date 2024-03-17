@@ -11,13 +11,13 @@ const ListCategory = async () => {
         カテゴリの一覧
       </h2>
       <div className="flex flex-col border border-gray-500 sm:flex-row py-4 items-center w-full sm:w-auto">
-        <p className="sm:border-r border-gray-500  w-full py-1 px-2 sm:w-auto min-w-[120px]">
+        <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[120px]">
           カテゴリ名
         </p>
-        <p className="sm:border-r flex-wrap  w-full border-gray-500 py-1 px-2 sm:w-auto min-w-[120px]">
+        <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[120px]">
           スラッグ
         </p>
-        <p className=" flex-wrap  w-full border-gray-500 py-1 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">
+        <p className=" flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">
           説明文
         </p>
       </div>
@@ -29,13 +29,13 @@ const ListCategory = async () => {
               className="flex justify-between flex-col sm:flex-row border-b border-gray-500 w-full"
             >
               <div className="flex flex-col  sm:flex-row py-4 items-center w-full sm:w-auto">
-                <p className="sm:border-r border-gray-500  w-full py-1 px-2 sm:w-auto min-w-[120px]">
+                <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[120px]">
                   {category.name}
                 </p>
-                <p className="sm:border-r flex-wrap  w-full border-gray-500 py-1 px-2 sm:w-auto min-w-[120px]">
+                <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[120px]">
                   {category.slug}
                 </p>
-                <p className="py-1 px-2 w-full sm:w-auto min-w-[250px] max-w-[650px]">
+                <p className="mb-0 px-2 w-full sm:w-auto min-w-[250px] max-w-[650px]">
                   {category.description && category.description.length > 72
                     ? `${category.description.slice(0, 72)}...`
                     : category.description}

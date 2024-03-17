@@ -34,7 +34,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
       {explanation && checked && (
         <div className="my-6 text-sm p-2 text-gray-600 border-gray-600 border border-dashed ">
           {explanation}
-          <p className="text-red-500">{explanation2}</p>
+          <p className="text-red-500 mb-0">{explanation2}</p>
         </div>
       )}
     </>

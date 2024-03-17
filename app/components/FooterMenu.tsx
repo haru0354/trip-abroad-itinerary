@@ -12,38 +12,40 @@ type FooterMenuProps = {
   userId?: number | undefined;
 };
 
-
-const FooterMenu: React.FC<FooterMenuProps> = ({
-  itineraryHomeId,
-  userId,
-}) => {
+const FooterMenu: React.FC<FooterMenuProps> = ({ itineraryHomeId, userId }) => {
   const path = usePathname();
 
   return (
     <div className="fixed z-50 bottom-0 w-full h-16 bg-white border-t border-gray-300 shadow">
       <div className="max-w-lg flex h-full  justify-center items-center mx-auto ">
         <div className="w-full h-full">
-          <Link href="/travel_brochure/home">
-            <ButtonImage size="footer" icon="house">ホーム</ButtonImage>
+          <Link href="/memorybook/home">
+            <ButtonImage size="footer" icon="house">
+              ホーム
+            </ButtonImage>
           </Link>
         </div>
         <div className="w-full h-full">
-          <Link href={`/travel_brochure/${itineraryHomeId}/itinerary`}>
-          <ButtonImage size="footer" icon="plane" >旅程表</ButtonImage>
+          <Link href={`/memorybook/${itineraryHomeId}/itinerary`}>
+            <ButtonImage size="footer" icon="plane">
+              旅程表
+            </ButtonImage>
           </Link>
         </div>
         <div className="w-full h-full">
-          <Link href={`/travel_brochure/${itineraryHomeId}/memo`}>
-          <ButtonImage size="footer" icon="pen">メモ帳</ButtonImage>
+          <Link href={`/memorybook/${itineraryHomeId}/memo`}>
+            <ButtonImage size="footer" icon="pen">
+              メモ帳
+            </ButtonImage>
           </Link>
         </div>
-        {path === `/travel_brochure/${itineraryHomeId}/memo` ? (
+        {path === `/memorybook/${itineraryHomeId}/memo` ? (
           <FormMemoModal
             itineraryHomeId={itineraryHomeId}
             buttonName="追加"
             buttonName2="メモを追加"
           />
-        ) : path === `/travel_brochure/${itineraryHomeId}/itinerary` ? (
+        ) : path === `/memorybook/${itineraryHomeId}/itinerary` ? (
           <FormItineraryModal
             itineraryHomeId={itineraryHomeId}
             buttonName="追加"

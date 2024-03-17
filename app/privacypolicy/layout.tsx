@@ -4,9 +4,9 @@ import HeaderItinerary from "@/app/components/HeaderItinerary";
 import FooterItinerary from "@/app/components/FooterItinerary";
 
 export const metadata: Metadata = {
-  title: "共有された旅行記 | 旅のメモリーブック",
+  title: "プライバシーポリシー・免責事項 | 旅のメモリーブック",
   robots: {
-    index: false, 
+    index: false,
   },
 };
 
@@ -22,7 +22,7 @@ export default async function RootLayout({
       <HeaderItinerary currentUser={currentUser} />
       <main>
         <div className="main-contents-area">
-        <div className="w-full px-1 md:px-8">{children}</div>
+          <div className="w-full px-1 md:px-8">{children}</div>
         </div>
       </main>
       <FooterItinerary isTopAppDirectory={true} />

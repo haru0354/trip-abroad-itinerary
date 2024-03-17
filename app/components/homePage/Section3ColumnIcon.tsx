@@ -27,12 +27,12 @@ const Section3ColumnIcon: React.FC<Section3ColumnIconProps> = ({
   return (
     <div className="w-full py-4 bg-white rounded">
       <div className="text-center my-6">
-      <h2 className="bg-blue-400 text-xl font-semibold text-white rounded my-10 p-5">
+        <h2 className="bg-blue-400 text-xl font-semibold text-white rounded my-10 p-5">
           {title}
         </h2>
       </div>
       <div className="flex w-full my-10 flex-wrap items-center justify-center">
-        <div className="border-2 border-sky-600 rounded w-[30%] mx-3 my-6 px-8 py-10 flex flex-col min-w-[330px]">
+        <div className="border-2 border-sky-600 rounded w-[28%] mx-2 my-4 px-4 md:px-8 py-6 flex flex-col min-w-[330px] min-h-[330px]">
           <span className="text-blue-500  flex justify-center mb-6">
             <FontAwesomeIcon icon={faEarthAsia} style={{ fontSize: "2em" }} />
           </span>
@@ -41,7 +41,7 @@ const Section3ColumnIcon: React.FC<Section3ColumnIconProps> = ({
           </h3>
           <p className="text-gray-700 mb-6">{content1}</p>
         </div>
-        <div className="border-2 border-sky-600 rounded w-[30%] mx-3 my-6 px-8 py-10 flex flex-col min-w-[330px]">
+        <div className="border-2 border-sky-600 rounded w-[28%] mx-2 my-4 px-4 md:px-8 py-6 flex flex-col min-w-[330px] min-h-[330px]">
           <span className="text-blue-500  flex justify-center mb-6">
             <FontAwesomeIcon
               icon={faPlaneDeparture}
@@ -53,7 +53,7 @@ const Section3ColumnIcon: React.FC<Section3ColumnIconProps> = ({
           </h3>
           <p className="text-gray-700 mb-6">{content2}</p>
         </div>
-        <div className="border-2 border-sky-600 rounded w-[30%] mx-3 my-6 px-8 py-10 flex flex-col min-w-[330px]">
+        <div className="border-2 border-sky-600 rounded w-[28%] mx-2 my-4 px-4 md:px-8 py-6 flex flex-col min-w-[330px] min-h-[330px]">
           <span className="text-blue-500  flex justify-center mb-6">
             <FontAwesomeIcon
               icon={faCartFlatbedSuitcase}

@@ -21,8 +21,8 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   }, []);
 
   useEffect(() => {
-    setIsOpen(false); 
-  }, [currentUser]); 
+    setIsOpen(false);
+  }, [currentUser]);
 
   return (
     <>
@@ -40,7 +40,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
             {isOpen && (
               <ul className="absolute right-0 mt-2 w-40 p-2 bg-white  overflow-hidden shadow-lg z-10 text-base ">
                 <li className="cursor-pointer text-sky-700 hover:bg-gray-200 p-2">
-                  <Link href="/travel_brochure/home">管理画面</Link>
+                  <Link href="/memorybook/home">管理画面</Link>
                 </li>
                 <li
                   onClick={() => {
@@ -59,7 +59,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
         <ul className="flex">
           <li className="ml-4">
             <p
-              className="cursor-pointer"
+              className="cursor-pointer mb-0"
               onClick={() => {
                 loginModal.onOpen();
                 setIsOpen(true);
@@ -70,7 +70,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           </li>
           <li className="ml-4">
             <p
-              className="cursor-pointer "
+              className="cursor-pointer mb-0"
               onClick={() => {
                 signupModal.onOpen();
                 setIsOpen(true);

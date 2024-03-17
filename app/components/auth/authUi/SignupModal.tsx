@@ -16,7 +16,6 @@ import Modal from "./Modal";
 import AuthInput from "./AuthInput";
 import Button from "../../ui/Button";
 
-
 const schema = z.object({
   name: z.string().min(2, { message: "2文字以上入力する必要があります。" }),
   email: z.string().email({ message: "メールアドレスの形式ではありません。" }),
@@ -56,7 +55,7 @@ const SignupModal = () => {
       //　ログイン
       await signIn("itinerary", {
         ...data,
-        callbackUrl: "/travel_brochure/home",
+        callbackUrl: "/memorybook/home",
       });
 
       signupModal.onClose();
@@ -105,7 +104,7 @@ const SignupModal = () => {
       <Button
         onClick={() =>
           signIn("google", {
-            callbackUrl: "/travel_brochure/home",
+            callbackUrl: "/memorybook/home",
           })
         }
         color="gray"

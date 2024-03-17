@@ -47,7 +47,7 @@ export const addMemo = async (state: FormState, data: FormData) => {
         itineraryHome: { connect: { id: Number(itineraryHomeId) } },
       },
     });
-    revalidatePath(`/travel_brochure/${itineraryHomeId}/memo`);
+    revalidatePath(`/memorybook/${itineraryHomeId}/memo`);
     return { message: "add" };
   } catch (error) {
     console.error("メモを追加する際にエラーが発生しました:", error);
@@ -68,10 +68,14 @@ export const deleteMemo = async (id: number, data: FormData) => {
     console.error("メモの削除中にエラーが発生しました:", error);
     return { message: "メモの削除中にエラーが発生しました" };
   }
-  redirect(`/travel_brochure/${itineraryHomeId}/memo`);
+  redirect(`/memorybook/${itineraryHomeId}/memo`);
 };
 
-export const updateMemo = async (id: number, state: FormState, data: FormData) => {
+export const updateMemo = async (
+  id: number,
+  state: FormState,
+  data: FormData
+) => {
   const name = data.get("name") as string;
   const content = data.get("content") as string;
   const itineraryHomeId = data.get("itineraryHomeId") as string;
@@ -90,7 +94,7 @@ export const updateMemo = async (id: number, state: FormState, data: FormData) =
     console.log(errors);
     return errors;
   }
-  
+
   try {
     await prisma.memo.update({
       where: {
@@ -101,7 +105,7 @@ export const updateMemo = async (id: number, state: FormState, data: FormData) =
         content,
       },
     });
-    revalidatePath(`/travel_brochure/${itineraryHomeId}/memo`);
+    revalidatePath(`/memorybook/${itineraryHomeId}/memo`);
     return { message: "edit" };
   } catch (error) {
     console.error("メモを編集する際にエラーが発生しました:", error);

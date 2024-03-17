@@ -10,6 +10,8 @@ import LoginModal from "../components/auth/authUi/LoginModal";
 import SignupModal from "../components/auth/authUi/SignupModal";
 import Section3ColumnImage from "../components/homePage/Section3ColumnImage";
 import FooterItinerary from "../components/FooterItinerary";
+import AnimatedItem from "../components/lib/AnimatedItem";
+
 
 export default async function Home() {
   const currentUser = await getCurrentUser();
@@ -23,9 +25,9 @@ export default async function Home() {
       <main>
         <div className="main-contents-area">
         <div className="w-full bg-white md:px-8">
-            <h2 className="text-center">
+            <AnimatedItem elementType="h2" className="text-center">
               旅程表作成のしおりアプリ「旅のメモリーブック」で出来る一部を紹介
-            </h2>
+            </AnimatedItem>
             <Section3ColumnImage
               title1="旅程表の作成"
               title2="メモの作成"
@@ -40,9 +42,9 @@ export default async function Home() {
               image2Alt="旅行準備のメモ"
               image3Alt="メモの切り替え"
             />
-            <h2 className="text-center">
+            <AnimatedItem elementType="h2" className="text-center">
               「旅のメモリーブック」がおすすめな人
-            </h2>
+            </AnimatedItem>
             <Section1ColumnRight
               src="/overseas_trip01.jpg"
               alt="海外旅行"
@@ -75,9 +77,9 @@ export default async function Home() {
               content2="旅程表を作成できるだけではありません。旅行中や帰国後にも思い出を残せるように設定がされています。旅行前は旅程表から、帰国後は思い出の記録へと残せます"
               content3="非表示からボタンクリックで表示に切り替えるメモ機能があります。旅程表の見やすさやデザインを損なわずにメモをすることができるようになっています。"
             />
-            <h2 className="text-center">
+            <AnimatedItem elementType="h2" className="text-center">
               思い出の旅行記になるアプリ
-            </h2>
+            </AnimatedItem>
             <Section1ColumnRight
               src="/travelogue.jpg"
               alt="旅行記"
@@ -94,9 +96,9 @@ export default async function Home() {
               content2="旅行は当日だけでなく、「どんな旅行をしたいか？」旅程表を作るのもたのしみのひとつです。"
               content3="いつか行って見たい旅行プランの作成を楽しむましょう。また、実際の旅行が決まったのなら新しい旅程表を作成することもできます。"
             />
-            <h2 className="text-center">
+            <AnimatedItem elementType="h2" className="text-center">
               よくある質問
-            </h2>
+            </AnimatedItem>
             <QA
               title="アカウントの作成に必要なのは何ですか？"
               content="2種類のアカウントの作成方法に対応しています。メールアドレス・Googleアカウントを利用した方法があります。必要となるのはニックネーム・メールアドレス・パスワードの3つ、またはGoogleアカウントだけです。わずらわしい作業はなしで「すぐにでも簡単に旅程表を作成できる」をコンセプトの1つとして作られています。"
@@ -114,9 +116,9 @@ export default async function Home() {
               content="PC・スマホ・タブレットで閲覧・作成ができます。作成したアカウントでログインをすればどの端末からでも閲覧・作成・編集が可能です。
             "
             />
-            <div className="text-center py-4">
+            <AnimatedItem elementType="div" className="text-center py-4">
               <SignupButton />
-            </div>
+            </AnimatedItem>
           </div>
         </div>
       </main>

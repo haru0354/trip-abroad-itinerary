@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import AnimatedItem from "../lib/AnimatedItem";
 
 type Section1ColumnRightProps = {
   src: string;
@@ -19,27 +22,35 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
 }) => {
   return (
     <>
-      <div className="flex justify-center w-full py-4 mb-4 rounded flex-wrap">
-        <h3 className="text-gray-700 mb-6 w-[80%] py-2 text-2xl font-semibold border-b border-sky-700 text-center">
+      <div>
+        <AnimatedItem
+          elementType="h3"
+          className="text-gray-700 mb-6 w-[80%] flex justify-center text-2xl font-semibold border-b text-center border-sky-700 mx-auto"
+        >
           {name}
-        </h3>
-        <div className="w-full flex justify-center items-center py-4  max-w-[400px] ">
-          <Image
-            src={src}
-            alt={alt}
-            width={360}
-            height={261}
-            style={{
-              width: "360px",
-              height: "auto",
-            }}
-          />
-        </div>
-        <div className="w-full py-8 md:mx-6 max-w-[400px] justify-center items-center">
-          <p className="text-gray-700 mb-6">{content}</p>
-          <p className="text-gray-700 mb-6">{content2}</p>
-          <p className="text-gray-700 mb-6">{content3}</p>
-        </div>
+        </AnimatedItem>
+        <AnimatedItem
+          elementType="div"
+          className="flex justify-center w-full py-1 md:py-4 mb-4 rounded flex-wrap"
+        >
+          <div className="w-full flex justify-center items-center py-4  max-w-[400px] ">
+            <Image
+              src={src}
+              alt={alt}
+              width={360}
+              height={261}
+              style={{
+                width: "360px",
+                height: "auto",
+              }}
+            />
+          </div>
+          <div className="w-full py-2 md:py-8 md:mx-6 max-w-[400px] justify-center items-center">
+            <p className="text-gray-700 mb-6">{content}</p>
+            <p className="text-gray-700 mb-6">{content2}</p>
+            <p className="text-gray-700 mb-6">{content3}</p>
+          </div>
+        </AnimatedItem>
       </div>
     </>
   );

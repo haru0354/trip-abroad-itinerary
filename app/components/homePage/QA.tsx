@@ -1,5 +1,5 @@
 "use client";
-
+import AnimatedItem from "../lib/AnimatedItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQ, faA, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
@@ -18,7 +18,7 @@ const QA: React.FC<QAProps> = ({ title, content }) => {
 
   return (
     <>
-      <div className="border border-gray-600 my-10 p-8 rounded cursor-pointer" onClick={toggleShowContent}>
+      <AnimatedItem elementType="div" className="border border-gray-600 my-10 p-8 rounded cursor-pointer" onClick={toggleShowContent}>
         {isShowContent ? (
           <>
             <div
@@ -51,7 +51,7 @@ const QA: React.FC<QAProps> = ({ title, content }) => {
             </div>
           </>
         )}
-      </div>
+      </AnimatedItem>
     </>
   );
 };

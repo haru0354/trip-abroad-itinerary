@@ -130,7 +130,6 @@ const FormPost: React.FC<FormPostProps> = ({
               label="記事の内容"
               defaultValue={post?.content}
               placeholder="記事の内容をこちらに入力してください。"
-              rows={12}
             />
             {state.errors && state.errors.content && (
               <p className="text-red-500">{state.errors.content}</p>

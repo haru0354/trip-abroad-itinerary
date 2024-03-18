@@ -1,6 +1,8 @@
 import Link from "next/link";
 import prisma from "../lib/prisma";
 import Image from "next/image";
+import AnimatedItem from "../lib/AnimatedItem";
+import Section from "./Section";
 
 const NewArticleTop = async () => {
   const posts = await prisma.post.findMany({
@@ -14,15 +16,17 @@ const NewArticleTop = async () => {
     },
   });
   return (
-    <>
-      <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
-        新着記事
-      </h2>
+    <Section bgColor="bg-sky-50" name="新着記事">
       <div className="flex w-full my-8 flex-wrap items-center justify-center">
         {posts.map((post) => {
           return (
             post.draft && (
-              <div key={post.id} className="flex flex-col items-center">
+              <AnimatedItem
+                elementType="div"
+                animation="fadeInVariants"
+                key={post.id}
+                className="flex flex-col items-center"
+              >
                 <Link href={`/${post.category.slug}/${post.slug}`}>
                   <div className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[330px] min-w-[330px]">
                     <div className="min-h-[220px] max-h-[220px] border justify-centers">
@@ -61,12 +65,12 @@ const NewArticleTop = async () => {
                     </div>
                   </div>
                 </Link>
-              </div>
+              </AnimatedItem>
             )
           );
         })}
       </div>
-    </>
+    </Section>
   );
 };
 

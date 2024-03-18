@@ -18,7 +18,6 @@ p {
 main {
   display: flex;
   justify-content: center;
-  background-color: #eff6ff;
 }
 
 .main-contents-area {

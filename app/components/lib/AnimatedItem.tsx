@@ -29,7 +29,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
   const MotionComponent = motion[elementType];
 
   const fadeInVariants = {
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,

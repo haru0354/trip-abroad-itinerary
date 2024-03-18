@@ -1,6 +1,8 @@
 import Link from "next/link";
 import prisma from "../lib/prisma";
 import Image from "next/image";
+import AnimatedItem from "../lib/AnimatedItem";
+import Section from "./Section";
 
 const CategoryTop = async () => {
   const categories = await prisma.category.findMany({
@@ -11,10 +13,7 @@ const CategoryTop = async () => {
   });
 
   return (
-    <>
-      <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
-        カテゴリ
-      </h2>
+    <Section bgColor="bg-white" name="カテゴリ">
       <div className="flex w-full my-8 flex-wrap items-center justify-center">
         {categories.map((category) => {
           if (
@@ -26,7 +25,12 @@ const CategoryTop = async () => {
             return null;
           }
           return (
-            <div key={category.id} className="flex flex-col items-center">
+            <AnimatedItem
+              elementType="div"
+              animation="fadeInVariants"
+              key={category.id}
+              className="flex flex-col items-center"
+            >
               <Link href={`/${category.slug}`}>
                 <div className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[330px] min-w-[330px]">
                   <div className="min-h-[220px] max-h-[220px] border justify-centers">
@@ -73,11 +77,11 @@ const CategoryTop = async () => {
                   </div>
                 </div>
               </Link>
-            </div>
+            </AnimatedItem>
           );
         })}
       </div>
-    </>
+    </Section>
   );
 };
 

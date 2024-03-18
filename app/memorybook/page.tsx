@@ -1,16 +1,18 @@
-import Section1ColumnRight from "../components/homePage/Section1ColumnRight";
-import Section3ColumnIcon from "../components/homePage/Section3ColumnIcon";
-import SectionCTA from "../components/homePage/SectionCTA";
-import QA from "../components/homePage/QA";
-import Hero from "../components/homePage/Hero";
-import SignupButton from "../components/ui/SignupButton";
 import getCurrentUser from "../action/getCurrentUser";
+
+import SignupModal from "../components/auth/authUi/SignupModal";
+import Section1ColumnRight from "../components/1ColumnPage/Section1ColumnRight";
+import Section3ColumnIcon from "../components/1ColumnPage/Section3ColumnIcon";
+import SectionCTA from "../components/1ColumnPage/SectionCTA";
+import QA from "../components/1ColumnPage/QA";
+import Hero from "../components/1ColumnPage/Hero";
+import SignupButton from "../components/ui/SignupButton";
 import HeaderItinerary from "../components/HeaderItinerary";
 import LoginModal from "../components/auth/authUi/LoginModal";
-import SignupModal from "../components/auth/authUi/SignupModal";
-import Section3ColumnImage from "../components/homePage/Section3ColumnImage";
+import Section3ColumnImage from "../components/1ColumnPage/Section3ColumnImage";
 import FooterItinerary from "../components/FooterItinerary";
 import AnimatedItem from "../components/lib/AnimatedItem";
+import Section from "../components/1ColumnPage/Section";
 
 export default async function Home() {
   const currentUser = await getCurrentUser();
@@ -22,15 +24,11 @@ export default async function Home() {
       <HeaderItinerary currentUser={currentUser} />
       <Hero />
       <main>
-        <div className="main-contents-area">
-          <div className="w-full bg-white md:px-8">
-            <AnimatedItem
-              elementType="h2"
-              animation="fadeInVariants"
-              className="text-center"
-            >
-              旅程表作成のしおりアプリ「旅のメモリーブック」で出来る一部を紹介
-            </AnimatedItem>
+        <div className="w-full">
+          <Section
+            name="しおりアプリ「旅のメモリーブック」の機能の一部"
+            bgColor="bg-white"
+          >
             <Section3ColumnImage
               title1="旅程表の作成"
               title2="メモの作成"
@@ -45,13 +43,11 @@ export default async function Home() {
               image2Alt="旅行準備のメモ"
               image3Alt="メモの切り替え"
             />
-            <AnimatedItem
-              elementType="h2"
-              animation="fadeInVariants"
-              className="text-center"
-            >
-              「旅のメモリーブック」がおすすめな人
-            </AnimatedItem>
+          </Section>
+          <Section
+            name="「旅のメモリーブック」がおすすめな人"
+            bgColor="bg-sky-50"
+          >
             <Section1ColumnRight
               src="/overseas_trip01.jpg"
               alt="海外旅行"
@@ -68,15 +64,24 @@ export default async function Home() {
               content2="10代・20代・30代は色々と遊びや趣味や人付き合いでの出費もあります。そのため、旅行費用を安くしつつ快適で楽しい旅行をしたい人も多いです。"
               content3="事前に旅程やメモして準備することで、現地で通訳やガイドの費用を抑えることもでき、かつ旅行でも添乗員同行のツアーでなくても快適な旅行ができます"
             />
+          </Section>
+          <Section name="旅のメモリーブックとは" bgColor="bg-gray-50">
             <SectionCTA
-              title="旅のメモリーブックとは"
               name1="PC・スマホ・タブレットから利用できる無料のアプリ"
               name2="簡単に国内・海外の旅のしおり（旅程表）の作成が可能"
               name3="英語が話せない人でも安心して海外旅行できる豊富なメモ機能"
               content="表示切替ボタンにより、必要なタイミングで必要なメモを閲覧が可能。英語が話せない人でも「目的地への具体的な行き方（乗り換え方法・バス番号・時間）」をはじめ、「食事予定のメニューの英語名や呼び方」など、事前にメモをすることで安心して海外旅行が可能。"
             />
+            <AnimatedItem
+              elementType="div"
+              animation="fadeInAndScaleVariants"
+              className="text-center py-4"
+            >
+              <SignupButton />
+            </AnimatedItem>
+          </Section>
+          <Section name="旅のメモリーブック3つの特徴" bgColor="bg-white">
             <Section3ColumnIcon
-              title="旅のメモリーブック3つの特徴"
               name1="国内・海外の旅行に対応"
               name2="思い出を残せるアプリ"
               name3="表示切替メモ機能"
@@ -84,13 +89,8 @@ export default async function Home() {
               content2="旅程表を作成できるだけではありません。旅行中や帰国後にも思い出を残せるように設定がされています。旅行前は旅程表から、帰国後は思い出の記録へと残せます"
               content3="非表示からボタンクリックで表示に切り替えるメモ機能があります。旅程表の見やすさやデザインを損なわずにメモをすることができるようになっています。"
             />
-            <AnimatedItem
-              elementType="h2"
-              animation="fadeInVariants"
-              className="text-center"
-            >
-              思い出の旅行記になるアプリ
-            </AnimatedItem>
+          </Section>
+          <Section name="思い出の旅行記になるアプリ" bgColor="bg-sky-50">
             <Section1ColumnRight
               src="/travelogue.jpg"
               alt="旅行記"
@@ -107,13 +107,8 @@ export default async function Home() {
               content2="旅行は当日だけでなく、「どんな旅行をしたいか？」旅程表を作るのもたのしみのひとつです。"
               content3="いつか行って見たい旅行プランの作成を楽しむましょう。また、実際の旅行が決まったのなら新しい旅程表を作成することもできます。"
             />
-            <AnimatedItem
-              elementType="h2"
-              animation="fadeInVariants"
-              className="text-center"
-            >
-              よくある質問
-            </AnimatedItem>
+          </Section>
+          <Section name="よくある質問" bgColor="bg-white">
             <QA
               title="アカウントの作成に必要なのは何ですか？"
               content="2種類のアカウントの作成方法に対応しています。メールアドレス・Googleアカウントを利用した方法があります。必要となるのはニックネーム・メールアドレス・パスワードの3つ、またはGoogleアカウントだけです。わずらわしい作業はなしで「すぐにでも簡単に旅程表を作成できる」をコンセプトの1つとして作られています。"
@@ -138,7 +133,7 @@ export default async function Home() {
             >
               <SignupButton />
             </AnimatedItem>
-          </div>
+          </Section>
         </div>
       </main>
       <FooterItinerary isTopAppDirectory={true} />

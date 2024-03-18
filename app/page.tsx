@@ -1,21 +1,23 @@
 import Link from "next/link";
+
 import Header from "./components/Header";
-import Section1ColumnRight from "./components/homePage/Section1ColumnRight";
-import Button from "./components/ui/Button";
-import CategoryTop from "./components/blog/CategoryTop";
-import NewArticleTop from "./components/blog/NewArticleTop";
+import Section from "./components/1ColumnPage/Section";
+import Section1ColumnRight from "./components/1ColumnPage/Section1ColumnRight";
+import CategoryTop from "./components/1ColumnPage/CategoryTop";
+import NewArticleTop from "./components/1ColumnPage/NewArticleTop";
 import Footer from "./components/Footer";
+import Button from "./components/ui/Button";
 
 export default function Home() {
   return (
     <>
       <Header isTopPage={true} />
       <main>
-        <div className="main-contents-area">
-          <div className="w-full bg-white md:px-8">
-            <h2 className="bg-blue-400 text-xl font-semibold text-white text-center rounded my-10 p-5">
-              国内・海外の旅行の旅程表を作成するしおりアプリをリリース
-            </h2>
+        <div className="w-full">
+          <Section
+            name="国内・海外の旅行のしおり作成アプリをリリース"
+            bgColor="bg-white"
+          >
             <Section1ColumnRight
               src="/travel_memory_thumbnail.jpg"
               alt="旅のメモリーブックのサムネイル"
@@ -29,16 +31,17 @@ export default function Home() {
                 旅のメモリーブックへ
               </Button>
             </Link>
+          </Section>
+          <Section bgColor="bg-sky-50" name="新着記事">
             <NewArticleTop />
+          </Section>
+          <Section bgColor="bg-white" name="カテゴリ">
             <CategoryTop />
-            <div className="flex justify-center"></div>
-            <h3>新着記事</h3>
-            ここに新着記事を3列2行で表示
-            <h3>カテゴリ</h3>
-            ここにカテゴリを3列で表示
-            <Link href="./dashboard/">ブログ管理</Link>
-            <Link href="./admin/">ブログログイン</Link>
-          </div>
+          </Section>
+          <h2 className="text-center">カテゴリ</h2>
+          ここにカテゴリを3列で表示
+          <Link href="./dashboard/">ブログ管理</Link>
+          <Link href="./admin/">ブログログイン</Link>
         </div>
       </main>
       <Footer />

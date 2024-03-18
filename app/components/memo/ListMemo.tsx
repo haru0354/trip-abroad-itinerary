@@ -65,7 +65,13 @@ const ListMemo: React.FC<ListMemoProps> = async ({
       <h2>メモの一覧</h2>
       {sortedMemos?.map((memo) => {
         return (
-          <React.Fragment key={memo.id}>
+          <AnimatedItem
+            elementType="div"
+            animation="fadeInLeftVariants"
+            key={memo.id}
+            className="min-h-[200px] bg-top bg-no-repeat pt-[44px] w-full "
+            imageUrl="/memo-image.png"
+          >
             <Link href={`/memorybook/${itineraryHomeId}/memo/${memo.id}`}>
               <ButtonImage
                 className="rounded"
@@ -76,15 +82,17 @@ const ListMemo: React.FC<ListMemoProps> = async ({
                 編集
               </ButtonImage>
             </Link>
-            <AnimatedItem elementType="div" animation="fadeInLeftVariants" className="bg-sky-50 shadow-md rounded px-8 py-8 mb-10 ">
-              <div className="border-b border-gray-400 pb-2">
+            <div className="bg-gray-50 border border-gray-200 shadow-md rounded px-8 py-5 mb-10 ">
+              <div className="border-b border-gray-300">
                 <h3 className="text-center font-bold text-gray-700">
                   {memo.name}
                 </h3>
               </div>
-              <div className="mt-4 text-gray-700">{memo.content}</div>
-            </AnimatedItem>
-          </React.Fragment>
+              {memo.content && (
+                <div className="mt-4 text-gray-700">{memo.content}</div>
+              )}
+            </div>
+          </AnimatedItem>
         );
       })}
     </>

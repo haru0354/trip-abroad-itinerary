@@ -8,8 +8,13 @@ type AnimatedItemProps = {
   elementType: "div" | "h2" | "h3" | "li" | "p";
   className?: string;
   children: ReactNode;
-  animation: "fadeInVariants" | "fadeInAndScaleVariants" | "fadeInLeftVariants";
+  animation:
+    | "fadeInVariants"
+    | "fadeInAndScaleVariants"
+    | "fadeInLeftVariants"
+    | "borderVariants";
   onClick?: (e: React.MouseEvent) => void;
+  imageUrl?: string;
 };
 
 const AnimatedItem: React.FC<AnimatedItemProps> = ({
@@ -18,12 +23,13 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
   elementType,
   animation,
   onClick,
+  imageUrl,
 }) => {
   const [hasAnimated, setHasAnimated] = useState(false);
   const MotionComponent = motion[elementType];
 
   const fadeInVariants = {
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
@@ -56,10 +62,25 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
     },
   };
 
+  const borderVariants = {
+    hidden: {
+      width: 0,
+      x: "100%",
+    },
+    visible: {
+      width: "100%",
+      x: "0%",
+      transition: {
+        duration: 7.0,
+      },
+    },
+  };
+
   const animations = {
     fadeInVariants,
     fadeInAndScaleVariants,
     fadeInLeftVariants,
+    borderVariants,
   };
 
   return (
@@ -70,7 +91,9 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       whileInView="visible"
       className={className}
       onClick={onClick}
-    >
+      style={imageUrl ? { backgroundImage: `url('${imageUrl}')` } : undefined}
+
+      >
       {children}
     </MotionComponent>
   );

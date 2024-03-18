@@ -6,12 +6,10 @@ import {
   faPlaneDeparture,
   faCartFlatbedSuitcase,
 } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion";
-import { useState } from "react";
+
 import AnimatedItem from "../lib/AnimatedItem";
 
 type Section3ColumnIconProps = {
-  title: string;
   name1: string;
   name2: string;
   name3: string;
@@ -21,7 +19,6 @@ type Section3ColumnIconProps = {
 };
 
 const Section3ColumnIcon: React.FC<Section3ColumnIconProps> = ({
-  title,
   name1,
   name2,
   name3,
@@ -29,42 +26,8 @@ const Section3ColumnIcon: React.FC<Section3ColumnIconProps> = ({
   content2,
   content3,
 }) => {
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 1.4,
-        staggerChildren: 0.7,
-        duration: 1.2,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { x: 80, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.7,
-      },
-    },
-  };
 
   return (
-    <div className="w-full py-4 bg-white rounded">
-      <div className="text-center my-6">
-        <AnimatedItem
-          elementType="h2"
-          animation="fadeInVariants"
-          className="bg-blue-400 text-xl font-semibold text-white rounded my-10 p-5"
-        >
-          {title}
-        </AnimatedItem>
-      </div>
       <div className="flex w-full my-10 flex-wrap items-center justify-center">
         <AnimatedItem
           animation="fadeInVariants"
@@ -112,7 +75,6 @@ const Section3ColumnIcon: React.FC<Section3ColumnIconProps> = ({
           <p className="text-gray-700 mb-6">{content3}</p>
         </AnimatedItem>
       </div>
-    </div>
   );
 };
 

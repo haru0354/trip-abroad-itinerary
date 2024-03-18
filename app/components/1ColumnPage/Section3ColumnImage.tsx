@@ -31,71 +31,73 @@ const Section3ColumnImage: React.FC<Section3ColumnImageProps> = ({
   image3Alt,
 }) => {
   return (
-    <div className="flex w-full my-8 flex-wrap items-center justify-center">
-      <AnimatedItem
-        elementType="div"
-        animation="fadeInVariants"
-        className="flex flex-col items-center mx-3 max-w-[310px] min-w-[310px]"
-      >
-        <div className="min-h-[220px] max-h-[220px] border justify-centers">
-          <Image
-            src={image1Url}
-            alt={image1Alt}
-            width={310}
-            height={221}
-            style={{
-              width: "310px",
-              height: "auto",
-            }}
-          />
-        </div>
-        <div className="min-h-[130px] ">
-          <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
-            {title1}
-          </h3>
-          <p className="text-gray-600 my-2">{content1}</p>
-        </div>
-      </AnimatedItem>
-      <AnimatedItem
-        elementType="div"
-        animation="fadeInVariants"
-        className="rounded mx-5 my-6 flex flex-col items-center  max-w-[310px] min-w-[310px]"
-      >
-        <div className="min-h-[220px] max-h-[220px] border justify-centers">
-          <Image
-            src={image2Url}
-            alt={image2Alt}
-            width={310}
-            height={221}
-            style={{
-              width: "310px",
-              height: "auto",
-            }}
-          />
-        </div>
-        <div className="min-h-[130px] ">
-          <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
-            {title2}
-          </h3>
-          <p className="text-gray-600 my-2">{content2}</p>
-        </div>
-      </AnimatedItem>
-      <AnimatedItem
-        elementType="div"
-        animation="fadeInVariants"
-        className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[310px] min-w-[310px]"
-      >
-        <div className="min-h-[220px] max-h-[220px]  border  justify-centers">
-          <Image src={image3Url} alt={image3Alt} width={310} height={221} />
-        </div>
-        <div className="min-h-[130px] ">
-          <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
-            {title3}
-          </h3>
-          <p className="text-gray-600 my-2">{content3} </p>
-        </div>
-      </AnimatedItem>
-    </div>
+    <>
+      <div className="flex w-full my-8 flex-wrap items-center justify-center">
+        <AnimatedItem
+          elementType="div"
+          animation="fadeInVariants"
+          className="my-6 flex flex-col  items-center max-w-[320px] min-w-[320px] rounded"
+        >
+          <div className="min-h-[220px] max-h-[220px] border justify-centers">
+            <Image
+              src={image1Url}
+              alt={image1Alt}
+              width={310}
+              height={221}
+              style={{
+                width: "310px",
+                height: "auto",
+              }}
+            />
+          </div>
+          <div className="min-h-[130px] ">
+            <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
+              {title1}
+            </h3>
+            <p className="text-gray-600 my-2">{content1}</p>
+          </div>
+        </AnimatedItem>
+        <AnimatedItem
+          elementType="div"
+          animation="fadeInVariants"
+          className="rounded my-6 flex flex-col mx-0 md:mx-8 items-center max-w-[320px] min-w-[320px]"
+        >
+          <div className="min-h-[220px] max-h-[220px] border justify-centers">
+            <Image
+              src={image2Url}
+              alt={image2Alt}
+              width={310}
+              height={221}
+              style={{
+                width: "310px",
+                height: "auto",
+              }}
+            />
+          </div>
+          <div className="min-h-[130px] ">
+            <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
+              {title2}
+            </h3>
+            <p className="text-gray-600 my-2">{content2}</p>
+          </div>
+        </AnimatedItem>
+        <AnimatedItem
+          elementType="div"
+          animation="fadeInVariants"
+          className="my-6 flex flex-col items-center max-w-[320px] min-w-[320px] rounded"
+        >
+          <div className="min-h-[220px] max-h-[220px]  border  justify-centers">
+            <Image src={image3Url} alt={image3Alt} width={310} height={221} />
+          </div>
+          <div className="min-h-[130px] ">
+            <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
+              {title3}
+            </h3>
+            <p className="text-gray-600 my-2">{content3} </p>
+          </div>
+        </AnimatedItem>
+      </div>
+    </>
   );
 };
 

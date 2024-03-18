@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import HideContent from "./HideContent";
 import { faCircleDown } from "@fortawesome/free-solid-svg-icons";
@@ -7,6 +8,8 @@ import Image from "next/image";
 import ButtonImage from "../ui/ButtonImage";
 import Manual from "../manual";
 import AnimatedItem from "../lib/AnimatedItem";
+import AnimatedImage from "../lib/AnimatedImage";
+import { motion } from "framer-motion";
 
 type ListItineraryProps = {
   itineraryHomeId: number | undefined;
@@ -26,7 +29,7 @@ type Itineraries = {
   altText: string | null;
 };
 
-const ListItinerary: React.FC<ListItineraryProps> = async ({
+const ListItinerary: React.FC<ListItineraryProps> = ({
   itineraryHomeId,
   itineraries,
   isShare,
@@ -84,8 +87,16 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
         return (
           <div key={itinerary.id}>
             {isFirstItem && (
-              <div className="border-b border-sky-600 text-xl text-center bold mt-10 mb-2 p-3">
+              <div className="flex items-center justify-start md:justify-center border-b border-sky-600 text-xl text-center font-bold mb-1 mt-10">
                 {itinerary.date}
+                <AnimatedImage
+                  src="/55.png"
+                  width="60"
+                  height="60"
+                  alt="旅行中の犬"
+                  animation="fadeInRightImage"
+                  className="ml-4"
+                />
               </div>
             )}
             {isShare || (
@@ -102,7 +113,11 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
                 </ButtonImage>
               </Link>
             )}
-            <AnimatedItem elementType="div" animation="fadeInLeftVariants" className="flex w-full ">
+            <AnimatedItem
+              elementType="div"
+              animation="fadeInLeftVariants"
+              className="flex w-full "
+            >
               <div className="relative  text-white items-center justify-center flex">
                 <FontAwesomeIcon
                   icon={faCircleDown}
@@ -112,7 +127,7 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
                   <div className="h-full w-1 bg-blue-100"></div>
                 </div>
               </div>
-              <div className="flex-1 flex-col  ml-8 my-2 p-2 shadow bg-sky-50 border border-gray-100 rounded">
+              <div className="flex-1 flex-col  ml-8 my-2 p-2 shadow bg-gray-50 border border-gray-200 rounded">
                 <div className="flex mb-2 flex-wrap md:flex-nowrap  ">
                   {itinerary && itinerary.url && itinerary.altText && (
                     <div className="min-w-[250px] max-w-[250px] m-auto md:m-0">

@@ -2,20 +2,21 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-400 mx-auto">
-      <div className="flex items-center justify-center pt-4">
-        <ul>
-          <li className="text-xs text-blue-800">
-            <Link href="/privacypolicy">プライバシーポリシー・免責事項</Link>
-          </li>
-        </ul>
-      </div>
-      <div className="flex items-center justify-center">
-      <p className="text-xs py-2 h-4">
-          &copy;英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」
-        </p>
-      </div>
-    </footer>
+        <footer
+        className="flex flex-col-reverse bg-blue-50 bg-center bg-no-repeat  w-full h-[500px] "
+        style={{ backgroundImage: "url('/footer-image.png')" }}
+      >
+        <div className="bg-blue-500 h-[65px] w-full flex items-end justify-center">
+          <ul className="text-xs text-center mb-3">
+            <li className="mb-2 text-blue-800">
+              <Link href="/privacypolicy">プライバシーポリシー・免責事項</Link>
+            </li>
+            <li className="">
+              &copy;英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」
+            </li>
+          </ul>
+        </div>
+      </footer>
   );
 };
 

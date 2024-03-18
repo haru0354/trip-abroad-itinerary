@@ -1,15 +1,18 @@
 "use client";
+
+import Image from "next/image";
 import Link from "next/link";
-import HideContent from "./HideContent";
+
 import { faCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
+
+import HideContent from "./HideContent";
 import ButtonImage from "../ui/ButtonImage";
 import Manual from "../manual";
 import AnimatedItem from "../lib/AnimatedItem";
 import AnimatedImage from "../lib/AnimatedImage";
-import { motion } from "framer-motion";
+
 
 type ListItineraryProps = {
   itineraryHomeId: number | undefined;
@@ -127,7 +130,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
                   <div className="h-full w-1 bg-blue-100"></div>
                 </div>
               </div>
-              <div className="flex-1 flex-col  ml-8 my-2 p-2 shadow bg-gray-50 border border-gray-200 rounded">
+              <div className="flex-1 flex-col  ml-8 my-2 p-2 shadow bg-gray-50 border  border-gray-200 rounded">
                 <div className="flex mb-2 flex-wrap md:flex-nowrap  ">
                   {itinerary && itinerary.url && itinerary.altText && (
                     <div className="min-w-[250px] max-w-[250px] m-auto md:m-0">

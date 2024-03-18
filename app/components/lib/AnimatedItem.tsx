@@ -15,6 +15,7 @@ type AnimatedItemProps = {
     | "borderVariants";
   onClick?: (e: React.MouseEvent) => void;
   imageUrl?: string;
+  delay?: number;
 };
 
 const AnimatedItem: React.FC<AnimatedItemProps> = ({
@@ -24,6 +25,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
   animation,
   onClick,
   imageUrl,
+  delay,
 }) => {
   const [hasAnimated, setHasAnimated] = useState(false);
   const MotionComponent = motion[elementType];
@@ -34,6 +36,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       opacity: 1,
       y: 0,
       transition: {
+        delay: delay || 0, 
         duration: 1.0,
       },
     },
@@ -46,6 +49,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       y: 0,
       scale: 1,
       transition: {
+        delay: delay || 0, 
         duration: 1.0,
       },
     },
@@ -57,6 +61,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       opacity: 1,
       x: 0,
       transition: {
+        delay: delay || 0, 
         duration: 1.8,
       },
     },
@@ -92,8 +97,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       className={className}
       onClick={onClick}
       style={imageUrl ? { backgroundImage: `url('${imageUrl}')` } : undefined}
-
-      >
+    >
       {children}
     </MotionComponent>
   );

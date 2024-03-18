@@ -60,6 +60,7 @@ const Section3ColumnImage: React.FC<Section3ColumnImageProps> = ({
         <AnimatedItem
           elementType="div"
           animation="fadeInVariants"
+          delay={0.3}
           className="rounded my-6 flex flex-col mx-0 md:mx-8 items-center max-w-[320px] min-w-[320px]"
         >
           <div className="min-h-[220px] max-h-[220px] border justify-centers">
@@ -84,6 +85,7 @@ const Section3ColumnImage: React.FC<Section3ColumnImageProps> = ({
         <AnimatedItem
           elementType="div"
           animation="fadeInVariants"
+          delay={0.6}
           className="my-6 flex flex-col items-center max-w-[320px] min-w-[320px] rounded"
         >
           <div className="min-h-[220px] max-h-[220px]  border  justify-centers">

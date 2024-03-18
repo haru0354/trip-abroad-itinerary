@@ -1,10 +1,13 @@
-import prisma from "@/app/components/lib/prisma";
-import FormItineraryHome from "@/app/components/itineraryHome/FormItineraryHome";
-import { updateItineraryHome } from "@/app/action/action-ItineraryHome";
-import DeleteItineraryHomeModal from "@/app/components/itineraryHome/DeleteItineraryHomeModal";
-import getCurrentUser from "@/app/action/getCurrentUser";
-import Button from "@/app/components/ui/Button";
 import Link from "next/link";
+import prisma from "@/app/components/lib/prisma";
+
+import FormItineraryHome from "@/app/components/itineraryHome/FormItineraryHome";
+import Button from "@/app/components/ui/Button";
+import DeleteModal from "@/app/components/ui/DeleteModal";
+
+import { updateItineraryHome } from "@/app/action/action-ItineraryHome";
+import { deleteItineraryHome } from "@/app/action/action-ItineraryHome";
+import getCurrentUser from "@/app/action/getCurrentUser";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   const id = Number(params.itineraryHome_id);
@@ -31,7 +34,12 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
           キャンセル
         </Button>
       </Link>
-      <DeleteItineraryHomeModal itineraryHome={itineraryHome} />
+      <DeleteModal
+        DeleteName="旅行"
+        name={itineraryHome?.name}
+        formAction={deleteItineraryHome}
+        id={itineraryHome?.id}
+      />
     </>
   );
 };

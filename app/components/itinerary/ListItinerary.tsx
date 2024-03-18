@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import ButtonImage from "../ui/ButtonImage";
 import Manual from "../manual";
+import AnimatedItem from "../lib/AnimatedItem";
 
 type ListItineraryProps = {
   itineraryHomeId: number | undefined;
@@ -76,7 +77,7 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
 
   return (
     <div>
-      <h2>旅程表</h2>
+      <h2 className="text-center">旅程表</h2>
       {sortedItineraries?.map((itinerary, index) => {
         const isFirstItem =
           index === 0 || itinerary.date !== sortedItineraries[index - 1].date;
@@ -101,7 +102,7 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
                 </ButtonImage>
               </Link>
             )}
-            <div className="flex w-full ">
+            <AnimatedItem elementType="div" animation="fadeInLeftVariants" className="flex w-full ">
               <div className="relative  text-white items-center justify-center flex">
                 <FontAwesomeIcon
                   icon={faCircleDown}
@@ -145,7 +146,7 @@ const ListItinerary: React.FC<ListItineraryProps> = async ({
                   <HideContent itinerary={itinerary} />
                 )}
               </div>
-            </div>
+            </AnimatedItem>
           </div>
         );
       })}

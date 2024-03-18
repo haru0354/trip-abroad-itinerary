@@ -130,13 +130,14 @@ export const addItinerary = async (state: FormState, data: FormData) => {
   }
 };
 
-export const deleteItinerary = async (id: number, data: FormData) => {
+export const deleteItinerary = async (data: FormData) => {
   const userId = data.get("userId") as string;
   const itineraryHomeId = data.get("itineraryHomeId") as string;
+  const id = data.get("id") as string;
 
   const itinerary = await prisma.itinerary.findUnique({
     where: {
-      id,
+      id: Number(id),
     },
   });
 
@@ -148,7 +149,7 @@ export const deleteItinerary = async (id: number, data: FormData) => {
   try {
     await prisma.itinerary.delete({
       where: {
-        id,
+        id: Number(id),
       },
     });
 

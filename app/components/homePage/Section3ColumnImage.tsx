@@ -1,4 +1,5 @@
 import Image from "next/image";
+import AnimatedItem from "../lib/AnimatedItem";
 
 type Section3ColumnImageProps = {
   title1: string;
@@ -31,7 +32,11 @@ const Section3ColumnImage: React.FC<Section3ColumnImageProps> = ({
 }) => {
   return (
     <div className="flex w-full my-8 flex-wrap items-center justify-center">
-      <div className="flex flex-col items-center mx-3 max-w-[310px] min-w-[310px]">
+      <AnimatedItem
+        elementType="div"
+        animation="fadeInVariants"
+        className="flex flex-col items-center mx-3 max-w-[310px] min-w-[310px]"
+      >
         <div className="min-h-[220px] max-h-[220px] border justify-centers">
           <Image
             src={image1Url}
@@ -50,8 +55,12 @@ const Section3ColumnImage: React.FC<Section3ColumnImageProps> = ({
           </h3>
           <p className="text-gray-600 my-2">{content1}</p>
         </div>
-      </div>
-      <div className="rounded mx-5 my-6 flex flex-col items-center  max-w-[310px] min-w-[310px]">
+      </AnimatedItem>
+      <AnimatedItem
+        elementType="div"
+        animation="fadeInVariants"
+        className="rounded mx-5 my-6 flex flex-col items-center  max-w-[310px] min-w-[310px]"
+      >
         <div className="min-h-[220px] max-h-[220px] border justify-centers">
           <Image
             src={image2Url}
@@ -70,8 +79,12 @@ const Section3ColumnImage: React.FC<Section3ColumnImageProps> = ({
           </h3>
           <p className="text-gray-600 my-2">{content2}</p>
         </div>
-      </div>
-      <div className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[310px] min-w-[310px]">
+      </AnimatedItem>
+      <AnimatedItem
+        elementType="div"
+        animation="fadeInVariants"
+        className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[310px] min-w-[310px]"
+      >
         <div className="min-h-[220px] max-h-[220px]  border  justify-centers">
           <Image src={image3Url} alt={image3Alt} width={310} height={221} />
         </div>
@@ -81,7 +94,7 @@ const Section3ColumnImage: React.FC<Section3ColumnImageProps> = ({
           </h3>
           <p className="text-gray-600 my-2">{content3} </p>
         </div>
-      </div>
+      </AnimatedItem>
     </div>
   );
 };

@@ -24,7 +24,7 @@ const ListDashboardMemo = async () => {
               className="text-sky-700 mr-4 w-5 h-4 mt-1"
               style={{ width: "15px" }}
             />
-            <p>今後作成予定のページ</p>
+            今後作成予定のページ
           </li>
           <li className="flex py-3 px-2 text-red-500  ">
             <FontAwesomeIcon
@@ -32,7 +32,7 @@ const ListDashboardMemo = async () => {
               className="text-sky-700 mr-4 w-5 h-4 mt-1"
               style={{ width: "15px" }}
             />
-            <p>上位表示を狙っているキーワード</p>
+            上位表示を狙っているキーワード
           </li>
           <li className="flex py-3 px-2 text-red-500  ">
             <FontAwesomeIcon
@@ -40,7 +40,7 @@ const ListDashboardMemo = async () => {
               className="text-sky-700 mr-4 w-5 h-4 mt-1"
               style={{ width: "15px" }}
             />
-            <p>上位表示させる為に編集をする予定のページ</p>
+            上位表示させる為に編集をする予定のページ
           </li>
         </ul>
         <p>
@@ -55,16 +55,16 @@ const ListDashboardMemo = async () => {
           <div className="flex justify-between border-b border-gray-500 mb-2">
             <div>
               <p className="text-red-500">メモの見出しエリア</p>
-              <p>今後作成していく記事のメインキーワード</p>
+              今後作成していく記事のメインキーワード
             </div>
           </div>
           <div>
             <p className="text-red-500">メモする内容エリア</p>
-            <p>
+          
               「ブログ 作り方 無料」・「ブログ 作り方」・「スマホ・ブログ
               始め方」・「初心者 スマホ ブログ 作り方 」・「趣味・ブログ
               始め方」・「無料 ブログ 始め方 」・「ブログ 初心者 おすすめ無料」
-            </p>
+            
           </div>
         </div>
       </>

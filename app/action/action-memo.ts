@@ -55,13 +55,14 @@ export const addMemo = async (state: FormState, data: FormData) => {
   }
 };
 
-export const deleteMemo = async (id: number, data: FormData) => {
+export const deleteMemo = async (data: FormData) => {
   const itineraryHomeId = data.get("itineraryHomeId") as string;
+  const id = data.get("id") as string;
 
   try {
     await prisma.memo.delete({
       where: {
-        id,
+        id: Number(id),
       },
     });
   } catch (error) {

@@ -11,6 +11,7 @@ import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import FormImage from "../ui/FormImage";
 import ButtonImage from "../ui/ButtonImage";
+import AnimatedItem from "../lib/AnimatedItem";
 
 type FormItineraryProps = {
   buttonName: string;
@@ -41,7 +42,7 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const toggleDeleteModal = () => setIsModalOpen((prev) => !prev);
-  const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
+  const closeModal = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       toggleDeleteModal();
     }
@@ -146,7 +147,7 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
         </>
       )}
       {isModalOpen && (
-        <div
+        <AnimatedItem elementType="div" animation="fadeInAndScaleVariants"
           className="bg-gray-200 bg-opacity-40 fixed z-50 w-full  flex justify-center items-center inset-0"
           onClick={closeModal}
         >
@@ -225,7 +226,7 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
               </form>
             </div>
           </div>
-        </div>
+        </AnimatedItem>
       )}
     </>
   );

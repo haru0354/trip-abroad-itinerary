@@ -1,6 +1,9 @@
+"use Client";
+
 import SignupButton from "../ui/SignupButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import AnimatedItem from "../lib/AnimatedItem";
 
 type SectionCTAProps = {
   title: string;
@@ -20,36 +23,42 @@ const SectionCTA: React.FC<SectionCTAProps> = ({
   return (
     <>
       <div className="flex flex-col items-center justify-center bg-white py-6 px-4">
-        <h3 className="text-gray-700  w-[90%] py-2 text-2xl font-semibold border-b border-sky-700 text-center">
+        <AnimatedItem
+          elementType="h3"
+          animation="fadeInVariants"
+          className="text-gray-700  w-[90%] py-2 text-2xl font-semibold border-b border-sky-700 text-center"
+        >
           {title}
-        </h3>
-        <ul className="my-12 p-6 border border-dashed border-gray-500">
-          <li className="mb-4 text-red-500">
-            <FontAwesomeIcon
-              icon={faPenToSquare}
-              className="text-sky-700 mr-4"
-            />
-            {name1}
-          </li>
-          <li className="mb-4 text-red-500">
-            <FontAwesomeIcon
-              icon={faPenToSquare}
-              className="text-sky-700 mr-4"
-            />
-            {name2}
-          </li>
-          <li className="text-red-500">
-            <FontAwesomeIcon
-              icon={faPenToSquare}
-              className="text-sky-700 mr-4"
-            />
-            {name3}
-          </li>
-        </ul>
-        <p className="text-center text-gray-700 mb-6">{content}</p>
-        <div className="text-center py-4">
-          <SignupButton />
-        </div>
+        </AnimatedItem>
+        <AnimatedItem elementType="div" animation="fadeInAndScaleVariants">
+          <ul className="my-12 p-6 border border-dashed border-gray-500">
+            <li className="mb-4 text-red-500">
+              <FontAwesomeIcon
+                icon={faPenToSquare}
+                className="text-sky-700 mr-4"
+              />
+              {name1}
+            </li>
+            <li className="mb-4 text-red-500">
+              <FontAwesomeIcon
+                icon={faPenToSquare}
+                className="text-sky-700 mr-4"
+              />
+              {name2}
+            </li>
+            <li className="text-red-500">
+              <FontAwesomeIcon
+                icon={faPenToSquare}
+                className="text-sky-700 mr-4"
+              />
+              {name3}
+            </li>
+          </ul>
+          <p className="text-center text-gray-700 mb-6">{content}</p>
+          <div className="text-center py-4">
+            <SignupButton />
+          </div>
+        </AnimatedItem>
       </div>
     </>
   );

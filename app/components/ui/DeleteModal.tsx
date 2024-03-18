@@ -1,35 +1,33 @@
 "use client";
+
 import { useState } from "react";
 import Button from "../ui/Button";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import { deleteItineraryHome } from "@/app/action/action-ItineraryHome";
-
-type ItineraryHome = {
-  id: number;
-  name: string;
-};
 
 type DeleteModalProps = {
-  itineraryHome?: ItineraryHome | null;
+  DeleteName: string;
+  name: string | undefined;
+  formAction: (data: FormData) => Promise<{ message: string } | undefined>;
+  id: number | undefined;
   itineraryHomeId?: number | undefined;
+  userId?: number | undefined;
 };
 
-const DeleteItineraryHomeModal: React.FC<DeleteModalProps> = ({
-  itineraryHome,
+const DeleteModal: React.FC<DeleteModalProps> = ({
+  DeleteName,
+  name,
+  formAction,
   itineraryHomeId,
+  id,
+  userId,
 }) => {
-  if (!itineraryHome) {
-    return <p>削除対象の旅行がありません。</p>;
+  if (!id) {
+    return <p>削除対象の{DeleteName}がありません。</p>;
   }
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
-
-  const deleteItineraryHomeWithId = deleteItineraryHome.bind(
-    null,
-    itineraryHome.id
-  );
 
   const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
     if (e.target === e.currentTarget) {
@@ -38,7 +36,7 @@ const DeleteItineraryHomeModal: React.FC<DeleteModalProps> = ({
   };
 
   const deleteToast = () => {
-    toast.success("旅行を削除しました！");
+    toast.success(`${DeleteName}を削除しました！`);
   };
 
   return (
@@ -51,13 +49,13 @@ const DeleteItineraryHomeModal: React.FC<DeleteModalProps> = ({
             size="normal"
             className="rounded mt-4"
           >
-            旅行を削除
+            {DeleteName}を削除
           </Button>
         )}
       </div>
       {isDeleteModalOpen && (
         <div
-          className="bg-gray-200  bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
+          className="bg-gray-200 bg-opacity-40 fixed z-50 w-full h-full flex justify-center items-center inset-0"
           onClick={closeModal}
         >
           <div className="border rounded mx-auto bg-blue-100 w-[300px]">
@@ -70,7 +68,7 @@ const DeleteItineraryHomeModal: React.FC<DeleteModalProps> = ({
               />
             </div>
             <div className="my-6 text-center">
-              <p className="py-2 font-bold">「{itineraryHome.name}」を</p>
+              <p className="py-2 font-bold">「{name}」を</p>
               <p className="font-bold">削除しますか？</p>
             </div>
             <div className="pb-8">
@@ -83,13 +81,17 @@ const DeleteItineraryHomeModal: React.FC<DeleteModalProps> = ({
                 キャンセル
               </Button>
               <form onSubmit={deleteToast}>
-                <input
-                  type="hidden"
-                  name="itineraryHomeId"
-                  value={itineraryHomeId}
-                />
+                <input type="hidden" name="id" value={id} />
+                {itineraryHomeId && (
+                  <input
+                    type="hidden"
+                    name="itineraryHomeId"
+                    value={itineraryHomeId}
+                  />
+                )}
+                {userId && <input type="hidden" name="userId" value={userId} />}
                 <Button
-                  formAction={deleteItineraryHomeWithId}
+                  formAction={formAction}
                   color="red"
                   size="normal"
                   className="rounded mt-4"
@@ -105,4 +107,4 @@ const DeleteItineraryHomeModal: React.FC<DeleteModalProps> = ({
   );
 };
 
-export default DeleteItineraryHomeModal;
+export default DeleteModal;

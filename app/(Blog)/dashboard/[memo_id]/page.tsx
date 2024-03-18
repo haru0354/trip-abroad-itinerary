@@ -1,10 +1,15 @@
 import { Metadata } from "next";
-import FormDashboardMemo from "@/app/components/blog/dashboard/FormDashboardMemo";
-import DeleteDashboardMemoModal from "@/app/components/blog/dashboard/DeleteDashboardMemoModal";
-import prisma from "../../../components/lib/prisma";
-import { updateDashboardMemo } from "@/app/action/action-dashboard";
-import Button from "@/app/components/ui/Button";
 import Link from "next/link";
+import prisma from "../../../components/lib/prisma";
+
+import FormDashboardMemo from "@/app/components/blog/dashboard/FormDashboardMemo";
+import Button from "@/app/components/ui/Button";
+import DeleteModal from "@/app/components/ui/DeleteModal";
+
+import {
+  deleteDashboardMemo,
+  updateDashboardMemo,
+} from "@/app/action/action-dashboard";
 
 export const metadata: Metadata = {
   title: "個別のメモ",
@@ -32,7 +37,12 @@ const Page = async ({ params }: { params: { memo_id: string } }) => {
           キャンセル
         </Button>
       </Link>
-      <DeleteDashboardMemoModal dashboardMemo={dashboardMemo} />
+      <DeleteModal
+        DeleteName="メモ"
+        name={dashboardMemo?.name}
+        formAction={deleteDashboardMemo}
+        id={dashboardMemo?.id}
+      />
     </>
   );
 };

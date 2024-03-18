@@ -124,11 +124,13 @@ export const addCategory = async (state: FormState, data: FormData) => {
   redirect("/dashboard/category");
 };
 
-export const deleteCategory = async (id: number) => {
+export const deleteCategory = async (data: FormData) => {
+  const id = data.get("id") as string;
+
   try {
     await prisma.category.delete({
       where: {
-        id,
+        id: Number(id),
       },
     });
     console.log("カテゴリが正常に削除されました。");

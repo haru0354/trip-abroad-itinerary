@@ -1,6 +1,6 @@
 import NotFound from "@/app/NotFound";
-import ArticleContentArea from "@/app/components/blog/ArticleContentArea";
-import ArticleTop from "@/app/components/blog/ArticleTop";
+import ArticleContentArea from "@/app/components/blog/blogContent/ArticleContentArea";
+import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
 import prisma from "@/app/components/lib/prisma";
 
 const Page = async ({ params }: { params: { post_slug: string } }) => {

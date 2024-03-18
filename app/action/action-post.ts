@@ -129,11 +129,13 @@ export const addPost = async (state: FormState, data: FormData) => {
   redirect("/dashboard/post");
 };
 
-export const deletePost = async (id: number) => {
+export const deletePost = async (data: FormData) => {
+  const id = data.get("id") as string;
+
   try {
     await prisma.post.delete({
       where: {
-        id,
+        id: Number(id),
       },
     });
     console.log("記事が正常に削除されました。");

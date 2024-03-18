@@ -50,11 +50,13 @@ export const addDashboardMemo = async (state: FormState, data: FormData) => {
   }
 };
 
-export const deleteDashboardMemo = async (id: number) => {
+export const deleteDashboardMemo = async (data: FormData) => {
+  const id = data.get("id") as string;
+
   try {
     await prisma.dashboardMemo.delete({
       where: {
-        id,
+        id: Number(id),
       },
     });
   } catch (error) {

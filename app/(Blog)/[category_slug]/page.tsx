@@ -2,7 +2,7 @@ import NotFound from "@/app/NotFound";
 import Card from "@/app/components/blog/Card";
 import prisma from "@/app/components/lib/prisma";
 import Link from "next/link";
-import ArticleTop from "@/app/components/blog/ArticleTop";
+import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
 
 const page = async ({ params }: { params: { category_slug: string } }) => {
   const categorySlug = params.category_slug;
@@ -17,7 +17,12 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
     },
   });
 
-  if (!category || (!category.title && category.posts.length > 0 && category.posts.every(post => !post.draft))) {
+  if (
+    !category ||
+    (!category.title &&
+      category.posts.length > 0 &&
+      category.posts.every((post) => !post.draft))
+  ) {
     return (
       <>
         <NotFound />

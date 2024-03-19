@@ -32,7 +32,7 @@ const AnimatedImage: React.FC<AnimatedImageProps> = ({
       opacity: 1,
       x: "0%",
       transition: {
-        delay: delay || 0, 
+        delay: delay || 0,
         duration: 3,
       },
     },
@@ -44,21 +44,21 @@ const AnimatedImage: React.FC<AnimatedImageProps> = ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: delay || 0, 
+        delay: delay || 0,
         duration: 1.0,
       },
     },
   };
 
   const footerImage = {
-    hidden: { opacity: 0.9, x: "320%", y:  "-80%" },
+    hidden: { opacity: 0.7, x: "150%", y: "-80%" },
     visible: {
       opacity: 0,
       x: "-100%",
       y: "-300%",
       transition: {
-        delay: delay || 0, 
-        duration: 4,
+        delay: delay || 0,
+        duration: 3,
       },
     },
   };

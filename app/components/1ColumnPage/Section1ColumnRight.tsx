@@ -25,7 +25,7 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
       <AnimatedItem
         elementType="h3"
         animation="fadeInVariants"
-        className="text-gray-700 mb-6 w-[80%] flex justify-center pb-2 text-xl md:text-2xl font-semibold border-b text-center border-sky-700 mx-auto"
+        className="text-gray-700 my-6 w-[80%] flex justify-center pb-2 text-xl md:text-2xl font-semibold border-b text-center border-sky-700 border-dashed mx-auto"
       >
         {name}
       </AnimatedItem>

@@ -93,7 +93,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
               <div className="flex items-center justify-start md:justify-center border-b border-sky-600 text-xl text-center font-bold mb-1 mt-10">
                 {itinerary.date}
                 <AnimatedImage
-                  src="/55.png"
+                  src="/date-animation.png"
                   width="60"
                   height="60"
                   alt="旅行中の犬"

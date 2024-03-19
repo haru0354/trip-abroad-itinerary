@@ -38,17 +38,24 @@ const Section3ColumnImage: React.FC<Section3ColumnImageProps> = ({
           animation="fadeInVariants"
           className="my-6 flex flex-col  items-center max-w-[320px] min-w-[320px] rounded"
         >
-          <div className="min-h-[220px] max-h-[220px] border justify-centers">
-            <Image
-              src={image1Url}
-              alt={image1Alt}
-              width={310}
-              height={221}
+          <div className="min-h-[222px] max-h-[222px] border justify-centers">
+            <figure
               style={{
-                width: "310px",
-                height: "auto",
+                position: "relative",
+                width: "320px",
+                height: "220px",
               }}
-            />
+            >
+              <Image
+                src={image1Url}
+                alt={image1Alt}
+                fill
+                sizes="(max-hight: 220px)"
+                style={{
+                  objectFit: "cover",
+                }}
+              />
+            </figure>
           </div>
           <div className="min-h-[130px] ">
             <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
@@ -60,19 +67,27 @@ const Section3ColumnImage: React.FC<Section3ColumnImageProps> = ({
         <AnimatedItem
           elementType="div"
           animation="fadeInVariants"
+          delay={0.3}
           className="rounded my-6 flex flex-col mx-0 md:mx-8 items-center max-w-[320px] min-w-[320px]"
         >
-          <div className="min-h-[220px] max-h-[220px] border justify-centers">
-            <Image
-              src={image2Url}
-              alt={image2Alt}
-              width={310}
-              height={221}
+          <div className="min-h-[222px] max-h-[222px] border justify-centers">
+            <figure
               style={{
-                width: "310px",
-                height: "auto",
+                position: "relative",
+                width: "320px",
+                height: "220px",
               }}
-            />
+            >
+              <Image
+                src={image2Url}
+                alt={image2Alt}
+                fill
+                sizes="(max-hight: 220px)"
+                style={{
+                  objectFit: "cover",
+                }}
+              />
+            </figure>
           </div>
           <div className="min-h-[130px] ">
             <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
@@ -84,10 +99,27 @@ const Section3ColumnImage: React.FC<Section3ColumnImageProps> = ({
         <AnimatedItem
           elementType="div"
           animation="fadeInVariants"
+          delay={0.6}
           className="my-6 flex flex-col items-center max-w-[320px] min-w-[320px] rounded"
         >
-          <div className="min-h-[220px] max-h-[220px]  border  justify-centers">
-            <Image src={image3Url} alt={image3Alt} width={310} height={221} />
+          <div className="min-h-[222px] max-h-[222px]  border justify-centers">
+            <figure
+              style={{
+                position: "relative",
+                width: "320px",
+                height: "220px",
+              }}
+            >
+              <Image
+                src={image3Url}
+                alt={image3Alt}
+                fill
+                sizes="(max-hight: 220px)"
+                style={{
+                  objectFit: "cover",
+                }}
+              />
+            </figure>
           </div>
           <div className="min-h-[130px] ">
             <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">

@@ -19,6 +19,7 @@ const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
                   width={350}
                   height={90}
                   priority
+                  className="w-[220px] h-auto md:w-[350px] "
                 />
               </h1>
             ) : (

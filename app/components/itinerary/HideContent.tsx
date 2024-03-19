@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ButtonImage from "../ui/ButtonImage";
+import AnimatedItem from "../lib/AnimatedItem";
 
 type Itinerary = {
   hideContent: string | null;
@@ -25,9 +26,9 @@ const HideContent: React.FC<HideContentProps> = ({ itinerary }) => {
         <>
           {isShowContent ? (
             <>
-              <div className="border border-dashed border-gray-500 rounded p-4 mt-6">
+              <AnimatedItem elementType="div" animation="fadeInAndScaleVariants" className="border border-dashed border-gray-500 rounded p-4 mt-6">
                 <p className="text-gray-700">{itinerary?.hideContent}</p>
-              </div>
+              </AnimatedItem>
               <ButtonImage
                 onClick={toggleShowContent}
                 icon="up"

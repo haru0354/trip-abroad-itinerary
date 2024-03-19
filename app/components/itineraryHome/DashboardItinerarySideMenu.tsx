@@ -43,10 +43,10 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
               ダッシュボード
             </h3>
             <ul>
-              <Link href="/">
+              <Link href="/memorybook">
                 <li className="flex py-2 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
-                  ブログTOP
+                  TOPページ
                 </li>
               </Link>
               <Link href="/memorybook/home/">
@@ -123,8 +123,8 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
             >
               <p className="py-2 border-b text-white">ダッシュボード</p>
               <ul className="text-white">
-                <Link href="/">
-                  <li className="py-2 mx-4">ブログTOP</li>
+                <Link href="/memorybook">
+                  <li className="py-2 mx-4">TOPページ</li>
                 </Link>
                 <Link href="/memorybook/home/profile">
                   <li className="py-2 mx-4">プロフィール</li>

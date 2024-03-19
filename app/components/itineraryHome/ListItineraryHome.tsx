@@ -3,6 +3,7 @@ import Button from "../ui/Button";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
+import ButtonImage from "../ui/ButtonImage";
 
 type ListItineraryHomeProps = {
   userId?: number | undefined;
@@ -51,9 +52,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                 <h3 className="text-gray-700 mb-6 text-center text-xl font-semibold ">
                   タイトル：初海外旅行 in シンガポール
                 </h3>
-                出発日:03月08日
-                帰宅日:03月11日
-                旅行先：シンガポール
+                出発日:03月08日 帰宅日:03月11日 旅行先：シンガポール
               </div>
             </div>
           </div>
@@ -73,8 +72,20 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                 key={itineraryHome.id}
                 className="flex flex-col items-center max-w-[370px] "
               >
+                <div className="ml-auto pr-4">
+                  <Link href={`/memorybook/${itineraryHome.id}`}>
+                    <ButtonImage
+                      className="rounded py-1"
+                      size="small"
+                      icon="pen"
+                      iconClassName="mr-2"
+                    >
+                      編集
+                    </ButtonImage>
+                  </Link>
+                </div>
                 <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
-                  <div className="border-2 border-sky-600 rounded mx-5 my-6 px-8 py-6 flex flex-col min-w-[340px] min-h-[300px] hover:bg-sky-200">
+                  <div className="border-2 border-sky-600 rounded mx-5 mb-10 px-8 pt-6 flex flex-col min-w-[340px] min-h-[300px] hover:bg-sky-200">
                     <span className="text-blue-500  flex justify-center mb-6">
                       <FontAwesomeIcon
                         icon={faPlaneDeparture}
@@ -91,12 +102,10 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                       <li>帰宅日：{itineraryHome.endDate}</li>
                       <li>旅行先：{itineraryHome.destination}</li>
                     </ul>
+                    <p className=" min-w-[100px] px-6 py-1 mt-5 mx-auto shadow font-bold  text-white border rounded border-sky-900 bg-sky-700"> 
+                      旅程表へ
+                    </p>
                   </div>
-                </Link>
-                <Link href={`/memorybook/${itineraryHome.id}`}>
-                  <Button color="blue" size="normal">
-                    編集
-                  </Button>
                 </Link>
               </div>
             );

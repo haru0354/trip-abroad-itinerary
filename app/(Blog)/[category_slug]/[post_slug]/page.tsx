@@ -2,6 +2,7 @@ import NotFound from "@/app/NotFound";
 import ArticleContentArea from "@/app/components/blog/blogContent/ArticleContentArea";
 import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
 import prisma from "@/app/components/lib/prisma";
+import Breadcrumbs from "@/app/components/blog/Breadcrumbs";
 
 const Page = async ({ params }: { params: { post_slug: string } }) => {
   const postSlug = params.post_slug;
@@ -12,6 +13,7 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
     },
     include: {
       postImage: true,
+      category: true,
     },
   });
 
@@ -27,12 +29,16 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
   const formattedCreatedDate = new Date(post.createdDate).toLocaleDateString();
 
   return (
-    <div>
+    <>
+      <Breadcrumbs
+        categoryName={post?.category.name}
+        categorySlug={post?.category.slug}
+      />
       <h1>{post.title}</h1>
       <ArticleTop src={post.postImage?.url} alt={post.postImage?.altText} />
       <p className="text-gray-500 mb-5">記事の投稿日：{formattedCreatedDate}</p>
       <ArticleContentArea content={post.content} />
-    </div>
+    </>
   );
 };
 

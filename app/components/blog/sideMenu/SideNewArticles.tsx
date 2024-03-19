@@ -35,12 +35,13 @@ const SideNewArticles = async () => {
                         src={post.postImage.url}
                         alt={post.postImage.altText}
                         width={240}
-                        height={140}
+                        height={160}
                         style={{
                           width: "240px",
                           height: "auto",
+                          aspectRatio: "240 / 160",
                         }}
-                        className="block mx-auto"
+                        className="block mx-auto max-h-[160px]"
                       />
                     )}
                   {post.title && post.title.length > 36 ? (

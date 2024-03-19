@@ -9,10 +9,11 @@
 }
 body {
   line-height: 1.7rem;
+  color: rgb(75 85 99);
 }
 
 p {
-  margin-bottom: 1.4rem ;
+  margin-bottom: 1.4rem;
 }
 
 main {

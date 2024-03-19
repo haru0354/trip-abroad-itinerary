@@ -29,7 +29,7 @@ const FooterItinerary: React.FC<FooterItineraryProps> = ({
           <li className="mb-2 text-blue-800">
             <Link href="/privacypolicy">プライバシーポリシー・免責事項</Link>
           </li>
-          <li className="">
+          <li className="text-black">
             &copy;英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」
           </li>
         </ul>

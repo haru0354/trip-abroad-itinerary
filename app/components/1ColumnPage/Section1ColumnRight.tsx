@@ -35,16 +35,23 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
         className="flex justify-center w-full py-1 md:py-4 mb-4 rounded flex-wrap"
       >
         <div className="w-full flex justify-center items-center py-4 max-w-[400px] ">
-          <Image
-            src={src}
-            alt={alt}
-            width={360}
-            height={261}
+          <figure
             style={{
+              position: "relative",
               width: "360px",
-              height: "auto",
+              height: "260px",
             }}
-          />
+          >
+            <Image
+              src={src}
+              alt={alt}
+              fill
+              sizes="(max-hight: 220px)"
+              style={{
+                objectFit: "cover",
+              }}
+            />
+          </figure>
         </div>
         <div className="w-full py-2 md:py-8 md:mx-6 max-w-[400px] justify-center items-center">
           <p className="text-gray-700 mb-6">{content}</p>

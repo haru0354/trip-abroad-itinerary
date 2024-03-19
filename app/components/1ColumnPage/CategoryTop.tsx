@@ -12,9 +12,11 @@ const CategoryTop = async () => {
     },
   });
 
+  const sortedCategories = categories.sort((a, b) => a.id - b.id);
+
   return (
     <div className="flex w-full my-8 flex-wrap items-center justify-center">
-      {categories.map((category) => {
+      {sortedCategories.map((category) => {
         if (
           !category ||
           ((!category.title || category.title === "") &&
@@ -81,8 +83,8 @@ const CategoryTop = async () => {
                   </h3>
                   <p className="text-gray-600 my-2">
                     {category.description &&
-                    category.description.length > 60 ? (
-                      <>{category.description.slice(0, 60)}...</>
+                    category.description.length > 56 ? (
+                      <>{category.description.slice(0, 56)}...</>
                     ) : (
                       <>{category.description}</>
                     )}

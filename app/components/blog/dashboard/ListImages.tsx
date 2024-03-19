@@ -1,13 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 import prisma from "../../lib/prisma";
-import Image from "next/image";
 
 const ListImages = async () => {
   const images = await prisma.postImage.findMany();
+  const sortedImages = images.sort((a,b) => b.id - a.id)
 
   return (
     <div className="flex flex-wrap w-full">
-      {images.map((image) => {
+      {sortedImages.map((image) => {
         return (
           <Link href={`/dashboard/image/${image.id}`} key={image.id}>
             <div className="mx-4 my-4">

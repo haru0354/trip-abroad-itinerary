@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
@@ -121,6 +122,7 @@ export const addPost = async (state: FormState, data: FormData) => {
     await prisma.post.create({
       data: postData,
     });
+    revalidatePath(`/dashboard/post`);
     console.log("記事の登録に成功しました。");
   } catch (error) {
     console.error("記事を投稿する際にエラーが発生しました", error);
@@ -138,6 +140,7 @@ export const deletePost = async (data: FormData) => {
         id: Number(id),
       },
     });
+    revalidatePath(`/dashboard/post`);
     console.log("記事が正常に削除されました。");
   } catch (error) {
     console.error("記事の削除中にエラーが発生しました:", error);
@@ -236,6 +239,7 @@ export const updatePost = async (
       },
       data: postData,
     });
+    revalidatePath(`/dashboard/post`);
     console.log("記事が正常に編集されました。");
   } catch (error) {
     console.error("記事を編集する際にエラーが発生しました", error);

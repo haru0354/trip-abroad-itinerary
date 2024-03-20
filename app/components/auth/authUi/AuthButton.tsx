@@ -7,7 +7,6 @@ type ButtonProps = {
   del?:  boolean;
   className?: string;
   label?: string;
-  
 };
 
 const AuthButton: React.FC<ButtonProps> = ({

@@ -58,7 +58,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
                 {post.title}
               </h3>
             )}
-            <p>
+            <p className="text-gray-600">
               {post.description.length > 72
                 ? `${post.description.slice(0, 72)}...`
                 : post.description}

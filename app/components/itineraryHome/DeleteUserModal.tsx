@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Button from "../ui/Button";
 import Image from "next/image";
@@ -9,14 +10,14 @@ type DeleteModalProps = {
 };
 
 const DeleteUserModal: React.FC<DeleteModalProps> = ({ userId }) => {
-  if (!userId) {
-    return <p>削除対象のアカウントがありません。</p>;
-  }
-
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
 
   const deleteUserWithId = deleteUser.bind(null, userId);
+
+  if (!userId) {
+    return <p>削除対象のアカウントがありません。</p>;
+  }
 
   const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
     if (e.target === e.currentTarget) {

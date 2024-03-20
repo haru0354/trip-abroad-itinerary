@@ -1,4 +1,3 @@
-
 import TextareaAutosize from 'react-textarea-autosize';
 
 type TextAreaProps = {

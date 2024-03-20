@@ -22,12 +22,12 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
   id,
   userId,
 }) => {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
+
   if (!id) {
     return <p>削除対象の{DeleteName}がありません。</p>;
   }
-
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-  const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
 
   const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
     if (e.target === e.currentTarget) {
@@ -61,7 +61,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
           <div className="border rounded mx-auto bg-blue-100 w-[300px]">
             <div>
               <Image
-                src="/delete-modal01.JPG"
+                src="/delete-modal01.jpg"
                 alt="削除する"
                 width={300}
                 height={250}

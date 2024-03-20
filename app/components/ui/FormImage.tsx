@@ -87,8 +87,9 @@ const FormImage: React.FC<FormImageProps> = ({
               <p className="text-lg font-bold border-b pb-2 mb-6 bold text-gray-900">
                 保存する画像
               </p>
-              <img
+              <Image
                 src={image.preview}
+                alt="保存する画像"
                 width="300"
                 height="300"
                 className="pb-2 mb-6"

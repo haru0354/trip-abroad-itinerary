@@ -3,6 +3,7 @@ import Card from "@/app/components/blog/Card";
 import prisma from "@/app/components/lib/prisma";
 import Link from "next/link";
 import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
+import Breadcrumbs from "@/app/components/blog/Breadcrumbs";
 
 const page = async ({ params }: { params: { category_slug: string } }) => {
   const categorySlug = params.category_slug;
@@ -33,6 +34,11 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
 
   return (
     <>
+      <Breadcrumbs
+        categoryName={category?.name}
+        categorySlug={category.slug}
+        isCategoryDirectory={true}
+      />
       {category?.title ? (
         <h1>{category?.title}</h1>
       ) : (

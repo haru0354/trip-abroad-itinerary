@@ -1,4 +1,5 @@
 "use server";
+
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
@@ -59,6 +60,7 @@ export const deleteDashboardMemo = async (data: FormData) => {
         id: Number(id),
       },
     });
+    revalidatePath("/dashboard");
   } catch (error) {
     console.error("メモの削除中にエラーが発生しました:", error);
     return { message: "メモの削除中にエラーが発生しました" };

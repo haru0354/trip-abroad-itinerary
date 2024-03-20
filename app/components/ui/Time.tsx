@@ -1,8 +1,6 @@
-
 type TimeProps = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-
 };
 
 const Time: React.FC<TimeProps> = ({ value, onChange }) => {

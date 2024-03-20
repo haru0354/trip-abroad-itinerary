@@ -7,6 +7,9 @@
     flex-direction: column;
   }
 }
+
+/* 共通デザイン */
+
 body {
   line-height: 1.7rem;
   color: rgb(75 85 99);
@@ -43,6 +46,12 @@ h2 {
   font-weight: bold;
   color: #ffffff;
   border-radius: 0.25rem;
+}
+
+/* ブログのコンテンツエリアのデザイン */
+
+.blog a {
+  color: #2a7bdf;
 }
 
 .blog h1 {
@@ -85,8 +94,4 @@ h2 {
   color: #4a5568;
   margin-bottom: 1rem;
   border: none;
-}
-
-.blog a {
-  color: blue;
 }

@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
@@ -116,6 +117,9 @@ export const addCategory = async (state: FormState, data: FormData) => {
     await prisma.category.create({
       data: CategoryData,
     });
+    revalidatePath(`/dashboard/category`);
+    revalidatePath(`/`);
+
     console.log("カテゴリの登録に成功しました。");
   } catch (error) {
     console.error("カテゴリを追加する際にエラーが発生しました");
@@ -133,6 +137,9 @@ export const deleteCategory = async (data: FormData) => {
         id: Number(id),
       },
     });
+    revalidatePath(`/dashboard/category`);
+    revalidatePath(`/`);
+
     console.log("カテゴリが正常に削除されました。");
   } catch (error) {
     console.error("カテゴリの削除中にエラーが発生しました:", error);
@@ -230,6 +237,9 @@ export const updateCategory = async (
       },
       data: CategoryData,
     });
+    revalidatePath(`/dashboard/category`);
+    revalidatePath(`/`);
+
     console.log("カテゴリが正常に編集されました。");
   } catch (error) {
     console.error("カテゴリを編集する際にエラーが発生しました");

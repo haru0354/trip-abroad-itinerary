@@ -1,7 +1,9 @@
 import prisma from "../../lib/prisma";
 import Link from "next/link";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+
 import ButtonImage from "../../ui/ButtonImage";
 import React from "react";
 

@@ -5,16 +5,18 @@ import Link from "next/link";
 const ListCategory = async () => {
   const categories = await prisma.category.findMany();
 
+  const sortedCategories = categories.sort((a, b) => a.id - b.id);
+
   return (
     <>
       <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
         カテゴリの一覧
       </h2>
       <div className="flex flex-col border border-gray-500 sm:flex-row py-4 items-center w-full sm:w-auto">
-        <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[120px]">
+        <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[180px]">
           カテゴリ名
         </p>
-        <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[120px]">
+        <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[160px]">
           スラッグ
         </p>
         <p className=" flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">
@@ -22,22 +24,26 @@ const ListCategory = async () => {
         </p>
       </div>
       <div className="mb-10">
-        {categories.map((category) => {
+        {sortedCategories.map((category) => {
           return (
             <div
               key={category.id}
               className="flex justify-between flex-col sm:flex-row border-b border-gray-500 w-full"
             >
               <div className="flex flex-col  sm:flex-row py-4 items-center w-full sm:w-auto">
-                <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[120px]">
-                  {category.name}
+                <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[180px]">
+                  {category.name.length > 9
+                    ? `${category.name.slice(0, 9)}...`
+                    : category.name}
                 </p>
-                <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[120px]">
-                  {category.slug}
+                <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[160px]">
+                  {category.slug.length > 14
+                    ? `${category.slug.slice(0, 14)}...`
+                    : category.slug}
                 </p>
-                <p className="mb-0 px-2 w-full sm:w-auto min-w-[250px] max-w-[650px]">
-                  {category.description && category.description.length > 72
-                    ? `${category.description.slice(0, 72)}...`
+                <p className="mb-0 px-2 w-full sm:w-auto min-w-[250px] max-w-[560px]">
+                  {category.description && category.description.length > 33
+                    ? `${category.description.slice(0, 33)}...`
                     : category.description}
                 </p>
               </div>

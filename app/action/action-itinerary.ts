@@ -282,5 +282,4 @@ export const showContent = async (data: FormData) => {
       isShowContent,
     },
   });
-  revalidatePath("/memorybook/itinerary");
 };

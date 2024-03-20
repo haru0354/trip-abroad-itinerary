@@ -1,6 +1,7 @@
-import prisma from "@/app/components/lib/prisma";
-import Button from "../../ui/Button";
 import Link from "next/link";
+import prisma from "@/app/components/lib/prisma";
+
+import Button from "../../ui/Button";
 
 const ListPost = async () => {
   const posts = await prisma.post.findMany({
@@ -9,16 +10,18 @@ const ListPost = async () => {
     },
   });
 
+  const sortedPosts = posts.sort((a, b) => b.id - a.id);
+
   return (
     <>
       <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
         記事の一覧
       </h2>
       <div className="flex flex-col border border-gray-500 sm:flex-row py-4 items-center w-full sm:w-auto">
-        <p className="sm:border-r border-gray-500  w-full px-2 mb-0 sm:w-auto min-w-[120px]">
+        <p className="sm:border-r border-gray-500  w-full px-2 mb-0 sm:w-auto min-w-[100px]">
           投稿日
         </p>
-        <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2  sm:w-auto min-w-[120px]">
+        <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2  sm:w-auto min-w-[174px]">
           カテゴリ
         </p>
         <p className=" flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">
@@ -26,7 +29,7 @@ const ListPost = async () => {
         </p>
       </div>
       <div className="mb-10">
-        {posts.map((post) => {
+        {sortedPosts.map((post) => {
           const formattedCreatedDate = new Date(
             post.createdDate
           ).toLocaleDateString();
@@ -36,15 +39,15 @@ const ListPost = async () => {
               className="flex justify-between flex-col sm:flex-row border-b border-gray-500 w-full"
             >
               <div className="flex flex-col  sm:flex-row py-4 items-center w-full sm:w-auto">
-                <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[120px]">
+                <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[100px]">
                   {formattedCreatedDate}
                 </p>
-                <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[120px]">
-                  {post.category.name}
+                <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[174px]">
+                  {post.category.name.length > 9 ? `${post.category.name.slice(0, 9)}...` : post.category.name }
                 </p>
                 <p className="mb-0 px-2 w-full sm:w-auto min-w-[250px] max-w-[650px]">
-                  {post.title && post.title.length > 36
-                    ? `${post.title.slice(0, 36)}...`
+                  {post.title && post.title.length > 33
+                    ? `${post.title.slice(0, 33)}...`
                     : post.title}
                 </p>
               </div>

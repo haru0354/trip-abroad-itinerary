@@ -1,6 +1,7 @@
 import Link from "next/link";
-import prisma from "../lib/prisma";
 import Image from "next/image";
+import prisma from "../lib/prisma";
+
 import AnimatedItem from "../lib/AnimatedItem";
 
 const NewArticleTop = async () => {
@@ -14,9 +15,12 @@ const NewArticleTop = async () => {
       postImage: true,
     },
   });
+
+  const sortedPosts = posts.sort((a, b) => b.id - a.id);
+
   return (
     <div className="flex w-full my-8 flex-wrap items-center justify-center">
-      {posts.map((post) => {
+      {sortedPosts.map((post) => {
         return (
           post.draft && (
             <AnimatedItem

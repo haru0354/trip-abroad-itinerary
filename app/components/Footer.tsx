@@ -1,5 +1,4 @@
 import Link from "next/link";
-import AnimatedImage from "./lib/AnimatedImage";
 
 const Footer = () => {
   return (
@@ -8,14 +7,6 @@ const Footer = () => {
       style={{ backgroundImage: "url('/footer-image.png')" }}
     >
       <div className="flex-grow"></div>
-      <AnimatedImage
-        src="/footer-animation.png"
-        alt="飛行機"
-        width="90"
-        height="45"
-        animation="footerImage"
-        className="mx-auto"
-      />
       <div className="bg-blue-500 h-[65px] w-full flex items-end justify-center">
         <ul className="text-xs text-center mb-3">
           <li className="mb-2 text-blue-800">

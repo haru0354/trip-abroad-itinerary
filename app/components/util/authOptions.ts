@@ -7,7 +7,10 @@ import prisma from "@/app/components/lib/prisma";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
-  session: { strategy: "jwt" },
+  session: {
+    maxAge: 3 * 24 * 60 * 60, // 3日間
+    strategy: "jwt",
+  },
 
   providers: [
     Google({

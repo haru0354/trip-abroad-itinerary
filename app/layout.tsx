@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Noto_Sans_JP } from "next/font/google";
-
-export const notoSansJp = Noto_Sans_JP({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  display: "swap",
-});
+import { notoSansJp } from "./components/util/Font";
 
 export const metadata: Metadata = {
   title: "英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」",

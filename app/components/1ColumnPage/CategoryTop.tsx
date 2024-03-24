@@ -20,7 +20,6 @@ const CategoryTop = async () => {
         if (
           !category ||
           ((!category.title || category.title === "") &&
-            category.posts.length > 0 &&
             category.posts.every((post) => !post.draft))
         ) {
           return null;

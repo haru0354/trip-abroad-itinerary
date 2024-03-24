@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import { Noto_Sans_JP } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+export const notoSansJp = Noto_Sans_JP({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」",
@@ -17,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="jp">
-      <body className={inter.className}>{children}</body>
+      <body className={notoSansJp.className}>{children}</body>
     </html>
   );
 }

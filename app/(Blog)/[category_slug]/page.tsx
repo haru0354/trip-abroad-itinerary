@@ -21,7 +21,6 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
   if (
     !category ||
     (!category.title &&
-      category.posts.length > 0 &&
       category.posts.every((post) => !post.draft))
   ) {
     return (

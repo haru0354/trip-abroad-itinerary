@@ -39,10 +39,6 @@ export default function Home() {
           <Section bgColor="bg-white" name="カテゴリ">
             <CategoryTop />
           </Section>
-          <h2 className="text-center">カテゴリ</h2>
-          ここにカテゴリを3列で表示
-          <Link href="./dashboard/">ブログ管理</Link>
-          <Link href="./admin/">ブログログイン</Link>
         </div>
       </main>
       <Footer />

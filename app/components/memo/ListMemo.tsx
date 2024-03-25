@@ -48,7 +48,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
         <p className="pt-6 text-gray-700">サンプル</p>
         <div className="bg-sky-50 shadow-md rounded px-8 py-8 mb-10 ">
           <div className="border-b border-gray-400 pb-2">
-            <h3 className="text-center font-bold text-gray-700">
+            <h3 className="text-center font-semibold text-gray-700">
               海外旅行保険の連絡先
             </h3>
           </div>
@@ -84,7 +84,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
             </Link>
             <div className="bg-gray-50 border border-gray-200 shadow-md rounded px-8 py-5 mb-10 ">
               <div className="border-b border-gray-300">
-                <h3 className="text-center font-bold text-gray-700">
+                <h3 className="text-center font-semibold text-gray-700">
                   {memo.name}
                 </h3>
               </div>

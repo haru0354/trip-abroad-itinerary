@@ -17,7 +17,7 @@ const ListProfile: React.FC<ListProfileProps> = async ({
       <h2>プロフィール</h2>
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px]">
-          <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-bold">
+          <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-semibold">
             プロフィール
           </p>
           <p className=" block text-gray-600 text-sm font-bold mb-1 mt-7">

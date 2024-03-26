@@ -8,8 +8,10 @@ const Share = () => {
   const path = usePathname();
   const [copied, setCopied] = useState(false);
 
+  const fullPath = `https://www.travel-memory-life.com${path}`;
+
   const handleCopy = () => {
-    navigator.clipboard.writeText(path);
+    navigator.clipboard.writeText(fullPath);
     setCopied(true);
   };
 
@@ -18,7 +20,7 @@ const Share = () => {
       <div className="p-4 mt-20 mb-8 mx-10 border border-dashed border-gray-500">
         <div className="block mx-auto">
           <p className="p-4 mx-auto bg-gray-200 border-b border-gray-500 mb-6">
-            {path}
+            {fullPath}
           </p>
           <Button
             onClick={handleCopy}

@@ -1,4 +1,3 @@
-import AnimatedImage from "./lib/AnimatedImage";
 import Link from "next/link";
 
 type FooterItineraryProps = {
@@ -16,17 +15,9 @@ const FooterItinerary: React.FC<FooterItineraryProps> = ({
       style={{ backgroundImage: "url('/footer-image.png')" }}
     >
       <div className="flex-grow"></div>
-      <AnimatedImage
-        src="/footer-animation.png"
-        alt="飛行機"
-        width="90"
-        height="45"
-        animation="footerImage"
-        className="mx-auto"
-      />
       <div className="bg-blue-500 h-[65px] w-full flex items-end justify-center">
         <ul className="text-xs text-center mb-3">
-          <li className="mb-2 text-blue-800">
+          <li className="mb-2 text-gray-300">
             <Link href="/privacypolicy">プライバシーポリシー・免責事項</Link>
           </li>
           <li className="text-black">

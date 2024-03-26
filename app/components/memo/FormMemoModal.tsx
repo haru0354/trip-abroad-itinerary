@@ -7,8 +7,6 @@ import TextArea from "../ui/TextArea";
 import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { addMemo } from "@/app/action/action-memo";
 import ButtonImage from "../ui/ButtonImage";
 import AnimatedItem from "../lib/AnimatedItem";

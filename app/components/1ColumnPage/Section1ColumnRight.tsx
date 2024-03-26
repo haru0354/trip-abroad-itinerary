@@ -34,7 +34,7 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
         animation="fadeInAndScaleVariants"
         className="flex justify-center w-full py-1 md:py-4 mb-4 rounded flex-wrap"
       >
-        <div className="w-full flex justify-center items-center py-4 max-w-[400px] ">
+        <div className="w-full flex justify-center items-center py-4 max-w-[400px]">
           <figure
             style={{
               position: "relative",
@@ -50,6 +50,7 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
               style={{
                 objectFit: "cover",
               }}
+              className=" border border-gray-200"
             />
           </figure>
         </div>

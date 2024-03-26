@@ -1,22 +1,14 @@
 import { addItinerary } from "@/app/action/action-itinerary";
-import ListItinerary from "@/app/components/itinerary/ListItinerary";
-import prisma from "@/app/components/lib/prisma";
 import getCurrentUser from "@/app/action/getCurrentUser";
+
+import ListItinerary from "@/app/components/itinerary/ListItinerary";
 import FormItineraryModal from "@/app/components/itinerary/FormItineraryModal";
+import { getItineraryHome } from "@/app/components/lib/MemoryBookService";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
-  const id = Number(params.itineraryHome_id);
+  const itineraryHome = await getItineraryHome(params.itineraryHome_id, "itineraries");
   const currentUser = await getCurrentUser();
   const userId = currentUser?.id;
-
-  const itineraryHome = await prisma.itineraryHome.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      itineraries: true,
-    },
-  });
 
   return (
     <>

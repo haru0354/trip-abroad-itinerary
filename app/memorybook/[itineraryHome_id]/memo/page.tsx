@@ -1,18 +1,9 @@
 import ListMemo from "@/app/components/memo/ListMemo";
 import FormMemoModal from "@/app/components/memo/FormMemoModal";
-import prisma from "@/app/components/lib/prisma";
+import { getItineraryHome } from "@/app/components/lib/MemoryBookService";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
-  const id = Number(params.itineraryHome_id);
-
-  const itineraryHome = await prisma.itineraryHome.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      memos: true,
-    },
-  });
+  const itineraryHome = await getItineraryHome(params.itineraryHome_id, "memos");
 
   return (
     <>

@@ -13,7 +13,6 @@ import Manual from "../manual";
 import AnimatedItem from "../lib/AnimatedItem";
 import AnimatedImage from "../lib/AnimatedImage";
 
-
 type ListItineraryProps = {
   itineraryHomeId: number | undefined;
   itineraries: Itineraries[] | undefined;
@@ -66,16 +65,17 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
             }}
           />
         </div>
-        <p className="pt-6 text-gray-700">サンプル</p>
+        <p className="pt-6 text-gray-700 font-bold text-center">サンプル</p>
         <Image
-          src="/itinerary_sample.JPG"
+          src="/sample-itinerary.jpg"
           alt="旅程表のサンプル"
-          width={778}
-          height={715}
+          width={480}
+          height={330}
           style={{
-            width: "100%",
+            width: "480px",
             height: "auto",
           }}
+          className="mx-auto block"
         />
       </>
     );

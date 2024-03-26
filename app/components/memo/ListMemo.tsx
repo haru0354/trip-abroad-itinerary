@@ -28,7 +28,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
         <Manual
           title="メモの使い方"
           content1="このページでは様々なメモを登録することができます。"
-          content2="使い方はあなた次第です。まずは試しに登録をしてみてください。"
+          content2="などなど、使い方はあなた次第です。まずは試しに登録をしてみてください。"
           li1="旅行前の準備(用意する物・やらなければいけない事)"
           li2="旅行中のメモ(海外旅行保険の連絡先・購入予定のお土産)"
         />
@@ -43,9 +43,10 @@ const ListMemo: React.FC<ListMemoProps> = async ({
               width: "347px",
               height: "auto",
             }}
+            className="border border-gray-300"
           />
         </div>
-        <p className="pt-6 text-gray-700">サンプル</p>
+        <p className="pt-6 text-gray-700 font-bold text-center">サンプル</p>
         <div className="bg-sky-50 shadow-md rounded px-8 py-8 mb-10 ">
           <div className="border-b border-gray-400 pb-2">
             <h3 className="text-center font-semibold text-gray-700">

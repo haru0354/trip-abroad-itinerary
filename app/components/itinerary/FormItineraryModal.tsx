@@ -147,7 +147,7 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
         </>
       )}
       {isModalOpen && (
-        <AnimatedItem elementType="div" animation="fadeInAndScaleVariants"
+        <AnimatedItem elementType="div" animation="fadeInVariants"
           className="bg-gray-200 bg-opacity-40 fixed z-50 w-full  flex justify-center items-center inset-0"
           onClick={closeModal}
         >

@@ -19,6 +19,7 @@ const HeaderItinerary: React.FC<HeaderItineraryProps> = ({ currentUser }) => {
               width="220"
               height="52"
               priority
+              className="w-[160px] h-auto md:w-[220px] "
             />
           </h1>
         </Link>

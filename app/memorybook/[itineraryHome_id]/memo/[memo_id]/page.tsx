@@ -1,9 +1,9 @@
 import Link from "next/link";
-import prisma from "@/app/components/lib/prisma";
 
 import FormMemo from "@/app/components/memo/FormMemo";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 import Button from "@/app/components/ui/Button";
+import { getItineraryHome, getMemo } from "@/app/components/lib/MemoryBookService";
 
 import { deleteMemo } from "@/app/action/action-memo";
 import { updateMemo } from "@/app/action/action-memo";
@@ -15,19 +15,13 @@ const Page = async ({
   params: { memo_id: string; itineraryHome_id: string };
 }) => {
   const id = Number(params.memo_id);
-  const itineraryHomeId = Number(params.itineraryHome_id);
 
-  const itineraryHome = await prisma.itineraryHome.findUnique({
-    where: {
-      id: itineraryHomeId,
-    },
-  });
+  const itineraryHome = await getItineraryHome(params.itineraryHome_id);
+  const memo = await getMemo(params.memo_id);
 
-  const memo = await prisma.memo.findUnique({
-    where: {
-      id,
-    },
-  });
+  if (!itineraryHome) {
+    return <div>旅行データが見つかりません。</div>;
+  }
 
   const updateMemoWidthId = updateMemo.bind(null, id);
 
@@ -40,9 +34,9 @@ const Page = async ({
         formAction={updateMemoWidthId}
         memo={memo}
         buttonName="保存"
-        itineraryHomeId={itineraryHomeId}
+        itineraryHomeId={itineraryHome.id}
       />
-      <Link href={`/memorybook/${itineraryHomeId}/memo`}>
+      <Link href={`/memorybook/${itineraryHome.id}/memo`}>
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル
         </Button>
@@ -50,7 +44,7 @@ const Page = async ({
       <DeleteModal
         DeleteName="メモ"
         name={memo?.name}
-        itineraryHomeId={itineraryHomeId}
+        itineraryHomeId={itineraryHome.id}
         formAction={deleteMemo}
         id={memo?.id}
       />

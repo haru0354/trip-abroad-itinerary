@@ -1,9 +1,12 @@
 import Link from "next/link";
-import prisma from "@/app/components/lib/prisma";
 
 import FormItinerary from "@/app/components/itinerary/FormItinerary";
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
+import {
+  getItineraryHome,
+  getItinerary,
+} from "@/app/components/lib/MemoryBookService";
 
 import { updateItinerary } from "@/app/action/action-itinerary";
 import { deleteItinerary } from "@/app/action/action-itinerary";
@@ -15,23 +18,17 @@ const page = async ({
   params: { itinerary_id: string; itineraryHome_id: string };
 }) => {
   const id = Number(params.itinerary_id);
-  const itineraryHomeId = Number(params.itineraryHome_id);
-
   const updateItineraryWithId = updateItinerary.bind(null, id);
-  const itinerary = await prisma.itinerary.findUnique({
-    where: {
-      id,
-    },
-  });
 
-  const itineraryHome = await prisma.itineraryHome.findUnique({
-    where: {
-      id: itineraryHomeId,
-    },
-  });
+  const itineraryHome = await getItineraryHome(params.itineraryHome_id);
+  const itinerary = await getItinerary(params.itinerary_id);
 
   const currentUser = await getCurrentUser();
   const userId = currentUser?.id;
+
+  if (!itineraryHome) {
+    return <div>旅行データが見つかりません。</div>;
+  }
 
   return (
     <>
@@ -42,10 +39,10 @@ const page = async ({
         itinerary={itinerary}
         formAction={updateItineraryWithId}
         buttonName="保存"
-        itineraryHomeId={itineraryHomeId}
+        itineraryHomeId={itineraryHome.id}
         userId={userId}
       />
-      <Link href={`/memorybook/${itineraryHomeId}/itinerary`}>
+      <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル
         </Button>
@@ -53,7 +50,7 @@ const page = async ({
       <DeleteModal
         DeleteName="旅程"
         name={itinerary?.name}
-        itineraryHomeId={itineraryHomeId}
+        itineraryHomeId={itineraryHome.id}
         formAction={deleteItinerary}
         id={itinerary?.id}
         userId={userId}

@@ -62,7 +62,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
 
   return (
     <>
-      <h2>メモの一覧</h2>
+      <h2 className="text-center">メモの一覧</h2>
       {sortedMemos?.map((memo) => {
         return (
           <AnimatedItem

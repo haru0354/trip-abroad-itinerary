@@ -18,6 +18,7 @@ const HeaderItinerary: React.FC<HeaderItineraryProps> = ({ currentUser }) => {
               alt="国内旅行・海外旅行の旅程表作成しおりアプリ「旅のメモリーブック」"
               width="220"
               height="52"
+              priority
             />
           </h1>
         </Link>

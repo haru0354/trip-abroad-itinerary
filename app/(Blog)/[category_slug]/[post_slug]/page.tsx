@@ -6,7 +6,7 @@ import Breadcrumbs from "@/app/components/blog/Breadcrumbs";
 import { getPost } from "@/app/components/lib/BlogServiceUnique";
 
 const Page = async ({ params }: { params: { post_slug: string } }) => {
-  const post = await getPost(params.post_slug);
+  const post = await getPost("slug", params.post_slug, "categoryAndPostImage");
 
   if (!post || post.draft === false) {
     return (

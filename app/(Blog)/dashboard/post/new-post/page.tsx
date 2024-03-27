@@ -1,12 +1,11 @@
 import { addPost } from "@/app/action/action-post";
+
 import FormPost from "@/app/components/blog/dashboard/FormPost";
-import Button from "@/app/components/ui/Button";
-import Link from "next/link";
-import prisma from "@/app/components/lib/prisma";
+import { getCategories } from "@/app/components/lib/BlogServiceMany";
 
 const page = async () => {
-  const categories = await prisma.category.findMany();
-
+  const categories = await getCategories()
+  
   return (
     <>
       <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">

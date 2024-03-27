@@ -8,7 +8,7 @@ import Breadcrumbs from "@/app/components/blog/Breadcrumbs";
 import { getCategory } from "@/app/components/lib/BlogServiceUnique";
 
 const page = async ({ params }: { params: { category_slug: string } }) => {
-  const category = await getCategory(params.category_slug);
+  const category = await getCategory("slug",params.category_slug, "postsAndPostImage");
 
   if (
     !category ||

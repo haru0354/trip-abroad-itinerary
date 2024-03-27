@@ -1,26 +1,18 @@
 import Link from "next/link";
-import prisma from "../../../../components/lib/prisma";
 
 import FormPost from "@/app/components/blog/dashboard/FormPost";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 import Button from "@/app/components/ui/Button";
 
 import { deletePost, updatePost } from "@/app/action/action-post";
+import { getPost } from "@/app/components/lib/BlogServiceUnique";
+import { getCategories } from "@/app/components/lib/BlogServiceMany";
 
 const page = async ({ params }: { params: { post_id: string } }) => {
   const id = Number(params.post_id);
   const updatePostWidthId = updatePost.bind(null, id);
-
-  const post = await prisma.post.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      category: true,
-      postImage: true,
-    },
-  });
-  const categories = await prisma.category.findMany();
+  const post = await getPost("id", params.post_id, "categoryAndPostImage")
+  const categories = await getCategories()
 
   return (
     <>

@@ -1,12 +1,8 @@
 import Link from "next/link";
-import prisma from "../../lib/prisma";
+import { getCategories } from "../../lib/BlogServiceMany";
 
 const SideCategoryMenu = async () => {
-  const categories = await prisma.category.findMany({
-    include: {
-      posts: true,
-    },
-  });
+  const categories = await getCategories("posts");
 
   return (
     <div className="w-full p-2">

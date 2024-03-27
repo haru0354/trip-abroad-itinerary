@@ -9,16 +9,12 @@ import {
   deletePostImage,
   updatePostImage,
 } from "@/app/action/action-postImage";
+import { getPostImage } from "@/app/components/lib/BlogServiceUnique";
 
 const page = async ({ params }: { params: { image_id: string } }) => {
   const id = Number(params.image_id);
   const updatePostImageWidthId = updatePostImage.bind(null, id);
-
-  const postImage = await prisma.postImage.findUnique({
-    where: {
-      id,
-    },
-  });
+  const postImage = await getPostImage(params.image_id)
 
   return (
     <>

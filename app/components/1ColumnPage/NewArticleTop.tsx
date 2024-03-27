@@ -1,26 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
-import prisma from "../lib/prisma";
 
 import AnimatedItem from "../lib/AnimatedItem";
+import { getPosts } from "../lib/BlogServiceMany";
 
 const NewArticleTop = async () => {
-  const posts = await prisma.post.findMany({
-    take: 6,
-    orderBy: {
-      createdDate: "desc",
-    },
-    include: {
-      category: true,
-      postImage: true,
-    },
-  });
-
-  const sortedPosts = posts.sort((a, b) => b.id - a.id);
+  const posts = await getPosts("categoryAndPostImage", 6, );
 
   return (
     <div className="flex w-full my-8 flex-wrap items-center justify-center">
-      {sortedPosts.map((post) => {
+      {posts.map((post) => {
         return (
           post.draft && (
             <AnimatedItem

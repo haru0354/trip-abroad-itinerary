@@ -1,18 +1,9 @@
 import Link from "next/link";
-import prisma from "../../lib/prisma";
 import Image from "next/image";
+import { getPosts } from "../../lib/BlogServiceMany";
 
 const SideNewArticles = async () => {
-  const posts = await prisma.post.findMany({
-    take: 5,
-    orderBy: {
-      createdDate: "desc",
-    },
-    include: {
-      category: true,
-      postImage: true,
-    },
-  });
+  const posts = await getPosts("categoryAndPostImage", 5,)
 
   return (
     <div className="w-full p-2">

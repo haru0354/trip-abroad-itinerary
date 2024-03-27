@@ -1,14 +1,10 @@
 import Link from "next/link";
-import prisma from "@/app/components/lib/prisma";
 
 import Button from "../../ui/Button";
+import { getPosts } from "../../lib/BlogServiceMany";
 
 const ListPost = async () => {
-  const posts = await prisma.post.findMany({
-    include: {
-      category: true,
-    },
-  });
+  const posts = await getPosts("category");
 
   const sortedPosts = posts.sort((a, b) => b.id - a.id);
 
@@ -43,7 +39,9 @@ const ListPost = async () => {
                   {formattedCreatedDate}
                 </p>
                 <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[174px]">
-                  {post.category.name.length > 9 ? `${post.category.name.slice(0, 9)}...` : post.category.name }
+                  {post.category.name.length > 9
+                    ? `${post.category.name.slice(0, 9)}...`
+                    : post.category.name}
                 </p>
                 <p className="mb-0 px-2 w-full sm:w-auto min-w-[250px] max-w-[650px]">
                   {post.title && post.title.length > 33

@@ -1,6 +1,6 @@
 import prisma from "@/app/components/lib/prisma";
 
-export async function getPosts(includeOptions?: string, take?: number, orderBy?: string) {
+export async function getPosts(includeOptions?: string, take?: number,) {
   let include: {
     category?: boolean;
     postImage?: boolean;
@@ -21,14 +21,26 @@ export async function getPosts(includeOptions?: string, take?: number, orderBy?:
       break;
   }
 
-  const queryOptions: any = {
+  const queryOptions: {
+    include: typeof include;
+    where?: {
+      draft: boolean;
+    };
+    take?: number;
+    orderBy?: {
+      createdDate: 'asc' | 'desc';
+    };
+  } = {
     include: include,
-    take: take,
   };
-
-  if (orderBy) {
+  
+  if (take) {
+    queryOptions.where = {
+      draft: true,
+    };
+    queryOptions.take = take;
     queryOptions.orderBy = {
-      [orderBy]: 'desc'
+      createdDate: 'desc',
     };
   }
 

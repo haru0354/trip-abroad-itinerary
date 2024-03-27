@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { ReactNode } from "react";
 
 type AnimatedItemProps = {
@@ -27,7 +26,6 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
   imageUrl,
   delay,
 }) => {
-  const [hasAnimated, setHasAnimated] = useState(false);
   const MotionComponent = motion[elementType];
 
   const fadeInVariants = {
@@ -36,7 +34,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: delay || 0, 
+        delay: delay || 0,
         duration: 1.0,
       },
     },
@@ -49,7 +47,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       y: 0,
       scale: 1,
       transition: {
-        delay: delay || 0, 
+        delay: delay || 0,
         duration: 1.0,
       },
     },
@@ -61,7 +59,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       opacity: 1,
       x: 0,
       transition: {
-        delay: delay || 0, 
+        delay: delay || 0,
         duration: 1.8,
       },
     },
@@ -91,9 +89,9 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
   return (
     <MotionComponent
       variants={animations[animation]}
-      onAnimationComplete={() => setHasAnimated(true)}
-      initial={hasAnimated ? "visible" : "hidden"}
+      initial="hidden"
       whileInView="visible"
+      viewport={{ once: true }}
       className={className}
       onClick={onClick}
       style={imageUrl ? { backgroundImage: `url('${imageUrl}')` } : undefined}

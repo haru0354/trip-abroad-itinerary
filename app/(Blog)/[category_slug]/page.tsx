@@ -1,27 +1,18 @@
+import Link from "next/link";
+
 import NotFound from "@/app/NotFound";
 import Card from "@/app/components/blog/Card";
-import prisma from "@/app/components/lib/prisma";
-import Link from "next/link";
 import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
 import Breadcrumbs from "@/app/components/blog/Breadcrumbs";
 
-const page = async ({ params }: { params: { category_slug: string } }) => {
-  const categorySlug = params.category_slug;
+import { getCategory } from "@/app/components/lib/BlogServiceUnique";
 
-  const category = await prisma.category.findUnique({
-    where: {
-      slug: categorySlug,
-    },
-    include: {
-      posts: true,
-      postImage: true,
-    },
-  });
+const page = async ({ params }: { params: { category_slug: string } }) => {
+  const category = await getCategory(params.category_slug);
 
   if (
     !category ||
-    (!category.title &&
-      category.posts.every((post) => !post.draft))
+    (!category.title && category.posts.every((post) => !post.draft))
   ) {
     return (
       <>

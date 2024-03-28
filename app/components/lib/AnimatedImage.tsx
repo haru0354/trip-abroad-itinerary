@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 type AnimatedImageProps = {
   animation: "fadeInRightImage" | "footerImage" | "fadeIntImage";
@@ -24,8 +23,6 @@ const AnimatedImage: React.FC<AnimatedImageProps> = ({
   alt,
   delay,
 }) => {
-  const [hasAnimated, setHasAnimated] = useState(false);
-
   const fadeInRightImage = {
     hidden: { opacity: 0, x: "300%" },
     visible: {
@@ -76,9 +73,9 @@ const AnimatedImage: React.FC<AnimatedImageProps> = ({
       height={height}
       alt={alt}
       variants={animations[animation]}
-      onAnimationComplete={() => setHasAnimated(true)}
-      initial={hasAnimated ? "visible" : "hidden"}
+      initial="hidden"
       whileInView="visible"
+      viewport={{ once: true }}
       className={className}
       onClick={onClick}
     />

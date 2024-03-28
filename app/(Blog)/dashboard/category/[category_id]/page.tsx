@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import prisma from "@/app/components/lib/prisma";
 
 import FormCategory from "@/app/components/blog/dashboard/FormCategory";
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 
 import { updateCategory, deleteCategory } from "@/app/action/action-category";
+import { getCategory } from "@/app/components/lib/BlogServiceUnique";
 
 export const metadata: Metadata = {
   title: "カテゴリの編集",
@@ -16,14 +16,7 @@ const page = async ({ params }: { params: { category_id: string } }) => {
   const id = Number(params.category_id);
   const updateCategoryWidthId = updateCategory.bind(null, id);
 
-  const category = await prisma.category.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      postImage: true,
-    },
-  });
+  const category = await getCategory("id", params.category_id, "postImage");
 
   return (
     <>

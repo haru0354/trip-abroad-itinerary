@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import prisma from "../../lib/prisma";
+
+import { getPostImages } from "../../lib/BlogServiceMany";
 
 const ListImages = async () => {
-  const images = await prisma.postImage.findMany();
+  const images = await getPostImages();
+  
   const sortedImages = images.sort((a,b) => b.id - a.id)
 
   return (

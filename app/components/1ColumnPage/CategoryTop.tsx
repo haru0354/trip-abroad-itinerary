@@ -1,22 +1,15 @@
 import Link from "next/link";
-import prisma from "../lib/prisma";
-
 import Image from "next/image";
+
 import AnimatedItem from "../lib/AnimatedItem";
+import { getCategories } from "../lib/BlogServiceMany";
 
 const CategoryTop = async () => {
-  const categories = await prisma.category.findMany({
-    include: {
-      postImage: true,
-      posts: true,
-    },
-  });
-
-  const sortedCategories = categories.sort((a, b) => a.id - b.id);
+  const categories = await getCategories("postsAndPostImage")
 
   return (
     <div className="flex w-full my-8 flex-wrap items-center justify-center">
-      {sortedCategories.map((category) => {
+      {categories.map((category) => {
         if (
           !category ||
           ((!category.title || category.title === "") &&

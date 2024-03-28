@@ -1,9 +1,9 @@
-import prisma from "@/app/components/lib/prisma";
 import Button from "../../ui/Button";
 import Link from "next/link";
+import { getCategories } from "../../lib/BlogServiceMany";
 
 const ListCategory = async () => {
-  const categories = await prisma.category.findMany();
+  const categories = await getCategories();
 
   const sortedCategories = categories.sort((a, b) => a.id - b.id);
 

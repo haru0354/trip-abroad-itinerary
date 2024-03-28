@@ -1,21 +1,12 @@
 import NotFound from "@/app/NotFound";
 import ArticleContentArea from "@/app/components/blog/blogContent/ArticleContentArea";
 import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
-import prisma from "@/app/components/lib/prisma";
 import Breadcrumbs from "@/app/components/blog/Breadcrumbs";
 
-const Page = async ({ params }: { params: { post_slug: string } }) => {
-  const postSlug = params.post_slug;
+import { getPost } from "@/app/components/lib/BlogServiceUnique";
 
-  const post = await prisma.post.findUnique({
-    where: {
-      slug: postSlug,
-    },
-    include: {
-      postImage: true,
-      category: true,
-    },
-  });
+const Page = async ({ params }: { params: { post_slug: string } }) => {
+  const post = await getPost("slug", params.post_slug, "categoryAndPostImage");
 
   if (!post || post.draft === false) {
     return (

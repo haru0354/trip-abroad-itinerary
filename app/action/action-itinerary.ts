@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
 import { FileSaveItineraryUtils } from "../components/lib/FileSaveUtils";
-import { validateFile } from "../components/lib/ValidateFile ";
+import { validateFile } from "../components/lib/ValidateFile";
 import { promises as fsPromises } from "fs";
 
 const { unlink } = fsPromises;

@@ -2,8 +2,21 @@ import NotFound from "@/app/NotFound";
 import ArticleContentArea from "@/app/components/blog/blogContent/ArticleContentArea";
 import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
 import Breadcrumbs from "@/app/components/blog/Breadcrumbs";
+import SideMenu from "@/app/components/blog/SideMenu";
 
 import { getPost } from "@/app/components/lib/BlogServiceUnique";
+import { getPosts } from "@/app/components/lib/BlogServiceMany";
+
+export async function generateStaticParams() {
+  const posts = await getPosts("categoryAndPostImage");
+
+  return posts.map((post) => ({
+    params: {
+      post_slug: post.slug,
+    },
+    revalidate: 10,
+  }));
+}
 
 const Page = async ({ params }: { params: { post_slug: string } }) => {
   const post = await getPost("slug", params.post_slug, "categoryAndPostImage");
@@ -21,14 +34,21 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
 
   return (
     <>
-      <Breadcrumbs
-        categoryName={post?.category.name}
-        categorySlug={post?.category.slug}
-      />
-      <h1>{post.title}</h1>
-      <ArticleTop src={post.postImage?.url} alt={post.postImage?.altText} />
-      <p className="text-gray-500 mb-5">記事の投稿日：{formattedCreatedDate}</p>
-      <ArticleContentArea content={post.content} />
+      <div className="blog w-full md:w-3/4 bg-white rounded-sm py-8 px-4 md:px-12 mr-8 ">
+        <Breadcrumbs
+          categoryName={post?.category.name}
+          categorySlug={post?.category.slug}
+        />
+        <h1>{post.title}</h1>
+        <ArticleTop src={post.postImage?.url} alt={post.postImage?.altText} />
+        <p className="text-gray-500 mb-5">
+          記事の投稿日：{formattedCreatedDate}
+        </p>
+        <ArticleContentArea content={post.content} />
+      </div>
+      <div className="w-full md:w-1/4 py-4 bg-white rounded">
+        <SideMenu />
+      </div>
     </>
   );
 };

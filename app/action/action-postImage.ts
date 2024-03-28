@@ -6,7 +6,7 @@ import prisma from "../components/lib/prisma";
 import { z } from "zod";
 import { promises as fsPromises } from "fs";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
-import { validateFile } from "../components/lib/ValidateFile ";
+import { validateFile } from "../components/lib/ValidateFile";
 
 const { unlink } = fsPromises;
 
@@ -145,7 +145,7 @@ export const updatePostImage = async (
   }
 
   // 画像がある場合は保存してfileUrlを変更
-  if (image && image.size > 0 ) {
+  if (image && image.size > 0) {
     try {
       const postImage = await prisma.postImage.findUnique({
         where: {
@@ -154,7 +154,7 @@ export const updatePostImage = async (
       });
 
       await unlink(`./public/postImage/${postImage?.name}`);
-      const { fileUrl, fileName } = await FileSaveUtils(image); 
+      const { fileUrl, fileName } = await FileSaveUtils(image);
 
       await prisma.postImage.update({
         where: {

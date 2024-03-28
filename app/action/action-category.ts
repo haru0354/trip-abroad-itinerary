@@ -5,7 +5,8 @@ import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
-import { validateFile } from "../components/lib/ValidateFile ";
+import { validateFile } from "../components/lib/ValidateFile";
+import { revalidatePostsAndCategories } from "../components/lib/revalidatePostsAndCategories";
 
 type FormState = {
   message?: string | null;
@@ -67,8 +68,8 @@ export const addCategory = async (state: FormState, data: FormData) => {
     description,
     title,
   };
-  
-  if (image && image.size > 0 ) {
+
+  if (image && image.size > 0) {
     try {
       const isValidFile = await validateFile(image);
 
@@ -118,7 +119,6 @@ export const addCategory = async (state: FormState, data: FormData) => {
       data: CategoryData,
     });
     revalidatePath(`/dashboard/category`);
-    revalidatePath(`/`);
 
     console.log("カテゴリの登録に成功しました。");
   } catch (error) {
@@ -138,7 +138,6 @@ export const deleteCategory = async (data: FormData) => {
       },
     });
     revalidatePath(`/dashboard/category`);
-    revalidatePath(`/`);
 
     console.log("カテゴリが正常に削除されました。");
   } catch (error) {
@@ -185,7 +184,7 @@ export const updateCategory = async (
     title,
   };
 
-  if (image && image.size > 0 ) {
+  if (image && image.size > 0) {
     try {
       const isValidFile = await validateFile(image);
 
@@ -237,8 +236,9 @@ export const updateCategory = async (
       },
       data: CategoryData,
     });
-    revalidatePath(`/dashboard/category`);
     revalidatePath(`/`);
+    revalidatePath(`/dashboard/category`);
+    await revalidatePostsAndCategories();
 
     console.log("カテゴリが正常に編集されました。");
   } catch (error) {

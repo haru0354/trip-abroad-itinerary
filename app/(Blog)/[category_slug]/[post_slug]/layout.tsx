@@ -1,18 +1,13 @@
-import prisma from "@/app/components/lib/prisma";
 import { Metadata } from "next";
+
+import { getPost } from "@/app/components/lib/BlogServiceUnique";
 
 export const generateMetadata = async ({
   params,
 }: {
   params: { post_slug: string };
 }): Promise<Metadata> => {
-  const postSlug = params.post_slug;
-
-  const post = await prisma.post.findUnique({
-    where: {
-      slug: postSlug,
-    },
-  });
+  const post = await getPost("slug", params.post_slug)
 
   if (!post?.draft) {
     return {

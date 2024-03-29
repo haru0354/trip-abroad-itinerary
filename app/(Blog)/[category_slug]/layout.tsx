@@ -1,24 +1,16 @@
-import SideMenu from "../../components/blog/SideMenu";
+import { Metadata } from "next";
+
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
-import prisma from "@/app/components/lib/prisma";
-import { Metadata } from "next";
+
+import { getCategory } from "@/app/components/lib/BlogServiceUnique";
 
 export const generateMetadata = async ({
   params,
 }: {
   params: { category_slug: string };
 }): Promise<Metadata> => {
-  const categorySlug = params.category_slug;
-
-  const category = await prisma.category.findUnique({
-    where: {
-      slug: categorySlug,
-    },
-    include: {
-      posts: true,
-    },
-  });
+  const category = await getCategory("slug", params.category_slug, "posts");
 
   if (category?.title) {
     return {

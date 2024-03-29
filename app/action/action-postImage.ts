@@ -7,6 +7,7 @@ import { z } from "zod";
 import { promises as fsPromises } from "fs";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
 import { validateFile } from "../components/lib/ValidateFile";
+import { getPostImage } from "../components/lib/BlogServiceUnique";
 
 const { unlink } = fsPromises;
 
@@ -82,11 +83,7 @@ export const deletePostImage = async (data: FormData) => {
   const id = data.get("id") as string;
 
   try {
-    const postImage = await prisma.postImage.findUnique({
-      where: {
-        id: Number(id),
-      },
-    });
+    const postImage = await getPostImage(id)
 
     if (!postImage) {
       console.error("指定した画像が見つかりませんでした。");
@@ -147,11 +144,8 @@ export const updatePostImage = async (
   // 画像がある場合は保存してfileUrlを変更
   if (image && image.size > 0) {
     try {
-      const postImage = await prisma.postImage.findUnique({
-        where: {
-          id,
-        },
-      });
+      const stringNumber = id.toString();
+      const postImage = await getPostImage(stringNumber)
 
       await unlink(`./public/postImage/${postImage?.name}`);
       const { fileUrl, fileName } = await FileSaveUtils(image);

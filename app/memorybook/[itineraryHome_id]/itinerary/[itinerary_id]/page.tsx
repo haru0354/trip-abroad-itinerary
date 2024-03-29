@@ -10,7 +10,7 @@ import {
 
 import { updateItinerary } from "@/app/action/action-itinerary";
 import { deleteItinerary } from "@/app/action/action-itinerary";
-import getCurrentUser from "@/app/action/getCurrentUser";
+import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
 
 const page = async ({
   params,
@@ -23,8 +23,7 @@ const page = async ({
   const itineraryHome = await getItineraryHome(params.itineraryHome_id);
   const itinerary = await getItinerary(params.itinerary_id);
 
-  const currentUser = await getCurrentUser();
-  const userId = currentUser?.id;
+  const currentUserId = (await getCurrentUserId()) ?? undefined;
 
   if (!itineraryHome) {
     return <div>旅行データが見つかりません。</div>;
@@ -40,7 +39,7 @@ const page = async ({
         formAction={updateItineraryWithId}
         buttonName="保存"
         itineraryHomeId={itineraryHome.id}
-        userId={userId}
+        userId={currentUserId}
       />
       <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
         <Button color="gray" size="normal" className="rounded mt-4">
@@ -53,7 +52,7 @@ const page = async ({
         itineraryHomeId={itineraryHome.id}
         formAction={deleteItinerary}
         id={itinerary?.id}
-        userId={userId}
+        userId={currentUserId}
       />
     </>
   );

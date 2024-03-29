@@ -8,14 +8,12 @@ import { updateItineraryHome } from "@/app/action/action-ItineraryHome";
 import { deleteItineraryHome } from "@/app/action/action-ItineraryHome";
 
 import { getItineraryHome } from "@/app/components/lib/MemoryBookService";
-import getCurrentUser from "@/app/action/getCurrentUser";
+import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   const id = Number(params.itineraryHome_id);
   const updateItineraryHomeWidthId = updateItineraryHome.bind(null, id);
-  const currentUser = await getCurrentUser();
-  const userId = currentUser?.id;
-
+  const currentUserId = (await getCurrentUserId()) ?? undefined;
   const itineraryHome = await getItineraryHome(params.itineraryHome_id);
 
   return (
@@ -24,7 +22,7 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
         formAction={updateItineraryHomeWidthId}
         itineraryHome={itineraryHome}
         buttonName="保存"
-        userId={userId}
+        userId={currentUserId}
       />
       <Link href="/memorybook/home">
         <Button color="gray" size="normal" className="rounded mt-4">

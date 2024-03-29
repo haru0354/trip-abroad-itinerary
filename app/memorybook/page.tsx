@@ -1,4 +1,3 @@
-import getCurrentUser from "../action/getCurrentUser";
 
 import SignupModal from "../components/auth/authUi/SignupModal";
 import Section1ColumnRight from "../components/1ColumnPage/Section1ColumnRight";
@@ -15,13 +14,11 @@ import AnimatedItem from "../components/lib/AnimatedItem";
 import Section from "../components/1ColumnPage/Section";
 
 export default async function Home() {
-  const currentUser = await getCurrentUser();
-
   return (
     <>
       <SignupModal />
       <LoginModal />
-      <HeaderItinerary currentUser={currentUser} />
+      <HeaderItinerary />
       <Hero />
       <main>
         <div className="w-full">

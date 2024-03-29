@@ -1,13 +1,12 @@
 import Link from "next/link";
-import { User } from "@prisma/client";
-import Menu from "./auth/navigation/Menu";
 import Image from "next/image";
 
-type HeaderItineraryProps = {
-  currentUser: User | null;
-};
+import Menu from "./auth/navigation/Menu";
+import { getCurrentUser } from "./lib/getCurrentUser";
 
-const HeaderItinerary: React.FC<HeaderItineraryProps> = ({ currentUser }) => {
+const HeaderItinerary = async () => {
+  const currentUser = await getCurrentUser();
+
   return (
     <header className="max-w-[1120px] mx-auto">
       <div className="flex justify-between items-center mx-2 h-16">

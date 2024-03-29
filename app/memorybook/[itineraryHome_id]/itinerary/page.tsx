@@ -1,14 +1,17 @@
 import { addItinerary } from "@/app/action/action-itinerary";
-import getCurrentUser from "@/app/action/getCurrentUser";
+import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
 
 import ListItinerary from "@/app/components/itinerary/ListItinerary";
 import FormItineraryModal from "@/app/components/itinerary/FormItineraryModal";
 import { getItineraryHome } from "@/app/components/lib/MemoryBookService";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
-  const itineraryHome = await getItineraryHome(params.itineraryHome_id, "itineraries");
-  const currentUser = await getCurrentUser();
-  const userId = currentUser?.id;
+  const itineraryHome = await getItineraryHome(
+    params.itineraryHome_id,
+    "itineraries"
+  );
+
+  const currentUserId = (await getCurrentUserId()) ?? undefined;
 
   return (
     <>
@@ -23,7 +26,7 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
         itineraryHomeId={itineraryHome?.id}
         buttonName="旅程を追加"
         buttonName2="旅程を追加"
-        userId={userId}
+        userId={currentUserId}
         formAction={addItinerary}
       />
     </>

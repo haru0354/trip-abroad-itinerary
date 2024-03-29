@@ -7,6 +7,7 @@ import { z } from "zod";
 import { FileSaveItineraryUtils } from "../components/lib/FileSaveUtils";
 import { validateFile } from "../components/lib/ValidateFile";
 import { promises as fsPromises } from "fs";
+import { getItinerary } from "../components/lib/MemoryBookService";
 
 const { unlink } = fsPromises;
 
@@ -134,12 +135,7 @@ export const deleteItinerary = async (data: FormData) => {
   const userId = data.get("userId") as string;
   const itineraryHomeId = data.get("itineraryHomeId") as string;
   const id = data.get("id") as string;
-
-  const itinerary = await prisma.itinerary.findUnique({
-    where: {
-      id: Number(id),
-    },
-  });
+  const itinerary = await getItinerary(id);
 
   if (!itinerary) {
     console.error("指定した旅程が見つかりませんでした。");
@@ -234,14 +230,13 @@ export const updateItinerary = async (
         console.log(errors);
         return errors;
       }
+      
+      const stringNumber = id.toString();
+      const itinerary = await getItinerary(stringNumber);
 
-      const itinerary = await prisma.itinerary.findUnique({
-        where: {
-          id,
-        },
-      });
-
-      await unlink(`./public/${itinerary?.url}`);
+      if (itinerary?.url) {
+        await unlink(`./public/itinerary/${userId}/${itinerary?.imageName}`);
+      }
 
       const { fileUrl, fileName } = await FileSaveItineraryUtils(image, userId);
 

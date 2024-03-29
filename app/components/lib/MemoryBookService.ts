@@ -1,5 +1,15 @@
 import prisma from "@/app/components/lib/prisma";
 
+export async function getItineraryHomes(userId?: number) {
+  const itineraryHomes = await prisma.itineraryHome.findMany({
+    where: {
+      userId,
+    }
+  });
+
+  return itineraryHomes;
+}
+
 export async function getItineraryHome(
   itineraryHomeId: string,
   includeOptions?: string

@@ -1,5 +1,3 @@
-import getCurrentUser from "../action/getCurrentUser";
-
 import SignupModal from "../components/auth/authUi/SignupModal";
 import Section1ColumnRight from "../components/1ColumnPage/Section1ColumnRight";
 import Section3ColumnIcon from "../components/1ColumnPage/Section3ColumnIcon";
@@ -15,35 +13,39 @@ import AnimatedItem from "../components/lib/AnimatedItem";
 import Section from "../components/1ColumnPage/Section";
 
 export default async function Home() {
-  const currentUser = await getCurrentUser();
-
   return (
     <>
       <SignupModal />
       <LoginModal />
-      <HeaderItinerary currentUser={currentUser} />
+      <HeaderItinerary />
       <Hero />
       <main>
         <div className="w-full">
-          <Section
-            name="しおりアプリ「旅のメモリーブック」の機能の一部"
-            bgColor="bg-white"
-          >
-            <Section3ColumnImage
-              title1="旅程表の作成"
-              title2="メモの作成"
-              title3="共有機能"
-              content1="旅程表が簡単に作成可能!!日付や時間で自動で並び変えるので面倒な作業はいりません。必要なのは「いつ・何をする」を記載することだけです。"
-              content2="旅行準備は出発前のパスポートの取得や持ち物の準備、旅行中の海外旅行保険の連絡先など様々です。簡単にメモができるので必要なことがすぐに確認可能。"
-              content3="作成した旅程表は共有することが可能です。同行者がスケジュールを確認したり、LineやfacebookなどSNSでの共有が簡単に可能。共有するかしないかは切り替えれます。"
-              image1Url="/itinerary.jpg"
-              image2Url="/memo-create.jpg"
-              image3Url="/Itinerary-share.jpg"
-              image1Alt="旅程表の作成"
-              image2Alt="旅行準備のメモ"
-              image3Alt="メモの切り替え"
-            />
-          </Section>
+          <section className="bg-white">
+            <div className="max-w-[1150px] w-full py-2 md:py-6 px-4 mx-auto">
+              <div className="flex items-center mx-0 py-8">
+                <span className="flex-grow h-1 w-5 md:w-0 mr-1 md:mr-4 bg-gradient-to-l from-gray-600 to-transparent"></span>
+                <h2 className="text-2xl md:text-3xl py-0 my-5 text-gray-700 text-center font-bold bg-transparent">
+                  しおりアプリ「旅のメモリーブック」の機能の一部
+                </h2>
+                <span className="flex-grow h-1 w-5 md:w-0 mr-1 md:mr-4 bg-gradient-to-r from-gray-600 to-transparent"></span>
+              </div>
+              <Section3ColumnImage
+                title1="旅程表の作成"
+                title2="メモの作成"
+                title3="共有機能"
+                content1="旅程表が簡単に作成可能!!日付や時間で自動で並び変えるので面倒な作業はいりません。必要なのは「いつ・何をする」を記載することだけです。"
+                content2="旅行準備は出発前のパスポートの取得や持ち物の準備、旅行中の海外旅行保険の連絡先など様々です。簡単にメモができるので必要なことがすぐに確認可能。"
+                content3="作成した旅程表は共有することが可能です。同行者がスケジュールを確認したり、LineやfacebookなどSNSでの共有が簡単に可能。共有するかしないかは切り替えれます。"
+                image1Url="/itinerary.jpg"
+                image2Url="/memo-create.jpg"
+                image3Url="/Itinerary-share.jpg"
+                image1Alt="旅程表の作成"
+                image2Alt="旅行準備のメモ"
+                image3Alt="メモの切り替え"
+              />
+            </div>
+          </section>
           <Section
             name="「旅のメモリーブック」がおすすめな人"
             bgColor="bg-sky-50"

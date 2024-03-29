@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import getCurrentUser from "@/app/action/getCurrentUser";
+import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
 import FooterMenu from "@/app/components/FooterMenu";
 import HeaderItinerary from "@/app/components/HeaderItinerary";
 import FooterItinerary from "@/app/components/FooterItinerary";
@@ -21,20 +21,19 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { itineraryHome_id: string };
 }>) {
-  const currentUser = await getCurrentUser();
-  const userId = currentUser?.id;
+  const currentUserId = (await getCurrentUserId()) ?? undefined;
   const itineraryHomeId = Number(params.itineraryHome_id);
 
   return (
     <>
-      <HeaderItinerary currentUser={currentUser} />
+      <HeaderItinerary />
       <main className="bg-blue-50">
         <div className="main-contents-area">
           <div className="px-1 md:px-8 w-full">{children}</div>
         </div>
       </main>
       <FooterItinerary />
-      <FooterMenu itineraryHomeId={itineraryHomeId} userId={userId} />
+      <FooterMenu itineraryHomeId={itineraryHomeId} userId={currentUserId} />
     </>
   );
 }

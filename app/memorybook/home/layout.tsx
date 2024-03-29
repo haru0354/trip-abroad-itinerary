@@ -1,7 +1,8 @@
-import getCurrentUser from "@/app/action/getCurrentUser";
-import prisma from "@/app/components/lib/prisma";
-import DashboardItinerarySideMenu from "@/app/components/itineraryHome/DashboardItinerarySideMenu";
 import { Metadata } from "next";
+import DashboardItinerarySideMenu from "@/app/components/itineraryHome/DashboardItinerarySideMenu";
+
+import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
+import { getItineraryHomes } from "@/app/components/lib/MemoryBookService";
 
 export const metadata: Metadata = {
   title: {
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | 旅のメモリーブック",
   },
   robots: {
-    index: false, 
+    index: false,
   },
 };
 
@@ -18,22 +19,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentUser = await getCurrentUser();
-  const userId = currentUser?.id;
-  const itineraryHomes = await prisma.itineraryHome.findMany({
-    where: {
-      userId,
-    },
-  });
+  const currentUserId = (await getCurrentUserId()) ?? undefined;
+  const itineraryHomes = await getItineraryHomes(currentUserId);
 
   return (
     <>
-        <div className="flex bg-sky-50">
-          <DashboardItinerarySideMenu itineraryHomes={itineraryHomes} />
-          <div className="flex justify-center items-center mx-auto w-full max-w-[1200px] ml-0 sm:ml-96 bg-white border rounded border-gray-200 p-5 mt-8">
-            <div className="w-full">{children}</div>
-          </div>
+      <div className="flex bg-sky-50">
+        <DashboardItinerarySideMenu itineraryHomes={itineraryHomes} />
+        <div className="flex justify-center items-center mx-auto w-full max-w-[1200px] ml-0 sm:ml-96 bg-white border rounded border-gray-200 p-5 mt-8">
+          <div className="w-full">{children}</div>
         </div>
+      </div>
     </>
   );
 }

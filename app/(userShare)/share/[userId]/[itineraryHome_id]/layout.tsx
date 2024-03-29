@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import getCurrentUser from "@/app/action/getCurrentUser";
+
 import HeaderItinerary from "@/app/components/HeaderItinerary";
 import FooterItinerary from "@/app/components/FooterItinerary";
 
@@ -15,11 +15,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentUser = await getCurrentUser();
-
   return (
     <>
-      <HeaderItinerary currentUser={currentUser} />
+      <HeaderItinerary />
       <main className="bg-blue-50">
         <div className="main-contents-area rounded">
           <div className="w-full px-1 md:px-8">{children}</div>

@@ -1,21 +1,17 @@
-import prisma from "@/app/components/lib/prisma";
-import { updateShare } from "@/app/action/action-ItineraryHome";
-import getCurrentUser from "@/app/action/getCurrentUser";
-import Button from "@/app/components/ui/Button";
 import Link from "next/link";
+
+import Button from "@/app/components/ui/Button";
 import FormShare from "@/app/components/itineraryHome/FormShare";
+
+import { updateShare } from "@/app/action/action-ItineraryHome";
+import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
+import { getItineraryHome } from "@/app/components/lib/MemoryBookService";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   const id = Number(params.itineraryHome_id);
   const updateShareWidthId = updateShare.bind(null, id);
-  const currentUser = await getCurrentUser();
-  const userId = currentUser?.id;
-
-  const itineraryHome = await prisma.itineraryHome.findUnique({
-    where: {
-      id,
-    },
-  });
+  const currentUserId = (await getCurrentUserId()) ?? undefined;
+  const itineraryHome = await getItineraryHome(params.itineraryHome_id);
 
   return (
     <>
@@ -23,7 +19,7 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
         itineraryHome={itineraryHome}
         formAction={updateShareWidthId}
         buttonName="保存"
-        userId={userId}
+        userId={currentUserId}
       />
       <Link href="/memorybook/home">
         <Button color="gray" size="normal" className="rounded mt-4">

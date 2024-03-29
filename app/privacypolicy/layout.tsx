@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import getCurrentUser from "@/app/action/getCurrentUser";
-import HeaderItinerary from "@/app/components/HeaderItinerary";
-import FooterItinerary from "@/app/components/FooterItinerary";
+
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー・免責事項 | 旅のメモリーブック",
@@ -15,17 +15,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentUser = await getCurrentUser();
-
   return (
     <>
-      <HeaderItinerary currentUser={currentUser} />
-      <main>
-        <div className="main-contents-area">
+      <Header />
+      <main className="bg-sky-50">
+        <div className="main-contents-area rounded">
           <div className="w-full px-1 md:px-8">{children}</div>
         </div>
       </main>
-      <FooterItinerary isTopAppDirectory={true} />
+      <Footer />
     </>
   );
 }

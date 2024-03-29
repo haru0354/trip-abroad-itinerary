@@ -1,4 +1,4 @@
-import NotFound from "@/app/NotFound";
+import NotFound from "@/app/not-found";
 import ArticleContentArea from "@/app/components/blog/blogContent/ArticleContentArea";
 import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
 import Breadcrumbs from "@/app/components/blog/Breadcrumbs";
@@ -14,7 +14,7 @@ export async function generateStaticParams() {
     params: {
       post_slug: post.slug,
     },
-    revalidate: 10,
+    revalidate: 60 * 60 * 24 * 15, 
   }));
 }
 
@@ -23,10 +23,10 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
 
   if (!post || post.draft === false) {
     return (
-      <>
+      <div>
         <NotFound />
         <p>記事が存在しないか削除された可能性があります。</p>
-      </>
+      </div>
     );
   }
 

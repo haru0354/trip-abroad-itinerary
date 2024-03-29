@@ -1,5 +1,4 @@
 import Link from "next/link";
-import prisma from "@/app/components/lib/prisma";
 
 import FormPostImage from "@/app/components/blog/dashboard/FormPostImage";
 import Button from "@/app/components/ui/Button";

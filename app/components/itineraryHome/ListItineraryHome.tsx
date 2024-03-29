@@ -1,10 +1,11 @@
-import prisma from "../lib/prisma";
-import Button from "../ui/Button";
 import Link from "next/link";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
+
 import ButtonImage from "../ui/ButtonImage";
 
+import { getItineraryHomes } from "../lib/MemoryBookService";
 type ListItineraryHomeProps = {
   userId?: number | undefined;
 };
@@ -12,11 +13,9 @@ type ListItineraryHomeProps = {
 const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
   userId,
 }) => {
-  const itineraryHomes = await prisma.itineraryHome.findMany({
-    where: {
-      userId,
-    },
-  });
+
+  const itineraryHomes = await getItineraryHomes(userId)
+
 
   const sortedItineraryHomes = itineraryHomes.sort((a, b) => {
     if (a.startDate === null && b.startDate === null) {
@@ -102,7 +101,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                       <li>帰宅日：{itineraryHome.endDate}</li>
                       <li>旅行先：{itineraryHome.destination}</li>
                     </ul>
-                    <p className=" min-w-[100px] px-6 py-1 mt-5 mx-auto shadow font-bold  text-white border rounded border-sky-900 bg-sky-700"> 
+                    <p className=" min-w-[100px] px-6 py-1 mt-5 mx-auto shadow font-bold  text-white border rounded border-sky-900 bg-sky-700">
                       旅程表へ
                     </p>
                   </div>

@@ -1,19 +1,14 @@
-import React from "react";
 import ListItinerary from "@/app/components/itinerary/ListItinerary";
-import prisma from "@/app/components/lib/prisma";
 import Share from "@/app/components/Share";
-import NotFound from "@/app/NotFound";
+import NotFound from "@/app/not-found";
+
+import { getItineraryHome } from "@/app/components/lib/MemoryBookService";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
-  const id = Number(params.itineraryHome_id);
-  const itineraryHome = await prisma.itineraryHome.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      itineraries: true,
-    },
-  });
+  const itineraryHome = await getItineraryHome(
+    params.itineraryHome_id,
+    "itineraries"
+  );
 
   return (
     <>

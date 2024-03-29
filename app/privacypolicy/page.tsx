@@ -5,7 +5,15 @@ const page = () => {
     <>
       <h2>プライバシーポリシー</h2>
       <p>
-        このプライバシーポリシーは、旅程表作成アプリ(<Link href="/memorybook">旅のメモリーブック</Link>)とブログ(<Link href="/">トラベルメモリー</Link>)の利用に関する情報収集、利用、および開示に関する方針を説明します。
+        このプライバシーポリシーは、旅程表作成アプリ「
+        <Link href="/memorybook" className="text-blue-600 font-medium" >
+          旅のメモリーブック
+        </Link>
+        」とブログ「
+        <Link href="/" className="text-blue-600 font-medium">
+          トラベルメモリー
+        </Link>
+        」の利用に関する情報収集、利用、および開示に関する方針を説明します。
       </p>
       <h3 className="font-bold text-lg my-6">1. 収集される情報</h3>
       <ul className="border border-dashed border-gray-500 p-6 mb-6 mx-1 md:mx-16">

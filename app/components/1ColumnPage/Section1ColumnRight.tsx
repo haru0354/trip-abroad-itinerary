@@ -31,7 +31,7 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
       </AnimatedItem>
       <AnimatedItem
         elementType="div"
-        animation="fadeInAndScaleVariants"
+        animation="fadeInVariants"
         className="flex justify-center w-full py-1 md:py-4 mb-4 rounded flex-wrap"
       >
         <div className="w-full flex justify-center items-center py-4 max-w-[400px]">

@@ -18,7 +18,7 @@ const SectionCTA: React.FC<SectionCTAProps> = ({
   content,
 }) => {
   return (
-      <AnimatedItem elementType="div" animation="fadeInAndScaleVariants">
+      <AnimatedItem elementType="div" animation="fadeInVariants">
         <ul className="my-12 p-6 border border-dashed border-gray-500">
           <li className="mb-4 text-red-500">
             <FontAwesomeIcon

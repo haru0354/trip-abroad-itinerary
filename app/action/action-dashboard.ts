@@ -43,7 +43,7 @@ export const addDashboardMemo = async (state: FormState, data: FormData) => {
         content,
       },
     });
-    revalidatePath("/dashboard/");
+    revalidatePath("/dashboard");
     return { message: "add" };
   } catch {
     console.error("メモを追加する際にエラーが発生しました");

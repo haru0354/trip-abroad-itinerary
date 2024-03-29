@@ -16,7 +16,7 @@ export async function generateStaticParams() {
     params: {
       category_slug: category.slug,
     },
-    revalidate: 15,
+    revalidate: 60 * 60 * 24 * 15, 
   }));
 }
 
@@ -32,10 +32,10 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
     (!category.title && category.posts.every((post) => !post.draft))
   ) {
     return (
-      <>
+      <div>
         <NotFound />
         <p>カテゴリが存在しないか削除された可能性があります。</p>
-      </>
+      </div>
     );
   }
 

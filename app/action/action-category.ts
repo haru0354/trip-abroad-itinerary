@@ -7,6 +7,7 @@ import { z } from "zod";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
 import { validateFile } from "../components/lib/ValidateFile";
 import { revalidatePostsAndCategories } from "../components/lib/revalidatePostsAndCategories";
+import { getCategory } from "../components/lib/BlogServiceUnique";
 
 type FormState = {
   message?: string | null;
@@ -119,7 +120,7 @@ export const addCategory = async (state: FormState, data: FormData) => {
       data: CategoryData,
     });
     revalidatePath(`/dashboard/category`);
-
+    revalidatePath(`/dashboard/post/new-post`);
     console.log("カテゴリの登録に成功しました。");
   } catch (error) {
     console.error("カテゴリを追加する際にエラーが発生しました");
@@ -131,6 +132,8 @@ export const addCategory = async (state: FormState, data: FormData) => {
 export const deleteCategory = async (data: FormData) => {
   const id = data.get("id") as string;
 
+  const category = await getCategory("id", id);
+
   try {
     await prisma.category.delete({
       where: {
@@ -138,7 +141,8 @@ export const deleteCategory = async (data: FormData) => {
       },
     });
     revalidatePath(`/dashboard/category`);
-
+    revalidatePath(`/dashboard/post/new-post`);
+    revalidatePath(`/${category?.slug}`);
     console.log("カテゴリが正常に削除されました。");
   } catch (error) {
     console.error("カテゴリの削除中にエラーが発生しました:", error);
@@ -238,6 +242,7 @@ export const updateCategory = async (
     });
     revalidatePath(`/`);
     revalidatePath(`/dashboard/category`);
+    revalidatePath(`/dashboard/post/new-post`);
     await revalidatePostsAndCategories();
 
     console.log("カテゴリが正常に編集されました。");

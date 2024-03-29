@@ -159,7 +159,7 @@ export const updatePostImage = async (
           url: fileUrl,
         },
       });
-      revalidatePath(`/dashboard/image/`);
+      revalidatePath(`/dashboard/image`);
     } catch (error) {
       console.error("画像を編集する際にエラーが発生しました");
       return { message: "画像を編集する際にエラーが発生しました" };

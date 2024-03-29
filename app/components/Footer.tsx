@@ -8,8 +8,8 @@ const Footer = () => {
     >
       <div className="flex-grow"></div>
       <div className="bg-blue-500 h-[65px] w-full flex items-end justify-center">
-        <ul className="text-xs text-center mb-3">
-          <li className="mb-2 text-gray-300">
+        <ul className="text-sm text-center mb-3">
+          <li className="mb-2 text-white">
             <Link href="/privacypolicy">プライバシーポリシー・免責事項</Link>
           </li>
           <li className="text-black">

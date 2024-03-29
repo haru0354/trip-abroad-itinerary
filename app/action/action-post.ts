@@ -7,6 +7,7 @@ import { z } from "zod";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
 import { validateFile } from "../components/lib/ValidateFile";
 import { revalidatePostsAndCategories } from "../components/lib/revalidatePostsAndCategories";
+import { getPost } from "../components/lib/BlogServiceUnique";
 
 type FormState = {
   message?: string | null;
@@ -137,6 +138,8 @@ export const addPost = async (state: FormState, data: FormData) => {
 
 export const deletePost = async (data: FormData) => {
   const id = data.get("id") as string;
+  
+  const post = await getPost("id", id, "category");
 
   try {
     await prisma.post.delete({
@@ -146,7 +149,9 @@ export const deletePost = async (data: FormData) => {
     });
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
+    revalidatePath(`/${post?.category.slug}/${post?.slug}`);        
     await revalidatePostsAndCategories();
+    console.log("記事が正常に削除されました");
   } catch (error) {
     console.error("記事の削除中にエラーが発生しました:", error);
     return { message: "記事の削除中にエラーが発生しました" };

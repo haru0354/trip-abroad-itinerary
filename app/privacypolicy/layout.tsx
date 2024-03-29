@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
-import HeaderItinerary from "@/app/components/HeaderItinerary";
-import FooterItinerary from "@/app/components/FooterItinerary";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー・免責事項 | 旅のメモリーブック",
@@ -17,13 +17,13 @@ export default async function RootLayout({
 }>) {
   return (
     <>
-      <HeaderItinerary />
+      <Header />
       <main>
         <div className="main-contents-area">
           <div className="w-full px-1 md:px-8">{children}</div>
         </div>
       </main>
-      <FooterItinerary isTopAppDirectory={true} />
+      <Footer />
     </>
   );
 }

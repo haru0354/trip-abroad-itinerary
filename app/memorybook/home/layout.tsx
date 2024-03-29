@@ -1,7 +1,8 @@
-import getCurrentUser from "@/app/action/getCurrentUser";
-import prisma from "@/app/components/lib/prisma";
-import DashboardItinerarySideMenu from "@/app/components/itineraryHome/DashboardItinerarySideMenu";
 import { Metadata } from "next";
+import DashboardItinerarySideMenu from "@/app/components/itineraryHome/DashboardItinerarySideMenu";
+
+import getCurrentUser from "@/app/action/getCurrentUser";
+import { getItineraryHomes } from "@/app/components/lib/MemoryBookService";
 
 export const metadata: Metadata = {
   title: {
@@ -20,11 +21,8 @@ export default async function RootLayout({
 }>) {
   const currentUser = await getCurrentUser();
   const userId = currentUser?.id;
-  const itineraryHomes = await prisma.itineraryHome.findMany({
-    where: {
-      userId,
-    },
-  });
+  const itineraryHomes = await getItineraryHomes(userId)
+
 
   return (
     <>

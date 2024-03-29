@@ -1,17 +1,15 @@
 import Link from "next/link";
-import prisma from "../lib/prisma";
 import Button from "../ui/Button";
+
+import { getItineraryHomes } from "../lib/MemoryBookService";
 
 type ListShareProps = {
   userId?: number | undefined;
 };
 
 const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
-  const itineraryHomes = await prisma.itineraryHome.findMany({
-    where: {
-      userId,
-    },
-  });
+
+  const itineraryHomes = await getItineraryHomes(userId)
 
   return (
     <>

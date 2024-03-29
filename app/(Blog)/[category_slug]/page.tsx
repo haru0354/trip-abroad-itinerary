@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import NotFound from "@/app/NotFound";
+import NotFound from "@/app/not-found";
 import Card from "@/app/components/blog/Card";
 import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
 import Breadcrumbs from "@/app/components/blog/Breadcrumbs";

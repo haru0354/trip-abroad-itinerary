@@ -1,11 +1,10 @@
 import ListItinerary from "@/app/components/itinerary/ListItinerary";
 import Share from "@/app/components/Share";
-import NotFound from "@/app/NotFound";
+import NotFound from "@/app/not-found";
 
 import { getItineraryHome } from "@/app/components/lib/MemoryBookService";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
-  
   const itineraryHome = await getItineraryHome(
     params.itineraryHome_id,
     "itineraries"

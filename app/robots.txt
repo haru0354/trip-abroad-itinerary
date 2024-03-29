@@ -1,0 +1,8 @@
+User-Agent: *
+Allow: /
+Disallow: /admin
+Disallow: /dashboard/
+Disallow: /memorybook/
+Allow: /memorybook
+
+Sitemap: https://www.travel-memory-life.com/sitemap.xml

@@ -1,4 +1,4 @@
-import NotFound from "@/app/NotFound";
+import NotFound from "@/app/not-found";
 import ArticleContentArea from "@/app/components/blog/blogContent/ArticleContentArea";
 import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
 import Breadcrumbs from "@/app/components/blog/Breadcrumbs";

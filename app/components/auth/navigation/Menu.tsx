@@ -1,14 +1,15 @@
 "use client";
+
 import Image from "next/image";
-import { User } from "@prisma/client";
+import Link from "next/link";
 import { useCallback, useState, useEffect } from "react";
+import { signOut } from "next-auth/react";
+
 import useLoginModal from "../hooks/useLoginModal";
 import useSignupModal from "../hooks/useSignupModal";
-import { signOut } from "next-auth/react";
-import Link from "next/link";
 
 type MenuProps = {
-  currentUser: User | null;
+  currentUser: number | null;
 };
 
 const Menu: React.FC<MenuProps> = ({ currentUser }) => {

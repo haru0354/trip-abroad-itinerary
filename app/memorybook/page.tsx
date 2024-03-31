@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import SignupModal from "../components/auth/authUi/SignupModal";
 import Section1ColumnRight from "../components/1ColumnPage/Section1ColumnRight";
 import Section3ColumnIcon from "../components/1ColumnPage/Section3ColumnIcon";
@@ -11,13 +13,14 @@ import Section3ColumnImage from "../components/1ColumnPage/Section3ColumnImage";
 import FooterItinerary from "../components/FooterItinerary";
 import AnimatedItem from "../components/lib/AnimatedItem";
 import Section from "../components/1ColumnPage/Section";
+import Loading from "../loading";
 
-export default async function Home() {
+export default function Home() {
   return (
     <>
-      <SignupModal />
-      <LoginModal />
-      <HeaderItinerary />
+      <Suspense fallback={<Loading />}>
+        <HeaderItinerary />
+      </Suspense>
       <Hero />
       <main>
         <div className="w-full">
@@ -139,6 +142,8 @@ export default async function Home() {
         </div>
       </main>
       <FooterItinerary isTopAppDirectory={true} />
+      <SignupModal />
+      <LoginModal />
     </>
   );
 }

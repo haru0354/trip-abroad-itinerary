@@ -1,4 +1,5 @@
 "use client";
+
 import AnimatedItem from "../lib/AnimatedItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQ, faA, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";

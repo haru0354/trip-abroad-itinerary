@@ -1,8 +1,10 @@
 import { Metadata } from "next";
 import DashboardItinerarySideMenu from "@/app/components/itineraryHome/DashboardItinerarySideMenu";
+import { Suspense } from "react";
 
 import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
 import { getItineraryHomes } from "@/app/components/lib/MemoryBookService";
+import Loading from "@/app/loading";
 
 export const metadata: Metadata = {
   title: {
@@ -25,10 +27,12 @@ export default async function RootLayout({
   return (
     <>
       <div className="flex bg-sky-50">
-        <DashboardItinerarySideMenu itineraryHomes={itineraryHomes} />
         <div className="flex justify-center items-center mx-auto w-full max-w-[1200px] ml-0 sm:ml-96 bg-white border rounded border-gray-200 p-5 mt-8">
           <div className="w-full">{children}</div>
         </div>
+        <Suspense fallback={<Loading />}>
+          <DashboardItinerarySideMenu itineraryHomes={itineraryHomes} />
+        </Suspense>
       </div>
     </>
   );

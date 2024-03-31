@@ -53,7 +53,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
           li2="補足情報には色々とメモしたい項目を登録できます。"
         />
         <div className="flex flex-col justify-center items-center border border-dashed border-gray-600 my-4 p-4 text-center text-gray-700">
-          pc・スマホ・タブレット共に画面最下部の「追加」より旅程表の登録ができます。
+          画面最下部のメニュー「追加」より旅程表の登録ができます。
           <Image
             src="/manual.JPG"
             alt="マニュアル"

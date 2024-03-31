@@ -1,12 +1,13 @@
-const loading = () => {
+const Loading = ({ message }: { message?: string }) => {
   return (
     <>
-      <div className="text-lg py-8 bg-white text-gray-700 font-bold">
-        Loading
+      <div className="text-lg mt-5 text-gray-700 font-bold text-center">
+        Loading(読み込み中)
+        {message && <p>{message}を読み込み中です。</p>
+        }
       </div>
-      <p>読み込み中です。今しばらくお待ちください。</p>
     </>
   );
 };
 
-export default loading;
+export default Loading;

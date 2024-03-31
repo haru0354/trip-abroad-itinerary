@@ -1,5 +1,3 @@
-"use Client";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import AnimatedItem from "../lib/AnimatedItem";

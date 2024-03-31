@@ -33,7 +33,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
           li2="旅行中のメモ(海外旅行保険の連絡先・購入予定のお土産)"
         />
         <div className="flex flex-col justify-center items-center border border-dashed border-gray-600 my-4 p-4 text-center text-gray-700">
-          pc・スマホ・タブレット共に画面最下部の「追加」よりメモの登録ができます。
+          画面最下部のメニュー「追加」よりメモの登録ができます。
           <Image
             src="/manual.JPG"
             alt="マニュアル"
@@ -43,7 +43,6 @@ const ListMemo: React.FC<ListMemoProps> = async ({
               width: "347px",
               height: "auto",
             }}
-            className="border border-gray-300"
           />
         </div>
         <p className="pt-6 text-gray-700 font-bold text-center">サンプル</p>

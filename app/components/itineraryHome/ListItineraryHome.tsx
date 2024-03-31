@@ -62,7 +62,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
 
   return (
     <>
-      <h2>旅行の一覧</h2>
+      <h2>旅行のしおり一覧</h2>
       <div className="w-full bg-white rounded">
         <div className="flex w-full my-10 flex-wrap items-center justify-center">
           {sortedItineraryHomes.map((itineraryHome) => {

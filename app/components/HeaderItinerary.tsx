@@ -2,10 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 import Menu from "./auth/navigation/Menu";
-import { getCurrentUser } from "./lib/getCurrentUser";
+import { getCurrentUserId } from "./lib/getCurrentUser";
 
 const HeaderItinerary = async () => {
-  const currentUser = await getCurrentUser();
+  const currentUserId = await getCurrentUserId();
 
   return (
     <header className="max-w-[1120px] mx-auto">
@@ -22,7 +22,7 @@ const HeaderItinerary = async () => {
             />
           </h1>
         </Link>
-        <Menu currentUser={currentUser} />
+        <Menu currentUser={currentUserId} />
       </div>
     </header>
   );

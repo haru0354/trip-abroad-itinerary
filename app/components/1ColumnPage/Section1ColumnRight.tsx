@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import AnimatedItem from "../lib/AnimatedItem";
 
@@ -35,24 +33,17 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
         className="flex justify-center w-full py-1 md:py-4 mb-4 rounded flex-wrap"
       >
         <div className="w-full flex justify-center items-center py-4 max-w-[400px]">
-          <figure
-            style={{
-              position: "relative",
-              width: "360px",
-              height: "260px",
-            }}
-          >
             <Image
               src={src}
               alt={alt}
-              fill
-              sizes="(max-hight: 220px)"
+              width={360}
+              height={260}
               style={{
-                objectFit: "cover",
+                width: "365px",
+                height: "auto",
               }}
-              className=" border border-gray-200"
+              className="border border-gray-200"
             />
-          </figure>
         </div>
         <div className="w-full py-2 md:py-8 md:mx-6 max-w-[400px] justify-center items-center">
           <p className="text-gray-700 mb-6">{content}</p>

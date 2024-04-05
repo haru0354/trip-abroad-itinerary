@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
+import { supabase } from "../components/util/supabase";
 import { z } from "zod";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
 import { validateFile } from "../components/lib/ValidateFile";
@@ -138,8 +139,21 @@ export const addPost = async (state: FormState, data: FormData) => {
 
 export const deletePost = async (data: FormData) => {
   const id = data.get("id") as string;
-  
-  const post = await getPost("id", id, "category");
+
+  const post = await getPost("id", id, "categoryAndPostImage");
+
+  if (post?.postImage?.url) {
+    try {
+      const fileName = post?.postImage?.name;
+      const directory = "travel-memory-life";
+      const saveFileUrl = `${directory}/${fileName}`;
+      await supabase.storage.from("blog").remove([saveFileUrl]);
+      console.log("画像の削除に成功しました");
+    } catch (error) {
+      console.error("画像の削除中にエラーが発生しました:", error);
+      return { message: "画像の削除中にエラーが発生しました" };
+    }
+  }
 
   try {
     await prisma.post.delete({
@@ -240,6 +254,22 @@ export const updatePost = async (
       console.log("画像の追加にエラーが発生しました。", error);
       return { message: "画像の追加時にエラーが発生しました。" };
     }
+
+    const stringNumber = id.toString();
+    const post = await getPost("id", stringNumber, "categoryAndPostImage");
+
+    if (post?.postImage?.url) {
+      try {
+        const fileName = post?.postImage?.name;
+        const directory = "travel-memory-life";
+        const saveFileUrl = `${directory}/${fileName}`;
+        await supabase.storage.from("blog").remove([saveFileUrl]);
+        console.log("登録していた画像の削除に成功しました");
+      } catch (error) {
+        console.error("登録していた画像の削除中にエラーが発生しました:", error);
+        return { message: "登録していた画像の削除中にエラーが発生しました" };
+      }
+    } 
   }
 
   try {

@@ -163,8 +163,13 @@ export const deletePost = async (data: FormData) => {
     });
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
-    revalidatePath(`/${post?.category.slug}/${post?.slug}`);        
+    revalidatePath(`/${post?.category.slug}/${post?.slug}`);  
     await revalidatePostsAndCategories();
+
+    if (post?.postImage?.url) {
+      revalidatePath(`/dashboard/image`);
+    }
+
     console.log("記事が正常に削除されました");
   } catch (error) {
     console.error("記事の削除中にエラーが発生しました:", error);
@@ -282,6 +287,10 @@ export const updatePost = async (
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
     await revalidatePostsAndCategories();
+
+    if (image && image.size > 0) {
+      revalidatePath(`/dashboard/image`);
+    }
 
     console.log("記事が正常に編集されました。");
   } catch (error) {

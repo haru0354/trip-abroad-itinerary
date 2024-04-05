@@ -122,6 +122,11 @@ export const addCategory = async (state: FormState, data: FormData) => {
     });
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
+
+    if (image && image.size > 0) {
+      revalidatePath(`/dashboard/image`);
+    }
+
     console.log("カテゴリの登録に成功しました。");
   } catch (error) {
     console.error("カテゴリを追加する際にエラーが発生しました");
@@ -157,6 +162,11 @@ export const deleteCategory = async (data: FormData) => {
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
     await revalidatePostsAndCategories();
+
+    if (category?.postImage?.url) {
+      revalidatePath(`/dashboard/image`);
+    }
+
     console.log("カテゴリが正常に削除されました。");
   } catch (error) {
     console.error("カテゴリの削除中にエラーが発生しました:", error);
@@ -274,6 +284,10 @@ export const updateCategory = async (
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
     await revalidatePostsAndCategories();
+
+    if (image && image.size > 0) {
+      revalidatePath(`/dashboard/image`);
+    }
 
     console.log("カテゴリが正常に編集されました。");
   } catch (error) {

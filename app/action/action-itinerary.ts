@@ -2,14 +2,12 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { supabase } from "../components/util/supabase";
 import prisma from "../components/lib/prisma";
 import { z } from "zod";
 import { FileSaveItineraryUtils } from "../components/lib/FileSaveUtils";
 import { validateFile } from "../components/lib/ValidateFile";
-import { promises as fsPromises } from "fs";
 import { getItinerary } from "../components/lib/MemoryBookService";
-
-const { unlink } = fsPromises;
 
 type FormState = {
   message?: string | null;
@@ -119,6 +117,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
       return { message: "画像の追加時にエラーが発生しました" };
     }
   }
+
   try {
     await prisma.itinerary.create({
       data: ItineraryData,
@@ -142,17 +141,26 @@ export const deleteItinerary = async (data: FormData) => {
     return;
   }
 
+  if (itinerary.url) {
+    try {
+      const fileName = itinerary.imageName;
+      const directory = `itinerary/${userId}`;
+      const saveFileUrl = `${directory}/${fileName}`;
+      await supabase.storage.from("itinerary").remove([saveFileUrl]);
+      console.log("画像の削除に成功しました");
+    } catch (error) {
+      console.error("画像の削除中にエラーが発生しました:", error);
+      return { message: "画像の削除中にエラーが発生しました" };
+    }
+  }
+
   try {
     await prisma.itinerary.delete({
       where: {
         id: Number(id),
       },
     });
-
-    if (itinerary.url) {
-      await unlink(`./public/itinerary/${userId}/${itinerary?.imageName}`);
-    }
-    console.log("旅程と画像を削除しました。");
+    console.log("旅程を削除しました。");
   } catch (error) {
     console.error("旅程の削除中にエラーが発生しました:", error);
     return { message: "旅程の削除中にエラーが発生しました" };
@@ -230,13 +238,6 @@ export const updateItinerary = async (
         console.log(errors);
         return errors;
       }
-      
-      const stringNumber = id.toString();
-      const itinerary = await getItinerary(stringNumber);
-
-      if (itinerary?.url) {
-        await unlink(`./public/itinerary/${userId}/${itinerary?.imageName}`);
-      }
 
       const { fileUrl, fileName } = await FileSaveItineraryUtils(image, userId);
 
@@ -248,6 +249,22 @@ export const updateItinerary = async (
     } catch (error) {
       console.error("画像の追加時にエラーが発生しました", error);
       return { message: "画像の追加時にエラーが発生しました" };
+    }
+
+    const stringNumber = id.toString();
+    const itinerary = await getItinerary(stringNumber);
+
+    if (itinerary?.url) {
+      try {
+        const fileName = itinerary.imageName;
+        const directory = `itinerary/${userId}`;
+        const saveFileUrl = `${directory}/${fileName}`;
+        await supabase.storage.from("itinerary").remove([saveFileUrl]);
+        console.log("画像の削除に成功しました");
+      } catch (error) {
+        console.error("画像の削除中にエラーが発生しました:", error);
+        return { message: "画像の削除中にエラーが発生しました" };
+      }
     }
   }
 

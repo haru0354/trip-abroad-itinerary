@@ -3,7 +3,7 @@
 // アップロードしたファイルの拡張子とmineタイプをバリデーション
 export const validateFile = async (file: File) => {
   const allowedExtensions = ["jpg", "jpeg", "png", "gif"];
-  const allowedMimeTypes = ["image/jpeg", "image/png", "image/gif"];
+  const allowedMimeTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
   
   // ファイル名から拡張子を取得
   const filenameParts = file.name.split(".");

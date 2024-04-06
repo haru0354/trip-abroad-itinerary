@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
+import { supabase } from "../components/util/supabase";
 import { z } from "zod";
 import { promises as fsPromises } from "fs";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
@@ -82,20 +83,30 @@ export const addPostImage = async (state: FormState, data: FormData) => {
 export const deletePostImage = async (data: FormData) => {
   const id = data.get("id") as string;
 
+  const postImage = await getPostImage(id);
+
+  if (!postImage) {
+    console.error("指定した画像が見つかりませんでした。");
+    return;
+  }
+
   try {
-    const postImage = await getPostImage(id)
+    const fileName = postImage.name;
+    const directory = "travel-memory-life";
+    const saveFileUrl = `${directory}/${fileName}`;
+    await supabase.storage.from("blog").remove([saveFileUrl]);
+    console.log("画像の削除に成功しました");
+  } catch (error) {
+    console.error("画像の削除中にエラーが発生しました:", error);
+    return { message: "画像の削除中にエラーが発生しました" };
+  }
 
-    if (!postImage) {
-      console.error("指定した画像が見つかりませんでした。");
-      return;
-    }
-
+  try {
     await prisma.postImage.delete({
       where: {
         id: Number(id),
       },
     });
-    await unlink(`./public/postImage/${postImage?.name}`);
     revalidatePath(`/dashboard/image`);
   } catch (error) {
     console.error("画像の削除中にエラーが発生しました:", error);
@@ -124,8 +135,8 @@ export const updatePostImage = async (
     return errors;
   }
 
-  // altTextのみが変更された場合は、altTextを更新するだけ
-  if (altText) {
+  // altTextのみが変更された場合は、altTextのみを更新
+  if (!image && altText) {
     try {
       await prisma.postImage.update({
         where: {
@@ -141,13 +152,24 @@ export const updatePostImage = async (
     }
   }
 
+
   // 画像がある場合は保存してfileUrlを変更
   if (image && image.size > 0) {
-    try {
-      const stringNumber = id.toString();
-      const postImage = await getPostImage(stringNumber)
+    const stringNumber = id.toString();
+    const postImage = await getPostImage(stringNumber);
 
-      await unlink(`./public/postImage/${postImage?.name}`);
+    try {
+      const fileName = postImage?.name;
+      const directory = "travel-memory-life";
+      const saveFileUrl = `${directory}/${fileName}`;
+      await supabase.storage.from("blog").remove([saveFileUrl]);
+      console.log("画像の削除に成功しました");
+    } catch (error) {
+      console.error("画像の削除中にエラーが発生しました:", error);
+      return { message: "画像の削除中にエラーが発生しました" };
+    }
+
+    try {
       const { fileUrl, fileName } = await FileSaveUtils(image);
 
       await prisma.postImage.update({
@@ -157,6 +179,7 @@ export const updatePostImage = async (
         data: {
           name: fileName,
           url: fileUrl,
+          altText,
         },
       });
       revalidatePath(`/dashboard/image`);

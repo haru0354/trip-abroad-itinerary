@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import prisma from "../components/lib/prisma";
+import { supabase } from "../components/util/supabase";
 import { z } from "zod";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
 import { validateFile } from "../components/lib/ValidateFile";
@@ -121,6 +122,11 @@ export const addCategory = async (state: FormState, data: FormData) => {
     });
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
+
+    if (image && image.size > 0) {
+      revalidatePath(`/dashboard/image`);
+    }
+
     console.log("カテゴリの登録に成功しました。");
   } catch (error) {
     console.error("カテゴリを追加する際にエラーが発生しました");
@@ -132,7 +138,20 @@ export const addCategory = async (state: FormState, data: FormData) => {
 export const deleteCategory = async (data: FormData) => {
   const id = data.get("id") as string;
 
-  const category = await getCategory("id", id);
+  const category = await getCategory("id", id, "postImage");
+
+  if (category?.postImage?.url) {
+    try {
+      const fileName = category?.postImage?.name;
+      const directory = "travel-memory-life";
+      const saveFileUrl = `${directory}/${fileName}`;
+      await supabase.storage.from("blog").remove([saveFileUrl]);
+      console.log("画像の削除に成功しました");
+    } catch (error) {
+      console.error("画像の削除中にエラーが発生しました:", error);
+      return { message: "画像の削除中にエラーが発生しました" };
+    }
+  }
 
   try {
     await prisma.category.delete({
@@ -142,7 +161,12 @@ export const deleteCategory = async (data: FormData) => {
     });
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
-    revalidatePath(`/${category?.slug}`);
+    await revalidatePostsAndCategories();
+
+    if (category?.postImage?.url) {
+      revalidatePath(`/dashboard/image`);
+    }
+
     console.log("カテゴリが正常に削除されました。");
   } catch (error) {
     console.error("カテゴリの削除中にエラーが発生しました:", error);
@@ -231,6 +255,22 @@ export const updateCategory = async (
       console.log("画像の追加にエラーが発生しました。", error);
       return { message: "画像の追加時にエラーが発生しました。" };
     }
+
+    const stringNumber = id.toString();
+    const category = await getCategory("id", stringNumber, "postImage");
+
+    if (category?.postImage?.url) {
+      try {
+        const fileName = category?.postImage?.name;
+        const directory = "travel-memory-life";
+        const saveFileUrl = `${directory}/${fileName}`;
+        await supabase.storage.from("blog").remove([saveFileUrl]);
+        console.log("画像の削除に成功しました");
+      } catch (error) {
+        console.error("画像の削除中にエラーが発生しました:", error);
+        return { message: "画像の削除中にエラーが発生しました" };
+      }
+    }
   }
 
   try {
@@ -244,6 +284,10 @@ export const updateCategory = async (
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
     await revalidatePostsAndCategories();
+
+    if (image && image.size > 0) {
+      revalidatePath(`/dashboard/image`);
+    }
 
     console.log("カテゴリが正常に編集されました。");
   } catch (error) {

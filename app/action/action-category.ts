@@ -151,6 +151,18 @@ export const deleteCategory = async (data: FormData) => {
       console.error("画像の削除中にエラーが発生しました:", error);
       return { message: "画像の削除中にエラーが発生しました" };
     }
+
+    try {
+      await prisma.postImage.delete({
+        where: {
+          id: category.postImage.id,
+        },
+      });
+      console.log("関連する画像ライブラリの削除に成功しました。");
+    } catch (error) {
+      console.error("関連する画像ライブラリの削除中にエラーが発生しました:", error);
+      return { message: "関連する画像ライブラリの削除中にエラーが発生しました" };
+    }
   }
 
   try {

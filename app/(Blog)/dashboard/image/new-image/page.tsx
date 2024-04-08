@@ -1,5 +1,3 @@
-"use client";
-
 import { addPostImage } from "@/app/action/action-postImage";
 import FormPostImage from "@/app/components/blog/dashboard/FormPostImage";
 

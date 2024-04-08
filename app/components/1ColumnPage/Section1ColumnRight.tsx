@@ -4,6 +4,7 @@ import AnimatedItem from "../lib/AnimatedItem";
 type Section1ColumnRightProps = {
   src: string;
   alt: string;
+  isPriority?: boolean;
   name: string;
   content: string;
   content2?: string;
@@ -13,6 +14,7 @@ type Section1ColumnRightProps = {
 const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
   src,
   alt,
+  isPriority,
   name,
   content,
   content2,
@@ -42,6 +44,7 @@ const Section1ColumnRight: React.FC<Section1ColumnRightProps> = ({
                 width: "365px",
                 height: "auto",
               }}
+              priority={isPriority}
               className="border border-gray-200"
             />
         </div>

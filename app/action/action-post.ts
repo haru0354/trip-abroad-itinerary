@@ -274,6 +274,18 @@ export const updatePost = async (
         console.error("登録していた画像の削除中にエラーが発生しました:", error);
         return { message: "登録していた画像の削除中にエラーが発生しました" };
       }
+
+      try {
+        await prisma.postImage.delete({
+          where: {
+            id: post.postImage.id,
+          },
+        });
+        console.log("関連する画像ライブラリの削除に成功しました。");
+      } catch (error) {
+        console.error("関連する画像ライブラリの削除中にエラーが発生しました:", error);
+        return { message: "関連する画像ライブラリの削除中にエラーが発生しました" };
+      }
     } 
   }
 

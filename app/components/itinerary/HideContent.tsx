@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ButtonImage from "../ui/ButtonImage";
 import AnimatedItem from "../lib/AnimatedItem";
+import SplitTextLines from "../lib/NewLines";
 
 type Itinerary = {
   hideContent: string | null;
@@ -26,8 +27,14 @@ const HideContent: React.FC<HideContentProps> = ({ itinerary }) => {
         <>
           {isShowContent ? (
             <>
-              <AnimatedItem elementType="div" animation="fadeInAndScaleVariants" className="border border-dashed border-gray-500 rounded p-4 mt-6">
-                <p className="text-gray-700">{itinerary?.hideContent}</p>
+              <AnimatedItem
+                elementType="div"
+                animation="fadeInAndScaleVariants"
+                className="border border-dashed border-gray-500 rounded p-4 mt-6"
+              >
+                <p className="text-gray-700">
+                  <SplitTextLines text={itinerary?.hideContent} />
+                </p>
               </AnimatedItem>
               <ButtonImage
                 onClick={toggleShowContent}

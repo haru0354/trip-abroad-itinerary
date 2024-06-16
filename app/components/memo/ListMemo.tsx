@@ -4,6 +4,7 @@ import Manual from "../manual";
 import Image from "next/image";
 import React from "react";
 import AnimatedItem from "../lib/AnimatedItem";
+import SplitTextLines from "../lib/NewLines";
 
 type ListMemoProps = {
   itineraryHomeId: number | undefined;
@@ -89,7 +90,9 @@ const ListMemo: React.FC<ListMemoProps> = async ({
                 </h3>
               </div>
               {memo.content && (
-                <div className="mt-4 text-gray-700">{memo.content}</div>
+                <div className="mt-4 text-gray-700">
+                  <SplitTextLines text={memo.content} />
+                </div>
               )}
             </div>
           </AnimatedItem>

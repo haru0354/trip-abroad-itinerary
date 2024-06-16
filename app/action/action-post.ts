@@ -7,7 +7,7 @@ import { supabase } from "../components/util/supabase";
 import { z } from "zod";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
 import { validateFile } from "../components/lib/ValidateFile";
-import { revalidatePostsAndCategories } from "../components/lib/revalidatePostsAndCategories";
+import { RevalidatePostsAndCategories } from "../components/lib/RevalidatePostsAndCategories";
 import { getPost } from "../components/lib/BlogServiceUnique";
 
 type FormState = {
@@ -127,7 +127,7 @@ export const addPost = async (state: FormState, data: FormData) => {
     });
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
-    await revalidatePostsAndCategories();
+    await RevalidatePostsAndCategories();
 
     console.log("記事の登録に成功しました。");
   } catch (error) {
@@ -163,8 +163,8 @@ export const deletePost = async (data: FormData) => {
     });
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
-    revalidatePath(`/${post?.category.slug}/${post?.slug}`);  
-    await revalidatePostsAndCategories();
+    revalidatePath(`/${post?.category.slug}/${post?.slug}`);
+    await RevalidatePostsAndCategories();
 
     if (post?.postImage?.url) {
       revalidatePath(`/dashboard/image`);
@@ -283,10 +283,15 @@ export const updatePost = async (
         });
         console.log("関連する画像ライブラリの削除に成功しました。");
       } catch (error) {
-        console.error("関連する画像ライブラリの削除中にエラーが発生しました:", error);
-        return { message: "関連する画像ライブラリの削除中にエラーが発生しました" };
+        console.error(
+          "関連する画像ライブラリの削除中にエラーが発生しました:",
+          error
+        );
+        return {
+          message: "関連する画像ライブラリの削除中にエラーが発生しました",
+        };
       }
-    } 
+    }
   }
 
   try {
@@ -298,7 +303,7 @@ export const updatePost = async (
     });
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
-    await revalidatePostsAndCategories();
+    await RevalidatePostsAndCategories();
 
     if (image && image.size > 0) {
       revalidatePath(`/dashboard/image`);

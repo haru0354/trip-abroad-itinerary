@@ -12,6 +12,7 @@ import ButtonImage from "../ui/ButtonImage";
 import Manual from "../manual";
 import AnimatedItem from "../lib/AnimatedItem";
 import AnimatedImage from "../lib/AnimatedImage";
+import SplitTextLines from "../lib/NewLines";
 
 type ListItineraryProps = {
   itineraryHomeId: number | undefined;
@@ -156,7 +157,9 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
                       </p>
                     </div>
                     <div className="flex">
-                      <p className="text-gray-700">{itinerary.content}</p>
+                      <p className="text-gray-700">
+                        <SplitTextLines text={itinerary.content || ""} />
+                      </p>
                     </div>
                   </div>
                 </div>

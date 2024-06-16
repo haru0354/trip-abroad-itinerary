@@ -95,10 +95,15 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
           </Button>
         </nav>
       </div>
+
+
+
+
+      
       {/* ハンバーガーメニュー */}
       <div>
         <button
-          className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-gray-700 border-gray-800 fixed"
+          className="fixed top-0 left-0 block sm:hidden text-white p-2 w-12 h-12 ml-[2px] border rounded bg-gray-700 border-gray-800 z-10"
           onClick={toggleMenu}
         >
           <FontAwesomeIcon
@@ -109,7 +114,7 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
         {isOpen && (
           <>
             <button
-              className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-gray-700 border-gray-800 fixed z-10"
+              className="fixed top-0 left-0 block sm:hidden text-white p-2 w-12 h-12 ml-[2px] border rounded bg-gray-700 border-gray-800 z-10"
               onClick={toggleMenu}
             >
               <FontAwesomeIcon
@@ -119,7 +124,6 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
             </button>
             <div
               className="fixed top-0 left-0 w-full h-screen bg-gray-500 px-10 pt-12"
-              onClick={toggleMenu}
             >
               <p className="py-2 border-b text-white">ダッシュボード</p>
               <ul className="text-white">

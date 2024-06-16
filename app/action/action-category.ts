@@ -7,7 +7,7 @@ import { supabase } from "../components/util/supabase";
 import { z } from "zod";
 import { FileSaveUtils } from "../components/lib/FileSaveUtils";
 import { validateFile } from "../components/lib/ValidateFile";
-import { revalidatePostsAndCategories } from "../components/lib/revalidatePostsAndCategories";
+import { RevalidatePostsAndCategories } from "../components/lib/RevalidatePostsAndCategories";
 import { getCategory } from "../components/lib/BlogServiceUnique";
 
 type FormState = {
@@ -160,8 +160,13 @@ export const deleteCategory = async (data: FormData) => {
       });
       console.log("関連する画像ライブラリの削除に成功しました。");
     } catch (error) {
-      console.error("関連する画像ライブラリの削除中にエラーが発生しました:", error);
-      return { message: "関連する画像ライブラリの削除中にエラーが発生しました" };
+      console.error(
+        "関連する画像ライブラリの削除中にエラーが発生しました:",
+        error
+      );
+      return {
+        message: "関連する画像ライブラリの削除中にエラーが発生しました",
+      };
     }
   }
 
@@ -173,7 +178,7 @@ export const deleteCategory = async (data: FormData) => {
     });
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
-    await revalidatePostsAndCategories();
+    await RevalidatePostsAndCategories();
 
     if (category?.postImage?.url) {
       revalidatePath(`/dashboard/image`);
@@ -295,7 +300,7 @@ export const updateCategory = async (
     revalidatePath(`/`);
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
-    await revalidatePostsAndCategories();
+    await RevalidatePostsAndCategories();
 
     if (image && image.size > 0) {
       revalidatePath(`/dashboard/image`);

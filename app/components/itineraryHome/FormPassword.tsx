@@ -73,7 +73,7 @@ const FormPassword: React.FC<FormPasswordProps> = ({
               label="パスワード"
               name="password"
               type="password"
-              placeholder="パスワードを記載しましょう。"
+              placeholder="変更するパスワードを記載してください。"
               value={passwordValue}
               onChange={handlePasswordChange}
             />
@@ -86,7 +86,7 @@ const FormPassword: React.FC<FormPasswordProps> = ({
               label="パスワード（確認用）"
               name="confirmPassword"
               type="password"
-              placeholder="確認の為パスワードをもう一度記載しましょう。"
+              placeholder="確認の為パスワードをもう一度記載してください。"
               value={passwordConfirmationValue}
               onChange={handlePasswordConfirmationChange}
             />

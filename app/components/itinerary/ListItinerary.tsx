@@ -89,7 +89,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
         const isFirstItem =
           index === 0 || itinerary.date !== sortedItineraries[index - 1].date;
         return (
-          <div key={itinerary.id}>
+          <div key={itinerary.id} className="overflow-x-hidden">
             {isFirstItem && (
               <div className="flex items-center justify-start md:justify-center border-b border-sky-600 text-xl text-center font-bold mb-1 mt-10">
                 {itinerary.date}
@@ -120,7 +120,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
             <AnimatedItem
               elementType="div"
               animation="fadeInLeftVariants"
-              className="flex w-full "
+              className="flex w-full"
             >
               <div className="relative  text-white items-center justify-center flex">
                 <FontAwesomeIcon

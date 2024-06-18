@@ -5,7 +5,7 @@ import TextArea from "../ui/TextArea";
 import Date from "../ui/Date";
 import Time from "../ui/Time";
 import Button from "../ui/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
@@ -41,6 +41,17 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
 }) => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      if (isModalOpen) {
+        document.body.classList.add('overflow-hidden');
+      } else {
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+  }, [isModalOpen]);
+
   const toggleDeleteModal = () => setIsModalOpen((prev) => !prev);
   const closeModal = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {

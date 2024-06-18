@@ -122,14 +122,16 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
               <ul className="text-white">
                 <Link href="/memorybook">
                   <li className="py-2 mx-4">TOPページ</li>
-                  <Link href="/memorybook/home/">
-                    <li className="py-2 mx-4" onClick={toggleMenu}>
-                      ダッシュボード
-                    </li>
-                  </Link>
+                </Link>
+                <Link href="/memorybook/home/">
+                  <li className="py-2 mx-4" onClick={toggleMenu}>
+                    ダッシュボード
+                  </li>
                 </Link>
                 <Link href="/memorybook/home/profile">
-                  <li className="py-2 mx-4" onClick={toggleMenu}>プロフィール</li>
+                  <li className="py-2 mx-4" onClick={toggleMenu}>
+                    プロフィール
+                  </li>
                 </Link>
               </ul>
               <p className="py-2 border-b mt-3 text-white">作成した旅行</p>

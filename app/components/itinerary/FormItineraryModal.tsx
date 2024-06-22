@@ -152,7 +152,7 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
           onClick={closeModal}
         >
           <div className="flex items-center justify-center w-[620px]">
-            <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px] max-h-[80vh] overflow-y-auto">
+            <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px] max-h-[70vh] overflow-y-auto">
               <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-semibold">
                 旅程表のフォーム
               </p>

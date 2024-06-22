@@ -36,7 +36,7 @@ const DeleteUserModal: React.FC<DeleteModalProps> = ({ userId }) => {
             <li>作成したメモ</li>
             <li>共有した旅程表・ブログ</li>
         </ul>
-        <p className="text-red-500 font-semibold">削除をするとデータは完全に消去され、復旧をすることはできなくなります。</p>
+        <p className="text-red-500 font-semibold">削除をするとこれらのデータは完全に消去され、復旧をすることはできなくなります。</p>
       <div className="flex justify-center items-center my-10">
         {isDeleteModalOpen || (
           <Button
@@ -66,7 +66,7 @@ const DeleteUserModal: React.FC<DeleteModalProps> = ({ userId }) => {
             <div className="my-6 text-center">
               <p className="py-2 font-bold">「アカウント」を削除しますか？</p>
               <p className="font-bold text-red-500">
-                削除するとアカウントや登録したデータは削除されます。削除すると元に戻すことはできなくなります。
+                アカウントや登録したデータは削除されます。削除すると元に戻すことはできなくなります。
               </p>
             </div>
             <div className="pb-8">

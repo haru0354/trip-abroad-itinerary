@@ -33,7 +33,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
           li1="旅行前の準備(用意する物・やらなければいけない事)"
           li2="旅行中のメモ(海外旅行保険の連絡先・購入予定のお土産)"
         />
-        <div className="flex flex-col justify-center items-center border border-dashed border-gray-600 my-4 p-4 text-center text-gray-700">
+        <div className="flex flex-col justify-center items-center text-center my-4 p-4 border border-dashed border-gray-600 text-gray-700 overflow-x-hidden">
           画面最下部のメニュー「追加」よりメモの登録ができます。
           <Image
             src="/manual.JPG"

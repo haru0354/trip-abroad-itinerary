@@ -56,7 +56,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
     const result = await formAction(state, formData);
     switch (result.message) {
       case "edit":
-        toast.success("プロフィールを編集しました！ログアウトが行われます。");
+        toast.success("プロフィールを編集しました！");
         router.replace("/memorybook/");
         break;
       default:
@@ -77,7 +77,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
             <Form
               label="名前(ニックネーム)"
               name="name"
-              placeholder="名前(ニックネーム)を記載しましょう。"
+              placeholder="名前(ニックネーム)を記載してください。"
               value={nameValue}
               onChange={handleNameChange}
             />
@@ -89,7 +89,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
             <Form
               label="メールアドレス"
               name="email"
-              placeholder="メールアドレスを記載しましょう。"
+              placeholder="メールアドレスを記載してください。"
               value={emailValue}
               onChange={handleEmailChange}
             />

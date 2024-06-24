@@ -3,15 +3,17 @@ import { load } from "cheerio";
 type TocItem = {
   id: string;
   text: string;
+  tag: string;
 };
 
 export const GenerateTocId = (contents: string): TocItem[] => {
   const $ = load(contents);
   const toc: TocItem[] = [];
 
-  $("h2, h3, h4").each((index, element) => {
+  $("h2, h3").each((index, element) => {
     let id = $(element).attr("id");
     const text = $(element).text();
+    const tag = $(element).prop("tagName").toLowerCase();
 
     if (!id) {
       const generatedId = `${index}`;
@@ -20,7 +22,7 @@ export const GenerateTocId = (contents: string): TocItem[] => {
     }
 
     if (id) {
-      toc.push({ id, text });
+      toc.push({ id, text, tag });
     }
   });
 
@@ -30,7 +32,7 @@ export const GenerateTocId = (contents: string): TocItem[] => {
 export const AddGenerateContentId = (contents: string) => {
   const $ = load(contents);
 
-  $("h2, h3, h4").each((index, element) => {
+  $("h2, h3").each((index, element) => {
     let id = $(element).attr("id");
 
     if (!id) {

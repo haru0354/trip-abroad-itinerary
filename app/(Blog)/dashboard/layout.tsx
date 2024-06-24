@@ -21,7 +21,7 @@ export default async function RootLayout({
           <ToastContext />
           <div className="flex bg-sky-50">
             <DashboardSideMenu />
-            <div className="flex justify-center items-center mx-auto w-full max-w-[1200px] ml-0 sm:ml-96 bg-white border rounded border-gray-200 p-5 mt-8">
+            <div className="flex justify-center items-start w-full max-w-[1200px] min-h-[93vh] p-5 my-8 mx-auto ml-0 sm:ml-96 bg-white border rounded border-gray-200">
               <div className="w-full">{children}</div>
             </div>
           </div>

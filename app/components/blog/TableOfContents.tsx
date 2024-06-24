@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import GenerateToc from "../lib/GenerateToc";
+import { GenerateTocId } from "../lib/GenerateToc";
 
 type TocItem = {
   id: string;
@@ -17,7 +17,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
 
   useEffect(() => {
     if (content) {
-      setToc(GenerateToc(content));
+      setToc(GenerateTocId(content));
     }
   }, [content]);
 

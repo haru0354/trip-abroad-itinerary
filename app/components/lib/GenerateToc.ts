@@ -5,7 +5,7 @@ type TocItem = {
   text: string;
 };
 
-const GenerateToc = (contents: string): TocItem[] => {
+export const GenerateTocId = (contents: string): TocItem[] => {
   const $ = load(contents);
   const toc: TocItem[] = [];
 
@@ -27,4 +27,20 @@ const GenerateToc = (contents: string): TocItem[] => {
   return toc;
 };
 
-export default GenerateToc;
+export const AddGenerateContentId = (contents: string) => {
+  const $ = load(contents);
+
+  $("h2, h3, h4").each((index, element) => {
+    let id = $(element).attr("id");
+
+    if (!id) {
+      const generatedId = `${index}`;
+      $(element).attr("id", generatedId);
+      id = generatedId;
+    }
+  });
+
+  return $.html();
+};
+
+

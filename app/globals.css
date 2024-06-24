@@ -96,3 +96,22 @@ h2 {
   margin-bottom: 1rem;
   border: none;
 }
+
+.blog ul {
+  width: 100%;
+  max-width: 500px;
+  list-style-type: disc;
+  list-style-position: inside;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: gray;
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin: 1.5rem auto;
+}
+
+.blog li {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+

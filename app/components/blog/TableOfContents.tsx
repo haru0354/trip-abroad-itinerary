@@ -27,8 +27,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
       <p className="pb-1 text-center text-lg border-b  border-gray-300">
         目次
       </p>
-      <ul className="list-disc list-inside">
-        {toc.map((item) => {
+      <ul className="list-disc list-inside border-none" style={{ border: "none", padding: 0, margin: 0 }}>
+      {toc.map((item) => {
           let className = "";
           switch (item.tag) {
             case "h2":

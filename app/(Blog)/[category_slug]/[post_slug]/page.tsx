@@ -6,6 +6,7 @@ import SideMenu from "@/app/components/blog/SideMenu";
 
 import { getPost } from "@/app/components/lib/BlogServiceUnique";
 import { getPosts } from "@/app/components/lib/BlogServiceMany";
+import TableOfContents from "@/app/components/blog/TableOfContents";
 
 export async function generateStaticParams() {
   const posts = await getPosts("categoryAndPostImage");
@@ -44,6 +45,7 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
         <p className="text-gray-500 mb-5">
           記事の投稿日：{formattedCreatedDate}
         </p>
+        <TableOfContents content={post.content}/>
         <ArticleContentArea content={post.content} />
       </div>
       <div className="w-full md:w-1/4 py-4 bg-white rounded">

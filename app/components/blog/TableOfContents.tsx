@@ -23,8 +23,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
   }, [content]);
 
   return (
-    <div className="w-full max-w-[500px] p-6 mx-auto my-12 border rounded border-gray-400">
-      <p className="pb-1 text-center text-lg border-b  border-gray-400 border-dashed">
+    <div className="w-full max-w-[500px] p-6 mx-auto my-12 border rounded border-gray-300">
+      <p className="pb-1 text-center text-lg border-b  border-gray-300">
         目次
       </p>
       <ul className="list-disc list-inside">
@@ -38,7 +38,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
               className = "ml-6 mb-2 marker:text-gray-500";
               break;
             default:
-              className = "";
+              className = "list-none font-semibold mb-3";
           }
 
           return (

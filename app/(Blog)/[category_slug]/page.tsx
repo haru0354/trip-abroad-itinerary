@@ -9,7 +9,6 @@ import SideMenu from "../../components/blog/SideMenu";
 import { getCategory } from "@/app/components/lib/BlogServiceUnique";
 import { getCategories } from "@/app/components/lib/BlogServiceMany";
 import ArticleContentArea from "@/app/components/blog/blogContent/ArticleContentArea";
-import TableOfContents from "@/app/components/blog/TableOfContents";
 
 export async function generateStaticParams() {
   const categories = await getCategories("categoryAndPostImage");
@@ -60,7 +59,6 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
             alt={category.postImage?.altText}
           />
         )}
-        <TableOfContents content={category.content}/>
         {category.content && <ArticleContentArea content={category.content} />}
         <h2 className="p-2 mt-10 text-3xl">{category?.name}の記事一覧</h2>
         {category.posts.map((post) => {

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import DOMPurify from "dompurify";
 import { AddGenerateContentId } from "../../lib/GenerateToc";
+import TableOfContents from "../TableOfContents";
 
 type ArticleContentAreaProps = {
   content: string;
@@ -11,21 +12,59 @@ type ArticleContentAreaProps = {
 
 const ArticleContentArea: React.FC<ArticleContentAreaProps> = ({ content }) => {
   const [idContent, setIdContent] = useState("");
-  const [sanitizedContent, setSanitizedContent] = useState("");
+  const [beforeContent, setBeforeContent] = useState("");
+  const [afterContent, setAfterContent] = useState("");
+  const [sanitizedBeforeContent, setSanitizedBeforeContent] = useState("");
+  const [sanitizedAfterContent, setSanitizedAfterContent] = useState("");
 
+  // 目次の為にIDを付与
   useEffect(() => {
     if (content) {
-      setIdContent(AddGenerateContentId(content));
+      const id = AddGenerateContentId(content);
+      setIdContent(id);
     }
   }, [content]);
 
-
+  // 最初のh2タグの部分で分離
   useEffect(() => {
-    const sanitized = DOMPurify.sanitize(idContent);
-    const formattedContent = sanitized.replace(/\n/g, "<br>");
-    setSanitizedContent(formattedContent);
+    if (idContent) {
+      const h2Index = idContent.indexOf("<h2");
+      if (h2Index !== -1) {
+        const before = idContent.slice(0, h2Index);
+        const after = idContent.slice(h2Index); 
+
+        setBeforeContent(before);
+        setAfterContent(after);
+      } else {
+        setBeforeContent("idContent");
+        setAfterContent(idContent);
+      }
+    }
   }, [idContent]);
 
-  return <>{parse(sanitizedContent)}</>;
+  useEffect(() => {
+    if (beforeContent) {
+      const sanitized = DOMPurify.sanitize(beforeContent);
+      const formattedContent = sanitized.replace(/\n/g, "<br>");
+      setSanitizedBeforeContent(formattedContent);
+    }
+  }, [beforeContent]);
+
+  useEffect(() => {
+    if (afterContent) {
+      const sanitized = DOMPurify.sanitize(afterContent);
+      const formattedContent = sanitized.replace(/\n/g, "<br>");
+      setSanitizedAfterContent(formattedContent);
+    }
+  }, [afterContent]);
+
+return (
+  <>
+    {parse(sanitizedBeforeContent)}
+    <TableOfContents content={content} />
+    {parse(sanitizedAfterContent)}
+  </>
+);
 };
+
 export default ArticleContentArea;

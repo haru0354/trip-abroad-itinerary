@@ -35,7 +35,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
               className = "list-none font-semibold mb-3";
               break;
             case "h3":
-              className = "ml-6 mb-2";
+              className = "ml-6 mb-2 marker:text-gray-500";
               break;
             default:
               className = "";

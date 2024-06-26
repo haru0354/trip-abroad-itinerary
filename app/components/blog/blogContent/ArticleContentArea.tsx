@@ -5,6 +5,7 @@ import parse from "html-react-parser";
 import DOMPurify from "dompurify";
 import { AddGenerateContentId } from "../../lib/GenerateToc";
 import TableOfContents from "../TableOfContents";
+import CustomComponents from "../CustomComponents";
 
 type ArticleContentAreaProps = {
   content: string;
@@ -31,7 +32,7 @@ const ArticleContentArea: React.FC<ArticleContentAreaProps> = ({ content }) => {
       const h2Index = idContent.indexOf("<h2");
       if (h2Index !== -1) {
         const before = idContent.slice(0, h2Index);
-        const after = idContent.slice(h2Index); 
+        const after = idContent.slice(h2Index);
 
         setBeforeContent(before);
         setAfterContent(after);
@@ -58,13 +59,13 @@ const ArticleContentArea: React.FC<ArticleContentAreaProps> = ({ content }) => {
     }
   }, [afterContent]);
 
-return (
-  <>
-    {parse(sanitizedBeforeContent)}
-    <TableOfContents content={content} />
-    {parse(sanitizedAfterContent)}
-  </>
-);
+  return (
+    <>
+      {parse(sanitizedBeforeContent, { replace: CustomComponents })}
+      <TableOfContents content={content} />
+      {parse(sanitizedAfterContent, { replace: CustomComponents })}
+    </>
+  );
 };
 
 export default ArticleContentArea;

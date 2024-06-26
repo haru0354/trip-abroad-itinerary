@@ -85,11 +85,15 @@ const FormPost: React.FC<FormPostProps> = ({
 
     const sanitizedFormData = new FormData();
     for (const [key, value] of formData.entries()) {
-      let sanitizedValue = value;
-      if (key !== "image") {
-        sanitizedValue = DOMPurify.sanitize(value.toString());
+      if (key !== "image" && typeof value === "string") {
+        const sanitizedValue = DOMPurify.sanitize(value, {
+          ALLOWED_TAGS: ["next"],
+          ALLOWED_ATTR: ["href"]
+        });
+        sanitizedFormData.append(key, sanitizedValue);
+      } else {
+        sanitizedFormData.append(key, value);
       }
-      sanitizedFormData.append(key, sanitizedValue);
     }
     sanitizedFormData.set("draft", isDraft.toString());
 

@@ -1,6 +1,8 @@
 import { DOMNode, domToReact } from "html-react-parser";
 import CustomLink from "./blogDesignComponents/CustomLink";
 
+// blogのコンテンツにコンポーネントを使用するなら追加していく
+
 const CustomComponents = (domNode: DOMNode) => {
   if (
     domNode.type === "tag" &&

@@ -46,8 +46,8 @@ const ArticleContentArea: React.FC<ArticleContentAreaProps> = ({ content }) => {
   useEffect(() => {
     if (beforeContent) {
       const sanitized = DOMPurify.sanitize(beforeContent, {
-        ALLOWED_TAGS: ["next"],
-        ALLOWED_ATTR: ["href"]
+        ADD_TAGS: ["next"],
+        ADD_ATTR: ["href"]
       });
       const formattedContent = sanitized.replace(/\n/g, "<br>");
       setSanitizedBeforeContent(formattedContent);
@@ -57,8 +57,8 @@ const ArticleContentArea: React.FC<ArticleContentAreaProps> = ({ content }) => {
   useEffect(() => {
     if (afterContent) {
       const sanitized = DOMPurify.sanitize(afterContent, {
-        ALLOWED_TAGS: ["next"],
-        ALLOWED_ATTR: ["href"]
+        ADD_TAGS: ["next"],
+        ADD_ATTR: ["href"]
       });
       const formattedContent = sanitized.replace(/\n/g, "<br>");
       setSanitizedAfterContent(formattedContent);

@@ -1,7 +1,7 @@
 import prisma from "@/app/components/lib/prisma";
 
 export async function getPosts(includeOptions?: string, take?: number,) {
-  let include: {
+  const include: {
     category?: boolean;
     postImage?: boolean;
   } = { category: false, postImage: false };
@@ -50,7 +50,7 @@ export async function getPosts(includeOptions?: string, take?: number,) {
 }
 
 export async function getCategories(includeOptions?: string) {
-  let include: {
+  const include: {
     posts?: boolean;
     postImage?: boolean;
   } = { posts: false, postImage: false };

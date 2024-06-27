@@ -5,7 +5,7 @@ export async function getPost(
   whereValue?: string,
   includeOptions?: string
 ) {
-  let include: {
+  const include: {
     category?: boolean;
     postImage?: boolean;
   } = { category: false, postImage: false };
@@ -52,10 +52,14 @@ export async function getCategory(
   whereValue?: string,
   includeOptions?: string
 ) {
-  let include: {
-    posts?: boolean;
+  const include: {
+    posts?: {
+      include: {
+        postImage: boolean;
+      };
+    } | boolean;
     postImage?: boolean;
-  } = { posts: false, postImage: false };
+  } = {};
 
   switch (includeOptions) {
     case "posts":
@@ -65,7 +69,11 @@ export async function getCategory(
       include.postImage = true;
       break;
     case "postsAndPostImage":
-      include.posts = true;
+      include.posts = {
+        include: {
+          postImage: true,
+        },
+      };
       include.postImage = true;
       break;
     default:

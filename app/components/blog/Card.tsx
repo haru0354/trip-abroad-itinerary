@@ -14,34 +14,34 @@ type CardProps = {
   post: Post;
 };
 
-const Card: React.FC<CardProps> = ({ post }) => {
+const Card: React.FC<CardProps> = ({ post }) => {  
   return (
     <>
       {post.draft && (
         <div className="flex flex-wrap md:flex-nowrap  border w-full border-gray-400 my-8 hover:bg-gray-100">
           {post.postImage ? (
-            <div className="w-full md:w-auto pt-3 md:pt-0 min-w-[260px]">
+            <div className="w-full md:w-auto pt-3 md:pt-0 min-w-[300px]">
               <Image
                 src={post.postImage.url}
                 alt={post.postImage.altText}
-                width={260}
-                height={171}
+                width={300}
+                height={200}
                 style={{
-                  width: "260px",
+                  width: "300",
                   height: "auto",
                 }}
                 className="block mx-auto"
               />
             </div>
           ) : (
-            <div className="w-full md:w-auto pt-3 md:pt-0 min-w-[260px]">
+            <div className="w-full md:w-auto pt-3 md:pt-0 min-w-[300px]">
               <Image
                 src="/no_image.jpg"
                 alt="画像の準備中"
-                width={328}
-                height={213}
+                width={300}
+                height={200}
                 style={{
-                  width: "261px",
+                  width: "300",
                   height: "auto",
                 }}
                 className="block mx-auto"
@@ -58,7 +58,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
                 {post.title}
               </h3>
             )}
-            <p className="text-gray-600">
+            <p className="text-gray-600 mb-0">
               {post.description.length > 72
                 ? `${post.description.slice(0, 72)}...`
                 : post.description}

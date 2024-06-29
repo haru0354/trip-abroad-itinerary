@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import Button from "../ui/Button";
 import Form from "../ui/Form";
 import TextArea from "../ui/TextArea";
@@ -33,10 +33,22 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
 }) => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const toggleDeleteModal = () => setIsModalOpen((prev) => !prev);
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      if (isModalOpen) {
+        document.body.classList.add("overflow-hidden");
+      } else {
+        document.body.classList.remove("overflow-hidden");
+      }
+    }
+  }, [isModalOpen]);
+
+  const toggleModal = () => setIsModalOpen((prev) => !prev);
+
   const closeModal = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
-      toggleDeleteModal();
+      toggleModal();
     }
   };
 
@@ -66,8 +78,8 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
       case "add":
         setInputValue("");
         setTextareaChange("");
+        toggleModal();
         toast.success("メモを保存しました！");
-        toggleDeleteModal();
         break;
       case "edit":
         toast.success("メモを編集しました！");
@@ -84,14 +96,14 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
       {buttonName === "追加" ? (
         <>
           <div className="w-full h-full">
-            <ButtonImage icon="plus" size="footer" onClick={toggleDeleteModal}>
+            <ButtonImage icon="plus" size="footer" onClick={toggleModal}>
               {buttonName}
             </ButtonImage>
           </div>
         </>
       ) : (
         <>
-          <Button onClick={toggleDeleteModal} color="blue" size="normal">
+          <Button onClick={toggleModal} color="blue" size="normal">
             {buttonName}
           </Button>
         </>

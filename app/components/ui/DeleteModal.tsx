@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../ui/Button";
 import Image from "next/image";
 import toast from "react-hot-toast";
@@ -23,6 +23,17 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
   userId,
 }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      if (isDeleteModalOpen) {
+        document.body.classList.add('overflow-hidden');
+      } else {
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+  }, [isDeleteModalOpen]);
+
   const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
 
   if (!id) {

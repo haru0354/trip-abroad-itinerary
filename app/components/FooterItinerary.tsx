@@ -24,15 +24,18 @@ const FooterItinerary: React.FC<FooterItineraryProps> = ({
         />
       </div>
       <footer className={`${isTopAppDirectory || "mb-[64px]"}`}>
-        <div className="bg-blue-500 min-h-[68px] w-full flex flex-grow bottom-0 items-end justify-center">
-          <ul className="text-xs text-center mb-3">
-            <li className="mb-2 text-white">
+        <div className="bg-blue-500 min-h-[68px] w-full flex flex-col items-center justify-center bottom-0">
+          <ul className="flex text-xs text-center">
+            <li className="mx-6 text-white">
               <Link href="/privacypolicy">プライバシーポリシー・免責事項</Link>
             </li>
-            <li className="text-black">
-              &copy;国内旅行・海外旅行のしおりアプリ「旅のメモリーブック」
+            <li className="mb-2 text-white">
+              <Link href="/sitemaps">サイトマップ</Link>
             </li>
           </ul>
+          <span className="text-xs text-black">
+            &copy;国内旅行・海外旅行のしおりアプリ「旅のメモリーブック」
+          </span>
         </div>
       </footer>
     </>

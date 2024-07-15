@@ -27,16 +27,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   
   const dynamicPathsPosts = posts.map((post) => {
+    if (post.category && post.category.slug) {
+      return {
+        url: `${baseURL}/${post.category.slug}/${post.slug}`,
+        lastModified: new Date(post.createdDate),
+      };
+    }
     return {
-      url: `${baseURL}/${post.category.slug}/${post.slug}`,
-      lastModified: new Date(post.createdDate),
+      url: `${baseURL}`, 
+      lastModified: new Date(),
     };
-  });
-
+  }); 
+  
   const dynamicPathsCategories = categories.map((category) => {
+    if (category.slug) {
+      return {
+        url: `${baseURL}/${category.slug}`,
+        lastModified: new Date(category.createdDate),
+      };
+    }
     return {
-      url: `${baseURL}/${category.slug}`,
-      lastModified: new Date(category.createdDate),
+      url: `${baseURL}`, 
+      lastModified: new Date(),
     };
   });
 

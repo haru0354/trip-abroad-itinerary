@@ -13,12 +13,12 @@ const ArticleTop: React.FC<ArticleTopProps> = ({ src, alt }) => {
           src={src}
           alt={alt}
           width={650}
-          height={428}
+          height={430}
           priority
           style={{
             maxWidth: "100%",
             height: "auto",
-            aspectRatio: "650 / 428",
+            aspectRatio: "650 / 430",
           }}
           sizes="100vw"
           className="block mx-auto mb-8 max-w-[650px] max-h-[430px]"

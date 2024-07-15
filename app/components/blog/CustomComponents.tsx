@@ -6,7 +6,7 @@ import CustomLink from "./blogDesignComponents/CustomLink";
 const CustomComponents = (domNode: DOMNode) => {
   if (
     domNode.type === "tag" &&
-    domNode.name === "Link" &&
+    domNode.name === "next" &&
     domNode.attribs &&
     domNode.attribs.href
   ) {

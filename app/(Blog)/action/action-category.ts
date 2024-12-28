@@ -8,7 +8,7 @@ import { supabase } from "../../components/util/supabase";
 import { getCategory } from "../../components/lib/BlogServiceUnique";
 import { FileSaveUtils } from "../../components/lib/FileSaveUtils";
 import { validateFile } from "../../components/lib/ValidateFile";
-import { RevalidatePostsAndCategories } from "../../components/lib/RevalidatePostsAndCategories";
+import { RevalidatePostsAndCategories } from "@/app/components/lib/revalidatePostsAndCategories";
 
 type FormState = {
   message?: string | null;

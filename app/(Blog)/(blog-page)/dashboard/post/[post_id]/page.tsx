@@ -4,7 +4,7 @@ import FormPost from "@/app/components/blog/dashboard/FormPost";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 import Button from "@/app/components/ui/Button";
 
-import { deletePost, updatePost } from "@/app/action/action-post";
+import { deletePost, updatePost } from "@/app/(blog)/action/action-post";
 import { getPost } from "@/app/components/lib/BlogServiceUnique";
 import { getCategories } from "@/app/components/lib/BlogServiceMany";
 

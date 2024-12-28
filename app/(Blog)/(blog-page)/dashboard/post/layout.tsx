@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "記事の一覧",
+  title: {
+    default: "記事の一覧",
+    template: "%s | トラベルメモリー",
+  },
 };
 
 export default function RootLayout({

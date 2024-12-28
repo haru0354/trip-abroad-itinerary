@@ -4,7 +4,10 @@ import AuthContext from "@/app/context/AuthContext";
 import DashboardSideMenu from "@/app/components/blog/dashboard/DashboardSideMenu";
 
 export const metadata: Metadata = {
-  title: "ダッシュボード",
+  title: {
+    default: "ダッシュボードメモ",
+    template: "%s | トラベルメモリー",
+  },
   robots: {
     index: false, 
   },

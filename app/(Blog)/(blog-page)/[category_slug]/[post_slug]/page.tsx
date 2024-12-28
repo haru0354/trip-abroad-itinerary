@@ -14,7 +14,7 @@ export async function generateStaticParams() {
     params: {
       post_slug: post.slug,
     },
-    revalidate: 60 * 60 * 24 * 15, 
+    revalidate: 60 * 60 * 24 * 15,
   }));
 }
 

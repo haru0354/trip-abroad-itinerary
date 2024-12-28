@@ -5,7 +5,7 @@ import FormCategory from "@/app/components/blog/dashboard/FormCategory";
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 
-import { updateCategory, deleteCategory } from "@/app/action/action-category";
+import { updateCategory, deleteCategory } from "@/app/(blog)/action/action-category";
 import { getCategory } from "@/app/components/lib/BlogServiceUnique";
 
 export const metadata: Metadata = {

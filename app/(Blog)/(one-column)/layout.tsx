@@ -1,14 +1,5 @@
-import { Metadata } from "next";
-
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-
-export const metadata: Metadata = {
-  title: "プライバシーポリシー・免責事項 | 旅のメモリーブック",
-  robots: {
-    index: false,
-  },
-};
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 export default async function RootLayout({
   children,

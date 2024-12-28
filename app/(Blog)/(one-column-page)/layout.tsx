@@ -1,11 +1,5 @@
-import { Metadata } from "next";
-
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-
-export const metadata: Metadata = {
-  title: "サイトマップ | 旅のメモリーブック",
-};
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 export default async function RootLayout({
   children,
@@ -17,7 +11,7 @@ export default async function RootLayout({
       <Header />
       <main className="bg-sky-50">
         <div className="main-contents-area rounded">
-          <div className="w-full px-1 md:px-8">{children}</div>
+          <div className="w-full px-1 md:px-4">{children}</div>
         </div>
       </main>
       <Footer />

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "記事の追加",
+  title: "画像ライブラリー",
 };
 
 export default function RootLayout({
@@ -9,6 +9,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>
-  {children}</>;
+  return <>{children}</>;
 }

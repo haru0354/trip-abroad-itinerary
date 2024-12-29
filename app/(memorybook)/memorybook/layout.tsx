@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import AuthContext from "../context/AuthContext";
-import ToastContext from "../context/ToastContext";
+import AuthContext from "../../context/AuthContext";
+import ToastContext from "../../context/ToastContext";
 
 config.autoAddCss = false;
 

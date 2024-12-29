@@ -1,14 +1,14 @@
 import { Suspense } from "react";
 
-import ListItinerary from "@/app/components/itinerary/ListItinerary";
-import Loading from "@/app/loading";
+import ListMemo from "@/app/components/memo/ListMemo";
+import Loading from "@/app/Loading";
 
 import { getItineraryHome } from "@/app/components/lib/MemoryBookService";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   const itineraryHome = await getItineraryHome(
     params.itineraryHome_id,
-    "itineraries"
+    "memos"
   );
 
   return (
@@ -16,9 +16,9 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
       <h2 className="bg-white mt-0 md:mt-8 p-2 text-lg md:text-2xl text-center text-black border-b border-solid border-blue-800">
         {itineraryHome?.name}
       </h2>
-      <Suspense fallback={<Loading message="作成した旅程表" />}>
-        <ListItinerary
-          itineraries={itineraryHome?.itineraries}
+      <Suspense fallback={<Loading message="作成したメモ" />}>
+        <ListMemo
+          memos={itineraryHome?.memos}
           itineraryHomeId={itineraryHome?.id}
         />
       </Suspense>

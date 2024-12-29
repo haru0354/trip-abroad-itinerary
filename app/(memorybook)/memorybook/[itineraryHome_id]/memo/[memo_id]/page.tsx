@@ -6,7 +6,6 @@ import FormMemo from "@/app/components/memo/FormMemo";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 import Button from "@/app/components/ui/Button";
 
-
 const Page = async ({
   params,
 }: {

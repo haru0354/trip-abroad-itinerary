@@ -8,7 +8,7 @@ import { supabase } from "../../components/util/supabase";
 import { getCategory } from "../lib/service/blogServiceUnique";
 import { FileSaveUtils } from "../../components/lib/FileSaveUtils";
 import { validateFile } from "../../components/lib/ValidateFile";
-import { RevalidatePostsAndCategories } from "@/app/components/lib/revalidatePostsAndCategories";
+import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
 
 type FormState = {
   message?: string | null;
@@ -178,7 +178,7 @@ export const deleteCategory = async (data: FormData) => {
     });
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
-    await RevalidatePostsAndCategories();
+    await revalidatePostsAndCategories();
 
     if (category?.postImage?.url) {
       revalidatePath(`/dashboard/image`);
@@ -300,7 +300,7 @@ export const updateCategory = async (
     revalidatePath(`/`);
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
-    await RevalidatePostsAndCategories();
+    await revalidatePostsAndCategories();
 
     if (image && image.size > 0) {
       revalidatePath(`/dashboard/image`);

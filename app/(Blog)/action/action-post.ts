@@ -8,7 +8,7 @@ import { supabase } from "../../components/util/supabase";
 import { getPost } from "../lib/service/blogServiceUnique";
 import { FileSaveUtils } from "../../components/lib/FileSaveUtils";
 import { validateFile } from "../../components/lib/ValidateFile";
-import { RevalidatePostsAndCategories } from "@/app/components/lib/revalidatePostsAndCategories";
+import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
 
 type FormState = {
   message?: string | null;
@@ -127,7 +127,7 @@ export const addPost = async (state: FormState, data: FormData) => {
     });
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
-    await RevalidatePostsAndCategories();
+    await revalidatePostsAndCategories();
 
     console.log("記事の登録に成功しました。");
   } catch (error) {
@@ -164,7 +164,7 @@ export const deletePost = async (data: FormData) => {
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
     revalidatePath(`/${post?.category.slug}/${post?.slug}`);
-    await RevalidatePostsAndCategories();
+    await revalidatePostsAndCategories();
 
     if (post?.postImage?.url) {
       revalidatePath(`/dashboard/image`);
@@ -303,7 +303,7 @@ export const updatePost = async (
     });
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
-    await RevalidatePostsAndCategories();
+    await revalidatePostsAndCategories();
 
     if (image && image.size > 0) {
       revalidatePath(`/dashboard/image`);

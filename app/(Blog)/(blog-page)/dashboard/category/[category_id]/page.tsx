@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-
+import { updateCategory, deleteCategory } from "@/app/(blog)/action/action-category";
+import { getCategory } from "@/app/(blog)/lib/service/blogServiceUnique";
 import FormCategory from "@/app/components/blog/dashboard/FormCategory";
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
-
-import { updateCategory, deleteCategory } from "@/app/(blog)/action/action-category";
-import { getCategory } from "@/app/components/lib/BlogServiceUnique";
 
 export const metadata: Metadata = {
   title: "カテゴリの編集",

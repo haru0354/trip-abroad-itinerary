@@ -1,4 +1,4 @@
-import { getPost } from "@/app/components/lib/BlogServiceUnique";
+import { getPost } from "@/app/(blog)/lib/service/blogServiceUnique";
 import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
 import NotFound from "@/app/not-found";
 import ArticleContentArea from "@/app/components/blog/blogContent/ArticleContentArea";

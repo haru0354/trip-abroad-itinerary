@@ -3,7 +3,7 @@ import {
   deletePostImage,
   updatePostImage,
 } from "@/app/(blog)/action/action-postImage";
-import { getPostImage } from "@/app/components/lib/BlogServiceUnique";
+import { getPostImage } from "@/app/(blog)/lib/service/blogServiceUnique";
 import FormPostImage from "@/app/components/blog/dashboard/FormPostImage";
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";

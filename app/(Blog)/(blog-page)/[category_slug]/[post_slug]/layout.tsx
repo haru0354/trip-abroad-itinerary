@@ -1,6 +1,5 @@
 import { Metadata } from "next";
-
-import { getPost } from "@/app/components/lib/BlogServiceUnique";
+import { getPost } from "@/app/(blog)/lib/service/blogServiceUnique";
 
 export const generateMetadata = async ({
   params,

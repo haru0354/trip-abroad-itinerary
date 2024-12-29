@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import prisma from "../../components/lib/prisma";
 import { supabase } from "../../components/util/supabase";
-import { getPost } from "../../components/lib/BlogServiceUnique";
+import { getPost } from "../lib/service/blogServiceUnique";
 import { FileSaveUtils } from "../../components/lib/FileSaveUtils";
 import { validateFile } from "../../components/lib/ValidateFile";
 import { RevalidatePostsAndCategories } from "@/app/components/lib/revalidatePostsAndCategories";

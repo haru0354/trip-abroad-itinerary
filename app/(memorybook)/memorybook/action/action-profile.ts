@@ -1,10 +1,10 @@
 "use server";
 
-import prisma from "../components/lib/prisma";
-import { z } from "zod";
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+import { z } from "zod";
 import bcrypt from "bcrypt";
+import prisma from "../../../components/lib/prisma";
 
 type FormState = {
   message?: string | null;

@@ -1,11 +1,9 @@
 import Link from "next/link";
-
-import Button from "@/app/components/ui/Button";
-import FormShare from "@/app/components/itineraryHome/FormShare";
-
-import { updateShare } from "@/app/action/action-ItineraryHome";
 import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
 import { getItineraryHome } from "@/app/components/lib/MemoryBookService";
+import { updateShare } from "@/app/action/action-ItineraryHome";
+import Button from "@/app/components/ui/Button";
+import FormShare from "@/app/components/itineraryHome/FormShare";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   const id = Number(params.itineraryHome_id);

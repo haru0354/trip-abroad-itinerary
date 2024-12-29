@@ -1,9 +1,8 @@
 import { Suspense } from "react";
-
-import FormItineraryHome from "@/app/components/itineraryHome/FormItineraryHome";
-import ListItineraryHome from "@/app/components/itineraryHome/ListItineraryHome";
 import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
 import { addItineraryHome } from "@/app/action/action-ItineraryHome";
+import FormItineraryHome from "@/app/components/itineraryHome/FormItineraryHome";
+import ListItineraryHome from "@/app/components/itineraryHome/ListItineraryHome";
 import ListShare from "@/app/components/itineraryHome/ListShare";
 import Loading from "@/app/Loading";
 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getCategories } from "../../../components/lib/BlogServiceMany";
+import { getCategories } from "../../lib/service/blogServiceMany";
 
 const page = async () => {
   const categories = await getCategories("posts");

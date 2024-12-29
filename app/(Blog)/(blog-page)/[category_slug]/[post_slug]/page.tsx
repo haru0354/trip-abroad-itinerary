@@ -1,11 +1,10 @@
+import { getPost } from "@/app/components/lib/BlogServiceUnique";
+import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
 import NotFound from "@/app/not-found";
 import ArticleContentArea from "@/app/components/blog/blogContent/ArticleContentArea";
 import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
 import Breadcrumbs from "@/app/components/blog/Breadcrumbs";
 import SideMenu from "@/app/components/blog/SideMenu";
-
-import { getPost } from "@/app/components/lib/BlogServiceUnique";
-import { getPosts } from "@/app/components/lib/BlogServiceMany";
 
 export async function generateStaticParams() {
   const posts = await getPosts("categoryAndPostImage");

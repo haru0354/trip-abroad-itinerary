@@ -1,11 +1,9 @@
+import React from "react";
 import Link from "next/link";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
-
+import { getDashboardMemos } from "@/app/(blog)/lib/service/blogServiceMany";
 import ButtonImage from "../../ui/ButtonImage";
-import React from "react";
-import { getDashboardMemos } from "../../lib/BlogServiceMany";
 
 const ListDashboardMemo = async () => {
   const dashboardMemos = await getDashboardMemos();
@@ -62,11 +60,9 @@ const ListDashboardMemo = async () => {
           </div>
           <div>
             <p className="text-red-500">メモする内容エリア</p>
-          
-              「ブログ 作り方 無料」・「ブログ 作り方」・「スマホ・ブログ
-              始め方」・「初心者 スマホ ブログ 作り方 」・「趣味・ブログ
-              始め方」・「無料 ブログ 始め方 」・「ブログ 初心者 おすすめ無料」
-            
+            「ブログ 作り方 無料」・「ブログ 作り方」・「スマホ・ブログ
+            始め方」・「初心者 スマホ ブログ 作り方 」・「趣味・ブログ
+            始め方」・「無料 ブログ 始め方 」・「ブログ 初心者 おすすめ無料」
           </div>
         </div>
       </>

@@ -1,5 +1,5 @@
-import { getPosts } from "./BlogServiceMany";
 import { revalidatePath } from "next/cache";
+import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
 
 export async function RevalidatePostsAndCategories() {
   const posts = await getPosts("category");

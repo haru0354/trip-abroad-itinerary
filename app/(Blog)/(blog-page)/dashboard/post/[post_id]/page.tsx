@@ -1,12 +1,11 @@
 import Link from "next/link";
-
+import { deletePost, updatePost } from "@/app/(blog)/action/action-post";
+import { getPost } from "@/app/components/lib/BlogServiceUnique";
+import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
 import FormPost from "@/app/components/blog/dashboard/FormPost";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 import Button from "@/app/components/ui/Button";
 
-import { deletePost, updatePost } from "@/app/(blog)/action/action-post";
-import { getPost } from "@/app/components/lib/BlogServiceUnique";
-import { getCategories } from "@/app/components/lib/BlogServiceMany";
 
 const page = async ({ params }: { params: { post_id: string } }) => {
   const id = Number(params.post_id);

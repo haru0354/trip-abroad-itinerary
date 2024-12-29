@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { updateItineraryHome } from "@/app/action/action-ItineraryHome";
-import { deleteItineraryHome } from "@/app/action/action-ItineraryHome";
+import { updateItineraryHome } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
+import { deleteItineraryHome } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
 import { getItineraryHome } from "@/app/components/lib/MemoryBookService";
 import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
 import FormItineraryHome from "@/app/components/itineraryHome/FormItineraryHome";

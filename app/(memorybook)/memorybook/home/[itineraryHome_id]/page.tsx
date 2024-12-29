@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
 import { getItineraryHome } from "@/app/components/lib/MemoryBookService";
-import { updateShare } from "@/app/action/action-ItineraryHome";
+import { updateShare } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
 import Button from "@/app/components/ui/Button";
 import FormShare from "@/app/components/itineraryHome/FormShare";
 

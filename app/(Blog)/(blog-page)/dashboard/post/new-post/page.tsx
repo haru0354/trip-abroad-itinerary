@@ -1,4 +1,4 @@
-import { addPost } from "@/app/action/action-post";
+import { addPost } from "@/app/(blog)/action/action-post";
 
 import FormPost from "@/app/components/blog/dashboard/FormPost";
 import { getCategories } from "@/app/components/lib/BlogServiceMany";

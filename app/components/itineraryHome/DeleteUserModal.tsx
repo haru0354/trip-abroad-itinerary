@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Button from "../ui/Button";
 import Image from "next/image";
-import { deleteUser } from "@/app/action/action-profile";
+import { deleteUser } from "@/app/(memorybook)/memorybook/action/action-profile";
+import Button from "../ui/Button";
 
 type DeleteModalProps = {
   userId: number;

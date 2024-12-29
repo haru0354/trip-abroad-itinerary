@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
 import { getItineraryHomes } from "@/app/components/lib/MemoryBookService";
-import Loading from "@/app/loading";
+import Loading from "@/app/Loading";
 
 export const metadata: Metadata = {
   title: {

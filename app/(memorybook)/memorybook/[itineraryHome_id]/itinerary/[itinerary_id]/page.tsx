@@ -1,16 +1,15 @@
 import Link from "next/link";
-
-import FormItinerary from "@/app/components/itinerary/FormItinerary";
-import Button from "@/app/components/ui/Button";
-import DeleteModal from "@/app/components/ui/DeleteModal";
+import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
+import { updateItinerary } from "@/app/(memorybook)/memorybook/action/action-itinerary";
+import { deleteItinerary } from "@/app/(memorybook)/memorybook/action/action-itinerary";
 import {
   getItineraryHome,
   getItinerary,
 } from "@/app/components/lib/MemoryBookService";
+import FormItinerary from "@/app/components/itinerary/FormItinerary";
+import Button from "@/app/components/ui/Button";
+import DeleteModal from "@/app/components/ui/DeleteModal";
 
-import { updateItinerary } from "@/app/action/action-itinerary";
-import { deleteItinerary } from "@/app/action/action-itinerary";
-import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
 
 const page = async ({
   params,

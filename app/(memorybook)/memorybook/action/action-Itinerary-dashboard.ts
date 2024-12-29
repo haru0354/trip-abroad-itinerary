@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import prisma from "../components/lib/prisma";
+import prisma from "../../../components/lib/prisma";
 import { z } from "zod";
 
 type FormState = {

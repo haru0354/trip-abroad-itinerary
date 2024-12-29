@@ -2,13 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import prisma from "../components/lib/prisma";
-import { supabase } from "../components/util/supabase";
 import { z } from "zod";
-import { FileSaveUtils } from "../components/lib/FileSaveUtils";
-import { validateFile } from "../components/lib/ValidateFile";
-import { RevalidatePostsAndCategories } from "../components/lib/RevalidatePostsAndCategories";
-import { getPost } from "../components/lib/BlogServiceUnique";
+import prisma from "../../components/lib/prisma";
+import { supabase } from "../../components/util/supabase";
+import { getPost } from "../../components/lib/BlogServiceUnique";
+import { FileSaveUtils } from "../../components/lib/FileSaveUtils";
+import { validateFile } from "../../components/lib/ValidateFile";
+import { RevalidatePostsAndCategories } from "@/app/components/lib/revalidatePostsAndCategories";
 
 type FormState = {
   message?: string | null;

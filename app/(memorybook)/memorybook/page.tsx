@@ -1,19 +1,18 @@
 import { Suspense } from "react";
-
-import SignupModal from "../components/auth/authUi/SignupModal";
-import Section1ColumnRight from "../components/1ColumnPage/Section1ColumnRight";
-import Section3ColumnIcon from "../components/1ColumnPage/Section3ColumnIcon";
-import SectionCTA from "../components/1ColumnPage/SectionCTA";
-import QA from "../components/1ColumnPage/QA";
-import Hero from "../components/1ColumnPage/Hero";
-import SignupButton from "../components/ui/SignupButton";
-import HeaderItinerary from "../components/HeaderItinerary";
-import LoginModal from "../components/auth/authUi/LoginModal";
-import Section3ColumnImage from "../components/1ColumnPage/Section3ColumnImage";
-import FooterItinerary from "../components/FooterItinerary";
-import AnimatedItem from "../components/lib/AnimatedItem";
-import Section from "../components/1ColumnPage/Section";
-import Loading from "../loading";
+import SignupModal from "../../components/auth/authUi/SignupModal";
+import Section1ColumnRight from "../../components/1ColumnPage/Section1ColumnRight";
+import Section3ColumnIcon from "../../components/1ColumnPage/Section3ColumnIcon";
+import SectionCTA from "../../components/1ColumnPage/SectionCTA";
+import QA from "../../components/1ColumnPage/QA";
+import Hero from "../../components/1ColumnPage/Hero";
+import SignupButton from "../../components/ui/SignupButton";
+import HeaderItinerary from "../../components/HeaderItinerary";
+import LoginModal from "../../components/auth/authUi/LoginModal";
+import Section3ColumnImage from "../../components/1ColumnPage/Section3ColumnImage";
+import FooterItinerary from "../../components/FooterItinerary";
+import AnimatedItem from "../../components/lib/AnimatedItem";
+import Section from "../../components/1ColumnPage/Section";
+import Loading from "@/app/Loading";
 
 export default function Home() {
   return (

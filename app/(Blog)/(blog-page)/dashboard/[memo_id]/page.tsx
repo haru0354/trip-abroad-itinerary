@@ -1,15 +1,13 @@
-import { Metadata } from "next";
 import Link from "next/link";
-
-import FormDashboardMemo from "@/app/components/blog/dashboard/FormDashboardMemo";
-import Button from "@/app/components/ui/Button";
-import DeleteModal from "@/app/components/ui/DeleteModal";
-
+import { Metadata } from "next";
 import {
   deleteDashboardMemo,
   updateDashboardMemo,
-} from "@/app/action/action-dashboard";
+} from "@/app/(blog)/action/action-dashboard";
 import { getDashboardMemo } from "@/app/components/lib/BlogServiceUnique";
+import FormDashboardMemo from "@/app/components/blog/dashboard/FormDashboardMemo";
+import Button from "@/app/components/ui/Button";
+import DeleteModal from "@/app/components/ui/DeleteModal";
 
 export const metadata: Metadata = {
   title: "個別のメモ",

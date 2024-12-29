@@ -1,14 +1,12 @@
 import Link from "next/link";
-
-import FormPostImage from "@/app/components/blog/dashboard/FormPostImage";
-import Button from "@/app/components/ui/Button";
-import DeleteModal from "@/app/components/ui/DeleteModal";
-
 import {
   deletePostImage,
   updatePostImage,
-} from "@/app/action/action-postImage";
+} from "@/app/(blog)/action/action-postImage";
 import { getPostImage } from "@/app/components/lib/BlogServiceUnique";
+import FormPostImage from "@/app/components/blog/dashboard/FormPostImage";
+import Button from "@/app/components/ui/Button";
+import DeleteModal from "@/app/components/ui/DeleteModal";
 
 const page = async ({ params }: { params: { image_id: string } }) => {
   const id = Number(params.image_id);

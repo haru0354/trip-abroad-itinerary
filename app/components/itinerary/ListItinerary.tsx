@@ -9,7 +9,7 @@ import HideContent from "./HideContent";
 import ButtonImage from "../ui/ButtonImage";
 import Manual from "../manual";
 import AnimatedItem from "../lib/AnimatedItem";
-import AnimatedImage from "../lib/AnimatedImage";
+import AnimatedImage from "@/app/lib/animation/AnimatedImage";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 
 type ListItineraryProps = {

@@ -6,7 +6,7 @@ import { z } from "zod";
 import prisma from "@/app/lib/prisma";
 import { supabase } from "../../../components/util/supabase";
 import { fileSaveItineraryUtils } from "@/app/lib/fileSaveUtils";
-import { validateFile } from "../../../components/lib/ValidateFile";
+import { validateFile } from "@/app/lib/validateFile";
 import { getItinerary } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 
 type FormState = {

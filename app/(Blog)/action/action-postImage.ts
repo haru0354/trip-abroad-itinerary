@@ -8,7 +8,7 @@ import prisma from "@/app/lib/prisma";
 import { supabase } from "../../components/util/supabase";
 import { getPostImage } from "../lib/service/blogServiceUnique";
 import { fileSaveUtils } from "@/app/lib/fileSaveUtils";
-import { validateFile } from "../../components/lib/ValidateFile";
+import { validateFile } from "@/app/lib/validateFile";
 
 const { unlink } = fsPromises;
 

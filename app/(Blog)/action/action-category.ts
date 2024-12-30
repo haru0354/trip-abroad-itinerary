@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import prisma from "@/app/lib/prisma";
-import { supabase } from "../../components/util/supabase";
+import { supabase } from "@/app/util/supabase";
 import { getCategory } from "../lib/service/blogServiceUnique";
 import { fileSaveUtils } from "@/app/lib/fileSaveUtils";
 import { validateFile } from "@/app/lib/validateFile";

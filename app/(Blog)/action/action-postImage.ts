@@ -4,7 +4,7 @@ import { promises as fsPromises } from "fs";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import prisma from "../../components/lib/prisma";
+import prisma from "@/app/lib/prisma";
 import { supabase } from "../../components/util/supabase";
 import { getPostImage } from "../lib/service/blogServiceUnique";
 import { FileSaveUtils } from "../../components/lib/FileSaveUtils";

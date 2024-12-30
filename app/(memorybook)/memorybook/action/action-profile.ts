@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import bcrypt from "bcrypt";
-import prisma from "@/app/components/lib/prisma";
+import prisma from "@/app/lib/prisma";
 
 type FormState = {
   message?: string | null;

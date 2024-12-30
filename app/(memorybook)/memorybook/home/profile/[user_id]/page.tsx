@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { updateProfile } from "@/app/(memorybook)/memorybook/action/action-profile";
 import { updatePassword } from "@/app/(memorybook)/memorybook/action/action-profile";
-import prisma from "@/app/components/lib/prisma";
+import prisma from "@/app/lib/prisma";
 import FormProfile from "@/app/components/itineraryHome/FormProfile";
 import Button from "@/app/components/ui/Button";
 import DeleteUserModal from "@/app/components/itineraryHome/DeleteUserModal";

@@ -3,11 +3,11 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import prisma from "../../../components/lib/prisma";
-import { supabase } from "../../../components/util/supabase";
-import { FileSaveItineraryUtils } from "../../../components/lib/FileSaveUtils";
-import { validateFile } from "../../../components/lib/ValidateFile";
-import { getItinerary } from "../../../components/lib/MemoryBookService";
+import prisma from "@/app/lib/prisma";
+import { supabase } from "@/app/util/supabase";
+import { fileSaveItineraryUtils } from "@/app/lib/fileSaveUtils";
+import { validateFile } from "@/app/lib/validateFile";
+import { getItinerary } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 
 type FormState = {
   message?: string | null;
@@ -105,7 +105,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
         return errors;
       }
 
-      const { fileUrl, fileName } = await FileSaveItineraryUtils(image, userId);
+      const { fileUrl, fileName } = await fileSaveItineraryUtils(image, userId);
 
       ItineraryData.url = fileUrl;
       ItineraryData.imageName = fileName;
@@ -239,7 +239,7 @@ export const updateItinerary = async (
         return errors;
       }
 
-      const { fileUrl, fileName } = await FileSaveItineraryUtils(image, userId);
+      const { fileUrl, fileName } = await fileSaveItineraryUtils(image, userId);
 
       ItineraryData.imageName = fileName;
       ItineraryData.url = fileUrl;

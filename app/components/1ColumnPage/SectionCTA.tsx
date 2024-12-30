@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
-import AnimatedItem from "../lib/AnimatedItem";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type SectionCTAProps = {
   name1: string;

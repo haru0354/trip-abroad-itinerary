@@ -1,9 +1,8 @@
-import { Metadata } from "next";
-import DashboardItinerarySideMenu from "@/app/components/itineraryHome/DashboardItinerarySideMenu";
 import { Suspense } from "react";
-
-import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
-import { getItineraryHomes } from "@/app/components/lib/MemoryBookService";
+import { Metadata } from "next";
+import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
+import { getItineraryHomes } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
+import DashboardItinerarySideMenu from "@/app/components/itineraryHome/DashboardItinerarySideMenu";
 import Loading from "@/app/Loading";
 
 export const metadata: Metadata = {

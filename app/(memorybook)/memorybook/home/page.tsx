@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { getCurrentUserId } from "@/app/components/lib/getCurrentUser";
+import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
 import { addItineraryHome } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
 import FormItineraryHome from "@/app/components/itineraryHome/FormItineraryHome";
 import ListItineraryHome from "@/app/components/itineraryHome/ListItineraryHome";

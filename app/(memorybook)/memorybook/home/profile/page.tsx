@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/app/components/lib/getCurrentUser";
+import { getCurrentUser } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
 import ListProfile from "@/app/components/itineraryHome/ListProfile";
 
 const page = async () => {

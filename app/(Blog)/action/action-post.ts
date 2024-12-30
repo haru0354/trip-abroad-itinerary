@@ -3,12 +3,12 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import prisma from "../../components/lib/prisma";
-import { supabase } from "../../components/util/supabase";
-import { getPost } from "../../components/lib/BlogServiceUnique";
-import { FileSaveUtils } from "../../components/lib/FileSaveUtils";
-import { validateFile } from "../../components/lib/ValidateFile";
-import { RevalidatePostsAndCategories } from "@/app/components/lib/revalidatePostsAndCategories";
+import prisma from "@/app/lib/prisma";
+import { supabase } from "@/app/util/supabase";
+import { getPost } from "../lib/service/blogServiceUnique";
+import { fileSaveUtils } from "@/app/lib/fileSaveUtils";
+import { validateFile } from "@/app/lib/validateFile";
+import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
 
 type FormState = {
   message?: string | null;
@@ -104,7 +104,7 @@ export const addPost = async (state: FormState, data: FormData) => {
         return errors;
       }
 
-      const { fileUrl, fileName } = await FileSaveUtils(image);
+      const { fileUrl, fileName } = await fileSaveUtils(image);
       const createdImage = await prisma.postImage.create({
         data: {
           name: fileName,
@@ -127,7 +127,7 @@ export const addPost = async (state: FormState, data: FormData) => {
     });
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
-    await RevalidatePostsAndCategories();
+    await revalidatePostsAndCategories();
 
     console.log("記事の登録に成功しました。");
   } catch (error) {
@@ -164,7 +164,7 @@ export const deletePost = async (data: FormData) => {
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
     revalidatePath(`/${post?.category.slug}/${post?.slug}`);
-    await RevalidatePostsAndCategories();
+    await revalidatePostsAndCategories();
 
     if (post?.postImage?.url) {
       revalidatePath(`/dashboard/image`);
@@ -245,7 +245,7 @@ export const updatePost = async (
         return errors;
       }
 
-      const { fileUrl, fileName } = await FileSaveUtils(image);
+      const { fileUrl, fileName } = await fileSaveUtils(image);
       const createdImage = await prisma.postImage.create({
         data: {
           name: fileName,
@@ -303,7 +303,7 @@ export const updatePost = async (
     });
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
-    await RevalidatePostsAndCategories();
+    await revalidatePostsAndCategories();
 
     if (image && image.size > 0) {
       revalidatePath(`/dashboard/image`);

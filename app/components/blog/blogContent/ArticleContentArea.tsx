@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import DOMPurify from "dompurify";
-import { AddGenerateContentId } from "../../lib/GenerateToc";
+import { addGenerateContentId } from "@/app/(blog)/lib/generateToc";
 import TableOfContents from "../TableOfContents";
 import CustomComponents from "../CustomComponents";
 
@@ -21,7 +21,7 @@ const ArticleContentArea: React.FC<ArticleContentAreaProps> = ({ content }) => {
   // 目次の為にIDを付与
   useEffect(() => {
     if (content) {
-      const id = AddGenerateContentId(content);
+      const id = addGenerateContentId(content);
       setIdContent(id);
     }
   }, [content]);

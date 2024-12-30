@@ -1,8 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-
+import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
 import Menu from "./auth/navigation/Menu";
-import { getCurrentUserId } from "./lib/getCurrentUser";
 
 const HeaderItinerary = async () => {
   const currentUserId = await getCurrentUserId();

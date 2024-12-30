@@ -6,7 +6,7 @@ type TocItem = {
   tag: string;
 };
 
-export const GenerateTocId = (contents: string): TocItem[] => {
+export const generateTocId = (contents: string): TocItem[] => {
   const $ = load(contents);
   const toc: TocItem[] = [];
 
@@ -29,7 +29,7 @@ export const GenerateTocId = (contents: string): TocItem[] => {
   return toc;
 };
 
-export const AddGenerateContentId = (contents: string) => {
+export const addGenerateContentId = (contents: string) => {
   const $ = load(contents);
 
   $("h2, h3").each((index, element) => {

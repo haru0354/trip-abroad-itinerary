@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { notoSansJp } from "./components/util/Font";
+import { notoSansJp } from "./util/font";
 
 export const metadata: Metadata = {
   title: "英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」",

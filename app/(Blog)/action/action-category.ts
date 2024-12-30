@@ -3,12 +3,12 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import prisma from "../../components/lib/prisma";
-import { supabase } from "../../components/util/supabase";
-import { getCategory } from "../../components/lib/BlogServiceUnique";
-import { FileSaveUtils } from "../../components/lib/FileSaveUtils";
-import { validateFile } from "../../components/lib/ValidateFile";
-import { RevalidatePostsAndCategories } from "@/app/components/lib/revalidatePostsAndCategories";
+import prisma from "@/app/lib/prisma";
+import { supabase } from "@/app/util/supabase";
+import { getCategory } from "../lib/service/blogServiceUnique";
+import { fileSaveUtils } from "@/app/lib/fileSaveUtils";
+import { validateFile } from "@/app/lib/validateFile";
+import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
 
 type FormState = {
   message?: string | null;
@@ -99,7 +99,7 @@ export const addCategory = async (state: FormState, data: FormData) => {
         return errors;
       }
 
-      const { fileUrl, fileName } = await FileSaveUtils(image);
+      const { fileUrl, fileName } = await fileSaveUtils(image);
       const createdImage = await prisma.postImage.create({
         data: {
           name: fileName,
@@ -178,7 +178,7 @@ export const deleteCategory = async (data: FormData) => {
     });
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
-    await RevalidatePostsAndCategories();
+    await revalidatePostsAndCategories();
 
     if (category?.postImage?.url) {
       revalidatePath(`/dashboard/image`);
@@ -257,7 +257,7 @@ export const updateCategory = async (
         return errors;
       }
 
-      const { fileUrl, fileName } = await FileSaveUtils(image);
+      const { fileUrl, fileName } = await fileSaveUtils(image);
 
       const createdImage = await prisma.postImage.create({
         data: {
@@ -300,7 +300,7 @@ export const updateCategory = async (
     revalidatePath(`/`);
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
-    await RevalidatePostsAndCategories();
+    await revalidatePostsAndCategories();
 
     if (image && image.size > 0) {
       revalidatePath(`/dashboard/image`);

@@ -4,8 +4,7 @@ import {
   faPlaneDeparture,
   faCartFlatbedSuitcase,
 } from "@fortawesome/free-solid-svg-icons";
-
-import AnimatedItem from "../lib/AnimatedItem";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type Section3ColumnIconProps = {
   name1: string;

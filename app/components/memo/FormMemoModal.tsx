@@ -9,7 +9,7 @@ import Button from "../ui/Button";
 import Form from "../ui/Form";
 import TextArea from "../ui/TextArea";
 import ButtonImage from "../ui/ButtonImage";
-import AnimatedItem from "../lib/AnimatedItem";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type FormMemoProps = {
   buttonName: string;

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-
-import { getPostImages } from "../../lib/BlogServiceMany";
+import { getPostImages } from "@/app/(blog)/lib/service/blogServiceMany";
 
 const ListImages = async () => {
   const images = await getPostImages();

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getPosts } from "../../lib/BlogServiceMany";
+import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
 
 const SideNewArticles = async () => {
   const posts = await getPosts("categoryAndPostImage", 5,)

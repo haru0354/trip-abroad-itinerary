@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { deleteMemo } from "@/app/(memorybook)/memorybook/action/action-memo";
 import { updateMemo } from "@/app/(memorybook)/memorybook/action/action-memo";
-import { getItineraryHome, getMemo } from "@/app/components/lib/MemoryBookService";
+import {
+  getItineraryHome,
+  getMemo,
+} from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import FormMemo from "@/app/components/memo/FormMemo";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 import Button from "@/app/components/ui/Button";

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import bcrypt from "bcrypt";
-import prisma from "../../../components/lib/prisma";
+import prisma from "@/app/lib/prisma";
 
 type FormState = {
   message?: string | null;
@@ -23,9 +23,7 @@ const schema = z.object({
 
 const passwordSchema = z.object({
   password: z.string().min(6, { message: "6文字以上入力する必要があります。" }),
-  passwordConfirmation: z
-    .string()
-    .min(6, { message: "6文字以上入力する必要があります。" }),
+  passwordConfirmation: z.string().min(6, { message: "6文字以上入力する必要があります。" }),
 });
 
 export const deleteUser = async (id: number) => {

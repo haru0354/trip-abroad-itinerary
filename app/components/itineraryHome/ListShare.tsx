@@ -1,22 +1,24 @@
 import Link from "next/link";
+import { getItineraryHomes } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import Button from "../ui/Button";
-
-import { getItineraryHomes } from "../lib/MemoryBookService";
 
 type ListShareProps = {
   userId?: number | undefined;
 };
 
 const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
-
-  const itineraryHomes = await getItineraryHomes(userId)
+  const itineraryHomes = await getItineraryHomes(userId);
 
   return (
     <>
       <h2>旅程表の共有</h2>
       <p>編集より簡単に共有設定が変更可能です。</p>
-      <p>共有設定が有効になっていると共有ページが公開されます。また、下記メニューに「共有ページボタン」が表示されます。</p>
-      <p>ボタンをクリックした先のページをLineやfacebookで共有することで、作成した旅程表をあなた以外の人でも見れるようになります。</p>
+      <p>
+        共有設定が有効になっていると共有ページが公開されます。また、下記メニューに「共有ページボタン」が表示されます。
+      </p>
+      <p>
+        ボタンをクリックした先のページをLineやfacebookで共有することで、作成した旅程表をあなた以外の人でも見れるようになります。
+      </p>
       {itineraryHomes.map((itineraryHome) => {
         return (
           <div key={itineraryHome.id} className="border border-gray-500 mb-6">

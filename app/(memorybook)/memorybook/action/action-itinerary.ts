@@ -7,7 +7,7 @@ import prisma from "../../../components/lib/prisma";
 import { supabase } from "../../../components/util/supabase";
 import { FileSaveItineraryUtils } from "../../../components/lib/FileSaveUtils";
 import { validateFile } from "../../../components/lib/ValidateFile";
-import { getItinerary } from "../../../components/lib/MemoryBookService";
+import { getItinerary } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 
 type FormState = {
   message?: string | null;

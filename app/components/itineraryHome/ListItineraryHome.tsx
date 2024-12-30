@@ -1,11 +1,9 @@
 import Link from "next/link";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
-
+import { getItineraryHomes } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import ButtonImage from "../ui/ButtonImage";
 
-import { getItineraryHomes } from "../lib/MemoryBookService";
 type ListItineraryHomeProps = {
   userId?: number | undefined;
 };

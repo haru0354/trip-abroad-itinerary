@@ -1,9 +1,7 @@
 import { Suspense } from "react";
-
+import { getItineraryHome } from "../../lib/memoryBookService";
 import ListMemo from "@/app/components/memo/ListMemo";
 import Loading from "@/app/Loading";
-
-import { getItineraryHome } from "@/app/components/lib/MemoryBookService";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   const itineraryHome = await getItineraryHome(

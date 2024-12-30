@@ -2,17 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
 import { faCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import HideContent from "./HideContent";
 import ButtonImage from "../ui/ButtonImage";
 import Manual from "../manual";
 import AnimatedItem from "../lib/AnimatedItem";
 import AnimatedImage from "../lib/AnimatedImage";
-import SplitTextLines from "../lib/NewLines";
+import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 
 type ListItineraryProps = {
   itineraryHomeId: number | undefined;

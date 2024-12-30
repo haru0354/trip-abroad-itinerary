@@ -1,10 +1,10 @@
+import React from "react";
 import Link from "next/link";
 import ButtonImage from "../ui/ButtonImage";
 import Manual from "../manual";
 import Image from "next/image";
-import React from "react";
 import AnimatedItem from "../lib/AnimatedItem";
-import SplitTextLines from "../lib/NewLines";
+import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 
 type ListMemoProps = {
   itineraryHomeId: number | undefined;

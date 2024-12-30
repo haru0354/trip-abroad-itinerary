@@ -6,7 +6,7 @@ import { z } from "zod";
 import prisma from "@/app/lib/prisma";
 import { supabase } from "../../components/util/supabase";
 import { getCategory } from "../lib/service/blogServiceUnique";
-import { FileSaveUtils } from "../../components/lib/FileSaveUtils";
+import { fileSaveUtils } from "@/app/lib/fileSaveUtils";
 import { validateFile } from "../../components/lib/ValidateFile";
 import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
 
@@ -99,7 +99,7 @@ export const addCategory = async (state: FormState, data: FormData) => {
         return errors;
       }
 
-      const { fileUrl, fileName } = await FileSaveUtils(image);
+      const { fileUrl, fileName } = await fileSaveUtils(image);
       const createdImage = await prisma.postImage.create({
         data: {
           name: fileName,
@@ -257,7 +257,7 @@ export const updateCategory = async (
         return errors;
       }
 
-      const { fileUrl, fileName } = await FileSaveUtils(image);
+      const { fileUrl, fileName } = await fileSaveUtils(image);
 
       const createdImage = await prisma.postImage.create({
         data: {

@@ -1,8 +1,8 @@
 "use server";
 
-import { supabase } from "../util/supabase";
+import { supabase } from "../components/util/supabase";
 
-export const FileSaveUtils = async (image: File) => {
+export const fileSaveUtils = async (image: File) => {
   try {
     const fileName = image.name;
     const directory = "travel-memory-life";
@@ -22,7 +22,7 @@ export const FileSaveUtils = async (image: File) => {
   }
 };
 
-export const FileSaveItineraryUtils = async (image: File, userId: string) => {
+export const fileSaveItineraryUtils = async (image: File, userId: string) => {
   try {
     const fileName = `${Date.now()}_${image.name}`;
     const directory = `itinerary/${userId}`;

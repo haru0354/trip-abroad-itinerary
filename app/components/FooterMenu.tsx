@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { addItinerary } from "../(memorybook)/memorybook/action/action-itinerary";
-import FormMemoModal from "./memo/FormMemoModal";
+import FormMemoModal from "../(memorybook)/memorybook/components/memo/FormMemoModal";
 import FormItineraryModal from "./itinerary/FormItineraryModal";
 import ButtonImage from "./ui/ButtonImage";
 

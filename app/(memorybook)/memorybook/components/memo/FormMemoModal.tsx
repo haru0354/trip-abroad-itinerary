@@ -5,10 +5,10 @@ import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { addMemo } from "@/app/(memorybook)/memorybook/action/action-memo";
-import Button from "../ui/Button";
-import Form from "../ui/Form";
-import TextArea from "../ui/TextArea";
-import ButtonImage from "../ui/ButtonImage";
+import Button from "@/app/components/ui/Button";
+import Form from "@/app/components/ui/Form";
+import TextArea from "@/app/components/ui/TextArea";
+import ButtonImage from "@/app/components/ui/ButtonImage";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type FormMemoProps = {

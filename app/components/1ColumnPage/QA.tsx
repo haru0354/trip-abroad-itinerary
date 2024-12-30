@@ -1,9 +1,9 @@
 "use client";
 
-import AnimatedItem from "../lib/AnimatedItem";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQ, faA, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type QAProps = {
   title: string;

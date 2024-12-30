@@ -10,7 +10,7 @@ import HeaderItinerary from "../../components/HeaderItinerary";
 import LoginModal from "../../components/auth/authUi/LoginModal";
 import Section3ColumnImage from "../../components/1ColumnPage/Section3ColumnImage";
 import FooterItinerary from "../../components/FooterItinerary";
-import AnimatedItem from "../../components/lib/AnimatedItem";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Section from "../../components/1ColumnPage/Section";
 import Loading from "@/app/Loading";
 

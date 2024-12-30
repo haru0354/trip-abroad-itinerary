@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import ButtonImage from "../ui/ButtonImage";
 import Manual from "../manual";
-import Image from "next/image";
-import AnimatedItem from "../lib/AnimatedItem";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 
 type ListMemoProps = {

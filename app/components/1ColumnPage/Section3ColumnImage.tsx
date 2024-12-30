@@ -1,5 +1,5 @@
 import Image from "next/image";
-import AnimatedItem from "../lib/AnimatedItem";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type Section3ColumnImageProps = {
   title1: string;

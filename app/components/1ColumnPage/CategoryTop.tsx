@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
-import AnimatedItem from "../lib/AnimatedItem";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 const CategoryTop = async () => {
   const categories = await getCategories("postsAndPostImage")

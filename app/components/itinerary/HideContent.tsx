@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ButtonImage from "../ui/ButtonImage";
-import AnimatedItem from "../lib/AnimatedItem";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 
 type Itinerary = {

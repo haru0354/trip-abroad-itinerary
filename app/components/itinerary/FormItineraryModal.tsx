@@ -1,17 +1,17 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useFormState } from "react-dom";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import Form from "../ui/Form";
 import TextArea from "../ui/TextArea";
 import Date from "../ui/Date";
 import Time from "../ui/Time";
 import Button from "../ui/Button";
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import { useFormState } from "react-dom";
-import { useRouter } from "next/navigation";
 import FormImage from "../ui/FormImage";
 import ButtonImage from "../ui/ButtonImage";
-import AnimatedItem from "../lib/AnimatedItem";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type FormItineraryProps = {
   buttonName: string;

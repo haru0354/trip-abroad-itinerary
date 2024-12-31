@@ -6,7 +6,7 @@ import {
   getItineraryHome,
   getItinerary,
 } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import FormItinerary from "@/app/components/itinerary/FormItinerary";
+import FormItinerary from "@/app/(memorybook)/memorybook/components/itinerary/FormItinerary";
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 

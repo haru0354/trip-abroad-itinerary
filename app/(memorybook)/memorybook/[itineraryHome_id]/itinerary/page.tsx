@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { getItineraryHome } from "../../lib/memoryBookService";
-import ListItinerary from "@/app/components/itinerary/ListItinerary";
+import ListItinerary from "../../components/itinerary/ListItinerary";
 import Loading from "@/app/Loading";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {

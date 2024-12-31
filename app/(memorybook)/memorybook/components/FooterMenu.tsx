@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { addItinerary } from "../(memorybook)/memorybook/action/action-itinerary";
+import { addItinerary } from "../action/action-itinerary";
 import FormMemoModal from "./memo/FormMemoModal";
 import FormItineraryModal from "./itinerary/FormItineraryModal";
-import ButtonImage from "./ui/ButtonImage";
+import ButtonImage from "@/app/components/ui/ButtonImage";
 
 type FooterMenuProps = {
   itineraryHomeId: number;

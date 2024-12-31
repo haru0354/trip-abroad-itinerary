@@ -3,7 +3,7 @@ import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUs
 import { getItineraryHome } from "../../lib/memoryBookService";
 import { updateShare } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
 import Button from "@/app/components/ui/Button";
-import FormShare from "@/app/components/itineraryHome/FormShare";
+import FormShare from "../../components/dashboard/form/FormShare";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   const id = Number(params.itineraryHome_id);

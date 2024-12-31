@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import Form from "../ui/Form";
-import TextArea from "../ui/TextArea";
-import Date from "../ui/Date";
-import Time from "../ui/Time";
-import Button from "../ui/Button";
-import FormImage from "../ui/FormImage";
-import ButtonImage from "../ui/ButtonImage";
+import Form from "@/app/components/ui/Form";
+import TextArea from "@/app/components/ui/TextArea";
+import Date from "@/app/components/ui/Date";
+import Time from "@/app/components/ui/Time";
+import Button from "@/app/components/ui/Button";
+import FormImage from "@/app/components/ui/FormImage";
+import ButtonImage from "@/app/components/ui/ButtonImage";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type FormItineraryProps = {
@@ -43,11 +43,11 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (typeof document !== 'undefined') {
+    if (typeof document !== "undefined") {
       if (isModalOpen) {
-        document.body.classList.add('overflow-hidden');
+        document.body.classList.add("overflow-hidden");
       } else {
-        document.body.classList.remove('overflow-hidden');
+        document.body.classList.remove("overflow-hidden");
       }
     }
   }, [isModalOpen]);
@@ -158,7 +158,9 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
         </>
       )}
       {isModalOpen && (
-        <AnimatedItem elementType="div" animation="fadeInVariants"
+        <AnimatedItem
+          elementType="div"
+          animation="fadeInVariants"
           className="bg-gray-200 bg-opacity-40 fixed z-50 w-full  flex justify-center items-center inset-0"
           onClick={closeModal}
         >

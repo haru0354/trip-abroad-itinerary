@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
 import { addItineraryHome } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
-import FormItineraryHome from "@/app/components/itineraryHome/FormItineraryHome";
-import ListItineraryHome from "@/app/components/itineraryHome/ListItineraryHome";
-import ListShare from "@/app/components/itineraryHome/ListShare";
+import FormItineraryHome from "../components/dashboard/form/FormItineraryHome";
+import ListItineraryHome from "../components/dashboard/list/ListItineraryHome";
+import ListShare from "../components/dashboard/list/ListShare";
 import Loading from "@/app/Loading";
 
 const page = async () => {

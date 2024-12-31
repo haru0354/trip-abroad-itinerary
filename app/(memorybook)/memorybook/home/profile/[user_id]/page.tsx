@@ -2,10 +2,10 @@ import Link from "next/link";
 import { updateProfile } from "@/app/(memorybook)/memorybook/action/action-profile";
 import { updatePassword } from "@/app/(memorybook)/memorybook/action/action-profile";
 import prisma from "@/app/lib/prisma";
-import FormProfile from "@/app/components/itineraryHome/FormProfile";
+import FormProfile from "../../../components/dashboard/form/FormProfile";
+import FormPassword from "../../../components/dashboard/form/FormPassword";
 import Button from "@/app/components/ui/Button";
-import DeleteUserModal from "@/app/components/itineraryHome/DeleteUserModal";
-import FormPassword from "@/app/components/itineraryHome/FormPassword";
+import DeleteUserModal from "../../../components/dashboard/DeleteUserModal";
 
 const Page = async ({ params }: { params: { user_id: string } }) => {
   const id = Number(params.user_id);

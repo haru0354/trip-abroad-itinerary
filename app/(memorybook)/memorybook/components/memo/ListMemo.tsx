@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ButtonImage from "../ui/ButtonImage";
-import Manual from "../manual";
+import ButtonImage from "@/app/components/ui/ButtonImage";
+import Manual from "../Manual";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 

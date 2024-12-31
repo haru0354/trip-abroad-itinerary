@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getItineraryHomes } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import Button from "../ui/Button";
+import Button from "@/app/components/ui/Button";
 
 type ListShareProps = {
   userId?: number | undefined;

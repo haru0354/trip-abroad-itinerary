@@ -1,48 +1,53 @@
 "use client";
 
 import { useState, ChangeEvent } from "react";
-import Button from "../ui/Button";
-import Form from "../ui/Form";
-import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import Button from "@/app/components/ui/Button";
+import Form from "@/app/components/ui/Form";
 
-type FormPasswordProps = {
+type FormProfileProps = {
   buttonName: string;
   formAction: (state: FormState, data: FormData) => Promise<FormState>;
+  userEmail: string | undefined;
+  userName: string | undefined;
 };
 
 type FormState = {
   message?: string | null;
   errors?: {
-    password?: string[] | undefined;
-    passwordConfirmation?: string[] | undefined;
+    name?: string[] | undefined;
+    email?: string[] | undefined;
   };
 };
 
-const FormPassword: React.FC<FormPasswordProps> = ({
+const FormProfile: React.FC<FormProfileProps> = ({
   buttonName,
   formAction,
+  userEmail,
+  userName,
 }) => {
   const router = useRouter();
 
   const initialState = {
     message: null,
-    errors: { password: undefined, passwordConfirmation: undefined },
+    errors: { name: undefined, email: undefined },
   };
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
     initialState
   );
   const [errorMessage, setErrorMessage] = useState<FormState>();
-  const [passwordValue, setPasswordValue] = useState<string | undefined>("");
-  const [passwordConfirmationValue, setPasswordConfirmationValue] = useState<string | undefined>("");
+  const [nameValue, setNameValue] = useState<string | undefined>(userName);
+  const [emailValue, setEmailValue] = useState<string | undefined>(userEmail);
 
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPasswordValue(e.target.value);
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setNameValue(e.target.value);
   };
-  const handlePasswordConfirmationChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPasswordConfirmationValue(e.target.value);
+
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmailValue(e.target.value);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -51,8 +56,8 @@ const FormPassword: React.FC<FormPasswordProps> = ({
     const result = await formAction(state, formData);
     switch (result.message) {
       case "edit":
-        toast.success("パスワードを編集しました！");
-        router.replace("/memorybook/home/profile");
+        toast.success("プロフィールを編集しました！");
+        router.replace("/memorybook/");
         break;
       default:
         setErrorMessage(result);
@@ -62,38 +67,36 @@ const FormPassword: React.FC<FormPasswordProps> = ({
 
   return (
     <>
-      <h2>パスワードの変更</h2>
+      <h2>プロフィール</h2>
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px]">
           <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-semibold">
-            パスワード
+            プロフィール
           </p>
           <form onSubmit={handleSubmit} className="w-full py-3">
             <Form
-              label="パスワード"
-              name="password"
-              type="password"
-              placeholder="変更するパスワードを記載してください。"
-              value={passwordValue}
-              onChange={handlePasswordChange}
+              label="名前(ニックネーム)"
+              name="name"
+              placeholder="名前(ニックネーム)を記載してください。"
+              value={nameValue}
+              onChange={handleNameChange}
             />
             {errorMessage &&
               errorMessage.errors &&
-              errorMessage.errors.password && (
-                <p className="text-red-500">{errorMessage.errors.password}</p>
+              errorMessage.errors.name && (
+                <p className="text-red-500">{errorMessage.errors.name}</p>
               )}
             <Form
-              label="パスワード（確認用）"
-              name="passwordConfirmation"
-              type="password"
-              placeholder="確認の為パスワードをもう一度記載してください。"
-              value={passwordConfirmationValue}
-              onChange={handlePasswordConfirmationChange}
+              label="メールアドレス"
+              name="email"
+              placeholder="メールアドレスを記載してください。"
+              value={emailValue}
+              onChange={handleEmailChange}
             />
             {errorMessage &&
               errorMessage.errors &&
-              errorMessage.errors.passwordConfirmation && (
-                <p className="text-red-500">{errorMessage.errors.passwordConfirmation}</p>
+              errorMessage.errors.email && (
+                <p className="text-red-500">{errorMessage.errors.email}</p>
               )}
             {errorMessage && errorMessage.message !== "failure" && (
               <p className="text-red-500">{errorMessage.message}</p>
@@ -108,4 +111,4 @@ const FormPassword: React.FC<FormPasswordProps> = ({
   );
 };
 
-export default FormPassword;
+export default FormProfile;

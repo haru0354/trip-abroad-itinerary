@@ -3,7 +3,7 @@ import { updateItineraryHome } from "@/app/(memorybook)/memorybook/action/action
 import { deleteItineraryHome } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
 import { getItineraryHome } from "../lib/memoryBookService";
 import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
-import FormItineraryHome from "@/app/components/itineraryHome/FormItineraryHome";
+import FormItineraryHome from "../components/dashboard/form/FormItineraryHome";
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 

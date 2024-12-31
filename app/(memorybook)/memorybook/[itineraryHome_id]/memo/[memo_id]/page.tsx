@@ -5,7 +5,7 @@ import {
   getItineraryHome,
   getMemo,
 } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import FormMemo from "@/app/components/memo/FormMemo";
+import FormMemo from "@/app/(memorybook)/memorybook/components/memo/FormMemo";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 import Button from "@/app/components/ui/Button";
 

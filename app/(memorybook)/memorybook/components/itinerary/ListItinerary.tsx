@@ -1,13 +1,11 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { faCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HideContent from "./HideContent";
-import ButtonImage from "../ui/ButtonImage";
-import Manual from "../manual";
+import ButtonImage from "@/app/components/ui/ButtonImage";
+import Manual from "../Manual";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import AnimatedImage from "@/app/lib/animation/AnimatedImage";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";

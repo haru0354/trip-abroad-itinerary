@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Checkbox from "../ui/Checkbox";
-import Button from "../ui/Button";
+import Checkbox from "@/app/components/ui/Checkbox";
+import Button from "@/app/components/ui/Button";
 
 type FormShareProps = {
   itineraryHome: ItineraryHome | null;
@@ -26,12 +26,14 @@ const FormShare: React.FC<FormShareProps> = ({
   buttonName,
   userId,
 }) => {
-  const [isShare, setIsShare] = useState<boolean>(itineraryHome?.share ?? false); 
+  const [isShare, setIsShare] = useState<boolean>(
+    itineraryHome?.share ?? false
+  );
 
   const handleToggle = () => {
     setIsShare(!isShare);
   };
- 
+
   return (
     <>
       <h2>旅程表の共有</h2>

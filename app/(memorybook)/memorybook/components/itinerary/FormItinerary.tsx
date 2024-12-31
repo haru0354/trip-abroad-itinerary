@@ -1,15 +1,15 @@
 "use client";
 
-import Form from "../ui/Form";
-import TextArea from "../ui/TextArea";
-import Date from "../ui/Date";
-import Time from "../ui/Time";
-import Button from "../ui/Button";
 import { useState } from "react";
-import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-import FormImage from "../ui/FormImage";
+import toast from "react-hot-toast";
+import Form from "@/app/components/ui/Form";
+import TextArea from "@/app/components/ui/TextArea";
+import Date from "@/app/components/ui/Date";
+import Time from "@/app/components/ui/Time";
+import Button from "@/app/components/ui/Button";
+import FormImage from "@/app/components/ui/FormImage";
 
 type FormItineraryProps = {
   itinerary?: Itinerary | null;
@@ -134,7 +134,6 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   return (
     <div id="add">
       <h2>旅程の追加</h2>
-
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6 border-gray-300 rounded bg-white max-w-[620px]">
           <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-semibold">

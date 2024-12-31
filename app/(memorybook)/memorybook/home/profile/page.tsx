@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
-import ListProfile from "@/app/components/itineraryHome/ListProfile";
+import ListProfile from "../../components/dashboard/list/ListProfile";
 
 const page = async () => {
   const currentUser = await getCurrentUser();

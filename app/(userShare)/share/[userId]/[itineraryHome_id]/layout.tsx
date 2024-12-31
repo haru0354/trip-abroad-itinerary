@@ -1,7 +1,6 @@
 import { Metadata } from "next";
-
-import HeaderItinerary from "@/app/components/HeaderItinerary";
-import FooterItinerary from "@/app/components/FooterItinerary";
+import HeaderItinerary from "@/app/(memorybook)/memorybook/components/HeaderItinerary";
+import FooterItinerary from "@/app/(memorybook)/memorybook/components/FooterItinerary";
 
 export const metadata: Metadata = {
   title: "共有された旅行記 | 旅のメモリーブック",

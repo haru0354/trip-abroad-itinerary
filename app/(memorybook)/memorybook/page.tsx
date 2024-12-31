@@ -6,7 +6,7 @@ import SectionCTA from "../../components/1ColumnPage/SectionCTA";
 import QA from "../../components/1ColumnPage/QA";
 import Hero from "../../components/1ColumnPage/Hero";
 import SignupButton from "../../components/ui/SignupButton";
-import HeaderItinerary from "../../components/HeaderItinerary";
+import HeaderItinerary from "./components/HeaderItinerary";
 import LoginModal from "../../components/auth/authUi/LoginModal";
 import Section3ColumnImage from "../../components/1ColumnPage/Section3ColumnImage";
 import FooterItinerary from "../../components/FooterItinerary";

@@ -1,6 +1,5 @@
 import { Metadata } from "next";
-
-import HeaderItinerary from "@/app/components/HeaderItinerary";
+import HeaderItinerary from "@/app/(memorybook)/memorybook/components/HeaderItinerary";
 import FooterItinerary from "@/app/components/FooterItinerary";
 
 export const metadata: Metadata = {

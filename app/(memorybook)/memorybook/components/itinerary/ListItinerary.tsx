@@ -5,7 +5,7 @@ import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HideContent from "./HideContent";
 import ButtonImage from "@/app/components/ui/ButtonImage";
-import Manual from "@/app/components/manual";
+import Manual from "../Manual";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import AnimatedImage from "@/app/lib/animation/AnimatedImage";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";

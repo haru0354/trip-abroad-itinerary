@@ -5,7 +5,7 @@ import prisma from "@/app/lib/prisma";
 import FormProfile from "@/app/components/itineraryHome/FormProfile";
 import Button from "@/app/components/ui/Button";
 import DeleteUserModal from "@/app/components/itineraryHome/DeleteUserModal";
-import FormPassword from "@/app/components/itineraryHome/FormPassword";
+import FormPassword from "../../../components/dashboard/form/FormPassword";
 
 const Page = async ({ params }: { params: { user_id: string } }) => {
   const id = Number(params.user_id);

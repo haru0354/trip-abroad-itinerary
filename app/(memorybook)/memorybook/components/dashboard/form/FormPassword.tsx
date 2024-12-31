@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, ChangeEvent } from "react";
-import Button from "../ui/Button";
-import Form from "../ui/Form";
-import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import Button from "@/app/components/ui/Button";
+import Form from "@/app/components/ui/Form";
 
 type FormPasswordProps = {
   buttonName: string;
@@ -36,12 +36,16 @@ const FormPassword: React.FC<FormPasswordProps> = ({
   );
   const [errorMessage, setErrorMessage] = useState<FormState>();
   const [passwordValue, setPasswordValue] = useState<string | undefined>("");
-  const [passwordConfirmationValue, setPasswordConfirmationValue] = useState<string | undefined>("");
+  const [passwordConfirmationValue, setPasswordConfirmationValue] = useState<
+    string | undefined
+  >("");
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(e.target.value);
   };
-  const handlePasswordConfirmationChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handlePasswordConfirmationChange = (
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
     setPasswordConfirmationValue(e.target.value);
   };
 
@@ -93,7 +97,9 @@ const FormPassword: React.FC<FormPasswordProps> = ({
             {errorMessage &&
               errorMessage.errors &&
               errorMessage.errors.passwordConfirmation && (
-                <p className="text-red-500">{errorMessage.errors.passwordConfirmation}</p>
+                <p className="text-red-500">
+                  {errorMessage.errors.passwordConfirmation}
+                </p>
               )}
             {errorMessage && errorMessage.message !== "failure" && (
               <p className="text-red-500">{errorMessage.message}</p>

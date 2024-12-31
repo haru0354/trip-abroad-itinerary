@@ -3,12 +3,10 @@
 import { useState } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-
 import toast from "react-hot-toast";
-
-import Button from "../ui/Button";
-import Form from "../ui/Form";
-import Date from "../ui/Date";
+import Button from "@/app/components/ui/Button";
+import Form from "@/app/components/ui/Form";
+import Date from "@/app/components/ui/Date";
 
 type FormItineraryHomeProps = {
   itineraryHome?: ItineraryHome | null;

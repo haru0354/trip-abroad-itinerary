@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
 import { getItineraryHomes } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import DashboardItinerarySideMenu from "@/app/components/itineraryHome/DashboardItinerarySideMenu";
+import SideMenu from "../components/dashboard/side-menu/SideMenu";
 import Loading from "@/app/Loading";
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default async function RootLayout({
           <div className="w-full">{children}</div>
         </div>
         <Suspense fallback={<Loading />}>
-          <DashboardItinerarySideMenu itineraryHomes={itineraryHomes} />
+          <SideMenu itineraryHomes={itineraryHomes} />
         </Suspense>
       </div>
     </>

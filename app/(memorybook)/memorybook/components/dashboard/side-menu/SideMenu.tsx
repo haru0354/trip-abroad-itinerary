@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlaneDeparture,
@@ -8,11 +10,9 @@ import {
   faBars,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-import { signOut } from "next-auth/react";
-import Button from "../ui/Button";
+import Button from "@/app/components/ui/Button";
 
-type DashboardItinerarySideMenuProps = {
+type SideMenuProps = {
   itineraryHomes: ItineraryHomes[];
 };
 
@@ -21,9 +21,7 @@ type ItineraryHomes = {
   name: string;
 };
 
-const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
-  itineraryHomes,
-}) => {
+const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -162,4 +160,4 @@ const DashboardItinerarySideMenu: React.FC<DashboardItinerarySideMenuProps> = ({
   );
 };
 
-export default DashboardItinerarySideMenu;
+export default SideMenu;

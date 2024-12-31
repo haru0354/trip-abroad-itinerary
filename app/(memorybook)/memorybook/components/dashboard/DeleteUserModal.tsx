@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { deleteUser } from "@/app/(memorybook)/memorybook/action/action-profile";
-import Button from "../ui/Button";
+import Button from "@/app/components/ui/Button";
 
 type DeleteModalProps = {
   userId: number;
@@ -27,16 +27,18 @@ const DeleteUserModal: React.FC<DeleteModalProps> = ({ userId }) => {
 
   return (
     <div>
-        <h2>アカウントの削除</h2>
-        <p>アカウントを削除するのはこちらより行うことができます</p>
-        <ul className="border border-gray-500 px-12 py-4 my-4 mx-10 list-decimal">
-            <li>登録したアカウント</li>
-            <li>作成した旅行</li>
-            <li>作成した旅程表</li>
-            <li>作成したメモ</li>
-            <li>共有した旅程表・ブログ</li>
-        </ul>
-        <p className="text-red-500 font-semibold">削除をするとこれらのデータは完全に消去され、復旧をすることはできなくなります。</p>
+      <h2>アカウントの削除</h2>
+      <p>アカウントを削除するのはこちらより行うことができます</p>
+      <ul className="border border-gray-500 px-12 py-4 my-4 mx-10 list-decimal">
+        <li>登録したアカウント</li>
+        <li>作成した旅行</li>
+        <li>作成した旅程表</li>
+        <li>作成したメモ</li>
+        <li>共有した旅程表・ブログ</li>
+      </ul>
+      <p className="text-red-500 font-semibold">
+        削除をするとこれらのデータは完全に消去され、復旧をすることはできなくなります。
+      </p>
       <div className="flex justify-center items-center my-10">
         {isDeleteModalOpen || (
           <Button

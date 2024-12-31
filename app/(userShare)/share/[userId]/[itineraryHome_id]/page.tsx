@@ -1,5 +1,5 @@
 import { getItineraryHome } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import ListItinerary from "@/app/components/itinerary/ListItinerary";
+import ListItinerary from "@/app/(memorybook)/memorybook/components/itinerary/ListItinerary";
 import Share from "@/app/components/Share";
 import NotFound from "@/app/not-found";
 

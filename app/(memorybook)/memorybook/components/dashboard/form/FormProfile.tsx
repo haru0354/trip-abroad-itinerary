@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, ChangeEvent } from "react";
-import Button from "../ui/Button";
-import Form from "../ui/Form";
-import toast from "react-hot-toast";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import Button from "@/app/components/ui/Button";
+import Form from "@/app/components/ui/Form";
 
 type FormProfileProps = {
   buttonName: string;

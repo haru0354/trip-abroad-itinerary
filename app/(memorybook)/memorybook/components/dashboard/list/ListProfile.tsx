@@ -1,5 +1,5 @@
-import Button from "../ui/Button";
 import Link from "next/link";
+import Button from "@/app/components/ui/Button";
 
 type ListProfileProps = {
   userId: number | undefined;
@@ -35,7 +35,9 @@ const ListProfile: React.FC<ListProfileProps> = async ({
           </Link>
         </div>
       </div>
-      <p className="mt-8">プロフィール変更・パスワードの変更・アカウントの削除は上記ボタンをクリックしてください。</p>
+      <p className="mt-8">
+        プロフィール変更・パスワードの変更・アカウントの削除は上記ボタンをクリックしてください。
+      </p>
     </>
   );
 };

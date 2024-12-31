@@ -3,7 +3,7 @@ import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUs
 import { addItineraryHome } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
 import FormItineraryHome from "../components/dashboard/form/FormItineraryHome";
 import ListItineraryHome from "../components/dashboard/list/ListItineraryHome";
-import ListShare from "@/app/components/itineraryHome/ListShare";
+import ListShare from "../components/dashboard/list/ListShare";
 import Loading from "@/app/Loading";
 
 const page = async () => {

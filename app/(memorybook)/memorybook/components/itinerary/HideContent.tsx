@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ButtonImage from "../ui/ButtonImage";
+import ButtonImage from "@/app/components/ui/ButtonImage";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 
@@ -18,7 +18,7 @@ const HideContent: React.FC<HideContentProps> = ({ itinerary }) => {
   const [isShowContent, setIsShowContent] = useState<boolean>(false);
 
   const toggleShowContent = () => {
-    setIsShowContent((isShowContent) => !isShowContent);
+    setIsShowContent(!isShowContent);
   };
 
   return (

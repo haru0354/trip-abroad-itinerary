@@ -1,6 +1,6 @@
 import { getItineraryHome } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import ListItinerary from "@/app/(memorybook)/memorybook/components/itinerary/ListItinerary";
-import Share from "@/app/components/Share";
+import Share from "@/app/(memorybook)/memorybook/components/Share";
 import NotFound from "@/app/not-found";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {

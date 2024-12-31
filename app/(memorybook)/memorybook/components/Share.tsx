@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import Button from "./ui/Button";
+import Button from "@/app/components/ui/Button";
 
 const Share = () => {
   const path = usePathname();

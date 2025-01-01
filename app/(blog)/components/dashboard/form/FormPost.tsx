@@ -1,14 +1,14 @@
 "use client";
 
-import TextArea from "@/app/components/ui/TextArea";
-import Form from "@/app/components/ui/Form";
-import Button from "@/app/components/ui/Button";
-import Select from "../../ui/Select";
 import { useFormState } from "react-dom";
-import FormImage from "../../ui/FormImage";
-import DOMPurify from "dompurify";
-import Checkbox from "../../ui/Checkbox";
 import { useState } from "react";
+import DOMPurify from "dompurify";
+import Form from "@/app/components/ui/Form";
+import TextArea from "@/app/components/ui/TextArea";
+import Button from "@/app/components/ui/Button";
+import Select from "@/app/components/ui/Select";
+import FormImage from "@/app/components/ui/FormImage";
+import Checkbox from "@/app/components/ui/Checkbox";
 
 type FormPostProps = {
   post?: (Post & { category: Category; postImage: PostImage | null }) | null;
@@ -73,10 +73,10 @@ const FormPost: React.FC<FormPostProps> = ({
     formAction,
     initialState
   );
-  const [isDraft, setIsDraft] = useState<boolean>(post?.draft ?? false); 
+  const [isDraft, setIsDraft] = useState<boolean>(post?.draft ?? false);
 
   const handleToggle = () => {
-    setIsDraft(!isDraft); 
+    setIsDraft(!isDraft);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -88,7 +88,7 @@ const FormPost: React.FC<FormPostProps> = ({
       if (key !== "image" && typeof value === "string") {
         const sanitizedValue = DOMPurify.sanitize(value, {
           ADD_TAGS: ["next"],
-          ADD_ATTR: ["href"]
+          ADD_ATTR: ["href"],
         });
         sanitizedFormData.append(key, sanitizedValue);
       } else {

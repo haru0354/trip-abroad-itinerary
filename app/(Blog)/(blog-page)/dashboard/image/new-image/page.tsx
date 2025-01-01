@@ -1,5 +1,5 @@
 import { addPostImage } from "@/app/(blog)/action/action-postImage";
-import FormPostImage from "@/app/components/blog/dashboard/FormPostImage";
+import FormPostImage from "@/app/(blog)/components/dashboard/form/FormPostImage";
 
 const page = () => {
   return (

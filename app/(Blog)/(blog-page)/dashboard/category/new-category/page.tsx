@@ -1,6 +1,6 @@
-import { addCategory } from "@/app/(blog)/action/action-category";
-import FormCategory from "@/app/components/blog/dashboard/FormCategory";
 import type { Metadata } from "next";
+import { addCategory } from "@/app/(blog)/action/action-category";
+import FormCategory from "@/app/(blog)/components/dashboard/form/FormCategory";
 
 export const metadata: Metadata = {
   title: "カテゴリの追加",

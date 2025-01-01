@@ -1,6 +1,6 @@
 import { addDashboardMemo } from "@/app/(blog)/action/action-dashboard";
 import FormDashboardMemo from "../../components/dashboard/form/FormDashboardMemo";
-import ListDashboardMemo from "@/app/components/blog/dashboard/ListDashboardMemo";
+import ListDashboardMemo from "../../components/dashboard/list/ListDashboardMemo";
 
 const Memo = async () => {
   return (

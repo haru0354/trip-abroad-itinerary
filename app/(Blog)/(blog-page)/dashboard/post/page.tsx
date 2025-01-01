@@ -1,4 +1,4 @@
-import ListPost from "@/app/components/blog/dashboard/ListPost";
+import ListPost from "@/app/(blog)/components/dashboard/list/ListPost";
 
 const page = async () => {
   return (

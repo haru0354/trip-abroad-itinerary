@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 import DOMPurify from "dompurify";
 import { addGenerateContentId } from "@/app/(blog)/lib/generateToc";
 import TableOfContents from "../TableOfContents";
-import CustomComponents from "../CustomComponents";
+import DesignComponents from "@/app/(blog)/components/design-components/DesignComponents";
 
 type ArticleContentAreaProps = {
   content: string;
@@ -67,9 +67,9 @@ const ArticleContentArea: React.FC<ArticleContentAreaProps> = ({ content }) => {
 
   return (
     <>
-      {parse(sanitizedBeforeContent, { replace: CustomComponents })}
+      {parse(sanitizedBeforeContent, { replace: DesignComponents })}
       <TableOfContents content={content} />
-      {parse(sanitizedAfterContent, { replace: CustomComponents })}
+      {parse(sanitizedAfterContent, { replace: DesignComponents })}
     </>
   );
 };

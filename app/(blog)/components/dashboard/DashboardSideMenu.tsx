@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { signOut } from "next-auth/react";
-import Button from "../../ui/Button";
+import Button from "@/app/components/ui/Button";
 
 const DashboardSideMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +27,7 @@ const DashboardSideMenu = () => {
 
   return (
     <>
-      <div className="hidden sm:block fixed top-0 left-0 h-screen w-72 flex-col sm:flex-row sm:justify-around bg-gray-700">
+      <div className="hidden sm:block fixed top-0 left-0 h-screen w-72 flex-col sm:flex-row sm:justify-around bg-gray-700 overflow-y-auto">
         <nav className="px-6 mt-10 w-full">
           <div className="mb-6">
             <h3 className="w-full pb-2 mb-2 border-b-2 border-gray-300 text-white text-lg">
@@ -84,7 +84,7 @@ const DashboardSideMenu = () => {
                     icon={faList}
                     className="mr-2 w-5 h-4 mt-1"
                   />
-                  カテゴリー一覧
+                  カテゴリ一覧
                 </li>
               </Link>
               <Link href="/dashboard/category/new-category">
@@ -93,7 +93,7 @@ const DashboardSideMenu = () => {
                     icon={faList}
                     className="mr-2 w-5 h-4 mt-1"
                   />
-                  新規カテゴリー
+                  新規カテゴリ
                 </li>
               </Link>
             </ul>
@@ -155,7 +155,7 @@ const DashboardSideMenu = () => {
                 style={{ width: "14px", height: "16px" }}
               />
             </button>
-            <div className="fixed top-0 left-0 w-full h-screen bg-gray-500 px-10 pt-12">
+            <div className="fixed top-0 left-0 w-full h-screen bg-gray-500 px-10 pt-12 overflow-y-auto">
               <ul className="text-white" onClick={toggleMenu}>
                 <li className="py-2 border-b">ダッシュボード</li>
                 <Link href="/">
@@ -182,12 +182,12 @@ const DashboardSideMenu = () => {
                 <li className="py-2 mt-3 border-b">カテゴリー</li>
                 <Link href="/dashboard/category">
                   <li className="py-2 mx-4 hover:bg-gray-300 hover:text-gray-900">
-                    カテゴリー一覧
+                    カテゴリ一覧
                   </li>
                 </Link>
                 <Link href="/dashboard/category/new-category">
                   <li className="py-2 mx-4 hover:bg-gray-300 hover:text-gray-900">
-                    カテゴリー追加
+                    カテゴリ追加
                   </li>
                 </Link>
                 <li className="py-2 mt-3 border-b">画像</li>

@@ -4,8 +4,8 @@ import { getPostImages } from "@/app/(blog)/lib/service/blogServiceMany";
 
 const ListImages = async () => {
   const images = await getPostImages();
-  
-  const sortedImages = images.sort((a,b) => b.id - a.id)
+
+  const sortedImages = images.sort((a, b) => b.id - a.id);
 
   return (
     <div className="flex flex-wrap w-full">

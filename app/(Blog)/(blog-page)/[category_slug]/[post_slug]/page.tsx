@@ -1,7 +1,7 @@
 import { getPost } from "@/app/(blog)/lib/service/blogServiceUnique";
 import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
 import NotFound from "@/app/not-found";
-import ArticleContentArea from "@/app/components/blog/blogContent/ArticleContentArea";
+import ArticleContentArea from "@/app/(blog)/components/content-area/parts/ArticleContentArea";
 import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
 import Breadcrumbs from "@/app/components/blog/Breadcrumbs";
 import SideMenu from "@/app/(blog)/components/side-menu/SideMenu";

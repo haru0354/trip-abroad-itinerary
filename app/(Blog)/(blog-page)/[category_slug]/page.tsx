@@ -6,7 +6,7 @@ import Card from "@/app/components/blog/Card";
 import ArticleTop from "@/app/components/blog/blogContent/ArticleTop";
 import Breadcrumbs from "@/app/components/blog/Breadcrumbs";
 import SideMenu from "../../components/side-menu/SideMenu";
-import ArticleContentArea from "@/app/components/blog/blogContent/ArticleContentArea";
+import ArticleContentArea from "../../components/content-area/parts/ArticleContentArea";
 
 export async function generateStaticParams() {
   const categories = await getCategories("categoryAndPostImage");

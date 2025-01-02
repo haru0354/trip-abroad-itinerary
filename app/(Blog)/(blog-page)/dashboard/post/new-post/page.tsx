@@ -1,6 +1,6 @@
 import { addPost } from "@/app/(blog)/action/action-post";
 import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
-import FormPost from "@/app/components/blog/dashboard/FormPost";
+import FormPost from "@/app/(blog)/components/dashboard/form/FormPost";
 
 const page = async () => {
   const categories = await getCategories()

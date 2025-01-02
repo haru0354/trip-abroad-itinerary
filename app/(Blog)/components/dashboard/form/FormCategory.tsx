@@ -1,10 +1,10 @@
 "use client";
 
-import Form from "../../ui/Form";
-import Button from "../../ui/Button";
-import TextArea from "../../ui/TextArea";
-import FormImage from "../../ui/FormImage";
 import { useFormState } from "react-dom";
+import Form from "@/app/components/ui/Form";
+import Button from "@/app/components/ui/Button";
+import TextArea from "@/app/components/ui/TextArea";
+import FormImage from "@/app/components/ui/FormImage";
 
 type FormCategoryProps = {
   category?: (Category & { postImage: PostImage | null }) | null;
@@ -64,8 +64,8 @@ const FormCategory: React.FC<FormCategoryProps> = ({
           <form onSubmit={handleSubmit}>
             {state.message && <p className="text-red-500">{state.message}</p>}
             <Form
-              name={"name"}
-              label={"カテゴリ名"}
+              name="name"
+              label="カテゴリ名"
               placeholder={"カテゴリ名を入力してください。"}
               defaultValue={category?.name}
             />
@@ -73,8 +73,8 @@ const FormCategory: React.FC<FormCategoryProps> = ({
               <p className="text-red-500">{state.errors.name}</p>
             )}
             <Form
-              name={"slug"}
-              label={"スラッグ"}
+              name="slug"
+              label="スラッグ"
               placeholder={
                 "カテゴリのスラッグを半角小文字の英数字で入力してください。"
               }
@@ -84,8 +84,8 @@ const FormCategory: React.FC<FormCategoryProps> = ({
               <p className="text-red-500">{state.errors.slug}</p>
             )}
             <TextArea
-              name={"description"}
-              label={"カテゴリの説明(description)"}
+              name="description"
+              label="カテゴリの説明(description)"
               placeholder={
                 "カテゴリの説明(description)を入力してください。この項目は必須ではありません。"
               }
@@ -95,16 +95,16 @@ const FormCategory: React.FC<FormCategoryProps> = ({
               カテゴリを記事にする(カテゴリにコンテンツを表示)
             </p>
             <TextArea
-              name={"title"}
-              label={"カテゴリのタイトル"}
+              name="title"
+              label="カテゴリのタイトル"
               placeholder={
                 "カテゴリのタイトルを入力してください。カテゴリページにタイトルが表示されます。この項目は必須ではありません。"
               }
               defaultValue={category?.title || undefined}
             />
             <TextArea
-              name={"content"}
-              label={"カテゴリの内容"}
+              name="content"
+              label="カテゴリの内容"
               placeholder={
                 "カテゴリの内容を入力してください。カテゴリページに表示がされます。この項目は必須ではありません。"
               }

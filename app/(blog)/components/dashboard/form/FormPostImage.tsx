@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "../../ui/Button";
 import { useFormState } from "react-dom";
-import FormImage from "../../ui/FormImage";
+import Button from "@/app/components/ui/Button";
+import FormImage from "@/app/components/ui/FormImage";
 
 type FormPostImageProps = {
   postImage?: PostImage | null;

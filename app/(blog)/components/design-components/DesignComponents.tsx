@@ -1,9 +1,9 @@
 import { DOMNode, domToReact } from "html-react-parser";
-import CustomLink from "./blogDesignComponents/CustomLink";
+import CustomLink from "./CustomLink";
 
 // blogのコンテンツにコンポーネントを使用するなら追加していく
 
-const CustomComponents = (domNode: DOMNode) => {
+const DesignComponents = (domNode: DOMNode) => {
   if (
     domNode.type === "tag" &&
     domNode.name === "next" &&
@@ -13,7 +13,7 @@ const CustomComponents = (domNode: DOMNode) => {
     return (
       <CustomLink href={domNode.attribs.href}>
         {domToReact(domNode.children as DOMNode[], {
-          replace: CustomComponents,
+          replace: DesignComponents,
         })}
       </CustomLink>
     );
@@ -22,4 +22,4 @@ const CustomComponents = (domNode: DOMNode) => {
   return domNode;
 };
 
-export default CustomComponents;
+export default DesignComponents;

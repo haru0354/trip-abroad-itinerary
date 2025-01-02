@@ -1,5 +1,5 @@
-import ListCategory from "@/app/components/blog/dashboard/ListCategory";
 import type { Metadata } from "next";
+import ListCategory from "@/app/(blog)/components/dashboard/list/ListCategory";
 
 export const metadata: Metadata = {
   title: "カテゴリの一覧",

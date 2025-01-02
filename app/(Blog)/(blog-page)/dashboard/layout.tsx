@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import ToastContext from "@/app/context/ToastContext";
 import AuthContext from "@/app/context/AuthContext";
-import DashboardSideMenu from "@/app/components/blog/dashboard/DashboardSideMenu";
+import DashboardSideMenu from "../../components/dashboard/DashboardSideMenu";
 
 export const metadata: Metadata = {
   title: {

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { getDashboardMemos } from "@/app/(blog)/lib/service/blogServiceMany";
-import ButtonImage from "../../ui/ButtonImage";
+import ButtonImage from "@/app/components/ui/ButtonImage";
 
 const ListDashboardMemo = async () => {
   const dashboardMemos = await getDashboardMemos();

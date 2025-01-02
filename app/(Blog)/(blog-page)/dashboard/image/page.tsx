@@ -1,4 +1,4 @@
-import ListImages from "@/app/components/blog/dashboard/ListImages";
+import ListImages from "@/app/(blog)/components/dashboard/list/ListImages";
 
 const page = () => {
   return (

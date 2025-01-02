@@ -1,0 +1,46 @@
+import Link from "next/link";
+import Card from "./Card";
+
+type RelatedArticlesProps = {
+  articles: Article[];
+  categorySlug: string;
+  categoryName?: string;
+};
+
+type Article = {
+  id: number;
+  createdDate: string | Date;
+  updatedDate: string | Date;
+  title: string;
+  content: string;
+  categoryId: number;
+  description: string;
+  slug: string;
+  postImageId?: number | null;
+  draft: boolean;
+};
+
+const RelatedArticles: React.FC<RelatedArticlesProps> = async ({
+  articles,
+  categorySlug,
+  categoryName,
+}) => {
+  return (
+    <>
+      {categoryName ? (
+        <h2 className="p-2 mt-10 text-3xl">{categoryName}の記事一覧</h2>
+      ) : (
+        <h2 className="p-2 mt-10 text-3xl">関連記事</h2>
+      )}
+      {articles.map((article) => {
+        return (
+          <Link href={`/${categorySlug}/${article.slug}`} key={article.id}>
+            <Card post={article} />
+          </Link>
+        );
+      })}
+    </>
+  );
+};
+
+export default RelatedArticles;

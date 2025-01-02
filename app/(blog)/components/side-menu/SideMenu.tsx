@@ -4,7 +4,7 @@ import SideImage from "@/app/(blog)/components/side-menu/parts/SideImage";
 
 const SideMenu = () => {
   return (
-    <div className="flex flex-col justify-center items-center bg-white rounded py-2">
+    <div className="flex flex-col items-center bg-white rounded py-2">
       <SideImage
         src="/travel_memory_thumbnail.jpg"
         alt="旅のメモリーブックのサムネイル"

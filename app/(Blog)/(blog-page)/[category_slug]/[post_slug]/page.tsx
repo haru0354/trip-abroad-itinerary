@@ -1,10 +1,11 @@
-import { getPost } from "@/app/(blog)/lib/service/blogServiceUnique";
+import {
+  getCategory,
+  getPost,
+} from "@/app/(blog)/lib/service/blogServiceUnique";
 import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
-import NotFound from "@/app/not-found";
-import ArticleContentArea from "@/app/(blog)/components/content-area/parts/ArticleContentArea";
-import ArticleTop from "@/app/(blog)/components/content-area/parts/ArticleTop";
-import Breadcrumbs from "@/app/(blog)/components/content-area/parts/Breadcrumbs";
+import LeftColumn from "@/app/(blog)/components/content-area/LeftColumn";
 import SideMenu from "@/app/(blog)/components/side-menu/SideMenu";
+import NotFound from "@/app/not-found";
 
 export async function generateStaticParams() {
   const posts = await getPosts("categoryAndPostImage");
@@ -17,7 +18,11 @@ export async function generateStaticParams() {
   }));
 }
 
-const Page = async ({ params }: { params: { post_slug: string } }) => {
+const Page = async ({
+  params,
+}: {
+  params: { post_slug: string; category_slug: string };
+}) => {
   const post = await getPost("slug", params.post_slug, "categoryAndPostImage");
 
   if (!post || post.draft === false) {
@@ -31,23 +36,36 @@ const Page = async ({ params }: { params: { post_slug: string } }) => {
 
   const formattedCreatedDate = new Date(post.createdDate).toLocaleDateString();
 
+  const category = await getCategory(
+    "slug",
+    params.category_slug,
+    "postsAndPostImage"
+  );
+
+  if (
+    !category ||
+    (!category.title && category.posts.every((post) => !post.draft))
+  ) {
+    return (
+      <div>
+        <NotFound />
+        <p>カテゴリが存在しないか削除された可能性があります。</p>
+      </div>
+    );
+  }
+  const filteredCategoryInArticles = category.posts.filter(
+    (post) => post.slug !== params.post_slug
+  );
+
   return (
     <>
-      <div className="blog w-full md:w-3/4 bg-white rounded-sm py-8 px-4 md:px-12 mr-8 ">
-        <Breadcrumbs
-          categoryName={post?.category.name}
-          categorySlug={post?.category.slug}
-        />
-        <h1>{post.title}</h1>
-        <ArticleTop src={post.postImage?.url} alt={post.postImage?.altText} />
-        <p className="text-gray-500 mb-5">
-          記事の投稿日：{formattedCreatedDate}
-        </p>
-        <ArticleContentArea content={post.content} />
-      </div>
-      <div className="w-full md:w-1/4 py-4 bg-white rounded">
-        <SideMenu />
-      </div>
+      <LeftColumn
+        categoryPage={false}
+        post={post}
+        formattedCreatedDate={formattedCreatedDate}
+        filteredCategoryInArticles={filteredCategoryInArticles}
+      />
+      <SideMenu />
     </>
   );
 };

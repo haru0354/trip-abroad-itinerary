@@ -3,7 +3,11 @@ import Image from "next/image";
 import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
 
 const SideNewArticles = async () => {
-  const posts = await getPosts("categoryAndPostImage", 5,)
+  const posts = await getPosts("categoryAndPostImage", 5);
+
+  if (!posts) {
+    return null;
+  }
 
   return (
     <div className="w-full p-2">

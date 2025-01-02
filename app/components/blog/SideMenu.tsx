@@ -1,5 +1,5 @@
 import SideCategoryMenu from "@/app/(blog)/components/side-menu/parts/SideCategoryMenu";
-import SideNewArticles from "./sideMenu/SideNewArticles";
+import SideNewArticles from "@/app/(blog)/components/side-menu/parts/SideNewArticles";
 import SideTop from "./sideMenu/SideTop";
 
 const SideMenu = () => {

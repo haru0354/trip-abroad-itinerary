@@ -1,4 +1,4 @@
-import SideCategoryMenu from "./sideMenu/SideCategoryMenu";
+import SideCategoryMenu from "@/app/(blog)/components/side-menu/parts/SideCategoryMenu";
 import SideNewArticles from "./sideMenu/SideNewArticles";
 import SideTop from "./sideMenu/SideTop";
 

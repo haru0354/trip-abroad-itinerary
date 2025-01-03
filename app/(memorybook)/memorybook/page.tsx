@@ -11,7 +11,7 @@ import FooterItinerary from "./components/FooterItinerary";
 import LoginModal from "../../components/auth/authUi/LoginModal";
 import Section3ColumnImage from "../../components/1ColumnPage/Section3ColumnImage";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
-import Section from "../../components/1ColumnPage/Section";
+import Section from "@/app/components/Section";
 import Loading from "@/app/Loading";
 
 export default function Home() {

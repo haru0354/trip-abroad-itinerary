@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Header from "./(blog)/components/Header";
-import Section1ColumnRight from "./components/1ColumnPage/Section1ColumnRight";
+import FlexImageAndContents from "./components/FlexImageAndContents";
 import CategoryList from "./(blog)/components/section/CategoryList";
 import NewArticleList from "./(blog)/components/section/NewArticleList";
 import Footer from "./(blog)/components/Footer";
@@ -23,13 +23,15 @@ export default function Home() {
                 </h2>
                 <span className="flex-grow h-1 w-5 md:w-0 mr-1 md:mr-4 bg-gradient-to-r from-gray-600 to-transparent"></span>
               </div>
-              <Section1ColumnRight
+              <FlexImageAndContents
                 src="/travel_memory_thumbnail.jpg"
                 alt="旅のメモリーブックのサムネイル"
                 name="「旅のメモリーブック」"
-                content="PC・スマホ・タブレットで利用できる無料の国内旅行・海外旅行しおりアプリ。"
-                content2="簡単に旅程表を作成でき、旅行中に撮影した写真を掲載し、旅の思い出のしおりして残すことができます。"
-                content3="特に「英語が話せない人の海外旅行」向けに事前にメモできる項目が多く設定されています。"
+                contents={[
+                  "PC・スマホ・タブレットで利用できる無料の国内旅行・海外旅行しおりアプリ。",
+                  "簡単に旅程表を作成でき、旅行中に撮影した写真を掲載し、旅の思い出のしおりして残すことができます。",
+                  "特に「英語が話せない人の海外旅行」向けに事前にメモできる項目が多く設定されています。",
+                ]}
                 isPriority={true}
               />
               <Link href="./memorybook/">

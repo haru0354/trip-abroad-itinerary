@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import SignupModal from "../../components/auth/authUi/SignupModal";
-import Section1ColumnRight from "../../components/1ColumnPage/Section1ColumnRight";
+import FlexImageAndContents from "@/app/components/FlexImageAndContents";
 import Section3ColumnIcon from "../../components/1ColumnPage/Section3ColumnIcon";
 import CallToAction from "@/app/components/CallToAction";
 import QuestionAndAnswer from "@/app/components/QuestionAndAnswer";
@@ -62,21 +62,26 @@ export default function Home() {
             name="「旅のメモリーブック」がおすすめな人"
             bgColor="bg-sky-50"
           >
-            <Section1ColumnRight
+            <FlexImageAndContents
               src="/overseas_trip01.jpg"
               alt="海外旅行"
               name="英語が話せない人でも海外旅行へ"
-              content="英語が話せない人でも安心して海外旅行へをコンセプトに作成されたアプリです。"
-              content2="海外だと分からないことも多いです。事前に旅程やメモをして旅行準備さえすれば英語が話せなくても海外旅行ができるようになってます。"
-              content3="現地で必要なタイミングでメモを閲覧できるので、言語の壁があっても安心して旅行が可能です。"
+              contents={[
+                "英語が話せない人でも安心して海外旅行へをコンセプトに作成されたアプリです。",
+                "海外だと分からないことも多いです。事前に旅程やメモをして旅行準備さえすれば英語が話せなくても海外旅行ができるようになってます。",
+                "現地で必要なタイミングでメモを閲覧できるので、言語の壁があっても安心して旅行が可能です。",
+              ]}
             />
-            <Section1ColumnRight
+            <FlexImageAndContents
               src="/travel_expenses.jpg"
               alt="旅行費用"
               name="旅行費用を安くしたい10代・20代・30代"
-              content="PC・スマホ・タブレットから完全無料で利用が可能な国内旅行・海外旅行のしおりアプリです。"
-              content2="10代・20代・30代は色々と遊びや趣味や人付き合いでの出費もあります。そのため、旅行費用を安くしつつ快適で楽しい旅行をしたい人も多いです。"
-              content3="事前に旅程やメモして準備することで、現地で通訳やガイドの費用を抑えることもでき、かつ旅行でも添乗員同行のツアーでなくても快適な旅行ができます"
+              contents={[
+                "PC・スマホ・タブレットから完全無料で利用が可能な国内旅行・海外旅行のしおりアプリです。",
+                "10代・20代・30代は色々と遊びや趣味や人付き合いでの出費もあります。そのため、旅行費用を安くしつつ快適で楽しい旅行をしたい人も多いです。",
+                "事前に旅程やメモして準備することで、現地で通訳やガイドの費用を抑えることもでき、かつ旅行でも添乗員同行のツアーでなくても快適な旅行ができます",
+              ]}
+              imageLeft={false}
             />
           </Section>
           <Section name="旅のメモリーブックとは" bgColor="bg-gray-50">
@@ -104,21 +109,26 @@ export default function Home() {
             />
           </Section>
           <Section name="思い出の旅行記になるアプリ" bgColor="bg-sky-50">
-            <Section1ColumnRight
+            <FlexImageAndContents
               src="/travelogue.jpg"
               alt="旅行記"
               name="帰国後にしおりを思い出のアルバムへ"
-              content="旅のメモリーブックは各旅程の写真を載せることができるようになっています。"
-              content2="旅行中や旅行後に撮影した観光地や料理など様々な写真を載せましょう。"
-              content3="「旅程表を作成できるアプリ」なだけではなく、「思い出に残るアルバム・旅行記を作成できるアプリ」になっています。"
+              contents={[
+                "旅のメモリーブックは各旅程の写真を載せることができるようになっています。",
+                "旅行中や旅行後に撮影した観光地や料理など様々な写真を載せましょう。",
+                "「旅程表を作成できるアプリ」なだけではなく、「思い出に残るアルバム・旅行記を作成できるアプリ」になっています。",
+              ]}
             />
-            <Section1ColumnRight
+            <FlexImageAndContents
               src="/trip_list.jpg"
               alt="旅行記"
               name="次の旅行の予定も作れる"
-              content="旅のメモリーブックは複数の旅行プランを作成することができます"
-              content2="旅行は当日だけでなく、「どんな旅行をしたいか？」旅程表を作るのもたのしみのひとつです。"
-              content3="いつか行って見たい旅行プランの作成を楽しむましょう。また、実際の旅行が決まったのなら新しい旅程表を作成することもできます。"
+              contents={[
+                "旅のメモリーブックは複数の旅行プランを作成することができます",
+                "旅行は当日だけでなく、「どんな旅行をしたいか？」旅程表を作るのもたのしみのひとつです。",
+                "いつか行って見たい旅行プランの作成を楽しむましょう。また、実際の旅行が決まったのなら新しい旅程表を作成することもできます。",
+              ]}
+              imageLeft={false}
             />
           </Section>
           <Section name="よくある質問" bgColor="bg-white">

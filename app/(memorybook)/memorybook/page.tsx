@@ -9,7 +9,7 @@ import SignupButton from "../../components/ui/SignupButton";
 import HeaderItinerary from "./components/HeaderItinerary";
 import FooterItinerary from "./components/FooterItinerary";
 import LoginModal from "../../components/auth/authUi/LoginModal";
-import Section3ColumnImage from "../../components/1ColumnPage/Section3ColumnImage";
+import ThreeImageAndContents from "@/app/components/ThreeImageAndContents";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Section from "@/app/components/Section";
 import Loading from "@/app/Loading";
@@ -42,19 +42,30 @@ export default function Home() {
                 </h2>
                 <span className="flex-grow h-1 w-5 md:w-0 mr-1 md:mr-4 bg-gradient-to-r from-gray-600 to-transparent"></span>
               </div>
-              <Section3ColumnImage
-                title1="旅程表の作成"
-                title2="メモの作成"
-                title3="共有機能"
-                content1="旅程表が簡単に作成可能!!日付や時間で自動で並び変えるので面倒な作業はいりません。必要なのは「いつ・何をする」を記載することだけです。"
-                content2="旅行準備は出発前のパスポートの取得や持ち物の準備、旅行中の海外旅行保険の連絡先など様々です。簡単にメモができるので必要なことがすぐに確認可能。"
-                content3="作成した旅程表は共有することが可能です。同行者がスケジュールを確認したり、LineやfacebookなどSNSでの共有が簡単に可能。共有するかしないかは切り替えれます。"
-                image1Url="/itinerary.jpg"
-                image2Url="/memo-create.jpg"
-                image3Url="/Itinerary-share.jpg"
-                image1Alt="旅程表の作成"
-                image2Alt="旅行準備のメモ"
-                image3Alt="メモの切り替え"
+              <ThreeImageAndContents
+                blocks={[
+                  {
+                    title: "旅程表の作成",
+                    content:
+                      "旅程表が簡単に作成可能!!日付や時間で自動で並び変えるので面倒な作業はいりません。必要なのは「いつ・何をする」を記載することだけです。",
+                    imageUrl: "/itinerary.jpg",
+                    imageAlt: "旅程表の作成",
+                  },
+                  {
+                    title: "メモの作成",
+                    content:
+                      "旅行準備は出発前のパスポートの取得や持ち物の準備、旅行中の海外旅行保険の連絡先など様々です。簡単にメモができるので必要なことがすぐに確認可能。",
+                    imageUrl: "/memo-create.jpg",
+                    imageAlt: "旅行準備のメモ",
+                  },
+                  {
+                    title: "共有機能",
+                    content:
+                      "作成した旅程表は共有することが可能です。同行者がスケジュールを確認したり、LineやfacebookなどSNSでの共有が簡単に可能。共有するかしないかは切り替えれます。",
+                    imageUrl: "/Itinerary-share.jpg",
+                    imageAlt: "メモの切り替え",
+                  },
+                ]}
               />
             </div>
           </section>

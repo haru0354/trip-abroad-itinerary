@@ -4,10 +4,14 @@ import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
 const SideCategoryMenu = async () => {
   const categories = await getCategories("posts");
 
+  if (!categories) {
+    return null;
+  }
+
   return (
     <div className="w-full p-2">
       <h3 className="bg-blue-400 text-white font-bold text-lg px-2 py-4 rounded-sm">
-        カテゴリー
+        カテゴリ
       </h3>
       {categories.map((category) => {
         if (

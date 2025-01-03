@@ -1,4 +1,4 @@
-import AdminForm from "@/app/components/blog/AdminForm";
+import AdminForm from "../../components/AdminForm";
 
 const page = () => {
   return (

@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
-
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
 
@@ -15,8 +14,8 @@ const AdminForm = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const username = formData.get("username")
-    const password = formData.get("password")
+    const username = formData.get("username");
+    const password = formData.get("password");
 
     const result = await signIn("blog", {
       redirect: false,
@@ -66,4 +65,4 @@ const AdminForm = () => {
   );
 };
 
-export default AdminForm
+export default AdminForm;

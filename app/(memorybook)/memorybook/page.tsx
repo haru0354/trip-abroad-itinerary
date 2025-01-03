@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import SignupModal from "../../components/auth/authUi/SignupModal";
 import Section1ColumnRight from "../../components/1ColumnPage/Section1ColumnRight";
 import Section3ColumnIcon from "../../components/1ColumnPage/Section3ColumnIcon";
-import SectionCTA from "../../components/1ColumnPage/SectionCTA";
+import CallToAction from "@/app/components/CallToAction";
 import QuestionAndAnswer from "@/app/components/QuestionAndAnswer";
 import Hero from "@/app/components/Hero";
 import SignupButton from "../../components/ui/SignupButton";
@@ -80,19 +80,18 @@ export default function Home() {
             />
           </Section>
           <Section name="旅のメモリーブックとは" bgColor="bg-gray-50">
-            <SectionCTA
-              name1="PC・スマホ・タブレットから利用できる無料のアプリ"
-              name2="簡単に国内・海外の旅のしおり（旅程表）の作成が可能"
-              name3="英語が話せない人でも安心して海外旅行できる豊富なメモ機能"
-              content="表示切替ボタンにより、必要なタイミングで必要なメモを閲覧が可能。英語が話せない人でも「目的地への具体的な行き方（乗り換え方法・バス番号・時間）」をはじめ、「食事予定のメニューの英語名や呼び方」など、事前にメモをすることで安心して海外旅行が可能。"
+            <CallToAction
+              lists={[
+                "PC・スマホ・タブレットから利用できる無料のアプリ",
+                "簡単に国内・海外の旅のしおり（旅程表）の作成が可能",
+                "英語が話せない人でも安心して海外旅行できる豊富なメモ機能",
+              ]}
+              contents={[
+                "表示切替ボタンにより、必要なタイミングで必要なメモを閲覧が可能。",
+                "英語が話せない人でも「目的地への具体的な行き方（乗り換え方法・バス番号・時間）」をはじめ、「食事予定のメニューの英語名や呼び方」など、事前にメモをすることで安心して海外旅行が可能。",
+              ]}
+              signUp={true}
             />
-            <AnimatedItem
-              elementType="div"
-              animation="fadeInAndScaleVariants"
-              className="text-center py-4"
-            >
-              <SignupButton />
-            </AnimatedItem>
           </Section>
           <Section name="旅のメモリーブック3つの特徴" bgColor="bg-white">
             <Section3ColumnIcon

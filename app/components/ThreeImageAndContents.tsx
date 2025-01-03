@@ -2,10 +2,10 @@ import Image from "next/image";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type ThreeImageAndContentsProps = {
-  blocks: Block[];
+  items: Item[];
 };
 
-type Block = {
+type Item = {
   title: string;
   content: string;
   imageUrl: string;
@@ -13,19 +13,19 @@ type Block = {
 };
 
 const ThreeImageAndContents: React.FC<ThreeImageAndContentsProps> = ({
-  blocks,
+  items,
 }) => {
   return (
     <>
       <div className="flex w-full my-8 flex-wrap items-center justify-center">
-        {blocks.map((block, index) => {
+        {items.map((item, index) => {
           return (
             <AnimatedItem
-              key={block.title}
+              key={item.title}
               elementType="div"
               animation="fadeInVariants"
               className="flex flex-col items-center max-w-[320px] min-w-[320px] my-6 mx-4"
-              delay={0.3 * (index + 1)}
+              delay={0.2 * (index + 1)}
             >
               <div className="min-h-[222px] max-h-[222px] border justify-centers">
                 <figure
@@ -36,8 +36,8 @@ const ThreeImageAndContents: React.FC<ThreeImageAndContentsProps> = ({
                   }}
                 >
                   <Image
-                    src={block.imageUrl}
-                    alt={block.imageAlt}
+                    src={item.imageUrl}
+                    alt={item.imageAlt}
                     fill
                     sizes="(max-height: 220px)"
                     style={{
@@ -48,9 +48,9 @@ const ThreeImageAndContents: React.FC<ThreeImageAndContentsProps> = ({
               </div>
               <div className="min-h-[130px] ">
                 <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
-                  {block.title}
+                  {item.title}
                 </h3>
-                <p className="text-gray-600 my-2">{block.content}</p>
+                <p className="text-gray-600 my-2">{item.content}</p>
               </div>
             </AnimatedItem>
           );

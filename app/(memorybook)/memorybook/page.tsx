@@ -43,7 +43,7 @@ export default function Home() {
                 <span className="flex-grow h-1 w-5 md:w-0 mr-1 md:mr-4 bg-gradient-to-r from-gray-600 to-transparent"></span>
               </div>
               <ThreeImageAndContents
-                blocks={[
+                items={[
                   {
                     title: "旅程表の作成",
                     content:

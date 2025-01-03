@@ -5,12 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQ, faA, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
-type QAProps = {
+type QuestionAndAnswerProps = {
   title: string;
   content: string;
 };
 
-const QA: React.FC<QAProps> = ({ title, content }) => {
+const QuestionAndAnswer: React.FC<QuestionAndAnswerProps> = ({
+  title,
+  content,
+}) => {
   const [isShowContent, setIsShowContent] = useState<boolean>(false);
 
   const toggleShowContent = () => {
@@ -55,4 +58,4 @@ const QA: React.FC<QAProps> = ({ title, content }) => {
   );
 };
 
-export default QA;
+export default QuestionAndAnswer;

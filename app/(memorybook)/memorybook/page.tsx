@@ -3,7 +3,7 @@ import SignupModal from "../../components/auth/authUi/SignupModal";
 import Section1ColumnRight from "../../components/1ColumnPage/Section1ColumnRight";
 import Section3ColumnIcon from "../../components/1ColumnPage/Section3ColumnIcon";
 import SectionCTA from "../../components/1ColumnPage/SectionCTA";
-import QA from "../../components/1ColumnPage/QA";
+import QuestionAndAnswer from "@/app/components/QuestionAndAnswer";
 import Hero from "@/app/components/Hero";
 import SignupButton from "../../components/ui/SignupButton";
 import HeaderItinerary from "./components/HeaderItinerary";
@@ -123,19 +123,19 @@ export default function Home() {
             />
           </Section>
           <Section name="よくある質問" bgColor="bg-white">
-            <QA
+            <QuestionAndAnswer
               title="アカウントの作成に必要なのは何ですか？"
               content="2種類のアカウントの作成方法に対応しています。メールアドレス・Googleアカウントを利用した方法があります。必要となるのはニックネーム・メールアドレス・パスワードの3つ、またはGoogleアカウントだけです。わずらわしい作業はなしで「すぐにでも簡単に旅程表を作成できる」をコンセプトの1つとして作られています。"
             />
-            <QA
+            <QuestionAndAnswer
               title="本当に無料で利用できますか？"
               content="旅のメモリーブックは完全に無料で利用できるアプリとなっています。アカウントを10秒ほどで作成後はすぐにアプリの全機能を利用することが可能で、すぐにでも国内・海外旅行のしおりとして旅程表の作成などできます。"
             />
-            <QA
+            <QuestionAndAnswer
               title="「iphone」や「android」で使用できますか？"
               content="はい。もちろん可能です。PC・スマートフォン・タブレットの端末で使用をすることができます。そのため、iphone・androidで作成途中のアプリを、同じアカウントを使用してPCのwindowsやmacでの編集をすることも可能です。"
             />
-            <QA
+            <QuestionAndAnswer
               title="pcで作成したのをスマホで閲覧できますか？"
               content="PC・スマホ・タブレットで閲覧・作成ができます。作成したアカウントでログインをすればどの端末からでも閲覧・作成・編集が可能です。
             "

@@ -44,7 +44,9 @@ const Hero: React.FC<HeroProps> = ({
           {contents && (
             <>
               {contents.map((content) => (
-                <p className="mb-2">{content}</p>
+                <p key={content} className="mb-2">
+                  {content}
+                </p>
               ))}
             </>
           )}

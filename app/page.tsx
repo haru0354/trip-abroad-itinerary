@@ -1,12 +1,11 @@
 import Link from "next/link";
 import Header from "./(blog)/components/Header";
-import Section from "./components/1ColumnPage/Section";
 import Section1ColumnRight from "./components/1ColumnPage/Section1ColumnRight";
 import CategoryList from "./(blog)/components/section/CategoryList";
 import NewArticleList from "./(blog)/components/section/NewArticleList";
 import Footer from "./(blog)/components/Footer";
 import Button from "./components/ui/Button";
-import HeaderImage from "./components/1ColumnPage/HeaderImage";
+import HeaderImage from "./(blog)/components/HeaderImage";
 
 export default function Home() {
   return (

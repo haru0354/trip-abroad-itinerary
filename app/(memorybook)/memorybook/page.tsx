@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import SignupModal from "../../components/auth/authUi/SignupModal";
 import FlexImageAndContents from "@/app/components/FlexImageAndContents";
-import Section3ColumnIcon from "../../components/1ColumnPage/Section3ColumnIcon";
+import ThreeIconAndContents from "@/app/components/ThreeIconAndContents";
 import CallToAction from "@/app/components/CallToAction";
 import QuestionAndAnswer from "@/app/components/QuestionAndAnswer";
 import Hero from "@/app/components/Hero";
@@ -110,13 +110,24 @@ export default function Home() {
             />
           </Section>
           <Section name="旅のメモリーブック3つの特徴" bgColor="bg-white">
-            <Section3ColumnIcon
-              name1="国内・海外の旅行に対応"
-              name2="思い出を残せるアプリ"
-              name3="表示切替メモ機能"
-              content1="旅のメモリーブックは国内と海外の両方に使える、旅程表アプリとなっています。安心して海外旅行をする為の豊富なメモ機能がありますが、国内旅行にも使えます。"
-              content2="旅程表を作成できるだけではありません。旅行中や帰国後にも思い出を残せるように設定がされています。旅行前は旅程表から、帰国後は思い出の記録へと残せます"
-              content3="非表示からボタンクリックで表示に切り替えるメモ機能があります。旅程表の見やすさやデザインを損なわずにメモをすることができるようになっています。"
+            <ThreeIconAndContents
+              items={[
+                {
+                  title: "国内・海外の旅行に対応",
+                  content:
+                    "旅のメモリーブックは国内と海外の両方に使える、旅程表アプリとなっています。安心して海外旅行をする為の豊富なメモ機能がありますが、国内旅行にも使えます。",
+                },
+                {
+                  title: "思い出を残せるアプリ",
+                  content:
+                    "旅程表を作成できるだけではありません。旅行中や帰国後にも思い出を残せるように設定がされています。旅行前は旅程表から、帰国後は思い出の記録へと残せます。",
+                },
+                {
+                  title: "表示切替メモ機能",
+                  content:
+                    "非表示からボタンクリックで表示に切り替えるメモ機能があります。旅程表の見やすさやデザインを損なわずにメモをすることができるようになっています。",
+                },
+              ]}
             />
           </Section>
           <Section name="思い出の旅行記になるアプリ" bgColor="bg-sky-50">

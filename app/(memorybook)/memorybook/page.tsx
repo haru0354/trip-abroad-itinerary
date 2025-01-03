@@ -4,7 +4,7 @@ import Section1ColumnRight from "../../components/1ColumnPage/Section1ColumnRigh
 import Section3ColumnIcon from "../../components/1ColumnPage/Section3ColumnIcon";
 import SectionCTA from "../../components/1ColumnPage/SectionCTA";
 import QA from "../../components/1ColumnPage/QA";
-import Hero from "../../components/1ColumnPage/Hero";
+import Hero from "@/app/components/Hero";
 import SignupButton from "../../components/ui/SignupButton";
 import HeaderItinerary from "./components/HeaderItinerary";
 import FooterItinerary from "./components/FooterItinerary";
@@ -20,7 +20,17 @@ export default function Home() {
       <Suspense fallback={<Loading />}>
         <HeaderItinerary />
       </Suspense>
-      <Hero />
+      <Hero
+        src="/hero_image.JPG"
+        alt="メモリーブックのHERO画像"
+        title="旅程表が作成できるしおりアプリ"
+        secondTitle="「旅のメモリーブック」"
+        contents={[
+          "国内旅行・海外旅行で使える。",
+          "PC・スマホ・タブレット対応の無料アプリ",
+        ]}
+        signUp={true}
+      />
       <main>
         <div className="w-full">
           <section className="bg-white">

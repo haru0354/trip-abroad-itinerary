@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Header from "./components/Header";
+import Header from "./(blog)/components/Header";
 import Section from "./components/1ColumnPage/Section";
 import Section1ColumnRight from "./components/1ColumnPage/Section1ColumnRight";
 import CategoryTop from "./components/1ColumnPage/CategoryTop";

@@ -28,7 +28,7 @@ const Footer = () => {
             </li>
           </ul>
           <span className="text-xs text-black">
-            &copy;&copy;英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」
+            &copy;英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」
           </span>
         </div>
       </footer>

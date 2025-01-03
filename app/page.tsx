@@ -4,7 +4,7 @@ import Section from "./components/1ColumnPage/Section";
 import Section1ColumnRight from "./components/1ColumnPage/Section1ColumnRight";
 import CategoryTop from "./components/1ColumnPage/CategoryTop";
 import NewArticleTop from "./components/1ColumnPage/NewArticleTop";
-import Footer from "./components/Footer";
+import Footer from "./(blog)/components/Footer";
 import Button from "./components/ui/Button";
 import HeaderImage from "./components/1ColumnPage/HeaderImage";
 

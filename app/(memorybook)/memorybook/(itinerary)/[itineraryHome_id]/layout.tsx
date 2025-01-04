@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
-import FooterMenu from "../components/FooterMenu";
-import HeaderItinerary from "../components/HeaderItinerary";
-import FooterItinerary from "../components/FooterItinerary";
+import FooterMenu from "../../components/FooterMenu";
+import HeaderItinerary from "../../components/HeaderItinerary";
+import FooterItinerary from "../../components/FooterItinerary";
 
 export const metadata: Metadata = {
   title: {

@@ -28,6 +28,7 @@ const ThreeIconAndContents: React.FC<ThreeIconAndContentsProps> = ({
           elementType="div"
           className="border-2 border-sky-600 rounded w-[28%] mx-2 my-4 px-4 md:px-8 py-6 flex flex-col min-w-[330px] min-h-[330px]"
           delay={0.2 * (index + 1)}
+          key={item.title}
         >
           <span className="text-blue-500  flex justify-center mb-6">
             <FontAwesomeIcon

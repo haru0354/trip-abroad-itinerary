@@ -47,13 +47,13 @@ const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
                   TOPページ
                 </li>
               </Link>
-              <Link href="/memorybook/home/">
+              <Link href="/memorybook/dashboard/">
                 <li className="flex py-2 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
                   ダッシュボード
                 </li>
               </Link>
-              <Link href="/memorybook/home/profile">
+              <Link href="/memorybook/dashboard/profile">
                 <li className="flex py-2 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
                   プロフィール
@@ -121,12 +121,12 @@ const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
                 <Link href="/memorybook">
                   <li className="py-2 mx-4">TOPページ</li>
                 </Link>
-                <Link href="/memorybook/home/">
+                <Link href="/memorybook/dashboard/">
                   <li className="py-2 mx-4" onClick={toggleMenu}>
                     ダッシュボード
                   </li>
                 </Link>
-                <Link href="/memorybook/home/profile">
+                <Link href="/memorybook/dashboard/profile">
                   <li className="py-2 mx-4" onClick={toggleMenu}>
                     プロフィール
                   </li>

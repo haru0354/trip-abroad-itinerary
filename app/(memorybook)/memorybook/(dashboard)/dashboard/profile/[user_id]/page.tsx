@@ -26,7 +26,7 @@ const Page = async ({ params }: { params: { user_id: string } }) => {
         userName={user?.name || undefined}
         userEmail={user?.email || undefined}
       />
-      <Link href="/memorybook/home/profile/">
+      <Link href="/memorybook/dashboard/profile/">
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル
         </Button>

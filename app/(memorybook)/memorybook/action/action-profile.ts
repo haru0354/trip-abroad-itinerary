@@ -73,7 +73,7 @@ export const updateProfile = async (
         email,
       },
     });
-    revalidatePath("/memorybook/home/profile");
+    revalidatePath("/memorybook/dashboard/profile");
     return { message: "edit" };
   } catch (error) {
     console.error("プロフィールを編集する際にエラーが発生しました:", error);
@@ -119,7 +119,7 @@ export const updatePassword = async (
         hashedPassword,
       },
     });
-    revalidatePath("/memorybook/home/profile");
+    revalidatePath("/memorybook/dashboard/profile");
     return { message: "edit" };
   } catch (error) {
     console.error("パスワードを編集する際にエラーが発生しました:", error);

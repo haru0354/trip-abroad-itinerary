@@ -19,7 +19,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ itineraryHomeId, userId }) => {
     <div className="fixed z-[100] bottom-0 w-full h-16 bg-white border-t border-gray-300 shadow">
       <div className="max-w-lg flex h-full  justify-center items-center mx-auto ">
         <div className="w-full h-full">
-          <Link href="/memorybook/home">
+          <Link href="/memorybook/dashboard">
             <ButtonImage size="footer" icon="house">
               ホーム
             </ButtonImage>

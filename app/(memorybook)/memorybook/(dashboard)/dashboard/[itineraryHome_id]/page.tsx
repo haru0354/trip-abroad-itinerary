@@ -19,7 +19,7 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
         buttonName="保存"
         userId={currentUserId}
       />
-      <Link href="/memorybook/home">
+      <Link href="/memorybook/dashboard">
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル
         </Button>

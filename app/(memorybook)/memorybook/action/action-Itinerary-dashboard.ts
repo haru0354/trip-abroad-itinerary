@@ -56,7 +56,7 @@ export const addItineraryHome = async (state: FormState, data: FormData) => {
       },
     });
     const createdItineraryHomeId = createdItineraryHome.id;
-    revalidatePath("/memorybook/home");
+    revalidatePath("/memorybook/dashboard");
     return { message: "add", createdItineraryHomeId: createdItineraryHomeId };
   } catch (error) {
     console.error("旅行を追加する際にエラーが発生しました:", error);
@@ -78,7 +78,7 @@ export const deleteItineraryHome = async (data: FormData) => {
     console.error("旅行の削除中にエラーが発生しました:", error);
     return { message: "旅行の削除中にエラーが発生しました" };
   }
-  redirect("/memorybook/home");
+  redirect("/memorybook/dashboard");
 };
 
 export const updateItineraryHome = async (
@@ -121,7 +121,7 @@ export const updateItineraryHome = async (
         user: { connect: { id: Number(userId) } },
       },
     });
-    revalidatePath("/memorybook/home");
+    revalidatePath("/memorybook/dashboard");
     return { message: "edit" };
   } catch (error) {
     console.error("旅行を編集する際にエラーが発生しました:", error);
@@ -146,5 +146,5 @@ export const updateShare = async (id: number, data: FormData) => {
   } catch {
     console.log("共有の変更に失敗しました");
   }
-  redirect("/memorybook/home");
+  redirect("/memorybook/dashboard");
 };

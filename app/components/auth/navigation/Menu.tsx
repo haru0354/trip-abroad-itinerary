@@ -41,7 +41,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
             {isOpen && (
               <ul className="absolute right-0 mt-2 w-40 p-2 bg-white  overflow-hidden shadow-lg z-10 text-base ">
                 <li className="cursor-pointer text-sky-700 hover:bg-gray-200 p-2">
-                  <Link href="/memorybook/home">管理画面</Link>
+                  <Link href="/memorybook/dashboard">管理画面</Link>
                 </li>
                 <li
                   onClick={() => {

@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
 import { getItineraryHomes } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import SideMenu from "../components/dashboard/side-menu/SideMenu";
+import SideMenu from "../../components/dashboard/side-menu/SideMenu";
 import Loading from "@/app/Loading";
 
 export const metadata: Metadata = {

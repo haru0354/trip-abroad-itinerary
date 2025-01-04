@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
-import { getItineraryHome } from "../../lib/memoryBookService";
+import { getItineraryHome } from "../../../lib/memoryBookService";
 import { updateShare } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
 import Button from "@/app/components/ui/Button";
-import FormShare from "../../components/dashboard/form/FormShare";
+import FormShare from "../../../components/dashboard/form/FormShare";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   const id = Number(params.itineraryHome_id);
@@ -19,7 +19,7 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
         buttonName="保存"
         userId={currentUserId}
       />
-      <Link href="/memorybook/home">
+      <Link href="/memorybook/dashboard">
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル
         </Button>

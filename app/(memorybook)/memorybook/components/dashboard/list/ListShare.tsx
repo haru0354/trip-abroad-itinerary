@@ -38,7 +38,7 @@ const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
             </div>
             <div className="flex justify-center py-2 items-center">
               {itineraryHome.share && (
-                <Link href={`/share/${userId}/${itineraryHome.id}`}>
+                <Link href={`/memorybook/share/${userId}/${itineraryHome.id}`}>
                   <Button color="blue" size="small">
                     共有ページ
                   </Button>
@@ -51,7 +51,7 @@ const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
                   </Button>
                 </Link>
               )}
-              <Link href={`/memorybook/home/${itineraryHome.id}`}>
+              <Link href={`/memorybook/dashboard/${itineraryHome.id}`}>
                 <Button color="gray" size="small">
                   編集
                 </Button>

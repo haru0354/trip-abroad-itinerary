@@ -2,10 +2,10 @@ import Link from "next/link";
 import { updateProfile } from "@/app/(memorybook)/memorybook/action/action-profile";
 import { updatePassword } from "@/app/(memorybook)/memorybook/action/action-profile";
 import prisma from "@/app/lib/prisma";
-import FormProfile from "../../../components/dashboard/form/FormProfile";
-import FormPassword from "../../../components/dashboard/form/FormPassword";
+import FormProfile from "@/app/(memorybook)/memorybook/components/dashboard/form/FormProfile";
+import FormPassword from "@/app/(memorybook)/memorybook/components/dashboard/form/FormPassword";
 import Button from "@/app/components/ui/Button";
-import DeleteUserModal from "../../../components/dashboard/DeleteUserModal";
+import DeleteUserModal from "@/app/(memorybook)/memorybook/components/dashboard/DeleteUserModal";
 
 const Page = async ({ params }: { params: { user_id: string } }) => {
   const id = Number(params.user_id);
@@ -26,7 +26,7 @@ const Page = async ({ params }: { params: { user_id: string } }) => {
         userName={user?.name || undefined}
         userEmail={user?.email || undefined}
       />
-      <Link href="/memorybook/home/profile/">
+      <Link href="/memorybook/dashboard/profile/">
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル
         </Button>

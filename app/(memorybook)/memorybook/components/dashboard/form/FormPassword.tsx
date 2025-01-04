@@ -56,7 +56,7 @@ const FormPassword: React.FC<FormPasswordProps> = ({
     switch (result.message) {
       case "edit":
         toast.success("パスワードを編集しました！");
-        router.replace("/memorybook/home/profile");
+        router.replace("/memorybook/dashboard/profile");
         break;
       default:
         setErrorMessage(result);

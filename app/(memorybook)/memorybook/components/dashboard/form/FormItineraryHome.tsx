@@ -85,7 +85,7 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
         break;
       case "edit":
         toast.success("旅行を編集しました！");
-        router.replace("/memorybook/home");
+        router.replace("/memorybook/dashboard");
         break;
       default:
         setErrorMessage(result);

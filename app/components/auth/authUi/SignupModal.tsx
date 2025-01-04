@@ -55,7 +55,7 @@ const SignupModal = () => {
       //　ログイン
       await signIn("itinerary", {
         ...data,
-        callbackUrl: "/memorybook/home",
+        callbackUrl: "/memorybook/dashboard",
       });
 
       signupModal.onClose();
@@ -104,7 +104,7 @@ const SignupModal = () => {
       <Button
         onClick={() =>
           signIn("google", {
-            callbackUrl: "/memorybook/home",
+            callbackUrl: "/memorybook/dashboard",
           })
         }
         color="gray"

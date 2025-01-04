@@ -28,7 +28,7 @@ const ListProfile: React.FC<ListProfileProps> = async ({
             メールアドレス
           </p>
           <p className=" text-gray-700 my-4">{userEmail}</p>
-          <Link href={`/memorybook/home/profile/${userId}`}>
+          <Link href={`/memorybook/dashboard/profile/${userId}`}>
             <Button color="blue" size="normal" className="rounded mt-4">
               変更・削除
             </Button>

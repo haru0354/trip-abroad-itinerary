@@ -1,26 +1,34 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
+import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
+import Section from "@/app/components/Section";
 
-const NewArticleTop = async () => {
-  const posts = await getPosts("categoryAndPostImage", 6, );
+const CategoryList = async () => {
+  const categories = await getCategories("postsAndPostImage");
 
   return (
-    <div className="flex w-full my-8 flex-wrap items-center justify-center">
-      {posts.map((post) => {
-        return (
-          post.draft && (
+    <Section bgColor="bg-white" name="カテゴリ">
+      <div className="flex w-full my-8 flex-wrap items-center justify-center">
+        {categories.map((category) => {
+          if (
+            !category ||
+            ((!category.title || category.title === "") &&
+              category.posts.every((post) => !post.draft))
+          ) {
+            return null;
+          }
+          return (
             <AnimatedItem
               elementType="div"
               animation="fadeInVariants"
-              key={post.id}
+              key={category.id}
               className="flex flex-col items-center"
             >
-              <Link href={`/${post.category.slug}/${post.slug}`}>
+              <Link href={`/${category.slug}`}>
                 <div className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[330px] min-w-[330px]">
                   <div className="min-h-[222px] max-h-[222px] border justify-centers">
-                    {post.postImage ? (
+                    {category.postImage ? (
                       <figure
                         style={{
                           position: "relative",
@@ -29,8 +37,8 @@ const NewArticleTop = async () => {
                         }}
                       >
                         <Image
-                          src={post.postImage.url}
-                          alt={post.postImage.altText}
+                          src={category.postImage.url}
+                          alt={category.postImage.altText}
                           fill
                           sizes="(max-hight: 220px)"
                           style={{
@@ -50,7 +58,7 @@ const NewArticleTop = async () => {
                           src="/no_image.jpg"
                           alt="画像の準備中"
                           fill
-                          sizes="(max-hight: 222px)"
+                          sizes="(max-hight: 220px)"
                           style={{
                             objectFit: "cover",
                           }}
@@ -58,23 +66,31 @@ const NewArticleTop = async () => {
                       </figure>
                     )}
                   </div>
-                  <div className="px-3 min-h-[130px] ">
+                  <div className="px-3 py-1 min-h-[180px]">
                     <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
-                      {post.title && post.title.length > 34 ? (
-                        <>{post.title.slice(0, 34)}...</>
+                      {category.name && category.name.length > 12 ? (
+                        <>{category.name.slice(0, 12)}...</>
                       ) : (
-                        <>{post.title}</>
+                        <>{category.name}</>
                       )}
                     </h3>
+                    <p className="text-gray-600 my-2">
+                      {category.description &&
+                      category.description.length > 56 ? (
+                        <>{category.description.slice(0, 56)}...</>
+                      ) : (
+                        <>{category.description}</>
+                      )}
+                    </p>
                   </div>
                 </div>
               </Link>
             </AnimatedItem>
-          )
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </Section>
   );
 };
 
-export default NewArticleTop;
+export default CategoryList;

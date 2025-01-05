@@ -1,13 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
-type FooterItineraryProps = {
+type FooterProps = {
   isTopAppDirectory?: boolean;
 };
 
-const FooterItinerary: React.FC<FooterItineraryProps> = ({
-  isTopAppDirectory,
-}) => {
+const Footer: React.FC<FooterProps> = ({ isTopAppDirectory }) => {
   return (
     <>
       <div className="bg-blue-50 pt-8">
@@ -42,4 +40,4 @@ const FooterItinerary: React.FC<FooterItineraryProps> = ({
   );
 };
 
-export default FooterItinerary;
+export default Footer;

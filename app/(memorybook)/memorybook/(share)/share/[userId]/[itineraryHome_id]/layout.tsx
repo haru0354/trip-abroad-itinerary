@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import HeaderItinerary from "@/app/(memorybook)/memorybook/components/HeaderItinerary";
-import FooterItinerary from "@/app/(memorybook)/memorybook/components/FooterItinerary";
+import Footer from "@/app/(memorybook)/memorybook/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "共有された旅行記 | 旅のメモリーブック",
@@ -22,7 +22,7 @@ export default async function RootLayout({
           <div className="w-full px-1 md:px-4">{children}</div>
         </div>
       </main>
-      <FooterItinerary isTopAppDirectory={true} />
+      <Footer isTopAppDirectory={true} />
     </>
   );
 }

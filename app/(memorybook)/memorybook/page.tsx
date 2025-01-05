@@ -7,7 +7,7 @@ import QuestionAndAnswer from "@/app/components/QuestionAndAnswer";
 import Hero from "@/app/components/Hero";
 import SignupButton from "./components/ui/auth/SignupButton";
 import HeaderItinerary from "./components/HeaderItinerary";
-import FooterItinerary from "./components/FooterItinerary";
+import Footer from "./components/layout/Footer";
 import LoginModal from "./components/ui/modal/LoginModal";
 import ThreeImageAndContents from "@/app/components/ThreeImageAndContents";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
@@ -181,7 +181,7 @@ export default function Home() {
           </Section>
         </div>
       </main>
-      <FooterItinerary isTopAppDirectory={true} />
+      <Footer isTopAppDirectory={true} />
       <SignupModal />
       <LoginModal />
     </>

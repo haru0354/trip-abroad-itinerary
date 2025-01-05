@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
 import FooterMenu from "../../components/FooterMenu";
 import HeaderItinerary from "../../components/HeaderItinerary";
-import FooterItinerary from "../../components/FooterItinerary";
+import Footer from "../../components/layout/Footer";
 
 export const metadata: Metadata = {
   title: {
@@ -32,7 +32,7 @@ export default async function RootLayout({
           <div className="px-1 md:px-8 w-full">{children}</div>
         </div>
       </main>
-      <FooterItinerary />
+      <Footer />
       <FooterMenu itineraryHomeId={itineraryHomeId} userId={currentUserId} />
     </>
   );

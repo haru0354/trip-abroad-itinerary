@@ -5,7 +5,7 @@ import ThreeIconAndContents from "@/app/components/ThreeIconAndContents";
 import CallToAction from "@/app/components/CallToAction";
 import QuestionAndAnswer from "@/app/components/QuestionAndAnswer";
 import Hero from "@/app/components/Hero";
-import SignupButton from "../../components/ui/SignupButton";
+import SignupButton from "./components/ui/auth/SignupButton";
 import HeaderItinerary from "./components/HeaderItinerary";
 import FooterItinerary from "./components/FooterItinerary";
 import LoginModal from "./components/ui/modal/LoginModal";

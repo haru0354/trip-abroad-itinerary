@@ -1,12 +1,11 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useState, useEffect } from "react";
 import { signOut } from "next-auth/react";
-
-import useLoginModal from "../hooks/useLoginModal";
-import useSignupModal from "../hooks/useSignupModal";
+import Image from "next/image";
+import Link from "next/link";
+import useLoginModal from "@/app/components/auth/hooks/useLoginModal";
+import useSignupModal from "@/app/components/auth/hooks/useSignupModal";
 
 type MenuProps = {
   currentUser: number | null;

@@ -9,11 +9,11 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import useSignupModal from "../hooks/useSignupModal";
-import useLoginModal from "../hooks/useLoginModal";
+import useSignupModal from "@/app/components/auth/hooks/useSignupModal";
+import useLoginModal from "@/app/components/auth/hooks/useLoginModal";
 import Modal from "./Modal";
 import AuthInput from "@/app/(memorybook)/memorybook/components/ui/auth/AuthInput";
-import Button from "../../ui/Button";
+import Button from "@/app/components/ui/Button";
 
 const schema = z.object({
   email: z.string().email({ message: "メールアドレスの形式ではありません。" }),

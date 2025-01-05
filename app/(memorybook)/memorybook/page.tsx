@@ -8,7 +8,7 @@ import Hero from "@/app/components/Hero";
 import SignupButton from "../../components/ui/SignupButton";
 import HeaderItinerary from "./components/HeaderItinerary";
 import FooterItinerary from "./components/FooterItinerary";
-import LoginModal from "../../components/auth/authUi/LoginModal";
+import LoginModal from "./components/ui/modal/LoginModal";
 import ThreeImageAndContents from "@/app/components/ThreeImageAndContents";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Section from "@/app/components/Section";

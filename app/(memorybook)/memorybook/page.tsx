@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import SignupModal from "../../components/auth/authUi/SignupModal";
+import SignupModal from "./components/ui/modal/SignupModal";
 import FlexImageAndContents from "@/app/components/FlexImageAndContents";
 import ThreeIconAndContents from "@/app/components/ThreeIconAndContents";
 import CallToAction from "@/app/components/CallToAction";

@@ -3,15 +3,13 @@
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-
-import toast from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-
+import toast from "react-hot-toast";
+import Modal from "./Modal";
 import useSignupModal from "@/app/components/auth/hooks/useSignupModal";
 import useLoginModal from "@/app/components/auth/hooks/useLoginModal";
-import Modal from "./Modal";
 import AuthInput from "@/app/(memorybook)/memorybook/components/ui/auth/AuthInput";
 import Button from "@/app/components/ui/Button";
 

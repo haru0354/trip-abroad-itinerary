@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import SignupModal from "./components/ui/modal/SignupModal";
 import FlexImageAndContents from "@/app/components/FlexImageAndContents";
 import ThreeIconAndContents from "@/app/components/ThreeIconAndContents";
-import CallToAction from "@/app/components/CallToAction";
+import CallToAction from "@/app/components/layout/CallToAction";
 import QuestionAndAnswer from "@/app/components/QuestionAndAnswer";
 import Hero from "@/app/components/layout/Hero";
 import SignupButton from "./components/ui/auth/SignupButton";

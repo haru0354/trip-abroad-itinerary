@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
-import SignupButton from "../(memorybook)/memorybook/components/ui/auth/SignupButton";
-import Button from "./ui/Button";
+import SignupButton from "@/app/(memorybook)/memorybook/components/ui/auth/SignupButton";
+import Button from "../ui/Button";
 
 type CallToActionProps = {
   lists: string[];

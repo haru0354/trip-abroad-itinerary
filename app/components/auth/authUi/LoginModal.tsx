@@ -12,7 +12,7 @@ import { z } from "zod";
 import useSignupModal from "../hooks/useSignupModal";
 import useLoginModal from "../hooks/useLoginModal";
 import Modal from "./Modal";
-import AuthInput from "./AuthInput";
+import AuthInput from "@/app/(memorybook)/memorybook/components/ui/auth/AuthInput";
 import Button from "../../ui/Button";
 
 const schema = z.object({

@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Modal from "./Modal";
-import useSignupModal from "@/app/components/auth/hooks/useSignupModal";
+import useSignupModal from "../../../hooks/useSignupModal";
 import useLoginModal from "../../../hooks/useLoginModal";
 import AuthInput from "@/app/(memorybook)/memorybook/components/ui/auth/AuthInput";
 import Button from "@/app/components/ui/Button";

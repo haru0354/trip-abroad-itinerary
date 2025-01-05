@@ -1,6 +1,6 @@
 "use client";
 
-import useSignupModal from "../auth/hooks/useSignupModal";
+import useSignupModal from "@/app/(memorybook)/memorybook/hooks/useSignupModal";
 
 const SignupButton = () => {
   const signupModal = useSignupModal();

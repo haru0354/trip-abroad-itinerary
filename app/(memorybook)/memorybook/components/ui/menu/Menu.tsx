@@ -5,7 +5,7 @@ import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import useLoginModal from "../../../hooks/useLoginModal";
-import useSignupModal from "@/app/components/auth/hooks/useSignupModal";
+import useSignupModal from "../../../hooks/useSignupModal";
 
 type MenuProps = {
   currentUser: number | null;

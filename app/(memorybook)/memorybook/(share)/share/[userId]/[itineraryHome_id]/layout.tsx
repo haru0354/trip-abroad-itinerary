@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import HeaderItinerary from "@/app/(memorybook)/memorybook/components/HeaderItinerary";
+import Header from "@/app/(memorybook)/memorybook/components/layout/Header";
 import Footer from "@/app/(memorybook)/memorybook/components/layout/Footer";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default async function RootLayout({
 }>) {
   return (
     <>
-      <HeaderItinerary />
+      <Header />
       <main className="bg-sky-50">
         <div className="main-contents-area rounded">
           <div className="w-full px-1 md:px-4">{children}</div>

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
 import FooterMenu from "../../components/FooterMenu";
-import HeaderItinerary from "../../components/HeaderItinerary";
+import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default async function RootLayout({
 
   return (
     <>
-      <HeaderItinerary />
+      <Header />
       <main className="bg-blue-50">
         <div className="main-contents-area">
           <div className="px-1 md:px-8 w-full">{children}</div>

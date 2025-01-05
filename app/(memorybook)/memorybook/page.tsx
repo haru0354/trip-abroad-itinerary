@@ -6,7 +6,7 @@ import CallToAction from "@/app/components/CallToAction";
 import QuestionAndAnswer from "@/app/components/QuestionAndAnswer";
 import Hero from "@/app/components/Hero";
 import SignupButton from "./components/ui/auth/SignupButton";
-import HeaderItinerary from "./components/HeaderItinerary";
+import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import LoginModal from "./components/ui/modal/LoginModal";
 import ThreeImageAndContents from "@/app/components/ThreeImageAndContents";
@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <Suspense fallback={<Loading />}>
-        <HeaderItinerary />
+        <Header />
       </Suspense>
       <Hero
         src="/hero_image.JPG"

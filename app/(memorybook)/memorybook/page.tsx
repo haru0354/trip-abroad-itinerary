@@ -4,7 +4,7 @@ import FlexImageAndContents from "@/app/components/FlexImageAndContents";
 import ThreeIconAndContents from "@/app/components/ThreeIconAndContents";
 import CallToAction from "@/app/components/CallToAction";
 import QuestionAndAnswer from "@/app/components/QuestionAndAnswer";
-import Hero from "@/app/components/Hero";
+import Hero from "@/app/components/layout/Hero";
 import SignupButton from "./components/ui/auth/SignupButton";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";

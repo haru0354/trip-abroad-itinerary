@@ -4,7 +4,7 @@ import { useCallback, useState, useEffect } from "react";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import useLoginModal from "@/app/components/auth/hooks/useLoginModal";
+import useLoginModal from "../../../hooks/useLoginModal";
 import useSignupModal from "@/app/components/auth/hooks/useSignupModal";
 
 type MenuProps = {

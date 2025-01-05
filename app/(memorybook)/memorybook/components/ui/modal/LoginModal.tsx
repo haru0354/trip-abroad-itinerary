@@ -9,7 +9,7 @@ import { z } from "zod";
 import toast from "react-hot-toast";
 import Modal from "./Modal";
 import useSignupModal from "@/app/components/auth/hooks/useSignupModal";
-import useLoginModal from "@/app/components/auth/hooks/useLoginModal";
+import useLoginModal from "../../../hooks/useLoginModal";
 import AuthInput from "@/app/(memorybook)/memorybook/components/ui/auth/AuthInput";
 import Button from "@/app/components/ui/Button";
 

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
-import Section from "@/app/components/Section";
+import Section from "@/app/components/layout/Section";
 
 const NewArticleList = async () => {
   const posts = await getPosts("categoryAndPostImage", 6);

@@ -11,7 +11,7 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import LoginModal from "./components/ui/modal/LoginModal";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
-import Section from "@/app/components/Section";
+import Section from "@/app/components/layout/Section";
 import Loading from "@/app/Loading";
 
 export default function Home() {

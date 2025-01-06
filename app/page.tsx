@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Header from "./(blog)/components/Header";
-import FlexImageAndContents from "./components/FlexImageAndContents";
+import FlexImageAndContents from "./components/layout/FlexImageAndContents";
 import CategoryList from "./(blog)/components/section/CategoryList";
 import NewArticleList from "./(blog)/components/section/NewArticleList";
 import Footer from "./(blog)/components/Footer";

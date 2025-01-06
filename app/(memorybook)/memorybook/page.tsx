@@ -1,24 +1,24 @@
 import { Suspense } from "react";
-import SignupModal from "../../components/auth/authUi/SignupModal";
-import FlexImageAndContents from "@/app/components/FlexImageAndContents";
-import ThreeIconAndContents from "@/app/components/ThreeIconAndContents";
-import CallToAction from "@/app/components/CallToAction";
-import QuestionAndAnswer from "@/app/components/QuestionAndAnswer";
-import Hero from "@/app/components/Hero";
-import SignupButton from "../../components/ui/SignupButton";
-import HeaderItinerary from "./components/HeaderItinerary";
-import FooterItinerary from "./components/FooterItinerary";
-import LoginModal from "../../components/auth/authUi/LoginModal";
-import ThreeImageAndContents from "@/app/components/ThreeImageAndContents";
+import SignupModal from "./components/ui/modal/SignupModal";
+import FlexImageAndContents from "@/app/components/layout/FlexImageAndContents";
+import ThreeIconAndContents from "@/app/components/layout/ThreeIconAndContents";
+import ThreeImageAndContents from "@/app/components/layout/ThreeImageAndContents";
+import CallToAction from "@/app/components/layout/CallToAction";
+import QuestionAndAnswer from "@/app/components/layout/QuestionAndAnswer";
+import Hero from "@/app/components/layout/Hero";
+import SignupButton from "./components/ui/auth/SignupButton";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import LoginModal from "./components/ui/modal/LoginModal";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
-import Section from "@/app/components/Section";
+import Section from "@/app/components/layout/Section";
 import Loading from "@/app/Loading";
 
 export default function Home() {
   return (
     <>
       <Suspense fallback={<Loading />}>
-        <HeaderItinerary />
+        <Header />
       </Suspense>
       <Hero
         src="/hero_image.JPG"
@@ -181,7 +181,7 @@ export default function Home() {
           </Section>
         </div>
       </main>
-      <FooterItinerary isTopAppDirectory={true} />
+      <Footer isTopAppDirectory={true} />
       <SignupModal />
       <LoginModal />
     </>

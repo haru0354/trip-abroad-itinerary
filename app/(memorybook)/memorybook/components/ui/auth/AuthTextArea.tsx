@@ -35,9 +35,7 @@ const AuthTextArea: React.FC<AuthTextAreaProps> = ({
                 : "border-neutral-300 focus:border-sky-500"
             }`}
       />
-      {errors[id] && (
-        <div>{errors[id].message}</div>
-      )}
+      {errors[id] && <div>{errors[id].message}</div>}
     </div>
   );
 };

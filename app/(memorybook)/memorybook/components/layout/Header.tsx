@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
-import Menu from "@/app/components/auth/navigation/Menu";
+import Menu from "../ui/menu/Menu";
 
-const HeaderItinerary = async () => {
+const Header = async () => {
   const currentUserId = await getCurrentUserId();
 
   return (
@@ -27,4 +27,4 @@ const HeaderItinerary = async () => {
   );
 };
 
-export default HeaderItinerary;
+export default Header;

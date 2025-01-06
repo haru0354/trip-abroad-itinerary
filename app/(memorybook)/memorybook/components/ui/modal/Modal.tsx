@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import Button from "../../ui/Button";
+import Button from "@/app/components/ui/Button";
 
 type ModalProps = {
   isOpen?: boolean;
@@ -30,7 +30,6 @@ const Modal: React.FC<ModalProps> = ({
   disabled,
   del = false,
 }) => {
-  // モーダルを閉じる
   const handleClose = useCallback(() => {
     if (disabled) {
       return;
@@ -39,7 +38,6 @@ const Modal: React.FC<ModalProps> = ({
     onClose();
   }, [onClose, disabled]);
 
-  // メインボタンのアクション
   const handleSubmit = useCallback(() => {
     if (disabled) {
       return;
@@ -48,7 +46,6 @@ const Modal: React.FC<ModalProps> = ({
     onSubmit();
   }, [onSubmit, disabled]);
 
-  // サブボタンのアクション
   const handleSecondaryAction = useCallback(() => {
     if (disabled || !secondaryAction) {
       return;
@@ -57,7 +54,6 @@ const Modal: React.FC<ModalProps> = ({
     secondaryAction();
   }, [secondaryAction, disabled]);
 
-  // オープンしていない場合は何も表示しない
   if (!isOpen) {
     return null;
   }

@@ -3,17 +3,15 @@
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-
-import toast from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-
-import useSignupModal from "../hooks/useSignupModal";
-import useLoginModal from "../hooks/useLoginModal";
+import toast from "react-hot-toast";
 import Modal from "./Modal";
-import AuthInput from "./AuthInput";
-import Button from "../../ui/Button";
+import useSignupModal from "../../../hooks/useSignupModal";
+import useLoginModal from "../../../hooks/useLoginModal";
+import AuthInput from "@/app/(memorybook)/memorybook/components/ui/auth/AuthInput";
+import Button from "@/app/components/ui/Button";
 
 const schema = z.object({
   email: z.string().email({ message: "メールアドレスの形式ではありません。" }),

@@ -80,6 +80,7 @@ export const authOptions: NextAuthOptions = {
           return {
             id: ADMIN_USERNAME || "",
             role: "admin",
+            email: username || null,
           };
         } else if (username !== ADMIN_USERNAME) {
           throw new Error("ユーザー名が間違っています");
@@ -99,6 +100,12 @@ export const authOptions: NextAuthOptions = {
         token.role = u.role;
       }
       return token;
+    },
+    session: async ({ session, token }) => {
+      if (token.user) {
+        session.user = token.user;
+      }
+      return session;
     },
   },
   pages: {

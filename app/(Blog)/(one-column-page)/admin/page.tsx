@@ -1,9 +1,9 @@
 import AdminForm from "../../components/AdminForm";
 
-const page = () => {
+const page = async () => {
   return (
     <>
-      <AdminForm/>
+      <AdminForm />
     </>
   );
 };

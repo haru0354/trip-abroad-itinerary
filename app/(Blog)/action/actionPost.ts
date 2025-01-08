@@ -9,6 +9,7 @@ import { getPost } from "../lib/service/blogServiceUnique";
 import { fileSaveUtils } from "@/app/lib/fileSaveUtils";
 import { validateFile } from "@/app/lib/validateFile";
 import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
+import { checkUserRole } from "@/app/lib/checkUserRole";
 
 type FormState = {
   message?: string | null;
@@ -42,6 +43,13 @@ const ImageSchema = z.object({
 });
 
 export const addPost = async (state: FormState, data: FormData) => {
+  const isAdmin = await checkUserRole("admin");
+
+  if (!isAdmin) {
+    console.error("記事の追加の権限が必要です。");
+    return { message: "記事の追加の権限がありません。" };
+  }
+
   const title = data.get("title") as string;
   const content = data.get("content") as string;
   const description = data.get("description") as string;
@@ -138,6 +146,13 @@ export const addPost = async (state: FormState, data: FormData) => {
 };
 
 export const deletePost = async (data: FormData) => {
+  const isAdmin = await checkUserRole("admin");
+
+  if (!isAdmin) {
+    console.error("記事の削除の権限が必要です。");
+    return { message: "記事の削除の権限がありません。" };
+  }
+
   const id = data.get("id") as string;
 
   const post = await getPost("id", id, "categoryAndPostImage");
@@ -183,6 +198,13 @@ export const updatePost = async (
   state: FormState,
   data: FormData
 ) => {
+  const isAdmin = await checkUserRole("admin");
+
+  if (!isAdmin) {
+    console.error("記事の編集の権限が必要です。");
+    return { message: "記事の編集の権限がありません。" };
+  }
+
   const title = data.get("title") as string;
   const content = data.get("content") as string;
   const description = data.get("description") as string;

@@ -5,46 +5,51 @@ export async function getPost(
   whereValue?: string,
   includeOptions?: string
 ) {
-  const include: {
-    category?: boolean;
-    postImage?: boolean;
-  } = { category: false, postImage: false };
+  try {
+    const include: {
+      category?: boolean;
+      postImage?: boolean;
+    } = { category: false, postImage: false };
 
-  switch (includeOptions) {
-    case "category":
-      include.category = true;
-      break;
-    case "postImage":
-      include.postImage = true;
-      break;
-    case "categoryAndPostImage":
-      include.category = true;
-      include.postImage = true;
-      break;
-    default:
-      break;
+    switch (includeOptions) {
+      case "category":
+        include.category = true;
+        break;
+      case "postImage":
+        include.postImage = true;
+        break;
+      case "categoryAndPostImage":
+        include.category = true;
+        include.postImage = true;
+        break;
+      default:
+        break;
+    }
+
+    let whereSelect: { id: number } | { slug: string };
+
+    if (whereOptions === "id") {
+      whereSelect = {
+        id: Number(whereValue),
+      };
+    } else if (whereOptions === "slug") {
+      whereSelect = {
+        slug: whereValue as string,
+      };
+    } else {
+      throw new Error("whereOptionsが正しくありません");
+    }
+
+    const post = await prisma.post.findUnique({
+      where: whereSelect,
+      include: include,
+    });
+
+    return post;
+  } catch (error) {
+    console.error("DBから記事の取得に失敗しました。", error);
+    throw new Error("DBから記事の取得に失敗しました。");
   }
-
-  let whereSelect: { id: number } | { slug: string };
-
-  if (whereOptions === "id") {
-    whereSelect = {
-      id: Number(whereValue),
-    };
-  } else if (whereOptions === "slug") {
-    whereSelect = {
-      slug: whereValue as string,
-    };
-  } else {
-    throw new Error("whereOptionsが正しくありません");
-  }
-
-  const post = await prisma.post.findUnique({
-    where: whereSelect,
-    include: include,
-  });
-
-  return post;
 }
 
 export async function getCategory(
@@ -52,73 +57,96 @@ export async function getCategory(
   whereValue?: string,
   includeOptions?: string
 ) {
-  const include: {
-    posts?: {
-      include: {
-        postImage: boolean;
+  try {
+    const include: {
+      posts?:
+        | {
+            include: {
+              postImage: boolean;
+            };
+          }
+        | boolean;
+      postImage?: boolean;
+    } = {};
+
+    switch (includeOptions) {
+      case "posts":
+        include.posts = true;
+        break;
+      case "postImage":
+        include.postImage = true;
+        break;
+      case "postsAndPostImage":
+        include.posts = {
+          include: {
+            postImage: true,
+          },
+        };
+        include.postImage = true;
+        break;
+      default:
+        break;
+    }
+
+    let whereSelect: { id: number } | { slug: string };
+
+    if (whereOptions === "id") {
+      whereSelect = {
+        id: Number(whereValue),
       };
-    } | boolean;
-    postImage?: boolean;
-  } = {};
-
-  switch (includeOptions) {
-    case "posts":
-      include.posts = true;
-      break;
-    case "postImage":
-      include.postImage = true;
-      break;
-    case "postsAndPostImage":
-      include.posts = {
-        include: {
-          postImage: true,
-        },
+    } else if (whereOptions === "slug") {
+      whereSelect = {
+        slug: whereValue as string,
       };
-      include.postImage = true;
-      break;
-    default:
-      break;
+    } else {
+      throw new Error("whereOptionsが正しくありません");
+    }
+
+    const category = await prisma.category.findUnique({
+      where: whereSelect,
+      include: include,
+    });
+
+    return category;
+  } catch (error) {
+    console.error("DBからカテゴリの取得に失敗しました。", error);
+    throw new Error("DBからカテゴリの取得に失敗しました。");
   }
-
-  let whereSelect: { id: number } | { slug: string };
-
-  if (whereOptions === "id") {
-    whereSelect = {
-      id: Number(whereValue),
-    };
-  } else if (whereOptions === "slug") {
-    whereSelect = {
-      slug: whereValue as string,
-    };
-  } else {
-    throw new Error("whereOptionsが正しくありません");
-  }
-
-  const category = await prisma.category.findUnique({
-    where: whereSelect,
-    include: include,
-  });
-
-  return category;
 }
 
 export async function getPostImage(postImageId: string) {
-  const id = Number(postImageId);
-  const postImage = await prisma.postImage.findUnique({
-    where: {
-      id,
-    },
-  });
-  return postImage;
+  try {
+    const id = Number(postImageId);
+
+    const postImage = await prisma.postImage.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return postImage;
+  } catch (error) {
+    console.error("DBから画像の取得に失敗しました。", error);
+    throw new Error("DBから画像の取得に失敗しました。");
+  }
 }
 
 export async function getDashboardMemo(dashboardMemoId: string) {
-  const id = Number(dashboardMemoId);
+  try {
+    const id = Number(dashboardMemoId);
 
-  const dashboardMemo = await prisma.dashboardMemo.findUnique({
-    where: {
-      id,
-    },
-  });
-  return dashboardMemo;
+    const dashboardMemo = await prisma.dashboardMemo.findUnique({
+      where: {
+        id,
+      },
+    });
+    
+    return dashboardMemo;
+  } catch (error) {
+    console.error(
+      "DBから個別のダッシュボードのメモの取得に失敗しました。",
+      error
+    );
+    throw new Error("DBから個別のダッシュボードのメモの取得に失敗しました。");
+  }
 }

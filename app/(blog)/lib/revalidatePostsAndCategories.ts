@@ -10,11 +10,11 @@ export async function revalidatePostsAndCategories() {
       ...new Set(filteredPosts.map((post) => post.category.slug)),
     ];
 
-    uniqueCategorySlug.forEach((category) => {
+    uniqueCategorySlug.map((category) => {
       revalidatePath(`/${category}`);
     });
 
-    filteredPosts.forEach((post) => {
+    filteredPosts.map((post) => {
       revalidatePath(`/${post.category.slug}/${post.slug}`);
     });
   } catch (error) {

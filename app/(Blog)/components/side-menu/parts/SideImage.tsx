@@ -9,8 +9,12 @@ type SideImageProps = {
 };
 
 const SideImage: React.FC<SideImageProps> = ({ src, alt, href, textTitle }) => {
+  const hoverStyle = textTitle
+    ? "hover:bg-gray-200"
+    : "hover:-translate-y-2 translate transition duration-300";
+
   return (
-    <div className="w-full p-2">
+    <div className={`w-full p-2 ${hoverStyle}`}>
       <Link href={href}>
         <Image
           src={src}
@@ -21,9 +25,9 @@ const SideImage: React.FC<SideImageProps> = ({ src, alt, href, textTitle }) => {
             width: "240px",
             height: "auto",
           }}
-          className="block mx-auto hover:-translate-y-2 translate transition duration-300"
+          className="block mx-auto"
         />
-        {textTitle && <p className="my-2 text-center">{textTitle}</p>}
+        {textTitle && <p className="text-center my-2">{textTitle}</p>}
       </Link>
     </div>
   );

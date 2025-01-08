@@ -9,6 +9,7 @@ import { supabase } from "@/app/util/supabase";
 import { getPostImage } from "../lib/service/blogServiceUnique";
 import { fileSaveUtils } from "@/app/lib/fileSaveUtils";
 import { validateFile } from "@/app/lib/validateFile";
+import { checkUserRole } from "@/app/lib/checkUserRole";
 
 const { unlink } = fsPromises;
 
@@ -32,6 +33,13 @@ const updateSchema = z.object({
 });
 
 export const addPostImage = async (state: FormState, data: FormData) => {
+  const isAdmin = await checkUserRole("admin");
+
+  if (!isAdmin) {
+    console.error("画像追加の権限が必要です。");
+    return { message: "画像追加の権限がありません。" };
+  }
+
   const image = data.get("image") as File;
   const altText = data.get("altText") as string;
   const validatedFields = schema.safeParse({
@@ -81,6 +89,13 @@ export const addPostImage = async (state: FormState, data: FormData) => {
 };
 
 export const deletePostImage = async (data: FormData) => {
+  const isAdmin = await checkUserRole("admin");
+
+  if (!isAdmin) {
+    console.error("画像削除の権限が必要です。");
+    return { message: "画像削除の権限がありません。" };
+  }
+
   const id = data.get("id") as string;
 
   const postImage = await getPostImage(id);
@@ -120,6 +135,13 @@ export const updatePostImage = async (
   state: FormState,
   data: FormData
 ) => {
+  const isAdmin = await checkUserRole("admin");
+
+  if (!isAdmin) {
+    console.error("画像編集の権限が必要です。");
+    return { message: "画像編集の権限がありません。" };
+  }
+
   const image = data.get("image") as File;
   const altText = data.get("altText") as string;
 
@@ -151,7 +173,6 @@ export const updatePostImage = async (
       return { message: "altTextを更新する際にエラーが発生しました" };
     }
   }
-
 
   // 画像がある場合は保存してfileUrlを変更
   if (image && image.size > 0) {

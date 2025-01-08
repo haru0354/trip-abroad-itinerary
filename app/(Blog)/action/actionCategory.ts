@@ -9,6 +9,7 @@ import { getCategory } from "../lib/service/blogServiceUnique";
 import { fileSaveUtils } from "@/app/lib/fileSaveUtils";
 import { validateFile } from "@/app/lib/validateFile";
 import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
+import { checkUserRole } from "@/app/lib/checkUserRole";
 
 type FormState = {
   message?: string | null;
@@ -39,6 +40,13 @@ const ImageSchema = z.object({
 });
 
 export const addCategory = async (state: FormState, data: FormData) => {
+  const isAdmin = await checkUserRole("admin");
+
+  if (!isAdmin) {
+    console.error("カテゴリ追加の権限が必要です。");
+    return { message: "カテゴリ追加の権限がありません。" };
+  }
+
   const name = data.get("name") as string;
   const slug = data.get("slug") as string;
   const content = data.get("content") as string;
@@ -136,6 +144,13 @@ export const addCategory = async (state: FormState, data: FormData) => {
 };
 
 export const deleteCategory = async (data: FormData) => {
+  const isAdmin = await checkUserRole("admin");
+
+  if (!isAdmin) {
+    console.error("カテゴリ削除の権限が必要です。");
+    return { message: "カテゴリ削除の権限がありません。" };
+  }
+
   const id = data.get("id") as string;
 
   const category = await getCategory("id", id, "postImage");
@@ -197,6 +212,13 @@ export const updateCategory = async (
   state: FormState,
   data: FormData
 ) => {
+  const isAdmin = await checkUserRole("admin");
+
+  if (!isAdmin) {
+    console.error("カテゴリ編集の権限が必要です。");
+    return { message: "カテゴリ編集の権限がありません。" };
+  }
+
   const name = data.get("name") as string;
   const content = data.get("content") as string;
   const description = data.get("description") as string;

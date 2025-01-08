@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { updateCategory, deleteCategory } from "@/app/(blog)/action/action-category";
+import { updateCategory, deleteCategory } from "@/app/(blog)/action/actionCategory";
 import { getCategory } from "@/app/(blog)/lib/service/blogServiceUnique";
 import FormCategory from "@/app/(blog)/components/dashboard/form/FormCategory";
 import Button from "@/app/components/ui/Button";

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
+import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import FooterMenu from "../../components/layout/FooterMenu";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";

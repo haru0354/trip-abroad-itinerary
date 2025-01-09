@@ -1,4 +1,4 @@
-import { addPostImage } from "@/app/(blog)/action/action-postImage";
+import { addPostImage } from "@/app/(blog)/action/actionPostImage";
 import FormPostImage from "@/app/(blog)/components/dashboard/form/FormPostImage";
 
 const page = () => {

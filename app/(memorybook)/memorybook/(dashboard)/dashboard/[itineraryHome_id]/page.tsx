@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
+import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { getItineraryHome } from "../../../lib/memoryBookService";
 import { updateShare } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
 import Button from "@/app/components/ui/Button";

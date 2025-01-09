@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { deletePost, updatePost } from "@/app/(blog)/action/action-post";
+import { deletePost, updatePost } from "@/app/(blog)/action/actionPost";
 import { getPost } from "@/app/(blog)/lib/service/blogServiceUnique";
 import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
 import FormPost from "@/app/(blog)/components/dashboard/form/FormPost";

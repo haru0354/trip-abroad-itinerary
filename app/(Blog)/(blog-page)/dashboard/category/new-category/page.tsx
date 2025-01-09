@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { addCategory } from "@/app/(blog)/action/action-category";
+import { addCategory } from "@/app/(blog)/action/actionCategory";
 import FormCategory from "@/app/(blog)/components/dashboard/form/FormCategory";
 
 export const metadata: Metadata = {

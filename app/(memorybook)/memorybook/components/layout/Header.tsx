@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getCurrentUserId } from "@/app/(memorybook)/memorybook/lib/getCurrentUser";
+import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import Menu from "../ui/menu/Menu";
 
 const Header = async () => {

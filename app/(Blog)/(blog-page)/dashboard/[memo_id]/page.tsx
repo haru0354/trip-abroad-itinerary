@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import {
   deleteDashboardMemo,
   updateDashboardMemo,
-} from "@/app/(blog)/action/action-dashboard";
+} from "@/app/(blog)/action/actionDashboard";
 import { getDashboardMemo } from "@/app/(blog)/lib/service/blogServiceUnique";
 import FormDashboardMemo from "@/app/(blog)/components/dashboard/form/FormDashboardMemo";
 import Button from "@/app/components/ui/Button";

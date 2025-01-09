@@ -2,7 +2,7 @@ import Link from "next/link";
 import {
   deletePostImage,
   updatePostImage,
-} from "@/app/(blog)/action/action-postImage";
+} from "@/app/(blog)/action/actionPostImage";
 import { getPostImage } from "@/app/(blog)/lib/service/blogServiceUnique";
 import FormPostImage from "@/app/(blog)/components/dashboard/form/FormPostImage";
 import Button from "@/app/components/ui/Button";

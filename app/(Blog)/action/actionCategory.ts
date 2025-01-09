@@ -5,34 +5,32 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
-import { getPost } from "../lib/service/blogServiceUnique";
+import { getCategory } from "../lib/service/blogServiceUnique";
 import { fileSaveUtils } from "@/app/lib/fileSaveUtils";
 import { validateFile } from "@/app/lib/validateFile";
 import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
+import { checkUserRole } from "@/app/lib/checkUserRole";
 
 type FormState = {
   message?: string | null;
   errors?: {
-    title?: string[] | undefined;
-    content?: string[] | undefined;
+    name?: string[] | undefined;
     slug?: string[] | undefined;
-    description?: string[] | undefined;
-    categoryId?: string[] | undefined;
     image?: string[] | undefined;
   };
 };
 
 const schema = z.object({
-  title: z.string().min(1, { message: "記事のタイトルの入力は必須です" }),
-  content: z.string().min(1, { message: "記事の内容の入力は必須です" }),
+  name: z.string().min(1, { message: "カテゴリ名の入力は必須です" }),
   slug: z
     .string()
     .min(1, { message: "スラッグの入力は必須です。" })
     .regex(/^[a-z0-9-]+$/, {
       message: "スラッグは半角小文字の英数字で入力してください",
     }),
-  description: z.string().min(1, { message: "記事の説明の入力は必須です" }),
-  categoryId: z.string().transform((val) => Number(val)),
+  content: z.string().optional(),
+  description: z.string().optional(),
+  title: z.string().optional(),
 });
 
 const ImageSchema = z.object({
@@ -41,22 +39,28 @@ const ImageSchema = z.object({
     .min(1, { message: "画像の追加時は名前の入力は必須です。" }),
 });
 
-export const addPost = async (state: FormState, data: FormData) => {
-  const title = data.get("title") as string;
+export const addCategory = async (state: FormState, data: FormData) => {
+  const isAdmin = await checkUserRole("admin");
+
+  if (!isAdmin) {
+    console.error("カテゴリ追加の権限が必要です。");
+    return { message: "カテゴリ追加の権限がありません。" };
+  }
+
+  const name = data.get("name") as string;
+  const slug = data.get("slug") as string;
   const content = data.get("content") as string;
   const description = data.get("description") as string;
-  const slug = data.get("slug") as string;
-  const categoryId = data.get("categoryId") as string;
   const image = data.get("image") as File;
   const altText = data.get("altText") as string;
-  const draft = data.get("draft") === "true";
+  const title = data.get("title") as string;
 
   const validatedFields = schema.safeParse({
-    title,
+    name,
+    slug,
     content,
     description,
-    slug,
-    categoryId,
+    title,
   });
 
   if (!validatedFields.success) {
@@ -67,13 +71,12 @@ export const addPost = async (state: FormState, data: FormData) => {
     return errors;
   }
 
-  const postData: any = {
-    title,
+  const CategoryData: any = {
+    name,
+    slug,
     content,
     description,
-    slug,
-    draft,
-    category: { connect: { id: Number(categoryId) } },
+    title,
   };
 
   if (image && image.size > 0) {
@@ -112,7 +115,7 @@ export const addPost = async (state: FormState, data: FormData) => {
           altText,
         },
       });
-      postData.postImage = { connect: { id: createdImage.id } };
+      CategoryData.postImage = { connect: { id: createdImage.id } };
 
       console.log("画像の追加に成功しました。");
     } catch (error) {
@@ -122,29 +125,39 @@ export const addPost = async (state: FormState, data: FormData) => {
   }
 
   try {
-    await prisma.post.create({
-      data: postData,
+    await prisma.category.create({
+      data: CategoryData,
     });
-    revalidatePath(`/`);
-    revalidatePath(`/dashboard/post`);
-    await revalidatePostsAndCategories();
+    revalidatePath(`/dashboard/category`);
+    revalidatePath(`/dashboard/post/new-post`);
 
-    console.log("記事の登録に成功しました。");
+    if (image && image.size > 0) {
+      revalidatePath(`/dashboard/image`);
+    }
+
+    console.log("カテゴリの登録に成功しました。");
   } catch (error) {
-    console.error("記事を投稿する際にエラーが発生しました", error);
-    return { message: "記事を投稿する際にエラーが発生しました" };
+    console.error("カテゴリを追加する際にエラーが発生しました");
+    return { message: "カテゴリを追加する際にエラーが発生しました" };
   }
-  redirect("/dashboard/post");
+  redirect("/dashboard/category");
 };
 
-export const deletePost = async (data: FormData) => {
+export const deleteCategory = async (data: FormData) => {
+  const isAdmin = await checkUserRole("admin");
+
+  if (!isAdmin) {
+    console.error("カテゴリ削除の権限が必要です。");
+    return { message: "カテゴリ削除の権限がありません。" };
+  }
+
   const id = data.get("id") as string;
 
-  const post = await getPost("id", id, "categoryAndPostImage");
+  const category = await getCategory("id", id, "postImage");
 
-  if (post?.postImage?.url) {
+  if (category?.postImage?.url) {
     try {
-      const fileName = post?.postImage?.name;
+      const fileName = category?.postImage?.name;
       const directory = "travel-memory-life";
       const saveFileUrl = `${directory}/${fileName}`;
       await supabase.storage.from("blog").remove([saveFileUrl]);
@@ -153,51 +166,73 @@ export const deletePost = async (data: FormData) => {
       console.error("画像の削除中にエラーが発生しました:", error);
       return { message: "画像の削除中にエラーが発生しました" };
     }
+
+    try {
+      await prisma.postImage.delete({
+        where: {
+          id: category.postImage.id,
+        },
+      });
+      console.log("関連する画像ライブラリの削除に成功しました。");
+    } catch (error) {
+      console.error(
+        "関連する画像ライブラリの削除中にエラーが発生しました:",
+        error
+      );
+      return {
+        message: "関連する画像ライブラリの削除中にエラーが発生しました",
+      };
+    }
   }
 
   try {
-    await prisma.post.delete({
+    await prisma.category.delete({
       where: {
         id: Number(id),
       },
     });
-    revalidatePath(`/`);
-    revalidatePath(`/dashboard/post`);
-    revalidatePath(`/${post?.category.slug}/${post?.slug}`);
+    revalidatePath(`/dashboard/category`);
+    revalidatePath(`/dashboard/post/new-post`);
     await revalidatePostsAndCategories();
 
-    if (post?.postImage?.url) {
+    if (category?.postImage?.url) {
       revalidatePath(`/dashboard/image`);
     }
 
-    console.log("記事が正常に削除されました");
+    console.log("カテゴリが正常に削除されました。");
   } catch (error) {
-    console.error("記事の削除中にエラーが発生しました:", error);
-    return { message: "記事の削除中にエラーが発生しました" };
+    console.error("カテゴリの削除中にエラーが発生しました:", error);
+    return { message: "カテゴリの削除中にエラーが発生しました" };
   }
-  redirect("/dashboard/post");
+  redirect("/dashboard/category");
 };
 
-export const updatePost = async (
+export const updateCategory = async (
   id: number,
   state: FormState,
   data: FormData
 ) => {
-  const title = data.get("title") as string;
+  const isAdmin = await checkUserRole("admin");
+
+  if (!isAdmin) {
+    console.error("カテゴリ編集の権限が必要です。");
+    return { message: "カテゴリ編集の権限がありません。" };
+  }
+
+  const name = data.get("name") as string;
   const content = data.get("content") as string;
   const description = data.get("description") as string;
   const slug = data.get("slug") as string;
-  const categoryId = data.get("categoryId") as string;
   const image = data.get("image") as File;
   const altText = data.get("altText") as string;
-  const draft = data.get("draft") === "true";
+  const title = data.get("title") as string;
 
   const validatedFields = schema.safeParse({
-    title,
+    name,
+    slug,
     content,
     description,
-    slug,
-    categoryId,
+    title,
   });
 
   if (!validatedFields.success) {
@@ -208,13 +243,12 @@ export const updatePost = async (
     return errors;
   }
 
-  const postData: any = {
-    title,
+  const CategoryData: any = {
+    name,
+    slug,
     content,
     description,
-    slug,
-    draft,
-    category: { connect: { id: Number(categoryId) } },
+    title,
   };
 
   if (image && image.size > 0) {
@@ -246,6 +280,7 @@ export const updatePost = async (
       }
 
       const { fileUrl, fileName } = await fileSaveUtils(image);
+
       const createdImage = await prisma.postImage.create({
         data: {
           name: fileName,
@@ -253,7 +288,7 @@ export const updatePost = async (
           altText,
         },
       });
-      postData.postImage = { connect: { id: createdImage.id } };
+      CategoryData.postImage = { connect: { id: createdImage.id } };
       console.log("画像が正常に追加されました。");
     } catch (error) {
       console.log("画像の追加にエラーが発生しました。", error);
@@ -261,58 +296,42 @@ export const updatePost = async (
     }
 
     const stringNumber = id.toString();
-    const post = await getPost("id", stringNumber, "categoryAndPostImage");
+    const category = await getCategory("id", stringNumber, "postImage");
 
-    if (post?.postImage?.url) {
+    if (category?.postImage?.url) {
       try {
-        const fileName = post?.postImage?.name;
+        const fileName = category?.postImage?.name;
         const directory = "travel-memory-life";
         const saveFileUrl = `${directory}/${fileName}`;
         await supabase.storage.from("blog").remove([saveFileUrl]);
-        console.log("登録していた画像の削除に成功しました");
+        console.log("画像の削除に成功しました");
       } catch (error) {
-        console.error("登録していた画像の削除中にエラーが発生しました:", error);
-        return { message: "登録していた画像の削除中にエラーが発生しました" };
-      }
-
-      try {
-        await prisma.postImage.delete({
-          where: {
-            id: post.postImage.id,
-          },
-        });
-        console.log("関連する画像ライブラリの削除に成功しました。");
-      } catch (error) {
-        console.error(
-          "関連する画像ライブラリの削除中にエラーが発生しました:",
-          error
-        );
-        return {
-          message: "関連する画像ライブラリの削除中にエラーが発生しました",
-        };
+        console.error("画像の削除中にエラーが発生しました:", error);
+        return { message: "画像の削除中にエラーが発生しました" };
       }
     }
   }
 
   try {
-    await prisma.post.update({
+    await prisma.category.update({
       where: {
         id,
       },
-      data: postData,
+      data: CategoryData,
     });
     revalidatePath(`/`);
-    revalidatePath(`/dashboard/post`);
+    revalidatePath(`/dashboard/category`);
+    revalidatePath(`/dashboard/post/new-post`);
     await revalidatePostsAndCategories();
 
     if (image && image.size > 0) {
       revalidatePath(`/dashboard/image`);
     }
 
-    console.log("記事が正常に編集されました。");
+    console.log("カテゴリが正常に編集されました。");
   } catch (error) {
-    console.error("記事を編集する際にエラーが発生しました", error);
-    return { message: "記事を編集する際にエラーが発生しました" };
+    console.error("カテゴリを編集する際にエラーが発生しました");
+    return { message: "カテゴリを編集する際にエラーが発生しました" };
   }
-  redirect("/dashboard/post");
+  redirect("/dashboard/category");
 };

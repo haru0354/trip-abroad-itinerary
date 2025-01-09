@@ -1,4 +1,4 @@
-import { addDashboardMemo } from "@/app/(blog)/action/action-dashboard";
+import { addDashboardMemo } from "@/app/(blog)/action/actionDashboard";
 import FormDashboardMemo from "../../components/dashboard/form/FormDashboardMemo";
 import ListDashboardMemo from "../../components/dashboard/list/ListDashboardMemo";
 

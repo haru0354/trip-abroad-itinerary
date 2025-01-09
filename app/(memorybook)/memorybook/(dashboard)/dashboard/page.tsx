@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
-import { addItineraryHome } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
+import { addTrip } from "@/app/(memorybook)/memorybook/action/actionTrip";
 import FormItineraryHome from "../../components/dashboard/form/FormItineraryHome";
 import ListItineraryHome from "../../components/dashboard/list/ListItineraryHome";
 import ListShare from "../../components/dashboard/list/ListShare";
@@ -17,7 +17,7 @@ const page = async () => {
       <FormItineraryHome
         buttonName="追加"
         userId={currentUserId}
-        formAction={addItineraryHome}
+        formAction={addTrip}
       />
       <Suspense fallback={<Loading message="共有リスト" />}>
         <ListShare userId={currentUserId} />

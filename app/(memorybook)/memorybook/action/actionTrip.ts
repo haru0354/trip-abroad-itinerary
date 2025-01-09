@@ -22,7 +22,7 @@ const schema = z.object({
   destination: z.string().optional(),
 });
 
-export const addItineraryHome = async (state: FormState, data: FormData) => {
+export const addTrip = async (state: FormState, data: FormData) => {
   const startDate = data.get("startDate") as string;
   const endDate = data.get("endDate") as string;
   const name = data.get("name") as string;
@@ -64,7 +64,7 @@ export const addItineraryHome = async (state: FormState, data: FormData) => {
   }
 };
 
-export const deleteItineraryHome = async (data: FormData) => {
+export const deleteTrip= async (data: FormData) => {
   const id = data.get("id") as string;
 
   try {
@@ -81,7 +81,7 @@ export const deleteItineraryHome = async (data: FormData) => {
   redirect("/memorybook/dashboard");
 };
 
-export const updateItineraryHome = async (
+export const updateTrip = async (
   id: number,
   state: FormState,
   data: FormData

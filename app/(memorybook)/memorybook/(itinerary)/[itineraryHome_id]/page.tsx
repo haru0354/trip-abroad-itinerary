@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { updateItineraryHome } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
-import { deleteItineraryHome } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
+import { deleteTrip, updateTrip } from "@/app/(memorybook)/memorybook/action/actionTrip";
 import { getItineraryHome } from "../../lib/memoryBookService";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import FormItineraryHome from "../../components/dashboard/form/FormItineraryHome";
@@ -9,7 +8,7 @@ import DeleteModal from "@/app/components/ui/DeleteModal";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   const id = Number(params.itineraryHome_id);
-  const updateItineraryHomeWidthId = updateItineraryHome.bind(null, id);
+  const updateItineraryHomeWidthId = updateTrip.bind(null, id);
   const currentUserId = (await getCurrentUserId()) ?? undefined;
   const itineraryHome = await getItineraryHome(params.itineraryHome_id);
 
@@ -29,7 +28,7 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
       <DeleteModal
         DeleteName="旅行"
         name={itineraryHome?.name}
-        formAction={deleteItineraryHome}
+        formAction={deleteTrip}
         id={itineraryHome?.id}
       />
     </>

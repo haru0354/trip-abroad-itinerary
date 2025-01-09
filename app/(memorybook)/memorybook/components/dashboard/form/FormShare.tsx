@@ -8,7 +8,6 @@ type FormShareProps = {
   itineraryHome: ItineraryHome | null;
   formAction: (data: FormData) => Promise<void>;
   buttonName: string;
-  userId: number | undefined;
 };
 
 type ItineraryHome = {
@@ -24,7 +23,6 @@ const FormShare: React.FC<FormShareProps> = ({
   itineraryHome,
   formAction,
   buttonName,
-  userId,
 }) => {
   const [isShare, setIsShare] = useState<boolean>(
     itineraryHome?.share ?? false
@@ -52,7 +50,6 @@ const FormShare: React.FC<FormShareProps> = ({
               explanation="作成した旅程表が公開されるので「SNSでの共有」「同行者との旅程表の共有」などあなた以外も旅程表が観れる設定になります。"
               explanation2="作成した旅程表には必ず「個人情報」や「画像」など知られたくない情報を記載しないようにしましょう。"
             />
-            <input type="hidden" name="userId" value={userId} />
             <Button size="normal" color="blue" className="rounded mt-8">
               {buttonName}
             </Button>

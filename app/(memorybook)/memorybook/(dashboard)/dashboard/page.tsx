@@ -16,7 +16,6 @@ const page = async () => {
       </Suspense>
       <FormItineraryHome
         buttonName="追加"
-        userId={currentUserId}
         formAction={addTrip}
       />
       <Suspense fallback={<Loading message="共有リスト" />}>

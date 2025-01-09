@@ -1,14 +1,12 @@
 import Link from "next/link";
-import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { getItineraryHome } from "../../../lib/memoryBookService";
-import { updateShare } from "@/app/(memorybook)/memorybook/action/action-Itinerary-dashboard";
+import { updateShare } from "../../../action/actionTrip";
 import Button from "@/app/components/ui/Button";
 import FormShare from "../../../components/dashboard/form/FormShare";
 
 const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
   const id = Number(params.itineraryHome_id);
   const updateShareWidthId = updateShare.bind(null, id);
-  const currentUserId = (await getCurrentUserId()) ?? undefined;
   const itineraryHome = await getItineraryHome(params.itineraryHome_id);
 
   return (
@@ -17,7 +15,6 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
         itineraryHome={itineraryHome}
         formAction={updateShareWidthId}
         buttonName="保存"
-        userId={currentUserId}
       />
       <Link href="/memorybook/dashboard">
         <Button color="gray" size="normal" className="rounded mt-4">

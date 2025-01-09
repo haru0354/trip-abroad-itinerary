@@ -31,7 +31,6 @@ const schema = z.object({
   content: z.string().optional(),
   hideContent: z.string().optional(),
   itineraryHomeId: z.string().transform((val) => Number(val)),
-  userId: z.string().transform((val) => Number(val)),
 });
 
 const ImageSchema = z.object({
@@ -75,7 +74,6 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     content,
     hideContent,
     itineraryHomeId,
-    userId,
   });
 
   if (!validatedFields.success) {
@@ -244,7 +242,6 @@ export const updateItinerary = async (
     content,
     hideContent,
     itineraryHomeId,
-    userId,
   });
 
   if (!validatedFields.success) {

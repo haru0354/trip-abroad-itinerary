@@ -4,6 +4,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import prisma from "@/app/lib/prisma";
+import { getCurrentUserId } from "@/app/lib/getCurrentUser";
+import { validateTripOwner } from "../lib/validate-ownership/validateTripOwner";
 
 type FormState = {
   message?: string | null;
@@ -18,7 +20,10 @@ type FormState = {
 const schema = z.object({
   startDate: z.string().optional(),
   endDate: z.string().optional(),
-  name: z.string().min(1, { message: "タイトルの入力は必須です" }).max(36, { message: "文字数は最大で36文字です" }),
+  name: z
+    .string()
+    .min(1, { message: "タイトルの入力は必須です" })
+    .max(36, { message: "文字数は最大で36文字です" }),
   destination: z.string().optional(),
 });
 
@@ -27,7 +32,12 @@ export const addTrip = async (state: FormState, data: FormData) => {
   const endDate = data.get("endDate") as string;
   const name = data.get("name") as string;
   const destination = data.get("destination") as string;
-  const userId = data.get("userId") as string;
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return false;
+  }
 
   const validatedFields = schema.safeParse({
     startDate,
@@ -64,8 +74,20 @@ export const addTrip = async (state: FormState, data: FormData) => {
   }
 };
 
-export const deleteTrip= async (data: FormData) => {
+export const deleteTrip = async (data: FormData) => {
   const id = data.get("id") as string;
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return false;
+  }
+
+  const idValidTripOwner = await validateTripOwner(id);
+
+  if (!idValidTripOwner) {
+    return { message: "権限がありません" };
+  }
 
   try {
     await prisma.itineraryHome.delete({
@@ -90,7 +112,19 @@ export const updateTrip = async (
   const endDate = data.get("endDate") as string;
   const name = data.get("name") as string;
   const destination = data.get("destination") as string;
-  const userId = data.get("userId") as string;
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return false;
+  }
+
+  const tripId = String(id);
+  const idValidTripOwner = await validateTripOwner(tripId);
+
+  if (!idValidTripOwner) {
+    return { message: "権限がありません" };
+  }
 
   const validatedFields = schema.safeParse({
     startDate,
@@ -131,7 +165,19 @@ export const updateTrip = async (
 
 export const updateShare = async (id: number, data: FormData) => {
   const share = data.get("share") === "on";
-  const userId = data.get("userId") as string;
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return false;
+  }
+
+  const tripId = String(id);
+  const idValidTripOwner = await validateTripOwner(tripId);
+
+  if (!idValidTripOwner) {
+    return { message: "権限がありません" };
+  }
 
   try {
     await prisma.itineraryHome.update({
@@ -140,7 +186,7 @@ export const updateShare = async (id: number, data: FormData) => {
       },
       data: {
         share: share,
-        user: { connect: { id: Number(userId) } },
+        user: { connect: { id: userId } },
       },
     });
   } catch {

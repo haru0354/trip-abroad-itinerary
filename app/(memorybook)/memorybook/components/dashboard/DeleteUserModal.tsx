@@ -2,22 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { deleteUser } from "@/app/(memorybook)/memorybook/action/action-profile";
+import { deleteUser } from "@/app/(memorybook)/memorybook/action/actionProfile";
 import Button from "@/app/components/ui/Button";
 
-type DeleteModalProps = {
-  userId: number;
-};
-
-const DeleteUserModal: React.FC<DeleteModalProps> = ({ userId }) => {
+const DeleteUserModal = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
-
-  const deleteUserWithId = deleteUser.bind(null, userId);
-
-  if (!userId) {
-    return <p>削除対象のアカウントがありません。</p>;
-  }
 
   const closeModal = (e: React.MouseEvent<HTMLInputElement>) => {
     if (e.target === e.currentTarget) {
@@ -82,7 +72,7 @@ const DeleteUserModal: React.FC<DeleteModalProps> = ({ userId }) => {
               </Button>
               <form>
                 <Button
-                  formAction={deleteUserWithId}
+                  formAction={deleteUser}
                   color="red"
                   size="normal"
                   className="rounded mt-4"

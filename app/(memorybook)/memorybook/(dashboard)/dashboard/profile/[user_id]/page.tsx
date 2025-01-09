@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { updateProfile } from "@/app/(memorybook)/memorybook/action/action-profile";
-import { updatePassword } from "@/app/(memorybook)/memorybook/action/action-profile";
+import { updateProfile } from "@/app/(memorybook)/memorybook/action/actionProfile";
+import { updatePassword } from "@/app/(memorybook)/memorybook/action/actionProfile";
 import prisma from "@/app/lib/prisma";
 import FormProfile from "@/app/(memorybook)/memorybook/components/dashboard/form/FormProfile";
 import FormPassword from "@/app/(memorybook)/memorybook/components/dashboard/form/FormPassword";
@@ -9,8 +9,6 @@ import DeleteUserModal from "@/app/(memorybook)/memorybook/components/dashboard/
 
 const Page = async ({ params }: { params: { user_id: string } }) => {
   const id = Number(params.user_id);
-  const updateProfileWidthId = updateProfile.bind(null, id);
-  const updatePasswordWidthId = updatePassword.bind(null, id);
 
   const user = await prisma.user.findUnique({
     where: {
@@ -21,7 +19,7 @@ const Page = async ({ params }: { params: { user_id: string } }) => {
   return (
     <>
       <FormProfile
-        formAction={updateProfileWidthId}
+        formAction={updateProfile}
         buttonName="保存する"
         userName={user?.name || undefined}
         userEmail={user?.email || undefined}
@@ -31,8 +29,8 @@ const Page = async ({ params }: { params: { user_id: string } }) => {
           キャンセル
         </Button>
       </Link>
-      <FormPassword formAction={updatePasswordWidthId} buttonName="保存する" />
-      <DeleteUserModal userId={id} />
+      <FormPassword formAction={updatePassword} buttonName="保存する" />
+      <DeleteUserModal />
     </>
   );
 };

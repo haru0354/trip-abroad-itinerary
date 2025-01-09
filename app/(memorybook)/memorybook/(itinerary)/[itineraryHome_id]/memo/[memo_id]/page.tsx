@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { deleteMemo } from "@/app/(memorybook)/memorybook/action/action-memo";
-import { updateMemo } from "@/app/(memorybook)/memorybook/action/action-memo";
+import { deleteMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
+import { updateMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import {
   getItineraryHome,
   getMemo,

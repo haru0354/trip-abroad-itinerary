@@ -22,7 +22,7 @@ export const fileSaveUtils = async (image: File) => {
   }
 };
 
-export const fileSaveItineraryUtils = async (image: File, userId: string) => {
+export const fileSaveItineraryUtils = async (image: File, userId: number) => {
   try {
     const fileName = `${Date.now()}_${image.name}`;
     const directory = `itinerary/${userId}`;

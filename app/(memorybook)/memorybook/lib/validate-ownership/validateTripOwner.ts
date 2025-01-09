@@ -13,7 +13,7 @@ export const validateTripOwner = async (tripId: string): Promise<boolean> => {
     const validateOwner = await prisma.itineraryHome.findFirst({
       where: {
         id: Number(tripId),
-        userId: Number(userId),
+        userId: userId,
       },
     });
 

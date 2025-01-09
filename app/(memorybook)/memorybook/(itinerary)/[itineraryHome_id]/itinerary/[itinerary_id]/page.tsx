@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
-import { updateItinerary } from "@/app/(memorybook)/memorybook/action/action-itinerary";
-import { deleteItinerary } from "@/app/(memorybook)/memorybook/action/action-itinerary";
+import { updateItinerary } from "@/app/(memorybook)/memorybook/action/actionItinerary";
+import { deleteItinerary } from "@/app/(memorybook)/memorybook/action/actionItinerary";
 import {
   getItineraryHome,
   getItinerary,

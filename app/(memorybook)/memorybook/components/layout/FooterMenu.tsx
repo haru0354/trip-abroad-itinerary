@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { addItinerary } from "../../action/action-itinerary";
+import { addItinerary } from "../../action/actionItinerary";
 import FormMemoModal from "../memo/FormMemoModal";
 import FormItineraryModal from "../itinerary/FormItineraryModal";
 import ButtonImage from "@/app/components/ui/ButtonImage";

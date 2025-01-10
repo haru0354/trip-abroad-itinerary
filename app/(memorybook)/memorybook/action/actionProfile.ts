@@ -6,6 +6,7 @@ import { z } from "zod";
 import bcrypt from "bcrypt";
 import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
+import { validateSchema } from "../lib/validate/validateSchema";
 
 type FormState = {
   message?: string | null;
@@ -60,18 +61,16 @@ export const updateProfile = async (state: FormState, data: FormData) => {
     return { message: "認証がされていません。" };
   }
 
-  const validatedFields = schema.safeParse({
+  const validateDate = {
     name,
     email,
-  });
+  };
 
-  if (!validatedFields.success) {
-    const errors = {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "failure",
-    };
-    console.log(errors);
-    return errors;
+  const validated = validateSchema(schema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return validated.errors;
   }
 
   try {
@@ -103,18 +102,16 @@ export const updatePassword = async (state: FormState, data: FormData) => {
     return { message: "認証がされていません。" };
   }
 
-  const validatedFields = passwordSchema.safeParse({
+  const validateDate = {
     password,
     passwordConfirmation,
-  });
+  };
 
-  if (!validatedFields.success) {
-    const errors = {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "failure",
-    };
-    console.log(errors);
-    return errors;
+  const validated = validateSchema(passwordSchema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return validated.errors;
   }
 
   if (password !== passwordConfirmation) {

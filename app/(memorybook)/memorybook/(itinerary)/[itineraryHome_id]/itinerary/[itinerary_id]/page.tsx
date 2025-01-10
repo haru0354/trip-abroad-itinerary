@@ -23,7 +23,7 @@ const page = async ({
     return <div>旅行データが見つかりません。</div>;
   }
 
-  const itinerary = await getItinerary(itineraryId);
+  const itinerary = await getItinerary(params.itinerary_id);
 
   return (
     <>

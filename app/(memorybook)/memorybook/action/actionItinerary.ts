@@ -8,7 +8,7 @@ import { supabase } from "@/app/util/supabase";
 import { fileSaveItineraryUtils } from "@/app/lib/fileSaveUtils";
 import { validateFile } from "@/app/lib/validateFile";
 import { getItinerary } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import { validateTripOwner } from "../lib/validate-ownership/validateTripOwner";
+import { validateTripOwner } from "../lib/validate/validateTripOwner";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 
 type FormState = {

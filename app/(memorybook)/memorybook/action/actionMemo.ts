@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import prisma from "@/app/lib/prisma";
-import { validateTripOwner } from "../lib/validate-ownership/validateTripOwner";
+import { validateTripOwner } from "../lib/validate/validateTripOwner";
 
 type FormState = {
   message?: string | null;

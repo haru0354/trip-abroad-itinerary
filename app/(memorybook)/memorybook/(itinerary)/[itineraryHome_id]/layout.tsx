@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import FooterMenu from "../../components/layout/FooterMenu";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
@@ -21,7 +20,6 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { itineraryHome_id: string };
 }>) {
-  const currentUserId = (await getCurrentUserId()) ?? undefined;
   const itineraryHomeId = Number(params.itineraryHome_id);
 
   return (
@@ -33,7 +31,7 @@ export default async function RootLayout({
         </div>
       </main>
       <Footer />
-      <FooterMenu itineraryHomeId={itineraryHomeId} userId={currentUserId} />
+      <FooterMenu itineraryHomeId={itineraryHomeId} />
     </>
   );
 }

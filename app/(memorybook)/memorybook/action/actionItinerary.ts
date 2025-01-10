@@ -148,7 +148,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
 };
 
 export const deleteItinerary = async (data: FormData) => {
-  const id = data.get("id") as string;
+  const itineraryId = data.get("id") as string;
   const userId = await getCurrentUserId();
 
   if (!userId) {
@@ -169,7 +169,7 @@ export const deleteItinerary = async (data: FormData) => {
     return { message: "権限がありません" };
   }
 
-  const itinerary = await getItinerary(id);
+  const itinerary = await getItinerary(itineraryId);
 
   if (!itinerary) {
     console.error("指定した旅程が見つかりませんでした。");
@@ -192,7 +192,7 @@ export const deleteItinerary = async (data: FormData) => {
   try {
     await prisma.itinerary.delete({
       where: {
-        id: Number(id),
+        id: Number(itineraryId),
       },
     });
     console.log("旅程を削除しました。");
@@ -204,7 +204,7 @@ export const deleteItinerary = async (data: FormData) => {
 };
 
 export const updateItinerary = async (
-  id: number,
+  itineraryId: number,
   state: FormState,
   data: FormData
 ) => {
@@ -302,8 +302,8 @@ export const updateItinerary = async (
       return { message: "画像の追加時にエラーが発生しました" };
     }
 
-    const stringNumber = id.toString();
-    const itinerary = await getItinerary(stringNumber);
+    const itineraryIdString = itineraryId.toString();
+    const itinerary = await getItinerary(itineraryIdString);
 
     if (itinerary?.url) {
       try {
@@ -322,7 +322,7 @@ export const updateItinerary = async (
   try {
     await prisma.itinerary.update({
       where: {
-        id,
+        id: itineraryId,
       },
       data: ItineraryData,
     });

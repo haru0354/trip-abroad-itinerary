@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { updateItinerary } from "@/app/(memorybook)/memorybook/action/actionItinerary";
 import { deleteItinerary } from "@/app/(memorybook)/memorybook/action/actionItinerary";
 import {
@@ -10,23 +9,21 @@ import FormItinerary from "@/app/(memorybook)/memorybook/components/itinerary/Fo
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 
-
 const page = async ({
   params,
 }: {
   params: { itinerary_id: string; itineraryHome_id: string };
 }) => {
-  const id = Number(params.itinerary_id);
-  const updateItineraryWithId = updateItinerary.bind(null, id);
+  const itineraryId = Number(params.itinerary_id);
+  const updateItineraryWithId = updateItinerary.bind(null, itineraryId);
 
   const itineraryHome = await getItineraryHome(params.itineraryHome_id);
-  const itinerary = await getItinerary(params.itinerary_id);
-
-  const currentUserId = (await getCurrentUserId()) ?? undefined;
 
   if (!itineraryHome) {
     return <div>旅行データが見つかりません。</div>;
   }
+
+  const itinerary = await getItinerary(itineraryId);
 
   return (
     <>
@@ -38,7 +35,6 @@ const page = async ({
         formAction={updateItineraryWithId}
         buttonName="保存"
         itineraryHomeId={itineraryHome.id}
-        userId={currentUserId}
       />
       <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
         <Button color="gray" size="normal" className="rounded mt-4">
@@ -51,7 +47,6 @@ const page = async ({
         itineraryHomeId={itineraryHome.id}
         formAction={deleteItinerary}
         id={itinerary?.id}
-        userId={currentUserId}
       />
     </>
   );

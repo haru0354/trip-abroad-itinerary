@@ -6,6 +6,7 @@ import { z } from "zod";
 import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";
+import { validateSchema } from "../lib/validate/validateSchema";
 
 type FormState = {
   message?: string | null;
@@ -39,20 +40,18 @@ export const addTrip = async (state: FormState, data: FormData) => {
     return false;
   }
 
-  const validatedFields = schema.safeParse({
+  const validateDate = {
     startDate,
     endDate,
     name,
     destination,
-  });
+  };
 
-  if (!validatedFields.success) {
-    const errors = {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "failure",
-    };
-    console.log(errors);
-    return errors;
+  const validated = validateSchema(schema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return validated.errors;
   }
 
   try {
@@ -126,20 +125,18 @@ export const updateTrip = async (
     return { message: "権限がありません" };
   }
 
-  const validatedFields = schema.safeParse({
+  const validateDate = {
     startDate,
     endDate,
     name,
     destination,
-  });
+  };
 
-  if (!validatedFields.success) {
-    const errors = {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "failure",
-    };
-    console.log(errors);
-    return errors;
+  const validated = validateSchema(schema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return validated.errors;
   }
 
   try {

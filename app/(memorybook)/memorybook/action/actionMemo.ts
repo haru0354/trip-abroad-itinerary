@@ -69,8 +69,8 @@ export const addMemo = async (state: FormState, data: FormData) => {
 };
 
 export const deleteMemo = async (data: FormData) => {
+  const memoId = data.get("id") as string;
   const itineraryHomeId = data.get("itineraryHomeId") as string;
-  const id = data.get("id") as string;
 
   if (!itineraryHomeId) {
     console.error("旅行プランの指定が正しくありません");
@@ -86,7 +86,7 @@ export const deleteMemo = async (data: FormData) => {
   try {
     await prisma.memo.delete({
       where: {
-        id: Number(id),
+        id: Number(memoId),
       },
     });
   } catch (error) {
@@ -97,7 +97,7 @@ export const deleteMemo = async (data: FormData) => {
 };
 
 export const updateMemo = async (
-  id: number,
+  memoId: number,
   state: FormState,
   data: FormData
 ) => {
@@ -134,7 +134,7 @@ export const updateMemo = async (
   try {
     await prisma.memo.update({
       where: {
-        id,
+        id: memoId,
       },
       data: {
         name,

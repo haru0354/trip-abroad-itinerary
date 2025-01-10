@@ -14,16 +14,16 @@ const Page = async ({
 }: {
   params: { memo_id: string; itineraryHome_id: string };
 }) => {
-  const id = Number(params.memo_id);
+  const memoId = Number(params.memo_id);
+  const memo = await getMemo(params.memo_id);
 
   const itineraryHome = await getItineraryHome(params.itineraryHome_id);
-  const memo = await getMemo(params.memo_id);
 
   if (!itineraryHome) {
     return <div>旅行データが見つかりません。</div>;
   }
 
-  const updateMemoWidthId = updateMemo.bind(null, id);
+  const updateMemoWidthId = updateMemo.bind(null, memoId);
 
   return (
     <>

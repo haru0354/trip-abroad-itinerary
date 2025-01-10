@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import prisma from "@/app/lib/prisma";
+import { validateTripOwner } from "../lib/validate-ownership/validateTripOwner";
 
 type FormState = {
   message?: string | null;
@@ -24,6 +25,17 @@ export const addMemo = async (state: FormState, data: FormData) => {
   const name = data.get("name") as string;
   const content = data.get("content") as string;
   const itineraryHomeId = data.get("itineraryHomeId") as string;
+
+  if (!itineraryHomeId) {
+    console.error("旅行プランの指定が正しくありません");
+    return { message: "旅行プランの指定が正しくありません" };
+  }
+
+  const idValidTripOwner = await validateTripOwner(itineraryHomeId);
+
+  if (!idValidTripOwner) {
+    return { message: "権限がありません" };
+  }
 
   const validatedFields = schema.safeParse({
     name,
@@ -57,13 +69,24 @@ export const addMemo = async (state: FormState, data: FormData) => {
 };
 
 export const deleteMemo = async (data: FormData) => {
+  const memoId = data.get("id") as string;
   const itineraryHomeId = data.get("itineraryHomeId") as string;
-  const id = data.get("id") as string;
+
+  if (!itineraryHomeId) {
+    console.error("旅行プランの指定が正しくありません");
+    return { message: "旅行プランの指定が正しくありません" };
+  }
+
+  const idValidTripOwner = await validateTripOwner(itineraryHomeId);
+
+  if (!idValidTripOwner) {
+    return { message: "権限がありません" };
+  }
 
   try {
     await prisma.memo.delete({
       where: {
-        id: Number(id),
+        id: Number(memoId),
       },
     });
   } catch (error) {
@@ -74,13 +97,24 @@ export const deleteMemo = async (data: FormData) => {
 };
 
 export const updateMemo = async (
-  id: number,
+  memoId: number,
   state: FormState,
   data: FormData
 ) => {
   const name = data.get("name") as string;
   const content = data.get("content") as string;
   const itineraryHomeId = data.get("itineraryHomeId") as string;
+
+  if (!itineraryHomeId) {
+    console.error("旅行プランの指定が正しくありません");
+    return { message: "旅行プランの指定が正しくありません" };
+  }
+
+  const idValidTripOwner = await validateTripOwner(itineraryHomeId);
+
+  if (!idValidTripOwner) {
+    return { message: "権限がありません" };
+  }
 
   const validatedFields = schema.safeParse({
     name,
@@ -100,7 +134,7 @@ export const updateMemo = async (
   try {
     await prisma.memo.update({
       where: {
-        id,
+        id: memoId,
       },
       data: {
         name,

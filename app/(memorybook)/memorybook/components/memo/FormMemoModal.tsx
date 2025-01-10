@@ -4,7 +4,7 @@ import { useState, ChangeEvent, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { addMemo } from "@/app/(memorybook)/memorybook/action/action-memo";
+import { addMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
 import TextArea from "@/app/components/ui/TextArea";

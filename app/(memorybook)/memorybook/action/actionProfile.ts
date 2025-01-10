@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import bcrypt from "bcrypt";
 import prisma from "@/app/lib/prisma";
+import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 
 type FormState = {
   message?: string | null;
@@ -23,14 +24,23 @@ const schema = z.object({
 
 const passwordSchema = z.object({
   password: z.string().min(6, { message: "6文字以上入力する必要があります。" }),
-  passwordConfirmation: z.string().min(6, { message: "6文字以上入力する必要があります。" }),
+  passwordConfirmation: z
+    .string()
+    .min(6, { message: "6文字以上入力する必要があります。" }),
 });
 
-export const deleteUser = async (id: number) => {
+export const deleteUser = async () => {
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return { message: "認証がされていません。" };
+  }
+
   try {
     await prisma.user.delete({
       where: {
-        id,
+        id: userId,
       },
     });
   } catch (error) {
@@ -40,14 +50,15 @@ export const deleteUser = async (id: number) => {
   redirect(`/memorybook/`);
 };
 
-export const updateProfile = async (
-  id: number,
-  state: FormState,
-  data: FormData
-) => {
+export const updateProfile = async (state: FormState, data: FormData) => {
   const name = data.get("name") as string;
   const email = data.get("email") as string;
-  const userId = data.get("userId") as string;
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return { message: "認証がされていません。" };
+  }
 
   const validatedFields = schema.safeParse({
     name,
@@ -66,7 +77,7 @@ export const updateProfile = async (
   try {
     await prisma.user.update({
       where: {
-        id,
+        id: userId,
       },
       data: {
         name,
@@ -81,13 +92,16 @@ export const updateProfile = async (
   }
 };
 
-export const updatePassword = async (
-  id: number,
-  state: FormState,
-  data: FormData
-) => {
+export const updatePassword = async (state: FormState, data: FormData) => {
   const password = data.get("password") as string;
   const passwordConfirmation = data.get("passwordConfirmation") as string;
+
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return { message: "認証がされていません。" };
+  }
 
   const validatedFields = passwordSchema.safeParse({
     password,
@@ -113,7 +127,7 @@ export const updatePassword = async (
   try {
     await prisma.user.update({
       where: {
-        id,
+        id: userId,
       },
       data: {
         hashedPassword,

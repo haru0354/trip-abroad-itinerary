@@ -16,7 +16,6 @@ type FormItineraryProps = {
   buttonName: string;
   formAction: (state: FormState, data: FormData) => Promise<FormState>;
   itineraryHomeId?: number | undefined;
-  userId: number | undefined;
 };
 
 type Itinerary = {
@@ -47,7 +46,6 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   buttonName,
   formAction,
   itineraryHomeId,
-  userId,
 }) => {
   const router = useRouter();
   const initialState = {
@@ -191,7 +189,6 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
               label="画像の名前(何の画像)"
               placeholder="例)観光地の写真⇒観光地名を入力、料理の写真⇒料理名を入力"
             />
-            <input type="hidden" name="userId" value={userId} />
             <input
               type="hidden"
               name="itineraryHomeId"

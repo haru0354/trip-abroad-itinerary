@@ -8,6 +8,8 @@ import { supabase } from "@/app/util/supabase";
 import { fileSaveItineraryUtils } from "@/app/lib/fileSaveUtils";
 import { validateFile } from "@/app/lib/validateFile";
 import { getItinerary } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
+import { validateTripOwner } from "../lib/validate-ownership/validateTripOwner";
+import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 
 type FormState = {
   message?: string | null;
@@ -29,7 +31,6 @@ const schema = z.object({
   content: z.string().optional(),
   hideContent: z.string().optional(),
   itineraryHomeId: z.string().transform((val) => Number(val)),
-  userId: z.string().transform((val) => Number(val)),
 });
 
 const ImageSchema = z.object({
@@ -46,8 +47,25 @@ export const addItinerary = async (state: FormState, data: FormData) => {
   const hideContent = data.get("hideContent") as string;
   const image = data.get("image") as File;
   const altText = data.get("altText") as string;
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return { message: "認証がされていません。" };
+  }
+
   const itineraryHomeId = data.get("itineraryHomeId") as string;
-  const userId = data.get("userId") as string;
+
+  if (!itineraryHomeId) {
+    console.error("旅行プランの指定が正しくありません");
+    return { message: "旅行プランの指定が正しくありません" };
+  }
+
+  const idValidTripOwner = await validateTripOwner(itineraryHomeId);
+
+  if (!idValidTripOwner) {
+    return { message: "権限がありません" };
+  }
 
   const validatedFields = schema.safeParse({
     date,
@@ -56,7 +74,6 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     content,
     hideContent,
     itineraryHomeId,
-    userId,
   });
 
   if (!validatedFields.success) {
@@ -131,14 +148,32 @@ export const addItinerary = async (state: FormState, data: FormData) => {
 };
 
 export const deleteItinerary = async (data: FormData) => {
-  const userId = data.get("userId") as string;
+  const itineraryId = data.get("id") as string;
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return { message: "認証がされていません。" };
+  }
+
   const itineraryHomeId = data.get("itineraryHomeId") as string;
-  const id = data.get("id") as string;
-  const itinerary = await getItinerary(id);
+
+  if (!itineraryHomeId) {
+    console.error("旅行プランの指定が正しくありません");
+    return { message: "旅行プランの指定が正しくありません" };
+  }
+
+  const idValidTripOwner = await validateTripOwner(itineraryHomeId);
+
+  if (!idValidTripOwner) {
+    return { message: "権限がありません" };
+  }
+
+  const itinerary = await getItinerary(itineraryId);
 
   if (!itinerary) {
     console.error("指定した旅程が見つかりませんでした。");
-    return;
+    return { message: "指定した旅程が見つかりませんでした。" };
   }
 
   if (itinerary.url) {
@@ -157,7 +192,7 @@ export const deleteItinerary = async (data: FormData) => {
   try {
     await prisma.itinerary.delete({
       where: {
-        id: Number(id),
+        id: Number(itineraryId),
       },
     });
     console.log("旅程を削除しました。");
@@ -169,7 +204,7 @@ export const deleteItinerary = async (data: FormData) => {
 };
 
 export const updateItinerary = async (
-  id: number,
+  itineraryId: number,
   state: FormState,
   data: FormData
 ) => {
@@ -180,8 +215,25 @@ export const updateItinerary = async (
   const hideContent = data.get("hideContent") as string;
   const image = data.get("image") as File;
   const altText = data.get("altText") as string;
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return { message: "認証がされていません。" };
+  }
+
   const itineraryHomeId = data.get("itineraryHomeId") as string;
-  const userId = data.get("userId") as string;
+
+  if (!itineraryHomeId) {
+    console.error("旅行プランの指定が正しくありません");
+    return { message: "旅行プランの指定が正しくありません" };
+  }
+
+  const idValidTripOwner = await validateTripOwner(itineraryHomeId);
+
+  if (!idValidTripOwner) {
+    return { message: "権限がありません" };
+  }
 
   const validatedFields = schema.safeParse({
     date,
@@ -190,7 +242,6 @@ export const updateItinerary = async (
     content,
     hideContent,
     itineraryHomeId,
-    userId,
   });
 
   if (!validatedFields.success) {
@@ -251,8 +302,8 @@ export const updateItinerary = async (
       return { message: "画像の追加時にエラーが発生しました" };
     }
 
-    const stringNumber = id.toString();
-    const itinerary = await getItinerary(stringNumber);
+    const itineraryIdString = itineraryId.toString();
+    const itinerary = await getItinerary(itineraryIdString);
 
     if (itinerary?.url) {
       try {
@@ -271,7 +322,7 @@ export const updateItinerary = async (
   try {
     await prisma.itinerary.update({
       where: {
-        id,
+        id: itineraryId,
       },
       data: ItineraryData,
     });

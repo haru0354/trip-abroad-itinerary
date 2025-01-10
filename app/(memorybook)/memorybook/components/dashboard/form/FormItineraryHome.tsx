@@ -11,7 +11,6 @@ import Date from "@/app/components/ui/Date";
 type FormItineraryHomeProps = {
   itineraryHome?: ItineraryHome | null;
   buttonName: string;
-  userId?: number | undefined;
   formAction: (state: FormState, data: FormData) => Promise<FormState>;
 };
 
@@ -38,7 +37,6 @@ type FormState = {
 const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
   itineraryHome,
   buttonName,
-  userId,
   formAction,
 }) => {
   const router = useRouter();
@@ -133,7 +131,6 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
               onChange={handleDestinationChange}
               value={destinationValue}
             />
-            <input type="hidden" name="userId" value={userId} />
             {errorMessage && errorMessage.message !== "failure" && (
               <p className="text-red-500">{errorMessage.message}</p>
             )}

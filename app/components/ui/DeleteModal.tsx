@@ -11,7 +11,6 @@ type DeleteModalProps = {
   formAction: (data: FormData) => Promise<{ message: string } | undefined>;
   id: number | undefined;
   itineraryHomeId?: number | undefined;
-  userId?: number | undefined;
 };
 
 const DeleteModal: React.FC<DeleteModalProps> = ({
@@ -20,7 +19,6 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
   formAction,
   itineraryHomeId,
   id,
-  userId,
 }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   
@@ -100,7 +98,6 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
                     value={itineraryHomeId}
                   />
                 )}
-                {userId && <input type="hidden" name="userId" value={userId} />}
                 <Button
                   formAction={formAction}
                   color="red"

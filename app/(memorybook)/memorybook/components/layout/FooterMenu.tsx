@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { addItinerary } from "../../action/action-itinerary";
+import { addItinerary } from "../../action/actionItinerary";
 import FormMemoModal from "../memo/FormMemoModal";
 import FormItineraryModal from "../itinerary/FormItineraryModal";
 import ButtonImage from "@/app/components/ui/ButtonImage";
@@ -12,7 +12,7 @@ type FooterMenuProps = {
   userId?: number | undefined;
 };
 
-const FooterMenu: React.FC<FooterMenuProps> = ({ itineraryHomeId, userId }) => {
+const FooterMenu: React.FC<FooterMenuProps> = ({ itineraryHomeId }) => {
   const path = usePathname();
 
   return (
@@ -50,7 +50,6 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ itineraryHomeId, userId }) => {
             itineraryHomeId={itineraryHomeId}
             buttonName="追加"
             buttonName2="旅程を追加"
-            userId={userId}
             formAction={addItinerary}
           />
         ) : null}

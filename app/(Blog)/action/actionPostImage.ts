@@ -8,10 +8,8 @@ import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getPostImage } from "../lib/service/blogServiceUnique";
 import { checkUserRole } from "@/app/lib/checkUserRole";
-import { validateSchema } from "@/app/(memorybook)/memorybook/lib/validate/validateSchema";
+import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
-
-const { unlink } = fsPromises;
 
 type FormState = {
   message?: string | null;
@@ -187,7 +185,7 @@ export const updatePostImage = async (
 
     try {
       const result = await fileSaveAndValidate(image, altText);
-
+      
       if (result.result) {
         await prisma.postImage.update({
           where: {

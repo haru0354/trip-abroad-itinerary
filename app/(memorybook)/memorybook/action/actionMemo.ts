@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import prisma from "@/app/lib/prisma";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";
-import { validateSchema } from "../lib/validate/validateSchema";
+import { validateSchema } from "../../../lib/validateSchema";
 
 type FormState = {
   message?: string | null;

@@ -8,7 +8,7 @@ import { supabase } from "@/app/util/supabase";
 import { getPost } from "../lib/service/blogServiceUnique";
 import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
 import { checkUserRole } from "@/app/lib/checkUserRole";
-import { validateSchema } from "@/app/(memorybook)/memorybook/lib/validate/validateSchema";
+import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
 type FormState = {

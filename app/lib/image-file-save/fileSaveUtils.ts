@@ -2,7 +2,7 @@
 
 import { supabase } from "@/app/util/supabase";
 
-export const fileSaveUtils = async (image: File) => {
+export const fileSaveBlogUtils = async (image: File) => {
   try {
     const fileName = image.name;
     const directory = "travel-memory-life";

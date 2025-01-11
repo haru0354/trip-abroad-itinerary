@@ -8,8 +8,9 @@ import { supabase } from "@/app/util/supabase";
 import { fileSaveItineraryUtils } from "@/app/lib/fileSaveUtils";
 import { validateFile } from "@/app/lib/validateFile";
 import { getItinerary } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import { validateTripOwner } from "../lib/validate-ownership/validateTripOwner";
+import { validateTripOwner } from "../lib/validate/validateTripOwner";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
+import { validateSchema } from "../lib/validate/validateSchema";
 
 type FormState = {
   message?: string | null;
@@ -67,22 +68,20 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     return { message: "権限がありません" };
   }
 
-  const validatedFields = schema.safeParse({
+  const validateDate = {
     date,
     time,
     name,
     content,
     hideContent,
     itineraryHomeId,
-  });
+  };
 
-  if (!validatedFields.success) {
-    const errors = {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "failure",
-    };
-    console.log(errors);
-    return errors;
+  const validated = validateSchema(schema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return validated.errors;
   }
 
   const ItineraryData: any = {
@@ -110,16 +109,12 @@ export const addItinerary = async (state: FormState, data: FormData) => {
         return errors;
       }
 
-      const validatedFields = ImageSchema.safeParse({
-        altText,
-      });
+      const imageValidateDate = { altText };
+      const imageValidated = validateSchema(ImageSchema, imageValidateDate);
 
-      if (!validatedFields.success) {
-        const errors = {
-          errors: validatedFields.error.flatten().fieldErrors,
-        };
-        console.log(errors);
-        return errors;
+      if (!imageValidated.success) {
+        console.log(imageValidated.errors);
+        return imageValidated.errors;
       }
 
       const { fileUrl, fileName } = await fileSaveItineraryUtils(image, userId);
@@ -235,22 +230,20 @@ export const updateItinerary = async (
     return { message: "権限がありません" };
   }
 
-  const validatedFields = schema.safeParse({
+  const validateDate = {
     date,
     time,
     name,
     content,
     hideContent,
     itineraryHomeId,
-  });
+  };
 
-  if (!validatedFields.success) {
-    const errors = {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "failure",
-    };
-    console.log(errors);
-    return errors;
+  const validated = validateSchema(schema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return validated.errors;
   }
 
   const ItineraryData: any = {
@@ -278,16 +271,12 @@ export const updateItinerary = async (
         return errors;
       }
 
-      const validatedFields = ImageSchema.safeParse({
-        altText,
-      });
+      const imageValidateDate = { altText };
+      const imageValidated = validateSchema(ImageSchema, imageValidateDate);
 
-      if (!validatedFields.success) {
-        const errors = {
-          errors: validatedFields.error.flatten().fieldErrors,
-        };
-        console.log(errors);
-        return errors;
+      if (!imageValidated.success) {
+        console.log(imageValidated.errors);
+        return imageValidated.errors;
       }
 
       const { fileUrl, fileName } = await fileSaveItineraryUtils(image, userId);

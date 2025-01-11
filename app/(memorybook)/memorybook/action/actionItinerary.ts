@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
-import { fileSaveItineraryUtils } from "@/app/lib/fileSaveUtils";
+import { fileSaveItineraryUtils } from "@/app/lib/image-file-save/fileSaveUtils";
 import { validateFile } from "@/app/lib/validateFile";
 import { getItinerary } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";

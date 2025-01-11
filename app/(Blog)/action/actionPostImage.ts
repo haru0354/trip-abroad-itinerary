@@ -7,7 +7,7 @@ import { z } from "zod";
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getPostImage } from "../lib/service/blogServiceUnique";
-import { fileSaveUtils } from "@/app/lib/fileSaveUtils";
+import { fileSaveUtils } from "@/app/lib/image-file-save/fileSaveUtils";
 import { validateFile } from "@/app/lib/validateFile";
 import { checkUserRole } from "@/app/lib/checkUserRole";
 

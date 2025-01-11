@@ -12,6 +12,7 @@ type FormImageProps = {
   onChangeAltText?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   label: string;
   placeholder: string;
+  defaultValue?: string;
 };
 
 type State = {
@@ -35,6 +36,7 @@ const FormImage: React.FC<FormImageProps> = ({
   onChangeAltText,
   label,
   placeholder,
+  defaultValue,
 }) => {
   const [error, setError] = useState<string>("");
   const [image, setImage] = useState<{ preview: string; data: File | string }>({
@@ -132,6 +134,7 @@ const FormImage: React.FC<FormImageProps> = ({
         value={altTextValue}
         placeholder={placeholder}
         onChange={onChangeAltText}
+        defaultValue={defaultValue}
       />
       {state?.errors && state.errors.altText && (
         <p className="text-red-500">{state.errors.altText}</p>

@@ -53,6 +53,7 @@ const FormPostImage: React.FC<FormPostImageProps> = ({
               state={state}
               label="画像の名前(alt)"
               placeholder="どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます"
+              defaultValue={postImage?.altText}
             />
             <Button color="blue" size="normal" className="rounded mt-4">
               {buttonName}

@@ -6,14 +6,25 @@ import { fileSaveBlogUtils, fileSaveItineraryUtils } from "./fileSaveUtils";
 const ImageSchema = z.object({
   altText: z
     .string()
-    .min(1, { message: "画像の追加時は「何の画像か」の入力は必須です。" }),
+    .min(1, { message: "画像の追加時は名前の入力は必須です。" }),
 });
 
 export const fileSaveAndValidate = async (
   image: File,
   altText: string,
   userId?: number
-) => {
+): Promise<
+  | {
+      result: true;
+      fileName: string;
+      fileUrl: string;
+    }
+  | {
+      result: false;
+      errors?: Record<string, string[]>;
+      message?: string;
+    }
+> => {
   try {
     const isValidFile = await validateExtensionAndMineType(image);
 
@@ -28,13 +39,13 @@ export const fileSaveAndValidate = async (
       };
     }
 
-    const imageValidateDate = { altText };
-    const imageValidated = validateSchema(ImageSchema, imageValidateDate);
+    const imageValidateData = { altText };
+    const imageValidated = validateSchema(ImageSchema, imageValidateData);
 
     if (!imageValidated.success) {
       return {
         result: false,
-        errors: imageValidated.errors,
+        errors: imageValidated.errors as unknown as Record<string, string[]>,
       };
     }
 

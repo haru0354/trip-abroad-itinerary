@@ -7,7 +7,7 @@ import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getCategory } from "../lib/service/blogServiceUnique";
 import { fileSaveBlogUtils } from "@/app/lib/image-file-save/fileSaveUtils";
-import { validateFile } from "@/app/lib/validateFile";
+import { validateExtensionAndMineType } from "@/app/lib/image-file-save/validateExtensionAndMineType";
 import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
 import { checkUserRole } from "@/app/lib/checkUserRole";
 
@@ -81,7 +81,7 @@ export const addCategory = async (state: FormState, data: FormData) => {
 
   if (image && image.size > 0) {
     try {
-      const isValidFile = await validateFile(image);
+      const isValidFile = await validateExtensionAndMineType(image);
 
       if (!isValidFile) {
         const errors = {
@@ -253,7 +253,7 @@ export const updateCategory = async (
 
   if (image && image.size > 0) {
     try {
-      const isValidFile = await validateFile(image);
+      const isValidFile = await validateExtensionAndMineType(image);
 
       if (!isValidFile) {
         const errors = {

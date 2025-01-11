@@ -8,7 +8,7 @@ import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getPostImage } from "../lib/service/blogServiceUnique";
 import { fileSaveBlogUtils } from "@/app/lib/image-file-save/fileSaveUtils";
-import { validateFile } from "@/app/lib/validateFile";
+import { validateExtensionAndMineType } from "@/app/lib/image-file-save/validateExtensionAndMineType";
 import { checkUserRole } from "@/app/lib/checkUserRole";
 
 const { unlink } = fsPromises;
@@ -56,7 +56,7 @@ export const addPostImage = async (state: FormState, data: FormData) => {
   }
 
   try {
-    const isValidFile = await validateFile(image);
+    const isValidFile = await validateExtensionAndMineType(image);
 
     if (!isValidFile) {
       const errors = {

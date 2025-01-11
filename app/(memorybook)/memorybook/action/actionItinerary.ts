@@ -6,7 +6,7 @@ import { z } from "zod";
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { fileSaveItineraryUtils } from "@/app/lib/image-file-save/fileSaveUtils";
-import { validateFile } from "@/app/lib/validateFile";
+import { validateExtensionAndMineType } from "@/app/lib/image-file-save/validateExtensionAndMineType";
 import { getItinerary } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
@@ -95,7 +95,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
 
   if (image && image.size > 0) {
     try {
-      const isValidFile = await validateFile(image);
+      const isValidFile = await validateExtensionAndMineType(image);
 
       if (!isValidFile) {
         const errors = {
@@ -257,7 +257,7 @@ export const updateItinerary = async (
 
   if (image && image.size > 0) {
     try {
-      const isValidFile = await validateFile(image);
+      const isValidFile = await validateExtensionAndMineType(image);
 
       if (!isValidFile) {
         const errors = {

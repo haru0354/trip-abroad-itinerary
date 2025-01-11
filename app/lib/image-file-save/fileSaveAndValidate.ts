@@ -9,7 +9,7 @@ const ImageSchema = z.object({
     .min(1, { message: "画像の追加時は「何の画像か」の入力は必須です。" }),
 });
 
-export const imageFileSaveAndValidate = async (
+export const fileSaveAndValidate = async (
   image: File,
   altText: string,
   userId?: number
@@ -18,23 +18,24 @@ export const imageFileSaveAndValidate = async (
     const isValidFile = await validateExtensionAndMineType(image);
 
     if (!isValidFile) {
-      const errors = {
+      return {
+        result: false,
         errors: {
           image: [
             "画像ファイルが無効です。有効な画像ファイルを選択してください。",
           ],
         },
       };
-      console.log(errors);
-      return errors;
     }
 
     const imageValidateDate = { altText };
     const imageValidated = validateSchema(ImageSchema, imageValidateDate);
 
     if (!imageValidated.success) {
-      console.log(imageValidated.errors);
-      return imageValidated.errors;
+      return {
+        result: false,
+        errors: imageValidated.errors,
+      };
     }
 
     const { fileUrl, fileName } = userId
@@ -42,12 +43,15 @@ export const imageFileSaveAndValidate = async (
       : await fileSaveBlogUtils(image);
 
     return {
+      result: true,
       fileUrl,
       fileName,
-      altText,
     };
   } catch (error) {
     console.error("画像の追加時にエラーが発生しました", error);
-    return { message: "画像の追加時にエラーが発生しました" };
+    return {
+      result: false,
+      message: "画像の追加時にエラーが発生しました",
+    };
   }
 };

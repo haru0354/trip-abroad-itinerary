@@ -3,10 +3,14 @@ import FooterMenu from "../../components/layout/FooterMenu";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 
+const siteTItle = process.env.NEXT_PUBLIC_ITINERARY_TITLE;
+const brandTItle = process.env.NEXT_PUBLIC_ITINERARY_BRAND_TITLE;
+const siteDescription = process.env.NEXT_PUBLIC_ITINERARY_DESCRIPTION;
+
 export const metadata: Metadata = {
   title: {
     default: "旅行の編集",
-    template: "%s | 旅のメモリーブック",
+    template: `%s | ${brandTItle}`,
   },
   robots: {
     index: false,

@@ -5,12 +5,11 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
-import { fileSaveItineraryUtils } from "@/app/lib/fileSaveUtils";
-import { validateFile } from "@/app/lib/validateFile";
 import { getItinerary } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
-import { validateSchema } from "../lib/validate/validateSchema";
+import { validateSchema } from "../../../lib/validateSchema";
+import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
 type FormState = {
   message?: string | null;
@@ -94,39 +93,20 @@ export const addItinerary = async (state: FormState, data: FormData) => {
   };
 
   if (image && image.size > 0) {
-    try {
-      const isValidFile = await validateFile(image);
+    const result = await fileSaveAndValidate(image, altText, userId);
 
-      if (!isValidFile) {
-        const errors = {
-          errors: {
-            image: [
-              "画像ファイルが無効です。有効な画像ファイルを選択してください。",
-            ],
-          },
-        };
-        console.log(errors);
-        return errors;
-      }
-
-      const imageValidateDate = { altText };
-      const imageValidated = validateSchema(ImageSchema, imageValidateDate);
-
-      if (!imageValidated.success) {
-        console.log(imageValidated.errors);
-        return imageValidated.errors;
-      }
-
-      const { fileUrl, fileName } = await fileSaveItineraryUtils(image, userId);
-
-      ItineraryData.url = fileUrl;
-      ItineraryData.imageName = fileName;
+    if (result.result) {
+      ItineraryData.url = result.fileUrl;
+      ItineraryData.imageName = result.fileName;
       ItineraryData.altText = altText;
-
-      console.log("画像の追加に成功しました。");
-    } catch (error) {
-      console.error("画像の追加時にエラーが発生しました", error);
-      return { message: "画像の追加時にエラーが発生しました" };
+    } else {
+      if (result.errors) {
+        console.error("画像のバリデーションエラー:", result.errors);
+        return result.errors;
+      } else if (result.message) {
+        console.error("画像保存時にエラーが発生しました:", result.message);
+        return result.message;
+      }
     }
   }
 
@@ -256,39 +236,20 @@ export const updateItinerary = async (
   };
 
   if (image && image.size > 0) {
-    try {
-      const isValidFile = await validateFile(image);
+    const result = await fileSaveAndValidate(image, altText, userId);
 
-      if (!isValidFile) {
-        const errors = {
-          errors: {
-            image: [
-              "画像ファイルが無効です。有効な画像ファイルを選択してください。",
-            ],
-          },
-        };
-        console.log(errors);
-        return errors;
-      }
-
-      const imageValidateDate = { altText };
-      const imageValidated = validateSchema(ImageSchema, imageValidateDate);
-
-      if (!imageValidated.success) {
-        console.log(imageValidated.errors);
-        return imageValidated.errors;
-      }
-
-      const { fileUrl, fileName } = await fileSaveItineraryUtils(image, userId);
-
-      ItineraryData.imageName = fileName;
-      ItineraryData.url = fileUrl;
+    if (result.result) {
+      ItineraryData.url = result.fileUrl;
+      ItineraryData.imageName = result.fileName;
       ItineraryData.altText = altText;
-
-      console.log("画像の追加に成功しました。");
-    } catch (error) {
-      console.error("画像の追加時にエラーが発生しました", error);
-      return { message: "画像の追加時にエラーが発生しました" };
+    } else {
+      if (result.errors) {
+        console.error("画像のバリデーションエラー:", result.errors);
+        return result.errors;
+      } else if (result.message) {
+        console.error("画像保存時にエラーが発生しました:", result.message);
+        return result.message;
+      }
     }
 
     const itineraryIdString = itineraryId.toString();

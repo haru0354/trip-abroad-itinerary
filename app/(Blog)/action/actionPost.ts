@@ -6,10 +6,10 @@ import { z } from "zod";
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getPost } from "../lib/service/blogServiceUnique";
-import { fileSaveUtils } from "@/app/lib/fileSaveUtils";
-import { validateFile } from "@/app/lib/validateFile";
 import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
 import { checkUserRole } from "@/app/lib/checkUserRole";
+import { validateSchema } from "@/app/lib/validateSchema";
+import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
 type FormState = {
   message?: string | null;
@@ -36,12 +36,6 @@ const schema = z.object({
   categoryId: z.string().transform((val) => Number(val)),
 });
 
-const ImageSchema = z.object({
-  altText: z
-    .string()
-    .min(1, { message: "画像の追加時は名前の入力は必須です。" }),
-});
-
 export const addPost = async (state: FormState, data: FormData) => {
   const isAdmin = await checkUserRole("admin");
 
@@ -59,20 +53,19 @@ export const addPost = async (state: FormState, data: FormData) => {
   const altText = data.get("altText") as string;
   const draft = data.get("draft") === "true";
 
-  const validatedFields = schema.safeParse({
+  const validateDate = {
     title,
     content,
     description,
     slug,
     categoryId,
-  });
+  };
 
-  if (!validatedFields.success) {
-    const errors = {
-      errors: validatedFields.error.flatten().fieldErrors,
-    };
-    console.log(errors);
-    return errors;
+  const validated = validateSchema(schema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return validated.errors;
   }
 
   const postData: any = {
@@ -86,43 +79,27 @@ export const addPost = async (state: FormState, data: FormData) => {
 
   if (image && image.size > 0) {
     try {
-      const isValidFile = await validateFile(image);
+      const result = await fileSaveAndValidate(image, altText);
 
-      if (!isValidFile) {
-        const errors = {
-          errors: {
-            image: [
-              "画像ファイルが無効です。有効な画像ファイルを選択してください。",
-            ],
+      if (!result.result) {
+        if (result.errors) {
+          console.error("画像のバリデーションエラー:", result.errors);
+          return result.errors;
+        } else if (result.message) {
+          console.error("画像保存時にエラーが発生しました:", result.message);
+          return result.message;
+        }
+      } else {
+        const createdImage = await prisma.postImage.create({
+          data: {
+            name: result.fileName,
+            url: result.fileUrl,
+            altText,
           },
-        };
-        console.log(errors);
-        return errors;
+        });
+        postData.postImage = { connect: { id: createdImage.id } };
+        console.log("画像の追加に成功しました。");
       }
-
-      const validatedFields = ImageSchema.safeParse({
-        altText,
-      });
-
-      if (!validatedFields.success) {
-        const errors = {
-          errors: validatedFields.error.flatten().fieldErrors,
-        };
-        console.log(errors);
-        return errors;
-      }
-
-      const { fileUrl, fileName } = await fileSaveUtils(image);
-      const createdImage = await prisma.postImage.create({
-        data: {
-          name: fileName,
-          url: fileUrl,
-          altText,
-        },
-      });
-      postData.postImage = { connect: { id: createdImage.id } };
-
-      console.log("画像の追加に成功しました。");
     } catch (error) {
       console.error("画像の追加時にエラーが発生しました", error);
       return { message: "画像の追加時にエラーが発生しました" };
@@ -214,20 +191,19 @@ export const updatePost = async (
   const altText = data.get("altText") as string;
   const draft = data.get("draft") === "true";
 
-  const validatedFields = schema.safeParse({
+  const validateDate = {
     title,
     content,
     description,
     slug,
     categoryId,
-  });
+  };
 
-  if (!validatedFields.success) {
-    const errors = {
-      errors: validatedFields.error.flatten().fieldErrors,
-    };
-    console.log(errors);
-    return errors;
+  const validated = validateSchema(schema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return validated.errors;
   }
 
   const postData: any = {
@@ -241,42 +217,27 @@ export const updatePost = async (
 
   if (image && image.size > 0) {
     try {
-      const isValidFile = await validateFile(image);
+      const result = await fileSaveAndValidate(image, altText);
 
-      if (!isValidFile) {
-        const errors = {
-          errors: {
-            image: [
-              "画像ファイルが無効です。有効な画像ファイルを選択してください。",
-            ],
+      if (!result.result) {
+        if (result.errors) {
+          console.error("画像のバリデーションエラー:", result.errors);
+          return result.errors;
+        } else if (result.message) {
+          console.error("画像保存時にエラーが発生しました:", result.message);
+          return result.message;
+        }
+      } else {
+        const createdImage = await prisma.postImage.create({
+          data: {
+            name: result.fileName,
+            url: result.fileUrl,
+            altText,
           },
-        };
-        console.log(errors);
-        return errors;
+        });
+        postData.postImage = { connect: { id: createdImage.id } };
+        console.log("画像の追加に成功しました。");
       }
-
-      const validatedFields = ImageSchema.safeParse({
-        altText,
-      });
-
-      if (!validatedFields.success) {
-        const errors = {
-          errors: validatedFields.error.flatten().fieldErrors,
-        };
-        console.log(errors);
-        return errors;
-      }
-
-      const { fileUrl, fileName } = await fileSaveUtils(image);
-      const createdImage = await prisma.postImage.create({
-        data: {
-          name: fileName,
-          url: fileUrl,
-          altText,
-        },
-      });
-      postData.postImage = { connect: { id: createdImage.id } };
-      console.log("画像が正常に追加されました。");
     } catch (error) {
       console.log("画像の追加にエラーが発生しました。", error);
       return { message: "画像の追加時にエラーが発生しました。" };

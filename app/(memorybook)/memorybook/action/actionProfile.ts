@@ -6,7 +6,7 @@ import { z } from "zod";
 import bcrypt from "bcrypt";
 import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
-import { validateSchema } from "../lib/validate/validateSchema";
+import { validateSchema } from "../../../lib/validateSchema";
 
 type FormState = {
   message?: string | null;

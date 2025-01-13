@@ -1,7 +1,7 @@
 "use server";
 
 // アップロードしたファイルの拡張子とmineタイプをバリデーション
-export const validateFile = async (file: File) => {
+export const validateExtensionAndMineType = async (file: File) => {
   try {
     const allowedExtensions = ["jpg", "jpeg", "png", "gif"];
     const allowedMimeTypes = [

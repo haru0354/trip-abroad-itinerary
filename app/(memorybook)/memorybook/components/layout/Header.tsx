@@ -4,6 +4,7 @@ import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import Menu from "../ui/menu/Menu";
 
 const Header = async () => {
+  const siteTItle = process.env.NEXT_PUBLIC_ITINERARY_TITLE
   const currentUserId = await getCurrentUserId();
 
   return (
@@ -13,7 +14,7 @@ const Header = async () => {
           <h1>
             <Image
               src="/logo_itinerary.png"
-              alt="国内旅行・海外旅行の旅程表作成しおりアプリ「旅のメモリーブック」"
+              alt={siteTItle || "サイトタイトルが未設定"}
               width="220"
               height="52"
               priority

@@ -6,6 +6,8 @@ type FooterProps = {
 };
 
 const Footer: React.FC<FooterProps> = ({ isTopAppDirectory }) => {
+  const siteTItle = process.env.NEXT_PUBLIC_ITINERARY_TITLE
+
   return (
     <>
       <div className="bg-blue-50 pt-8">
@@ -32,7 +34,7 @@ const Footer: React.FC<FooterProps> = ({ isTopAppDirectory }) => {
             </li>
           </ul>
           <span className="text-xs text-black">
-            &copy;国内旅行・海外旅行のしおりアプリ「旅のメモリーブック」
+            &copy; {siteTItle}
           </span>
         </div>
       </footer>

@@ -6,6 +6,8 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
+  const siteTItle = process.env.NEXT_PUBLIC_WEBSITE_TITLE;
+
   return (
     <>
       <header>
@@ -15,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
               <h1>
                 <Image
                   src="/logo_blog.png"
-                  alt="英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」"
+                  alt={siteTItle || "サイトタイトルが未設定"}
                   width={350}
                   height={90}
                   priority
@@ -25,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
             ) : (
               <Image
                 src="/logo_blog.png"
-                alt="英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」"
+                alt={siteTItle || "サイトタイトルが未設定"}
                 width={350}
                 height={90}
                 priority

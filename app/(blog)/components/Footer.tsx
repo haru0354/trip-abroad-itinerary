@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
+  const siteTItle = process.env.NEXT_PUBLIC_WEBSITE_TITLE;
+
   return (
     <>
       <div className="bg-blue-50 ">
@@ -28,7 +30,7 @@ const Footer = () => {
             </li>
           </ul>
           <span className="text-xs text-black">
-            &copy;英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」
+            &copy; {siteTItle}
           </span>
         </div>
       </footer>

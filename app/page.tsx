@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Header isTopPage={true} />
-      <HeaderImage />
+      {process.env.NEXT_PUBLIC_HEADER_IMAGE === "true" && <HeaderImage />}
       <main>
         <div className="w-full">
           <section className="bg-white">

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getCategories } from "../../lib/service/blogServiceMany";
 
 const page = async () => {
+  const siteTItle = process.env.NEXT_PUBLIC_WEBSITE_TITLE;
   const categories = await getCategories("posts");
 
   return (
@@ -14,9 +15,7 @@ const page = async () => {
       </p>
       <div className="p-4 mb-6 border border-dashed border-gray-400">
         <p className="font-semibold text-[#2a7bdf]">
-          <Link href="/">
-            英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」
-          </Link>
+          <Link href="/">{siteTItle}</Link>
         </p>
         {categories.map((category) => {
           return (

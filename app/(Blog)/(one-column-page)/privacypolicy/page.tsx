@@ -1,17 +1,19 @@
 import Link from "next/link";
 
 const page = () => {
+  const siteTItle = process.env.NEXT_PUBLIC_WEBSITE_TITLE;
+
   return (
     <>
       <h2>プライバシーポリシー</h2>
       <p>
         このプライバシーポリシーは、旅程表作成アプリ「
-        <Link href="/memorybook" className="text-blue-600 font-medium" >
+        <Link href="/memorybook" className="text-blue-600 font-medium">
           旅のメモリーブック
         </Link>
         」とブログ「
         <Link href="/" className="text-blue-600 font-medium">
-          トラベルメモリー
+          {siteTItle}
         </Link>
         」の利用に関する情報収集、利用、および開示に関する方針を説明します。
       </p>

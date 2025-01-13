@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 
+const brandTItle = process.env.NEXT_PUBLIC_WEBSITE_BRAND_TITLE;
+
 export const metadata: Metadata = {
   title: {
     default: "記事の一覧",
-    template: "%s | トラベルメモリー",
+    template: `%s | ${brandTItle}`,
   },
 };
 

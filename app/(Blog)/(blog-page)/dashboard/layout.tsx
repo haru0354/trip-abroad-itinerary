@@ -3,10 +3,12 @@ import ToastContext from "@/app/context/ToastContext";
 import AuthContext from "@/app/context/AuthContext";
 import DashboardSideMenu from "../../components/dashboard/DashboardSideMenu";
 
+const brandTItle = process.env.NEXT_PUBLIC_WEBSITE_BRAND_TITLE;
+
 export const metadata: Metadata = {
   title: {
     default: "ダッシュボードメモ",
-    template: "%s | トラベルメモリー",
+    template: `%s | ${brandTItle}`,
   },
   robots: {
     index: false, 

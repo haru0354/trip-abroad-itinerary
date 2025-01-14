@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 
-const siteTItle = process.env.NEXT_PUBLIC_WEBSITE_TITLE;
 const brandTItle = process.env.NEXT_PUBLIC_WEBSITE_BRAND_TITLE;
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteTItle}`,
+    default: "カテゴリの一覧",
     template: `%s | ${brandTItle}`,
   },
 };

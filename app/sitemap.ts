@@ -3,7 +3,7 @@ import { getPosts } from "./(blog)/lib/service/blogServiceMany";
 import { getCategories } from "./(blog)/lib/service/blogServiceMany";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseURL = "https://www.travel-memory-life.com/";
+  const siteURL = process.env.NEXT_PUBLIC_URL;
   const _lastModified = new Date();
 
   const posts = await getPosts();
@@ -11,46 +11,44 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticPaths = [
     {
-      url: `${baseURL}`,
+      url: `${siteURL}`,
       lastModified: _lastModified,
     },
     {
-      url: `${baseURL}/privacypolicy`,
+      url: `${siteURL}/privacypolicy`,
       lastModified: _lastModified,
     },
     {
-      url: `${baseURL}/memorybook`,
+      url: `${siteURL}/memorybook`,
       lastModified: _lastModified,
     },
   ];
 
-  
   const dynamicPathsPosts = posts.map((post) => {
     if (post.category && post.category.slug) {
       return {
-        url: `${baseURL}/${post.category.slug}/${post.slug}`,
+        url: `${siteURL}/${post.category.slug}/${post.slug}`,
         lastModified: new Date(post.createdDate),
       };
     }
     return {
-      url: `${baseURL}`, 
-      lastModified: new Date(),
-    };
-  }); 
-  
-  const dynamicPathsCategories = categories.map((category) => {
-    if (category.slug) {
-      return {
-        url: `${baseURL}/${category.slug}`,
-        lastModified: new Date(category.createdDate),
-      };
-    }
-    return {
-      url: `${baseURL}`, 
+      url: `${siteURL}`,
       lastModified: new Date(),
     };
   });
 
-  
+  const dynamicPathsCategories = categories.map((category) => {
+    if (category.slug) {
+      return {
+        url: `${siteURL}/${category.slug}`,
+        lastModified: new Date(category.createdDate),
+      };
+    }
+    return {
+      url: `${siteURL}`,
+      lastModified: new Date(),
+    };
+  });
+
   return [...staticPaths, ...dynamicPathsPosts, ...dynamicPathsCategories];
 }

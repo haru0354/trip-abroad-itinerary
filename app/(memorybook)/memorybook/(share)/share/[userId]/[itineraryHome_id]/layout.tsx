@@ -3,7 +3,7 @@ import Header from "@/app/(memorybook)/memorybook/components/layout/Header";
 import Footer from "@/app/(memorybook)/memorybook/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "共有された旅行記 | 旅のメモリーブック",
+  title: "共有された旅行記",
   robots: {
     index: false,
   },

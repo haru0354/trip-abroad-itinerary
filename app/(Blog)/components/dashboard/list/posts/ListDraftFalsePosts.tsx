@@ -14,8 +14,6 @@ const ListDraftFalsePosts = async ({}) => {
         draft={false}
         posts={sortedDraftFalsePosts}
         title="未公開記事(下書き保存) "
-        href="/dashboard/post/"
-        buttonTitle="公開記事に切り替え"
       />
     </>
   );

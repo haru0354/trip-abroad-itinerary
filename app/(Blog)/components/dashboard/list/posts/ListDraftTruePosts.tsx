@@ -14,8 +14,6 @@ const ListDraftTruePosts = async ({}) => {
         draft={true}
         posts={sortedDraftTruePosts}
         title="公開記事"
-        href="/dashboard/post/private-post"
-        buttonTitle="未公開記事に切り替え"
       />
     </>
   );

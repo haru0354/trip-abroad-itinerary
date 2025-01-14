@@ -5,8 +5,6 @@ type ListPostsProps = {
   draft: boolean;
   posts: Post[];
   title: string;
-  href: string;
-  buttonTitle: string;
 };
 
 type Post = {
@@ -37,8 +35,6 @@ const ListPosts: React.FC<ListPostsProps> = async ({
   draft,
   posts,
   title,
-  href,
-  buttonTitle,
 }) => {
   return (
     <>
@@ -101,9 +97,6 @@ const ListPosts: React.FC<ListPostsProps> = async ({
             </div>
           );
         })}
-        <Button color="blue" size="normal" className="my-6">
-          <Link href={href}>{buttonTitle}</Link>
-        </Button>
       </div>
     </>
   );

@@ -72,21 +72,19 @@ const ListDashboardMemo = async () => {
   return (
     <>
       <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
-        メモの一覧
+        サイト制作のメモ一覧
       </h2>
       {sortedDashboardMemos.map((memo) => {
         return (
           <React.Fragment key={memo.id}>
-            <Link href={`/dashboard/${memo.id}`}>
-              <ButtonImage
-                className="rounded"
-                size="small"
-                icon="pen"
-                iconClassName="mr-2 w-[13px] h-[13px]"
-              >
-                編集
-              </ButtonImage>
-            </Link>
+            <ButtonImage
+              className="rounded"
+              size="small"
+              icon="pen"
+              iconClassName="mr-2 w-[13px] h-[13px]"
+            >
+              <Link href={`/dashboard/${memo.id}`}>編集 </Link>
+            </ButtonImage>
             <div className="bg-gray-200 shadow-md rounded px-8 py-8 mb-10 ">
               <div className="flex justify-between border-b-2 border-gray-300 mb-2">
                 <div>{memo.name}</div>

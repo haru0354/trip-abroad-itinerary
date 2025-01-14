@@ -8,7 +8,7 @@ const ListImages = async () => {
   const sortedImages = images.sort((a, b) => b.id - a.id);
 
   return (
-    <div className="flex flex-wrap w-full">
+    <div className="flex flex-wrap w-full items-center justify-center">
       {sortedImages.map((image) => {
         return (
           <Link href={`/dashboard/image/${image.id}`} key={image.id}>

@@ -32,22 +32,17 @@ const FormPostImage: React.FC<FormPostImageProps> = ({
     message: null,
     errors: { image: undefined, altText: undefined },
   };
+  
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
     initialState
   );
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    dispatch(data);
-  };
-
   return (
     <>
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-full">
-          <form onSubmit={handleSubmit}>
+          <form action={dispatch}>
             <FormImage
               selectImage={postImage}
               state={state}

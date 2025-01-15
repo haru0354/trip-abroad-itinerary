@@ -1,16 +1,45 @@
 import Link from "next/link";
-import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
 import Button from "@/app/components/ui/Button";
 
-const ListPost = async () => {
-  const posts = await getPosts("category");
+type ListPostsProps = {
+  draft: boolean;
+  posts: Post[];
+  title: string;
+};
 
-  const sortedPosts = posts.sort((a, b) => b.id - a.id);
+type Post = {
+  id: number;
+  createdDate: Date;
+  updatedDate: Date;
+  title: string;
+  content: string;
+  categoryId: number;
+  description: string;
+  slug: string;
+  postImageId: number | null;
+  draft: boolean;
+  category: {
+    id: number;
+    name: string;
+    slug: string;
+    title: string | null;
+    content: string | null;
+    description: string | null;
+    postImageId: number | null;
+    createdDate: Date;
+    updatedDate: Date;
+  };
+};
 
+const ListPosts: React.FC<ListPostsProps> = async ({
+  draft,
+  posts,
+  title,
+}) => {
   return (
     <>
       <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
-        記事の一覧
+        {title}の一覧
       </h2>
       <div className="flex flex-col border border-gray-500 sm:flex-row py-4 items-center w-full sm:w-auto">
         <p className="sm:border-r border-gray-500  w-full px-2 mb-0 sm:w-auto min-w-[100px]">
@@ -24,7 +53,7 @@ const ListPost = async () => {
         </p>
       </div>
       <div className="mb-10">
-        {sortedPosts.map((post) => {
+        {posts.map((post) => {
           const formattedCreatedDate = new Date(
             post.createdDate
           ).toLocaleDateString();
@@ -49,11 +78,16 @@ const ListPost = async () => {
                 </p>
               </div>
               <div className="flex sm:justify-end items-center my-4 sm:max-w-[240px]">
-                <Link href={`/${post.category.slug}/${post.slug}`}>
-                  <Button color="blue" size="small">
-                    ページ
-                  </Button>
-                </Link>
+                {draft === true && (
+                  <Link
+                    href={`/${post.category.slug}/${post.slug}`}
+                    target="blank"
+                  >
+                    <Button color="blue" size="small">
+                      ページ
+                    </Button>
+                  </Link>
+                )}
                 <Link href={`/dashboard/post/${post.id}`}>
                   <Button color="gray" size="small">
                     編集
@@ -68,4 +102,4 @@ const ListPost = async () => {
   );
 };
 
-export default ListPost;
+export default ListPosts;

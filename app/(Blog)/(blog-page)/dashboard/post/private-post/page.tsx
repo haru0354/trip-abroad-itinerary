@@ -1,13 +1,13 @@
 import Link from "next/link";
-import ListCategory from "@/app/(blog)/components/dashboard/list/ListCategory";
+import ListDraftFalsePosts from "@/app/(blog)/components/dashboard/list/posts/ListDraftFalsePosts";
 import Button from "@/app/components/ui/Button";
 
 const page = () => {
   return (
     <>
-      <ListCategory />
+      <ListDraftFalsePosts />
       <Button color="blue" size="normal" className="my-6">
-        <Link href="/dashboard/category/new-category">カテゴリの追加へ</Link>
+        <Link href="/dashboard/post/">公開記事に切り替え</Link>
       </Button>
     </>
   );

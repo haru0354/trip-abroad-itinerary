@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
@@ -43,7 +43,21 @@ const FormMemo: React.FC<FormMemoProps> = ({
     formAction,
     initialState
   );
-  const [errorMessage, setErrorMessage] = useState<FormState>();
+
+  useEffect(() => {
+    if (state.message === "add") {
+      setInputValue("");
+      setTextareaChange("");
+      toast.success("メモを保存しました！");
+      state.message = "";
+    } else if (state.message === "edit") {
+      toast.success("メモを編集しました！");
+      router.replace(`/memorybook/${itineraryHomeId}/memo`);
+      state.message = "";
+    } else if (state.message === "failure") {
+      toast.error("メモの保存に失敗しました。");
+    }
+  }, [state.message]);
 
   const [inputValue, setInputValue] = useState<string>(memo?.name || "");
   const [textAreaValue, setTextareaChange] = useState<string>(
@@ -58,26 +72,6 @@ const FormMemo: React.FC<FormMemoProps> = ({
     setTextareaChange(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const result = await formAction(state, formData);
-    switch (result.message) {
-      case "add":
-        setInputValue("");
-        setTextareaChange("");
-        toast.success("メモを保存しました！");
-        break;
-      case "edit":
-        toast.success("メモを編集しました！");
-        router.replace(`/memorybook/${itineraryHomeId}/memo`);
-        break;
-      default:
-        setErrorMessage(result);
-        break;
-    }
-  };
-
   return (
     <div>
       <h2>メモの追加</h2>
@@ -86,7 +80,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
           <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-semibold">
             メモのフォーム
           </p>
-          <form onSubmit={handleSubmit} className="w-full py-3">
+          <form action={dispatch} className="w-full py-3">
             <Form
               label="メモの見出し"
               name="name"
@@ -94,11 +88,9 @@ const FormMemo: React.FC<FormMemoProps> = ({
               value={inputValue}
               onChange={handleInputChange}
             />
-            {errorMessage &&
-              errorMessage.errors &&
-              errorMessage.errors.name && (
-                <p className="text-red-500">{errorMessage.errors.name}</p>
-              )}
+            {state.errors && state.errors.name && (
+              <p className="text-red-500">{state.errors.name}</p>
+            )}
             <TextArea
               label="メモする内容"
               name="content"
@@ -111,8 +103,8 @@ const FormMemo: React.FC<FormMemoProps> = ({
               name="itineraryHomeId"
               value={itineraryHomeId}
             />
-            {errorMessage && errorMessage.message !== "failure" && (
-              <p className="text-red-500">{errorMessage.message}</p>
+            {state.errors && state.message !== "failure" && (
+              <p className="text-red-500">{state.message}</p>
             )}
             <Button color="blue" size="normal" className="rounded mt-4">
               {buttonName}

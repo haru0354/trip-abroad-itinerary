@@ -8,10 +8,9 @@ export const validateSchema = (schema: ZodSchema, data: unknown) => {
       success: false,
       errors: {
         errors: result.error.flatten().fieldErrors,
-        message: "failure",
       },
     };
   }
-
+  
   return { success: true, data: result.data };
 };

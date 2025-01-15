@@ -22,7 +22,7 @@ type FormState = {
   errors?: {
     name?: string[] | undefined;
     content?: string[] | undefined;
-    userId?: string[] | undefined;
+    itineraryHomeId?: string[] | undefined;
   };
 };
 
@@ -34,6 +34,12 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  const initialState = { message: null, errors: { name: undefined } };
+  const [state, dispatch] = useFormState<FormState, FormData>(
+    addMemo,
+    initialState
+  );
+
   useEffect(() => {
     if (typeof document !== "undefined") {
       if (isModalOpen) {
@@ -44,6 +50,22 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
     }
   }, [isModalOpen]);
 
+  useEffect(() => {
+    if (state.message === "add") {
+      setInputValue("");
+      setTextareaChange("");
+      toggleModal();
+      toast.success("メモを保存しました！");
+      state.message = "";
+    } else if (state.message === "edit") {
+      toast.success("メモを編集しました！");
+      router.replace(`/memorybook/${itineraryHomeId}/memo`);
+      state.message = "";
+    } else if (state.message === "failure") {
+      toast.error("メモの保存に失敗しました。");
+    }
+  }, [state.message]);
+
   const toggleModal = () => setIsModalOpen((prev) => !prev);
 
   const closeModal = (e: React.MouseEvent) => {
@@ -51,13 +73,6 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
       toggleModal();
     }
   };
-
-  const initialState = { message: null, errors: { name: undefined } };
-  const [state, dispatch] = useFormState<FormState, FormData>(
-    addMemo,
-    initialState
-  );
-  const [errorMessage, setErrorMessage] = useState<FormState>();
 
   const [inputValue, setInputValue] = useState<string>("");
   const [textAreaValue, setTextareaChange] = useState<string>("");
@@ -68,27 +83,6 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
 
   const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTextareaChange(e.target.value);
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const result = await addMemo(state, formData);
-    switch (result.message) {
-      case "add":
-        setInputValue("");
-        setTextareaChange("");
-        toggleModal();
-        toast.success("メモを保存しました！");
-        break;
-      case "edit":
-        toast.success("メモを編集しました！");
-        router.replace(`/memorybook/${itineraryHomeId}/memo`);
-        break;
-      default:
-        setErrorMessage(result);
-        break;
-    }
   };
 
   return (
@@ -120,22 +114,20 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
               <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-semibold">
                 メモのフォーム
               </p>
-              <form onSubmit={handleSubmit} className="w-full py-3">
+              <form action={dispatch} className="w-full py-3">
                 <Form
-                  label={"メモの見出し"}
-                  name={"name"}
+                  label="メモの見出し"
+                  name="name"
                   placeholder="メモの見出しを記載しましょう。"
                   value={inputValue}
                   onChange={handleInputChange}
                 />
-                {errorMessage &&
-                  errorMessage.errors &&
-                  errorMessage.errors.name && (
-                    <p className="text-red-500">{errorMessage.errors.name}</p>
-                  )}
+                {state.errors && state.errors.name && (
+                  <p className="text-red-500">{state.errors.name}</p>
+                )}
                 <TextArea
-                  label={"メモする内容"}
-                  name={"content"}
+                  label="メモする内容"
+                  name="content"
                   placeholder="メモする内容を記載しましょう。"
                   value={textAreaValue}
                   onChange={handleTextareaChange}
@@ -145,8 +137,8 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
                   name="itineraryHomeId"
                   value={itineraryHomeId}
                 />
-                {errorMessage && errorMessage.message !== "failure" && (
-                  <p className="text-red-500">{errorMessage.message}</p>
+                {state.errors && state.message !== "failure" && (
+                  <p className="text-red-500">{state.message}</p>
                 )}
                 <Button color="blue" size="normal" className="rounded mt-4">
                   {buttonName2}

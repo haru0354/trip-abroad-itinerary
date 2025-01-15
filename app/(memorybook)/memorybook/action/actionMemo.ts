@@ -47,8 +47,12 @@ export const addMemo = async (state: FormState, data: FormData) => {
   const validated = validateSchema(schema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
-    return validated.errors;
+    if (validated.errors) {
+      console.log(validated.errors);
+      return validated.errors;
+    } else {
+      console.error("何らかのバリデーションエラーが発生しました");
+    }
   }
 
   try {

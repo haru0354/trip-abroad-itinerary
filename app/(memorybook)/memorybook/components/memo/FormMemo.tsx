@@ -38,6 +38,11 @@ const FormMemo: React.FC<FormMemoProps> = ({
   itineraryHomeId,
 }) => {
   const router = useRouter();
+  const [inputValue, setInputValue] = useState<string>(memo?.name || "");
+  const [textAreaValue, setTextareaChange] = useState<string>(
+    memo?.content || ""
+  );
+
   const initialState = { message: null, errors: { name: undefined } };
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
@@ -58,11 +63,6 @@ const FormMemo: React.FC<FormMemoProps> = ({
       toast.error("メモの保存に失敗しました。");
     }
   }, [state.message]);
-
-  const [inputValue, setInputValue] = useState<string>(memo?.name || "");
-  const [textAreaValue, setTextareaChange] = useState<string>(
-    memo?.content || ""
-  );
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);

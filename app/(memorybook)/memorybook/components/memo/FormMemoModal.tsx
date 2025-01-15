@@ -32,7 +32,10 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
   itineraryHomeId,
 }) => {
   const router = useRouter();
+  
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>("");
+  const [textAreaValue, setTextareaChange] = useState<string>("");
 
   const initialState = { message: null, errors: { name: undefined } };
   const [state, dispatch] = useFormState<FormState, FormData>(
@@ -73,9 +76,6 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
       toggleModal();
     }
   };
-
-  const [inputValue, setInputValue] = useState<string>("");
-  const [textAreaValue, setTextareaChange] = useState<string>("");
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);

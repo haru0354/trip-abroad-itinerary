@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -48,6 +48,22 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   itineraryHomeId,
 }) => {
   const router = useRouter();
+
+  const [dateValue, setDateValue] = useState<string>(itinerary?.date || "");
+  const [timeValue, setTimeValue] = useState<string>(itinerary?.time || "");
+  const [inputValue, setInputValue] = useState<string>(itinerary?.name || "");
+  const [TextAreaValue, setTextAreaValue] = useState<string>(
+    itinerary?.content || ""
+  );
+  const [hideTextAreaValue, setHideTextAreaValue] = useState<string>(
+    itinerary?.hideContent || ""
+  );
+  const [altTextValue, setAltTextValue] = useState<string>(
+    itinerary?.altText || ""
+  )
+
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const initialState = {
     message: null,
     errors: {
@@ -61,22 +77,26 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     formAction,
     initialState
   );
-  const [errorMessage, setErrorMessage] = useState<FormState>();
 
-  const [dateValue, setDateValue] = useState<string>(itinerary?.date || "");
-  const [timeValue, setTimeValue] = useState<string>(itinerary?.time || "");
-  const [inputValue, setInputValue] = useState<string>(itinerary?.name || "");
-  const [TextAreaValue, setTextAreaValue] = useState<string>(
-    itinerary?.content || ""
-  );
-  const [hideTextAreaValue, setHideTextAreaValue] = useState<string>(
-    itinerary?.hideContent || ""
-  );
-  const [altTextValue, setAltTextValue] = useState<string>(
-    itinerary?.altText || ""
-  );
-
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  useEffect(() => {
+    if (state.message === "add") {
+      setDateValue("");
+      setTimeValue("");
+      setInputValue("");
+      setTextAreaValue("");
+      setHideTextAreaValue("");
+      setAltTextValue("");
+      setFormSubmitted((prev) => !prev);
+      toast.success("旅程を保存しました！");
+      state.message = "";
+    } else if (state.message === "edit") {
+      toast.success("旅程を編集しました！");
+      state.message = "";
+      router.replace(`/memorybook/${itineraryHomeId}/itinerary/`);
+    } else if (state.message === "failure") {
+      toast.error("旅程の保存に失敗しました。");
+    }
+  }, [state.message]);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDateValue(e.target.value);
@@ -104,31 +124,6 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     setAltTextValue(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const result = await formAction(state, formData);
-    switch (result.message) {
-      case "add":
-        setDateValue("");
-        setTimeValue("");
-        setInputValue("");
-        setTextAreaValue("");
-        setHideTextAreaValue("");
-        setAltTextValue("");
-        setFormSubmitted((prev) => !prev);
-        toast.success("旅程を保存しました！");
-        break;
-      case "edit":
-        toast.success("旅程を編集しました！");
-        router.replace(`/memorybook/${itineraryHomeId}/itinerary/`);
-        break;
-      default:
-        setErrorMessage(result);
-        break;
-    }
-  };
-
   return (
     <div id="add">
       <h2>旅程の追加</h2>
@@ -137,19 +132,15 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
           <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-semibold">
             旅程表のフォーム
           </p>
-          <form onSubmit={handleSubmit} className="w-full py-3">
+          <form action={dispatch} className="w-full py-3">
             <Date name={"date"} value={dateValue} onChange={handleDateChange} />
-            {errorMessage &&
-              errorMessage.errors &&
-              errorMessage.errors.date && (
-                <p className="text-red-500">{errorMessage.errors.date}</p>
-              )}
+            {state.errors && state.errors.date && (
+              <p className="text-red-500">{state.errors.date}</p>
+            )}
             <Time value={timeValue} onChange={handleTimeChange} />
-            {errorMessage &&
-              errorMessage.errors &&
-              errorMessage.errors.time && (
-                <p className="text-red-500">{errorMessage.errors.time}</p>
-              )}
+            {state.errors && state.errors.time && (
+              <p className="text-red-500">{state.errors.time}</p>
+            )}
             <Form
               label={"目的（何をするのか）"}
               placeholder={"観光なら「観光地名」移動なら「電車名」など"}
@@ -157,11 +148,9 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
               value={inputValue}
               onChange={handleInputChange}
             />
-            {errorMessage &&
-              errorMessage.errors &&
-              errorMessage.errors.name && (
-                <p className="text-red-500">{errorMessage.errors.name}</p>
-              )}
+            {state.errors && state.errors.name && (
+              <p className="text-red-500">{state.errors.name}</p>
+            )}
             <TextArea
               label={"補足情報"}
               placeholder={
@@ -181,7 +170,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
               onChange={handleHideTextareaChange}
             />
             <FormImage
-              state={errorMessage}
+              state={state}
               selectImage={itinerary}
               formSubmitted={formSubmitted}
               altTextValue={altTextValue}
@@ -194,8 +183,8 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
               name="itineraryHomeId"
               value={itineraryHomeId}
             />
-            {errorMessage && errorMessage.message !== "failure" && (
-              <p className="text-red-500">{errorMessage.message}</p>
+            {state.errors && state.message !== "failure" && (
+              <p className="text-red-500">{state.message}</p>
             )}
             <Button color="blue" size="normal" className="rounded mt-4">
               {buttonName}

@@ -8,26 +8,31 @@ const ListImages = async () => {
   const sortedImages = images.sort((a, b) => b.id - a.id);
 
   return (
-    <div className="flex flex-wrap w-full items-center justify-center">
-      {sortedImages.map((image) => {
-        return (
-          <Link href={`/dashboard/image/${image.id}`} key={image.id}>
-            <div className="mx-4 my-4">
-              <Image
-                src={image.url}
-                alt={image.altText}
-                width={210}
-                height={100}
-                style={{
-                  width: "240px",
-                  height: "160px",
-                }}
-              />
-            </div>
-          </Link>
-        );
-      })}
-    </div>
+    <>
+      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
+        画像ライブラリー
+      </h2>
+      <div className="flex flex-wrap w-full items-center justify-center">
+        {sortedImages.map((image) => {
+          return (
+            <Link href={`/dashboard/image/${image.id}`} key={image.id}>
+              <div className="mx-4 my-4">
+                <Image
+                  src={image.url}
+                  alt={image.altText}
+                  width={210}
+                  height={100}
+                  style={{
+                    width: "240px",
+                    height: "160px",
+                  }}
+                />
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

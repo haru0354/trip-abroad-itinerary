@@ -1,13 +1,15 @@
 import ListImages from "@/app/(blog)/components/dashboard/list/ListImages";
+import Button from "@/app/components/ui/Button";
+import Link from "next/link";
 
 const page = () => {
   return (
-    <div>
-      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
-        画像ライブラリー
-      </h2>
+    <>
       <ListImages />
-    </div>
+      <Button color="blue" size="normal" className="my-6">
+        <Link href="/dashboard/image/new-image">画像の追加へ</Link>
+      </Button>
+    </>
   );
 };
 

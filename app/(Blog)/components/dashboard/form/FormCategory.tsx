@@ -46,22 +46,17 @@ const FormCategory: React.FC<FormCategoryProps> = ({
     message: null,
     errors: { name: undefined, slug: undefined, altText: undefined },
   };
+  
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
     initialState
   );
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    dispatch(formData);
-  };
-
   return (
     <>
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-full">
-          <form onSubmit={handleSubmit}>
+          <form action={dispatch}>
             {state.message && <p className="text-red-500">{state.message}</p>}
             <Form
               name="name"

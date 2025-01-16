@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -39,8 +39,6 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
     formAction,
     initialState
   );
-  const [errorMessage, setErrorMessage] = useState<string | undefined>();
-
   const [inputValue, setInputValue] = useState<string>(
     dashboardMemo?.name || ""
   );
@@ -56,25 +54,20 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
     setTextareaChange(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const result = await formAction(state, formData);
-    if ("message" in result) {
-      if (result.message === "add") {
-        setInputValue("");
-        setTextareaChange("");
-        toast.success("メモを保存しました！");
-      } else if (result.message === "edit") {
-        toast.success("メモを編集しました！");
-        router.replace("/dashboard");
-      } else if (result.message === "failure") {
-        if (result.errors && result.errors.name) {
-          setErrorMessage(result.errors.name[0]);
-        }
-      }
+  useEffect(() => {
+    if (state.message === "add") {
+      setInputValue("");
+      setTextareaChange("");
+      state.message = "";
+      toast.success("メモを保存しました！");
+    } else if (state.message === "edit") {
+      toast.success("メモを編集しました！");
+      state.message = "";
+      router.replace("/dashboard");
+    } else if (state.message === "failure") {
+      toast.error("メモの保存に失敗しました。");
     }
-  };
+  }, [state.message]);
 
   return (
     <>
@@ -83,7 +76,7 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
       </h2>
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-full">
-          <form action={dispatch} onSubmit={handleSubmit}>
+          <form action={dispatch}>
             <Form
               label="メモの見出し"
               name="name"
@@ -91,7 +84,9 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
               value={inputValue}
               onChange={handleInputChange}
             />
-            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+            {state.errors && (
+              <p className="text-red-500">{state.errors.name}</p>
+            )}
             <TextArea
               label="メモする内容"
               name="content"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -30,15 +30,26 @@ const FormPassword: React.FC<FormPasswordProps> = ({
     message: null,
     errors: { password: undefined, passwordConfirmation: undefined },
   };
+
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
     initialState
   );
-  const [errorMessage, setErrorMessage] = useState<FormState>();
+
   const [passwordValue, setPasswordValue] = useState<string | undefined>("");
   const [passwordConfirmationValue, setPasswordConfirmationValue] = useState<
     string | undefined
   >("");
+
+  useEffect(() => {
+    if (state.message === "edit") {
+      toast.success("パスワードを編集しました！");
+      state.message = "";
+      router.replace("/memorybook/dashboard/profile");
+    } else if (state.message === "failure") {
+      toast.error("パスワードの編集に失敗しました。");
+    }
+  }, [state.message]);
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(e.target.value);
@@ -49,21 +60,6 @@ const FormPassword: React.FC<FormPasswordProps> = ({
     setPasswordConfirmationValue(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const result = await formAction(state, formData);
-    switch (result.message) {
-      case "edit":
-        toast.success("パスワードを編集しました！");
-        router.replace("/memorybook/dashboard/profile");
-        break;
-      default:
-        setErrorMessage(result);
-        break;
-    }
-  };
-
   return (
     <>
       <h2>パスワードの変更</h2>
@@ -72,7 +68,7 @@ const FormPassword: React.FC<FormPasswordProps> = ({
           <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-semibold">
             パスワード
           </p>
-          <form onSubmit={handleSubmit} className="w-full py-3">
+          <form action={dispatch} className="w-full py-3">
             <Form
               label="パスワード"
               name="password"
@@ -81,11 +77,9 @@ const FormPassword: React.FC<FormPasswordProps> = ({
               value={passwordValue}
               onChange={handlePasswordChange}
             />
-            {errorMessage &&
-              errorMessage.errors &&
-              errorMessage.errors.password && (
-                <p className="text-red-500">{errorMessage.errors.password}</p>
-              )}
+            {state.errors && state.errors.password && (
+              <p className="text-red-500">{state.errors.password}</p>
+            )}
             <Form
               label="パスワード（確認用）"
               name="passwordConfirmation"
@@ -94,15 +88,13 @@ const FormPassword: React.FC<FormPasswordProps> = ({
               value={passwordConfirmationValue}
               onChange={handlePasswordConfirmationChange}
             />
-            {errorMessage &&
-              errorMessage.errors &&
-              errorMessage.errors.passwordConfirmation && (
-                <p className="text-red-500">
-                  {errorMessage.errors.passwordConfirmation}
-                </p>
-              )}
-            {errorMessage && errorMessage.message !== "failure" && (
-              <p className="text-red-500">{errorMessage.message}</p>
+            {state.errors && state.errors.passwordConfirmation && (
+              <p className="text-red-500">
+                {state.errors.passwordConfirmation}
+              </p>
+            )}
+            {state.errors && state.message !== "failure" && (
+              <p className="text-red-500">{state.message}</p>
             )}
             <Button color="blue" size="normal" className="rounded mt-4">
               {buttonName}

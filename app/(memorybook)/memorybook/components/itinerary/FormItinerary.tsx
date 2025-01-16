@@ -60,7 +60,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   );
   const [altTextValue, setAltTextValue] = useState<string>(
     itinerary?.altText || ""
-  )
+  );
 
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -133,7 +133,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
             旅程表のフォーム
           </p>
           <form action={dispatch} className="w-full py-3">
-            <Date name={"date"} value={dateValue} onChange={handleDateChange} />
+            <Date name="date" value={dateValue} onChange={handleDateChange} />
             {state.errors && state.errors.date && (
               <p className="text-red-500">{state.errors.date}</p>
             )}
@@ -142,9 +142,9 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
               <p className="text-red-500">{state.errors.time}</p>
             )}
             <Form
-              label={"目的（何をするのか）"}
-              placeholder={"観光なら「観光地名」移動なら「電車名」など"}
-              name={"name"}
+              label="目的（何をするのか）"
+              placeholder="観光なら「観光地名」移動なら「電車名」など"
+              name="name"
               value={inputValue}
               onChange={handleInputChange}
             />
@@ -152,20 +152,16 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
               <p className="text-red-500">{state.errors.name}</p>
             )}
             <TextArea
-              label={"補足情報"}
-              placeholder={
-                "観光地なら服装の注意。レストランなら食べる予定の料理名などメモを記載しましょう。"
-              }
-              name={"content"}
+              label="補足情報"
+              placeholder="観光地なら服装の注意。レストランなら食べる予定の料理名などメモを記載しましょう。"
+              name="content"
               value={TextAreaValue}
               onChange={handleTextareaChange}
             />
             <TextArea
-              label={"補足情報2"}
-              placeholder={
-                "ボタンクリックで表示されるエリアです。電車なら乗り換え方法など必要な場面でのみ見たい情報を入力。"
-              }
-              name={"hideContent"}
+              label="補足情報2"
+              placeholder="ボタンクリックで表示されるエリアです。電車なら乗り換え方法など必要な場面でのみ見たい情報を入力。"
+              name="hideContent"
               value={hideTextAreaValue}
               onChange={handleHideTextareaChange}
             />

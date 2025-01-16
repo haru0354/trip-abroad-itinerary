@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -29,18 +29,28 @@ const FormProfile: React.FC<FormProfileProps> = ({
   userName,
 }) => {
   const router = useRouter();
+  const [nameValue, setNameValue] = useState<string | undefined>(userName);
+  const [emailValue, setEmailValue] = useState<string | undefined>(userEmail);
 
   const initialState = {
     message: null,
     errors: { name: undefined, email: undefined },
   };
+  
   const [state, dispatch] = useFormState<FormState, FormData>(
     formAction,
     initialState
   );
-  const [errorMessage, setErrorMessage] = useState<FormState>();
-  const [nameValue, setNameValue] = useState<string | undefined>(userName);
-  const [emailValue, setEmailValue] = useState<string | undefined>(userEmail);
+
+  useEffect(() => {
+    if (state.message === "edit") {
+      toast.success("プロフィールを編集しました！");
+      state.message = "";
+      router.replace("/memorybook/");
+    } else if (state.message === "failure") {
+      toast.error("プロフィールの編集に失敗しました。");
+    }
+  }, [state.message]);
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNameValue(e.target.value);
@@ -48,21 +58,6 @@ const FormProfile: React.FC<FormProfileProps> = ({
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmailValue(e.target.value);
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const result = await formAction(state, formData);
-    switch (result.message) {
-      case "edit":
-        toast.success("プロフィールを編集しました！");
-        router.replace("/memorybook/");
-        break;
-      default:
-        setErrorMessage(result);
-        break;
-    }
   };
 
   return (
@@ -73,7 +68,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
           <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-semibold">
             プロフィール
           </p>
-          <form onSubmit={handleSubmit} className="w-full py-3">
+          <form action={dispatch} className="w-full py-3">
             <Form
               label="名前(ニックネーム)"
               name="name"
@@ -81,11 +76,9 @@ const FormProfile: React.FC<FormProfileProps> = ({
               value={nameValue}
               onChange={handleNameChange}
             />
-            {errorMessage &&
-              errorMessage.errors &&
-              errorMessage.errors.name && (
-                <p className="text-red-500">{errorMessage.errors.name}</p>
-              )}
+            {state.errors && state.errors.name && (
+              <p className="text-red-500">{state.errors.name}</p>
+            )}
             <Form
               label="メールアドレス"
               name="email"
@@ -93,13 +86,11 @@ const FormProfile: React.FC<FormProfileProps> = ({
               value={emailValue}
               onChange={handleEmailChange}
             />
-            {errorMessage &&
-              errorMessage.errors &&
-              errorMessage.errors.email && (
-                <p className="text-red-500">{errorMessage.errors.email}</p>
-              )}
-            {errorMessage && errorMessage.message !== "failure" && (
-              <p className="text-red-500">{errorMessage.message}</p>
+            {state.errors && state.errors.email && (
+              <p className="text-red-500">{state.errors.email}</p>
+            )}
+            {state.errors && state.message !== "failure" && (
+              <p className="text-red-500">{state.message}</p>
             )}
             <Button color="blue" size="normal" className="rounded mt-4">
               {buttonName}

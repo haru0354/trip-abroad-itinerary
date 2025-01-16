@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -40,13 +40,6 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
   formAction,
 }) => {
   const router = useRouter();
-  const initialState = { message: null, errors: { name: undefined } };
-  const [state, dispatch] = useFormState<FormState, FormData>(
-    formAction,
-    initialState
-  );
-
-  const [errorMessage, setErrorMessage] = useState<FormState>();
   const [startDateValue, setStartDateValue] = useState<string>(
     itineraryHome?.startDate || ""
   );
@@ -57,6 +50,26 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
   const [destinationValue, setDestinationValue] = useState<string>(
     itineraryHome?.destination || ""
   );
+
+  const initialState = { message: null, errors: { name: undefined } };
+  const [state, dispatch] = useFormState<FormState, FormData>(
+    formAction,
+    initialState
+  );
+
+  useEffect(() => {
+    if (state.message === "add") {
+      toast.success("旅行を保存しました！");
+      router.replace(`/memorybook/${state.createdItineraryHomeId}/itinerary`);
+      state.message = "";
+    } else if (state.message === "edit") {
+      toast.success("旅行を編集しました！");
+      state.message = "";
+      router.replace("/memorybook/dashboard");
+    } else if (state.message === "failure") {
+      toast.error("旅行の保存に失敗しました。");
+    }
+  }, [state.message]);
 
   const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStartDateValue(e.target.value);
@@ -71,26 +84,6 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
     setDestinationValue(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const result = await formAction(state, formData);
-    switch (result.message) {
-      case "add":
-        toast.success("旅行を保存しました！");
-        const createdItineraryHomeId = result.createdItineraryHomeId;
-        router.replace(`/memorybook/${createdItineraryHomeId}/itinerary`);
-        break;
-      case "edit":
-        toast.success("旅行を編集しました！");
-        router.replace("/memorybook/dashboard");
-        break;
-      default:
-        setErrorMessage(result);
-        break;
-    }
-  };
-
   return (
     <div>
       <h2>旅行の追加</h2>
@@ -99,7 +92,7 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
           <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-semibold">
             旅行のフォーム
           </p>
-          <form onSubmit={handleSubmit} className="w-full py-3">
+          <form action={dispatch} className="w-full py-3">
             <Date
               name="startDate"
               label="出発日(未記入も可)"
@@ -119,11 +112,9 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
               onChange={handleNameChange}
               value={nameValue}
             />
-            {errorMessage &&
-              errorMessage.errors &&
-              errorMessage.errors.name && (
-                <p className="text-red-500">{errorMessage.errors.name}</p>
-              )}
+            {state.errors && state.errors.name && (
+              <p className="text-red-500">{state.errors.name}</p>
+            )}
             <Form
               label="旅行先(未記入も可)"
               name="destination"
@@ -131,8 +122,8 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
               onChange={handleDestinationChange}
               value={destinationValue}
             />
-            {errorMessage && errorMessage.message !== "failure" && (
-              <p className="text-red-500">{errorMessage.message}</p>
+            {state.errors && state.message !== "failure" && (
+              <p className="text-red-500">{state.message}</p>
             )}
             <Button color="blue" size="normal" className="rounded mt-4">
               {buttonName}

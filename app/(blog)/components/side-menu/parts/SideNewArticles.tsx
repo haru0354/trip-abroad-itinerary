@@ -11,8 +11,8 @@ const SideNewArticles = async () => {
 
   return (
     <div className="w-full p-2">
-      <h3 className="bg-blue-400 text-white font-bold text-lg px-2 py-4 rounded-sm">
-        新着記事
+      <h3 className="px-2 py-4 font-bold text-lg rounded bg-blog-heading text-white">
+      新着記事
       </h3>
       <ul>
         {posts.map((post) => {

@@ -12,7 +12,12 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-          'footer-image': "url('/0-10.jpg')",
+        "footer-image": "url('/0-10.jpg')",
+      },
+      colors: {
+        blog: {
+          heading: "#60a5fa",
+        },
       },
     },
   },

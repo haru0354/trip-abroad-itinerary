@@ -10,7 +10,7 @@ const SideCategoryMenu = async () => {
 
   return (
     <div className="w-full p-2">
-      <h3 className="bg-blue-400 text-white font-bold text-lg px-2 py-4 rounded-sm">
+      <h3 className="px-2 py-4 font-bold text-lg rounded bg-blog-heading text-white">
         カテゴリ
       </h3>
       {categories.map((category) => {

@@ -31,14 +31,10 @@ type Post = {
   };
 };
 
-const ListPosts: React.FC<ListPostsProps> = async ({
-  draft,
-  posts,
-  title,
-}) => {
+const ListPosts: React.FC<ListPostsProps> = async ({ draft, posts, title }) => {
   return (
     <>
-      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
+      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
         {title}の一覧
       </h2>
       <div className="flex flex-col border border-gray-500 sm:flex-row py-4 items-center w-full sm:w-auto">

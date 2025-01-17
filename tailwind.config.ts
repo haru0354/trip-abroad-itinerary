@@ -17,6 +17,7 @@ const config: Config = {
       colors: {
         blog: {
           heading: "#60a5fa",
+          dashboardHeading: "rgb(75 85 99)",
           black: "rgb(75 85 99)"
         },
       },

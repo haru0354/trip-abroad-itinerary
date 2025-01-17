@@ -136,7 +136,7 @@ const DashboardSideMenu = () => {
       {/* ハンバーガーメニュー */}
       <div>
         <button
-          className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-gray-700 border-gray-800 fixed"
+          className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-blog-black border-gray-800 fixed"
           onClick={toggleMenu}
         >
           <FontAwesomeIcon
@@ -147,7 +147,7 @@ const DashboardSideMenu = () => {
         {isOpen && (
           <>
             <button
-              className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-gray-700 border-gray-800 fixed z-10"
+              className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-blog-black border-gray-800 fixed z-10"
               onClick={toggleMenu}
             >
               <FontAwesomeIcon
@@ -155,7 +155,7 @@ const DashboardSideMenu = () => {
                 style={{ width: "14px", height: "16px" }}
               />
             </button>
-            <div className="fixed top-0 left-0 w-full h-screen bg-gray-700 px-10 pt-12 overflow-y-auto">
+            <div className="fixed top-0 left-0 w-full h-screen bg-blog-black px-10 pt-12 overflow-y-auto">
               <ul className="text-white" onClick={toggleMenu}>
                 <li className="py-2 border-b">ダッシュボード</li>
                 <Link href="/">

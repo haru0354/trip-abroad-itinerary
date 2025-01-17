@@ -15,7 +15,7 @@ const page = async ({ params }: { params: { image_id: string } }) => {
 
   return (
     <>
-      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
+      <h2 className="bg-blog-dashboardHeading text-xl bold text-white rounded mb-12 p-5 font-bold">
         画像の編集
       </h2>
       <FormPostImage

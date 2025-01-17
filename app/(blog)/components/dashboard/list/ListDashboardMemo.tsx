@@ -13,7 +13,7 @@ const ListDashboardMemo = async () => {
   if (sortedDashboardMemos.length === 0) {
     return (
       <>
-        <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
+        <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
           メモの使い方
         </h2>
         <p>ここではサイト制作時のメモが簡単に追加できます。</p>
@@ -71,7 +71,7 @@ const ListDashboardMemo = async () => {
 
   return (
     <>
-      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
+      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
         サイト制作のメモ一覧
       </h2>
       {sortedDashboardMemos.map((memo) => {

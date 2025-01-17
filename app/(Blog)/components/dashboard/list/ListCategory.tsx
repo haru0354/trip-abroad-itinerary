@@ -9,8 +9,8 @@ const ListCategory = async () => {
 
   return (
     <>
-      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
-        カテゴリの一覧
+      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
+      カテゴリの一覧
       </h2>
       <div className="flex flex-col border border-gray-500 sm:flex-row py-4 items-center w-full sm:w-auto">
         <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[180px]">

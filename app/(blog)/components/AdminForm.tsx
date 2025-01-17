@@ -35,7 +35,7 @@ const AdminForm = () => {
     <>
       <div className="flex items-center justify-center bg-sky-50">
         <div className="w-[350px] border p-4 my-10 border-gray-400 rounded bg-white">
-          <h2 className="text-center text-base border-b py-1 my-1 bg-white border-gray-400 text-gray-600 font-semibold">
+          <h2 className="py-1 my-1 text-center text-base font-semibold border-b bg-white border-gray-400 text-blog-black ">
             ログインフォーム
           </h2>
           <div className="flex">

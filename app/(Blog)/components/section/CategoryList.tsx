@@ -74,7 +74,7 @@ const CategoryList = async () => {
                         <>{category.name}</>
                       )}
                     </h3>
-                    <p className="text-gray-600 my-2">
+                    <p className="my-2">
                       {category.description &&
                       category.description.length > 56 ? (
                         <>{category.description.slice(0, 56)}...</>

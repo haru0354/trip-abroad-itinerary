@@ -50,11 +50,11 @@ const Card: React.FC<CardProps> = ({ post }) => {
           )}
           <div className="w-full md:flex-auto px-4 py-3 card">
             {post.title && post.title.length > 31 ? (
-              <h3 className="text-lg font-bold text-gray-700 mb-4">
+              <h3 className="text-lg font-bold  mb-4">
                 {post.title.slice(0, 31)}...
               </h3>
             ) : (
-              <h3 className="text-lg font-bold text-gray-700 mb-4 border-none ">
+              <h3 className="text-lg font-bold text-blog-black mb-4 border-none ">
                 {post.title}
               </h3>
             )}

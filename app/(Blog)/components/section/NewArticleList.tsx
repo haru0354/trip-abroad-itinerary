@@ -61,7 +61,7 @@ const NewArticleList = async () => {
                       )}
                     </div>
                     <div className="px-3 min-h-[130px] ">
-                      <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
+                      <h3 className="my-6 text-center text-xl font-semibold">
                         {post.title && post.title.length > 34 ? (
                           <>{post.title.slice(0, 34)}...</>
                         ) : (

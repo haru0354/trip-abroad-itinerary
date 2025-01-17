@@ -16,9 +16,10 @@ const config: Config = {
       },
       colors: {
         blog: {
+          black: "rgb(75 85 99)",
+          hoverBlue: "rgb(219 231 245)",
           heading: "#60a5fa",
           dashboardHeading: "rgb(75 85 99)",
-          black: "rgb(75 85 99)"
         },
       },
     },

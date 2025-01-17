@@ -27,7 +27,7 @@ const DashboardSideMenu = () => {
 
   return (
     <>
-      <div className="hidden sm:block fixed top-0 left-0 h-screen w-72 flex-col sm:flex-row sm:justify-around bg-gray-700 overflow-y-auto">
+      <div className="hidden sm:block fixed top-0 left-0 h-screen w-72 flex-col sm:flex-row sm:justify-around bg-blog-black overflow-y-auto">
         <nav className="px-6 mt-10 w-full">
           <div className="mb-6">
             <h3 className="w-full pb-2 mb-2 border-b-2 border-gray-300 text-white text-lg">
@@ -155,7 +155,7 @@ const DashboardSideMenu = () => {
                 style={{ width: "14px", height: "16px" }}
               />
             </button>
-            <div className="fixed top-0 left-0 w-full h-screen bg-gray-500 px-10 pt-12 overflow-y-auto">
+            <div className="fixed top-0 left-0 w-full h-screen bg-gray-700 px-10 pt-12 overflow-y-auto">
               <ul className="text-white" onClick={toggleMenu}>
                 <li className="py-2 border-b">ダッシュボード</li>
                 <Link href="/">

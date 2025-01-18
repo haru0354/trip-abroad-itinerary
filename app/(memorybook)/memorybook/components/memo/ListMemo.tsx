@@ -49,9 +49,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
         <p className="pt-6 font-bold text-center">サンプル</p>
         <div className="bg-sky-50 shadow-md rounded px-8 py-8 mb-10 ">
           <div className="border-b border-gray-400 pb-2">
-            <h3 className="text-center font-semibold">
-              海外旅行保険の連絡先
-            </h3>
+            <h3 className="text-center font-semibold">海外旅行保険の連絡先</h3>
           </div>
           <div className="mt-4">
             海外旅行保険センター：000-0000-0000。〇〇医療病院：000-0000-0000。治療費を負担なしで診療できる。日本語の通訳もあり。
@@ -63,7 +61,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
 
   return (
     <>
-      <h2 className="text-center">メモの一覧</h2>
+      <h2 className="bg-itinerary-heading text-center">メモの一覧</h2>
       {sortedMemos?.map((memo) => {
         return (
           <AnimatedItem
@@ -85,9 +83,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
             </Link>
             <div className="bg-gray-50 border border-gray-200 shadow-md rounded px-8 py-5 mb-10 ">
               <div className="border-b border-gray-300">
-                <h3 className="text-center font-semibold">
-                  {memo.name}
-                </h3>
+                <h3 className="text-center font-semibold">{memo.name}</h3>
               </div>
               {memo.content && (
                 <div className="mt-4">

@@ -29,7 +29,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
   if (sortedItineraryHomes && sortedItineraryHomes.length === 0) {
     return (
       <>
-        <h2>アプリの使い方</h2>
+        <h2 className="bg-itinerary-heading">アプリの使い方</h2>
         <div className="border border-dashed border-gray-600 my-4 p-4 text-center">
           まずは1つ目の旅行プランを作成しましょう。下記のフォームより作成ができます。
         </div>
@@ -58,7 +58,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
 
   return (
     <>
-      <h2>旅行のしおり一覧</h2>
+      <h2 className="bg-itinerary-heading">旅行のしおり一覧</h2>
       <div className="w-full bg-white rounded">
         <div className="flex my-10 mx-4 flex-wrap items-center justify-center">
           {sortedItineraryHomes.map((itineraryHome) => {

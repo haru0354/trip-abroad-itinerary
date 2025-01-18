@@ -20,7 +20,7 @@ const Manual: React.FC<ManualProps> = ({
 }) => {
   return (
     <>
-      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-10 p-5">
+      <h2 className="bg-itinerary-heading text-xl bold text-white rounded mt-10 mb-10 p-5">
         {title}
       </h2>
       <p>{content1}</p>

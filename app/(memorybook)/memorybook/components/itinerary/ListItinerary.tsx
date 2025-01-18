@@ -80,7 +80,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
 
   return (
     <div>
-      <h2 className="text-center">旅程表</h2>
+      <h2 className="bg-itinerary-heading text-center">旅程表</h2>
       {sortedItineraries?.map((itinerary, index) => {
         const isFirstItem =
           index === 0 || itinerary.date !== sortedItineraries[index - 1].date;
@@ -148,9 +148,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
                         icon={faClock}
                         className="inline-block mr-2 w-[16px] h-[16px]"
                       />
-                      <p className=" mb-0 inline-block">
-                        {itinerary.time}
-                      </p>
+                      <p className=" mb-0 inline-block">{itinerary.time}</p>
                     </div>
                     <div className="flex">
                       <p>

@@ -25,6 +25,7 @@ const config: Config = {
         },
         itinerary: {
           black: "rgb(75 85 99)",
+          heading: "rgb(96 165 250)",
         },
       },
     },

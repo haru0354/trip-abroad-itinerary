@@ -136,7 +136,7 @@ const DashboardSideMenu = () => {
       {/* ハンバーガーメニュー */}
       <div>
         <button
-          className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-blog-black border-gray-800 fixed"
+          className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-blog-black border-blog-borderBlack fixed"
           onClick={toggleMenu}
         >
           <FontAwesomeIcon
@@ -147,7 +147,7 @@ const DashboardSideMenu = () => {
         {isOpen && (
           <>
             <button
-              className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-blog-black border-gray-800 fixed z-10"
+              className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-blog-black border-blog-borderBlack fixed z-10"
               onClick={toggleMenu}
             >
               <FontAwesomeIcon

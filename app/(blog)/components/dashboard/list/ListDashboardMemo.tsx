@@ -52,7 +52,7 @@ const ListDashboardMemo = async () => {
         <p className="pb-6"></p>
         例）
         <div className="bg-gray-100 shadow-md rounded px-8 py-8 mb-10 border border-gray-200">
-          <div className="flex justify-between border-b border-gray-500 mb-2">
+          <div className="flex justify-between border-b border-blog-borderBlack mb-2">
             <div>
               <p className="text-red-500">メモの見出しエリア</p>
               今後作成していく記事のメインキーワード

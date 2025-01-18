@@ -10,7 +10,7 @@ type SideImageProps = {
 
 const SideImage: React.FC<SideImageProps> = ({ src, alt, href, textTitle }) => {
   const hoverStyle = textTitle
-    ? "hover:bg-blog-hoverBlue"
+    ? "hover:bg-blog-hoverBlue transition duration-300"
     : "hover:-translate-y-2 translate transition duration-300";
 
   return (

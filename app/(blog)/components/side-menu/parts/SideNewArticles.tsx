@@ -20,7 +20,7 @@ const SideNewArticles = async () => {
             post.draft && (
               <li
                 key={post.id}
-                className="my-6 p-3 border-b border-gray-600 border-dashed hover:bg-blog-hoverBlue"
+                className="my-6 p-3 border-b border-gray-600 border-dashed hover:bg-blog-hoverBlue transition duration-300"
               >
                 <Link href={`/${post.category.slug}/${post.slug}`}>
                   {post.postImage &&

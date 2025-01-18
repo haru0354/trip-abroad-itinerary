@@ -35,7 +35,7 @@ const DashboardSideMenu = () => {
             </h3>
             <ul>
               <Link href="/">
-                <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-3 px-2 text-white hover:text-gray-900 hover:bg-gray-300 transition duration-300">
                   <FontAwesomeIcon
                     icon={faHouse}
                     className="mr-2 w-5 h-4 mt-1"
@@ -44,7 +44,7 @@ const DashboardSideMenu = () => {
                 </li>
               </Link>
               <Link href="/dashboard">
-                <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-3 px-2 text-white hover:text-gray-900 hover:bg-gray-300 transition duration-300">
                   <FontAwesomeIcon
                     icon={faHouse}
                     className="mr-2 w-5 h-4 mt-1"
@@ -60,13 +60,13 @@ const DashboardSideMenu = () => {
             </h3>
             <ul>
               <Link href="/dashboard/post">
-                <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-3 px-2 text-white transition duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faPen} className="mr-2 w-5 h-4 mt-1" />
                   記事一覧
                 </li>
               </Link>
               <Link href="/dashboard/post/new-post">
-                <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-3 px-2 text-white transition duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faPen} className="mr-2 w-5 h-4 mt-1" />
                   新規記事
                 </li>
@@ -79,7 +79,7 @@ const DashboardSideMenu = () => {
             </h3>
             <ul>
               <Link href="/dashboard/category">
-                <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-3 px-2 text-white transition duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon
                     icon={faList}
                     className="mr-2 w-5 h-4 mt-1"
@@ -88,7 +88,7 @@ const DashboardSideMenu = () => {
                 </li>
               </Link>
               <Link href="/dashboard/category/new-category">
-                <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-3 px-2 text-white transition duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon
                     icon={faList}
                     className="mr-2 w-5 h-4 mt-1"
@@ -104,7 +104,7 @@ const DashboardSideMenu = () => {
             </h3>
             <ul>
               <Link href="/dashboard/image">
-                <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-3 px-2 text-white transition duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon
                     icon={faImage}
                     className="mr-2 w-5 h-4 mt-1"
@@ -113,7 +113,7 @@ const DashboardSideMenu = () => {
                 </li>
               </Link>
               <Link href="/dashboard/image/new-image">
-                <li className="flex py-3 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-3 px-2 text-white transition duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon
                     icon={faImage}
                     className="mr-2 w-5 h-4 mt-1"
@@ -159,45 +159,45 @@ const DashboardSideMenu = () => {
               <ul className="text-white" onClick={toggleMenu}>
                 <li className="py-2 border-b">ダッシュボード</li>
                 <Link href="/">
-                  <li className="py-2 mx-4 hover:bg-gray-300 hover:text-gray-900">
+                  <li className="py-2 mx-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
                     ブログTOP
                   </li>
                 </Link>
                 <Link href="/dashboard">
-                  <li className="py-2 mx-4 hover:bg-gray-300 hover:text-gray-900">
+                  <li className="py-2 mx-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
                     サイト制作のメモ
                   </li>
                 </Link>
                 <li className="py-2 border-b mt-3">記事</li>
                 <Link href="/dashboard/post">
-                  <li className="py-2 mx-4 hover:bg-gray-300 hover:text-gray-900">
+                  <li className="py-2 mx-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
                     記事一覧
                   </li>
                 </Link>
                 <Link href="/dashboard/post/new-post">
-                  <li className="py-2 mx-4 hover:bg-gray-300 hover:text-gray-900">
+                  <li className="py-2 mx-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
                     新規記事
                   </li>
                 </Link>
                 <li className="py-2 mt-3 border-b">カテゴリー</li>
                 <Link href="/dashboard/category">
-                  <li className="py-2 mx-4 hover:bg-gray-300 hover:text-gray-900">
+                  <li className="py-2 mx-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
                     カテゴリ一覧
                   </li>
                 </Link>
                 <Link href="/dashboard/category/new-category">
-                  <li className="py-2 mx-4 hover:bg-gray-300 hover:text-gray-900">
+                  <li className="py-2 mx-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
                     カテゴリ追加
                   </li>
                 </Link>
                 <li className="py-2 mt-3 border-b">画像</li>
                 <Link href="/dashboard/image">
-                  <li className="py-2 mx-4 hover:bg-gray-300 hover:text-gray-900">
+                  <li className="py-2 mx-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
                     画像一覧
                   </li>
                 </Link>
                 <Link href="/dashboard/image/new-image">
-                  <li className="py-2 mx-4 hover:bg-gray-300 hover:text-gray-900">
+                  <li className="py-2 mx-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
                     画像追加
                   </li>
                 </Link>

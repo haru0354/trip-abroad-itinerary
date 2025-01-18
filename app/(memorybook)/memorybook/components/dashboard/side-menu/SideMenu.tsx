@@ -42,19 +42,19 @@ const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
             </h3>
             <ul>
               <Link href="/memorybook">
-                <li className="flex py-2 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-2 px-2 text-white duration-300 hover:text-itinerary-black hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
                   TOPページ
                 </li>
               </Link>
               <Link href="/memorybook/dashboard/">
-                <li className="flex py-2 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-2 px-2 text-white duration-300 hover:text-itinerary-black hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
                   ダッシュボード
                 </li>
               </Link>
               <Link href="/memorybook/dashboard/profile">
-                <li className="flex py-2 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                <li className="flex py-2 px-2 text-white duration-300 hover:text-itinerary-black hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
                   プロフィール
                 </li>
@@ -70,7 +70,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
                 return (
                   <div key={itineraryHome.id}>
                     <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
-                      <li className="flex py-2 px-2 text-white duration-300 hover:text-gray-900 hover:bg-gray-300 ">
+                      <li className="flex py-2 px-2 text-white duration-300 hover:text-itinerary-black hover:bg-gray-300 ">
                         <FontAwesomeIcon
                           icon={faPlaneDeparture}
                           className="mr-2 w-5 mt-1"

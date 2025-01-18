@@ -65,7 +65,7 @@ const FormPassword: React.FC<FormPasswordProps> = ({
       <h2>パスワードの変更</h2>
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-[620px]">
-          <p className="text-center border-b pb-4 border-gray-300 text-gray-600 font-semibold">
+          <p className="text-center border-b pb-4 border-gray-300 font-semibold">
             パスワード
           </p>
           <form action={dispatch} className="w-full py-3">

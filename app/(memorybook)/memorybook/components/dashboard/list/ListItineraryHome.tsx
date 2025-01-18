@@ -30,10 +30,10 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
     return (
       <>
         <h2>アプリの使い方</h2>
-        <div className="border border-dashed border-gray-600 my-4 p-4 text-center text-gray-700">
+        <div className="border border-dashed border-gray-600 my-4 p-4 text-center">
           まずは1つ目の旅行プランを作成しましょう。下記のフォームより作成ができます。
         </div>
-        <p className="pt-6 text-gray-700 text-center">サンプル</p>
+        <p className="pt-6 text-center">サンプル</p>
         <div className="w-full bg-white rounded">
           <div className="flex w-full my-2 flex-wrap items-center justify-center">
             <div className="flex flex-col items-center max-w-[350px]">
@@ -44,7 +44,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                     style={{ fontSize: "2em" }}
                   />
                 </span>
-                <h3 className="text-gray-700 mb-6 text-center text-xl font-semibold ">
+                <h3 className="mb-6 text-center text-xl font-semibold">
                   タイトル：初海外旅行 in シンガポール
                 </h3>
                 出発日:03月08日 帰宅日:03月11日 旅行先：シンガポール
@@ -88,7 +88,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                       />
                     </span>
                     <div className="flex items-center justify-center min-h-[110px] ">
-                      <h3 className="text-gray-700 mb-6 text-center text-xl font-semibold">
+                      <h3 className="mb-6 text-center text-xl font-semibold">
                         {itineraryHome.name}
                       </h3>
                     </div>

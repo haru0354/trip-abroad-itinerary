@@ -23,7 +23,7 @@ const AuthInput: React.FC<InputProps> = ({
 }) => {
   return (
     <div className="px-4">
-      <div className="block text-gray-600 text-sm font-bold  mb-1 mt-4">
+      <div className="block text-sm font-bold  mb-1 mt-4">
         {label}
       </div>
       <input

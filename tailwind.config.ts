@@ -23,6 +23,9 @@ const config: Config = {
           heading: "#60a5fa",
           dashboardHeading: "rgb(75 85 99)",
         },
+        itinerary: {
+          black: "rgb(75 85 99)",
+        },
       },
     },
   },

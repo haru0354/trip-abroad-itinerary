@@ -30,7 +30,7 @@ const HideContent: React.FC<HideContentProps> = ({ itinerary }) => {
               <AnimatedItem
                 elementType="div"
                 animation="fadeInAndScaleVariants"
-                className="border border-dashed border-gray-500 rounded p-4 mt-6"
+                className="border border-dashed border-itinerary-borderBlack rounded p-4 mt-6"
               >
                 <p>
                   <SplitTextLines text={itinerary?.hideContent} />

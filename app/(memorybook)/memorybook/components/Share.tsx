@@ -17,9 +17,9 @@ const Share = () => {
 
   return (
     <>
-      <div className="p-4 mt-20 mb-8 mx-10 border border-dashed border-gray-500">
+      <div className="p-4 mt-20 mb-8 mx-10 border border-dashed border-itinerary-borderBlack">
         <div className="block mx-auto">
-          <p className="p-4 mx-auto bg-gray-200 border-b border-gray-500 mb-6">
+          <p className="p-4 mx-auto bg-gray-200 border-b border-itinerary-borderBlack mb-6">
             {fullPath}
           </p>
           <Button

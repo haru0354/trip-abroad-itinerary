@@ -101,7 +101,7 @@ const LoginModal = () => {
         Googleでログイン
       </Button>
 
-      <div className="my-8 border-t border-dashed border-gray-600">
+      <div className="my-8 border-t border-dashed border-itinerary-borderBlack">
         <p
           onClick={onToggle}
           className="text-center pt-2 cursor-pointer "

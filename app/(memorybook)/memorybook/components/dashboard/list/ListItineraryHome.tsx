@@ -30,7 +30,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
     return (
       <>
         <h2 className="bg-itinerary-heading">アプリの使い方</h2>
-        <div className="border border-dashed border-gray-600 my-4 p-4 text-center">
+        <div className="border border-dashed border-itinerary-borderBlack my-4 p-4 text-center">
           まずは1つ目の旅行プランを作成しましょう。下記のフォームより作成ができます。
         </div>
         <p className="pt-6 text-center">サンプル</p>

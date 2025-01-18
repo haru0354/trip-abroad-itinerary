@@ -96,7 +96,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
       {/* ハンバーガーメニュー */}
       <div>
         <button
-          className="fixed top-0 left-0 block sm:hidden text-white p-2 w-12 h-12 ml-[2px] border rounded bg-gray-700 border-gray-800 z-10"
+          className="fixed top-0 left-0 block sm:hidden text-white p-2 w-12 h-12 ml-[2px] border rounded bg-gray-700 border-itinerary-borderBlack z-10"
           onClick={toggleMenu}
         >
           <FontAwesomeIcon
@@ -107,7 +107,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
         {isOpen && (
           <>
             <button
-              className="fixed top-0 left-0 block sm:hidden text-white p-2 w-12 h-12 ml-[2px] border rounded bg-gray-700 border-gray-800 z-10"
+              className="fixed top-0 left-0 block sm:hidden text-white p-2 w-12 h-12 ml-[2px] border rounded bg-gray-700 border-itinerary-borderBlack z-10"
               onClick={toggleMenu}
             >
               <FontAwesomeIcon

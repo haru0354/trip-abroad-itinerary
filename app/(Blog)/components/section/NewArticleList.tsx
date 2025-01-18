@@ -20,8 +20,8 @@ const NewArticleList = async () => {
                 className="flex flex-col items-center"
               >
                 <Link href={`/${post.category.slug}/${post.slug}`}>
-                  <div className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[330px] min-w-[330px]">
-                    <div className="min-h-[222px] max-h-[222px] border justify-centers">
+                  <div className="flex flex-col items-center max-w-[330px] min-w-[330px] mx-5 my-6 rounded hover:bg-blog-hoverBlue transition duration-300">
+                    <div>
                       {post.postImage ? (
                         <figure
                           style={{
@@ -60,8 +60,8 @@ const NewArticleList = async () => {
                         </figure>
                       )}
                     </div>
-                    <div className="px-3 min-h-[130px] ">
-                      <h3 className="my-6 text-center text-xl font-semibold">
+                    <div className="min-h-[80px] px-3">
+                      <h3 className="my-3 text-center text-xl font-semibold">
                         {post.title && post.title.length > 34 ? (
                           <>{post.title.slice(0, 34)}...</>
                         ) : (

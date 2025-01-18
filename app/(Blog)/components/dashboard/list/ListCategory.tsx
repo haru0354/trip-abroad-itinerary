@@ -9,17 +9,17 @@ const ListCategory = async () => {
 
   return (
     <>
-      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
-        カテゴリの一覧
+      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
+      カテゴリの一覧
       </h2>
-      <div className="flex flex-col border border-gray-500 sm:flex-row py-4 items-center w-full sm:w-auto">
-        <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[180px]">
+      <div className="flex flex-col border border-blog-borderBlack sm:flex-row py-4 items-center w-full sm:w-auto">
+        <p className="sm:border-r border-blog-borderBlack w-full mb-0 px-2 sm:w-auto min-w-[180px]">
           カテゴリ名
         </p>
-        <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[160px]">
+        <p className="sm:border-r flex-wrap  w-full border-blog-borderBlack mb-0 px-2 sm:w-auto min-w-[160px]">
           スラッグ
         </p>
-        <p className=" flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">
+        <p className=" flex-wrap  w-full border-blog-borderBlack mb-0 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">
           説明文
         </p>
       </div>
@@ -28,15 +28,15 @@ const ListCategory = async () => {
           return (
             <div
               key={category.id}
-              className="flex justify-between flex-col sm:flex-row border-b border-gray-500 w-full"
+              className="flex justify-between flex-col sm:flex-row border-b border-blog-borderBlack w-full"
             >
               <div className="flex flex-col  sm:flex-row py-4 items-center w-full sm:w-auto">
-                <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[180px]">
+                <p className="sm:border-r border-blog-borderBlack  w-full mb-0 px-2 sm:w-auto min-w-[180px]">
                   {category.name.length > 9
                     ? `${category.name.slice(0, 9)}...`
                     : category.name}
                 </p>
-                <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[160px]">
+                <p className="sm:border-r flex-wrap  w-full border-blog-borderBlack mb-0 px-2 sm:w-auto min-w-[160px]">
                   {category.slug.length > 14
                     ? `${category.slug.slice(0, 14)}...`
                     : category.slug}

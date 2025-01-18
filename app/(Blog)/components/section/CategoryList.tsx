@@ -26,7 +26,7 @@ const CategoryList = async () => {
               className="flex flex-col items-center"
             >
               <Link href={`/${category.slug}`}>
-                <div className=" rounded mx-5 my-6 flex flex-col items-center  max-w-[330px] min-w-[330px]">
+                <div className="flex flex-col items-center max-w-[330px] min-w-[330px] mx-5 my-6 rounded hover:bg-blog-hoverBlue transition duration-300">
                   <div className="min-h-[222px] max-h-[222px] border justify-centers">
                     {category.postImage ? (
                       <figure
@@ -66,15 +66,15 @@ const CategoryList = async () => {
                       </figure>
                     )}
                   </div>
-                  <div className="px-3 py-1 min-h-[180px]">
-                    <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
+                  <div className="px-3 py-1 w-full min-h-[170px]">
+                    <h3 className="text-gray-700 my-3 text-center text-xl font-semibold">
                       {category.name && category.name.length > 12 ? (
                         <>{category.name.slice(0, 12)}...</>
                       ) : (
                         <>{category.name}</>
                       )}
                     </h3>
-                    <p className="text-gray-600 my-2">
+                    <p>
                       {category.description &&
                       category.description.length > 56 ? (
                         <>{category.description.slice(0, 56)}...</>

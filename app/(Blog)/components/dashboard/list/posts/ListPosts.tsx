@@ -31,24 +31,20 @@ type Post = {
   };
 };
 
-const ListPosts: React.FC<ListPostsProps> = async ({
-  draft,
-  posts,
-  title,
-}) => {
+const ListPosts: React.FC<ListPostsProps> = async ({ draft, posts, title }) => {
   return (
     <>
-      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
+      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
         {title}の一覧
       </h2>
-      <div className="flex flex-col border border-gray-500 sm:flex-row py-4 items-center w-full sm:w-auto">
-        <p className="sm:border-r border-gray-500  w-full px-2 mb-0 sm:w-auto min-w-[100px]">
+      <div className="flex flex-col border border-blog-borderBlack sm:flex-row py-4 items-center w-full sm:w-auto">
+        <p className="sm:border-r border-blog-borderBlack  w-full px-2 mb-0 sm:w-auto min-w-[100px]">
           投稿日
         </p>
-        <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2  sm:w-auto min-w-[174px]">
+        <p className="sm:border-r flex-wrap  w-full border-blog-borderBlack mb-0 px-2  sm:w-auto min-w-[174px]">
           カテゴリ
         </p>
-        <p className=" flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">
+        <p className=" flex-wrap  w-full border-blog-borderBlack mb-0 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">
           タイトル
         </p>
       </div>
@@ -60,13 +56,13 @@ const ListPosts: React.FC<ListPostsProps> = async ({
           return (
             <div
               key={post.id}
-              className="flex justify-between flex-col sm:flex-row border-b border-gray-500 w-full"
+              className="flex justify-between flex-col sm:flex-row border-b border-blog-borderBlack w-full"
             >
               <div className="flex flex-col  sm:flex-row py-4 items-center w-full sm:w-auto">
-                <p className="sm:border-r border-gray-500  w-full mb-0 px-2 sm:w-auto min-w-[100px]">
+                <p className="sm:border-r border-blog-borderBlack w-full mb-0 px-2 sm:w-auto min-w-[100px]">
                   {formattedCreatedDate}
                 </p>
-                <p className="sm:border-r flex-wrap  w-full border-gray-500 mb-0 px-2 sm:w-auto min-w-[174px]">
+                <p className="sm:border-r flex-wrap  w-full border-blog-borderBlack mb-0 px-2 sm:w-auto min-w-[174px]">
                   {post.category.name.length > 9
                     ? `${post.category.name.slice(0, 9)}...`
                     : post.category.name}

@@ -11,8 +11,8 @@ const SideNewArticles = async () => {
 
   return (
     <div className="w-full p-2">
-      <h3 className="bg-blue-400 text-white font-bold text-lg px-2 py-4 rounded-sm">
-        新着記事
+      <h3 className="px-2 py-4 font-bold text-lg rounded bg-blog-heading text-white">
+      新着記事
       </h3>
       <ul>
         {posts.map((post) => {
@@ -20,7 +20,7 @@ const SideNewArticles = async () => {
             post.draft && (
               <li
                 key={post.id}
-                className="my-6 p-3 border-b border-gray-600 border-dashed hover:bg-gray-200"
+                className="my-6 p-3 border-b border-blog-borderBlack border-dashed hover:bg-blog-hoverBlue transition duration-300"
               >
                 <Link href={`/${post.category.slug}/${post.slug}`}>
                   {post.postImage &&
@@ -40,11 +40,11 @@ const SideNewArticles = async () => {
                       />
                     )}
                   {post.title && post.title.length > 36 ? (
-                    <p className="text-gray-600 my-2">
+                    <p className="my-2">
                       {post.title.slice(0, 36)}...
                     </p>
                   ) : (
-                    <p className="text-gray-600 my-2">{post.title}</p>
+                    <p className="my-2">{post.title}</p>
                   )}
                 </Link>
               </li>

@@ -13,7 +13,7 @@ const ListDashboardMemo = async () => {
   if (sortedDashboardMemos.length === 0) {
     return (
       <>
-        <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
+        <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
           メモの使い方
         </h2>
         <p>ここではサイト制作時のメモが簡単に追加できます。</p>
@@ -51,8 +51,8 @@ const ListDashboardMemo = async () => {
         </p>
         <p className="pb-6"></p>
         例）
-        <div className="bg-gray-100 shadow-md rounded px-8 py-8 mb-10 border border-gray-200">
-          <div className="flex justify-between border-b border-gray-500 mb-2">
+        <div className="px-8 py-8 mb-10 border shadow-md rounded border-blog-borderGray bg-gray-100">
+          <div className="flex justify-between mb-2 border-b border-blog-borderBlack">
             <div>
               <p className="text-red-500">メモの見出しエリア</p>
               今後作成していく記事のメインキーワード
@@ -71,7 +71,7 @@ const ListDashboardMemo = async () => {
 
   return (
     <>
-      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
+      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
         サイト制作のメモ一覧
       </h2>
       {sortedDashboardMemos.map((memo) => {
@@ -81,12 +81,12 @@ const ListDashboardMemo = async () => {
               className="rounded"
               size="small"
               icon="pen"
-              iconClassName="mr-2 w-[13px] h-[13px]"
+              iconClassName="w-[13px] h-[13px] mr-2"
             >
               <Link href={`/dashboard/${memo.id}`}>編集 </Link>
             </ButtonImage>
-            <div className="bg-gray-200 shadow-md rounded px-8 py-8 mb-10 ">
-              <div className="flex justify-between border-b-2 border-gray-300 mb-2">
+            <div className="px-8 py-8 mb-10 bg-gray-200 shadow-md rounded">
+              <div className="flex justify-between mb-2 border-b-2 border-blog-borderGray">
                 <div>{memo.name}</div>
               </div>
               <div>{memo.content}</div>

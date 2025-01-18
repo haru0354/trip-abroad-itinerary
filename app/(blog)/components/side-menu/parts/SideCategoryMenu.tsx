@@ -10,7 +10,7 @@ const SideCategoryMenu = async () => {
 
   return (
     <div className="w-full p-2">
-      <h3 className="bg-blue-400 text-white font-bold text-lg px-2 py-4 rounded-sm">
+      <h3 className="px-2 py-4 font-bold text-lg rounded bg-blog-heading text-white">
         カテゴリ
       </h3>
       {categories.map((category) => {
@@ -23,9 +23,9 @@ const SideCategoryMenu = async () => {
         }
         return (
           <ul key={category.id}>
-            <li className="py-4 hover:bg-gray-200">
+            <li className="py-4 hover:bg-blog-hoverBlue transition duration-300">
               <Link href={`/${category.slug}`}>
-                <p className="text-gray-600 mb-1 px-3">{category.name}</p>
+                <p className="mb-1 px-3">{category.name}</p>
               </Link>
             </li>
           </ul>

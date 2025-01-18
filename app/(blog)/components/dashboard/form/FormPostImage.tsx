@@ -41,7 +41,7 @@ const FormPostImage: React.FC<FormPostImageProps> = ({
   return (
     <>
       <div className="flex items-center justify-center">
-        <div className="w-full border py-4 px-6  border-gray-300 rounded bg-white max-w-full">
+        <div className="w-full border py-4 px-6 border-blog-borderGray rounded bg-white max-w-full">
           <form action={dispatch}>
             <FormImage
               selectImage={postImage}

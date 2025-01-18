@@ -9,7 +9,7 @@ const ListImages = async () => {
 
   return (
     <>
-      <h2 className="bg-gray-700 text-xl bold text-white rounded mb-12 p-5 font-bold">
+      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
         画像ライブラリー
       </h2>
       <div className="flex flex-wrap w-full items-center justify-center">

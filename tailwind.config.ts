@@ -12,7 +12,17 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-          'footer-image': "url('/0-10.jpg')",
+        "footer-image": "url('/0-10.jpg')",
+      },
+      colors: {
+        blog: {
+          black: "rgb(75 85 99)",
+          borderBlack: "rgb(107 114 128)",
+          borderGray: "rgb(209 213 219)",
+          hoverBlue: "rgb(219 231 245)",
+          heading: "#60a5fa",
+          dashboardHeading: "rgb(75 85 99)",
+        },
       },
     },
   },

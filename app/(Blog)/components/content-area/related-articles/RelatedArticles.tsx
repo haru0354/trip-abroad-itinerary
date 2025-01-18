@@ -28,9 +28,9 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = async ({
   return (
     <>
       {categoryName ? (
-        <h2 className="p-2 mt-10 text-3xl">{categoryName}の記事一覧</h2>
+        <h2>{categoryName}の記事一覧</h2>
       ) : (
-        <h2 className="p-2 mt-10 text-3xl">関連記事</h2>
+        <h2>関連記事</h2>
       )}
       {articles.map((article) => {
         return (

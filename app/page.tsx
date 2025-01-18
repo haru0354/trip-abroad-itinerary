@@ -32,13 +32,10 @@ export default function Home() {
                   "簡単に旅程表を作成でき、旅行中に撮影した写真を掲載し、旅の思い出のしおりして残すことができます。",
                   "特に「英語が話せない人の海外旅行」向けに事前にメモできる項目が多く設定されています。",
                 ]}
+                buttonText="旅のメモリーブックへ"
+                buttonHref="/memorybook"
                 isPriority={true}
               />
-              <Link href="./memorybook/">
-                <Button color="blue" size="normal">
-                  旅のメモリーブックへ
-                </Button>
-              </Link>
             </div>
           </section>
           <NewArticleList />

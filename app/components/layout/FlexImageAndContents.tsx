@@ -1,11 +1,15 @@
 import Image from "next/image";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
+import Link from "next/link";
+import Button from "../ui/Button";
 
 type FlexImageAndContentsProps = {
   src: string;
   alt: string;
   name: string;
   contents: string[];
+  buttonText?: string;
+  buttonHref?: string;
   imageLeft?: boolean;
   isPriority?: boolean;
 };
@@ -15,21 +19,17 @@ const FlexImageAndContents: React.FC<FlexImageAndContentsProps> = ({
   alt,
   name,
   contents,
+  buttonText,
+  buttonHref,
   imageLeft = true,
   isPriority = false,
 }) => {
   return (
-    <div>
-      <AnimatedItem
-        elementType="h3"
-        animation="fadeInVariants"
-        className="text-gray-700 my-6 w-[80%] flex justify-center pb-2 text-xl md:text-2xl font-semibold border-b text-center border-sky-700 border-dashed mx-auto"
-      >
+    <AnimatedItem elementType="div" animation="fadeInVariants">
+      <h3 className="text-gray-700 my-6 w-[80%] flex justify-center pb-2 text-xl md:text-2xl font-semibold border-b text-center border-sky-700 border-dashed mx-auto">
         {name}
-      </AnimatedItem>
-      <AnimatedItem
-        elementType="div"
-        animation="fadeInVariants"
+      </h3>
+      <div
         className={`flex justify-center w-full py-1 md:py-4 mb-4 rounded flex-wrap ${
           imageLeft ? "flex-row" : "flex-row-reverse"
         }`}
@@ -55,8 +55,15 @@ const FlexImageAndContents: React.FC<FlexImageAndContentsProps> = ({
             </p>
           ))}
         </div>
-      </AnimatedItem>
-    </div>
+      </div>
+      {buttonText && buttonHref && (
+        <Link href={buttonHref}>
+          <Button color="blue" size="normal">
+            {buttonText}
+          </Button>
+        </Link>
+      )}
+    </AnimatedItem>
   );
 };
 

@@ -34,8 +34,8 @@ const AdminForm = () => {
   return (
     <>
       <div className="flex items-center justify-center bg-sky-50">
-        <div className="w-[350px] border p-4 my-10 border-gray-400 rounded bg-white">
-          <h2 className="py-1 my-1 text-center text-base font-semibold border-b bg-white border-gray-400 text-blog-black ">
+        <div className="w-[350px] border p-4 my-10 border-blog-borderGray rounded bg-white">
+          <h2 className="py-1 my-1 text-center text-base font-semibold border-b bg-white border-blog-borderGray text-blog-black ">
             ログインフォーム
           </h2>
           <div className="flex">

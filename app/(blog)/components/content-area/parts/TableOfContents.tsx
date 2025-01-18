@@ -23,8 +23,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
   }, [content]);
 
   return (
-    <div className="w-full max-w-[500px] p-6 mx-auto my-12 border rounded border-gray-300">
-      <p className="pb-1 text-center text-lg border-b  border-gray-300">
+    <div className="w-full max-w-[500px] p-6 mx-auto my-12 border rounded border-blog-borderGray">
+      <p className="pb-1 text-center text-lg border-b border-blog-borderGray">
         目次
       </p>
       <ul className="list-disc list-inside border-none" style={{ border: "none", padding: 0, margin: 0 }}>

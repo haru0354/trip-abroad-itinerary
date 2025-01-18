@@ -30,7 +30,7 @@ const DashboardSideMenu = () => {
       <div className="hidden sm:block fixed top-0 left-0 h-screen w-72 flex-col sm:flex-row sm:justify-around bg-blog-black overflow-y-auto">
         <nav className="px-6 mt-10 w-full">
           <div className="mb-6">
-            <h3 className="w-full pb-2 mb-2 border-b-2 border-gray-300 text-white text-lg">
+            <h3 className="w-full pb-2 mb-2 border-b-2 border-blog-borderGray  text-white text-lg">
               ダッシュボード
             </h3>
             <ul>
@@ -55,7 +55,7 @@ const DashboardSideMenu = () => {
             </ul>
           </div>
           <div className="mb-6">
-            <h3 className="w-full pb-2 mb-2 border-b-2 border-gray-300 text-white text-lg">
+            <h3 className="w-full pb-2 mb-2 border-b-2 border-blog-borderGray text-white text-lg">
               記事
             </h3>
             <ul>
@@ -74,7 +74,7 @@ const DashboardSideMenu = () => {
             </ul>
           </div>
           <div className="mb-6">
-            <h3 className="w-full pb-2 mb-2 border-b-2 border-gray-300 text-white text-lg">
+            <h3 className="w-full pb-2 mb-2 border-b-2 border-blog-borderGray text-white text-lg">
               カテゴリー
             </h3>
             <ul>
@@ -99,7 +99,7 @@ const DashboardSideMenu = () => {
             </ul>
           </div>
           <div className="mb-6">
-            <h3 className="w-full pb-2 mb-2 border-b-2 border-gray-300 text-white text-lg">
+            <h3 className="w-full pb-2 mb-2 border-b-2 border-blog-borderGray text-white text-lg">
               画像
             </h3>
             <ul>

@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
   return (
     <>
       {post.draft && (
-        <div className="flex flex-wrap md:flex-nowrap w-full my-2 border border-gray-400 transition duration-300 hover:bg-blog-hoverBlue">
+        <div className="flex flex-wrap md:flex-nowrap w-full my-2 border border-blog-borderBlack transition duration-300 hover:bg-blog-hoverBlue">
           {post.postImage ? (
             <div className="w-full min-w-[300px] md:w-auto pt-3 md:pt-0">
               <Image

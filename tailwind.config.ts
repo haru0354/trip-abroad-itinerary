@@ -18,6 +18,7 @@ const config: Config = {
         blog: {
           black: "rgb(75 85 99)",
           borderBlack: "rgb(107 114 128)",
+          borderGray: "rgb(209 213 219)",
           hoverBlue: "rgb(219 231 245)",
           heading: "#60a5fa",
           dashboardHeading: "rgb(75 85 99)",

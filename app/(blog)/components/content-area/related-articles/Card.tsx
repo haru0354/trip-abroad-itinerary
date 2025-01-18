@@ -14,13 +14,13 @@ type CardProps = {
   post: Post;
 };
 
-const Card: React.FC<CardProps> = ({ post }) => {  
+const Card: React.FC<CardProps> = ({ post }) => {
   return (
     <>
       {post.draft && (
-        <div className="flex flex-wrap md:flex-nowrap  w-full my-8 border border-gray-400 transition duration-300 hover:bg-gray-100">
+        <div className="flex flex-wrap md:flex-nowrap w-full my-2 border border-gray-400 transition duration-300 hover:bg-blog-hoverBlue">
           {post.postImage ? (
-            <div className="w-full md:w-auto pt-3 md:pt-0 min-w-[300px]">
+            <div className="w-full min-w-[300px] md:w-auto pt-3 md:pt-0">
               <Image
                 src={post.postImage.url}
                 alt={post.postImage.altText}
@@ -34,7 +34,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
               />
             </div>
           ) : (
-            <div className="w-full md:w-auto pt-3 md:pt-0 min-w-[300px]">
+            <div className="w-full min-w-[300px] md:w-auto pt-3 md:pt-0">
               <Image
                 src="/no_image.jpg"
                 alt="画像の準備中"
@@ -50,11 +50,11 @@ const Card: React.FC<CardProps> = ({ post }) => {
           )}
           <div className="w-full md:flex-auto px-4 py-3 card">
             {post.title && post.title.length > 31 ? (
-              <h3 className="text-lg font-bold  mb-4">
+              <h3 className="mb-4 text-lg font-bold text-blog-black">
                 {post.title.slice(0, 31)}...
               </h3>
             ) : (
-              <h3 className="text-lg font-bold text-blog-black mb-4 border-none ">
+              <h3 className="mb-4 text-lg font-bold text-blog-black">
                 {post.title}
               </h3>
             )}

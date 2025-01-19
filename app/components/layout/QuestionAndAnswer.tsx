@@ -24,12 +24,12 @@ const QuestionAndAnswer: React.FC<QuestionAndAnswerProps> = ({
     <AnimatedItem
       elementType="div"
       animation="fadeInVariants"
-      className="cursor-pointer w-full my-10 p-8 border rounded border-gray-600"
+      className="cursor-pointer w-full my-10 p-8 border rounded border-itinerary-borderBlack"
       onClick={toggleShowContent}
     >
       <div className="flex items-center w-full mb-4">
         <FontAwesomeIcon icon={faQ} className="mr-4" />
-        <h3 className="w-full py-2 border-b border-dashed border-gray-600">
+        <h3 className="w-full py-2 border-b border-dashed border-itinerary-borderBlack">
           {title}
         </h3>
         {isShowContent ? (

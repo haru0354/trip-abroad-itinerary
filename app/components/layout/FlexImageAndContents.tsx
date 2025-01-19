@@ -45,7 +45,7 @@ const FlexImageAndContents: React.FC<FlexImageAndContentsProps> = ({
               height: "auto",
             }}
             priority={isPriority}
-            className="border border-gray-200"
+            className="border border-itinerary-borderGray"
           />
         </div>
         <div className="w-full py-2 md:py-8 md:mx-6 max-w-[400px] justify-center items-center">

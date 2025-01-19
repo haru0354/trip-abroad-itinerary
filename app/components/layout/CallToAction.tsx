@@ -19,7 +19,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
 }) => {
   return (
     <AnimatedItem elementType="div" animation="fadeInVariants">
-      <ul className="my-12 p-6 border border-dashed border-gray-500">
+      <ul className="my-12 p-6 border border-dashed border-itinerary-borderBlack">
         {lists.map((list) => (
           <li key={list} className="mb-4 text-red-500">
             <FontAwesomeIcon

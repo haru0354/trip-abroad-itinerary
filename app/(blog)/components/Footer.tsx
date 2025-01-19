@@ -6,7 +6,7 @@ const Footer = () => {
 
   return (
     <>
-      <div className="bg-blue-50 ">
+      <div className="bg-blog-bgColor">
         <Image
           alt="飛行機で旅行の画像"
           src="/footer-image.png"

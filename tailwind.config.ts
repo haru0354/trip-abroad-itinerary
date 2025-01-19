@@ -22,6 +22,7 @@ const config: Config = {
           hoverBlue: "rgb(219 231 245)",
           heading: "#60a5fa",
           dashboardHeading: "rgb(75 85 99)",
+          bgColor: "rgb(239 246 255)"
         },
         itinerary: {
           black: "rgb(75 85 99)",

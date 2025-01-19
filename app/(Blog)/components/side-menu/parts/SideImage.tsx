@@ -14,7 +14,7 @@ const SideImage: React.FC<SideImageProps> = ({ src, alt, href, textTitle }) => {
     : "hover:-translate-y-2 translate transition duration-300";
 
   return (
-    <div className={`w-full p-2 ${hoverStyle}`}>
+    <div className={`w-full p-4 ${hoverStyle}`}>
       <Link href={href}>
         <Image
           src={src}

@@ -26,7 +26,7 @@ const FlexImageAndContents: React.FC<FlexImageAndContentsProps> = ({
 }) => {
   return (
     <AnimatedItem elementType="div" animation="fadeInVariants">
-      <h3 className="my-6 w-[80%] flex justify-center pb-2 text-xl md:text-2xl font-semibold border-b text-center border-sky-700 border-dashed mx-auto">
+      <h3 className="my-6 w-[80%] flex justify-center pb-2 text-xl md:text-2xl font-semibold border-b text-center border-itinerary-borderBlack border-dashed mx-auto">
         {name}
       </h3>
       <div

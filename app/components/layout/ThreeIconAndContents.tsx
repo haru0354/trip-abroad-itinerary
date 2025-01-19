@@ -36,10 +36,10 @@ const ThreeIconAndContents: React.FC<ThreeIconAndContentsProps> = ({
               style={{ fontSize: "2em" }}
             />
           </span>
-          <h3 className="text-gray-700 mb-6 text-center text-xl font-semibold">
+          <h3 className="mb-6 text-center text-xl font-semibold">
             {item.title}
           </h3>
-          <p className="text-gray-700 mb-6">{item.content}</p>
+          <p className="mb-6">{item.content}</p>
         </AnimatedItem>
       ))}
     </div>

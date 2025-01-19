@@ -85,8 +85,8 @@ const FormImage: React.FC<FormImageProps> = ({
       <div className="flex mx-auto">
         {image.preview && (
           <>
-            <div className="mr-10 w-full">
-              <p className="text-lg font-bold border-b pb-2 mb-6 bold text-gray-900">
+            <div className="w-full mr-10">
+              <p className="pb-2 mb-6 text-lg font-bold border-b">
                 保存する画像
               </p>
               <Image
@@ -101,7 +101,7 @@ const FormImage: React.FC<FormImageProps> = ({
         )}
         {selectImage && selectImage.url && selectImage.altText && (
           <div className="w-full">
-            <p className="text-lg font-bold border-b pb-2 mb-6 bold text-gray-900">
+            <p className="pb-2 mb-6 text-lg font-bold border-b">
               選択してる画像
             </p>
             <Image

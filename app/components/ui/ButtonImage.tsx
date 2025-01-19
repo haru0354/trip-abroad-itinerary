@@ -60,7 +60,7 @@ const ButtonImage: React.FC<ButtonImageProps> = ({
         className={`
        ${iconClassName}`}
       />
-      <span className="text-gray-700">{children}</span>
+      <span>{children}</span>
     </button>
   );
 };

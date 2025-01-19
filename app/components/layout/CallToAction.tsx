@@ -31,7 +31,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
         ))}
       </ul>
       {contents.map((content) => (
-        <p key={content} className="text-center text-gray-700 mb-6">
+        <p key={content} className="text-center mb-6">
           {content}
         </p>
       ))}

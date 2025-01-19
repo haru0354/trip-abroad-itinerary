@@ -19,22 +19,23 @@ const Checkbox: React.FC<CheckboxProps> = ({
 }) => {
   return (
     <>
-      <p className="block text-gray-600 text-sm font-bold  mb-1 mt-4">
+      <p className="block mb-1 mt-4 text-sm font-bold">
         {label}
       </p>
-      <p className="mt-2 text-gray-600">
+      <p className="my-2">
         <input
           type="checkbox"
           name={name}
           checked={checked}
           onChange={onChange}
+          className="mr-2"
         />
         {item}
       </p>
       {explanation && checked && (
-        <div className="my-6 text-sm p-2 text-gray-600 border-gray-600 border border-dashed ">
+        <div className="my-6 p-2 text-sm  border border-dashed border-gray-600">
           {explanation}
-          <p className="text-red-500 mb-0">{explanation2}</p>
+          <p className="mb-0 text-red-500">{explanation2}</p>
         </div>
       )}
     </>

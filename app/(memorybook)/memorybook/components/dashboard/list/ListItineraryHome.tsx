@@ -60,7 +60,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
     <>
       <h2 className="bg-itinerary-heading">旅行のしおり一覧</h2>
       <div className="w-full bg-white rounded">
-        <div className="flex my-10 mx-4 flex-wrap items-center justify-center">
+        <div className="flex flex-wrap items-center justify-center my-10 mx-4">
           {sortedItineraryHomes.map((itineraryHome) => {
             return (
               <div
@@ -80,8 +80,8 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                   </Link>
                 </div>
                 <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
-                  <div className="border-2 w-full border-sky-600 rounded mb-10 px-8 pt-6 flex flex-col min-w-[340px] min-h-[300px] hover:bg-sky-200">
-                    <span className="text-blue-500  flex justify-center mb-6">
+                  <div className="flex flex-col w-full min-w-[340px] min-h-[300px] mb-10 px-8 pt-6 border-2 rounded border-sky-600 hover:bg-itinerary-hoverBlue transition duration-300">
+                    <span className="flex justify-center mb-6 text-blue-500">
                       <FontAwesomeIcon
                         icon={faPlaneDeparture}
                         style={{ fontSize: "2em" }}
@@ -97,7 +97,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                       <li>帰宅日：{itineraryHome.endDate}</li>
                       <li>旅行先：{itineraryHome.destination}</li>
                     </ul>
-                    <p className=" min-w-[100px] px-6 py-1 mt-5 mx-auto shadow font-bold  text-white border rounded border-sky-900 bg-sky-700">
+                    <p className="min-w-[100px] px-6 py-1 mt-5 mx-auto shadow font-bold text-white border rounded border-sky-900 bg-sky-700">
                       旅程表へ
                     </p>
                   </div>

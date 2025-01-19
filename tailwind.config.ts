@@ -28,6 +28,7 @@ const config: Config = {
           borderBlack: "rgb(107 114 128)",
           borderGray: "rgb(209 213 219)",
           heading: "rgb(96 165 250)",
+          hoverBlue: "rgb(219 231 245)",
         },
       },
     },

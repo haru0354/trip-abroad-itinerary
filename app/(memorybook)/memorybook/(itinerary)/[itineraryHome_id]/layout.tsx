@@ -29,7 +29,7 @@ export default async function RootLayout({
   return (
     <>
       <Header />
-      <main className="bg-blue-50">
+      <main className="bg-itinerary-bgColor">
         <div className="main-contents-area">
           <div className="px-1 md:px-8 w-full">{children}</div>
         </div>

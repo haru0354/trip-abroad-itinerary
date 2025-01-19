@@ -26,6 +26,7 @@ const config: Config = {
         itinerary: {
           black: "rgb(75 85 99)",
           borderBlack: "rgb(107 114 128)",
+          borderGray: "rgb(209 213 219)",
           heading: "rgb(96 165 250)",
         },
       },

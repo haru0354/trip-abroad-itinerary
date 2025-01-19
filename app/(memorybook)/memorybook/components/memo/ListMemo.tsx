@@ -81,8 +81,8 @@ const ListMemo: React.FC<ListMemoProps> = async ({
                 編集
               </ButtonImage>
             </Link>
-            <div className="bg-gray-50 border border-gray-200 shadow-md rounded px-8 py-5 mb-10 ">
-              <div className="border-b border-gray-300">
+            <div className="bg-gray-50 border border-itinerary-borderGray shadow-md rounded px-8 py-5 mb-10 ">
+              <div className="border-b border-itinerary-borderGray">
                 <h3 className="text-center font-semibold">{memo.name}</h3>
               </div>
               {memo.content && (

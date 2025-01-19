@@ -49,7 +49,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
           li1="「いつ・何をするのか」登録をしていきましょう。"
           li2="補足情報には色々とメモしたい項目を登録できます。"
         />
-        <div className="flex flex-col justify-center items-center border border-dashed border-gray-600 my-4 p-4 text-center">
+        <div className="flex flex-col justify-center items-center border border-dashed border-itinerary-borderBlack my-4 p-4 text-center">
           画面最下部のメニュー「追加」より旅程表の登録ができます。
           <Image
             src="/manual.JPG"

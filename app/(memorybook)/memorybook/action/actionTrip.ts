@@ -64,9 +64,9 @@ export const addTrip = async (state: FormState, data: FormData) => {
         user: { connect: { id: Number(userId) } },
       },
     });
-    const createdItineraryHomeId = createdItineraryHome.id;
+    const createdTripId = createdItineraryHome.id;
     revalidatePath("/memorybook/dashboard");
-    return { message: "add", createdItineraryHomeId: createdItineraryHomeId };
+    return { message: "add", createdTripId: createdTripId };
   } catch (error) {
     console.error("旅行を追加する際にエラーが発生しました:", error);
     return { message: "旅行を追加する際にエラーが発生しました" };

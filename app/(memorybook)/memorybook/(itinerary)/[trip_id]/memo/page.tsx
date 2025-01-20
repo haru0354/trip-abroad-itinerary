@@ -17,7 +17,7 @@ const Page = async ({ params }: { params: { trip_id: string } }) => {
       <Suspense fallback={<Loading message="作成したメモ" />}>
         <ListMemo
           memos={trip?.memos}
-          itineraryHomeId={trip?.id}
+          tripId={trip?.id}
         />
       </Suspense>
     </>

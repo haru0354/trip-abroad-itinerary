@@ -10,14 +10,14 @@ type DeleteModalProps = {
   name: string | undefined;
   formAction: (data: FormData) => Promise<{ message: string } | undefined>;
   id: number | undefined;
-  itineraryHomeId?: number | undefined;
+  tripId?: number | undefined;
 };
 
 const DeleteModal: React.FC<DeleteModalProps> = ({
   DeleteName,
   name,
   formAction,
-  itineraryHomeId,
+  tripId,
   id,
 }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
@@ -91,11 +91,11 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
               </Button>
               <form onSubmit={deleteToast}>
                 <input type="hidden" name="id" value={id} />
-                {itineraryHomeId && (
+                {tripId && (
                   <input
                     type="hidden"
-                    name="itineraryHomeId"
-                    value={itineraryHomeId}
+                    name="tripId"
+                    value={tripId}
                   />
                 )}
                 <Button

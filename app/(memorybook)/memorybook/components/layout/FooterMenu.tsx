@@ -8,11 +8,11 @@ import FormItineraryModal from "../itinerary/FormItineraryModal";
 import ButtonImage from "@/app/components/ui/ButtonImage";
 
 type FooterMenuProps = {
-  itineraryHomeId: number;
+  tripId: number;
   userId?: number | undefined;
 };
 
-const FooterMenu: React.FC<FooterMenuProps> = ({ itineraryHomeId }) => {
+const FooterMenu: React.FC<FooterMenuProps> = ({ tripId }) => {
   const path = usePathname();
 
   return (
@@ -26,28 +26,28 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ itineraryHomeId }) => {
           </Link>
         </div>
         <div className="w-full h-full">
-          <Link href={`/memorybook/${itineraryHomeId}/itinerary`}>
+          <Link href={`/memorybook/${tripId}/itinerary`}>
             <ButtonImage size="footer" icon="plane">
               旅程表
             </ButtonImage>
           </Link>
         </div>
         <div className="w-full h-full">
-          <Link href={`/memorybook/${itineraryHomeId}/memo`}>
+          <Link href={`/memorybook/${tripId}/memo`}>
             <ButtonImage size="footer" icon="pen">
               メモ帳
             </ButtonImage>
           </Link>
         </div>
-        {path === `/memorybook/${itineraryHomeId}/memo` ? (
+        {path === `/memorybook/${tripId}/memo` ? (
           <FormMemoModal
-            itineraryHomeId={itineraryHomeId}
+          tripId={tripId}
             buttonName="追加"
             buttonName2="メモを追加"
           />
-        ) : path === `/memorybook/${itineraryHomeId}/itinerary` ? (
+        ) : path === `/memorybook/${tripId}/itinerary` ? (
           <FormItineraryModal
-            itineraryHomeId={itineraryHomeId}
+          tripId={tripId}
             buttonName="追加"
             buttonName2="旅程を追加"
             formAction={addItinerary}

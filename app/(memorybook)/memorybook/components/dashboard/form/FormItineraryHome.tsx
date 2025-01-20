@@ -31,7 +31,7 @@ type FormState = {
     name?: string[] | undefined;
     destination?: string[] | undefined;
   };
-  createdItineraryHomeId?: number | null;
+  createdTripId?: number | null;
 };
 
 const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
@@ -60,7 +60,7 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
   useEffect(() => {
     if (state.message === "add") {
       toast.success("旅行を保存しました！");
-      router.replace(`/memorybook/${state.createdItineraryHomeId}/itinerary`);
+      router.replace(`/memorybook/${state.createdTripId}/itinerary`);
       state.message = "";
     } else if (state.message === "edit") {
       toast.success("旅行を編集しました！");

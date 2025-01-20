@@ -17,7 +17,7 @@ const Page = async ({ params }: { params: { trip_id: string } }) => {
       <Suspense fallback={<Loading message="作成した旅程表" />}>
         <ListItinerary
           itineraries={trip?.itineraries}
-          itineraryHomeId={trip?.id}
+          tripId={trip?.id}
         />
       </Suspense>
     </>

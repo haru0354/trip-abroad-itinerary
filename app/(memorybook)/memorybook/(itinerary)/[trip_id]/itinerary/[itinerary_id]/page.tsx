@@ -34,7 +34,7 @@ const page = async ({
         itinerary={itinerary}
         formAction={updateItineraryWithId}
         buttonName="保存"
-        itineraryHomeId={trip.id}
+        tripId={trip.id}
       />
       <Link href={`/memorybook/${trip.id}/itinerary`}>
         <Button color="gray" size="normal" className="rounded mt-4">
@@ -44,7 +44,7 @@ const page = async ({
       <DeleteModal
         DeleteName="旅程"
         name={itinerary?.name}
-        itineraryHomeId={trip.id}
+        tripId={trip.id}
         formAction={deleteItinerary}
         id={itinerary?.id}
       />

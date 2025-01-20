@@ -16,7 +16,7 @@ import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 type FormItineraryProps = {
   buttonName: string;
   buttonName2: string;
-  itineraryHomeId: number | undefined;
+  tripId: number | undefined;
   formAction: (state: FormState, data: FormData) => Promise<FormState>;
 };
 
@@ -34,7 +34,7 @@ type FormState = {
 const FormItineraryModal: React.FC<FormItineraryProps> = ({
   buttonName,
   buttonName2,
-  itineraryHomeId,
+  tripId,
   formAction,
 }) => {
   const router = useRouter();
@@ -89,7 +89,7 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
     } else if (state.message === "edit") {
       toast.success("旅程を編集しました！");
       state.message = "";
-      router.replace(`/memorybook/${itineraryHomeId}/itinerary/`);
+      router.replace(`/memorybook/${tripId}/itinerary/`);
     } else if (state.message === "failure") {
       toast.error("旅程の保存に失敗しました。");
     }
@@ -209,8 +209,8 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
                 />
                 <input
                   type="hidden"
-                  name="itineraryHomeId"
-                  value={itineraryHomeId}
+                  name="tripId"
+                  value={tripId}
                 />
                 {state.errors && state.message !== "failure" && (
                   <p className="text-red-500">{state.message}</p>

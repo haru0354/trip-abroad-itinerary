@@ -22,7 +22,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { trip_id: string };
 }>) {
-  const itineraryHomeId = Number(params.trip_id);
+  const tripId = Number(params.trip_id);
 
   return (
     <>
@@ -33,7 +33,7 @@ export default async function RootLayout({
         </div>
       </main>
       <Footer />
-      <FooterMenu itineraryHomeId={itineraryHomeId} />
+      <FooterMenu tripId={tripId} />
     </>
   );
 }

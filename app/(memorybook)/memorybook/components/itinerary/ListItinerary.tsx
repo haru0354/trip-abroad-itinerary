@@ -11,7 +11,7 @@ import AnimatedImage from "@/app/lib/animation/AnimatedImage";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 
 type ListItineraryProps = {
-  itineraryHomeId: number | undefined;
+  tripId: number | undefined;
   itineraries: Itineraries[] | undefined;
   isShare?: boolean;
 };
@@ -29,7 +29,7 @@ type Itineraries = {
 };
 
 const ListItinerary: React.FC<ListItineraryProps> = ({
-  itineraryHomeId,
+  tripId,
   itineraries,
   isShare,
 }) => {
@@ -101,7 +101,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
             )}
             {isShare || (
               <Link
-                href={`/memorybook/${itineraryHomeId}/itinerary/${itinerary.id}`}
+                href={`/memorybook/${tripId}/itinerary/${itinerary.id}`}
               >
                 <ButtonImage
                   className="rounded mb-[-8px]"

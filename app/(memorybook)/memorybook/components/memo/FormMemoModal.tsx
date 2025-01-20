@@ -14,7 +14,7 @@ import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 type FormMemoProps = {
   buttonName: string;
   buttonName2: string;
-  itineraryHomeId?: number | undefined;
+  tripId?: number | undefined;
 };
 
 type FormState = {
@@ -22,14 +22,14 @@ type FormState = {
   errors?: {
     name?: string[] | undefined;
     content?: string[] | undefined;
-    itineraryHomeId?: string[] | undefined;
+    tripId?: string[] | undefined;
   };
 };
 
 const FormMemoModal: React.FC<FormMemoProps> = ({
   buttonName,
   buttonName2,
-  itineraryHomeId,
+  tripId,
 }) => {
   const router = useRouter();
   
@@ -62,7 +62,7 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
       state.message = "";
     } else if (state.message === "edit") {
       toast.success("メモを編集しました！");
-      router.replace(`/memorybook/${itineraryHomeId}/memo`);
+      router.replace(`/memorybook/${tripId}/memo`);
       state.message = "";
     } else if (state.message === "failure") {
       toast.error("メモの保存に失敗しました。");
@@ -134,8 +134,8 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
                 />
                 <input
                   type="hidden"
-                  name="itineraryHomeId"
-                  value={itineraryHomeId}
+                  name="tripId"
+                  value={tripId}
                 />
                 {state.errors && state.message !== "failure" && (
                   <p className="text-red-500">{state.message}</p>

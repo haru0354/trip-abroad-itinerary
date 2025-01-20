@@ -23,7 +23,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const currentUserId = (await getCurrentUserId()) ?? undefined;
-  const itineraryHomes = await getTrips(currentUserId);
+  const trips = await getTrips(currentUserId);
 
   return (
     <>
@@ -32,7 +32,7 @@ export default async function RootLayout({
           <div className="w-full">{children}</div>
         </div>
         <Suspense fallback={<Loading />}>
-          <SideMenu itineraryHomes={itineraryHomes} />
+          <SideMenu trips={trips} />
         </Suspense>
       </div>
     </>

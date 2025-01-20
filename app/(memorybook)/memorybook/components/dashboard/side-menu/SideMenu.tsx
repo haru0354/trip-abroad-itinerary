@@ -13,15 +13,15 @@ import {
 import Button from "@/app/components/ui/Button";
 
 type SideMenuProps = {
-  itineraryHomes: ItineraryHomes[];
+  trips: Trips[];
 };
 
-type ItineraryHomes = {
+type Trips = {
   id: number;
   name: string;
 };
 
-const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
+const SideMenu: React.FC<SideMenuProps> = ({ trips }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -66,7 +66,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
               作成した旅行
             </h3>
             <ul>
-              {itineraryHomes.map((trip) => {
+              {trips.map((trip) => {
                 return (
                   <div key={trip.id}>
                     <Link href={`/memorybook/${trip.id}/itinerary`}>
@@ -133,7 +133,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
                 </Link>
               </ul>
               <p className="py-2 border-b mt-3 text-white">作成した旅行</p>
-              {itineraryHomes.map((trip) => {
+              {trips.map((trip) => {
                 return (
                   <ul key={trip.id} className="text-white">
                     <Link href={`/memorybook/${trip.id}/itinerary`}>

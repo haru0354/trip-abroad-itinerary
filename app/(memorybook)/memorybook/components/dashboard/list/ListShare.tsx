@@ -7,7 +7,7 @@ type ListShareProps = {
 };
 
 const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
-  const itineraryHomes = await getTrips(userId);
+  const trips = await getTrips(userId);
 
   return (
     <>
@@ -19,7 +19,7 @@ const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
       <p>
         ボタンをクリックした先のページをLineやfacebookで共有することで、作成した旅程表をあなた以外の人でも見れるようになります。
       </p>
-      {itineraryHomes.map((trip) => {
+      {trips.map((trip) => {
         return (
           <div key={trip.id} className="border border-itinerary-borderBlack mb-6">
             <div className="flex justify-between flex-col sm:flex-row border-b border-dashed border-itinerary-borderBlack w-full p-4">

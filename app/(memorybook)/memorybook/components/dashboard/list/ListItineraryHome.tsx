@@ -11,9 +11,9 @@ type ListItineraryHomeProps = {
 const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
   userId,
 }) => {
-  const itineraryHomes = await getTrips(userId);
+  const trips = await getTrips(userId);
 
-  const sortedItineraryHomes = itineraryHomes.sort((a, b) => {
+  const sortedItineraryHomes = trips.sort((a, b) => {
     if (a.startDate === null && b.startDate === null) {
       return 0;
     }

@@ -7,13 +7,13 @@ import DeleteModal from "@/app/components/ui/DeleteModal";
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
   const id = Number(params.trip_id);
-  const updateItineraryHomeWidthId = updateTrip.bind(null, id);
+  const updateTripWidthId = updateTrip.bind(null, id);
   const trip = await getTrip(params.trip_id);
 
   return (
     <>
       <FormTrip
-        formAction={updateItineraryHomeWidthId}
+        formAction={updateTripWidthId}
         trip={trip}
         buttonName="保存"
       />

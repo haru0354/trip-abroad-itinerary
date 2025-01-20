@@ -13,7 +13,7 @@ const ListTrip: React.FC<ListTripProps> = async ({
 }) => {
   const trips = await getTrips(userId);
 
-  const sortedItineraryHomes = trips.sort((a, b) => {
+  const sortedTrips = trips.sort((a, b) => {
     if (a.startDate === null && b.startDate === null) {
       return 0;
     }
@@ -26,7 +26,7 @@ const ListTrip: React.FC<ListTripProps> = async ({
     return new Date(a.startDate).getTime() - new Date(b.startDate).getTime();
   });
 
-  if (sortedItineraryHomes && sortedItineraryHomes.length === 0) {
+  if (sortedTrips && sortedTrips.length === 0) {
     return (
       <>
         <h2 className="bg-itinerary-heading">アプリの使い方</h2>
@@ -61,7 +61,7 @@ const ListTrip: React.FC<ListTripProps> = async ({
       <h2 className="bg-itinerary-heading">旅行のしおり一覧</h2>
       <div className="w-full bg-white rounded">
         <div className="flex flex-wrap items-center justify-center my-10 mx-4">
-          {sortedItineraryHomes.map((trip) => {
+          {sortedTrips.map((trip) => {
             return (
               <div
                 key={trip.id}

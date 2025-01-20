@@ -3,9 +3,9 @@ import { getItineraryHome } from "../../../lib/memoryBookService";
 import ListMemo from "../../../components/memo/ListMemo";
 import Loading from "@/app/Loading";
 
-const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
+const Page = async ({ params }: { params: { trip_id: string } }) => {
   const itineraryHome = await getItineraryHome(
-    params.itineraryHome_id,
+    params.trip_id,
     "memos"
   );
 

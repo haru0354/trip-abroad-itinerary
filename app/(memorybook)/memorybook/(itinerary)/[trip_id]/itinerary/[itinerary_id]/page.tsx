@@ -12,12 +12,12 @@ import DeleteModal from "@/app/components/ui/DeleteModal";
 const page = async ({
   params,
 }: {
-  params: { itinerary_id: string; itineraryHome_id: string };
+  params: { itinerary_id: string; trip_id: string };
 }) => {
   const itineraryId = Number(params.itinerary_id);
   const updateItineraryWithId = updateItinerary.bind(null, itineraryId);
 
-  const itineraryHome = await getItineraryHome(params.itineraryHome_id);
+  const itineraryHome = await getItineraryHome(params.trip_id);
 
   if (!itineraryHome) {
     return <div>旅行データが見つかりません。</div>;

@@ -12,12 +12,12 @@ import Button from "@/app/components/ui/Button";
 const Page = async ({
   params,
 }: {
-  params: { memo_id: string; itineraryHome_id: string };
+  params: { memo_id: string; trip_id: string };
 }) => {
   const memoId = Number(params.memo_id);
   const memo = await getMemo(params.memo_id);
 
-  const itineraryHome = await getItineraryHome(params.itineraryHome_id);
+  const itineraryHome = await getItineraryHome(params.trip_id);
 
   if (!itineraryHome) {
     return <div>旅行データが見つかりません。</div>;

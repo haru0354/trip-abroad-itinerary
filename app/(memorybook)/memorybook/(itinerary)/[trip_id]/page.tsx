@@ -5,10 +5,10 @@ import FormItineraryHome from "../../components/dashboard/form/FormItineraryHome
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 
-const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
-  const id = Number(params.itineraryHome_id);
+const Page = async ({ params }: { params: { trip_id: string } }) => {
+  const id = Number(params.trip_id);
   const updateItineraryHomeWidthId = updateTrip.bind(null, id);
-  const itineraryHome = await getItineraryHome(params.itineraryHome_id);
+  const itineraryHome = await getItineraryHome(params.trip_id);
 
   return (
     <>

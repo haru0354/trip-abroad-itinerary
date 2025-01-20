@@ -4,10 +4,10 @@ import { updateShare } from "../../../action/actionTrip";
 import Button from "@/app/components/ui/Button";
 import FormShare from "../../../components/dashboard/form/FormShare";
 
-const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
-  const id = Number(params.itineraryHome_id);
+const Page = async ({ params }: { params: { trip_id: string } }) => {
+  const id = Number(params.trip_id);
   const updateShareWidthId = updateShare.bind(null, id);
-  const itineraryHome = await getItineraryHome(params.itineraryHome_id);
+  const itineraryHome = await getItineraryHome(params.trip_id);
 
   return (
     <>

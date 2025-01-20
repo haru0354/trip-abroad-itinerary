@@ -3,9 +3,9 @@ import ListItinerary from "@/app/(memorybook)/memorybook/components/itinerary/Li
 import Share from "@/app/(memorybook)/memorybook/components/Share";
 import NotFound from "@/app/not-found";
 
-const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
+const Page = async ({ params }: { params: { trip_id: string } }) => {
   const itineraryHome = await getItineraryHome(
-    params.itineraryHome_id,
+    params.trip_id,
     "itineraries"
   );
 

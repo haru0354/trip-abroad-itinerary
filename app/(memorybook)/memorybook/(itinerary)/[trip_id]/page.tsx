@@ -8,13 +8,13 @@ import DeleteModal from "@/app/components/ui/DeleteModal";
 const Page = async ({ params }: { params: { trip_id: string } }) => {
   const id = Number(params.trip_id);
   const updateItineraryHomeWidthId = updateTrip.bind(null, id);
-  const itineraryHome = await getTrip(params.trip_id);
+  const trip = await getTrip(params.trip_id);
 
   return (
     <>
       <FormItineraryHome
         formAction={updateItineraryHomeWidthId}
-        itineraryHome={itineraryHome}
+        trip={trip}
         buttonName="保存"
       />
       <Link href="/memorybook/dashboard">
@@ -24,9 +24,9 @@ const Page = async ({ params }: { params: { trip_id: string } }) => {
       </Link>
       <DeleteModal
         DeleteName="旅行"
-        name={itineraryHome?.name}
+        name={trip?.name}
         formAction={deleteTrip}
-        id={itineraryHome?.id}
+        id={trip?.id}
       />
     </>
   );

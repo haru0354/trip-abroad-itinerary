@@ -17,9 +17,9 @@ const page = async ({
   const itineraryId = Number(params.itinerary_id);
   const updateItineraryWithId = updateItinerary.bind(null, itineraryId);
 
-  const itineraryHome = await getTrip(params.trip_id);
+  const trip = await getTrip(params.trip_id);
 
-  if (!itineraryHome) {
+  if (!trip) {
     return <div>旅行データが見つかりません。</div>;
   }
 
@@ -28,15 +28,15 @@ const page = async ({
   return (
     <>
       <h2 className="bg-white text-2xl text-center text-black border-b border-solid border-blue-800">
-        {itineraryHome?.name}
+        {trip?.name}
       </h2>
       <FormItinerary
         itinerary={itinerary}
         formAction={updateItineraryWithId}
         buttonName="保存"
-        itineraryHomeId={itineraryHome.id}
+        itineraryHomeId={trip.id}
       />
-      <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
+      <Link href={`/memorybook/${trip.id}/itinerary`}>
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル
         </Button>
@@ -44,7 +44,7 @@ const page = async ({
       <DeleteModal
         DeleteName="旅程"
         name={itinerary?.name}
-        itineraryHomeId={itineraryHome.id}
+        itineraryHomeId={trip.id}
         formAction={deleteItinerary}
         id={itinerary?.id}
       />

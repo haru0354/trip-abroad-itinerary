@@ -9,12 +9,12 @@ import Form from "@/app/components/ui/Form";
 import Date from "@/app/components/ui/Date";
 
 type FormItineraryHomeProps = {
-  itineraryHome?: ItineraryHome | null;
+  trip?: Trip | null;
   buttonName: string;
   formAction: (state: FormState, data: FormData) => Promise<FormState>;
 };
 
-type ItineraryHome = {
+type Trip = {
   id: number;
   startDate?: string | null;
   endDate?: string | null;
@@ -35,20 +35,20 @@ type FormState = {
 };
 
 const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
-  itineraryHome,
+  trip,
   buttonName,
   formAction,
 }) => {
   const router = useRouter();
   const [startDateValue, setStartDateValue] = useState<string>(
-    itineraryHome?.startDate || ""
+    trip?.startDate || ""
   );
   const [endDateValue, setEndDateValue] = useState<string>(
-    itineraryHome?.endDate || ""
+    trip?.endDate || ""
   );
-  const [nameValue, setNameValue] = useState<string>(itineraryHome?.name || "");
+  const [nameValue, setNameValue] = useState<string>(trip?.name || "");
   const [destinationValue, setDestinationValue] = useState<string>(
-    itineraryHome?.destination || ""
+    trip?.destination || ""
   );
 
   const initialState = { message: null, errors: { name: undefined } };

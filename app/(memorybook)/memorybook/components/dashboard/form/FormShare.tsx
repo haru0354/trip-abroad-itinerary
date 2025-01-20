@@ -5,12 +5,12 @@ import Checkbox from "@/app/components/ui/Checkbox";
 import Button from "@/app/components/ui/Button";
 
 type FormShareProps = {
-  itineraryHome: ItineraryHome | null;
+  trip: Trip | null;
   formAction: (data: FormData) => Promise<void>;
   buttonName: string;
 };
 
-type ItineraryHome = {
+type Trip = {
   id: number;
   startDate?: string | null;
   endDate?: string | null;
@@ -20,12 +20,12 @@ type ItineraryHome = {
 };
 
 const FormShare: React.FC<FormShareProps> = ({
-  itineraryHome,
+  trip,
   formAction,
   buttonName,
 }) => {
   const [isShare, setIsShare] = useState<boolean>(
-    itineraryHome?.share ?? false
+    trip?.share ?? false
   );
 
   const handleToggle = () => {

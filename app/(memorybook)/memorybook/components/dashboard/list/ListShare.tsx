@@ -19,39 +19,39 @@ const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
       <p>
         ボタンをクリックした先のページをLineやfacebookで共有することで、作成した旅程表をあなた以外の人でも見れるようになります。
       </p>
-      {itineraryHomes.map((itineraryHome) => {
+      {itineraryHomes.map((trip) => {
         return (
-          <div key={itineraryHome.id} className="border border-itinerary-borderBlack mb-6">
+          <div key={trip.id} className="border border-itinerary-borderBlack mb-6">
             <div className="flex justify-between flex-col sm:flex-row border-b border-dashed border-itinerary-borderBlack w-full p-4">
               <div className="flex justify-center items-center pt-2 ">
                 <p className="mb-0">
-                  {itineraryHome.name && itineraryHome.name.length > 72
-                    ? `${itineraryHome.name.slice(0, 72)}...`
-                    : itineraryHome.name}
+                  {trip.name && trip.name.length > 72
+                    ? `${trip.name.slice(0, 72)}...`
+                    : trip.name}
                 </p>
               </div>
               <div className="flex justify-center items-center pt-2 sm:border-l min-w-[180px] ">
                 <p className="mb-0">
-                  {itineraryHome.share ? "旅程表：共有" : "旅程表：共有しない"}
+                  {trip.share ? "旅程表：共有" : "旅程表：共有しない"}
                 </p>
               </div>
             </div>
             <div className="flex justify-center py-2 items-center">
-              {itineraryHome.share && (
-                <Link href={`/memorybook/share/${userId}/${itineraryHome.id}`}>
+              {trip.share && (
+                <Link href={`/memorybook/share/${userId}/${trip.id}`}>
                   <Button color="blue" size="small">
                     共有ページ
                   </Button>
                 </Link>
               )}
-              {itineraryHome.blog && (
-                <Link href={`travelogue/${userId}/${itineraryHome.id}`}>
+              {trip.blog && (
+                <Link href={`travelogue/${userId}/${trip.id}`}>
                   <Button color="blue" size="small">
                     ブログ
                   </Button>
                 </Link>
               )}
-              <Link href={`/memorybook/dashboard/${itineraryHome.id}`}>
+              <Link href={`/memorybook/dashboard/${trip.id}`}>
                 <Button color="gray" size="small">
                   編集
                 </Button>

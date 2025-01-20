@@ -61,14 +61,14 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
       <h2 className="bg-itinerary-heading">旅行のしおり一覧</h2>
       <div className="w-full bg-white rounded">
         <div className="flex flex-wrap items-center justify-center my-10 mx-4">
-          {sortedItineraryHomes.map((itineraryHome) => {
+          {sortedItineraryHomes.map((trip) => {
             return (
               <div
-                key={itineraryHome.id}
+                key={trip.id}
                 className="flex flex-col items-center mx-4 max-w-[370px] "
               >
                 <div className="ml-auto">
-                  <Link href={`/memorybook/${itineraryHome.id}`}>
+                  <Link href={`/memorybook/${trip.id}`}>
                     <ButtonImage
                       className="rounded py-1"
                       size="small"
@@ -79,7 +79,7 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                     </ButtonImage>
                   </Link>
                 </div>
-                <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
+                <Link href={`/memorybook/${trip.id}/itinerary`}>
                   <div className="flex flex-col w-full min-w-[340px] min-h-[300px] mb-10 px-8 pt-6 border-2 rounded border-sky-600 hover:bg-itinerary-hoverBlue transition duration-300">
                     <span className="flex justify-center mb-6 text-blue-500">
                       <FontAwesomeIcon
@@ -89,13 +89,13 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
                     </span>
                     <div className="flex items-center justify-center min-h-[110px] ">
                       <h3 className="mb-6 text-center text-xl font-semibold">
-                        {itineraryHome.name}
+                        {trip.name}
                       </h3>
                     </div>
                     <ul>
-                      <li>出発日：{itineraryHome.startDate}</li>
-                      <li>帰宅日：{itineraryHome.endDate}</li>
-                      <li>旅行先：{itineraryHome.destination}</li>
+                      <li>出発日：{trip.startDate}</li>
+                      <li>帰宅日：{trip.endDate}</li>
+                      <li>旅行先：{trip.destination}</li>
                     </ul>
                     <p className="min-w-[100px] px-6 py-1 mt-5 mx-auto shadow font-bold text-white border rounded border-sky-900 bg-sky-700">
                       旅程表へ

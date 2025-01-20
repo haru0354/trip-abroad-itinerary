@@ -7,12 +7,12 @@ import FormShare from "../../../components/dashboard/form/FormShare";
 const Page = async ({ params }: { params: { trip_id: string } }) => {
   const id = Number(params.trip_id);
   const updateShareWidthId = updateShare.bind(null, id);
-  const itineraryHome = await getTrip(params.trip_id);
+  const trip = await getTrip(params.trip_id);
 
   return (
     <>
       <FormShare
-        itineraryHome={itineraryHome}
+        trip={trip}
         formAction={updateShareWidthId}
         buttonName="保存"
       />

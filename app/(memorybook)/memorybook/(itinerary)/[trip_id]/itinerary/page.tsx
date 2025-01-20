@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import { getItineraryHome } from "../../../lib/memoryBookService";
+import { getTrip } from "../../../lib/memoryBookService";
 import ListItinerary from "../../../components/itinerary/ListItinerary";
 import Loading from "@/app/Loading";
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
-  const itineraryHome = await getItineraryHome(
+  const itineraryHome = await getTrip(
     params.trip_id,
     "itineraries"
   );

@@ -1,10 +1,10 @@
-import { getItineraryHome } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
+import { getTrip } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import ListItinerary from "@/app/(memorybook)/memorybook/components/itinerary/ListItinerary";
 import Share from "@/app/(memorybook)/memorybook/components/Share";
 import NotFound from "@/app/not-found";
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
-  const itineraryHome = await getItineraryHome(
+  const itineraryHome = await getTrip(
     params.trip_id,
     "itineraries"
   );

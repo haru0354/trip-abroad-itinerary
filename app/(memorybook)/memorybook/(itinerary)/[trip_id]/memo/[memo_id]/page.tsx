@@ -2,7 +2,7 @@ import Link from "next/link";
 import { deleteMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import { updateMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import {
-  getItineraryHome,
+  getTrip,
   getMemo,
 } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import FormMemo from "@/app/(memorybook)/memorybook/components/memo/FormMemo";
@@ -17,7 +17,7 @@ const Page = async ({
   const memoId = Number(params.memo_id);
   const memo = await getMemo(params.memo_id);
 
-  const itineraryHome = await getItineraryHome(params.trip_id);
+  const itineraryHome = await getTrip(params.trip_id);
 
   if (!itineraryHome) {
     return <div>旅行データが見つかりません。</div>;

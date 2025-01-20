@@ -2,7 +2,7 @@ import Link from "next/link";
 import { updateItinerary } from "@/app/(memorybook)/memorybook/action/actionItinerary";
 import { deleteItinerary } from "@/app/(memorybook)/memorybook/action/actionItinerary";
 import {
-  getItineraryHome,
+  getTrip,
   getItinerary,
 } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import FormItinerary from "@/app/(memorybook)/memorybook/components/itinerary/FormItinerary";
@@ -17,7 +17,7 @@ const page = async ({
   const itineraryId = Number(params.itinerary_id);
   const updateItineraryWithId = updateItinerary.bind(null, itineraryId);
 
-  const itineraryHome = await getItineraryHome(params.trip_id);
+  const itineraryHome = await getTrip(params.trip_id);
 
   if (!itineraryHome) {
     return <div>旅行データが見つかりません。</div>;

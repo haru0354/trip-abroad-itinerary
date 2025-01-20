@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { deleteTrip, updateTrip } from "@/app/(memorybook)/memorybook/action/actionTrip";
-import { getItineraryHome } from "../../lib/memoryBookService";
+import { getTrip } from "../../lib/memoryBookService";
 import FormItineraryHome from "../../components/dashboard/form/FormItineraryHome";
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
@@ -8,7 +8,7 @@ import DeleteModal from "@/app/components/ui/DeleteModal";
 const Page = async ({ params }: { params: { trip_id: string } }) => {
   const id = Number(params.trip_id);
   const updateItineraryHomeWidthId = updateTrip.bind(null, id);
-  const itineraryHome = await getItineraryHome(params.trip_id);
+  const itineraryHome = await getTrip(params.trip_id);
 
   return (
     <>

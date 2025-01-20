@@ -10,11 +10,11 @@ export async function getItineraryHomes(userId?: number) {
   return itineraryHomes;
 }
 
-export async function getItineraryHome(
-  itineraryHomeId: string,
+export async function getTrip(
+  tripId: string,
   includeOptions?: string
 ) {
-  const id = Number(itineraryHomeId);
+  const id = Number(tripId);
 
   let include: {
     itineraries?: boolean;
@@ -33,14 +33,14 @@ export async function getItineraryHome(
     };
   }
 
-  const itineraryHome = await prisma.itineraryHome.findUnique({
+  const trip = await prisma.itineraryHome.findUnique({
     where: {
       id,
     },
     include: include,
   });
 
-  return itineraryHome;
+  return trip;
 }
 
 export async function getMemo(memoId: string) {

@@ -101,10 +101,10 @@ const LoginModal = () => {
         Googleでログイン
       </Button>
 
-      <div className="my-8 border-t border-dashed border-gray-600">
+      <div className="my-8 border-t border-dashed border-itinerary-borderBlack">
         <p
           onClick={onToggle}
-          className="text-center text-gray-600 pt-2 cursor-pointer "
+          className="text-center pt-2 cursor-pointer "
         >
           アカウントを作成する
         </p>

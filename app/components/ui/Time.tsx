@@ -6,10 +6,7 @@ type TimeProps = {
 const Time: React.FC<TimeProps> = ({ value, onChange }) => {
   return (
     <div>
-      <label
-        className="block  text-gray-600 text-sm font-bold mb-1 mt-4"
-        htmlFor="time"
-        >
+      <label className="block mb-1 mt-4 text-sm font-bold" htmlFor="time">
         時間
       </label>
       <input
@@ -18,7 +15,7 @@ const Time: React.FC<TimeProps> = ({ value, onChange }) => {
         id="time"
         value={value}
         onChange={onChange}
-        className="shadow border rounded py-2 px-2" 
+        className="py-2 px-2 border rounded shadow"
       />
     </div>
   );

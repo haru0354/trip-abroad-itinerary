@@ -11,7 +11,7 @@ const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
 
   return (
     <>
-      <h2>旅程表の共有</h2>
+      <h2 className="bg-itinerary-heading">旅程表の共有</h2>
       <p>編集より簡単に共有設定が変更可能です。</p>
       <p>
         共有設定が有効になっていると共有ページが公開されます。また、下記メニューに「共有ページボタン」が表示されます。
@@ -21,8 +21,8 @@ const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
       </p>
       {itineraryHomes.map((itineraryHome) => {
         return (
-          <div key={itineraryHome.id} className="border border-gray-500 mb-6">
-            <div className="flex justify-between flex-col sm:flex-row border-b border-dashed border-gray-500 w-full p-4">
+          <div key={itineraryHome.id} className="border border-itinerary-borderBlack mb-6">
+            <div className="flex justify-between flex-col sm:flex-row border-b border-dashed border-itinerary-borderBlack w-full p-4">
               <div className="flex justify-center items-center pt-2 ">
                 <p className="mb-0">
                   {itineraryHome.name && itineraryHome.name.length > 72

@@ -10,7 +10,7 @@ const SignupButton = () => {
       onClick={() => {
         signupModal.onOpen();
       }}
-      className="px-16 py-3 shadow font-bold bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900"
+      className="px-16 py-3 shadow font-bold  transition duration-300 bg-sky-700 text-white hover:bg-white hover:text-black border border-sky-900"
     >
       しおりを作成
     </button>

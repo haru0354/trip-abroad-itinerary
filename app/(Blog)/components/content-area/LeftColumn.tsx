@@ -60,7 +60,7 @@ const LeftColumn: React.FC<LeftColumnProps> = ({
   filteredCategoryInArticles,
 }) => {
   return (
-    <div className="blog w-full md:w-3/4 bg-white rounded-sm py-4 px-4 md:px-12 mr-8">
+    <div className="blog w-full md:max-w-[818px] bg-white rounded py-4 px-4 md:px-12 mr-8">
       {categoryPage && category ? (
         <>
           <Breadcrumbs

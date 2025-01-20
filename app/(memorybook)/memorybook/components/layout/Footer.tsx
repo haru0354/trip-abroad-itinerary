@@ -10,7 +10,7 @@ const Footer: React.FC<FooterProps> = ({ isTopAppDirectory }) => {
 
   return (
     <>
-      <div className="bg-blue-50 pt-8">
+      <div className="bg-itinerary-bgColor pt-8">
         <Image
           alt="飛行機で旅行の画像"
           src="/footer-image.png"

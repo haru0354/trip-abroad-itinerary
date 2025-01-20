@@ -20,10 +20,10 @@ const Manual: React.FC<ManualProps> = ({
 }) => {
   return (
     <>
-      <h2 className="bg-blue-400 text-xl bold text-white rounded mt-10 mb-10 p-5">
+      <h2 className="bg-itinerary-heading text-xl bold text-white rounded mt-10 mb-10 p-5">
         {title}
       </h2>
-      <p className="text-gray-700">{content1}</p>
+      <p>{content1}</p>
       <ul className="my-6 px-4 border p-4">
         <li className="flex py-3 px-2 text-red-500  ">
           <FontAwesomeIcon
@@ -54,7 +54,7 @@ const Manual: React.FC<ManualProps> = ({
           </li>
         )}
       </ul>
-      <p className="text-gray-700">{content2}</p>
+      <p>{content2}</p>
     </>
   );
 };

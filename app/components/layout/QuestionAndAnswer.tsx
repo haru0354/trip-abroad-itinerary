@@ -21,40 +21,30 @@ const QuestionAndAnswer: React.FC<QuestionAndAnswerProps> = ({
   };
 
   return (
-    <>
-      <AnimatedItem
-        elementType="div"
-        animation="fadeInVariants"
-        className="border border-gray-600 my-10 p-8 rounded cursor-pointer w-full"
-        onClick={toggleShowContent}
-      >
+    <AnimatedItem
+      elementType="div"
+      animation="fadeInVariants"
+      className="cursor-pointer w-full my-10 p-8 border rounded border-itinerary-borderBlack"
+      onClick={toggleShowContent}
+    >
+      <div className="flex items-center w-full mb-4">
+        <FontAwesomeIcon icon={faQ} className="mr-4" />
+        <h3 className="w-full py-2 border-b border-dashed border-itinerary-borderBlack">
+          {title}
+        </h3>
         {isShowContent ? (
-          <>
-            <div className="flex items-center mb-4 w-full">
-              <FontAwesomeIcon icon={faQ} className="mr-4" />
-              <h3 className="border-b border-dashed border-gray-600 py-2 w-full">
-                {title}
-              </h3>
-              <FontAwesomeIcon icon={faMinus} />
-            </div>
-            <div className="flex items-center">
-              <FontAwesomeIcon icon={faA} className="mr-4" />
-              <p className="py-4 leading-loose">{content}</p>
-            </div>
-          </>
+          <FontAwesomeIcon icon={faMinus} />
         ) : (
-          <>
-            <div className="flex items-center mb-4 w-full">
-              <FontAwesomeIcon icon={faQ} className="mr-4" />
-              <h3 className="border-b border-dashed border-gray-600 py-2 w-full">
-                {title}
-              </h3>
-              <FontAwesomeIcon icon={faPlus} />
-            </div>
-          </>
+          <FontAwesomeIcon icon={faPlus} />
         )}
-      </AnimatedItem>
-    </>
+      </div>
+      {isShowContent && (
+        <div className="flex items-start justify-start">
+          <FontAwesomeIcon icon={faA} className="mr-4 py-6" />
+          <p className="py-4 leading-loose">{content}</p>
+        </div>
+      )}
+    </AnimatedItem>
   );
 };
 

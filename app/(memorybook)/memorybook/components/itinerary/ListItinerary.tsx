@@ -49,7 +49,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
           li1="「いつ・何をするのか」登録をしていきましょう。"
           li2="補足情報には色々とメモしたい項目を登録できます。"
         />
-        <div className="flex flex-col justify-center items-center border border-dashed border-gray-600 my-4 p-4 text-center text-gray-700">
+        <div className="flex flex-col justify-center items-center border border-dashed border-itinerary-borderBlack my-4 p-4 text-center">
           画面最下部のメニュー「追加」より旅程表の登録ができます。
           <Image
             src="/manual.JPG"
@@ -62,7 +62,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
             }}
           />
         </div>
-        <p className="pt-6 text-gray-700 font-bold text-center">サンプル</p>
+        <p className="pt-6 font-bold text-center">サンプル</p>
         <Image
           src="/sample-itinerary.jpg"
           alt="旅程表のサンプル"
@@ -80,7 +80,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
 
   return (
     <div>
-      <h2 className="text-center">旅程表</h2>
+      <h2 className="bg-itinerary-heading text-center">旅程表</h2>
       {sortedItineraries?.map((itinerary, index) => {
         const isFirstItem =
           index === 0 || itinerary.date !== sortedItineraries[index - 1].date;
@@ -140,7 +140,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
                     </div>
                   )}
                   <div className="flex flex-col px-4">
-                    <h3 className="text-gray-700 my-4 text-xl font-semibold">
+                    <h3 className="my-4 text-xl font-semibold">
                       {itinerary.name}
                     </h3>
                     <div className="flex items-center mb-2">
@@ -148,12 +148,10 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
                         icon={faClock}
                         className="inline-block mr-2 w-[16px] h-[16px]"
                       />
-                      <p className="text-gray-700 mb-0 inline-block">
-                        {itinerary.time}
-                      </p>
+                      <p className=" mb-0 inline-block">{itinerary.time}</p>
                     </div>
                     <div className="flex">
-                      <p className="text-gray-700">
+                      <p>
                         <SplitTextLines text={itinerary.content || ""} />
                       </p>
                     </div>

@@ -47,10 +47,10 @@ const ThreeImageAndContents: React.FC<ThreeImageAndContentsProps> = ({
                 </figure>
               </div>
               <div className="min-h-[130px] ">
-                <h3 className="text-gray-700 my-6 text-center text-xl font-semibold">
+                <h3 className="my-6 text-center text-xl font-semibold">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 my-2">{item.content}</p>
+                <p className="my-2">{item.content}</p>
               </div>
             </AnimatedItem>
           );

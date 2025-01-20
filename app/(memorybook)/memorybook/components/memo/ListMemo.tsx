@@ -33,7 +33,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
           li1="旅行前の準備(用意する物・やらなければいけない事)"
           li2="旅行中のメモ(海外旅行保険の連絡先・購入予定のお土産)"
         />
-        <div className="flex flex-col justify-center items-center text-center my-4 p-4 border border-dashed border-gray-600 text-gray-700 overflow-x-hidden">
+        <div className="flex flex-col justify-center items-center text-center my-4 p-4 border border-dashed border-itinerary-borderBlack overflow-x-hidden">
           画面最下部のメニュー「追加」よりメモの登録ができます。
           <Image
             src="/manual.JPG"
@@ -46,14 +46,12 @@ const ListMemo: React.FC<ListMemoProps> = async ({
             }}
           />
         </div>
-        <p className="pt-6 text-gray-700 font-bold text-center">サンプル</p>
+        <p className="pt-6 font-bold text-center">サンプル</p>
         <div className="bg-sky-50 shadow-md rounded px-8 py-8 mb-10 ">
-          <div className="border-b border-gray-400 pb-2">
-            <h3 className="text-center font-semibold text-gray-700">
-              海外旅行保険の連絡先
-            </h3>
+          <div className="border-b border-itinerary-borderBlack pb-2">
+            <h3 className="text-center font-semibold">海外旅行保険の連絡先</h3>
           </div>
-          <div className="mt-4 text-gray-700">
+          <div className="mt-4">
             海外旅行保険センター：000-0000-0000。〇〇医療病院：000-0000-0000。治療費を負担なしで診療できる。日本語の通訳もあり。
           </div>
         </div>
@@ -63,7 +61,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
 
   return (
     <>
-      <h2 className="text-center">メモの一覧</h2>
+      <h2 className="bg-itinerary-heading text-center">メモの一覧</h2>
       {sortedMemos?.map((memo) => {
         return (
           <AnimatedItem
@@ -83,14 +81,12 @@ const ListMemo: React.FC<ListMemoProps> = async ({
                 編集
               </ButtonImage>
             </Link>
-            <div className="bg-gray-50 border border-gray-200 shadow-md rounded px-8 py-5 mb-10 ">
-              <div className="border-b border-gray-300">
-                <h3 className="text-center font-semibold text-gray-700">
-                  {memo.name}
-                </h3>
+            <div className="bg-gray-50 border border-itinerary-borderGray shadow-md rounded px-8 py-5 mb-10 ">
+              <div className="border-b border-itinerary-borderGray">
+                <h3 className="text-center font-semibold">{memo.name}</h3>
               </div>
               {memo.content && (
-                <div className="mt-4 text-gray-700">
+                <div className="mt-4">
                   <SplitTextLines text={memo.content} />
                 </div>
               )}

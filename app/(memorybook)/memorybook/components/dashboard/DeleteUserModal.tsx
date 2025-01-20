@@ -17,9 +17,9 @@ const DeleteUserModal = () => {
 
   return (
     <div>
-      <h2>アカウントの削除</h2>
+      <h2 className="bg-itinerary-heading">アカウントの削除</h2>
       <p>アカウントを削除するのはこちらより行うことができます</p>
-      <ul className="border border-gray-500 px-12 py-4 my-4 mx-10 list-decimal">
+      <ul className="border border-itinerary-borderBlack px-12 py-4 my-4 mx-10 list-decimal">
         <li>登録したアカウント</li>
         <li>作成した旅行</li>
         <li>作成した旅程表</li>

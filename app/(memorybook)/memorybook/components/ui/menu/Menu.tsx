@@ -38,8 +38,8 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
               />
             </div>
             {isOpen && (
-              <ul className="absolute right-0 mt-2 w-40 p-2 bg-white  overflow-hidden shadow-lg z-10 text-base ">
-                <li className="cursor-pointer text-sky-700 hover:bg-gray-200 p-2">
+              <ul className="absolute right-0 mt-2 w-40 p-2 bg-white overflow-hidden shadow-lg z-10 text-base">
+                <li className="cursor-pointer p-2 transition duration-300 hover:bg-itinerary-hoverBlue">
                   <Link href="/memorybook/dashboard">管理画面</Link>
                 </li>
                 <li
@@ -47,7 +47,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
                     signOut();
                     setIsOpen(false);
                   }}
-                  className="cursor-pointer text-sky-700 hover:bg-gray-200 p-2"
+                  className="cursor-pointer p-2 transition duration-300 hover:bg-itinerary-hoverBlue"
                 >
                   ログアウト
                 </li>

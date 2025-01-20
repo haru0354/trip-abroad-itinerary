@@ -16,7 +16,7 @@ const Date: React.FC<DateProps> = ({
   return (
     <div>
       <label
-        className="block text-gray-600 text-sm font-bold  mb-1 mt-4"
+        className="block mb-1 mt-4 text-sm font-bold"
         htmlFor={label}
       >
         {label}
@@ -28,7 +28,7 @@ const Date: React.FC<DateProps> = ({
         value={value}
         defaultValue={defaultValue}
         onChange={onChange}
-        className="shadow border rounded py-2 px-2"
+        className="py-2 px-2 shadow border rounded "
       />
     </div>
   );

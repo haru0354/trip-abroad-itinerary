@@ -17,7 +17,7 @@ type ButtonImageProps = {
   className?: string;
   iconClassName?: string;
   size: "footer" | "small";
-  icon: "pen" | "house" | "plane" | "plus"| "down" | "up";
+  icon: "pen" | "house" | "plane" | "plus" | "down" | "up";
 };
 
 const ButtonImage: React.FC<ButtonImageProps> = ({
@@ -31,8 +31,7 @@ const ButtonImage: React.FC<ButtonImageProps> = ({
   const { pending } = useFormStatus();
 
   const sizes = {
-    footer:
-      "flex flex-1 flex-col items-center justify-center w-full h-full",
+    footer: "flex flex-1 flex-col items-center justify-center w-full h-full",
     small:
       "px-4 block ml-auto border border-dashed border-gray-400 text-sm rounded",
   };
@@ -50,7 +49,7 @@ const ButtonImage: React.FC<ButtonImageProps> = ({
 
   return (
     <button
-      className={`hover:bg-gray-300
+      className={`hover:bg-gray-300 transition duration-300
        ${className}  ${sizes[size]} ${pending ? "opacity-30" : ""}`}
       disabled={pending}
       onClick={onClick}
@@ -60,7 +59,7 @@ const ButtonImage: React.FC<ButtonImageProps> = ({
         className={`
        ${iconClassName}`}
       />
-      <span className="text-gray-700">{children}</span>
+      <span>{children}</span>
     </button>
   );
 };

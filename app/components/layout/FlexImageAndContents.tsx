@@ -26,7 +26,7 @@ const FlexImageAndContents: React.FC<FlexImageAndContentsProps> = ({
 }) => {
   return (
     <AnimatedItem elementType="div" animation="fadeInVariants">
-      <h3 className="text-gray-700 my-6 w-[80%] flex justify-center pb-2 text-xl md:text-2xl font-semibold border-b text-center border-sky-700 border-dashed mx-auto">
+      <h3 className="my-6 w-[80%] flex justify-center pb-2 text-xl md:text-2xl font-semibold border-b text-center border-itinerary-borderBlack border-dashed mx-auto">
         {name}
       </h3>
       <div
@@ -45,12 +45,12 @@ const FlexImageAndContents: React.FC<FlexImageAndContentsProps> = ({
               height: "auto",
             }}
             priority={isPriority}
-            className="border border-gray-200"
+            className="border border-itinerary-borderGray"
           />
         </div>
         <div className="w-full py-2 md:py-8 md:mx-6 max-w-[400px] justify-center items-center">
           {contents.map((content) => (
-            <p key={content} className="text-gray-700 mb-6">
+            <p key={content} className="mb-6">
               {content}
             </p>
           ))}

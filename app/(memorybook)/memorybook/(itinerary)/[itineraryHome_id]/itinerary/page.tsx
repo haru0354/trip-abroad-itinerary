@@ -11,7 +11,7 @@ const Page = async ({ params }: { params: { itineraryHome_id: string } }) => {
 
   return (
     <>
-      <h2 className="bg-white mt-0 md:mt-8 p-2 text-lg md:text-2xl text-center text-black border-b border-solid border-blue-800">
+      <h2 className="bg-white mt-0 md:mt-8 p-2 text-lg md:text-2xl text-center text-itinerary-black border-b border-solid border-blue-800">
         {itineraryHome?.name}
       </h2>
       <Suspense fallback={<Loading message="作成した旅程表" />}>

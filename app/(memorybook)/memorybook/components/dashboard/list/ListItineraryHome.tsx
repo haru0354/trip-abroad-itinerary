@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
-import { getItineraryHomes } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
+import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import ButtonImage from "@/app/components/ui/ButtonImage";
 
 type ListItineraryHomeProps = {
@@ -11,7 +11,7 @@ type ListItineraryHomeProps = {
 const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
   userId,
 }) => {
-  const itineraryHomes = await getItineraryHomes(userId);
+  const itineraryHomes = await getTrips(userId);
 
   const sortedItineraryHomes = itineraryHomes.sort((a, b) => {
     if (a.startDate === null && b.startDate === null) {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getItineraryHomes } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
+import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import Button from "@/app/components/ui/Button";
 
 type ListShareProps = {
@@ -7,7 +7,7 @@ type ListShareProps = {
 };
 
 const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
-  const itineraryHomes = await getItineraryHomes(userId);
+  const itineraryHomes = await getTrips(userId);
 
   return (
     <>

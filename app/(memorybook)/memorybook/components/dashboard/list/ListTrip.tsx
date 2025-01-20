@@ -4,11 +4,11 @@ import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
 import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import ButtonImage from "@/app/components/ui/ButtonImage";
 
-type ListItineraryHomeProps = {
+type ListTripProps = {
   userId?: number | undefined;
 };
 
-const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
+const ListTrip: React.FC<ListTripProps> = async ({
   userId,
 }) => {
   const trips = await getTrips(userId);
@@ -111,4 +111,4 @@ const ListItineraryHome: React.FC<ListItineraryHomeProps> = async ({
   );
 };
 
-export default ListItineraryHome;
+export default ListTrip;

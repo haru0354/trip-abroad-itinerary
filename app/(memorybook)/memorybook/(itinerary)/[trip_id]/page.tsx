@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { deleteTrip, updateTrip } from "@/app/(memorybook)/memorybook/action/actionTrip";
 import { getTrip } from "../../lib/memoryBookService";
-import FormItineraryHome from "../../components/dashboard/form/FormItineraryHome";
+import FormTrip from "../../components/dashboard/form/FormTrip";
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 
@@ -12,7 +12,7 @@ const Page = async ({ params }: { params: { trip_id: string } }) => {
 
   return (
     <>
-      <FormItineraryHome
+      <FormTrip
         formAction={updateItineraryHomeWidthId}
         trip={trip}
         buttonName="保存"

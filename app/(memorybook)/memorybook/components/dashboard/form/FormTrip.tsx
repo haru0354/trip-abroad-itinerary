@@ -8,7 +8,7 @@ import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
 import Date from "@/app/components/ui/Date";
 
-type FormItineraryHomeProps = {
+type FormTripProps = {
   trip?: Trip | null;
   buttonName: string;
   formAction: (state: FormState, data: FormData) => Promise<FormState>;
@@ -34,7 +34,7 @@ type FormState = {
   createdTripId?: number | null;
 };
 
-const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
+const FormTrip: React.FC<FormTripProps> = ({
   trip,
   buttonName,
   formAction,
@@ -135,4 +135,4 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
   );
 };
 
-export default FormItineraryHome;
+export default FormTrip;

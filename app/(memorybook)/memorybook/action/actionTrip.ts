@@ -55,7 +55,7 @@ export const addTrip = async (state: FormState, data: FormData) => {
   }
 
   try {
-    const createdItineraryHome = await prisma.itineraryHome.create({
+    const createdTrip = await prisma.itineraryHome.create({
       data: {
         startDate,
         endDate,
@@ -64,7 +64,7 @@ export const addTrip = async (state: FormState, data: FormData) => {
         user: { connect: { id: Number(userId) } },
       },
     });
-    const createdTripId = createdItineraryHome.id;
+    const createdTripId = createdTrip.id;
     revalidatePath("/memorybook/dashboard");
     return { message: "add", createdTripId: createdTripId };
   } catch (error) {

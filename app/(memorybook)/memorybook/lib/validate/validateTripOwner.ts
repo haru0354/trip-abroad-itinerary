@@ -10,7 +10,7 @@ export const validateTripOwner = async (tripId: string): Promise<boolean> => {
       return false;
     }
 
-    const validateOwner = await prisma.itineraryHome.findUnique({
+    const validateOwner = await prisma.trip.findUnique({
       where: {
         id: Number(tripId),
         userId: userId,

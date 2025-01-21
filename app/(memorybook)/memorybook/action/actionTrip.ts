@@ -55,7 +55,7 @@ export const addTrip = async (state: FormState, data: FormData) => {
   }
 
   try {
-    const createdTrip = await prisma.itineraryHome.create({
+    const createdTrip = await prisma.trip.create({
       data: {
         startDate,
         endDate,
@@ -89,7 +89,7 @@ export const deleteTrip = async (data: FormData) => {
   }
 
   try {
-    await prisma.itineraryHome.delete({
+    await prisma.trip.delete({
       where: {
         id: Number(id),
       },
@@ -140,7 +140,7 @@ export const updateTrip = async (
   }
 
   try {
-    await prisma.itineraryHome.update({
+    await prisma.trip.update({
       where: {
         id,
       },
@@ -177,7 +177,7 @@ export const updateShare = async (id: number, data: FormData) => {
   }
 
   try {
-    await prisma.itineraryHome.update({
+    await prisma.trip.update({
       where: {
         id,
       },

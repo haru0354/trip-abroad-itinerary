@@ -89,7 +89,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     name,
     content,
     hideContent,
-    itineraryHome: { connect: { id: Number(tripId) } },
+    trip: { connect: { id: Number(tripId) } },
   };
 
   if (image && image.size > 0) {
@@ -232,7 +232,7 @@ export const updateItinerary = async (
     name,
     content,
     hideContent,
-    itineraryHome: { connect: { id: Number(tripId) } },
+    trip: { connect: { id: Number(tripId) } },
   };
 
   if (image && image.size > 0) {

@@ -1,7 +1,7 @@
 import prisma from "@/app/lib/prisma";
 
 export async function getTrips(userId?: number) {
-  const trips = await prisma.itineraryHome.findMany({
+  const trips = await prisma.trip.findMany({
     where: {
       userId,
     }
@@ -33,7 +33,7 @@ export async function getTrip(
     };
   }
 
-  const trip = await prisma.itineraryHome.findUnique({
+  const trip = await prisma.trip.findUnique({
     where: {
       id,
     },

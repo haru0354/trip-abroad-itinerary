@@ -60,7 +60,7 @@ export const addMemo = async (state: FormState, data: FormData) => {
       data: {
         name,
         content,
-        itineraryHome: { connect: { id: Number(tripId) } },
+        trip: { connect: { id: Number(tripId) } },
       },
     });
     revalidatePath(`/memorybook/${tripId}/memo`);

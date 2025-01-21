@@ -79,7 +79,7 @@ export const deleteTrip = async (data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return false;
+    return;
   }
 
   const idValidTripOwner = await validateTripOwner(id);
@@ -166,7 +166,7 @@ export const updateShare = async (id: number, data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return;
+    return { message: "認証がされていません。" };
   }
 
   const tripId = String(id);

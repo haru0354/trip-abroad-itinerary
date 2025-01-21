@@ -24,9 +24,7 @@ const FormShare: React.FC<FormShareProps> = ({
   formAction,
   buttonName,
 }) => {
-  const [isShare, setIsShare] = useState<boolean>(
-    trip?.share ?? false
-  );
+  const [isShare, setIsShare] = useState<boolean>(trip?.share ?? false);
 
   const handleToggle = () => {
     setIsShare(!isShare);
@@ -38,7 +36,7 @@ const FormShare: React.FC<FormShareProps> = ({
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-itinerary-borderGray rounded bg-white max-w-[620px]">
           <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
-            共有を変更
+            共有設定を変更
           </p>
           <form action={formAction} className="w-full py-3">
             <Checkbox

@@ -7,7 +7,7 @@ import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 
 type ListMemoProps = {
-  itineraryHomeId: number | undefined;
+  tripId: number | undefined;
   memos: Memo[] | undefined;
 };
 
@@ -19,7 +19,7 @@ type Memo = {
 
 const ListMemo: React.FC<ListMemoProps> = async ({
   memos,
-  itineraryHomeId,
+  tripId,
 }) => {
   const sortedMemos = memos?.sort((a, b) => a.id - b.id);
 
@@ -71,7 +71,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({
             className="min-h-[200px] bg-top bg-no-repeat pt-[44px] w-full "
             imageUrl="/memo-image.png"
           >
-            <Link href={`/memorybook/${itineraryHomeId}/memo/${memo.id}`}>
+            <Link href={`/memorybook/${tripId}/memo/${memo.id}`}>
               <ButtonImage
                 className="rounded"
                 size="small"

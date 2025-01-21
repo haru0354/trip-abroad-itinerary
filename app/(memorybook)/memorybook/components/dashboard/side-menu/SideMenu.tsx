@@ -13,15 +13,15 @@ import {
 import Button from "@/app/components/ui/Button";
 
 type SideMenuProps = {
-  itineraryHomes: ItineraryHomes[];
+  trips: Trips[];
 };
 
-type ItineraryHomes = {
+type Trips = {
   id: number;
   name: string;
 };
 
-const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
+const SideMenu: React.FC<SideMenuProps> = ({ trips }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -66,16 +66,16 @@ const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
               作成した旅行
             </h3>
             <ul>
-              {itineraryHomes.map((itineraryHome) => {
+              {trips.map((trip) => {
                 return (
-                  <div key={itineraryHome.id}>
-                    <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
+                  <div key={trip.id}>
+                    <Link href={`/memorybook/${trip.id}/itinerary`}>
                       <li className="flex py-2 px-2 text-white  transition duration-300 hover:text-itinerary-black hover:bg-gray-300 ">
                         <FontAwesomeIcon
                           icon={faPlaneDeparture}
                           className="mr-2 w-5 mt-1"
                         />
-                        {itineraryHome.name}
+                        {trip.name}
                       </li>
                     </Link>
                   </div>
@@ -133,12 +133,12 @@ const SideMenu: React.FC<SideMenuProps> = ({ itineraryHomes }) => {
                 </Link>
               </ul>
               <p className="py-2 border-b mt-3 text-white">作成した旅行</p>
-              {itineraryHomes.map((itineraryHome) => {
+              {trips.map((trip) => {
                 return (
-                  <ul key={itineraryHome.id} className="text-white">
-                    <Link href={`/memorybook/${itineraryHome.id}/itinerary`}>
-                      <li key={itineraryHome.id} className="py-2 mx-4">
-                        {itineraryHome.name}
+                  <ul key={trip.id} className="text-white">
+                    <Link href={`/memorybook/${trip.id}/itinerary`}>
+                      <li key={trip.id} className="py-2 mx-4">
+                        {trip.name}
                       </li>
                     </Link>
                   </ul>

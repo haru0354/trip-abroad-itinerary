@@ -19,7 +19,7 @@ model User {
   updatedAt           DateTime @updatedAt
   role                String?
   accounts            Account[]
-  ItineraryHomes      ItineraryHome[]
+  Trips               Trip[]
 }
 
 model Account {
@@ -41,7 +41,7 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model ItineraryHome {
+model Trip  {
   id                  Int      @id @default(autoincrement())
   startDate           String?
   endDate             String?
@@ -60,8 +60,8 @@ model Memo {
   name                String
   content             String
   isCompleted         Boolean @default(false)
-  itineraryHome       ItineraryHome @relation(fields: [itineraryHomeId], references: [id], onDelete:Cascade)
-  itineraryHomeId     Int
+  trip                Trip @relation(fields: [tripId], references: [id], onDelete:Cascade)
+  tripId              Int
 }
 
 model Itinerary {
@@ -76,8 +76,8 @@ model Itinerary {
   imageName           String?
   url                 String?
   altText             String?
-  itineraryHome       ItineraryHome @relation(fields: [itineraryHomeId], references: [id], onDelete:Cascade)
-  itineraryHomeId     Int
+  trip                Trip @relation(fields: [tripId], references: [id], onDelete:Cascade)
+  tripId              Int
 }
 
 model Post {

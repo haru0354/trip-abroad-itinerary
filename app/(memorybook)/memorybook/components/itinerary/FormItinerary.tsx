@@ -15,7 +15,7 @@ type FormItineraryProps = {
   itinerary?: Itinerary | null;
   buttonName: string;
   formAction: (state: FormState, data: FormData) => Promise<FormState>;
-  itineraryHomeId?: number | undefined;
+  tripId?: number | undefined;
 };
 
 type Itinerary = {
@@ -45,7 +45,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   itinerary,
   buttonName,
   formAction,
-  itineraryHomeId,
+  tripId,
 }) => {
   const router = useRouter();
 
@@ -92,7 +92,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     } else if (state.message === "edit") {
       toast.success("旅程を編集しました！");
       state.message = "";
-      router.replace(`/memorybook/${itineraryHomeId}/itinerary/`);
+      router.replace(`/memorybook/${tripId}/itinerary/`);
     } else if (state.message === "failure") {
       toast.error("旅程の保存に失敗しました。");
     }
@@ -176,8 +176,8 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
             />
             <input
               type="hidden"
-              name="itineraryHomeId"
-              value={itineraryHomeId}
+              name="tripId"
+              value={tripId}
             />
             {state.errors && state.message !== "failure" && (
               <p className="text-red-500">{state.message}</p>

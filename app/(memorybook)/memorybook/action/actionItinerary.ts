@@ -19,7 +19,7 @@ type FormState = {
     name?: string[] | undefined;
     content?: string[] | undefined;
     hideContent?: string[] | undefined;
-    itineraryHomeId?: string[] | undefined;
+    tripId?: string[] | undefined;
     image?: string[] | undefined;
   };
 };
@@ -30,7 +30,7 @@ const schema = z.object({
   name: z.string().min(1, { message: "タイトルの入力は必須です" }),
   content: z.string().optional(),
   hideContent: z.string().optional(),
-  itineraryHomeId: z.string().transform((val) => Number(val)),
+  tripId: z.string().transform((val) => Number(val)),
 });
 
 const ImageSchema = z.object({
@@ -54,14 +54,14 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     return { message: "認証がされていません。" };
   }
 
-  const itineraryHomeId = data.get("itineraryHomeId") as string;
+  const tripId = data.get("tripId") as string;
 
-  if (!itineraryHomeId) {
+  if (!tripId) {
     console.error("旅行プランの指定が正しくありません");
     return { message: "旅行プランの指定が正しくありません" };
   }
 
-  const idValidTripOwner = await validateTripOwner(itineraryHomeId);
+  const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
     return { message: "権限がありません" };
@@ -73,7 +73,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     name,
     content,
     hideContent,
-    itineraryHomeId,
+    tripId,
   };
 
   const validated = validateSchema(schema, validateDate);
@@ -89,7 +89,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     name,
     content,
     hideContent,
-    itineraryHome: { connect: { id: Number(itineraryHomeId) } },
+    trip: { connect: { id: Number(tripId) } },
   };
 
   if (image && image.size > 0) {
@@ -114,7 +114,7 @@ export const addItinerary = async (state: FormState, data: FormData) => {
     await prisma.itinerary.create({
       data: ItineraryData,
     });
-    revalidatePath(`/memorybook/${itineraryHomeId}/itinerary/`);
+    revalidatePath(`/memorybook/${tripId}/itinerary/`);
     return { message: "add" };
   } catch (error) {
     console.error("旅程を追加する際にエラーが発生しました:", error);
@@ -131,14 +131,14 @@ export const deleteItinerary = async (data: FormData) => {
     return { message: "認証がされていません。" };
   }
 
-  const itineraryHomeId = data.get("itineraryHomeId") as string;
+  const tripId = data.get("tripId") as string;
 
-  if (!itineraryHomeId) {
+  if (!tripId) {
     console.error("旅行プランの指定が正しくありません");
     return { message: "旅行プランの指定が正しくありません" };
   }
 
-  const idValidTripOwner = await validateTripOwner(itineraryHomeId);
+  const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
     return { message: "権限がありません" };
@@ -175,7 +175,7 @@ export const deleteItinerary = async (data: FormData) => {
     console.error("旅程の削除中にエラーが発生しました:", error);
     return { message: "旅程の削除中にエラーが発生しました" };
   }
-  redirect(`/memorybook/${itineraryHomeId}/itinerary/`);
+  redirect(`/memorybook/${tripId}/itinerary/`);
 };
 
 export const updateItinerary = async (
@@ -197,14 +197,14 @@ export const updateItinerary = async (
     return { message: "認証がされていません。" };
   }
 
-  const itineraryHomeId = data.get("itineraryHomeId") as string;
+  const tripId = data.get("tripId") as string;
 
-  if (!itineraryHomeId) {
+  if (!tripId) {
     console.error("旅行プランの指定が正しくありません");
     return { message: "旅行プランの指定が正しくありません" };
   }
 
-  const idValidTripOwner = await validateTripOwner(itineraryHomeId);
+  const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
     return { message: "権限がありません" };
@@ -216,7 +216,7 @@ export const updateItinerary = async (
     name,
     content,
     hideContent,
-    itineraryHomeId,
+    tripId,
   };
 
   const validated = validateSchema(schema, validateDate);
@@ -232,7 +232,7 @@ export const updateItinerary = async (
     name,
     content,
     hideContent,
-    itineraryHome: { connect: { id: Number(itineraryHomeId) } },
+    trip: { connect: { id: Number(tripId) } },
   };
 
   if (image && image.size > 0) {
@@ -276,7 +276,7 @@ export const updateItinerary = async (
       },
       data: ItineraryData,
     });
-    revalidatePath(`/memorybook/${itineraryHomeId}/itinerary/`);
+    revalidatePath(`/memorybook/${tripId}/itinerary/`);
     return { message: "edit" };
   } catch (error) {
     console.error("旅程を追加する際にエラーが発生しました:", error);

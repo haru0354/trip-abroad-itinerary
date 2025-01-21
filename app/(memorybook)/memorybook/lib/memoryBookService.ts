@@ -1,20 +1,20 @@
 import prisma from "@/app/lib/prisma";
 
-export async function getItineraryHomes(userId?: number) {
-  const itineraryHomes = await prisma.itineraryHome.findMany({
+export async function getTrips(userId?: number) {
+  const trips = await prisma.trip.findMany({
     where: {
       userId,
     }
   });
 
-  return itineraryHomes;
+  return trips;
 }
 
-export async function getItineraryHome(
-  itineraryHomeId: string,
+export async function getTrip(
+  tripId: string,
   includeOptions?: string
 ) {
-  const id = Number(itineraryHomeId);
+  const id = Number(tripId);
 
   let include: {
     itineraries?: boolean;
@@ -33,14 +33,14 @@ export async function getItineraryHome(
     };
   }
 
-  const itineraryHome = await prisma.itineraryHome.findUnique({
+  const trip = await prisma.trip.findUnique({
     where: {
       id,
     },
     include: include,
   });
 
-  return itineraryHome;
+  return trip;
 }
 
 export async function getMemo(memoId: string) {

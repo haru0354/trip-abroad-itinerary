@@ -10,26 +10,30 @@ type DeleteModalProps = {
   name: string | undefined;
   formAction: (data: FormData) => Promise<{ message: string } | undefined>;
   id: number | undefined;
-  itineraryHomeId?: number | undefined;
+  tripId?: number | undefined;
 };
 
 const DeleteModal: React.FC<DeleteModalProps> = ({
   DeleteName,
   name,
   formAction,
-  itineraryHomeId,
+  tripId,
   id,
 }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-  
+
   useEffect(() => {
-    if (typeof document !== 'undefined') {
+    if (typeof document !== "undefined") {
       if (isDeleteModalOpen) {
-        document.body.classList.add('overflow-hidden');
+        document.body.classList.add("overflow-hidden");
       } else {
-        document.body.classList.remove('overflow-hidden');
+        document.body.classList.remove("overflow-hidden");
       }
     }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
   }, [isDeleteModalOpen]);
 
   const toggleDeleteModal = () => setIsDeleteModalOpen((prev) => !prev);
@@ -91,13 +95,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
               </Button>
               <form onSubmit={deleteToast}>
                 <input type="hidden" name="id" value={id} />
-                {itineraryHomeId && (
-                  <input
-                    type="hidden"
-                    name="itineraryHomeId"
-                    value={itineraryHomeId}
-                  />
-                )}
+                {tripId && <input type="hidden" name="tripId" value={tripId} />}
                 <Button
                   formAction={formAction}
                   color="red"

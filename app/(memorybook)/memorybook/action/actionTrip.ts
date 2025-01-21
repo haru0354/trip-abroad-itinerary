@@ -55,7 +55,7 @@ export const addTrip = async (state: FormState, data: FormData) => {
   }
 
   try {
-    const createdItineraryHome = await prisma.itineraryHome.create({
+    const createdTrip = await prisma.trip.create({
       data: {
         startDate,
         endDate,
@@ -64,9 +64,9 @@ export const addTrip = async (state: FormState, data: FormData) => {
         user: { connect: { id: Number(userId) } },
       },
     });
-    const createdItineraryHomeId = createdItineraryHome.id;
+    const createdTripId = createdTrip.id;
     revalidatePath("/memorybook/dashboard");
-    return { message: "add", createdItineraryHomeId: createdItineraryHomeId };
+    return { message: "add", createdTripId: createdTripId };
   } catch (error) {
     console.error("旅行を追加する際にエラーが発生しました:", error);
     return { message: "旅行を追加する際にエラーが発生しました" };
@@ -89,7 +89,7 @@ export const deleteTrip = async (data: FormData) => {
   }
 
   try {
-    await prisma.itineraryHome.delete({
+    await prisma.trip.delete({
       where: {
         id: Number(id),
       },
@@ -140,7 +140,7 @@ export const updateTrip = async (
   }
 
   try {
-    await prisma.itineraryHome.update({
+    await prisma.trip.update({
       where: {
         id,
       },
@@ -166,18 +166,19 @@ export const updateShare = async (id: number, data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return false;
+    return;
   }
 
   const tripId = String(id);
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
-    return { message: "権限がありません" };
+    console.error("認証がされていません。");
+    return;
   }
 
   try {
-    await prisma.itineraryHome.update({
+    await prisma.trip.update({
       where: {
         id,
       },
@@ -186,8 +187,9 @@ export const updateShare = async (id: number, data: FormData) => {
         user: { connect: { id: userId } },
       },
     });
-  } catch {
-    console.log("共有の変更に失敗しました");
+  } catch (err) {
+    console.log("共有の変更に失敗しました", err);
+    return;
   }
   redirect("/memorybook/dashboard");
 };

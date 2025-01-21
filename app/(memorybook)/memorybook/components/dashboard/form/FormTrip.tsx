@@ -8,13 +8,13 @@ import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
 import Date from "@/app/components/ui/Date";
 
-type FormItineraryHomeProps = {
-  itineraryHome?: ItineraryHome | null;
+type FormTripProps = {
+  trip?: Trip | null;
   buttonName: string;
   formAction: (state: FormState, data: FormData) => Promise<FormState>;
 };
 
-type ItineraryHome = {
+type Trip = {
   id: number;
   startDate?: string | null;
   endDate?: string | null;
@@ -31,24 +31,24 @@ type FormState = {
     name?: string[] | undefined;
     destination?: string[] | undefined;
   };
-  createdItineraryHomeId?: number | null;
+  createdTripId?: number | null;
 };
 
-const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
-  itineraryHome,
+const FormTrip: React.FC<FormTripProps> = ({
+  trip,
   buttonName,
   formAction,
 }) => {
   const router = useRouter();
   const [startDateValue, setStartDateValue] = useState<string>(
-    itineraryHome?.startDate || ""
+    trip?.startDate || ""
   );
   const [endDateValue, setEndDateValue] = useState<string>(
-    itineraryHome?.endDate || ""
+    trip?.endDate || ""
   );
-  const [nameValue, setNameValue] = useState<string>(itineraryHome?.name || "");
+  const [nameValue, setNameValue] = useState<string>(trip?.name || "");
   const [destinationValue, setDestinationValue] = useState<string>(
-    itineraryHome?.destination || ""
+    trip?.destination || ""
   );
 
   const initialState = { message: null, errors: { name: undefined } };
@@ -60,7 +60,7 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
   useEffect(() => {
     if (state.message === "add") {
       toast.success("旅行を保存しました！");
-      router.replace(`/memorybook/${state.createdItineraryHomeId}/itinerary`);
+      router.replace(`/memorybook/${state.createdTripId}/itinerary`);
       state.message = "";
     } else if (state.message === "edit") {
       toast.success("旅行を編集しました！");
@@ -135,4 +135,4 @@ const FormItineraryHome: React.FC<FormItineraryHomeProps> = ({
   );
 };
 
-export default FormItineraryHome;
+export default FormTrip;

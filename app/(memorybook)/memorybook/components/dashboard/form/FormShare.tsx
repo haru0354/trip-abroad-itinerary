@@ -5,12 +5,12 @@ import Checkbox from "@/app/components/ui/Checkbox";
 import Button from "@/app/components/ui/Button";
 
 type FormShareProps = {
-  itineraryHome: ItineraryHome | null;
+  trip: Trip | null;
   formAction: (data: FormData) => Promise<void>;
   buttonName: string;
 };
 
-type ItineraryHome = {
+type Trip = {
   id: number;
   startDate?: string | null;
   endDate?: string | null;
@@ -20,13 +20,11 @@ type ItineraryHome = {
 };
 
 const FormShare: React.FC<FormShareProps> = ({
-  itineraryHome,
+  trip,
   formAction,
   buttonName,
 }) => {
-  const [isShare, setIsShare] = useState<boolean>(
-    itineraryHome?.share ?? false
-  );
+  const [isShare, setIsShare] = useState<boolean>(trip?.share ?? false);
 
   const handleToggle = () => {
     setIsShare(!isShare);
@@ -38,7 +36,7 @@ const FormShare: React.FC<FormShareProps> = ({
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6  border-itinerary-borderGray rounded bg-white max-w-[620px]">
           <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
-            共有を変更
+            共有設定を変更
           </p>
           <form action={formAction} className="w-full py-3">
             <Checkbox

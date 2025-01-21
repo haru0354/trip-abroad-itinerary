@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
-import { getItineraryHomes } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
+import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import SideMenu from "../../components/dashboard/side-menu/SideMenu";
 import Loading from "@/app/Loading";
 
@@ -23,7 +23,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const currentUserId = (await getCurrentUserId()) ?? undefined;
-  const itineraryHomes = await getItineraryHomes(currentUserId);
+  const trips = await getTrips(currentUserId);
 
   return (
     <>
@@ -32,7 +32,7 @@ export default async function RootLayout({
           <div className="w-full">{children}</div>
         </div>
         <Suspense fallback={<Loading />}>
-          <SideMenu itineraryHomes={itineraryHomes} />
+          <SideMenu trips={trips} />
         </Suspense>
       </div>
     </>

@@ -13,7 +13,7 @@ type FormMemoProps = {
   memo?: Memo | null;
   buttonName: string;
   formAction: (state: FormState, data: FormData) => Promise<FormState>;
-  itineraryHomeId?: number | undefined;
+  tripId?: number | undefined;
 };
 
 type Memo = {
@@ -35,7 +35,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
   memo,
   buttonName,
   formAction,
-  itineraryHomeId,
+  tripId,
 }) => {
   const router = useRouter();
   const [inputValue, setInputValue] = useState<string>(memo?.name || "");
@@ -57,7 +57,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
       state.message = "";
     } else if (state.message === "edit") {
       toast.success("メモを編集しました！");
-      router.replace(`/memorybook/${itineraryHomeId}/memo`);
+      router.replace(`/memorybook/${tripId}/memo`);
       state.message = "";
     } else if (state.message === "failure") {
       toast.error("メモの保存に失敗しました。");
@@ -100,8 +100,8 @@ const FormMemo: React.FC<FormMemoProps> = ({
             />
             <input
               type="hidden"
-              name="itineraryHomeId"
-              value={itineraryHomeId}
+              name="tripId"
+              value={tripId}
             />
             {state.errors && state.message !== "failure" && (
               <p className="text-red-500">{state.message}</p>

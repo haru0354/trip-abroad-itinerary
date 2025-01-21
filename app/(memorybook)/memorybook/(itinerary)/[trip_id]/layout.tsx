@@ -3,9 +3,7 @@ import FooterMenu from "../../components/layout/FooterMenu";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 
-const siteTItle = process.env.NEXT_PUBLIC_ITINERARY_TITLE;
 const brandTItle = process.env.NEXT_PUBLIC_ITINERARY_BRAND_TITLE;
-const siteDescription = process.env.NEXT_PUBLIC_ITINERARY_DESCRIPTION;
 
 export const metadata: Metadata = {
   title: {
@@ -22,9 +20,9 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { itineraryHome_id: string };
+  params: { trip_id: string };
 }>) {
-  const itineraryHomeId = Number(params.itineraryHome_id);
+  const tripId = Number(params.trip_id);
 
   return (
     <>
@@ -35,7 +33,7 @@ export default async function RootLayout({
         </div>
       </main>
       <Footer />
-      <FooterMenu itineraryHomeId={itineraryHomeId} />
+      <FooterMenu tripId={tripId} />
     </>
   );
 }

@@ -115,14 +115,15 @@ export const updateTrip = async (
 
   if (!userId) {
     console.error("認証がされていません。");
-    return false;
+    return {};
   }
 
   const tripId = String(id);
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
-    return { message: "権限がありません" };
+    console.error("権限の確認に失敗しました");
+    return {};
   }
 
   const validateDate = {
@@ -136,7 +137,7 @@ export const updateTrip = async (
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   try {

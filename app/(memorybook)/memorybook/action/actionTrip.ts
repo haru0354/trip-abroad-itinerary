@@ -16,6 +16,7 @@ type FormState = {
     name?: string[] | undefined;
     destination?: string[] | undefined;
   };
+  createdTripId?: number | null;
 };
 
 const schema = z.object({
@@ -37,7 +38,7 @@ export const addTrip = async (state: FormState, data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return false;
+    return {};
   }
 
   const validateDate = {
@@ -51,7 +52,7 @@ export const addTrip = async (state: FormState, data: FormData) => {
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   try {
@@ -72,7 +73,6 @@ export const addTrip = async (state: FormState, data: FormData) => {
     return { message: "旅行を追加する際にエラーが発生しました" };
   }
 };
-
 export const deleteTrip = async (data: FormData) => {
   const id = data.get("id") as string;
   const userId = await getCurrentUserId();

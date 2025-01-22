@@ -110,13 +110,14 @@ export const updateMemo = async (
 
   if (!tripId) {
     console.error("旅行プランの指定が正しくありません");
-    return { message: "旅行プランの指定が正しくありません" };
+    return {};
   }
 
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
-    return { message: "権限がありません" };
+    console.error("権限の確認に失敗しました");
+    return {};
   }
 
   const validateDate = {
@@ -129,7 +130,7 @@ export const updateMemo = async (
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   try {

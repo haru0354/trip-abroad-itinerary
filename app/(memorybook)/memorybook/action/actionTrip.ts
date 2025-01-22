@@ -73,6 +73,7 @@ export const addTrip = async (state: FormState, data: FormData) => {
     return { message: "旅行を追加する際にエラーが発生しました" };
   }
 };
+
 export const deleteTrip = async (data: FormData) => {
   const id = data.get("id") as string;
   const userId = await getCurrentUserId();
@@ -85,7 +86,8 @@ export const deleteTrip = async (data: FormData) => {
   const idValidTripOwner = await validateTripOwner(id);
 
   if (!idValidTripOwner) {
-    return { message: "権限がありません" };
+    console.error("権限の確認に失敗しました");
+    return;
   }
 
   try {
@@ -188,7 +190,7 @@ export const updateShare = async (id: number, data: FormData) => {
         user: { connect: { id: userId } },
       },
     });
-    
+
     console.log("共有の変更に成功しました。");
   } catch (err) {
     console.log("共有の変更に失敗しました", err);

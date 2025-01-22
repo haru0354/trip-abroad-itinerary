@@ -194,7 +194,7 @@ export const updateItinerary = async (
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "認証がされていません。" };
+    return {};
   }
 
   const tripId = data.get("tripId") as string;
@@ -207,7 +207,8 @@ export const updateItinerary = async (
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
-    return { message: "権限がありません" };
+    console.error("権限の確認に失敗しました");
+    return {};
   }
 
   const validateDate = {
@@ -223,7 +224,7 @@ export const updateItinerary = async (
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   const ItineraryData: any = {
@@ -245,10 +246,10 @@ export const updateItinerary = async (
     } else {
       if (result.errors) {
         console.error("画像のバリデーションエラー:", result.errors);
-        return result.errors;
+        return { errors: result.errors };
       } else if (result.message) {
         console.error("画像保存時にエラーが発生しました:", result.message);
-        return result.message;
+        return { message: result.message };
       }
     }
 

@@ -96,6 +96,10 @@ const FormPassword: React.FC<FormPasswordProps> = ({
             {state.errors && state.message !== "failure" && (
               <p className="text-red-500">{state.message}</p>
             )}
+            {state.errors &&
+              state.message !== "パスワードが一致しませんでした" && (
+                <p className="text-red-500">{state.message}</p>
+              )}
             <Button color="blue" size="normal" className="rounded mt-4">
               {buttonName}
             </Button>

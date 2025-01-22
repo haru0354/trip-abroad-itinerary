@@ -35,7 +35,7 @@ export const deleteUser = async () => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "認証がされていません。" };
+    return;
   }
 
   try {
@@ -44,6 +44,8 @@ export const deleteUser = async () => {
         id: userId,
       },
     });
+
+    console.log("アカウントの削除に成功しました。");
   } catch (error) {
     console.error("アカウントの削除中にエラーが発生しました:", error);
     return { message: "アカウントの削除中にエラーが発生しました" };

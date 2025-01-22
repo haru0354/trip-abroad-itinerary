@@ -6,7 +6,9 @@ import Button from "@/app/components/ui/Button";
 
 type FormShareProps = {
   trip: Trip | null;
-  formAction: (data: FormData) => Promise<void>;
+  formAction: (
+    data: FormData
+  ) => Promise<{ message?: undefined } | { message: string }>;
   buttonName: string;
 };
 

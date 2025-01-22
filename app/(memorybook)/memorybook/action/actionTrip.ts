@@ -167,15 +167,15 @@ export const updateShare = async (id: number, data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "認証がされていません。" };
+    return {};
   }
 
   const tripId = String(id);
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
-    console.error("認証がされていません。");
-    return;
+    console.error("権限の確認に失敗しました");
+    return {};
   }
 
   try {
@@ -188,9 +188,11 @@ export const updateShare = async (id: number, data: FormData) => {
         user: { connect: { id: userId } },
       },
     });
+    
+    console.log("共有の変更に成功しました。");
   } catch (err) {
     console.log("共有の変更に失敗しました", err);
-    return;
+    return { message: "共有の変更に失敗しました" };
   }
   redirect("/memorybook/dashboard");
 };

@@ -29,13 +29,14 @@ export const addMemo = async (state: FormState, data: FormData) => {
 
   if (!tripId) {
     console.error("旅行プランの指定が正しくありません");
-    return { message: "旅行プランの指定が正しくありません" };
+    return {};
   }
 
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
-    return { message: "権限がありません" };
+    console.error("権限の確認に失敗しました");
+    return {};
   }
 
   const validateDate = {
@@ -77,13 +78,14 @@ export const deleteMemo = async (data: FormData) => {
 
   if (!tripId) {
     console.error("旅行プランの指定が正しくありません");
-    return { message: "旅行プランの指定が正しくありません" };
+    return;
   }
 
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
-    return { message: "権限がありません" };
+    console.error("権限の確認に失敗しました");
+    return;
   }
 
   try {
@@ -92,6 +94,8 @@ export const deleteMemo = async (data: FormData) => {
         id: Number(memoId),
       },
     });
+
+    console.log("メモの削除に成功しました");
   } catch (error) {
     console.error("メモの削除中にエラーが発生しました:", error);
     return { message: "メモの削除中にエラーが発生しました" };

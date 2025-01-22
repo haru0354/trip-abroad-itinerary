@@ -111,7 +111,7 @@ export const updatePassword = async (state: FormState, data: FormData) => {
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   if (password !== passwordConfirmation) {

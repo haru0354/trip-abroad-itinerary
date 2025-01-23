@@ -65,7 +65,7 @@ export const addPost = async (state: FormState, data: FormData) => {
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   const postData: any = {
@@ -84,10 +84,10 @@ export const addPost = async (state: FormState, data: FormData) => {
       if (!result.result) {
         if (result.errors) {
           console.error("画像のバリデーションエラー:", result.errors);
-          return result.errors;
+          return { errors: result.errors };
         } else if (result.message) {
           console.error("画像保存時にエラーが発生しました:", result.message);
-          return result.message;
+          return { message: result.message };
         }
       } else {
         const createdImage = await prisma.postImage.create({
@@ -127,7 +127,7 @@ export const deletePost = async (data: FormData) => {
 
   if (!isAdmin) {
     console.error("記事の削除の権限が必要です。");
-    return {};
+    return;
   }
 
   const id = data.get("id") as string;
@@ -222,10 +222,10 @@ export const updatePost = async (
       if (!result.result) {
         if (result.errors) {
           console.error("画像のバリデーションエラー:", result.errors);
-          return result.errors;
+          return { errors: result.errors };
         } else if (result.message) {
           console.error("画像保存時にエラーが発生しました:", result.message);
-          return result.message;
+          return { message: result.message };
         }
       } else {
         const createdImage = await prisma.postImage.create({

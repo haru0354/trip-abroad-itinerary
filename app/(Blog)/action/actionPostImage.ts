@@ -68,10 +68,10 @@ export const addPostImage = async (state: FormState, data: FormData) => {
     } else {
       if (result.errors) {
         console.error("画像のバリデーションエラー:", result.errors);
-        return result.errors;
+        return { errors: result.errors };
       } else if (result.message) {
         console.error("画像保存時にエラーが発生しました:", result.message);
-        return result.message;
+        return { message: result.message };
       }
     }
   } catch (error) {
@@ -86,7 +86,7 @@ export const deletePostImage = async (data: FormData) => {
 
   if (!isAdmin) {
     console.error("画像削除の権限が必要です。");
-    return {};
+    return;
   }
 
   const id = data.get("id") as string;
@@ -95,7 +95,7 @@ export const deletePostImage = async (data: FormData) => {
 
   if (!postImage) {
     console.error("指定した画像が見つかりませんでした。");
-    return {};
+    return;
   }
 
   try {
@@ -200,10 +200,10 @@ export const updatePostImage = async (
       } else {
         if (result.errors) {
           console.error("画像のバリデーションエラー:", result.errors);
-          return result.errors;
+          return { errors: result.errors };
         } else if (result.message) {
           console.error("画像保存時にエラーが発生しました:", result.message);
-          return result.message;
+          return { message: result.message };
         }
       }
     } catch (error) {

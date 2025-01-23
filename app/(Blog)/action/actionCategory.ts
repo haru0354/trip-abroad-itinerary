@@ -6,8 +6,6 @@ import { z } from "zod";
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getCategory } from "../lib/service/blogServiceUnique";
-import { fileSaveBlogUtils } from "@/app/lib/image-file-save/fileSaveUtils";
-import { validateExtensionAndMineType } from "@/app/lib/image-file-save/validateExtensionAndMineType";
 import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
 import { checkUserRole } from "@/app/lib/checkUserRole";
 import { validateSchema } from "@/app/lib/validateSchema";
@@ -33,12 +31,6 @@ const schema = z.object({
   content: z.string().optional(),
   description: z.string().optional(),
   title: z.string().optional(),
-});
-
-const ImageSchema = z.object({
-  altText: z
-    .string()
-    .min(1, { message: "画像の追加時は名前の入力は必須です。" }),
 });
 
 export const addCategory = async (state: FormState, data: FormData) => {

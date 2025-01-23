@@ -10,6 +10,8 @@ import { fileSaveBlogUtils } from "@/app/lib/image-file-save/fileSaveUtils";
 import { validateExtensionAndMineType } from "@/app/lib/image-file-save/validateExtensionAndMineType";
 import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
 import { checkUserRole } from "@/app/lib/checkUserRole";
+import { validateSchema } from "@/app/lib/validateSchema";
+import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
 type FormState = {
   message?: string | null;
@@ -44,7 +46,7 @@ export const addCategory = async (state: FormState, data: FormData) => {
 
   if (!isAdmin) {
     console.error("カテゴリ追加の権限が必要です。");
-    return { message: "カテゴリ追加の権限がありません。" };
+    return {};
   }
 
   const name = data.get("name") as string;
@@ -55,20 +57,19 @@ export const addCategory = async (state: FormState, data: FormData) => {
   const altText = data.get("altText") as string;
   const title = data.get("title") as string;
 
-  const validatedFields = schema.safeParse({
+  const validateDate = {
     name,
     slug,
     content,
     description,
     title,
-  });
+  };
 
-  if (!validatedFields.success) {
-    const errors = {
-      errors: validatedFields.error.flatten().fieldErrors,
-    };
-    console.log(errors);
-    return errors;
+  const validated = validateSchema(schema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return { errors: validated.errors };
   }
 
   const CategoryData: any = {
@@ -81,43 +82,27 @@ export const addCategory = async (state: FormState, data: FormData) => {
 
   if (image && image.size > 0) {
     try {
-      const isValidFile = await validateExtensionAndMineType(image);
+      const result = await fileSaveAndValidate(image, altText);
 
-      if (!isValidFile) {
-        const errors = {
-          errors: {
-            image: [
-              "画像ファイルが無効です。有効な画像ファイルを選択してください。",
-            ],
+      if (result.result) {
+        const createdImage = await prisma.postImage.create({
+          data: {
+            name: result.fileName,
+            url: result.fileUrl,
+            altText,
           },
-        };
-        console.log(errors);
-        return errors;
+        });
+        CategoryData.postImage = { connect: { id: createdImage.id } };
+        console.log("画像の追加に成功しました。");
+      } else {
+        if (result.errors) {
+          console.error("画像のバリデーションエラー:", result.errors);
+          return { errors: result.errors };
+        } else if (result.message) {
+          console.error("画像保存時にエラーが発生しました:", result.message);
+          return { message: result.message };
+        }
       }
-
-      const validatedFields = ImageSchema.safeParse({
-        altText,
-      });
-
-      if (!validatedFields.success) {
-        const errors = {
-          errors: validatedFields.error.flatten().fieldErrors,
-        };
-        console.log(errors);
-        return errors;
-      }
-
-      const { fileUrl, fileName } = await fileSaveBlogUtils(image);
-      const createdImage = await prisma.postImage.create({
-        data: {
-          name: fileName,
-          url: fileUrl,
-          altText,
-        },
-      });
-      CategoryData.postImage = { connect: { id: createdImage.id } };
-
-      console.log("画像の追加に成功しました。");
     } catch (error) {
       console.error("画像の追加時にエラーが発生しました", error);
       return { message: "画像の追加時にエラーが発生しました" };
@@ -148,7 +133,7 @@ export const deleteCategory = async (data: FormData) => {
 
   if (!isAdmin) {
     console.error("カテゴリ削除の権限が必要です。");
-    return { message: "カテゴリ削除の権限がありません。" };
+    return {};
   }
 
   const id = data.get("id") as string;
@@ -227,20 +212,19 @@ export const updateCategory = async (
   const altText = data.get("altText") as string;
   const title = data.get("title") as string;
 
-  const validatedFields = schema.safeParse({
+  const validateDate = {
     name,
     slug,
     content,
     description,
     title,
-  });
+  };
 
-  if (!validatedFields.success) {
-    const errors = {
-      errors: validatedFields.error.flatten().fieldErrors,
-    };
-    console.log(errors);
-    return errors;
+  const validated = validateSchema(schema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return { errors: validated.errors };
   }
 
   const CategoryData: any = {
@@ -253,43 +237,27 @@ export const updateCategory = async (
 
   if (image && image.size > 0) {
     try {
-      const isValidFile = await validateExtensionAndMineType(image);
+      const result = await fileSaveAndValidate(image, altText);
 
-      if (!isValidFile) {
-        const errors = {
-          errors: {
-            image: [
-              "画像ファイルが無効です。有効な画像ファイルを選択してください。",
-            ],
+      if (result.result) {
+        const createdImage = await prisma.postImage.create({
+          data: {
+            name: result.fileName,
+            url: result.fileUrl,
+            altText,
           },
-        };
-        console.log(errors);
-        return errors;
+        });
+        CategoryData.postImage = { connect: { id: createdImage.id } };
+        console.log("画像が正常に追加されました。");
+      } else {
+        if (result.errors) {
+          console.error("画像のバリデーションエラー:", result.errors);
+          return { errors: result.errors };
+        } else if (result.message) {
+          console.error("画像保存時にエラーが発生しました:", result.message);
+          return { message: result.message };
+        }
       }
-
-      const validatedFields = ImageSchema.safeParse({
-        altText,
-      });
-
-      if (!validatedFields.success) {
-        const errors = {
-          errors: validatedFields.error.flatten().fieldErrors,
-        };
-        console.log(errors);
-        return errors;
-      }
-
-      const { fileUrl, fileName } = await fileSaveBlogUtils(image);
-
-      const createdImage = await prisma.postImage.create({
-        data: {
-          name: fileName,
-          url: fileUrl,
-          altText,
-        },
-      });
-      CategoryData.postImage = { connect: { id: createdImage.id } };
-      console.log("画像が正常に追加されました。");
     } catch (error) {
       console.log("画像の追加にエラーが発生しました。", error);
       return { message: "画像の追加時にエラーが発生しました。" };

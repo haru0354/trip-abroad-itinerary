@@ -34,7 +34,7 @@ export const addPostImage = async (state: FormState, data: FormData) => {
 
   if (!isAdmin) {
     console.error("画像追加の権限が必要です。");
-    return { message: "画像追加の権限がありません。" };
+    return {};
   }
 
   const image = data.get("image") as File;
@@ -49,7 +49,7 @@ export const addPostImage = async (state: FormState, data: FormData) => {
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   try {
@@ -86,7 +86,7 @@ export const deletePostImage = async (data: FormData) => {
 
   if (!isAdmin) {
     console.error("画像削除の権限が必要です。");
-    return { message: "画像削除の権限がありません。" };
+    return {};
   }
 
   const id = data.get("id") as string;
@@ -95,7 +95,7 @@ export const deletePostImage = async (data: FormData) => {
 
   if (!postImage) {
     console.error("指定した画像が見つかりませんでした。");
-    return;
+    return {};
   }
 
   try {
@@ -132,7 +132,7 @@ export const updatePostImage = async (
 
   if (!isAdmin) {
     console.error("画像編集の権限が必要です。");
-    return { message: "画像編集の権限がありません。" };
+    return {};
   }
 
   const image = data.get("image") as File;
@@ -146,7 +146,7 @@ export const updatePostImage = async (
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   // altTextのみが変更された場合は、altTextのみを更新
@@ -184,7 +184,7 @@ export const updatePostImage = async (
 
     try {
       const result = await fileSaveAndValidate(image, altText);
-      
+
       if (result.result) {
         await prisma.postImage.update({
           where: {

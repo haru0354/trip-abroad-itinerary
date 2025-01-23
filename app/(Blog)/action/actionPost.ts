@@ -41,7 +41,7 @@ export const addPost = async (state: FormState, data: FormData) => {
 
   if (!isAdmin) {
     console.error("記事の追加の権限が必要です。");
-    return { message: "記事の追加の権限がありません。" };
+    return {};
   }
 
   const title = data.get("title") as string;
@@ -127,7 +127,7 @@ export const deletePost = async (data: FormData) => {
 
   if (!isAdmin) {
     console.error("記事の削除の権限が必要です。");
-    return { message: "記事の削除の権限がありません。" };
+    return {};
   }
 
   const id = data.get("id") as string;
@@ -179,7 +179,7 @@ export const updatePost = async (
 
   if (!isAdmin) {
     console.error("記事の編集の権限が必要です。");
-    return { message: "記事の編集の権限がありません。" };
+    return {};
   }
 
   const title = data.get("title") as string;
@@ -203,7 +203,7 @@ export const updatePost = async (
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   const postData: any = {

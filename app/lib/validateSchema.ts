@@ -6,9 +6,7 @@ export const validateSchema = (schema: ZodSchema, data: unknown) => {
   if (!result.success) {
     return {
       success: false,
-      errors: {
-        errors: result.error.flatten().fieldErrors,
-      },
+      errors: result.error.flatten().fieldErrors,
     };
   }
   

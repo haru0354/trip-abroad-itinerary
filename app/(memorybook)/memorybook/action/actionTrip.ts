@@ -16,6 +16,7 @@ type FormState = {
     name?: string[] | undefined;
     destination?: string[] | undefined;
   };
+  createdTripId?: number | null;
 };
 
 const schema = z.object({
@@ -37,7 +38,7 @@ export const addTrip = async (state: FormState, data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return false;
+    return {};
   }
 
   const validateDate = {
@@ -51,7 +52,7 @@ export const addTrip = async (state: FormState, data: FormData) => {
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   try {
@@ -79,13 +80,14 @@ export const deleteTrip = async (data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return false;
+    return;
   }
 
   const idValidTripOwner = await validateTripOwner(id);
 
   if (!idValidTripOwner) {
-    return { message: "権限がありません" };
+    console.error("権限の確認に失敗しました");
+    return;
   }
 
   try {
@@ -115,14 +117,15 @@ export const updateTrip = async (
 
   if (!userId) {
     console.error("認証がされていません。");
-    return false;
+    return {};
   }
 
   const tripId = String(id);
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
-    return { message: "権限がありません" };
+    console.error("権限の確認に失敗しました");
+    return {};
   }
 
   const validateDate = {
@@ -136,7 +139,7 @@ export const updateTrip = async (
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   try {
@@ -166,15 +169,15 @@ export const updateShare = async (id: number, data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return;
+    return {};
   }
 
   const tripId = String(id);
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
-    console.error("認証がされていません。");
-    return;
+    console.error("権限の確認に失敗しました");
+    return {};
   }
 
   try {
@@ -187,9 +190,11 @@ export const updateShare = async (id: number, data: FormData) => {
         user: { connect: { id: userId } },
       },
     });
+
+    console.log("共有の変更に成功しました。");
   } catch (err) {
     console.log("共有の変更に失敗しました", err);
-    return;
+    return { message: "共有の変更に失敗しました" };
   }
   redirect("/memorybook/dashboard");
 };

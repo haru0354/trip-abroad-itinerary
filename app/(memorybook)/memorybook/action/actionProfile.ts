@@ -35,7 +35,7 @@ export const deleteUser = async () => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "認証がされていません。" };
+    return;
   }
 
   try {
@@ -44,6 +44,8 @@ export const deleteUser = async () => {
         id: userId,
       },
     });
+
+    console.log("アカウントの削除に成功しました。");
   } catch (error) {
     console.error("アカウントの削除中にエラーが発生しました:", error);
     return { message: "アカウントの削除中にエラーが発生しました" };
@@ -58,7 +60,7 @@ export const updateProfile = async (state: FormState, data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "認証がされていません。" };
+    return {};
   }
 
   const validateDate = {
@@ -70,7 +72,7 @@ export const updateProfile = async (state: FormState, data: FormData) => {
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   try {
@@ -99,7 +101,7 @@ export const updatePassword = async (state: FormState, data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "認証がされていません。" };
+    return {};
   }
 
   const validateDate = {
@@ -111,7 +113,7 @@ export const updatePassword = async (state: FormState, data: FormData) => {
 
   if (!validated.success) {
     console.log(validated.errors);
-    return validated.errors;
+    return { errors: validated.errors };
   }
 
   if (password !== passwordConfirmation) {

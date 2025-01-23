@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import prisma from "@/app/lib/prisma";
 import { checkUserRole } from "@/app/lib/checkUserRole";
+import { validateSchema } from "@/app/lib/validateSchema";
 
 type FormState = {
   message?: string | null;
@@ -24,24 +25,22 @@ export const addDashboardMemo = async (state: FormState, data: FormData) => {
 
   if (!isAdmin) {
     console.error("ダッシュボードメモ追加の権限が必要です。");
-    return { message: "ダッシュボードメモ追加の権限がありません。" };
+    return {};
   }
 
   const name = data.get("name") as string;
   const content = data.get("content") as string;
 
-  const validatedFields = schema.safeParse({
+  const validateDate = {
     name,
     content,
-  });
+  };
 
-  if (!validatedFields.success) {
-    const errors = {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "failure",
-    };
-    console.log(errors);
-    return errors;
+  const validated = validateSchema(schema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return { errors: validated.errors };
   }
 
   try {
@@ -92,24 +91,22 @@ export const updateDashboardMemo = async (
 
   if (!isAdmin) {
     console.error("ダッシュボードメモ編集の権限が必要です。");
-    return { message: "ダッシュボードメモ編集の権限がありません。" };
+    return {};
   }
 
   const name = data.get("name") as string;
   const content = data.get("content") as string;
 
-  const validatedFields = schema.safeParse({
+  const validateDate = {
     name,
     content,
-  });
+  };
 
-  if (!validatedFields.success) {
-    const errors = {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "failure",
-    };
-    console.log(errors);
-    return errors;
+  const validated = validateSchema(schema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return { errors: validated.errors };
   }
 
   try {

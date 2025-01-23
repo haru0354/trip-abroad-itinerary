@@ -125,7 +125,7 @@ export const deleteCategory = async (data: FormData) => {
 
   if (!isAdmin) {
     console.error("カテゴリ削除の権限が必要です。");
-    return {};
+    return;
   }
 
   const id = data.get("id") as string;

@@ -78,7 +78,7 @@ const DashboardSideMenu = () => {
               カテゴリー
             </h3>
             <ul>
-              <Link href="/dashboard/category">
+              <Link href="">
                 <li className="flex py-3 px-2 text-white transition duration-300 hover:text-gray-900 hover:bg-gray-300 ">
                   <FontAwesomeIcon
                     icon={faList}

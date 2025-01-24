@@ -12,13 +12,13 @@ const ListCategory = async () => {
     <>
       <HeadingTwo>カテゴリの一覧</HeadingTwo>
       <div className="flex flex-col border border-blog-borderBlack sm:flex-row py-4 items-center w-full sm:w-auto">
-        <p className="sm:border-r border-blog-borderBlack w-full mb-0 px-2 sm:w-auto min-w-[180px]">
+        <p className="sm:border-r border-blog-borderBlack w-full mb-0 px-2 sm:w-auto min-w-[140px]">
           カテゴリ名
         </p>
-        <p className="sm:border-r flex-wrap  w-full border-blog-borderBlack mb-0 px-2 sm:w-auto min-w-[160px]">
+        <p className="sm:border-r flex-wrap  w-full border-blog-borderBlack mb-0 px-2 sm:w-auto min-w-[140px]">
           スラッグ
         </p>
-        <p className=" flex-wrap  w-full border-blog-borderBlack mb-0 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">
+        <p className=" flex-wrap w-full border-blog-borderBlack mb-0 px-2 sm:w-auto max-w-[650px]">
           説明文
         </p>
       </div>
@@ -30,17 +30,17 @@ const ListCategory = async () => {
               className="flex justify-between flex-col sm:flex-row border-b border-blog-borderBlack w-full"
             >
               <div className="flex flex-col  sm:flex-row py-4 items-center w-full sm:w-auto">
-                <p className="sm:border-r border-blog-borderBlack  w-full mb-0 px-2 sm:w-auto min-w-[180px]">
+                <p className="sm:border-r border-blog-borderBlack  w-full mb-0 px-2 sm:w-auto min-w-[140px]">
                   {category.name.length > 9
                     ? `${category.name.slice(0, 9)}...`
                     : category.name}
                 </p>
-                <p className="sm:border-r flex-wrap  w-full border-blog-borderBlack mb-0 px-2 sm:w-auto min-w-[160px]">
+                <p className="sm:border-r flex-wrap  w-full border-blog-borderBlack mb-0 px-2 sm:w-auto min-w-[140px]">
                   {category.slug.length > 14
                     ? `${category.slug.slice(0, 14)}...`
                     : category.slug}
                 </p>
-                <p className="mb-0 px-2 w-full sm:w-auto min-w-[250px] max-w-[560px]">
+                <p className="mb-0 px-2 w-full sm:w-auto min-w-[250px] ">
                   {category.description && category.description.length > 33
                     ? `${category.description.slice(0, 33)}...`
                     : category.description}

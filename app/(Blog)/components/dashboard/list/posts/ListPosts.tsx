@@ -37,10 +37,10 @@ const ListPosts: React.FC<ListPostsProps> = async ({ draft, posts, title }) => {
     <>
       <HeadingTwo>{title}の一覧</HeadingTwo>
       <div className="flex flex-col border border-blog-borderBlack sm:flex-row py-4 items-center w-full sm:w-auto">
-        <p className="sm:border-r border-blog-borderBlack  w-full px-2 mb-0 sm:w-auto min-w-[100px]">
+        <p className="sm:border-r border-blog-borderBlack  w-full px-2 mb-0 sm:w-auto min-w-[140px]">
           投稿日
         </p>
-        <p className="sm:border-r flex-wrap  w-full border-blog-borderBlack mb-0 px-2  sm:w-auto min-w-[174px]">
+        <p className="sm:border-r flex-wrap  w-full border-blog-borderBlack mb-0 px-2  sm:w-auto min-w-[140px]">
           カテゴリ
         </p>
         <p className=" flex-wrap  w-full border-blog-borderBlack mb-0 px-2 sm:w-auto  min-w-[250px] max-w-[650px]">

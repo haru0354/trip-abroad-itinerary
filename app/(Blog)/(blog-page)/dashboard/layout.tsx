@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import ToastContext from "@/app/context/ToastContext";
 import AuthContext from "@/app/context/AuthContext";
-import DashboardSideMenu from "../../components/dashboard/DashboardSideMenu";
+import DashboardSideMenu from "../../components/dashboard/side-menu/DashboardSideMenu";
 
 const brandTItle = process.env.NEXT_PUBLIC_WEBSITE_BRAND_TITLE;
 

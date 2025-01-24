@@ -8,7 +8,6 @@ import FormContainer from "../../layout/FormContainer";
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
 import TextArea from "@/app/components/ui/TextArea";
-import HeadingTwo from "../../ui/dashboard/HeadingTwo";
 
 type FormMemoProps = {
   dashboardMemo?: DashboardMemo | null;
@@ -73,7 +72,6 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
 
   return (
     <>
-      <HeadingTwo>メモの追加</HeadingTwo>
       <FormContainer>
         <form action={dispatch}>
           <Form

@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { updateCategory, deleteCategory } from "@/app/(blog)/action/actionCategory";
+import {
+  updateCategory,
+  deleteCategory,
+} from "@/app/(blog)/action/actionCategory";
 import { getCategory } from "@/app/(blog)/lib/service/blogServiceUnique";
 import FormCategory from "@/app/(blog)/components/dashboard/form/FormCategory";
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
+import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";
 
 export const metadata: Metadata = {
   title: "カテゴリの編集",
@@ -18,9 +22,7 @@ const page = async ({ params }: { params: { category_id: string } }) => {
 
   return (
     <>
-      <h2 className="bg-blog-dashboardHeading text-xl bold text-white rounded mb-12 p-5 font-bold">
-        カテゴリの編集
-      </h2>
+      <HeadingTwo>カテゴリの編集</HeadingTwo>
       <FormCategory
         formAction={updateCategoryWidthId}
         category={category}

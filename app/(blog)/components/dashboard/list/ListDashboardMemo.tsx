@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { getDashboardMemos } from "@/app/(blog)/lib/service/blogServiceMany";
 import ButtonImage from "@/app/components/ui/ButtonImage";
+import HeadingTwo from "../../ui/dashboard/HeadingTwo";
 
 const ListDashboardMemo = async () => {
   const dashboardMemos = await getDashboardMemos();
@@ -13,9 +14,7 @@ const ListDashboardMemo = async () => {
   if (sortedDashboardMemos.length === 0) {
     return (
       <>
-        <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
-          メモの使い方
-        </h2>
+        <HeadingTwo>メモの使い方</HeadingTwo>
         <p>ここではサイト制作時のメモが簡単に追加できます。</p>
         <ul className="my-6 px-4 border p-4">
           <li className="flex py-3 px-2 text-red-500  ">
@@ -71,9 +70,7 @@ const ListDashboardMemo = async () => {
 
   return (
     <>
-      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
-        サイト制作のメモ一覧
-      </h2>
+      <HeadingTwo>サイト制作のメモ一覧</HeadingTwo>
       {sortedDashboardMemos.map((memo) => {
         return (
           <React.Fragment key={memo.id}>

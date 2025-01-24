@@ -1,12 +1,11 @@
 import { addPostImage } from "@/app/(blog)/action/actionPostImage";
 import FormPostImage from "@/app/(blog)/components/dashboard/form/FormPostImage";
+import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";
 
 const page = () => {
   return (
     <>
-      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
-        画像の追加
-      </h2>
+      <HeadingTwo>画像の追加</HeadingTwo>
       <FormPostImage buttonName="画像を追加" formAction={addPostImage} />
     </>
   );

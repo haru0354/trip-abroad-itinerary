@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
 import Button from "@/app/components/ui/Button";
+import HeadingTwo from "../../ui/dashboard/HeadingTwo";
 
 const ListCategory = async () => {
   const categories = await getCategories();
@@ -9,9 +10,7 @@ const ListCategory = async () => {
 
   return (
     <>
-      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
-      カテゴリの一覧
-      </h2>
+      <HeadingTwo>カテゴリの一覧</HeadingTwo>
       <div className="flex flex-col border border-blog-borderBlack sm:flex-row py-4 items-center w-full sm:w-auto">
         <p className="sm:border-r border-blog-borderBlack w-full mb-0 px-2 sm:w-auto min-w-[180px]">
           カテゴリ名

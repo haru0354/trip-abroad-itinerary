@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "@/app/components/ui/Button";
+import HeadingTwo from "../../../ui/dashboard/HeadingTwo";
 
 type ListPostsProps = {
   draft: boolean;
@@ -34,9 +35,7 @@ type Post = {
 const ListPosts: React.FC<ListPostsProps> = async ({ draft, posts, title }) => {
   return (
     <>
-      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
-        {title}の一覧
-      </h2>
+      <HeadingTwo>{title}の一覧</HeadingTwo>
       <div className="flex flex-col border border-blog-borderBlack sm:flex-row py-4 items-center w-full sm:w-auto">
         <p className="sm:border-r border-blog-borderBlack  w-full px-2 mb-0 sm:w-auto min-w-[100px]">
           投稿日

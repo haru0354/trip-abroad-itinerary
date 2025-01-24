@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
 import TextArea from "@/app/components/ui/TextArea";
+import HeadingTwo from "../../ui/dashboard/HeadingTwo";
 
 type FormMemoProps = {
   dashboardMemo?: DashboardMemo | null;
@@ -71,9 +72,7 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
 
   return (
     <>
-      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
-      メモの追加
-      </h2>
+      <HeadingTwo>メモの追加</HeadingTwo>
       <div className="flex items-center justify-center">
         <div className="w-full border py-4 px-6 border-blog-borderGray rounded bg-white max-w-full">
           <form action={dispatch}>

@@ -4,7 +4,7 @@ import { useState, ChangeEvent, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import FormContainer from "../../layout/FormContainer";
+import FormContainer from "../../layout/dashboard/FormContainer";
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
 import TextArea from "@/app/components/ui/TextArea";

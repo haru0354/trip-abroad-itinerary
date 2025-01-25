@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormState } from "react-dom";
-import FormContainer from "../../layout/FormContainer";
+import FormContainer from "../../layout/dashboard/FormContainer";
 import Button from "@/app/components/ui/Button";
 import FormImage from "@/app/components/ui/FormImage";
 

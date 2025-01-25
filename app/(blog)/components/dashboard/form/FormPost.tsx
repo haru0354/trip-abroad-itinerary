@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom";
 import { useState } from "react";
 import DOMPurify from "dompurify";
-import FormContainer from "../../layout/FormContainer";
+import FormContainer from "../../layout/dashboard/FormContainer";
 import Form from "@/app/components/ui/Form";
 import TextArea from "@/app/components/ui/TextArea";
 import Button from "@/app/components/ui/Button";

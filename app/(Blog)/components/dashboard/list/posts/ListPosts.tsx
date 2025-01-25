@@ -1,8 +1,6 @@
-import Link from "next/link";
-import Button from "@/app/components/ui/Button";
 import HeadingTwo from "../../../ui/dashboard/HeadingTwo";
-import TitleList from "../../../layout/dashboard/TitleList";
-import ListItem from "../../../layout/dashboard/ListItem";
+import TitleList from "../../../layout/dashboard/list/TitleList";
+import ListItem from "../../../layout/dashboard/list/ListItem";
 
 type ListPostsProps = {
   draft: boolean;
@@ -45,20 +43,18 @@ const ListPosts: React.FC<ListPostsProps> = async ({ draft, posts, title }) => {
             post.createdDate
           ).toLocaleDateString();
           return (
-            <div className="flex justify-between flex-col sm:flex-row border-b border-blog-borderBlack w-full">
-              <ListItem
-                key={post.id}
-                items={[
-                  { name: formattedCreatedDate, limit: 10 },
-                  { name: post.category.name, limit: 9 },
-                  { name: post.title, limit: 33 },
-                ]}
-                editHref={`/dashboard/post/${post.id}`}
-                pageHref={
-                  draft ? `/${post.category.slug}/${post.slug}` : undefined
-                }
-              />
-            </div>
+            <ListItem
+              key={post.id}
+              items={[
+                { name: formattedCreatedDate, limit: 10 },
+                { name: post.category.name, limit: 9 },
+                { name: post.title, limit: 33 },
+              ]}
+              editHref={`/dashboard/post/${post.id}`}
+              pageHref={
+                draft ? `/${post.category.slug}/${post.slug}` : undefined
+              }
+            />
           );
         })}
       </div>

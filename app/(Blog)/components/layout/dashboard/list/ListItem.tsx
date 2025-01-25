@@ -1,6 +1,5 @@
 import Button from "@/app/components/ui/Button";
 import Link from "next/link";
-import React from "react";
 
 type ListItemProps = {
   items: Item[];

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Button from "@/app/components/ui/Button";
 import HeadingTwo from "../../../ui/dashboard/HeadingTwo";
 import TitleList from "../../../layout/dashboard/TitleList";
+import ListItem from "../../../layout/dashboard/ListItem";
 
 type ListPostsProps = {
   draft: boolean;
@@ -48,21 +49,13 @@ const ListPosts: React.FC<ListPostsProps> = async ({ draft, posts, title }) => {
               key={post.id}
               className="flex justify-between flex-col sm:flex-row border-b border-blog-borderBlack w-full"
             >
-              <div className="flex flex-col  sm:flex-row py-4 items-center w-full sm:w-auto">
-                <p className="sm:border-r border-blog-borderBlack w-full mb-0 px-2 sm:w-auto min-w-[140px]">
-                  {formattedCreatedDate}
-                </p>
-                <p className="sm:border-r flex-wrap  w-full border-blog-borderBlack mb-0 px-2 sm:w-auto min-w-[140px]">
-                  {post.category.name.length > 9
-                    ? `${post.category.name.slice(0, 9)}...`
-                    : post.category.name}
-                </p>
-                <p className="mb-0 px-2 w-full sm:w-auto min-w-[250px] max-w-[650px]">
-                  {post.title && post.title.length > 33
-                    ? `${post.title.slice(0, 33)}...`
-                    : post.title}
-                </p>
-              </div>
+              <ListItem
+                items={[
+                  { name: formattedCreatedDate, limit: 10 },
+                  { name: post.category.name, limit: 9 },
+                  { name: post.title, limit: 33 },
+                ]}
+              />
               <div className="flex sm:justify-end items-center my-4 sm:max-w-[240px]">
                 {draft === true && (
                   <Link

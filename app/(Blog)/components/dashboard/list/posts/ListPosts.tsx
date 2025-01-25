@@ -45,34 +45,19 @@ const ListPosts: React.FC<ListPostsProps> = async ({ draft, posts, title }) => {
             post.createdDate
           ).toLocaleDateString();
           return (
-            <div
-              key={post.id}
-              className="flex justify-between flex-col sm:flex-row border-b border-blog-borderBlack w-full"
-            >
+            <div className="flex justify-between flex-col sm:flex-row border-b border-blog-borderBlack w-full">
               <ListItem
+                key={post.id}
                 items={[
                   { name: formattedCreatedDate, limit: 10 },
                   { name: post.category.name, limit: 9 },
                   { name: post.title, limit: 33 },
                 ]}
+                editHref={`/dashboard/post/${post.id}`}
+                pageHref={
+                  draft ? `/${post.category.slug}/${post.slug}` : undefined
+                }
               />
-              <div className="flex sm:justify-end items-center my-4 sm:max-w-[240px]">
-                {draft === true && (
-                  <Link
-                    href={`/${post.category.slug}/${post.slug}`}
-                    target="blank"
-                  >
-                    <Button color="blue" size="small">
-                      ページ
-                    </Button>
-                  </Link>
-                )}
-                <Link href={`/dashboard/post/${post.id}`}>
-                  <Button color="gray" size="small">
-                    編集
-                  </Button>
-                </Link>
-              </div>
             </div>
           );
         })}

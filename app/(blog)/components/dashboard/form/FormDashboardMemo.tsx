@@ -4,8 +4,9 @@ import { useState, ChangeEvent, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import Button from "@/app/components/ui/Button";
+import FormContainer from "../../layout/dashboard/FormContainer";
 import Form from "@/app/components/ui/Form";
+import Button from "@/app/components/ui/Button";
 import TextArea from "@/app/components/ui/TextArea";
 
 type FormMemoProps = {
@@ -71,35 +72,28 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
 
   return (
     <>
-      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
-      メモの追加
-      </h2>
-      <div className="flex items-center justify-center">
-        <div className="w-full border py-4 px-6 border-blog-borderGray rounded bg-white max-w-full">
-          <form action={dispatch}>
-            <Form
-              label="メモの見出し"
-              name="name"
-              placeholder="メモの見出しを記載しましょう。"
-              value={inputValue}
-              onChange={handleInputChange}
-            />
-            {state.errors && (
-              <p className="text-red-500">{state.errors.name}</p>
-            )}
-            <TextArea
-              label="メモする内容"
-              name="content"
-              placeholder="メモする内容を記載しましょう。"
-              value={textAreaValue}
-              onChange={handleTextareaChange}
-            />
-            <Button color="blue" size="normal" className="rounded mt-4">
-              {buttonName}
-            </Button>
-          </form>
-        </div>
-      </div>
+      <FormContainer>
+        <form action={dispatch}>
+          <Form
+            label="メモの見出し"
+            name="name"
+            placeholder="メモの見出しを記載しましょう。"
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+          {state.errors && <p className="text-red-500">{state.errors.name}</p>}
+          <TextArea
+            label="メモする内容"
+            name="content"
+            placeholder="メモする内容を記載しましょう。"
+            value={textAreaValue}
+            onChange={handleTextareaChange}
+          />
+          <Button color="blue" size="normal" className="rounded mt-4">
+            {buttonName}
+          </Button>
+        </form>
+      </FormContainer>
     </>
   );
 };

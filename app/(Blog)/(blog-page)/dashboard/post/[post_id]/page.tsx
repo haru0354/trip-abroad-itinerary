@@ -5,18 +5,17 @@ import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
 import FormPost from "@/app/(blog)/components/dashboard/form/FormPost";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 import Button from "@/app/components/ui/Button";
+import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";
 
 const page = async ({ params }: { params: { post_id: string } }) => {
   const id = Number(params.post_id);
   const updatePostWidthId = updatePost.bind(null, id);
-  const post = await getPost("id", params.post_id, "categoryAndPostImage")
-  const categories = await getCategories()
+  const post = await getPost("id", params.post_id, "categoryAndPostImage");
+  const categories = await getCategories();
 
   return (
     <>
-      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
-        記事の編集
-      </h2>
+      <HeadingTwo>記事の編集</HeadingTwo>
       <FormPost
         formAction={updatePostWidthId}
         post={post}

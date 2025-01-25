@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getPostImages } from "@/app/(blog)/lib/service/blogServiceMany";
+import HeadingTwo from "../../ui/dashboard/HeadingTwo";
 
 const ListImages = async () => {
   const images = await getPostImages();
@@ -9,9 +10,7 @@ const ListImages = async () => {
 
   return (
     <>
-      <h2 className="mb-12 p-5 text-xl font-bold rounded text-white bg-blog-dashboardHeading">
-        画像ライブラリー
-      </h2>
+      <HeadingTwo>画像ライブラリー</HeadingTwo>
       <div className="flex flex-wrap w-full items-center justify-center">
         {sortedImages.map((image) => {
           return (

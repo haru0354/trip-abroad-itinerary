@@ -7,17 +7,16 @@ import { getPostImage } from "@/app/(blog)/lib/service/blogServiceUnique";
 import FormPostImage from "@/app/(blog)/components/dashboard/form/FormPostImage";
 import Button from "@/app/components/ui/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
+import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";
 
 const page = async ({ params }: { params: { image_id: string } }) => {
   const id = Number(params.image_id);
   const updatePostImageWidthId = updatePostImage.bind(null, id);
-  const postImage = await getPostImage(params.image_id)
+  const postImage = await getPostImage(params.image_id);
 
   return (
     <>
-      <h2 className="bg-blog-dashboardHeading text-xl bold text-white rounded mb-12 p-5 font-bold">
-        画像の編集
-      </h2>
+      <HeadingTwo>画像の編集</HeadingTwo>
       <FormPostImage
         formAction={updatePostImageWidthId}
         postImage={postImage}

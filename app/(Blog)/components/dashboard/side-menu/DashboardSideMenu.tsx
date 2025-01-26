@@ -9,7 +9,7 @@ import {
   faBars,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 import Button from "@/app/components/ui/Button";
 import MenuBox from "../../ui/MenuBox";
@@ -17,6 +17,18 @@ import HamburgerMenu from "./HamburgerMenu";
 
 const DashboardSideMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -113,7 +125,7 @@ const DashboardSideMenu = () => {
         {isOpen && (
           <>
             <button
-              className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-blog-black border-blog-borderBlack fixed z-10"
+              className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-blog-black border-blog-borderBlack fixed z-50"
               onClick={toggleMenu}
             >
               <FontAwesomeIcon
@@ -121,7 +133,7 @@ const DashboardSideMenu = () => {
                 style={{ width: "14px", height: "16px" }}
               />
             </button>
-            <HamburgerMenu />
+            <HamburgerMenu toggleMenu={toggleMenu} />
           </>
         )}
       </div>

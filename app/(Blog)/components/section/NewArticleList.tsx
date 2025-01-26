@@ -1,8 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
 import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
-import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Section from "@/app/components/layout/Section";
+import TopPageListItem from "../layout/TopPageListItem";
 
 const NewArticleList = async () => {
   const posts = await getPosts("categoryAndPostImage", 6);
@@ -13,65 +11,13 @@ const NewArticleList = async () => {
         {posts.map((post) => {
           return (
             post.draft && (
-              <AnimatedItem
-                elementType="div"
-                animation="fadeInVariants"
+              <TopPageListItem
                 key={post.id}
-                className="flex flex-col items-center"
-              >
-                <Link href={`/${post.category.slug}/${post.slug}`}>
-                  <div className="flex flex-col items-center max-w-[330px] min-w-[330px] mx-5 my-6 rounded hover:bg-blog-hoverBlue transition duration-300">
-                    <div>
-                      {post.postImage ? (
-                        <figure
-                          style={{
-                            position: "relative",
-                            width: "330px",
-                            height: "220px",
-                          }}
-                        >
-                          <Image
-                            src={post.postImage.url}
-                            alt={post.postImage.altText}
-                            fill
-                            sizes="(max-hight: 220px)"
-                            style={{
-                              objectFit: "cover",
-                            }}
-                          />
-                        </figure>
-                      ) : (
-                        <figure
-                          style={{
-                            position: "relative",
-                            width: "330px",
-                            height: "220px",
-                          }}
-                        >
-                          <Image
-                            src="/no_image.jpg"
-                            alt="画像の準備中"
-                            fill
-                            sizes="(max-hight: 222px)"
-                            style={{
-                              objectFit: "cover",
-                            }}
-                          />
-                        </figure>
-                      )}
-                    </div>
-                    <div className="min-h-[80px] px-3">
-                      <h3 className="my-3 text-center text-xl font-semibold">
-                        {post.title && post.title.length > 34 ? (
-                          <>{post.title.slice(0, 34)}...</>
-                        ) : (
-                          <>{post.title}</>
-                        )}
-                      </h3>
-                    </div>
-                  </div>
-                </Link>
-              </AnimatedItem>
+                href={`/${post.category.slug}/${post.slug}`}
+                imageUrl={post.postImage?.url}
+                altText={post.postImage?.altText}
+                title={post.title}
+              />
             )
           );
         })}

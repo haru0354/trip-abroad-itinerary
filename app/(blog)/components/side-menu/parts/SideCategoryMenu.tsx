@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
+import SideMenuContainer from "../../layout/SideMenuContainer";
 
 const SideCategoryMenu = async () => {
   const categories = await getCategories("posts");
@@ -9,10 +10,7 @@ const SideCategoryMenu = async () => {
   }
 
   return (
-    <div className="w-full p-2">
-      <h3 className="px-2 py-4 font-bold text-lg rounded bg-blog-heading text-white">
-        カテゴリ
-      </h3>
+    <SideMenuContainer title="カテゴリ">
       {categories.map((category) => {
         if (
           !category ||
@@ -21,6 +19,7 @@ const SideCategoryMenu = async () => {
         ) {
           return null;
         }
+        
         return (
           <ul key={category.id}>
             <li className="py-4 hover:bg-blog-hoverBlue transition duration-300">
@@ -31,7 +30,7 @@ const SideCategoryMenu = async () => {
           </ul>
         );
       })}
-    </div>
+    </SideMenuContainer>
   );
 };
 

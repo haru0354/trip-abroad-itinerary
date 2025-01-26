@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
+import SideMenuContainer from "../../layout/SideMenuContainer";
 
 const SideNewArticles = async () => {
   const posts = await getPosts("categoryAndPostImage", 5);
@@ -10,10 +11,7 @@ const SideNewArticles = async () => {
   }
 
   return (
-    <div className="w-full p-2">
-      <h3 className="px-2 py-4 font-bold text-lg rounded bg-blog-heading text-white">
-      新着記事
-      </h3>
+    <SideMenuContainer title="新着記事">
       <ul>
         {posts.map((post) => {
           return (
@@ -40,9 +38,7 @@ const SideNewArticles = async () => {
                       />
                     )}
                   {post.title && post.title.length > 36 ? (
-                    <p className="my-2">
-                      {post.title.slice(0, 36)}...
-                    </p>
+                    <p className="my-2">{post.title.slice(0, 36)}...</p>
                   ) : (
                     <p className="my-2">{post.title}</p>
                   )}
@@ -52,7 +48,7 @@ const SideNewArticles = async () => {
           );
         })}
       </ul>
-    </div>
+    </SideMenuContainer>
   );
 };
 

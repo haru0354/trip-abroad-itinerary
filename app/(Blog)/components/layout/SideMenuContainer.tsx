@@ -1,6 +1,6 @@
 type SideMenuContainerProps = {
   children: React.ReactNode;
-  title: string;
+  title?: string;
   addClass?: string;
 };
 
@@ -11,9 +11,11 @@ const SideMenuContainer: React.FC<SideMenuContainerProps> = ({
 }) => {
   return (
     <div className={`w-full p-2 ${addClass}`}>
-      <h3 className="px-2 py-4 font-bold text-lg rounded bg-blog-heading text-white">
-        {title}
-      </h3>
+      {title && (
+        <h3 className="px-2 py-4 font-bold text-lg rounded bg-blog-heading text-white">
+          {title}
+        </h3>
+      )}
       {children}
     </div>
   );

@@ -1,6 +1,6 @@
 import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
 import Section from "@/app/components/layout/Section";
-import TopPageListItem from "../layout/TopPageListItem";
+import TopPageListItem from "../layout/blog/TopPageListItem";
 
 const NewArticleList = async () => {
   const posts = await getPosts("categoryAndPostImage", 6);

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import SideMenuContainer from "../../layout/SideMenuContainer";
+import SideMenuContainer from "../../layout/blog/SideMenuContainer";
 
 type SideImageProps = {
   src: string;

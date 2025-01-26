@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/layout/blog/Header";
+import Footer from "../components/layout/blog/Footer";
 
 const brandTItle = process.env.NEXT_PUBLIC_WEBSITE_BRAND_TITLE;
 const siteTItle = process.env.NEXT_PUBLIC_WEBSITE_TITLE;

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import SideMenuContainer from "./SideMenuContainer";
 
 type SideImageProps = {
   src: string;
@@ -14,7 +15,7 @@ const SideImage: React.FC<SideImageProps> = ({ src, alt, href, textTitle }) => {
     : "hover:-translate-y-2 translate transition duration-300";
 
   return (
-    <div className={`w-full p-4 ${hoverStyle}`}>
+    <SideMenuContainer addClass={hoverStyle}>
       <Link href={href}>
         <Image
           src={src}
@@ -29,7 +30,7 @@ const SideImage: React.FC<SideImageProps> = ({ src, alt, href, textTitle }) => {
         />
         {textTitle && <p className="text-center my-2">{textTitle}</p>}
       </Link>
-    </div>
+    </SideMenuContainer>
   );
 };
 

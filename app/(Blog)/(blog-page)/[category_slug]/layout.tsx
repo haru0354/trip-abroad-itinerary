@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { getCategory } from "../../lib/service/blogServiceUnique";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "../../components/layout/blog/Header";
+import Footer from "../../components/layout/blog/Footer";
 
 export const generateMetadata = async ({
   params,

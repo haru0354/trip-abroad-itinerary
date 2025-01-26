@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
-import SideMenuContainer from "../../layout/blog/SideMenuContainer";
+import SideMenuContainer from "./SideMenuContainer";
 
 const SideNewArticles = async () => {
   const posts = await getPosts("categoryAndPostImage", 5);

@@ -17,3 +17,11 @@ export type TripFormState = {
   };
   createdTripId?: number | null;
 };
+
+export type ProfileFormState = {
+  message?: string | null;
+  errors?: {
+    name?: string[] | undefined;
+    email?: string[] | undefined;
+  };
+};

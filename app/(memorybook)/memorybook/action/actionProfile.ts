@@ -4,9 +4,12 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import bcrypt from "bcrypt";
+
 import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateSchema } from "../../../lib/validateSchema";
+
+import type { ProfileFormState } from "../../types/formState";
 
 type FormState = {
   message?: string | null;
@@ -53,7 +56,7 @@ export const deleteUser = async () => {
   redirect(`/memorybook/`);
 };
 
-export const updateProfile = async (state: FormState, data: FormData) => {
+export const updateProfile = async (state: ProfileFormState, data: FormData) => {
   const name = data.get("name") as string;
   const email = data.get("email") as string;
   const userId = await getCurrentUserId();

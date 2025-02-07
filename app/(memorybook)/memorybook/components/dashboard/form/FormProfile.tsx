@@ -3,23 +3,18 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+
 import toast from "react-hot-toast";
 import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
 
+import type { ProfileFormState } from "@/app/(memorybook)/types/formState";
+
 type FormProfileProps = {
   buttonName: string;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
+  formAction: (state: ProfileFormState, data: FormData) => Promise<ProfileFormState>;
   userEmail: string | undefined;
   userName: string | undefined;
-};
-
-type FormState = {
-  message?: string | null;
-  errors?: {
-    name?: string[] | undefined;
-    email?: string[] | undefined;
-  };
 };
 
 const FormProfile: React.FC<FormProfileProps> = ({
@@ -37,7 +32,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
     errors: { name: undefined, email: undefined },
   };
   
-  const [state, dispatch] = useFormState<FormState, FormData>(
+  const [state, dispatch] = useFormState<ProfileFormState, FormData>(
     formAction,
     initialState
   );

@@ -19,3 +19,11 @@ export type PostFormState = {
     draft?: string[] | undefined;
   };
 };
+
+export type ImageFormState = {
+  message?: string | null;
+  errors?: {
+    image?: string[] | undefined;
+    altText?: string[] | undefined;
+  };
+};

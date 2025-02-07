@@ -1,11 +1,14 @@
 "use client";
 
-import Image from "next/image";
-import Form from "./Form";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+
+import Form from "./Form";
+
+import type { ImageFormState } from "@/app/(blog)/types/formState";
 
 type FormImageProps = {
-  state?: State;
+  state?: ImageFormState;
   selectImage?: PostImage | null;
   altTextValue?: string;
   formSubmitted?: boolean;
@@ -13,14 +16,6 @@ type FormImageProps = {
   label: string;
   placeholder: string;
   defaultValue?: string;
-};
-
-type State = {
-  message?: string | null;
-  errors?: {
-    image?: string[] | undefined;
-    altText?: string[] | undefined;
-  };
 };
 
 type PostImage = {

@@ -6,3 +6,14 @@ export type MemoFormState = {
     userId?: string[] | undefined;
   };
 };
+
+export type TripFormState = {
+  message?: string | null;
+  errors?: {
+    startDate?: string[] | undefined;
+    endDate?: string[] | undefined;
+    name?: string[] | undefined;
+    destination?: string[] | undefined;
+  };
+  createdTripId?: number | null;
+};

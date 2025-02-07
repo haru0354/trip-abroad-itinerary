@@ -5,3 +5,17 @@ export type DashboardFormState = {
     content?: string[] | undefined;
   };
 };
+
+export type PostFormState = {
+  message?: string | null;
+  errors?: {
+    title?: string[] | undefined;
+    content?: string[] | undefined;
+    slug?: string[] | undefined;
+    description?: string[] | undefined;
+    categoryId?: string[] | undefined;
+    image?: string[] | undefined;
+    altText?: string[] | undefined;
+    draft?: string[] | undefined;
+  };
+};

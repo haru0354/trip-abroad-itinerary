@@ -9,17 +9,7 @@ import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateSchema } from "../../../lib/validateSchema";
 
-import type { ProfileFormState } from "../../types/formState";
-
-type FormState = {
-  message?: string | null;
-  errors?: {
-    name?: string[] | undefined;
-    email?: string[] | undefined;
-    password?: string[] | undefined;
-    passwordConfirmation?: string[] | undefined;
-  };
-};
+import type { PasswordFormState, ProfileFormState } from "../../types/formState";
 
 const schema = z.object({
   name: z.string().min(2, { message: "2文字以上入力する必要があります。" }),
@@ -96,7 +86,7 @@ export const updateProfile = async (state: ProfileFormState, data: FormData) => 
   }
 };
 
-export const updatePassword = async (state: FormState, data: FormData) => {
+export const updatePassword = async (state: PasswordFormState, data: FormData) => {
   const password = data.get("password") as string;
   const passwordConfirmation = data.get("passwordConfirmation") as string;
 

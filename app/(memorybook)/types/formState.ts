@@ -25,3 +25,11 @@ export type ProfileFormState = {
     email?: string[] | undefined;
   };
 };
+
+export type PasswordFormState = {
+  message?: string | null;
+  errors?: {
+    password?: string[] | undefined;
+    passwordConfirmation?: string[] | undefined;
+  };
+};

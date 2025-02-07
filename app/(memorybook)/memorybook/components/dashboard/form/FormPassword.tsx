@@ -3,21 +3,16 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+
 import toast from "react-hot-toast";
 import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
 
+import type { PasswordFormState } from "@/app/(memorybook)/types/formState";
+
 type FormPasswordProps = {
   buttonName: string;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
-};
-
-type FormState = {
-  message?: string | null;
-  errors?: {
-    password?: string[] | undefined;
-    passwordConfirmation?: string[] | undefined;
-  };
+  formAction: (state: PasswordFormState, data: FormData) => Promise<PasswordFormState>;
 };
 
 const FormPassword: React.FC<FormPasswordProps> = ({
@@ -31,7 +26,7 @@ const FormPassword: React.FC<FormPasswordProps> = ({
     errors: { password: undefined, passwordConfirmation: undefined },
   };
 
-  const [state, dispatch] = useFormState<FormState, FormData>(
+  const [state, dispatch] = useFormState<PasswordFormState, FormData>(
     formAction,
     initialState
   );

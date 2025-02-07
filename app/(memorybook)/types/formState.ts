@@ -1,12 +1,3 @@
-export type MemoFormState = {
-  message?: string | null;
-  errors?: {
-    name?: string[] | undefined;
-    content?: string[] | undefined;
-    userId?: string[] | undefined;
-  };
-};
-
 export type TripFormState = {
   message?: string | null;
   errors?: {
@@ -16,6 +7,28 @@ export type TripFormState = {
     destination?: string[] | undefined;
   };
   createdTripId?: number | null;
+};
+
+export type MemoFormState = {
+  message?: string | null;
+  errors?: {
+    name?: string[] | undefined;
+    content?: string[] | undefined;
+    userId?: string[] | undefined;
+  };
+};
+
+export type ItineraryFormState = {
+  message?: string | null;
+  errors?: {
+    date?: string[] | undefined;
+    time?: string[] | undefined;
+    name?: string[] | undefined;
+    content?: string[] | undefined;
+    hideContent?: string[] | undefined;
+    image?: string[] | undefined;
+    altText?: string[] | undefined;
+  };
 };
 
 export type ProfileFormState = {

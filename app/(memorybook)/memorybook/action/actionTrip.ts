@@ -9,7 +9,7 @@ import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";
 import { validateSchema } from "../../../lib/validateSchema";
 
-import type { TripFormState } from "../types/formState";
+import type { TripFormState } from "../../types/formState";
 
 const schema = z.object({
   startDate: z.string().optional(),

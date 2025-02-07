@@ -9,7 +9,7 @@ import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
 import Date from "@/app/components/ui/Date";
 
-import type { TripFormState } from "../../../types/formState";
+import type { TripFormState } from "@/app/(memorybook)/types/formState";
 
 type FormTripProps = {
   trip?: Trip | null;
@@ -35,9 +35,7 @@ const FormTrip: React.FC<FormTripProps> = ({
   const [startDateValue, setStartDateValue] = useState<string>(
     trip?.startDate || ""
   );
-  const [endDateValue, setEndDateValue] = useState<string>(
-    trip?.endDate || ""
-  );
+  const [endDateValue, setEndDateValue] = useState<string>(trip?.endDate || "");
   const [nameValue, setNameValue] = useState<string>(trip?.name || "");
   const [destinationValue, setDestinationValue] = useState<string>(
     trip?.destination || ""

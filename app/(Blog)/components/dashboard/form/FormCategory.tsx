@@ -1,16 +1,19 @@
 "use client";
 
 import { useFormState } from "react-dom";
+
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
 import TextArea from "@/app/components/ui/TextArea";
 import FormImage from "@/app/components/ui/FormImage";
 
+import type { CategoryFormState } from "@/app/(blog)/types/formState";
+
 type FormCategoryProps = {
   category?: (Category & { postImage: PostImage | null }) | null;
   buttonName: string;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
+  formAction: (state: CategoryFormState, data: FormData) => Promise<CategoryFormState>;
 };
 
 type Category = {
@@ -28,16 +31,6 @@ type PostImage = {
   url: string;
 };
 
-type FormState = {
-  message?: string | null;
-  errors?: {
-    name?: string[] | undefined;
-    slug?: string[] | undefined;
-    image?: string[] | undefined;
-    altText?: string[] | undefined;
-  };
-};
-
 const FormCategory: React.FC<FormCategoryProps> = ({
   category,
   buttonName,
@@ -48,7 +41,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
     errors: { name: undefined, slug: undefined, altText: undefined },
   };
 
-  const [state, dispatch] = useFormState<FormState, FormData>(
+  const [state, dispatch] = useFormState<CategoryFormState, FormData>(
     formAction,
     initialState
   );

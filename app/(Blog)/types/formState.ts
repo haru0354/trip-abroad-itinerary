@@ -1,3 +1,13 @@
+export type CategoryFormState = {
+  message?: string | null;
+  errors?: {
+    name?: string[] | undefined;
+    slug?: string[] | undefined;
+    image?: string[] | undefined;
+    altText?: string[] | undefined;
+  };
+};
+
 export type DashboardFormState = {
   message?: string | null;
   errors?: {

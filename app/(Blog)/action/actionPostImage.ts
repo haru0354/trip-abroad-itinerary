@@ -3,13 +3,15 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getPostImage } from "../lib/service/blogServiceUnique";
 import { checkUserRole } from "@/app/lib/checkUserRole";
 import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
-import { ImageFormState } from "../types/formState";
+
+import type { ImageFormState } from "../types/formState";
 
 const schema = z.object({
   image: z.unknown().refine((value) => value instanceof File || !value, {

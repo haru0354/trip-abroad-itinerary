@@ -3,6 +3,7 @@
 import { useFormState } from "react-dom";
 import { useState } from "react";
 import DOMPurify from "dompurify";
+
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Form from "@/app/components/ui/Form";
 import TextArea from "@/app/components/ui/TextArea";
@@ -10,7 +11,8 @@ import Button from "@/app/components/ui/Button";
 import Select from "@/app/components/ui/Select";
 import FormImage from "@/app/components/ui/FormImage";
 import Checkbox from "@/app/components/ui/Checkbox";
-import { PostFormState } from "@/app/(blog)/types/formState";
+
+import type { PostFormState } from "@/app/(blog)/types/formState";
 
 type FormPostProps = {
   post?: (Post & { category: Category; postImage: PostImage | null }) | null;

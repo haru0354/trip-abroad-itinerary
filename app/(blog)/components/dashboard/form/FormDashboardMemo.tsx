@@ -4,29 +4,24 @@ import { useState, ChangeEvent, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
 import TextArea from "@/app/components/ui/TextArea";
 
+import type { DashboardFormState } from "@/app/(blog)/types/formState";
+
 type FormMemoProps = {
   dashboardMemo?: DashboardMemo | null;
   buttonName: string;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
+  formAction: (state: DashboardFormState, data: FormData) => Promise<DashboardFormState>;
 };
 
 type DashboardMemo = {
   id: number;
   name: string;
   content: string;
-};
-
-type FormState = {
-  message?: string | null;
-  errors?: {
-    name?: string[] | undefined;
-    content?: string[] | undefined;
-  };
 };
 
 const FormDashboardMemo: React.FC<FormMemoProps> = ({
@@ -36,7 +31,7 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
 }) => {
   const router = useRouter();
   const initialState = { message: null, errors: { name: undefined } };
-  const [state, dispatch] = useFormState<FormState, FormData>(
+  const [state, dispatch] = useFormState<DashboardFormState, FormData>(
     formAction,
     initialState
   );

@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getPost } from "../lib/service/blogServiceUnique";
@@ -11,17 +12,7 @@ import { checkUserRole } from "@/app/lib/checkUserRole";
 import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
-type FormState = {
-  message?: string | null;
-  errors?: {
-    title?: string[] | undefined;
-    content?: string[] | undefined;
-    slug?: string[] | undefined;
-    description?: string[] | undefined;
-    categoryId?: string[] | undefined;
-    image?: string[] | undefined;
-  };
-};
+import type { PostFormState } from "../types/formState";
 
 const schema = z.object({
   title: z.string().min(1, { message: "記事のタイトルの入力は必須です" }),
@@ -36,7 +27,7 @@ const schema = z.object({
   categoryId: z.string().transform((val) => Number(val)),
 });
 
-export const addPost = async (state: FormState, data: FormData) => {
+export const addPost = async (state: PostFormState, data: FormData) => {
   const isAdmin = await checkUserRole("admin");
 
   if (!isAdmin) {
@@ -172,7 +163,7 @@ export const deletePost = async (data: FormData) => {
 
 export const updatePost = async (
   id: number,
-  state: FormState,
+  state: PostFormState,
   data: FormData
 ) => {
   const isAdmin = await checkUserRole("admin");

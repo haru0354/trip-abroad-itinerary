@@ -3,6 +3,7 @@
 import { useFormState } from "react-dom";
 import { useState } from "react";
 import DOMPurify from "dompurify";
+
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Form from "@/app/components/ui/Form";
 import TextArea from "@/app/components/ui/TextArea";
@@ -11,10 +12,12 @@ import Select from "@/app/components/ui/Select";
 import FormImage from "@/app/components/ui/FormImage";
 import Checkbox from "@/app/components/ui/Checkbox";
 
+import type { PostFormState } from "@/app/(blog)/types/formState";
+
 type FormPostProps = {
   post?: (Post & { category: Category; postImage: PostImage | null }) | null;
   categories?: Category[] | null;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
+  formAction: (state: PostFormState, data: FormData) => Promise<PostFormState>;
   buttonName: string;
 };
 
@@ -39,17 +42,6 @@ type Post = {
   draft: boolean;
 };
 
-type FormState = {
-  message?: string | null;
-  errors?: {
-    title?: string[] | undefined;
-    content?: string[] | undefined;
-    slug?: string[] | undefined;
-    description?: string[] | undefined;
-    image?: string[] | undefined;
-    altText?: string[] | undefined;
-  };
-};
 
 const FormPost: React.FC<FormPostProps> = ({
   post,
@@ -70,7 +62,7 @@ const FormPost: React.FC<FormPostProps> = ({
   };
   const category = post?.category;
 
-  const [state, dispatch] = useFormState<FormState, FormData>(
+  const [state, dispatch] = useFormState<PostFormState, FormData>(
     formAction,
     initialState
   );

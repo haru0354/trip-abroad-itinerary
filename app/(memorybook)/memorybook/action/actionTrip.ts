@@ -3,21 +3,13 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+
 import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";
 import { validateSchema } from "../../../lib/validateSchema";
 
-type FormState = {
-  message?: string | null;
-  errors?: {
-    startDate?: string[] | undefined;
-    endDate?: string[] | undefined;
-    name?: string[] | undefined;
-    destination?: string[] | undefined;
-  };
-  createdTripId?: number | null;
-};
+import type { TripFormState } from "../types/formState";
 
 const schema = z.object({
   startDate: z.string().optional(),
@@ -29,7 +21,7 @@ const schema = z.object({
   destination: z.string().optional(),
 });
 
-export const addTrip = async (state: FormState, data: FormData) => {
+export const addTrip = async (state: TripFormState, data: FormData) => {
   const startDate = data.get("startDate") as string;
   const endDate = data.get("endDate") as string;
   const name = data.get("name") as string;
@@ -106,7 +98,7 @@ export const deleteTrip = async (data: FormData) => {
 
 export const updateTrip = async (
   id: number,
-  state: FormState,
+  state: TripFormState,
   data: FormData
 ) => {
   const startDate = data.get("startDate") as string;

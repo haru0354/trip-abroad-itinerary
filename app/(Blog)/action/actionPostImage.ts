@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getPostImage } from "../lib/service/blogServiceUnique";
@@ -10,13 +11,7 @@ import { checkUserRole } from "@/app/lib/checkUserRole";
 import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
-type FormState = {
-  message?: string | null;
-  errors?: {
-    image?: string[] | undefined;
-    altText?: string[] | undefined;
-  };
-};
+import type { ImageFormState } from "../types/formState";
 
 const schema = z.object({
   image: z.unknown().refine((value) => value instanceof File || !value, {
@@ -29,7 +24,7 @@ const updateSchema = z.object({
   altText: z.string().min(1, { message: "画像の名前の入力は必須です。" }),
 });
 
-export const addPostImage = async (state: FormState, data: FormData) => {
+export const addPostImage = async (state: ImageFormState, data: FormData) => {
   const isAdmin = await checkUserRole("admin");
 
   if (!isAdmin) {
@@ -125,7 +120,7 @@ export const deletePostImage = async (data: FormData) => {
 
 export const updatePostImage = async (
   id: number,
-  state: FormState,
+  state: ImageFormState,
   data: FormData
 ) => {
   const isAdmin = await checkUserRole("admin");

@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getCategory } from "../lib/service/blogServiceUnique";
@@ -11,14 +12,7 @@ import { checkUserRole } from "@/app/lib/checkUserRole";
 import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
-type FormState = {
-  message?: string | null;
-  errors?: {
-    name?: string[] | undefined;
-    slug?: string[] | undefined;
-    image?: string[] | undefined;
-  };
-};
+import type { CategoryFormState } from "../types/formState";
 
 const schema = z.object({
   name: z.string().min(1, { message: "カテゴリ名の入力は必須です" }),
@@ -33,7 +27,7 @@ const schema = z.object({
   title: z.string().optional(),
 });
 
-export const addCategory = async (state: FormState, data: FormData) => {
+export const addCategory = async (state: CategoryFormState, data: FormData) => {
   const isAdmin = await checkUserRole("admin");
 
   if (!isAdmin) {
@@ -186,7 +180,7 @@ export const deleteCategory = async (data: FormData) => {
 
 export const updateCategory = async (
   id: number,
-  state: FormState,
+  state: CategoryFormState,
   data: FormData
 ) => {
   const isAdmin = await checkUserRole("admin");

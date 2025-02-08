@@ -1,27 +1,25 @@
 "use client";
 
 import { useFormState } from "react-dom";
+
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Button from "@/app/components/ui/Button";
 import FormImage from "@/app/components/ui/FormImage";
 
+import type { ImageFormState } from "@/app/(blog)/types/formState";
+
 type FormPostImageProps = {
   postImage?: PostImage | null;
   buttonName: string;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
+  formAction: (
+    state: ImageFormState,
+    data: FormData
+  ) => Promise<ImageFormState>;
 };
 
 type PostImage = {
   url: string;
   altText: string;
-};
-
-type FormState = {
-  message?: string | null;
-  errors?: {
-    image?: string[] | undefined;
-    altText?: string[] | undefined;
-  };
 };
 
 const FormPostImage: React.FC<FormPostImageProps> = ({
@@ -34,7 +32,7 @@ const FormPostImage: React.FC<FormPostImageProps> = ({
     errors: { image: undefined, altText: undefined },
   };
 
-  const [state, dispatch] = useFormState<FormState, FormData>(
+  const [state, dispatch] = useFormState<ImageFormState, FormData>(
     formAction,
     initialState
   );

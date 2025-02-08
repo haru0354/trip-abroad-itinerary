@@ -4,6 +4,7 @@ import { useState, ChangeEvent, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+
 import { addMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
@@ -11,19 +12,12 @@ import TextArea from "@/app/components/ui/TextArea";
 import ButtonImage from "@/app/components/ui/ButtonImage";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
+import type { MemoFormState } from "../../types/formState";
+
 type FormMemoProps = {
   buttonName: string;
   buttonName2: string;
   tripId?: number | undefined;
-};
-
-type FormState = {
-  message?: string | null;
-  errors?: {
-    name?: string[] | undefined;
-    content?: string[] | undefined;
-    tripId?: string[] | undefined;
-  };
 };
 
 const FormMemoModal: React.FC<FormMemoProps> = ({
@@ -38,7 +32,7 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
   const [textAreaValue, setTextareaChange] = useState<string>("");
 
   const initialState = { message: null, errors: { name: undefined } };
-  const [state, dispatch] = useFormState<FormState, FormData>(
+  const [state, dispatch] = useFormState<MemoFormState, FormData>(
     addMemo,
     initialState
   );

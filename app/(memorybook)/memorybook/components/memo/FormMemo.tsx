@@ -3,16 +3,19 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
+
 import toast from "react-hot-toast";
 import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
 import TextArea from "@/app/components/ui/TextArea";
 
+import type { MemoFormState } from "../../types/formState";
+
 type FormMemoProps = {
   memos?: Memo[] | undefined | null;
   memo?: Memo | null;
   buttonName: string;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
+  formAction: (state: MemoFormState, data: FormData) => Promise<MemoFormState>;
   tripId?: number | undefined;
 };
 
@@ -20,15 +23,6 @@ type Memo = {
   id: number;
   name: string;
   content: string;
-};
-
-type FormState = {
-  message?: string | null;
-  errors?: {
-    name?: string[] | undefined;
-    content?: string[] | undefined;
-    userId?: string[] | undefined;
-  };
 };
 
 const FormMemo: React.FC<FormMemoProps> = ({
@@ -44,7 +38,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
   );
 
   const initialState = { message: null, errors: { name: undefined } };
-  const [state, dispatch] = useFormState<FormState, FormData>(
+  const [state, dispatch] = useFormState<MemoFormState, FormData>(
     formAction,
     initialState
   );
@@ -98,11 +92,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
               value={textAreaValue}
               onChange={handleTextareaChange}
             />
-            <input
-              type="hidden"
-              name="tripId"
-              value={tripId}
-            />
+            <input type="hidden" name="tripId" value={tripId} />
             {state.errors && state.message !== "failure" && (
               <p className="text-red-500">{state.message}</p>
             )}

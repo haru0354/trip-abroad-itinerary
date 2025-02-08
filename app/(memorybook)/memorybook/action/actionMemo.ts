@@ -3,18 +3,12 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+
 import prisma from "@/app/lib/prisma";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";
 import { validateSchema } from "../../../lib/validateSchema";
 
-type FormState = {
-  message?: string | null;
-  errors?: {
-    name?: string[] | undefined;
-    content?: string[] | undefined;
-    tripId?: string[] | undefined;
-  };
-};
+import type { MemoFormState } from "../types/formState";
 
 const schema = z.object({
   name: z.string().min(1, { message: "タイトルの入力は必須です" }),
@@ -22,7 +16,7 @@ const schema = z.object({
   tripId: z.string().transform((val) => Number(val)),
 });
 
-export const addMemo = async (state: FormState, data: FormData) => {
+export const addMemo = async (state: MemoFormState, data: FormData) => {
   const name = data.get("name") as string;
   const content = data.get("content") as string;
   const tripId = data.get("tripId") as string;
@@ -105,7 +99,7 @@ export const deleteMemo = async (data: FormData) => {
 
 export const updateMemo = async (
   memoId: number,
-  state: FormState,
+  state: MemoFormState,
   data: FormData
 ) => {
   const name = data.get("name") as string;

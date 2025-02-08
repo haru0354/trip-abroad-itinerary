@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+
 import Form from "@/app/components/ui/Form";
 import TextArea from "@/app/components/ui/TextArea";
 import Date from "@/app/components/ui/Date";
@@ -11,10 +12,12 @@ import Time from "@/app/components/ui/Time";
 import Button from "@/app/components/ui/Button";
 import FormImage from "@/app/components/ui/FormImage";
 
+import type { ItineraryFormState } from "@/app/(memorybook)/memorybook/types/formState";
+
 type FormItineraryProps = {
   itinerary?: Itinerary | null;
   buttonName: string;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
+  formAction: (state: ItineraryFormState, data: FormData) => Promise<ItineraryFormState>;
   tripId?: number | undefined;
 };
 
@@ -30,16 +33,6 @@ type Itinerary = {
   altText?: string | null;
 };
 
-type FormState = {
-  message?: string | null;
-  errors?: {
-    date?: string[] | undefined;
-    time?: string[] | undefined;
-    name?: string[] | undefined;
-    altText?: string[] | undefined;
-    image?: string[] | undefined;
-  };
-};
 
 const FormItinerary: React.FC<FormItineraryProps> = ({
   itinerary,
@@ -73,7 +66,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
       altText: undefined,
     },
   };
-  const [state, dispatch] = useFormState<FormState, FormData>(
+  const [state, dispatch] = useFormState<ItineraryFormState, FormData>(
     formAction,
     initialState
   );

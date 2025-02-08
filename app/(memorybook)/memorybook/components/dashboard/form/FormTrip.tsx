@@ -3,15 +3,18 @@
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+
 import toast from "react-hot-toast";
 import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
 import Date from "@/app/components/ui/Date";
 
+import type { TripFormState } from "@/app/(memorybook)/memorybook/types/formState";
+
 type FormTripProps = {
   trip?: Trip | null;
   buttonName: string;
-  formAction: (state: FormState, data: FormData) => Promise<FormState>;
+  formAction: (state: TripFormState, data: FormData) => Promise<TripFormState>;
 };
 
 type Trip = {
@@ -23,17 +26,6 @@ type Trip = {
   share: boolean;
 };
 
-type FormState = {
-  message?: string | null;
-  errors?: {
-    startDate?: string[] | undefined;
-    endDate?: string[] | undefined;
-    name?: string[] | undefined;
-    destination?: string[] | undefined;
-  };
-  createdTripId?: number | null;
-};
-
 const FormTrip: React.FC<FormTripProps> = ({
   trip,
   buttonName,
@@ -43,16 +35,14 @@ const FormTrip: React.FC<FormTripProps> = ({
   const [startDateValue, setStartDateValue] = useState<string>(
     trip?.startDate || ""
   );
-  const [endDateValue, setEndDateValue] = useState<string>(
-    trip?.endDate || ""
-  );
+  const [endDateValue, setEndDateValue] = useState<string>(trip?.endDate || "");
   const [nameValue, setNameValue] = useState<string>(trip?.name || "");
   const [destinationValue, setDestinationValue] = useState<string>(
     trip?.destination || ""
   );
 
   const initialState = { message: null, errors: { name: undefined } };
-  const [state, dispatch] = useFormState<FormState, FormData>(
+  const [state, dispatch] = useFormState<TripFormState, FormData>(
     formAction,
     initialState
   );

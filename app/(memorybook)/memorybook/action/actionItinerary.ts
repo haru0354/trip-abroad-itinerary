@@ -2,7 +2,6 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
@@ -12,22 +11,8 @@ import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateSchema } from "../../../lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
+import { itinerarySchema } from "../schema/itinerarySchema";
 import type { ItineraryFormState } from "../types/formState";
-
-const schema = z.object({
-  date: z.string().min(1, { message: "日付の入力は必須です" }),
-  time: z.string().min(1, { message: "時間の入力は必須です" }),
-  name: z.string().min(1, { message: "タイトルの入力は必須です" }),
-  content: z.string().optional(),
-  hideContent: z.string().optional(),
-  tripId: z.string().transform((val) => Number(val)),
-});
-
-const ImageSchema = z.object({
-  altText: z
-    .string()
-    .min(1, { message: "画像の追加時は「何の画像か」の入力は必須です。" }),
-});
 
 export const addItinerary = async (state: ItineraryFormState, data: FormData) => {
   const date = data.get("date") as string;
@@ -66,7 +51,7 @@ export const addItinerary = async (state: ItineraryFormState, data: FormData) =>
     tripId,
   };
 
-  const validated = validateSchema(schema, validateDate);
+  const validated = validateSchema(itinerarySchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);
@@ -211,7 +196,7 @@ export const updateItinerary = async (
     tripId,
   };
 
-  const validated = validateSchema(schema, validateDate);
+  const validated = validateSchema(itinerarySchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);

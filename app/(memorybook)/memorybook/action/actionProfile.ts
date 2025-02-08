@@ -9,7 +9,7 @@ import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateSchema } from "../../../lib/validateSchema";
 
-import type { PasswordFormState, ProfileFormState } from "../../types/formState";
+import type { PasswordFormState, ProfileFormState } from "../types/formState";
 
 const schema = z.object({
   name: z.string().min(2, { message: "2文字以上入力する必要があります。" }),

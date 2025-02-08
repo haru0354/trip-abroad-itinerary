@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
 
-import type { PasswordFormState } from "@/app/(memorybook)/types/formState";
+import type { PasswordFormState } from "@/app/(memorybook)/memorybook/types/formState";
 
 type FormPasswordProps = {
   buttonName: string;

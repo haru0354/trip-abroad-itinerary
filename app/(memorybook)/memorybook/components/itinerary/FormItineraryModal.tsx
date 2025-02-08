@@ -14,7 +14,7 @@ import FormImage from "@/app/components/ui/FormImage";
 import ButtonImage from "@/app/components/ui/ButtonImage";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
-import type { ItineraryFormState } from "@/app/(memorybook)/types/formState";
+import type { ItineraryFormState } from "@/app/(memorybook)/memorybook/types/formState";
 
 type FormItineraryProps = {
   buttonName: string;

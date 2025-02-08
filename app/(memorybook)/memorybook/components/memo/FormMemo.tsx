@@ -92,11 +92,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
               value={textAreaValue}
               onChange={handleTextareaChange}
             />
-            <input
-              type="hidden"
-              name="tripId"
-              value={tripId}
-            />
+            <input type="hidden" name="tripId" value={tripId} />
             {state.errors && state.message !== "failure" && (
               <p className="text-red-500">{state.message}</p>
             )}

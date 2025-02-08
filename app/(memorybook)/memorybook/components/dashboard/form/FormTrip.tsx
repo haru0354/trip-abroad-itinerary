@@ -9,7 +9,7 @@ import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
 import Date from "@/app/components/ui/Date";
 
-import type { TripFormState } from "@/app/(memorybook)/types/formState";
+import type { TripFormState } from "@/app/(memorybook)/memorybook/types/formState";
 
 type FormTripProps = {
   trip?: Trip | null;

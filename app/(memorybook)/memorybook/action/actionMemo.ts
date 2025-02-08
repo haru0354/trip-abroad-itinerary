@@ -8,7 +8,7 @@ import prisma from "@/app/lib/prisma";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";
 import { validateSchema } from "../../../lib/validateSchema";
 
-import type { MemoFormState } from "../../types/formState";
+import type { MemoFormState } from "../types/formState";
 
 const schema = z.object({
   name: z.string().min(1, { message: "タイトルの入力は必須です" }),

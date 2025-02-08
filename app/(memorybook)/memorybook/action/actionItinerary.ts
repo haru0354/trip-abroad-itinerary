@@ -12,7 +12,7 @@ import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateSchema } from "../../../lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
-import type { ItineraryFormState } from "../../types/formState";
+import type { ItineraryFormState } from "../types/formState";
 
 const schema = z.object({
   date: z.string().min(1, { message: "日付の入力は必須です" }),

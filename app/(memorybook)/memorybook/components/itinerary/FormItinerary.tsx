@@ -12,7 +12,7 @@ import Time from "@/app/components/ui/Time";
 import Button from "@/app/components/ui/Button";
 import FormImage from "@/app/components/ui/FormImage";
 
-import type { ItineraryFormState } from "@/app/(memorybook)/types/formState";
+import type { ItineraryFormState } from "@/app/(memorybook)/memorybook/types/formState";
 
 type FormItineraryProps = {
   itinerary?: Itinerary | null;

@@ -2,7 +2,6 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
@@ -12,20 +11,8 @@ import { checkUserRole } from "@/app/lib/checkUserRole";
 import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
+import { postSchema } from "../schema/postSchema";
 import type { PostFormState } from "../types/formState";
-
-const schema = z.object({
-  title: z.string().min(1, { message: "記事のタイトルの入力は必須です" }),
-  content: z.string().min(1, { message: "記事の内容の入力は必須です" }),
-  slug: z
-    .string()
-    .min(1, { message: "スラッグの入力は必須です。" })
-    .regex(/^[a-z0-9-]+$/, {
-      message: "スラッグは半角小文字の英数字で入力してください",
-    }),
-  description: z.string().min(1, { message: "記事の説明の入力は必須です" }),
-  categoryId: z.string().transform((val) => Number(val)),
-});
 
 export const addPost = async (state: PostFormState, data: FormData) => {
   const isAdmin = await checkUserRole("admin");
@@ -52,7 +39,7 @@ export const addPost = async (state: PostFormState, data: FormData) => {
     categoryId,
   };
 
-  const validated = validateSchema(schema, validateDate);
+  const validated = validateSchema(postSchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);
@@ -190,7 +177,7 @@ export const updatePost = async (
     categoryId,
   };
 
-  const validated = validateSchema(schema, validateDate);
+  const validated = validateSchema(postSchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);

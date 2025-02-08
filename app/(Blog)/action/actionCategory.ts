@@ -2,7 +2,6 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
@@ -12,20 +11,8 @@ import { checkUserRole } from "@/app/lib/checkUserRole";
 import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
+import { categorySchema } from "../schema/categorySchema";
 import type { CategoryFormState } from "../types/formState";
-
-const schema = z.object({
-  name: z.string().min(1, { message: "カテゴリ名の入力は必須です" }),
-  slug: z
-    .string()
-    .min(1, { message: "スラッグの入力は必須です。" })
-    .regex(/^[a-z0-9-]+$/, {
-      message: "スラッグは半角小文字の英数字で入力してください",
-    }),
-  content: z.string().optional(),
-  description: z.string().optional(),
-  title: z.string().optional(),
-});
 
 export const addCategory = async (state: CategoryFormState, data: FormData) => {
   const isAdmin = await checkUserRole("admin");
@@ -51,7 +38,7 @@ export const addCategory = async (state: CategoryFormState, data: FormData) => {
     title,
   };
 
-  const validated = validateSchema(schema, validateDate);
+  const validated = validateSchema(categorySchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);
@@ -206,7 +193,7 @@ export const updateCategory = async (
     title,
   };
 
-  const validated = validateSchema(schema, validateDate);
+  const validated = validateSchema(categorySchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);

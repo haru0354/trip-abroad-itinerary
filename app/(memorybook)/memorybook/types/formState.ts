@@ -14,7 +14,7 @@ export type MemoFormState = {
   errors?: {
     name?: string[] | undefined;
     content?: string[] | undefined;
-    userId?: string[] | undefined;
+    tripId?: string[] | undefined;
   };
 };
 
@@ -28,6 +28,7 @@ export type ItineraryFormState = {
     hideContent?: string[] | undefined;
     image?: string[] | undefined;
     altText?: string[] | undefined;
+    tripId?: string[] | undefined;
   };
 };
 

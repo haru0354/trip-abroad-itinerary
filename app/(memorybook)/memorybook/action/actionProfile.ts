@@ -2,26 +2,14 @@
 
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { z } from "zod";
 import bcrypt from "bcrypt";
 
 import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateSchema } from "../../../lib/validateSchema";
 
+import { passwordSchema, profileSchema } from "../schema/userSchema";
 import type { PasswordFormState, ProfileFormState } from "../types/formState";
-
-const schema = z.object({
-  name: z.string().min(2, { message: "2文字以上入力する必要があります。" }),
-  email: z.string().email({ message: "メールアドレスの形式ではありません。" }),
-});
-
-const passwordSchema = z.object({
-  password: z.string().min(6, { message: "6文字以上入力する必要があります。" }),
-  passwordConfirmation: z
-    .string()
-    .min(6, { message: "6文字以上入力する必要があります。" }),
-});
 
 export const deleteUser = async () => {
   const userId = await getCurrentUserId();
@@ -46,7 +34,10 @@ export const deleteUser = async () => {
   redirect(`/memorybook/`);
 };
 
-export const updateProfile = async (state: ProfileFormState, data: FormData) => {
+export const updateProfile = async (
+  state: ProfileFormState,
+  data: FormData
+) => {
   const name = data.get("name") as string;
   const email = data.get("email") as string;
   const userId = await getCurrentUserId();
@@ -61,7 +52,7 @@ export const updateProfile = async (state: ProfileFormState, data: FormData) => 
     email,
   };
 
-  const validated = validateSchema(schema, validateDate);
+  const validated = validateSchema(profileSchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);
@@ -86,7 +77,10 @@ export const updateProfile = async (state: ProfileFormState, data: FormData) => 
   }
 };
 
-export const updatePassword = async (state: PasswordFormState, data: FormData) => {
+export const updatePassword = async (
+  state: PasswordFormState,
+  data: FormData
+) => {
   const password = data.get("password") as string;
   const passwordConfirmation = data.get("passwordConfirmation") as string;
 

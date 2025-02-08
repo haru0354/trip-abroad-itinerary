@@ -2,24 +2,14 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 
 import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";
 import { validateSchema } from "../../../lib/validateSchema";
 
+import { tripSchema } from "../schema/tripSchema";
 import type { TripFormState } from "../types/formState";
-
-const schema = z.object({
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
-  name: z
-    .string()
-    .min(1, { message: "タイトルの入力は必須です" })
-    .max(36, { message: "文字数は最大で36文字です" }),
-  destination: z.string().optional(),
-});
 
 export const addTrip = async (state: TripFormState, data: FormData) => {
   const startDate = data.get("startDate") as string;
@@ -40,7 +30,7 @@ export const addTrip = async (state: TripFormState, data: FormData) => {
     destination,
   };
 
-  const validated = validateSchema(schema, validateDate);
+  const validated = validateSchema(tripSchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);
@@ -127,7 +117,7 @@ export const updateTrip = async (
     destination,
   };
 
-  const validated = validateSchema(schema, validateDate);
+  const validated = validateSchema(tripSchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);

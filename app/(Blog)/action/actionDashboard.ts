@@ -2,20 +2,18 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 
 import prisma from "@/app/lib/prisma";
 import { checkUserRole } from "@/app/lib/checkUserRole";
 import { validateSchema } from "@/app/lib/validateSchema";
 
+import { dashboardMemoSchema } from "../schema/dashboardMemoSchema";
 import type { DashboardFormState } from "../types/formState";
 
-const schema = z.object({
-  name: z.string().min(1, { message: "タイトルの入力は必須です" }),
-  content: z.string().optional(),
-});
-
-export const addDashboardMemo = async (state: DashboardFormState, data: FormData) => {
+export const addDashboardMemo = async (
+  state: DashboardFormState,
+  data: FormData
+) => {
   const isAdmin = await checkUserRole("admin");
 
   if (!isAdmin) {
@@ -31,7 +29,7 @@ export const addDashboardMemo = async (state: DashboardFormState, data: FormData
     content,
   };
 
-  const validated = validateSchema(schema, validateDate);
+  const validated = validateSchema(dashboardMemoSchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);
@@ -97,7 +95,7 @@ export const updateDashboardMemo = async (
     content,
   };
 
-  const validated = validateSchema(schema, validateDate);
+  const validated = validateSchema(dashboardMemoSchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);

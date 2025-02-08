@@ -2,7 +2,6 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
@@ -11,18 +10,8 @@ import { checkUserRole } from "@/app/lib/checkUserRole";
 import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
+import { imageSchema, updateImageSchema } from "../schema/imageSchema";
 import type { ImageFormState } from "../types/formState";
-
-const schema = z.object({
-  image: z.unknown().refine((value) => value instanceof File || !value, {
-    message: "画像の選択は必須です",
-  }),
-  altText: z.string().min(1, { message: "画像の名前の入力は必須です。" }),
-});
-
-const updateSchema = z.object({
-  altText: z.string().min(1, { message: "画像の名前の入力は必須です。" }),
-});
 
 export const addPostImage = async (state: ImageFormState, data: FormData) => {
   const isAdmin = await checkUserRole("admin");
@@ -40,7 +29,7 @@ export const addPostImage = async (state: ImageFormState, data: FormData) => {
     altText,
   };
 
-  const validated = validateSchema(schema, validateDate);
+  const validated = validateSchema(imageSchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);
@@ -137,7 +126,7 @@ export const updatePostImage = async (
     altText,
   };
 
-  const validated = validateSchema(updateSchema, validateDate);
+  const validated = validateSchema(updateImageSchema, validateDate);
 
   if (!validated.success) {
     console.log(validated.errors);

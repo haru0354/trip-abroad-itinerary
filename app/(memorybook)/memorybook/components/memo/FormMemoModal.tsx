@@ -23,7 +23,7 @@ type FormMemoProps = {
 const FormMemoModal: React.FC<FormMemoProps> = ({
   buttonName,
   tripId,
-  iconButton,
+  iconButton = false,
 }) => {
   const router = useRouter();
   const { closeModal } = useModal();

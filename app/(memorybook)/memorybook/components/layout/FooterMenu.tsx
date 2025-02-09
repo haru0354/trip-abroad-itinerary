@@ -48,8 +48,8 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ tripId }) => {
         ) : path === `/memorybook/${tripId}/itinerary` ? (
           <FormItineraryModal
             tripId={tripId}
-            buttonName="追加"
-            buttonName2="旅程を追加"
+            buttonName="旅程を追加"
+            iconButton={true}
             formAction={addItinerary}
           />
         ) : null}

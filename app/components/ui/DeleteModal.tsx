@@ -10,18 +10,20 @@ type DeleteModalProps = {
   DeleteName: string;
   name: string | undefined;
   formAction: (data: FormData) => Promise<{ message: string } | undefined>;
-  id: number | undefined;
+  id?: number | undefined;
   tripId?: number | undefined;
+  isItem?: boolean
 };
 
-const Mo: React.FC<DeleteModalProps> = ({
+const DeleteModal: React.FC<DeleteModalProps> = ({
   DeleteName,
   name,
   formAction,
   tripId,
   id,
+  isItem = true,
 }) => {
-  if (!id) {
+  if (isItem && !id) {
     return <p>削除対象の{DeleteName}がありません。</p>;
   }
 
@@ -48,7 +50,7 @@ const Mo: React.FC<DeleteModalProps> = ({
       <div className="my-6 text-center font-bold">
         <p>「{name}」</p>
         <p>削除しますか？</p>
-        <p className="text-red-500">削除すると復元することはできません。</p>
+        <p className="text-red-500">登録されたデータは削除されます。削除されたデータは元に戻すことはできません。</p>
       </div>
       <div className="pb-2">
         <form onSubmit={deleteToast}>
@@ -68,4 +70,4 @@ const Mo: React.FC<DeleteModalProps> = ({
   );
 };
 
-export default Mo;
+export default DeleteModal;

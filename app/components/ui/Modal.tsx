@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 
 import Button from "./Button";
+import ButtonImage from "./ButtonImage";
 
 type ModalProps = {
   maxWidth: string;
@@ -12,6 +13,7 @@ type ModalProps = {
   paddingNothing?: boolean;
   color?: "blue" | "gray" | "red" | "white";
   size?: "normal" | "small" | "auth";
+  iconButton?: boolean;
   children: React.ReactNode;
 };
 
@@ -22,10 +24,11 @@ const Modal: React.FC<ModalProps> = ({
   paddingNothing = false,
   color = "blue",
   size = "normal",
+  iconButton = false,
   children,
 }) => {
-  const padding = paddingNothing ? "" : "p-4"
-  const closeButtonPosition = paddingNothing ? "my-4" : ""
+  const padding = paddingNothing ? "" : "p-4";
+  const closeButtonPosition = paddingNothing ? "my-4" : "";
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const toggleModal = () => setIsModalOpen((prev) => !prev);
@@ -50,14 +53,23 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <>
-      <Button
-        onClick={toggleModal}
-        color={color}
-        size={size}
-        className="rounded my-4"
-      >
-        {buttonName}
-      </Button>
+      {iconButton ? (
+        <div className="w-full h-full">
+          <ButtonImage icon="plus" size="footer" onClick={toggleModal}>
+            {buttonName}
+          </ButtonImage>
+        </div>
+      ) : (
+        <Button
+          onClick={toggleModal}
+          color={color}
+          size={size}
+          className="rounded my-4"
+        >
+          {buttonName}a
+        </Button>
+      )}
+
       {isModalOpen &&
         createPortal(
           <div

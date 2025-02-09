@@ -3,6 +3,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import AuthContext from "../../context/AuthContext";
 import ToastContext from "../../context/ToastContext";
+import { ModalProvider } from "@/app/context/ModalContext";
 
 config.autoAddCss = false;
 
@@ -15,8 +16,7 @@ export const metadata: Metadata = {
     default: `${siteTItle}`,
     template: `%s | ${brandTItle}`,
   },
-  description:
-    `${siteDescription}`,
+  description: `${siteDescription}`,
 };
 
 export default async function RootLayout({
@@ -24,12 +24,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <>
       <AuthContext>
-        <ToastContext />
-        {children}
+        <ModalProvider>
+          <ToastContext />
+          {children}
+        </ModalProvider>
       </AuthContext>
     </>
   );

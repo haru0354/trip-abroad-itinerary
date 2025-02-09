@@ -41,13 +41,13 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ tripId }) => {
         </div>
         {path === `/memorybook/${tripId}/memo` ? (
           <FormMemoModal
-          tripId={tripId}
-            buttonName="追加"
-            buttonName2="メモを追加"
+            tripId={tripId}
+            buttonName="メモを追加"
+            iconButton={true}
           />
         ) : path === `/memorybook/${tripId}/itinerary` ? (
           <FormItineraryModal
-          tripId={tripId}
+            tripId={tripId}
             buttonName="追加"
             buttonName2="旅程を追加"
             formAction={addItinerary}

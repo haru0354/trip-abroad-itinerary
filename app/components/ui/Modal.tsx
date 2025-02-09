@@ -28,7 +28,6 @@ const Modal: React.FC<ModalProps> = ({
   children,
 }) => {
   const { isModalOpen, openModal, closeModal } = useModal();
-  if (!isModalOpen) return null;
 
   const padding = paddingNothing ? "" : "p-4";
   const closeButtonPosition = paddingNothing ? "my-4" : "";
@@ -56,7 +55,7 @@ const Modal: React.FC<ModalProps> = ({
         createPortal(
           <div
             onClick={closeModal}
-            className="fixed flex justify-center items-center w-full h-full top-0 left-0 bg-gray-500 bg-opacity-90"
+            className="fixed flex z-[200] justify-center items-center w-full h-full top-0 left-0 bg-gray-500 bg-opacity-90"
           >
             <div
               className={`relative w-full mx-2 border rounded border-gray-500 bg-white ${padding} ${maxWidth}`}

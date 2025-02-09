@@ -66,7 +66,7 @@ const Modal: React.FC<ModalProps> = ({
           size={size}
           className="rounded my-4"
         >
-          {buttonName}a
+          {buttonName}
         </Button>
       )}
 

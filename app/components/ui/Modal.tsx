@@ -14,6 +14,7 @@ type ModalProps = {
   color?: "blue" | "gray" | "red" | "white";
   size?: "normal" | "small" | "auth";
   iconButton?: boolean;
+  textButton?: boolean;
   children: React.ReactNode;
 };
 
@@ -25,6 +26,7 @@ const Modal: React.FC<ModalProps> = ({
   color = "blue",
   size = "normal",
   iconButton = false,
+  textButton = false,
   children,
 }) => {
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -41,14 +43,22 @@ const Modal: React.FC<ModalProps> = ({
           </ButtonImage>
         </div>
       ) : (
-        <Button
-          onClick={openModal}
-          color={color}
-          size={size}
-          className="rounded my-4"
-        >
-          {buttonName}
-        </Button>
+        <>
+          {textButton ? (
+            <p onClick={openModal} className="cursor-pointer mb-0">
+              {buttonName}
+            </p>
+          ) : (
+            <Button
+              onClick={openModal}
+              color={color}
+              size={size}
+              className="rounded my-4"
+            >
+              {buttonName}
+            </Button>
+          )}
+        </>
       )}
 
       {isModalOpen &&

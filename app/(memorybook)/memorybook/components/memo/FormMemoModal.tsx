@@ -79,7 +79,6 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
           value={inputValue}
           onChange={handleInputChange}
         />
-
         {state.errors && state.errors.name && (
           <p className="text-red-500">{state.errors.name}</p>
         )}

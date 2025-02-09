@@ -4,8 +4,9 @@ import { useCallback, useState, useEffect } from "react";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import useLoginModal from "../../../hooks/useLoginModal";
+
 import useSignupModal from "../../../hooks/useSignupModal";
+import LoginModal from "../auth/LoginModal";
 
 type MenuProps = {
   currentUser: number | null;
@@ -13,7 +14,6 @@ type MenuProps = {
 
 const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const loginModal = useLoginModal();
   const signupModal = useSignupModal();
 
   const toggleOpen = useCallback(() => {
@@ -56,19 +56,11 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           </div>
         </>
       ) : (
-        <ul className="flex">
-          <li className="ml-4">
-            <p
-              className="cursor-pointer mb-0"
-              onClick={() => {
-                loginModal.onOpen();
-                setIsOpen(true);
-              }}
-            >
-              ログイン
-            </p>
+        <ul className="flex items-center justify-center">
+          <li className="mx-2">
+            <LoginModal />
           </li>
-          <li className="ml-4">
+          <li className="mx-2">
             <p
               className="cursor-pointer mb-0"
               onClick={() => {

@@ -1,20 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 
-import { useModal } from "@/app/hooks/useModal";
 import Form from "@/app/components/ui/Form";
-import Modal from "@/app/components/ui/Modal";
 import Button from "@/app/components/ui/Button";
 
 const LoginModal = () => {
   const router = useRouter();
-  const { closeModal } = useModal();
-
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const toggleModal = () => {
+    setIsModalOpen((prev) => !prev);
+  };
+
+  const closeModal = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      toggleModal();
+    }
+  };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,7 +39,7 @@ const LoginModal = () => {
 
       if (!result?.error) {
         toast.success("ログインしました！");
-        closeModal();
+        toggleModal();
         router.replace(`/memorybook/dashboard`);
       } else {
         toast.error("エラーが発生しました。" + result.error);
@@ -42,29 +50,66 @@ const LoginModal = () => {
     }
   };
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isModalOpen]);
+
   return (
-    <Modal maxWidth="max-w-[400px]" buttonName="ログイン" textButton={true}>
-      <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
-        ログインフォーム
+    <>
+      <p onClick={toggleModal} className="cursor-pointer mb-0">
+        ログイン
       </p>
-      <form onSubmit={onSubmit} className="w-full py-3">
-        <Form
-          label="メールアドレス"
-          name="email"
-          placeholder="メモの見出しを記載しましょう。"
-        />
-        <Form
-          type="password"
-          label="パスワード"
-          name="password"
-          placeholder="メモの見出しを記載しましょう。"
-        />
-        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-        <Button color="blue" size="normal" className="rounded mt-4">
-          ログイン
-        </Button>
-      </form>
-    </Modal>
+      {isModalOpen &&
+        createPortal(
+          <div
+            onClick={closeModal}
+            className="fixed flex z-[200] justify-center items-center w-full h-full top-0 left-0 bg-gray-500 bg-opacity-90"
+          >
+            <div
+              className="relative w-full max-w-[400px] mx-2 p-4 border rounded border-gray-500 bg-white"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
+                ログインフォーム
+              </p>
+              <form onSubmit={onSubmit} className="w-full py-3">
+                <Form
+                  label="メールアドレス"
+                  name="email"
+                  placeholder="メモの見出しを記載しましょう。"
+                />
+                <Form
+                  type="password"
+                  label="パスワード"
+                  name="password"
+                  placeholder="メモの見出しを記載しましょう。"
+                />
+                {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+                <Button color="blue" size="normal" className="rounded mt-4">
+                  ログイン
+                </Button>
+              </form>
+              <Button
+                onClick={toggleModal}
+                color="gray"
+                size="normal"
+                className="rounded"
+              >
+                閉じる
+              </Button>
+            </div>
+          </div>,
+          document.body
+        )}
+    </>
   );
 };
 

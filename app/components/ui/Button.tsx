@@ -31,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
   const sizes = {
     normal: "min-w-[170px] px-10 py-2 block mx-auto",
     small: "min-w-[100px] px-6 py-1 mx-2",
-    auth: "min-w-[250px] px-10 py-2 block mx-auto"
+    auth: "min-w-[220px] px-10 py-2 block mx-auto"
   };
 
   return (

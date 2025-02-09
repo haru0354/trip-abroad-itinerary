@@ -93,8 +93,20 @@ const LoginModal = () => {
                   placeholder="メモの見出しを記載しましょう。"
                 />
                 {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-                <Button color="blue" size="normal" className="rounded mt-4">
+                <Button color="blue" size="auth" className="rounded mt-4">
                   ログイン
+                </Button>
+                <Button
+                  onClick={() =>
+                    signIn("google", {
+                      callbackUrl: "/memorybook/dashboard",
+                    })
+                  }
+                  color="blue"
+                  size="auth"
+                  className="rounded mt-4"
+                >
+                  Googleでログイン
                 </Button>
               </form>
               <Button

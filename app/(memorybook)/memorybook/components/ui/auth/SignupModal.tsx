@@ -11,7 +11,11 @@ import Form from "@/app/components/ui/Form";
 import Modal from "@/app/components/ui/Modal";
 import Button from "@/app/components/ui/Button";
 
-const SignupModal = () => {
+type SignupModalProps = {
+  textButton?: boolean;
+};
+
+const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
   const router = useRouter();
   const { closeModal } = useModal();
 
@@ -51,7 +55,11 @@ const SignupModal = () => {
   };
 
   return (
-    <Modal maxWidth="max-w-[400px]" buttonName="アカウント登録">
+    <Modal
+      maxWidth="max-w-[400px]"
+      buttonName="しおりを作成"
+      textButton={textButton}
+    >
       <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
         アカウント作成
       </p>

@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import useSignupModal from "../../../hooks/useSignupModal";
 import LoginModal from "../auth/LoginModal";
+import SignupModal from "../auth/SignupModal";
 
 type MenuProps = {
   currentUser: number | null;
@@ -61,15 +62,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
             <LoginModal />
           </li>
           <li className="mx-2">
-            <p
-              className="cursor-pointer mb-0"
-              onClick={() => {
-                signupModal.onOpen();
-                setIsOpen(true);
-              }}
-            >
-              登録
-            </p>
+            <SignupModal textButton={true} />
           </li>
         </ul>
       )}

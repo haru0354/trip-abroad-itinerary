@@ -5,7 +5,6 @@ import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-import { addMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import { useModal } from "@/app/hooks/useModal";
 import Modal from "@/app/components/ui/Modal";
 import Button from "@/app/components/ui/Button";
@@ -16,13 +15,15 @@ import type { MemoFormState } from "../../types/formState";
 
 type FormMemoProps = {
   buttonName: string;
-  tripId?: number | undefined;
+  tripId: number | undefined;
+  formAction: (state: MemoFormState, data: FormData) => Promise<MemoFormState>;
   iconButton?: boolean;
 };
 
 const FormMemoModal: React.FC<FormMemoProps> = ({
   buttonName,
   tripId,
+  formAction,
   iconButton = false,
 }) => {
   const router = useRouter();
@@ -31,9 +32,13 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
   const [inputValue, setInputValue] = useState<string>("");
   const [textAreaValue, setTextareaChange] = useState<string>("");
 
-  const initialState = { message: null, errors: { name: undefined } };
+  const initialState = {
+    message: null,
+    errors: { name: undefined,},
+  };
+  
   const [state, dispatch] = useFormState<MemoFormState, FormData>(
-    addMemo,
+    formAction,
     initialState
   );
 
@@ -74,6 +79,7 @@ const FormMemoModal: React.FC<FormMemoProps> = ({
           value={inputValue}
           onChange={handleInputChange}
         />
+
         {state.errors && state.errors.name && (
           <p className="text-red-500">{state.errors.name}</p>
         )}

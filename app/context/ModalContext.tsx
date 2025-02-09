@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 type ModalContextType = {
   isModalOpen: boolean;
@@ -19,6 +19,18 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isModalOpen]);
 
   return (
     <ModalContext.Provider value={{ isModalOpen, openModal, closeModal }}>

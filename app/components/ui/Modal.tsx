@@ -1,10 +1,10 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import { useEffect, useState } from "react";
 
 import Button from "./Button";
 import ButtonImage from "./ButtonImage";
+import { useModal } from "@/app/hooks/useModal";
 
 type ModalProps = {
   maxWidth: string;
@@ -27,41 +27,23 @@ const Modal: React.FC<ModalProps> = ({
   iconButton = false,
   children,
 }) => {
+  const { isModalOpen, openModal, closeModal } = useModal();
+  if (!isModalOpen) return null;
+
   const padding = paddingNothing ? "" : "p-4";
   const closeButtonPosition = paddingNothing ? "my-4" : "";
-
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const toggleModal = () => setIsModalOpen((prev) => !prev);
-
-  const closeModal = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      toggleModal();
-    }
-  };
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, [isModalOpen]);
 
   return (
     <>
       {iconButton ? (
         <div className="w-full h-full">
-          <ButtonImage icon="plus" size="footer" onClick={toggleModal}>
+          <ButtonImage icon="plus" size="footer" onClick={openModal}>
             {buttonName}
           </ButtonImage>
         </div>
       ) : (
         <Button
-          onClick={toggleModal}
+          onClick={openModal}
           color={color}
           size={size}
           className="rounded my-4"
@@ -82,7 +64,7 @@ const Modal: React.FC<ModalProps> = ({
             >
               {children}
               <Button
-                onClick={toggleModal}
+                onClick={closeModal}
                 color="gray"
                 size="normal"
                 className={`rounded ${closeButtonPosition}`}

@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
-import TextArea from "@/app/components/ui/TextArea";
+import TextArea from "@/app/components/ui/form/TextArea";
 
 import type { DashboardFormState } from "@/app/(blog)/types/formState";
 

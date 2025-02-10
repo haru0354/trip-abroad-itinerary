@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 import Form from "@/app/components/ui/Form";
-import TextArea from "@/app/components/ui/TextArea";
+import TextArea from "@/app/components/ui/form/TextArea";
 import Date from "@/app/components/ui/form/Date";
 import Time from "@/app/components/ui/Time";
 import Button from "@/app/components/ui/Button";

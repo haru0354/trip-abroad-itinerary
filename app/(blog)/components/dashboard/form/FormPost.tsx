@@ -6,7 +6,7 @@ import DOMPurify from "dompurify";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Form from "@/app/components/ui/Form";
-import TextArea from "@/app/components/ui/TextArea";
+import TextArea from "@/app/components/ui/form/TextArea";
 import Button from "@/app/components/ui/Button";
 import Select from "@/app/components/ui/form/Select";
 import FormImage from "@/app/components/ui/FormImage";

@@ -7,7 +7,7 @@ import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
 import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
-import TextArea from "@/app/components/ui/TextArea";
+import TextArea from "@/app/components/ui/form/TextArea";
 
 import type { MemoFormState } from "../../types/formState";
 

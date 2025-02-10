@@ -5,7 +5,7 @@ import { useFormState } from "react-dom";
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Form from "@/app/components/ui/Form";
 import Button from "@/app/components/ui/Button";
-import TextArea from "@/app/components/ui/TextArea";
+import TextArea from "@/app/components/ui/form/TextArea";
 import FormImage from "@/app/components/ui/FormImage";
 
 import type { CategoryFormState } from "@/app/(blog)/types/formState";

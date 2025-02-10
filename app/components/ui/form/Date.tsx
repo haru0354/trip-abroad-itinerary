@@ -25,7 +25,7 @@ const Date: React.FC<DateProps> = ({
         value={value}
         defaultValue={defaultValue}
         onChange={onChange}
-        className="py-2 px-2 shadow border rounded "
+        className="py-2 px-2 shadow border rounded"
       />
     </div>
   );

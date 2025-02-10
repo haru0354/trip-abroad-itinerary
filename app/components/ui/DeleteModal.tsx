@@ -3,7 +3,7 @@
 import toast from "react-hot-toast";
 
 import Image from "next/image";
-import Button from "./Button";
+import Button from "@/app/components/ui/button/Button";
 import Modal from "./Modal";
 
 type DeleteModalProps = {

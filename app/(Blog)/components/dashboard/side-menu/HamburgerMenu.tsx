@@ -1,5 +1,5 @@
 import { signOut } from "next-auth/react";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 import Items from "./Items";
 
 type HamburgerMenuProps = {

@@ -7,7 +7,7 @@ import {
 import { getTrip } from "../../lib/memoryBookService";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 import FormTrip from "../../components/dashboard/form/FormTrip";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
   const id = Number(params.trip_id);

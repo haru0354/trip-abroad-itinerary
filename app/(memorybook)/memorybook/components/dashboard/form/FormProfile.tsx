@@ -5,7 +5,7 @@ import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 
 import toast from "react-hot-toast";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 import Input from "@/app/components/ui/form/Input";
 
 import type { ProfileFormState } from "@/app/(memorybook)/memorybook/types/formState";

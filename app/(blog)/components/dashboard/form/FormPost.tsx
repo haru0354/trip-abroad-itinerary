@@ -7,7 +7,7 @@ import DOMPurify from "dompurify";
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Input from "@/app/components/ui/form/Input";
 import TextArea from "@/app/components/ui/form/TextArea";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 import Select from "@/app/components/ui/form/Select";
 import FormImage from "@/app/components/ui/form/FormImage";
 import Checkbox from "@/app/components/ui/form/Checkbox";

@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import Checkbox from "@/app/components/ui/form/Checkbox";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 
 type FormShareProps = {
   trip: Trip | null;

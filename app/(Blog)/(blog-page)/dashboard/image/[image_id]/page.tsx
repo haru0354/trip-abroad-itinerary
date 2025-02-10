@@ -5,7 +5,7 @@ import {
 } from "@/app/(blog)/action/actionPostImage";
 import { getPostImage } from "@/app/(blog)/lib/service/blogServiceUnique";
 import FormPostImage from "@/app/(blog)/components/dashboard/form/FormPostImage";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";
 

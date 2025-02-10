@@ -6,7 +6,7 @@ import {
 } from "@/app/(blog)/action/actionDashboard";
 import { getDashboardMemo } from "@/app/(blog)/lib/service/blogServiceUnique";
 import FormDashboardMemo from "@/app/(blog)/components/dashboard/form/FormDashboardMemo";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 import DeleteModal from "@/app/components/ui/DeleteModal";
 
 export const metadata: Metadata = {

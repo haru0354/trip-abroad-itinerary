@@ -6,7 +6,7 @@ import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import Input from "@/app/components/ui/form/Input";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 
 const AdminForm = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");

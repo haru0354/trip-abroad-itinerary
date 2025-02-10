@@ -7,7 +7,7 @@ import {
 } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import FormMemo from "@/app/(memorybook)/memorybook/components/memo/FormMemo";
 import DeleteModal from "@/app/components/ui/DeleteModal";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 
 const Page = async ({
   params,

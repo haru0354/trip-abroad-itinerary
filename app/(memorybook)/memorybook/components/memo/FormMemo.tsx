@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
 
 import toast from "react-hot-toast";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 import Input from "@/app/components/ui/form/Input";
 import TextArea from "@/app/components/ui/form/TextArea";
 

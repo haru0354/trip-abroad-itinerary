@@ -4,7 +4,7 @@ import { useFormState } from "react-dom";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Input from "@/app/components/ui/form/Input";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 import TextArea from "@/app/components/ui/form/TextArea";
 import FormImage from "@/app/components/ui/form/FormImage";
 

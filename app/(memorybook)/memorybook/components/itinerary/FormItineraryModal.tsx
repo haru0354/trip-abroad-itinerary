@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
-import Modal from "@/app/components/ui/Modal";
+import Modal from "@/app/components/ui/modal/Modal";
 import Input from "@/app/components/ui/form/Input";
 import TextArea from "@/app/components/ui/form/TextArea";
 import Date from "@/app/components/ui/form/Date";

@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 import Image from "next/image";
 import Button from "@/app/components/ui/button/Button";
-import Modal from "./Modal";
+import Modal from "./modal/Modal";
 
 type DeleteModalProps = {
   DeleteName: string;

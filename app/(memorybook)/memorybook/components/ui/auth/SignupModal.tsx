@@ -7,8 +7,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
+import Modal from "@/app/components/ui/modal/Modal";
 import Input from "@/app/components/ui/form/Input";
-import Modal from "@/app/components/ui/Modal";
 import Button from "@/app/components/ui/button/Button";
 
 type SignupModalProps = {

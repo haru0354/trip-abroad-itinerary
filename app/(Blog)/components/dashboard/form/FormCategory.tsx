@@ -6,7 +6,7 @@ import FormContainer from "../../layout/dashboard/FormContainer";
 import Input from "@/app/components/ui/form/Input";
 import Button from "@/app/components/ui/Button";
 import TextArea from "@/app/components/ui/form/TextArea";
-import FormImage from "@/app/components/ui/FormImage";
+import FormImage from "@/app/components/ui/form/FormImage";
 
 import type { CategoryFormState } from "@/app/(blog)/types/formState";
 

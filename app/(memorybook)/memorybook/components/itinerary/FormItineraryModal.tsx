@@ -12,7 +12,7 @@ import TextArea from "@/app/components/ui/form/TextArea";
 import Date from "@/app/components/ui/form/Date";
 import Time from "@/app/components/ui/Time";
 import Button from "@/app/components/ui/Button";
-import FormImage from "@/app/components/ui/FormImage";
+import FormImage from "@/app/components/ui/form/FormImage";
 
 import type { ItineraryFormState } from "@/app/(memorybook)/memorybook/types/formState";
 

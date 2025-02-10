@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import Input from "./form/Input";
+import Input from "./Input";
 
 import type { ImageFormState } from "@/app/(blog)/types/formState";
 

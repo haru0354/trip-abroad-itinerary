@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import SignupButton from "@/app/(memorybook)/memorybook/components/ui/auth/SignupButton";
+
+import SignupModal from "@/app/(memorybook)/memorybook/components/ui/auth/SignupModal";
 import Button from "../ui/Button";
 
 type HeroProps = {
@@ -51,7 +52,7 @@ const Hero: React.FC<HeroProps> = ({
             </>
           )}
           {signUp ? (
-            <SignupButton />
+            <SignupModal />
           ) : (
             href && (
               <Button color="blue" size="normal" className="mt-4">

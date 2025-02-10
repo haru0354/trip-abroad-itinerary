@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import { addItinerary } from "../../action/actionItinerary";
+import { addMemo } from "../../action/actionMemo";
 import FormMemoModal from "../memo/FormMemoModal";
 import FormItineraryModal from "../itinerary/FormItineraryModal";
 import ButtonImage from "@/app/components/ui/ButtonImage";
@@ -41,15 +43,16 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ tripId }) => {
         </div>
         {path === `/memorybook/${tripId}/memo` ? (
           <FormMemoModal
-          tripId={tripId}
-            buttonName="追加"
-            buttonName2="メモを追加"
+            tripId={tripId}
+            buttonName="メモを追加"
+            iconButton={true}
+            formAction={addMemo}
           />
         ) : path === `/memorybook/${tripId}/itinerary` ? (
           <FormItineraryModal
-          tripId={tripId}
-            buttonName="追加"
-            buttonName2="旅程を追加"
+            tripId={tripId}
+            buttonName="旅程を追加"
+            iconButton={true}
             formAction={addItinerary}
           />
         ) : null}

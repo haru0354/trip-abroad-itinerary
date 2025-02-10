@@ -1,18 +1,17 @@
 import { Suspense } from "react";
-import SignupModal from "./components/ui/modal/SignupModal";
+import SignupModal from "./components/ui/auth/SignupModal";
 import FlexImageAndContents from "@/app/components/layout/FlexImageAndContents";
 import ThreeIconAndContents from "@/app/components/layout/ThreeIconAndContents";
 import ThreeImageAndContents from "@/app/components/layout/ThreeImageAndContents";
 import CallToAction from "@/app/components/layout/CallToAction";
 import QuestionAndAnswer from "@/app/components/layout/QuestionAndAnswer";
 import Hero from "@/app/components/layout/Hero";
-import SignupButton from "./components/ui/auth/SignupButton";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import LoginModal from "./components/ui/modal/LoginModal";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Section from "@/app/components/layout/Section";
 import Loading from "@/app/Loading";
+import Login from "./components/ui/auth/LoginModal";
 
 export default function Home() {
   return (
@@ -33,6 +32,7 @@ export default function Home() {
       />
       <main>
         <div className="w-full">
+          <Login />
           <section className="bg-white">
             <div className="max-w-[1150px] w-full py-2 md:py-6 px-4 mx-auto">
               <div className="flex items-center mx-0 py-8">
@@ -176,14 +176,12 @@ export default function Home() {
               animation="fadeInAndScaleVariants"
               className="text-center py-4"
             >
-              <SignupButton />
+              <SignupModal />
             </AnimatedItem>
           </Section>
         </div>
       </main>
       <Footer isTopAppDirectory={true} />
-      <SignupModal />
-      <LoginModal />
     </>
   );
 }

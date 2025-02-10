@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
-import SignupButton from "@/app/(memorybook)/memorybook/components/ui/auth/SignupButton";
+import SignupModal from "@/app/(memorybook)/memorybook/components/ui/auth/SignupModal";
 import Button from "../ui/Button";
 
 type CallToActionProps = {
@@ -41,7 +42,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
           animation="fadeInAndScaleVariants"
           className="text-center py-4"
         >
-          <SignupButton />
+          <SignupModal />
         </AnimatedItem>
       ) : (
         href && (

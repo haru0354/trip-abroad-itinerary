@@ -5,7 +5,6 @@ import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
-import useSignupModal from "../../../hooks/useSignupModal";
 import LoginModal from "../auth/LoginModal";
 import SignupModal from "../auth/SignupModal";
 
@@ -15,7 +14,6 @@ type MenuProps = {
 
 const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const signupModal = useSignupModal();
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);

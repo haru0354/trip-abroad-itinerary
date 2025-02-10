@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
-import Form from "@/app/components/ui/Form";
+import Input from "@/app/components/ui/form/Input";
 import Button from "@/app/components/ui/Button";
 import TextArea from "@/app/components/ui/form/TextArea";
 import FormImage from "@/app/components/ui/FormImage";
@@ -50,14 +50,14 @@ const FormCategory: React.FC<FormCategoryProps> = ({
     <FormContainer>
       <form action={dispatch}>
         {state.message && <p className="text-red-500">{state.message}</p>}
-        <Form
+        <Input
           name="name"
           label="カテゴリ名"
           placeholder={"カテゴリ名を入力してください。"}
           defaultValue={category?.name}
         />
         {state.errors && <p className="text-red-500">{state.errors.name}</p>}
-        <Form
+        <Input
           name="slug"
           label="スラッグ"
           placeholder={

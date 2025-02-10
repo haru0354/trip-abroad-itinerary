@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 
-import Form from "@/app/components/ui/Form";
+import Input from "@/app/components/ui/form/Input";
 import Button from "@/app/components/ui/Button";
 
 const LoginModal = () => {
@@ -81,12 +81,12 @@ const LoginModal = () => {
                 ログインフォーム
               </p>
               <form onSubmit={onSubmit} className="w-full py-3">
-                <Form
+                <Input
                   label="メールアドレス"
                   name="email"
                   placeholder="メモの見出しを記載しましょう。"
                 />
-                <Form
+                <Input
                   type="password"
                   label="パスワード"
                   name="password"

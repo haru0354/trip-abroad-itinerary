@@ -7,7 +7,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
-import Form from "@/app/components/ui/Form";
+import Input from "@/app/components/ui/form/Input";
 import Modal from "@/app/components/ui/Modal";
 import Button from "@/app/components/ui/Button";
 
@@ -64,17 +64,17 @@ const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
         アカウント作成
       </p>
       <form onSubmit={onSubmit} className="w-full py-3">
-        <Form
+        <Input
           label="ニックネーム"
           name="name"
           placeholder="メモの見出しを記載しましょう。"
         />
-        <Form
+        <Input
           label="メールアドレス"
           name="email"
           placeholder="メモの見出しを記載しましょう。"
         />
-        <Form
+        <Input
           type="password"
           label="パスワード"
           name="password"

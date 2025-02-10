@@ -5,7 +5,7 @@ import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-import Form from "@/app/components/ui/Form";
+import Input from "@/app/components/ui/form/Input";
 import TextArea from "@/app/components/ui/form/TextArea";
 import Date from "@/app/components/ui/form/Date";
 import Time from "@/app/components/ui/Time";
@@ -134,7 +134,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
             {state.errors && state.errors.time && (
               <p className="text-red-500">{state.errors.time}</p>
             )}
-            <Form
+            <Input
               label="目的（何をするのか）"
               placeholder="観光なら「観光地名」移動なら「電車名」など"
               name="name"

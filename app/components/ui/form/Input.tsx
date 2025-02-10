@@ -1,4 +1,4 @@
-type FormProps = {
+type InputProps = {
   name?: string;
   label: string;
   placeholder?: string;
@@ -8,7 +8,7 @@ type FormProps = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Form: React.FC<FormProps> = ({
+const Input: React.FC<InputProps> = ({
   name,
   label,
   placeholder,
@@ -36,4 +36,4 @@ const Form: React.FC<FormProps> = ({
   );
 };
 
-export default Form;
+export default Input;

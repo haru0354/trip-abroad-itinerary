@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import toast from "react-hot-toast";
 import Button from "@/app/components/ui/Button";
-import Form from "@/app/components/ui/Form";
+import Input from "@/app/components/ui/form/Input";
 
 import type { PasswordFormState } from "@/app/(memorybook)/memorybook/types/formState";
 
@@ -64,7 +64,7 @@ const FormPassword: React.FC<FormPasswordProps> = ({
             パスワード
           </p>
           <form action={dispatch} className="w-full py-3">
-            <Form
+            <Input
               label="パスワード"
               name="password"
               type="password"
@@ -75,7 +75,7 @@ const FormPassword: React.FC<FormPasswordProps> = ({
             {state.errors && state.errors.password && (
               <p className="text-red-500">{state.errors.password}</p>
             )}
-            <Form
+            <Input
               label="パスワード（確認用）"
               name="passwordConfirmation"
               type="password"

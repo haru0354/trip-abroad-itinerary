@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import toast from "react-hot-toast";
 import Button from "@/app/components/ui/Button";
-import Form from "@/app/components/ui/Form";
+import Input from "@/app/components/ui/form/Input";
 
 import type { ProfileFormState } from "@/app/(memorybook)/memorybook/types/formState";
 
@@ -64,7 +64,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
             プロフィール
           </p>
           <form action={dispatch} className="w-full py-3">
-            <Form
+            <Input
               label="名前(ニックネーム)"
               name="name"
               placeholder="名前(ニックネーム)を記載してください。"
@@ -74,7 +74,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
             {state.errors && state.errors.name && (
               <p className="text-red-500">{state.errors.name}</p>
             )}
-            <Form
+            <Input
               label="メールアドレス"
               name="email"
               placeholder="メールアドレスを記載してください。"

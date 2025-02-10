@@ -6,7 +6,7 @@ import { useFormState } from "react-dom";
 
 import toast from "react-hot-toast";
 import Button from "@/app/components/ui/Button";
-import Form from "@/app/components/ui/Form";
+import Input from "@/app/components/ui/form/Input";
 import TextArea from "@/app/components/ui/form/TextArea";
 
 import type { MemoFormState } from "../../types/formState";
@@ -75,7 +75,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
             メモのフォーム
           </p>
           <form action={dispatch} className="w-full py-3">
-            <Form
+            <Input
               label="メモの見出し"
               name="name"
               placeholder="メモの見出しを記載しましょう。"

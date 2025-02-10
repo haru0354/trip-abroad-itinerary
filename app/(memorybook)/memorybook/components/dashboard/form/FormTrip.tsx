@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Button from "@/app/components/ui/Button";
 import Form from "@/app/components/ui/Form";
-import Date from "@/app/components/ui/Date";
+import Date from "@/app/components/ui/form/Date";
 
 import type { TripFormState } from "@/app/(memorybook)/memorybook/types/formState";
 

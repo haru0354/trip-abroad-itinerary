@@ -5,12 +5,12 @@ import { useState } from "react";
 import DOMPurify from "dompurify";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
-import Form from "@/app/components/ui/Form";
-import TextArea from "@/app/components/ui/TextArea";
-import Button from "@/app/components/ui/Button";
-import Select from "@/app/components/ui/Select";
-import FormImage from "@/app/components/ui/FormImage";
-import Checkbox from "@/app/components/ui/Checkbox";
+import Input from "@/app/components/ui/form/Input";
+import TextArea from "@/app/components/ui/form/TextArea";
+import Button from "@/app/components/ui/button/Button";
+import Select from "@/app/components/ui/form/Select";
+import FormImage from "@/app/components/ui/form/FormImage";
+import Checkbox from "@/app/components/ui/form/Checkbox";
 
 import type { PostFormState } from "@/app/(blog)/types/formState";
 
@@ -96,7 +96,7 @@ const FormPost: React.FC<FormPostProps> = ({
   return (
     <FormContainer>
       <form onSubmit={handleSubmit}>
-        <Form
+        <Input
           name="title"
           label="記事のタイトル"
           defaultValue={post?.title}
@@ -111,7 +111,7 @@ const FormPost: React.FC<FormPostProps> = ({
           categories={categories}
           defaultValue={category?.id}
         />
-        <Form
+        <Input
           name="slug"
           label="スラッグ"
           defaultValue={post?.slug}

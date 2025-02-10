@@ -4,9 +4,7 @@ import FlexImageAndContents from "./components/layout/FlexImageAndContents";
 import CategoryList from "./(blog)/components/section/CategoryList";
 import NewArticleList from "./(blog)/components/section/NewArticleList";
 import Footer from "./(blog)/components/layout/blog/Footer";
-import Button from "./components/ui/Button";
 import HeaderImage from "./(blog)/components/layout/blog/HeaderImage";
-import Modal from "./components/ui/Modal";
 
 export default function Home() {
   return (

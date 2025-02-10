@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getTrip } from "../../../lib/memoryBookService";
 import { updateShare } from "../../../action/actionTrip";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 import FormShare from "../../../components/dashboard/form/FormShare";
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {

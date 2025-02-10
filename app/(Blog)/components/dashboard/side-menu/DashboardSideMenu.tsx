@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 import MenuBox from "../../ui/MenuBox";
 import HamburgerMenu from "./HamburgerMenu";
 

@@ -1,11 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
-import Form from "@/app/components/ui/Form";
-import Button from "@/app/components/ui/Button";
+
+import Input from "@/app/components/ui/form/Input";
+import Button from "@/app/components/ui/button/Button";
 
 const AdminForm = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -40,12 +41,12 @@ const AdminForm = () => {
           </h2>
           <div className="flex">
             <form onSubmit={handleLogin} className="w-full">
-              <Form
+              <Input
                 label="ユーザー名"
                 name="username"
                 placeholder="ユーザー名"
               />
-              <Form
+              <Input
                 label="パスワード"
                 name="password"
                 placeholder="パスワード"

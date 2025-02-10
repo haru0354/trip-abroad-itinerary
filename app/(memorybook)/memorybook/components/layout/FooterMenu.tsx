@@ -7,7 +7,7 @@ import { addItinerary } from "../../action/actionItinerary";
 import { addMemo } from "../../action/actionMemo";
 import FormMemoModal from "../memo/FormMemoModal";
 import FormItineraryModal from "../itinerary/FormItineraryModal";
-import ButtonImage from "@/app/components/ui/ButtonImage";
+import ButtonImage from "@/app/components/ui/button/ButtonImage";
 
 type FooterMenuProps = {
   tripId: number;

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 
 type ListShareProps = {
   userId?: number | undefined;

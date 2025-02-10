@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import Form from "./Form";
+import Input from "./Input";
 
 import type { ImageFormState } from "@/app/(blog)/types/formState";
 
@@ -112,7 +112,7 @@ const FormImage: React.FC<FormImageProps> = ({
           </div>
         )}
       </div>
-      <Form
+      <Input
         name="image"
         label="画像を選択"
         type="file"
@@ -123,7 +123,7 @@ const FormImage: React.FC<FormImageProps> = ({
       {state?.errors && state.errors.image && (
         <p className="text-red-500">{state.errors.image}</p>
       )}
-      <Form
+      <Input
         label={label}
         name="altText"
         value={altTextValue}

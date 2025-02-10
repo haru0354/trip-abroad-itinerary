@@ -6,13 +6,13 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
-import Modal from "@/app/components/ui/Modal";
-import Form from "@/app/components/ui/Form";
-import TextArea from "@/app/components/ui/TextArea";
-import Date from "@/app/components/ui/Date";
-import Time from "@/app/components/ui/Time";
-import Button from "@/app/components/ui/Button";
-import FormImage from "@/app/components/ui/FormImage";
+import Modal from "@/app/components/ui/modal/Modal";
+import Input from "@/app/components/ui/form/Input";
+import TextArea from "@/app/components/ui/form/TextArea";
+import Date from "@/app/components/ui/form/Date";
+import Time from "@/app/components/ui/form/Time";
+import Button from "@/app/components/ui/button/Button";
+import FormImage from "@/app/components/ui/form/FormImage";
 
 import type { ItineraryFormState } from "@/app/(memorybook)/memorybook/types/formState";
 
@@ -121,7 +121,7 @@ const FormItineraryModal: React.FC<FormItineraryProps> = ({
         {state.errors && state.errors.time && (
           <p className="text-red-500">{state.errors.time}</p>
         )}
-        <Form
+        <Input
           label="目的（何をするのか）"
           placeholder="移動・食事・観光など"
           name="name"

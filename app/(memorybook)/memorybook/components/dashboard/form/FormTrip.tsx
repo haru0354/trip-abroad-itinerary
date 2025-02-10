@@ -5,9 +5,9 @@ import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 
 import toast from "react-hot-toast";
-import Button from "@/app/components/ui/Button";
-import Form from "@/app/components/ui/Form";
-import Date from "@/app/components/ui/Date";
+import Button from "@/app/components/ui/button/Button";
+import Input from "@/app/components/ui/form/Input";
+import Date from "@/app/components/ui/form/Date";
 
 import type { TripFormState } from "@/app/(memorybook)/memorybook/types/formState";
 
@@ -95,7 +95,7 @@ const FormTrip: React.FC<FormTripProps> = ({
               onChange={handleEndDateChange}
               value={endDateValue}
             />
-            <Form
+            <Input
               label="旅行タイトル"
               name="name"
               placeholder="旅行タイトルを入力。例)初海外旅行"
@@ -105,7 +105,7 @@ const FormTrip: React.FC<FormTripProps> = ({
             {state.errors && state.errors.name && (
               <p className="text-red-500">{state.errors.name}</p>
             )}
-            <Form
+            <Input
               label="旅行先(未記入も可)"
               name="destination"
               placeholder="旅行先が決まっていれば入力"

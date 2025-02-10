@@ -3,8 +3,8 @@ import { deletePost, updatePost } from "@/app/(blog)/action/actionPost";
 import { getPost } from "@/app/(blog)/lib/service/blogServiceUnique";
 import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
 import FormPost from "@/app/(blog)/components/dashboard/form/FormPost";
-import DeleteModal from "@/app/components/ui/DeleteModal";
-import Button from "@/app/components/ui/Button";
+import DeleteModal from "@/app/components/ui/modal/DeleteModal";
+import Button from "@/app/components/ui/button/Button";
 import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";
 
 const page = async ({ params }: { params: { post_id: string } }) => {

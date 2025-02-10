@@ -2,9 +2,9 @@
 
 import { createPortal } from "react-dom";
 
-import Button from "./Button";
-import ButtonImage from "./ButtonImage";
 import { useModal } from "@/app/hooks/useModal";
+import Button from "../button/Button";
+import ButtonImage from "../button/ButtonImage";
 
 type ModalProps = {
   maxWidth: string;

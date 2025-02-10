@@ -3,7 +3,7 @@ import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import SignupModal from "@/app/(memorybook)/memorybook/components/ui/auth/SignupModal";
-import Button from "../ui/Button";
+import Button from "@/app/components/ui/button/Button";
 
 type CallToActionProps = {
   lists: string[];

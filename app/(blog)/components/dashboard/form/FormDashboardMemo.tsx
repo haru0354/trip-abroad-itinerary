@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
-import Form from "@/app/components/ui/Form";
-import Button from "@/app/components/ui/Button";
-import TextArea from "@/app/components/ui/TextArea";
+import Input from "@/app/components/ui/form/Input";
+import Button from "@/app/components/ui/button/Button";
+import TextArea from "@/app/components/ui/form/TextArea";
 
 import type { DashboardFormState } from "@/app/(blog)/types/formState";
 
@@ -69,7 +69,7 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
     <>
       <FormContainer>
         <form action={dispatch}>
-          <Form
+          <Input
             label="メモの見出し"
             name="name"
             placeholder="メモの見出しを記載しましょう。"

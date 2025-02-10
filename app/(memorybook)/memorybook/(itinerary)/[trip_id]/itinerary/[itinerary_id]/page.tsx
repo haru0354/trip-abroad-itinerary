@@ -6,8 +6,8 @@ import {
   getItinerary,
 } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import FormItinerary from "@/app/(memorybook)/memorybook/components/itinerary/FormItinerary";
-import Button from "@/app/components/ui/Button";
-import DeleteModal from "@/app/components/ui/DeleteModal";
+import Button from "@/app/components/ui/button/Button";
+import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 
 const page = async ({
   params,

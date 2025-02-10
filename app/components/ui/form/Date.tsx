@@ -15,10 +15,7 @@ const Date: React.FC<DateProps> = ({
 }) => {
   return (
     <div>
-      <label
-        className="block mb-1 mt-4 text-sm font-bold"
-        htmlFor={label}
-      >
+      <label className="block mb-1 mt-4 text-sm font-bold" htmlFor={label}>
         {label}
       </label>
       <input
@@ -28,7 +25,7 @@ const Date: React.FC<DateProps> = ({
         value={value}
         defaultValue={defaultValue}
         onChange={onChange}
-        className="py-2 px-2 shadow border rounded "
+        className="py-2 px-2 shadow border rounded"
       />
     </div>
   );

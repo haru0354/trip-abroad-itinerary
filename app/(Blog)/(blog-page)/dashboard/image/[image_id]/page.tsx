@@ -5,8 +5,8 @@ import {
 } from "@/app/(blog)/action/actionPostImage";
 import { getPostImage } from "@/app/(blog)/lib/service/blogServiceUnique";
 import FormPostImage from "@/app/(blog)/components/dashboard/form/FormPostImage";
-import Button from "@/app/components/ui/Button";
-import DeleteModal from "@/app/components/ui/DeleteModal";
+import Button from "@/app/components/ui/button/Button";
+import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";
 
 const page = async ({ params }: { params: { image_id: string } }) => {

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import SignupModal from "@/app/(memorybook)/memorybook/components/ui/auth/SignupModal";
-import Button from "../ui/Button";
+import Button from "@/app/components/ui/button/Button";
 
 type HeroProps = {
   src: string;

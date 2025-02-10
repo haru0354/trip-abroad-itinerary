@@ -3,8 +3,8 @@
 import { useFormState } from "react-dom";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
-import Button from "@/app/components/ui/Button";
-import FormImage from "@/app/components/ui/FormImage";
+import Button from "@/app/components/ui/button/Button";
+import FormImage from "@/app/components/ui/form/FormImage";
 
 import type { ImageFormState } from "@/app/(blog)/types/formState";
 

@@ -5,7 +5,7 @@ import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import prisma from "@/app/lib/prisma";
 import FormProfile from "@/app/(memorybook)/memorybook/components/dashboard/form/FormProfile";
 import FormPassword from "@/app/(memorybook)/memorybook/components/dashboard/form/FormPassword";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/ui/button/Button";
 import DeleteUserModal from "@/app/(memorybook)/memorybook/components/dashboard/DeleteUserModal";
 
 const Page = async () => {

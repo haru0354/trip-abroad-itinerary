@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import Input from "@/app/components/ui/form/Input";
 import TextArea from "@/app/components/ui/form/TextArea";
 import Date from "@/app/components/ui/form/Date";
-import Time from "@/app/components/ui/Time";
+import Time from "@/app/components/ui/form/Time";
 import Button from "@/app/components/ui/Button";
 import FormImage from "@/app/components/ui/form/FormImage";
 

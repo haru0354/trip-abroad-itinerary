@@ -1,5 +1,5 @@
 import { deleteUser } from "@/app/(memorybook)/memorybook/action/actionProfile";
-import DeleteModal from "@/app/components/ui/DeleteModal";
+import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 
 const DeleteUserModal = () => {
   return (

@@ -7,7 +7,7 @@ import {
 import { getDashboardMemo } from "@/app/(blog)/lib/service/blogServiceUnique";
 import FormDashboardMemo from "@/app/(blog)/components/dashboard/form/FormDashboardMemo";
 import Button from "@/app/components/ui/button/Button";
-import DeleteModal from "@/app/components/ui/DeleteModal";
+import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 
 export const metadata: Metadata = {
   title: "個別のメモ",

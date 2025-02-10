@@ -5,7 +5,7 @@ import {
   updateTrip,
 } from "@/app/(memorybook)/memorybook/action/actionTrip";
 import { getTrip } from "../../lib/memoryBookService";
-import DeleteModal from "@/app/components/ui/DeleteModal";
+import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 import FormTrip from "../../components/dashboard/form/FormTrip";
 import Button from "@/app/components/ui/button/Button";
 

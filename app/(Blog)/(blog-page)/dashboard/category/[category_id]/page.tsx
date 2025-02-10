@@ -7,7 +7,7 @@ import {
 import { getCategory } from "@/app/(blog)/lib/service/blogServiceUnique";
 import FormCategory from "@/app/(blog)/components/dashboard/form/FormCategory";
 import Button from "@/app/components/ui/button/Button";
-import DeleteModal from "@/app/components/ui/DeleteModal";
+import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";
 
 export const metadata: Metadata = {

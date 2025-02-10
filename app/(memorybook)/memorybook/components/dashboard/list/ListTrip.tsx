@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
 import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import ButtonImage from "@/app/components/ui/ButtonImage";
+import ButtonImage from "@/app/components/ui/button/ButtonImage";
 
 type ListTripProps = {
   userId?: number | undefined;

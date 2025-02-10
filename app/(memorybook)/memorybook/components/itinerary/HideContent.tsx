@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ButtonImage from "@/app/components/ui/ButtonImage";
+import ButtonImage from "@/app/components/ui/button/ButtonImage";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 

@@ -3,7 +3,7 @@
 import { createPortal } from "react-dom";
 
 import Button from "@/app/components/ui/button/Button";
-import ButtonImage from "./ButtonImage";
+import ButtonImage from "./button/ButtonImage";
 import { useModal } from "@/app/hooks/useModal";
 
 type ModalProps = {

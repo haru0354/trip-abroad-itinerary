@@ -33,7 +33,7 @@ const ButtonImage: React.FC<ButtonImageProps> = ({
   const sizes = {
     footer: "flex flex-1 flex-col items-center justify-center w-full h-full",
     small:
-      "px-4 block ml-auto border border-dashed border-gray-400 text-sm rounded",
+      "block px-4 ml-auto text-sm border rounded border-dashed border-gray-400",
   };
 
   const iconImages = {

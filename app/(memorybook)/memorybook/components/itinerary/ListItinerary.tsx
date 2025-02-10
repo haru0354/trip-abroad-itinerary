@@ -4,7 +4,7 @@ import { faCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HideContent from "./HideContent";
-import ButtonImage from "@/app/components/ui/ButtonImage";
+import ButtonImage from "@/app/components/ui/button/ButtonImage";
 import Manual from "../Manual";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import AnimatedImage from "@/app/lib/animation/AnimatedImage";

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Checkbox from "@/app/components/ui/Checkbox";
+
+import Checkbox from "@/app/components/ui/form/Checkbox";
 import Button from "@/app/components/ui/Button";
 
 type FormShareProps = {

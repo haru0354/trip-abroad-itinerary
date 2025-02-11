@@ -4,7 +4,7 @@ type InputProps = {
   placeholder: string;
   register: any;
   type?: string;
-  defaultValue?: string | number | readonly string[] | undefined;
+  defaultValue?: string | number | readonly string[] | null | undefined;
   required?: boolean;
   maxLength?: number;
   minLength?: number;

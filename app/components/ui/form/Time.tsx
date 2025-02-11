@@ -4,6 +4,7 @@ type TimeProps = {
   register: any;
   defaultValue?: string;
   required?: boolean;
+  error?: string | string[];
 };
 
 const Time: React.FC<TimeProps> = ({
@@ -12,6 +13,7 @@ const Time: React.FC<TimeProps> = ({
   register,
   defaultValue,
   required,
+  error,
 }) => {
   return (
     <>
@@ -28,6 +30,7 @@ const Time: React.FC<TimeProps> = ({
           required: required && `${label}の入力は必須です。`,
         })}
       />
+      {error && <p className="text-red-500 text-sm my-2">{error}</p>}
     </>
   );
 };

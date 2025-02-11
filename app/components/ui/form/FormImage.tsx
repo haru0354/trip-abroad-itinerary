@@ -6,16 +6,14 @@ import Image from "next/image";
 import Input from "./Input";
 
 import type { ImageFormState } from "@/app/(blog)/types/formState";
+import InputImage from "./InputImage";
 
 type FormImageProps = {
   state?: ImageFormState;
   selectImage?: PostImage | null;
-  altTextValue?: string;
   formSubmitted?: boolean;
-  onChangeAltText?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  label: string;
-  placeholder: string;
-  defaultValue?: string;
+  defaultValue?: string | null | undefined;
+  register: any;
 };
 
 type PostImage = {
@@ -26,12 +24,9 @@ type PostImage = {
 const FormImage: React.FC<FormImageProps> = ({
   state,
   selectImage,
-  altTextValue,
   formSubmitted,
-  onChangeAltText,
-  label,
-  placeholder,
   defaultValue,
+  register,
 }) => {
   const [error, setError] = useState<string>("");
   const [image, setImage] = useState<{ preview: string; data: File | string }>({
@@ -112,28 +107,22 @@ const FormImage: React.FC<FormImageProps> = ({
           </div>
         )}
       </div>
-      <Input
+      <InputImage
         name="image"
         label="画像を選択"
-        type="file"
+        register={register}
         onChange={handleFileChange}
         key={fileInputKey}
+        error={error || state?.errors?.image}
       />
-      {error && <p className="text-red-500">{error}</p>}
-      {state?.errors && state.errors.image && (
-        <p className="text-red-500">{state.errors.image}</p>
-      )}
       <Input
-        label={label}
         name="altText"
-        value={altTextValue}
-        placeholder={placeholder}
-        onChange={onChangeAltText}
+        label="画像の名前(何の画像)"
+        placeholder="何の画像か入力してください。"
+        register={register}
         defaultValue={defaultValue}
+        error={state?.errors?.altText}
       />
-      {state?.errors && state.errors.altText && (
-        <p className="text-red-500">{state.errors.altText}</p>
-      )}
     </>
   );
 };

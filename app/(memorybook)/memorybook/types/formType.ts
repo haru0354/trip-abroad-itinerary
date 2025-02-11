@@ -15,3 +15,13 @@ export type TripFormType = {
   name: string;
   destination?: string;
 };
+
+export type ItineraryFormType = {
+  date: string;
+  time: string;
+  name: string;
+  content?: string;
+  hideContent?: string;
+  image?: File;
+  altText?: string;
+};

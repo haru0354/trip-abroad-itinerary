@@ -4,6 +4,7 @@ type DateProps = {
   register: any;
   defaultValue?: string;
   required?: boolean;
+  error?: string | string[];
 };
 
 const Date: React.FC<DateProps> = ({
@@ -12,6 +13,7 @@ const Date: React.FC<DateProps> = ({
   register,
   defaultValue,
   required,
+  error,
 }) => {
   return (
     <>
@@ -27,6 +29,7 @@ const Date: React.FC<DateProps> = ({
           required: required && `${label}の入力は必須です。`,
         })}
       />
+      {error && <p className="text-red-500 text-sm my-2">{error}</p>}
     </>
   );
 };

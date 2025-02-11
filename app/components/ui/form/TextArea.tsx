@@ -5,7 +5,7 @@ type TextAreaProps = {
   label: string;
   placeholder: string;
   register: any;
-  defaultValue?: string | undefined;
+  defaultValue?: string | null;
   rows?: number;
   required?: boolean;
   maxLength?: number;

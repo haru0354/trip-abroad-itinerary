@@ -4,6 +4,8 @@ type DateProps = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   defaultValue?: string;
   label?: string;
+  register: any;
+  required?: boolean;
 };
 
 const Date: React.FC<DateProps> = ({
@@ -11,6 +13,8 @@ const Date: React.FC<DateProps> = ({
   value,
   onChange,
   defaultValue,
+  register,
+  required,
   label = "日付:",
 }) => {
   return (
@@ -25,7 +29,9 @@ const Date: React.FC<DateProps> = ({
         value={value}
         defaultValue={defaultValue}
         onChange={onChange}
-        className="py-2 px-2 shadow border rounded"
+        {...register(name, {
+          required: required && `${label}の入力は必須です。`,
+        })}
       />
     </div>
   );

@@ -20,7 +20,7 @@ export const addTrip = async (state: TripFormState, data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return {};
+    return { message: "再度ログインをし直してください。" };
   }
 
   const validateDate = {
@@ -62,7 +62,7 @@ export const deleteTrip = async (data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return;
+    return { message: "再度ログインをし直してください。" };
   }
 
   const idValidTripOwner = await validateTripOwner(id);
@@ -99,7 +99,7 @@ export const updateTrip = async (
 
   if (!userId) {
     console.error("認証がされていません。");
-    return {};
+    return { message: "再度ログインをし直してください。" };
   }
 
   const tripId = String(id);
@@ -151,7 +151,7 @@ export const updateShare = async (id: number, data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return {};
+    return { message: "再度ログインをし直してください。" };
   }
 
   const tripId = String(id);

@@ -109,8 +109,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   }, [state.message]);
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="w-full border py-4 px-6 border-itinerary-borderGray rounded bg-white max-w-[620px]">
+      <>
         <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
           旅程表のフォーム
         </p>
@@ -171,8 +170,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
             {buttonName}
           </Button>
         </form>
-      </div>
-    </div>
+      </>
   );
 };
 

@@ -33,12 +33,16 @@ const page = async ({
       <h3 className="p-5 my-4 text-xl font-semibold rounded text-white bg-itinerary-heading">
         旅程の編集
       </h3>
-      <FormItinerary
-        itinerary={itinerary}
-        formAction={updateItineraryWithId}
-        buttonName="保存"
-        tripId={trip.id}
-      />
+      <div className="flex items-center justify-center">
+        <div className="w-full border py-4 px-6 border-itinerary-borderGray rounded bg-white max-w-[620px]">
+          <FormItinerary
+            itinerary={itinerary}
+            formAction={updateItineraryWithId}
+            buttonName="保存"
+            tripId={trip.id}
+          />
+        </div>
+      </div>
       <Link href={`/memorybook/${trip.id}/itinerary`}>
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル

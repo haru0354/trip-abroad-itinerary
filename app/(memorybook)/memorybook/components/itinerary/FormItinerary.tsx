@@ -74,12 +74,11 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   const onSubmit: SubmitHandler<ItineraryFormType> = (data) => {
     try {
       const formData = new FormData();
+      formData.append("date", data.date);
+      formData.append("time", data.time);
       formData.append("name", data.name);
-      if (data.date) formData.append("date", data.date);
-      if (data.time) formData.append("time", data.time);
-      if (data.name) formData.append("name", data.name);
-      if (data.content) formData.append("content", data.content);
-      if (data.hideContent) formData.append("hideContent", data.hideContent);
+      formData.append("content", data.content || "");
+      formData.append("hideContent", data.hideContent || "");
       if (data.image) {
         if (data.image instanceof FileList) {
           formData.append("image", data.image[0]);
@@ -88,7 +87,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         }
       }
       if (data.altText) formData.append("altText", data.altText);
-      if (data.tripId) formData.append("tripId", data.tripId);
+      formData.append("tripId", data.tripId);
 
       dispatch(formData);
     } catch (error) {

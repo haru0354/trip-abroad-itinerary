@@ -52,9 +52,9 @@ const FormTrip: React.FC<FormTripProps> = ({
     try {
       const formData = new FormData();
       formData.append("name", data.name);
-      if (data.startDate) formData.append("startDate", data.startDate);
-      if (data.endDate) formData.append("endDate", data.endDate);
-      if (data.destination) formData.append("destination", data.destination);
+      formData.append("startDate", data.startDate || "");
+      formData.append("endDate", data.endDate || "");
+      formData.append("destination", data.destination || "");
 
       dispatch(formData);
     } catch (error) {

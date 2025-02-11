@@ -3,7 +3,8 @@ type CheckboxProps = {
   item: string;
   label: string;
   checked: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  register: any;
+  required?: boolean;
   explanation?: string;
   explanation2?: string;
 };
@@ -13,22 +14,23 @@ const Checkbox: React.FC<CheckboxProps> = ({
   item,
   label,
   checked,
-  onChange,
+  register,
+  required,
   explanation,
   explanation2,
 }) => {
   return (
     <>
-      <p className="block mb-1 mt-4 text-sm font-bold">
-        {label}
-      </p>
+      <label className="block mb-1 mt-4 text-sm font-bold">{label}</label>
       <p className="my-2">
         <input
           type="checkbox"
           name={name}
           checked={checked}
-          onChange={onChange}
           className="mr-2"
+          {...register(name, {
+            required: required && `${label}の入力は必須です。`,
+          })}
         />
         {item}
       </p>

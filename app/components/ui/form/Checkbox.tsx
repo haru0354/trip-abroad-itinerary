@@ -3,10 +3,9 @@ type CheckboxProps = {
   item: string;
   label: string;
   checked: boolean;
-  register: any;
-  required?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   explanation?: string;
-  explanation2?: string;
+  explanationTextRed?: string;
 };
 
 const Checkbox: React.FC<CheckboxProps> = ({
@@ -14,30 +13,29 @@ const Checkbox: React.FC<CheckboxProps> = ({
   item,
   label,
   checked,
-  register,
-  required,
+  onChange,
   explanation,
-  explanation2,
+  explanationTextRed,
 }) => {
   return (
     <>
-      <label className="block mb-1 mt-4 text-sm font-bold">{label}</label>
+      <p className="block mb-1 mt-4 text-sm font-bold">{label}</p>
       <p className="my-2">
         <input
           type="checkbox"
           name={name}
           checked={checked}
+          onChange={onChange}
           className="mr-2"
-          {...register(name, {
-            required: required && `${label}の入力は必須です。`,
-          })}
         />
         {item}
       </p>
       {explanation && checked && (
         <div className="my-6 p-2 text-sm border border-dashed border-itinerary-borderBlack">
           {explanation}
-          <p className="mb-0 text-red-500">{explanation2}</p>
+          {explanationTextRed && (
+            <p className="mb-0 text-red-500">{explanationTextRed}</p>
+          )}
         </div>
       )}
     </>

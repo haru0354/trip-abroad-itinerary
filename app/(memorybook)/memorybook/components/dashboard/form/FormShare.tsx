@@ -49,7 +49,7 @@ const FormShare: React.FC<FormShareProps> = ({
               label="共有設定"
               onChange={handleToggle}
               explanation="作成した旅程表が公開されるので「SNSでの共有」「同行者との旅程表の共有」などあなた以外も旅程表が観れる設定になります。"
-              explanation2="作成した旅程表には必ず「個人情報」や「画像」など知られたくない情報を記載しないようにしましょう。"
+              explanationTextRed="作成した旅程表には必ず「個人情報」や「画像」など知られたくない情報を記載しないようにしましょう。"
             />
             <Button size="normal" color="blue" className="rounded mt-8">
               {buttonName}

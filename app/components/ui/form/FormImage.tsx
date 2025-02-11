@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import Input from "./Input";
+import InputImage from "./InputImage";
 
 import type { ImageFormState } from "@/app/(blog)/types/formState";
-import InputImage from "./InputImage";
 
 type FormImageProps = {
   state?: ImageFormState;

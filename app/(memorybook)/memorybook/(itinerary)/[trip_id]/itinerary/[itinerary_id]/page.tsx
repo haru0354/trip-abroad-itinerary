@@ -30,6 +30,9 @@ const page = async ({
       <h2 className="bg-white text-2xl text-center text-black border-b border-solid border-blue-800">
         {trip?.name}
       </h2>
+      <h3 className="p-5 my-4 text-xl font-semibold rounded text-white bg-itinerary-heading">
+        旅程の編集
+      </h3>
       <FormItinerary
         itinerary={itinerary}
         formAction={updateItineraryWithId}

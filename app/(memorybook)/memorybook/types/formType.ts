@@ -24,4 +24,5 @@ export type ItineraryFormType = {
   hideContent?: string;
   image?: File;
   altText?: string;
+  tripId: string;
 };

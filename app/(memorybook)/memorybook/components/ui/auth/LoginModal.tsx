@@ -4,15 +4,26 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import Input from "@/app/components/ui/form/Input";
 import Button from "@/app/components/ui/button/Button";
 
+import type { LoginFormType } from "../../../types/formType";
+
 const LoginModal = () => {
   const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormType>({
+    mode: "onBlur",
+  });
+
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const toggleModal = () => {
     setIsModalOpen((prev) => !prev);
@@ -21,32 +32,6 @@ const LoginModal = () => {
   const closeModal = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       toggleModal();
-    }
-  };
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get("email");
-    const password = formData.get("password");
-
-    try {
-      const result = await signIn("itinerary", {
-        redirect: false,
-        email,
-        password,
-      });
-
-      if (!result?.error) {
-        toast.success("ログインしました！");
-        toggleModal();
-        router.replace(`/memorybook/dashboard`);
-      } else {
-        toast.error("エラーが発生しました。" + result.error);
-        setErrorMessage(result.error);
-      }
-    } catch (error) {
-      toast.error("ログイン中にエラーが発生しました。" + error);
     }
   };
 
@@ -61,6 +46,47 @@ const LoginModal = () => {
       document.body.classList.remove("overflow-hidden");
     };
   }, [isModalOpen]);
+
+  const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
+    try {
+      const result = await signIn("itinerary", {
+        ...data,
+        redirect: false,
+      });
+
+      if (!result?.error) {
+        toast.success("ログインしました！");
+        toggleModal();
+        router.replace(`/memorybook/dashboard`);
+      } else {
+        toast.error("エラーが発生しました。" + result.error);
+        setErrorMessage(result.error);
+      }
+    } catch (error) {
+      console.error("ログイン中にエラーが発生:", error);
+      toast.error("ログイン中にエラーが発生しました。" + error);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signIn("google", {
+        redirect: false,
+      });
+
+      if (!result?.error) {
+        toast.success("ログインしました！");
+        toggleModal();
+        router.replace(`/memorybook/dashboard`);
+      } else {
+        toast.error("エラーが発生しました。" + result.error);
+        setErrorMessage(result.error);
+      }
+    } catch (error) {
+      console.error("Googleログイン中にエラーが発生:", error);
+      toast.error("Googleログイン中にエラーが発生しました。" + error);
+    }
+  };
 
   return (
     <>
@@ -80,35 +106,40 @@ const LoginModal = () => {
               <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
                 ログインフォーム
               </p>
-              <form onSubmit={onSubmit} className="w-full py-3">
+              <form onSubmit={handleSubmit(onSubmit)} className="w-full py-3">
                 <Input
+                  type="email"
                   label="メールアドレス"
                   name="email"
-                  placeholder="メモの見出しを記載しましょう。"
+                  placeholder="メールアドレスを記載してください。"
+                  register={register}
+                  required
+                  error={errors.email?.message}
+                  pattern="email"
                 />
                 <Input
                   type="password"
                   label="パスワード"
                   name="password"
-                  placeholder="メモの見出しを記載しましょう。"
+                  placeholder="パスワードを記載してください。"
+                  register={register}
+                  required
+                  minLength={6}
+                  error={errors.password?.message}
                 />
                 {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-                <Button color="blue" size="auth" className="rounded mt-4">
+                <Button color="blue" size="auth" className="rounded mt-6">
                   ログイン
                 </Button>
-                <Button
-                  onClick={() =>
-                    signIn("google", {
-                      callbackUrl: "/memorybook/dashboard",
-                    })
-                  }
-                  color="blue"
-                  size="auth"
-                  className="rounded mt-4"
-                >
-                  Googleでログイン
-                </Button>
               </form>
+              <Button
+                onClick={handleGoogleSignIn}
+                color="blue"
+                size="auth"
+                className="rounded mb-6"
+              >
+                Googleでログイン
+              </Button>
               <Button
                 onClick={toggleModal}
                 color="gray"

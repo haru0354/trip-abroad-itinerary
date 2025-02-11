@@ -75,18 +75,20 @@ const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
           type="email"
           label="メールアドレス"
           name="email"
-          placeholder="メールアドレスを記載してください。。"
+          placeholder="メールアドレスを記載してください。"
           register={register}
           required
           error={errors.email?.message}
+          pattern="email"
         />
         <Input
           type="password"
           label="パスワード"
           name="password"
-          placeholder="パスワードを記載してください。。"
+          placeholder="パスワードを記載してください。"
           register={register}
           required
+          minLength={6}
           error={errors.password?.message}
         />
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}

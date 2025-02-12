@@ -12,7 +12,10 @@ import type { PasswordFormState } from "@/app/(memorybook)/memorybook/types/form
 
 type FormPasswordProps = {
   buttonName: string;
-  formAction: (state: PasswordFormState, data: FormData) => Promise<PasswordFormState>;
+  formAction: (
+    state: PasswordFormState,
+    data: FormData
+  ) => Promise<PasswordFormState>;
 };
 
 const FormPassword: React.FC<FormPasswordProps> = ({

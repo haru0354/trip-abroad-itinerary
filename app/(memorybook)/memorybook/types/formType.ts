@@ -9,6 +9,16 @@ export type LoginFormType = {
   password: string;
 };
 
+export type changePasswordFormType = {
+  password: string;
+  passwordConfirmation: string;
+};
+
+export type ProfileFormType = {
+  name: string;
+  email: string;
+};
+
 export type TripFormType = {
   startDate?: string;
   endDate?: string;

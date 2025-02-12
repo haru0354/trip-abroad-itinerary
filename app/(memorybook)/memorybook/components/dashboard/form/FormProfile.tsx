@@ -10,7 +10,7 @@ import Input from "@/app/components/ui/form/Input";
 
 import type { ProfileFormState } from "@/app/(memorybook)/memorybook/types/formState";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LoginFormType, ProfileFormType } from "../../../types/formType";
+import { ProfileFormType } from "../../../types/formType";
 
 type FormProfileProps = {
   buttonName: string;
@@ -25,8 +25,6 @@ type FormProfileProps = {
 const FormProfile: React.FC<FormProfileProps> = ({
   buttonName,
   formAction,
-  userEmail,
-  userName,
 }) => {
   const router = useRouter();
   const {

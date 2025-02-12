@@ -9,7 +9,7 @@ export type LoginFormType = {
   password: string;
 };
 
-export type changePasswordFormType = {
+export type passwordFormType = {
   password: string;
   passwordConfirmation: string;
 };

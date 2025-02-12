@@ -30,12 +30,19 @@ const Page = async ({
       <h2 className="bg-white text-2xl text-center text-black border-b border-solid border-blue-800">
         {trip?.name}
       </h2>
-      <FormMemo
-        formAction={updateMemoWidthId}
-        memo={memo}
-        buttonName="保存"
-        tripId={trip.id}
-      />
+      <h3 className="p-5 my-4 text-xl font-semibold rounded text-white bg-itinerary-heading">
+        メモの編集
+      </h3>
+      <div className="flex items-center justify-center">
+        <div className="w-full border py-4 px-6 border-itinerary-borderGray rounded bg-white max-w-[620px]">
+          <FormMemo
+            formAction={updateMemoWidthId}
+            memo={memo}
+            buttonName="保存"
+            tripId={trip.id}
+          />
+        </div>
+      </div>
       <Link href={`/memorybook/${trip.id}/memo`}>
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル

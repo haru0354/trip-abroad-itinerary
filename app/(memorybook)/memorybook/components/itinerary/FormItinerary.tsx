@@ -24,7 +24,7 @@ type FormItineraryProps = {
     state: ItineraryFormState,
     data: FormData
   ) => Promise<ItineraryFormState>;
-  tripId?: number | undefined;
+  tripId: number | undefined;
 };
 
 type Itinerary = {
@@ -100,77 +100,75 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     if (state.message === "add") {
       setFormSubmitted((prev) => !prev);
       toast.success("旅程を保存しました！");
-      state.message = "";
     } else if (state.message === "edit") {
       toast.success("旅程を編集しました！");
-      state.message = "";
       router.replace(`/memorybook/${tripId}/itinerary/`);
     }
   }, [state.message]);
 
   return (
-      <>
-        <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
-          旅程表のフォーム
-        </p>
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full py-3">
-          <Date
-            label="日付"
-            name="date"
-            defaultValue={itinerary?.date}
-            register={register}
-            required={true}
-            error={errors.date?.message || state.errors?.date}
-          />
-          <Time
-            label="時間"
-            name="time"
-            defaultValue={itinerary?.time}
-            register={register}
-            required={true}
-            error={errors.time?.message || state.errors?.time}
-          />
-          <Input
-            label="目的（何をするのか）"
-            name="name"
-            placeholder="観光なら「観光地名」移動なら「電車名」など"
-            defaultValue={itinerary?.name}
-            register={register}
-            required={true}
-            error={errors.name?.message || state.errors?.name}
-          />
-          <TextArea
-            label="補足情報"
-            placeholder="観光地なら服装の注意。レストランなら食べる予定の料理名などメモを記載しましょう。"
-            name="content"
-            defaultValue={itinerary?.content}
-            register={register}
-          />
-          <TextArea
-            label="補足情報2"
-            placeholder="ボタンクリックで表示されるエリアです。電車なら乗り換え方法など必要な場面でのみ見たい情報を入力。"
-            name="hideContent"
-            defaultValue={itinerary?.hideContent}
-            register={register}
-          />
-          <FormImage
-            state={state}
-            selectImage={itinerary}
-            formSubmitted={formSubmitted}
-            register={register}
-            defaultValue={itinerary?.altText}
-          />
-          <InputHidden name="tripId" value={tripId} register={register} />
-          {state.message &&
-            state.message !== "edit" &&
-            state.message !== "add" && (
-              <p className="text-red-500">{state.message}</p>
-            )}
-          <Button color="blue" size="normal" className="rounded mt-4">
-            {buttonName}
-          </Button>
-        </form>
-      </>
+    <>
+      <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
+        旅程表のフォーム
+      </p>
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full py-3">
+        <Date
+          label="日付"
+          name="date"
+          defaultValue={itinerary?.date}
+          register={register}
+          required={true}
+          error={errors.date?.message || state.errors?.date}
+        />
+        <Time
+          label="時間"
+          name="time"
+          defaultValue={itinerary?.time}
+          register={register}
+          required={true}
+          error={errors.time?.message || state.errors?.time}
+        />
+        <Input
+          label="目的（何をするのか）"
+          name="name"
+          placeholder="観光なら「観光地名」移動なら「電車名」など"
+          defaultValue={itinerary?.name}
+          register={register}
+          required={true}
+          error={errors.name?.message || state.errors?.name}
+        />
+        <TextArea
+          label="補足情報"
+          placeholder="観光地なら服装の注意。レストランなら食べる予定の料理名などメモを記載しましょう。"
+          name="content"
+          defaultValue={itinerary?.content}
+          register={register}
+        />
+        <TextArea
+          label="補足情報2"
+          placeholder="ボタンクリックで表示されるエリアです。電車なら乗り換え方法など必要な場面でのみ見たい情報を入力。"
+          name="hideContent"
+          defaultValue={itinerary?.hideContent}
+          register={register}
+        />
+        <FormImage
+          state={state}
+          selectImage={itinerary}
+          formSubmitted={formSubmitted}
+          register={register}
+          defaultValue={itinerary?.altText}
+        />
+        <InputHidden name="tripId" value={tripId} register={register} />
+        {state.message &&
+          state.message !== "edit" &&
+          state.message !== "add" && (
+            <p className="text-red-500">{state.message}</p>
+          )}
+        <Button color="blue" size="normal" className="rounded mt-4">
+          {buttonName}
+        </Button>
+      </form>
+    </>
   );
 };
 

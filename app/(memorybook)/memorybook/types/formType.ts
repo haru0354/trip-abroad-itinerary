@@ -26,3 +26,9 @@ export type ItineraryFormType = {
   altText?: string;
   tripId: string;
 };
+
+export type MemoFormType = {
+  name: string;
+  content?: string;
+  tripId: string;
+};

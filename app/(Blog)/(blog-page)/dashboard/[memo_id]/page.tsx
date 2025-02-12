@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const Page = async ({ params }: { params: { memo_id: string } }) => {
   const id = Number(params.memo_id);
   const updateDashboardMemoWidthId = updateDashboardMemo.bind(null, id);
-  const dashboardMemo = await getDashboardMemo(params.memo_id)
+  const dashboardMemo = await getDashboardMemo(params.memo_id);
 
   return (
     <>

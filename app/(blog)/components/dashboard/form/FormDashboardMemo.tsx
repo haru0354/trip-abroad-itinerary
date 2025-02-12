@@ -11,11 +11,16 @@ import Button from "@/app/components/ui/button/Button";
 import TextArea from "@/app/components/ui/form/TextArea";
 
 import type { DashboardFormState } from "@/app/(blog)/types/formState";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { DashboardMemoFormType } from "@/app/(blog)/types/formTypes";
 
 type FormMemoProps = {
   dashboardMemo?: DashboardMemo | null;
   buttonName: string;
-  formAction: (state: DashboardFormState, data: FormData) => Promise<DashboardFormState>;
+  formAction: (
+    state: DashboardFormState,
+    data: FormData
+  ) => Promise<DashboardFormState>;
 };
 
 type DashboardMemo = {
@@ -30,60 +35,71 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
   formAction,
 }) => {
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<DashboardMemoFormType>({
+    mode: "onBlur",
+  });
+
   const initialState = { message: null, errors: { name: undefined } };
   const [state, dispatch] = useFormState<DashboardFormState, FormData>(
     formAction,
     initialState
   );
-  const [inputValue, setInputValue] = useState<string>(
-    dashboardMemo?.name || ""
-  );
-  const [textAreaValue, setTextareaChange] = useState<string>(
-    dashboardMemo?.content || ""
-  );
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
+  const onSubmit: SubmitHandler<DashboardMemoFormType> = async (data) => {
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("content", data.content || "");
 
-  const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setTextareaChange(e.target.value);
+    try {
+      dispatch(formData);
+    } catch (error) {
+      console.error("エラーが発生しました:", error);
+      toast.error("エラーが発生しました。" + error);
+    }
   };
 
   useEffect(() => {
     if (state.message === "add") {
-      setInputValue("");
-      setTextareaChange("");
       state.message = "";
       toast.success("メモを保存しました！");
     } else if (state.message === "edit") {
       toast.success("メモを編集しました！");
       state.message = "";
       router.replace("/dashboard");
-    } else if (state.message === "failure") {
-      toast.error("メモの保存に失敗しました。");
     }
   }, [state.message]);
 
   return (
     <>
       <FormContainer>
-        <form action={dispatch}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Input
             label="メモの見出し"
             name="name"
             placeholder="メモの見出しを記載しましょう。"
-            value={inputValue}
-            onChange={handleInputChange}
+            defaultValue={dashboardMemo?.name}
+            register={register}
+            required={true}
+            error={errors.name?.message || state.errors?.name}
           />
-          {state.errors && <p className="text-red-500">{state.errors.name}</p>}
           <TextArea
             label="メモする内容"
             name="content"
             placeholder="メモする内容を記載しましょう。"
-            value={textAreaValue}
-            onChange={handleTextareaChange}
+            defaultValue={dashboardMemo?.content}
+            register={register}
+            required={true}
+            error={errors.content?.message || state.errors?.content}
           />
+          {state.message &&
+            state.message !== "edit" &&
+            state.message !== "add" && (
+              <p className="text-red-500">{state.message}</p>
+            )}
           <Button color="blue" size="normal" className="rounded mt-4">
             {buttonName}
           </Button>

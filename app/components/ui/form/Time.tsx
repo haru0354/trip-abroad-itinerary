@@ -1,23 +1,37 @@
 type TimeProps = {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+  label: string;
+  register: any;
+  defaultValue?: string;
+  required?: boolean;
+  error?: string | string[];
 };
 
-const Time: React.FC<TimeProps> = ({ value, onChange }) => {
+const Time: React.FC<TimeProps> = ({
+  name,
+  label,
+  register,
+  defaultValue,
+  required,
+  error,
+}) => {
   return (
-    <div>
-      <label className="block mb-1 mt-4 text-sm font-bold" htmlFor="time">
-        時間
+    <>
+      <label className="block mb-1 mt-4 text-sm font-bold" htmlFor={label}>
+        {label}
       </label>
       <input
         type="time"
-        name="time"
-        id="time"
-        value={value}
-        onChange={onChange}
+        name={name}
+        id={label}
+        defaultValue={defaultValue}
         className="py-2 px-2 border rounded shadow"
+        {...register(name, {
+          required: required && `${label}の入力は必須です。`,
+        })}
       />
-    </div>
+      {error && <p className="text-red-500 text-sm my-2">{error}</p>}
+    </>
   );
 };
 

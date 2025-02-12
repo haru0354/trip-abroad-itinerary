@@ -1,6 +1,8 @@
 type SelectProps = {
   label: string;
   name: string;
+  register: any;
+  required?: boolean;
   categories?: Category[] | null;
   defaultValue?: number;
   post?: Category | null;
@@ -14,6 +16,8 @@ type Category = {
 const Select: React.FC<SelectProps> = ({
   label,
   name,
+  register,
+  required,
   categories,
   defaultValue,
 }) => {
@@ -26,6 +30,9 @@ const Select: React.FC<SelectProps> = ({
         className="py-2 px-3 border rounded shadow"
         name={name}
         defaultValue={defaultValue}
+        {...register(name, {
+          required: required && `${label}の入力は必須です。`,
+        })}
       >
         {categories?.map((category) => (
           <option key={category.id} value={category.id}>

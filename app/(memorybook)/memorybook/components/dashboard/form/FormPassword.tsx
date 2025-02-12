@@ -9,10 +9,16 @@ import Button from "@/app/components/ui/button/Button";
 import Input from "@/app/components/ui/form/Input";
 
 import type { PasswordFormState } from "@/app/(memorybook)/memorybook/types/formState";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { passwordFormType } from "../../../types/formType";
+import FormLayout from "../../layout/FormLayout";
 
 type FormPasswordProps = {
   buttonName: string;
-  formAction: (state: PasswordFormState, data: FormData) => Promise<PasswordFormState>;
+  formAction: (
+    state: PasswordFormState,
+    data: FormData
+  ) => Promise<PasswordFormState>;
 };
 
 const FormPassword: React.FC<FormPasswordProps> = ({
@@ -20,6 +26,13 @@ const FormPassword: React.FC<FormPasswordProps> = ({
   formAction,
 }) => {
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<passwordFormType>({
+    mode: "onBlur",
+  });
 
   const initialState = {
     message: null,
@@ -31,76 +44,65 @@ const FormPassword: React.FC<FormPasswordProps> = ({
     initialState
   );
 
-  const [passwordValue, setPasswordValue] = useState<string | undefined>("");
-  const [passwordConfirmationValue, setPasswordConfirmationValue] = useState<
-    string | undefined
-  >("");
+  const onSubmit: SubmitHandler<passwordFormType> = (data) => {
+    try {
+      const formData = new FormData();
+      formData.append("password", data.password);
+      formData.append("passwordConfirmation", data.passwordConfirmation);
+      dispatch(formData);
+    } catch (error) {
+      console.error("パスワードの変更中にエラーが発生しました:", error);
+      toast.error("パスワードの変更中にエラーが発生しました。" + error);
+    }
+  };
 
   useEffect(() => {
     if (state.message === "edit") {
       toast.success("パスワードを編集しました！");
       state.message = "";
       router.replace("/memorybook/dashboard/profile");
-    } else if (state.message === "failure") {
-      toast.error("パスワードの編集に失敗しました。");
     }
   }, [state.message]);
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPasswordValue(e.target.value);
-  };
-  const handlePasswordConfirmationChange = (
-    e: ChangeEvent<HTMLInputElement>
-  ) => {
-    setPasswordConfirmationValue(e.target.value);
-  };
 
   return (
     <>
       <h2 className="bg-itinerary-heading">パスワードの変更</h2>
-      <div className="flex items-center justify-center">
-        <div className="w-full border py-4 px-6 border-itinerary-borderGray rounded bg-white max-w-[620px]">
-          <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
-            パスワード
-          </p>
-          <form action={dispatch} className="w-full py-3">
-            <Input
-              label="パスワード"
-              name="password"
-              type="password"
-              placeholder="変更するパスワードを記載してください。"
-              value={passwordValue}
-              onChange={handlePasswordChange}
-            />
-            {state.errors && state.errors.password && (
-              <p className="text-red-500">{state.errors.password}</p>
-            )}
-            <Input
-              label="パスワード（確認用）"
-              name="passwordConfirmation"
-              type="password"
-              placeholder="確認の為パスワードをもう一度記載してください。"
-              value={passwordConfirmationValue}
-              onChange={handlePasswordConfirmationChange}
-            />
-            {state.errors && state.errors.passwordConfirmation && (
-              <p className="text-red-500">
-                {state.errors.passwordConfirmation}
-              </p>
-            )}
-            {state.errors && state.message !== "failure" && (
-              <p className="text-red-500">{state.message}</p>
-            )}
-            {state.errors &&
-              state.message !== "パスワードが一致しませんでした" && (
-                <p className="text-red-500">{state.message}</p>
-              )}
-            <Button color="blue" size="normal" className="rounded mt-4">
-              {buttonName}
-            </Button>
-          </form>
-        </div>
-      </div>
+      <FormLayout>
+        <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
+          パスワード
+        </p>
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full py-3">
+          <Input
+            label="パスワード"
+            name="password"
+            type="password"
+            placeholder="変更するパスワードを記載してください。"
+            register={register}
+            required={true}
+            minLength={6}
+            error={errors.password?.message || state.errors?.password}
+          />
+          <Input
+            label="パスワード（確認用）"
+            name="passwordConfirmation"
+            type="password"
+            placeholder="確認の為パスワードをもう一度記載してください。"
+            register={register}
+            required={true}
+            minLength={6}
+            error={
+              errors.passwordConfirmation?.message ||
+              state.errors?.passwordConfirmation
+            }
+          />
+          {state.errors && state.message !== "edit" && (
+            <p className="text-red-500">{state.message}</p>
+          )}
+          <Button color="blue" size="normal" className="rounded mt-4">
+            {buttonName}
+          </Button>
+        </form>
+      </FormLayout>
     </>
   );
 };

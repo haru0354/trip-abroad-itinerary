@@ -1,22 +1,26 @@
 "use client";
 
-import { useState, ChangeEvent, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
-
+import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+
 import Button from "@/app/components/ui/button/Button";
 import Input from "@/app/components/ui/form/Input";
 import TextArea from "@/app/components/ui/form/TextArea";
+import InputHidden from "@/app/components/ui/form/InputHidden";
 
 import type { MemoFormState } from "../../types/formState";
+import type { MemoFormType } from "../../types/formType";
+import { useModal } from "@/app/hooks/useModal";
 
 type FormMemoProps = {
   memos?: Memo[] | undefined | null;
   memo?: Memo | null;
   buttonName: string;
   formAction: (state: MemoFormState, data: FormData) => Promise<MemoFormState>;
-  tripId?: number | undefined;
+  tripId: number | undefined;
 };
 
 type Memo = {
@@ -32,77 +36,79 @@ const FormMemo: React.FC<FormMemoProps> = ({
   tripId,
 }) => {
   const router = useRouter();
-  const [inputValue, setInputValue] = useState<string>(memo?.name || "");
-  const [textAreaValue, setTextareaChange] = useState<string>(
-    memo?.content || ""
-  );
-
+  const { closeModal } = useModal();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<MemoFormType>({
+    mode: "onBlur",
+  });
+  
   const initialState = { message: null, errors: { name: undefined } };
   const [state, dispatch] = useFormState<MemoFormState, FormData>(
     formAction,
     initialState
   );
 
+  const onSubmit: SubmitHandler<MemoFormType> = (data) => {
+    try {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("content", data.content || "");
+      formData.append("tripId", data.tripId);
+
+      dispatch(formData);
+    } catch (error) {
+      console.error("エラーが発生しました:", error);
+      toast.error("エラーが発生しました。" + error);
+    }
+  };
+
   useEffect(() => {
     if (state.message === "add") {
-      setInputValue("");
-      setTextareaChange("");
       toast.success("メモを保存しました！");
-      state.message = "";
+      closeModal();
     } else if (state.message === "edit") {
       toast.success("メモを編集しました！");
       router.replace(`/memorybook/${tripId}/memo`);
-      state.message = "";
-    } else if (state.message === "failure") {
-      toast.error("メモの保存に失敗しました。");
     }
   }, [state.message]);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setTextareaChange(e.target.value);
-  };
-
   return (
-    <div>
-      <h2 className="bg-itinerary-heading">メモの追加</h2>
-      <div className="flex items-center justify-center">
-        <div className="w-full border py-4 px-6 border-itinerary-borderGray rounded bg-white max-w-[620px]">
-          <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
-            メモのフォーム
-          </p>
-          <form action={dispatch} className="w-full py-3">
-            <Input
-              label="メモの見出し"
-              name="name"
-              placeholder="メモの見出しを記載しましょう。"
-              value={inputValue}
-              onChange={handleInputChange}
-            />
-            {state.errors && state.errors.name && (
-              <p className="text-red-500">{state.errors.name}</p>
-            )}
-            <TextArea
-              label="メモする内容"
-              name="content"
-              placeholder="メモする内容を記載しましょう。"
-              value={textAreaValue}
-              onChange={handleTextareaChange}
-            />
-            <input type="hidden" name="tripId" value={tripId} />
-            {state.errors && state.message !== "failure" && (
-              <p className="text-red-500">{state.message}</p>
-            )}
-            <Button color="blue" size="normal" className="rounded mt-4">
-              {buttonName}
-            </Button>
-          </form>
-        </div>
-      </div>
-    </div>
+    <>
+      <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
+        メモのフォーム
+      </p>
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full py-3">
+        <Input
+          label="メモタイトル"
+          name="name"
+          placeholder="メモタイトルを記載しましょう。"
+          defaultValue={memo?.name}
+          register={register}
+          required={true}
+          error={errors.name?.message || state.errors?.name}
+        />
+        <TextArea
+          label="メモする内容"
+          name="content"
+          placeholder="メモする内容を記載しましょう。"
+          defaultValue={memo?.content}
+          register={register}
+          error={state.errors?.name}
+        />
+        <InputHidden name="tripId" value={tripId} register={register} />
+        {state.message &&
+          state.message !== "edit" &&
+          state.message !== "add" && (
+            <p className="text-red-500">{state.message}</p>
+          )}
+        <Button color="blue" size="normal" className="rounded mt-4">
+          {buttonName}
+        </Button>
+      </form>
+    </>
   );
 };
 

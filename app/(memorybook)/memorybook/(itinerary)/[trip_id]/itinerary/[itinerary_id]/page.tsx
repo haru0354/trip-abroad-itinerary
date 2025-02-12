@@ -8,6 +8,7 @@ import {
 import FormItinerary from "@/app/(memorybook)/memorybook/components/itinerary/FormItinerary";
 import Button from "@/app/components/ui/button/Button";
 import DeleteModal from "@/app/components/ui/modal/DeleteModal";
+import FormLayout from "@/app/(memorybook)/memorybook/components/layout/FormLayout";
 
 const page = async ({
   params,
@@ -30,12 +31,17 @@ const page = async ({
       <h2 className="bg-white text-2xl text-center text-black border-b border-solid border-blue-800">
         {trip?.name}
       </h2>
-      <FormItinerary
-        itinerary={itinerary}
-        formAction={updateItineraryWithId}
-        buttonName="保存"
-        tripId={trip.id}
-      />
+      <h3 className="p-5 my-4 text-xl font-semibold rounded text-white bg-itinerary-heading">
+        旅程の編集
+      </h3>
+      <FormLayout>
+        <FormItinerary
+          itinerary={itinerary}
+          formAction={updateItineraryWithId}
+          buttonName="保存"
+          tripId={trip.id}
+        />
+      </FormLayout>
       <Link href={`/memorybook/${trip.id}/itinerary`}>
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル

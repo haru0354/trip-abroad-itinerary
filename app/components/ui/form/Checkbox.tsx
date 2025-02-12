@@ -5,7 +5,7 @@ type CheckboxProps = {
   checked: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   explanation?: string;
-  explanation2?: string;
+  explanationTextRed?: string;
 };
 
 const Checkbox: React.FC<CheckboxProps> = ({
@@ -15,13 +15,11 @@ const Checkbox: React.FC<CheckboxProps> = ({
   checked,
   onChange,
   explanation,
-  explanation2,
+  explanationTextRed,
 }) => {
   return (
     <>
-      <p className="block mb-1 mt-4 text-sm font-bold">
-        {label}
-      </p>
+      <p className="block mb-1 mt-4 text-sm font-bold">{label}</p>
       <p className="my-2">
         <input
           type="checkbox"
@@ -35,7 +33,9 @@ const Checkbox: React.FC<CheckboxProps> = ({
       {explanation && checked && (
         <div className="my-6 p-2 text-sm border border-dashed border-itinerary-borderBlack">
           {explanation}
-          <p className="mb-0 text-red-500">{explanation2}</p>
+          {explanationTextRed && (
+            <p className="mb-0 text-red-500">{explanationTextRed}</p>
+          )}
         </div>
       )}
     </>

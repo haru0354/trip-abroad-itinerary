@@ -16,6 +16,7 @@ import FormImage from "@/app/components/ui/form/FormImage";
 
 import type { ItineraryFormState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { ItineraryFormType } from "../../types/formType";
+import { useModal } from "@/app/hooks/useModal";
 
 type FormItineraryProps = {
   itinerary?: Itinerary | null;
@@ -46,6 +47,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   tripId,
 }) => {
   const router = useRouter();
+  const { closeModal } = useModal();
 
   const {
     register,
@@ -100,6 +102,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     if (state.message === "add") {
       setFormSubmitted((prev) => !prev);
       toast.success("旅程を保存しました！");
+      closeModal();
     } else if (state.message === "edit") {
       toast.success("旅程を編集しました！");
       router.replace(`/memorybook/${tripId}/itinerary/`);

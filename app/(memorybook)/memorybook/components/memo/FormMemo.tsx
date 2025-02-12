@@ -13,6 +13,7 @@ import InputHidden from "@/app/components/ui/form/InputHidden";
 
 import type { MemoFormState } from "../../types/formState";
 import type { MemoFormType } from "../../types/formType";
+import { useModal } from "@/app/hooks/useModal";
 
 type FormMemoProps = {
   memos?: Memo[] | undefined | null;
@@ -35,6 +36,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
   tripId,
 }) => {
   const router = useRouter();
+  const { closeModal } = useModal();
   const {
     register,
     handleSubmit,
@@ -42,7 +44,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
   } = useForm<MemoFormType>({
     mode: "onBlur",
   });
-
+  
   const initialState = { message: null, errors: { name: undefined } };
   const [state, dispatch] = useFormState<MemoFormState, FormData>(
     formAction,
@@ -66,6 +68,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
   useEffect(() => {
     if (state.message === "add") {
       toast.success("メモを保存しました！");
+      closeModal();
     } else if (state.message === "edit") {
       toast.success("メモを編集しました！");
       router.replace(`/memorybook/${tripId}/memo`);

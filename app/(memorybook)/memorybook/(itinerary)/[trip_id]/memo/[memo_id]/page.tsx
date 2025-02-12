@@ -8,6 +8,7 @@ import {
 import FormMemo from "@/app/(memorybook)/memorybook/components/memo/FormMemo";
 import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 import Button from "@/app/components/ui/button/Button";
+import FormLayout from "@/app/(memorybook)/memorybook/components/layout/FormLayout";
 
 const Page = async ({
   params,
@@ -33,16 +34,14 @@ const Page = async ({
       <h3 className="p-5 my-4 text-xl font-semibold rounded text-white bg-itinerary-heading">
         メモの編集
       </h3>
-      <div className="flex items-center justify-center">
-        <div className="w-full border py-4 px-6 border-itinerary-borderGray rounded bg-white max-w-[620px]">
-          <FormMemo
-            formAction={updateMemoWidthId}
-            memo={memo}
-            buttonName="保存"
-            tripId={trip.id}
-          />
-        </div>
-      </div>
+      <FormLayout>
+        <FormMemo
+          formAction={updateMemoWidthId}
+          memo={memo}
+          buttonName="保存"
+          tripId={trip.id}
+        />
+      </FormLayout>
       <Link href={`/memorybook/${trip.id}/memo`}>
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル

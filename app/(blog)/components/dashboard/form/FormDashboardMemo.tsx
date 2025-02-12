@@ -92,7 +92,6 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
             placeholder="メモする内容を記載しましょう。"
             defaultValue={dashboardMemo?.content}
             register={register}
-            required={true}
             error={errors.content?.message || state.errors?.content}
           />
           {state.message &&

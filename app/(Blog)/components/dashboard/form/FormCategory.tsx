@@ -9,11 +9,16 @@ import TextArea from "@/app/components/ui/form/TextArea";
 import FormImage from "@/app/components/ui/form/FormImage";
 
 import type { CategoryFormState } from "@/app/(blog)/types/formState";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { CategoryFormType } from "@/app/(blog)/types/formTypes";
 
 type FormCategoryProps = {
   category?: (Category & { postImage: PostImage | null }) | null;
   buttonName: string;
-  formAction: (state: CategoryFormState, data: FormData) => Promise<CategoryFormState>;
+  formAction: (
+    state: CategoryFormState,
+    data: FormData
+  ) => Promise<CategoryFormState>;
 };
 
 type Category = {
@@ -36,6 +41,13 @@ const FormCategory: React.FC<FormCategoryProps> = ({
   buttonName,
   formAction,
 }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CategoryFormType>({
+    mode: "onBlur",
+  });
   const initialState = {
     message: null,
     errors: { name: undefined, slug: undefined, altText: undefined },
@@ -46,26 +58,51 @@ const FormCategory: React.FC<FormCategoryProps> = ({
     initialState
   );
 
+  const onSubmit: SubmitHandler<CategoryFormType> = async (data) => {
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("slug", data.slug);
+    formData.append("description", data.description || "");
+    formData.append("title", data.title || "");
+    formData.append("content", data.content || "");
+    if (data.image) {
+      if (data.image instanceof FileList) {
+        formData.append("image", data.image[0]);
+      } else if (data.image instanceof File) {
+        formData.append("image", data.image);
+      }
+    }
+    if (data.altText) formData.append("altText", data.altText);
+    try {
+      dispatch(formData);
+    } catch (error) {
+      console.error("エラーが発生しました:", error);
+    }
+  };
+
   return (
     <FormContainer>
-      <form action={dispatch}>
-        {state.message && <p className="text-red-500">{state.message}</p>}
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           name="name"
           label="カテゴリ名"
-          placeholder={"カテゴリ名を入力してください。"}
+          placeholder="カテゴリ名を入力してください。"
           defaultValue={category?.name}
+          register={register}
+          required={true}
+          error={errors.name?.message || state.errors?.name}
         />
-        {state.errors && <p className="text-red-500">{state.errors.name}</p>}
         <Input
           name="slug"
           label="スラッグ"
           placeholder={
-            "カテゴリのスラッグを半角小文字の英数字で入力してください。"
+            "スラッグを半角小文字の英数字で入力してください。"
           }
           defaultValue={category?.slug}
+          register={register}
+          required={true}
+          error={errors.slug?.message || state.errors?.slug}
         />
-        {state.errors && <p className="text-red-500">{state.errors.slug}</p>}
         <TextArea
           name="description"
           label="カテゴリの説明(description)"
@@ -73,6 +110,8 @@ const FormCategory: React.FC<FormCategoryProps> = ({
             "カテゴリの説明(description)を入力してください。この項目は必須ではありません。"
           }
           defaultValue={category?.description ?? ""}
+          register={register}
+          error={errors.description?.message || state.errors?.description}
         />
         <p className="border-b my-5 pb-2 font-semibold">
           カテゴリを記事にする(カテゴリにコンテンツを表示)
@@ -84,6 +123,8 @@ const FormCategory: React.FC<FormCategoryProps> = ({
             "カテゴリのタイトルを入力してください。カテゴリページにタイトルが表示されます。この項目は必須ではありません。"
           }
           defaultValue={category?.title || undefined}
+          register={register}
+          error={errors.title?.message || state.errors?.title}
         />
         <TextArea
           name="content"
@@ -92,13 +133,16 @@ const FormCategory: React.FC<FormCategoryProps> = ({
             "カテゴリの内容を入力してください。カテゴリページに表示がされます。この項目は必須ではありません。"
           }
           defaultValue={category?.content || undefined}
+          register={register}
+          error={errors.content?.message || state.errors?.content}
         />
         <FormImage
-          selectImage={category?.postImage}
           state={state}
-          label="画像の名前(alt)"
-          placeholder="どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます"
+          selectImage={category?.postImage}
+          register={register}
+          defaultValue={category?.postImage?.altText}
         />
+        {state.message && <p className="text-red-500">{state.message}</p>}
         <Button color="blue" size="normal" className="rounded mt-4">
           {buttonName}
         </Button>

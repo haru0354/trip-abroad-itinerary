@@ -65,25 +65,25 @@ export const authOptions: NextAuthOptions = {
       id: "blog",
       name: "blog",
       credentials: {
-        username: { label: "Username", type: "text" },
-        password: { label: "Password", type: "password" },
+        id: { label: "id", type: "text" },
+        password: { label: "password", type: "password" },
       },
 
       async authorize(credentials, req) {
-        const { ADMIN_USERNAME, ADMIN_PASSWORD } = process.env;
-        const { username, password } = credentials || {
-          username: "",
+        const { ADMIN_ID, ADMIN_PASSWORD } = process.env;
+        const { id, password } = credentials || {
+          id: "",
           password: "",
         };
 
-        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        if (id === ADMIN_ID && password === ADMIN_PASSWORD) {
           return {
-            id: ADMIN_USERNAME || "",
+            id: ADMIN_ID || "",
             role: "admin",
-            email: username || null,
+            email: id || null,
           };
-        } else if (username !== ADMIN_USERNAME) {
-          throw new Error("ユーザー名が間違っています");
+        } else if (id !== ADMIN_ID) {
+          throw new Error("IDが間違っています");
         } else if (password !== ADMIN_PASSWORD) {
           throw new Error("パスワードが間違っています");
         } else {

@@ -11,7 +11,7 @@ const ListImages = async () => {
   return (
     <>
       <HeadingTwo>画像ライブラリー</HeadingTwo>
-      <div className="flex flex-wrap w-full items-center justify-center">
+      <div className="flex flex-wrap w-full items-center justify-start">
         {sortedImages.map((image) => {
           return (
             <Link href={`/dashboard/image/${image.id}`} key={image.id}>

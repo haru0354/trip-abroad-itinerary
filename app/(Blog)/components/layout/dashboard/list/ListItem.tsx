@@ -21,7 +21,7 @@ const ListItem: React.FC<ListItemProps> = ({ items, editHref, pageHref }) => {
             key={index}
             className={` w-full mb-0 px-2 sm:w-auto ${
               index === items.length - 1
-                ? "min-w-[650px]"
+                ? "min-w-[300px]"
                 : "min-w-[140px] sm:border-r border-blog-borderBlack"
             }`}
           >

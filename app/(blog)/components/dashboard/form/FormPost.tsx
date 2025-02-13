@@ -2,6 +2,7 @@
 
 import { useFormState } from "react-dom";
 import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import DOMPurify from "dompurify";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
@@ -13,6 +14,7 @@ import FormImage from "@/app/components/ui/form/FormImage";
 import Checkbox from "@/app/components/ui/form/Checkbox";
 
 import type { PostFormState } from "@/app/(blog)/types/formState";
+import type { PostFormType } from "@/app/(blog)/types/formTypes";
 
 type FormPostProps = {
   post?: (Post & { category: Category; postImage: PostImage | null }) | null;
@@ -42,13 +44,20 @@ type Post = {
   draft: boolean;
 };
 
-
 const FormPost: React.FC<FormPostProps> = ({
   post,
   categories,
   formAction,
   buttonName,
 }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PostFormType>({
+    mode: "onBlur",
+  });
+
   const initialState = {
     message: null,
     errors: {
@@ -72,77 +81,95 @@ const FormPost: React.FC<FormPostProps> = ({
     setIsDraft(!isDraft);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+  const onSubmit: SubmitHandler<PostFormType> = async (data) => {
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("categoryId", data.categoryId);
+    formData.append("slug", data.slug);
+    formData.append("content", data.content);
+    formData.append("description", data.description);
+    formData.append("draft", isDraft.toString());
 
-    const sanitizedFormData = new FormData();
+    if (data.image) {
+      if (data.image instanceof FileList) {
+        formData.append("image", data.image[0]);
+      } else if (data.image instanceof File) {
+        formData.append("image", data.image);
+      }
+    }
+
+    if (data.altText) formData.append("altText", data.altText);
+
     for (const [key, value] of formData.entries()) {
       if (key !== "image" && typeof value === "string") {
         const sanitizedValue = DOMPurify.sanitize(value, {
           ADD_TAGS: ["next"],
           ADD_ATTR: ["href"],
         });
-        sanitizedFormData.append(key, sanitizedValue);
-      } else {
-        sanitizedFormData.append(key, value);
+        formData.set(key, sanitizedValue);
       }
     }
-    sanitizedFormData.set("draft", isDraft.toString());
 
-    dispatch(sanitizedFormData);
+    try {
+      dispatch(formData);
+    } catch (error) {
+      console.error("エラーが発生しました:", error);
+    }
   };
 
   return (
     <FormContainer>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           name="title"
           label="記事のタイトル"
           defaultValue={post?.title}
           placeholder="記事のタイトルを31文字を目安に入力してください。"
+          register={register}
+          required={true}
+          error={errors.title?.message || state.errors?.title}
         />
-        {state.errors && state.errors.title && (
-          <p className="text-red-500">{state.errors.title}</p>
-        )}
         <Select
           label="カテゴリ"
           name="categoryId"
           categories={categories}
           defaultValue={category?.id}
+          register={register}
+          required={true}
+          error={errors.categoryId?.message || state.errors?.categoryId}
         />
         <Input
           name="slug"
           label="スラッグ"
           defaultValue={post?.slug}
           placeholder="記事のスラッグを入力してください。"
+          register={register}
+          required={true}
+          error={errors.slug?.message || state.errors?.slug}
         />
-        {state.errors && state.errors.slug && (
-          <p className="text-red-500">{state.errors.slug}</p>
-        )}
         <TextArea
           name="content"
           label="記事の内容"
           defaultValue={post?.content}
           placeholder="記事の内容をこちらに入力してください。"
+          register={register}
+          required={true}
+          error={errors.content?.message || state.errors?.content}
         />
-        {state.errors && state.errors.content && (
-          <p className="text-red-500">{state.errors.content}</p>
-        )}
         <TextArea
           name="description"
           label="記事の説明(description)"
           defaultValue={post?.description}
           placeholder="120文字を目安に記入してください。"
+          register={register}
+          required={true}
+          error={errors.description?.message || state.errors?.description}
         />
-        {state.errors && state.errors.description && (
-          <p className="text-red-500">{state.errors.description}</p>
-        )}
         <FormImage
           selectImage={post?.postImage}
           state={state}
-          label="画像の名前(alt)"
-          placeholder="どんな画像か入力してください。検索エンジンが画像を認識するのに役立ちます"
+          register={register}
+          defaultValue={post?.postImage?.altText}
         />
         <Checkbox
           checked={isDraft}
@@ -151,6 +178,7 @@ const FormPost: React.FC<FormPostProps> = ({
           label="記事の公開設定"
           onChange={handleToggle}
         />
+        {state.message && <p className="text-red-500">{state.message}</p>}
         <Button color="blue" size="normal" className="rounded mt-4">
           {buttonName}
         </Button>

@@ -8,6 +8,18 @@ export type DashboardMemoFormType = {
   content: string;
 };
 
+export type PostFormType = {
+  name: string;
+  slug: string;
+  categoryId: string;
+  description: string;
+  title: string;
+  content: string;
+  draft: boolean;
+  image?: File;
+  altText?: string;
+};
+
 export type CategoryFormType = {
   name: string;
   slug: string;

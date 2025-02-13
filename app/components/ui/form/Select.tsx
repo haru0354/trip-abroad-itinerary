@@ -6,6 +6,7 @@ type SelectProps = {
   categories?: Category[] | null;
   defaultValue?: number;
   post?: Category | null;
+  error?: string | string[];
 };
 
 type Category = {
@@ -20,6 +21,7 @@ const Select: React.FC<SelectProps> = ({
   required,
   categories,
   defaultValue,
+  error,
 }) => {
   return (
     <>
@@ -40,6 +42,7 @@ const Select: React.FC<SelectProps> = ({
           </option>
         ))}
       </select>
+      {error && <p className="text-red-500 text-sm my-2">{error}</p>}
     </>
   );
 };

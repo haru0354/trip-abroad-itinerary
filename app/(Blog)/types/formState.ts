@@ -3,6 +3,9 @@ export type CategoryFormState = {
   errors?: {
     name?: string[] | undefined;
     slug?: string[] | undefined;
+    description?: string[] | undefined;
+    title?: string[] | undefined;
+    content?: string[] | undefined;
     image?: string[] | undefined;
     altText?: string[] | undefined;
   };

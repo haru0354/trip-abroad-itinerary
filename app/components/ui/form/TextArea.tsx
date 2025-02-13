@@ -25,13 +25,15 @@ const TextArea: React.FC<TextAreaProps> = ({
   minLength,
   error,
 }) => {
+  const errorFiledColor = error ? "border-red-500" : "";
+
   return (
     <>
       <label htmlFor={label} className="block mb-1 mt-4 text-sm font-bold">
         {label}
       </label>
       <TextareaAutosize
-        className="w-full min-h-[100px] h-26 py-2 px-3 shadow border rounded"
+        className={`w-full min-h-[100px] h-26 py-2 px-3 border rounded shadow ${errorFiledColor}`}
         name={name}
         id={label}
         placeholder={placeholder}

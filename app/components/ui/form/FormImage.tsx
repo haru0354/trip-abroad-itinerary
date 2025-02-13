@@ -14,6 +14,8 @@ type FormImageProps = {
   formSubmitted?: boolean;
   defaultValue?: string | null | undefined;
   register: any;
+  required?: boolean;
+  error?: string | string[];
 };
 
 type PostImage = {
@@ -27,8 +29,11 @@ const FormImage: React.FC<FormImageProps> = ({
   formSubmitted,
   defaultValue,
   register,
+  required = false,
+  error,
 }) => {
-  const [error, setError] = useState<string>("");
+  const [fileErrorMessage, setFileErrorMessage] = useState<string>("");
+
   const [image, setImage] = useState<{ preview: string; data: File | string }>({
     preview: "",
     data: "",
@@ -42,13 +47,17 @@ const FormImage: React.FC<FormImageProps> = ({
 
     if (selectedFile) {
       if (!imageTypes.includes(selectedFile.type)) {
-        setError("JPEG、PNG、GIF形式の画像ファイルを選択してください");
+        setFileErrorMessage(
+          "JPEG、PNG、GIF形式の画像ファイルを選択してください"
+        );
         e.target.value = "";
         return;
       }
 
       if (selectedFile.size > maxSizeInBytes) {
-        setError("画像サイズが大きすぎます。アップロードできる画像は1MBです。");
+        setFileErrorMessage(
+          "画像サイズが大きすぎます。アップロードできる画像は1MBです。"
+        );
         e.target.value = "";
         return;
       }
@@ -58,7 +67,7 @@ const FormImage: React.FC<FormImageProps> = ({
         data: selectedFile,
       };
       setImage(img);
-      setError("");
+      setFileErrorMessage("");
     } else {
       console.error("ファイルが選択されていません");
       return;
@@ -113,7 +122,7 @@ const FormImage: React.FC<FormImageProps> = ({
         register={register}
         onChange={handleFileChange}
         key={fileInputKey}
-        error={error || state?.errors?.image}
+        error={fileErrorMessage || state?.errors?.image}
       />
       <Input
         name="altText"
@@ -121,7 +130,8 @@ const FormImage: React.FC<FormImageProps> = ({
         placeholder="何の画像か入力してください。"
         register={register}
         defaultValue={defaultValue}
-        error={state?.errors?.altText}
+        required={required}
+        error={error || state?.errors?.altText}
       />
     </>
   );

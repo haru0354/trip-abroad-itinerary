@@ -29,3 +29,8 @@ export type CategoryFormType = {
   image?: File;
   altText?: string;
 };
+
+export type PostImageFormType = {
+  image: File;
+  altText: string;
+};

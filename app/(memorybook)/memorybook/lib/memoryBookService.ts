@@ -28,7 +28,10 @@ export async function getTrips() {
   }
 }
 
-export async function getTrip(includeOptions?: "itineraries" | "memos") {
+export async function getTrip(
+  tripId: number,
+  includeOptions?: "itineraries" | "memos"
+) {
   try {
     const sessionUserId = await getCurrentUserId();
 
@@ -56,10 +59,15 @@ export async function getTrip(includeOptions?: "itineraries" | "memos") {
 
     const trip = await prisma.trip.findUnique({
       where: {
-        id: sessionUserId,
+        id: tripId,
       },
       include: include,
     });
+
+    if (sessionUserId !== trip?.userId) {
+      console.error("権限の確認に失敗しました。");
+      return;
+    }
 
     if (!trip) {
       console.error("個別の旅行データが取得できませんでした。");

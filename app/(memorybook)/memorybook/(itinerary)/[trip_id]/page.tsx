@@ -12,7 +12,7 @@ import Button from "@/app/components/ui/button/Button";
 const Page = async ({ params }: { params: { trip_id: string } }) => {
   const tripId = Number(params.trip_id);
   const updateTripWidthId = updateTrip.bind(null, tripId);
-  const trip = await getTrip();
+  const trip = await getTrip(tripId);
 
   if (!trip) {
     console.error("個別の旅行データの取得に失敗しました。");

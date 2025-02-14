@@ -16,12 +16,15 @@ const page = async ({
   params: { itinerary_id: string; trip_id: string };
 }) => {
   const itineraryId = Number(params.itinerary_id);
+  const tripId = Number(params.trip_id);
+
   const updateItineraryWithId = updateItinerary.bind(null, itineraryId);
 
-  const trip = await getTrip(params.trip_id);
+  const trip = await getTrip(tripId);
 
   if (!trip) {
-    return <div>旅行データが見つかりません。</div>;
+    console.error("個別の旅行データの取得に失敗しました。");
+    return;
   }
 
   const itinerary = await getItinerary(params.itinerary_id);

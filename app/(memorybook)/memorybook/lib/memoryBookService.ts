@@ -81,16 +81,36 @@ export async function getTrip(
   }
 }
 
-export async function getMemo(memoId: string) {
-  const id = Number(memoId);
+export async function getMemo(memoId: number) {
+  try {
+    const sessionUserId = await getCurrentUserId();
 
-  const memo = await prisma.memo.findUnique({
-    where: {
-      id,
-    },
-  });
+    if (!sessionUserId) {
+      console.error("userIdの取得に失敗しました。");
+      throw new Error("ユーザーIDを取得できませんでした。");
+    }
 
-  return memo;
+    const memo = await prisma.memo.findUnique({
+      where: {
+        id: memoId,
+      },
+    });
+
+    if (!memo) {
+      console.error("個別のメモが取得できませんでした。");
+      return;
+    }
+
+    if (sessionUserId !== memo?.userId) {
+      console.error("権限の確認に失敗しました。");
+      return;
+    }
+
+    return memo;
+  } catch (error) {
+    console.log("個別のメモの取得に失敗しました。", error);
+    return;
+  }
 }
 
 export async function getItinerary(itineraryId: string) {

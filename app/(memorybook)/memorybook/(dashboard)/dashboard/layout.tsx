@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
-import { getCurrentUserId } from "@/app/lib/getCurrentUser";
+
 import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import SideMenu from "../../components/dashboard/side-menu/SideMenu";
 import Loading from "@/app/Loading";
@@ -22,8 +22,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentUserId = (await getCurrentUserId()) ?? undefined;
-  const trips = await getTrips(currentUserId);
+  const trips = await getTrips();
 
   return (
     <>

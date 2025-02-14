@@ -12,7 +12,7 @@ const page = async () => {
   return (
     <>
       <Suspense fallback={<Loading message="作成した旅行のしおり" />}>
-        <ListTrip userId={currentUserId} />
+        <ListTrip />
       </Suspense>
       <FormTrip
         buttonName="追加"

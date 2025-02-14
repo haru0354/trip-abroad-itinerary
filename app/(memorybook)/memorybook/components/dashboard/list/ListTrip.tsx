@@ -1,19 +1,14 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
+
 import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import ButtonImage from "@/app/components/ui/button/ButtonImage";
 
-type ListTripProps = {
-  userId?: number | undefined;
-};
+const ListTrip = async () => {
+  const trips = await getTrips();
 
-const ListTrip: React.FC<ListTripProps> = async ({
-  userId,
-}) => {
-  const trips = await getTrips(userId);
-
-  const sortedTrips = trips.sort((a, b) => {
+  const sortedTrips = trips?.sort((a, b) => {
     if (a.startDate === null && b.startDate === null) {
       return 0;
     }
@@ -61,7 +56,7 @@ const ListTrip: React.FC<ListTripProps> = async ({
       <h2 className="bg-itinerary-heading">旅行のしおり一覧</h2>
       <div className="w-full bg-white rounded">
         <div className="flex flex-wrap items-center justify-center my-10 mx-4">
-          {sortedTrips.map((trip) => {
+          {sortedTrips?.map((trip) => {
             return (
               <div
                 key={trip.id}

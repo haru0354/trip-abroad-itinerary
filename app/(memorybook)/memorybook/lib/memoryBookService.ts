@@ -1,19 +1,34 @@
+import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import prisma from "@/app/lib/prisma";
 
-export async function getTrips(userId?: number) {
-  const trips = await prisma.trip.findMany({
-    where: {
-      userId,
-    }
-  });
+export async function getTrips() {
+  try {
+    const sessionUserId = await getCurrentUserId();
 
-  return trips;
+    if (!sessionUserId) {
+      console.error("userIdの取得に失敗しました。");
+      throw new Error("ユーザーIDを取得できませんでした。");
+    }
+
+    const trips = await prisma.trip.findMany({
+      where: {
+        userId: sessionUserId,
+      },
+    });
+
+    if (trips.length === 0) {
+      console.log("旅行データの一覧が見つかりませんでした。");
+      return [];
+    }
+
+    return trips;
+  } catch (error) {
+    console.log("旅行の一覧の取得に失敗しました。");
+    return;
+  }
 }
 
-export async function getTrip(
-  tripId: string,
-  includeOptions?: string
-) {
+export async function getTrip(tripId: string, includeOptions?: string) {
   const id = Number(tripId);
 
   let include: {

@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { addTrip } from "@/app/(memorybook)/memorybook/action/actionTrip";
 import FormTrip from "../../components/trip/FormTrip";
-import ListTrip from "../../components/dashboard/list/ListTrip";
+import ListTrip from "../../components/trip/ListTrip";
 import ListShare from "../../components/dashboard/list/ListShare";
 import Loading from "@/app/Loading";
 

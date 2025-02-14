@@ -20,7 +20,7 @@ export const addTrip = async (state: TripFormState, data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "再度ログインをし直してください。" };
+    return { message: "再度ログインのやり直しが必要です。" };
   }
 
   const validateDate = {
@@ -47,6 +47,7 @@ export const addTrip = async (state: TripFormState, data: FormData) => {
         user: { connect: { id: Number(userId) } },
       },
     });
+
     const createdTripId = createdTrip.id;
     revalidatePath("/memorybook/dashboard");
     return { message: "add", createdTripId: createdTripId };
@@ -62,14 +63,14 @@ export const deleteTrip = async (data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "再度ログインをし直してください。" };
+    return { message: "再度ログインのやり直しが必要です。" };
   }
 
   const idValidTripOwner = await validateTripOwner(id);
 
   if (!idValidTripOwner) {
     console.error("権限の確認に失敗しました");
-    return;
+    return { message: "権限のエラー。再度ログインのやり直しが必要です。" };
   }
 
   try {
@@ -78,6 +79,7 @@ export const deleteTrip = async (data: FormData) => {
         id: Number(id),
       },
     });
+
     console.log("旅行の削除をしました。");
   } catch (error) {
     console.error("旅行の削除中にエラーが発生しました:", error);
@@ -99,7 +101,7 @@ export const updateTrip = async (
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "再度ログインをし直してください。" };
+    return { message: "再度ログインのやり直しが必要です。" };
   }
 
   const tripId = String(id);
@@ -107,7 +109,7 @@ export const updateTrip = async (
 
   if (!idValidTripOwner) {
     console.error("権限の確認に失敗しました");
-    return {};
+    return { message: "権限のエラー。再度ログインのやり直しが必要です。" };
   }
 
   const validateDate = {
@@ -137,6 +139,7 @@ export const updateTrip = async (
         user: { connect: { id: Number(userId) } },
       },
     });
+
     revalidatePath("/memorybook/dashboard");
     return { message: "edit" };
   } catch (error) {
@@ -151,7 +154,7 @@ export const updateShare = async (id: number, data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "再度ログインをし直してください。" };
+    return { message: "再度ログインのやり直しが必要です。" };
   }
 
   const tripId = String(id);
@@ -159,7 +162,7 @@ export const updateShare = async (id: number, data: FormData) => {
 
   if (!idValidTripOwner) {
     console.error("権限の確認に失敗しました");
-    return {};
+    return { message: "権限のエラー。再度ログインのやり直しが必要です。" };
   }
 
   try {

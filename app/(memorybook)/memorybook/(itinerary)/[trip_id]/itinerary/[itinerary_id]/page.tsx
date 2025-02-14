@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { updateItinerary } from "@/app/(memorybook)/memorybook/action/actionItinerary";
 import { deleteItinerary } from "@/app/(memorybook)/memorybook/action/actionItinerary";
 import {
@@ -23,11 +24,16 @@ const page = async ({
   const trip = await getTrip(tripId);
 
   if (!trip) {
-    console.error("個別の旅行データの取得に失敗しました。");
+    console.error("個別の旅行データが取得できませんでした。");
     return;
   }
 
-  const itinerary = await getItinerary(params.itinerary_id);
+  const itinerary = await getItinerary(itineraryId);
+
+  if (!itinerary) {
+    console.error("個別の旅程が取得できませんでした。");
+    return;
+  }
 
   return (
     <>

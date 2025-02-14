@@ -123,7 +123,8 @@ export const deleteItinerary = async (data: FormData) => {
     return { message: "もう一度やり直してください" };
   }
 
-  const itinerary = await getItinerary(itineraryId);
+  const itineraryNumber = Number(itineraryId)
+  const itinerary = await getItinerary(itineraryNumber);
 
   if (!itinerary) {
     console.error("指定した旅程が見つかりませんでした。");
@@ -232,8 +233,7 @@ export const updateItinerary = async (
       }
     }
 
-    const itineraryIdString = itineraryId.toString();
-    const itinerary = await getItinerary(itineraryIdString);
+    const itinerary = await getItinerary(itineraryId);
 
     if (itinerary?.url) {
       try {

@@ -11,7 +11,7 @@ import Input from "@/app/components/ui/form/Input";
 import Date from "@/app/components/ui/form/Date";
 
 import type { TripFormState } from "@/app/(memorybook)/memorybook/types/formState";
-import type { TripFormType } from "../../../types/formType";
+import type { TripFormType } from "../../types/formType";
 
 type FormTripProps = {
   trip?: Trip | null;

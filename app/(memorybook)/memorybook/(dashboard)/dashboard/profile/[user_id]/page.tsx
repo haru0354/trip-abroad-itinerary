@@ -3,8 +3,8 @@ import { updateProfile } from "@/app/(memorybook)/memorybook/action/actionProfil
 import { updatePassword } from "@/app/(memorybook)/memorybook/action/actionProfile";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import prisma from "@/app/lib/prisma";
-import FormProfile from "@/app/(memorybook)/memorybook/components/dashboard/form/FormProfile";
-import FormPassword from "@/app/(memorybook)/memorybook/components/dashboard/form/FormPassword";
+import FormProfile from "@/app/(memorybook)/memorybook/components/user/form/FormProfile";
+import FormPassword from "@/app/(memorybook)/memorybook/components/user/form/FormPassword";
 import Button from "@/app/components/ui/button/Button";
 import DeleteUserModal from "@/app/(memorybook)/memorybook/components/dashboard/DeleteUserModal";
 

@@ -113,14 +113,34 @@ export async function getMemo(memoId: number) {
   }
 }
 
-export async function getItinerary(itineraryId: string) {
-  const id = Number(itineraryId);
+export async function getItinerary(itineraryId: number) {
+  try {
+    const sessionUserId = await getCurrentUserId();
 
-  const itinerary = await prisma.itinerary.findUnique({
-    where: {
-      id,
-    },
-  });
+    if (!sessionUserId) {
+      console.error("userIdの取得に失敗しました。");
+      throw new Error("ユーザーIDを取得できませんでした。");
+    }
 
-  return itinerary;
+    const itinerary = await prisma.itinerary.findUnique({
+      where: {
+        id: itineraryId,
+      },
+    });
+
+    if (!itinerary) {
+      console.error("個別の旅程が取得できませんでした。");
+      return;
+    }
+
+    if (sessionUserId !== itinerary?.userId) {
+      console.error("権限の確認に失敗しました。");
+      return;
+    }
+
+    return itinerary;
+  } catch (error) {
+    console.log("個別の旅程の取得に失敗しました。", error);
+    return;
+  }
 }

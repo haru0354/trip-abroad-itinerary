@@ -28,34 +28,49 @@ export async function getTrips() {
   }
 }
 
-export async function getTrip(tripId: string, includeOptions?: string) {
-  const id = Number(tripId);
+export async function getTrip(includeOptions?: "itineraries" | "memos") {
+  try {
+    const sessionUserId = await getCurrentUserId();
 
-  let include: {
-    itineraries?: boolean;
-    memos?: boolean;
-  } = { itineraries: false, memos: false };
+    if (!sessionUserId) {
+      console.error("userIdの取得に失敗しました。");
+      throw new Error("ユーザーIDを取得できませんでした。");
+    }
 
-  if (includeOptions === "itineraries") {
-    include = {
-      itineraries: true,
-    };
+    let include: {
+      itineraries?: boolean;
+      memos?: boolean;
+    } = { itineraries: false, memos: false };
+
+    if (includeOptions === "itineraries") {
+      include = {
+        itineraries: true,
+      };
+    }
+
+    if (includeOptions === "memos") {
+      include = {
+        memos: true,
+      };
+    }
+
+    const trip = await prisma.trip.findUnique({
+      where: {
+        id: sessionUserId,
+      },
+      include: include,
+    });
+
+    if (!trip) {
+      console.error("個別の旅行データが取得できませんでした。");
+      return;
+    }
+
+    return trip;
+  } catch (error) {
+    console.log("個別の旅行データの取得に失敗しました。", error);
+    return;
   }
-
-  if (includeOptions === "memos") {
-    include = {
-      memos: true,
-    };
-  }
-
-  const trip = await prisma.trip.findUnique({
-    where: {
-      id,
-    },
-    include: include,
-  });
-
-  return trip;
 }
 
 export async function getMemo(memoId: string) {

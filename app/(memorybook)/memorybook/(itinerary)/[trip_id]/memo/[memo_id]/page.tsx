@@ -18,8 +18,13 @@ const Page = async ({
   const memoId = Number(params.memo_id);
   const tripId = Number(params.trip_id);
 
-  const memo = await getMemo(params.memo_id);
+  const memo = await getMemo(memoId);
 
+  if (!memo) {
+    console.error("個別のメモの取得に失敗しました。");
+    return;
+  }
+  
   const trip = await getTrip(tripId);
 
   if (!trip) {

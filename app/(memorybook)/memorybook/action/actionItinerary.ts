@@ -29,22 +29,23 @@ export const addItinerary = async (
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "ログインをし直してください。" };
+    return { message: "再度ログインのやり直しが必要です。" };
   }
 
   const tripId = data.get("tripId") as string;
 
   if (!tripId) {
     console.error("旅行プランの指定が正しくありません");
-    return { message: "もう一度やり直してください" };
+    return { message: "旅程の登録をやり直してください。" };
   }
 
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
     console.error("権限の確認に失敗しました");
-    return { message: "もう一度やり直してください" };
+    return { message: "権限のエラー。再度ログインのやり直しが必要です。" };
   }
+
   const validateDate = {
     date,
     time,
@@ -68,6 +69,7 @@ export const addItinerary = async (
     content,
     hideContent,
     trip: { connect: { id: Number(tripId) } },
+    user: { connect: { id: userId } },
   };
 
   if (image && image.size > 0) {
@@ -106,24 +108,25 @@ export const deleteItinerary = async (data: FormData) => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "ログインをし直してください。" };
+    return { message: "再度ログインのやり直しが必要です。" };
   }
 
   const tripId = data.get("tripId") as string;
 
   if (!tripId) {
     console.error("旅行プランの指定が正しくありません");
-    return { message: "もう一度やり直してください" };
+    return { message: "旅程の削除をやり直してください。" };
   }
 
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
     console.error("権限の確認に失敗しました");
-    return { message: "もう一度やり直してください" };
+    return { message: "権限のエラー。再度ログインのやり直しが必要です。" };
   }
 
-  const itinerary = await getItinerary(itineraryId);
+  const itineraryNumber = Number(itineraryId);
+  const itinerary = await getItinerary(itineraryNumber);
 
   if (!itinerary) {
     console.error("指定した旅程が見つかりませんでした。");
@@ -173,21 +176,21 @@ export const updateItinerary = async (
 
   if (!userId) {
     console.error("認証がされていません。");
-    return { message: "ログインをし直してください。" };
+    return { message: "再度ログインのやり直しが必要です。" };
   }
 
   const tripId = data.get("tripId") as string;
 
   if (!tripId) {
     console.error("旅行プランの指定が正しくありません");
-    return { message: "もう一度やり直してください" };
+    return { message: "旅程の編集をやり直してください。" };
   }
 
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
     console.error("権限の確認に失敗しました");
-    return { message: "もう一度やり直してください" };
+    return { message: "権限のエラー。再度ログインのやり直しが必要です。" };
   }
 
   const validateDate = {
@@ -232,8 +235,7 @@ export const updateItinerary = async (
       }
     }
 
-    const itineraryIdString = itineraryId.toString();
-    const itinerary = await getItinerary(itineraryIdString);
+    const itinerary = await getItinerary(itineraryId);
 
     if (itinerary?.url) {
       try {

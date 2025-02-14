@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/util/authOptions";
+
 import prisma from "@/app/lib/prisma";
+import { authOptions } from "@/app/util/authOptions";
 
 export async function getCurrentUser() {
   try {
@@ -22,7 +23,11 @@ export async function getCurrentUser() {
 
     return response;
   } catch (error) {
-    return null;
+    console.error(
+      "セッション中のユーザーの取得中にエラーが発生しました:",
+      error
+    );
+    return;
   }
 }
 
@@ -47,7 +52,8 @@ export async function getCurrentUserId() {
     const userId = response.id;
     return userId;
   } catch (error) {
-    return null;
+    console.error("userIdの取得中にエラーが発生しました:", error);
+    return;
   }
 }
 
@@ -63,7 +69,7 @@ export async function getCurrentUserRole() {
 
     return userRole;
   } catch (error) {
-    console.error("セッションの取得に失敗しました:", error);
-    return null;
+    console.error("userRoleの取得中にエラーが発生しました:", error);
+    return;
   }
 }

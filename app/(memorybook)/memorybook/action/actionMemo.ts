@@ -9,6 +9,7 @@ import { validateSchema } from "../../../lib/validateSchema";
 
 import { memoSchema } from "../schema/memoSchema";
 import type { MemoFormState } from "../types/formState";
+import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 
 export const addMemo = async (state: MemoFormState, data: FormData) => {
   const name = data.get("name") as string;
@@ -17,14 +18,14 @@ export const addMemo = async (state: MemoFormState, data: FormData) => {
 
   if (!tripId) {
     console.error("旅行プランの指定が正しくありません");
-    return {};
+    return { message: "メモの登録をやり直してください。" };
   }
 
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
     console.error("権限の確認に失敗しました");
-    return {};
+    return { message: "権限のエラー。再度ログインのやり直しが必要です。" };
   }
 
   const validateDate = {
@@ -40,12 +41,20 @@ export const addMemo = async (state: MemoFormState, data: FormData) => {
     return { errors: validated.errors };
   }
 
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return { message: "再度ログインのやり直しが必要です。" };
+  }
+
   try {
     await prisma.memo.create({
       data: {
         name,
         content,
         trip: { connect: { id: Number(tripId) } },
+        user: { connect: { id: userId } },
       },
     });
     revalidatePath(`/memorybook/${tripId}/memo`);
@@ -62,14 +71,14 @@ export const deleteMemo = async (data: FormData) => {
 
   if (!tripId) {
     console.error("旅行プランの指定が正しくありません");
-    return;
+    return { message: "メモの削除をやり直してください。" };
   }
 
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
     console.error("権限の確認に失敗しました");
-    return;
+    return { message: "権限のエラー。再度ログインのやり直しが必要です。" };
   }
 
   try {
@@ -98,14 +107,14 @@ export const updateMemo = async (
 
   if (!tripId) {
     console.error("旅行プランの指定が正しくありません");
-    return {};
+    return { message: "メモの編集をやり直してください。" };
   }
 
   const idValidTripOwner = await validateTripOwner(tripId);
 
   if (!idValidTripOwner) {
     console.error("権限の確認に失敗しました");
-    return {};
+    return { message: "権限のエラー。再度ログインのやり直しが必要です。" };
   }
 
   const validateDate = {

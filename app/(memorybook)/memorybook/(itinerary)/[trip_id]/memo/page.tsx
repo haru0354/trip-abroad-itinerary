@@ -4,10 +4,14 @@ import ListMemo from "../../../components/memo/ListMemo";
 import Loading from "@/app/Loading";
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
-  const trip = await getTrip(
-    params.trip_id,
-    "memos"
-  );
+  const tripId = Number(params.trip_id);
+
+  const trip = await getTrip(tripId, "memos");
+
+  if (!trip) {
+    console.error("個別の旅行データの取得に失敗しました。");
+    return;
+  }
 
   return (
     <>
@@ -15,10 +19,7 @@ const Page = async ({ params }: { params: { trip_id: string } }) => {
         {trip?.name}
       </h2>
       <Suspense fallback={<Loading message="作成したメモ" />}>
-        <ListMemo
-          memos={trip?.memos}
-          tripId={trip?.id}
-        />
+        <ListMemo memos={trip?.memos} tripId={trip?.id} />
       </Suspense>
     </>
   );

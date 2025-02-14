@@ -10,9 +10,14 @@ import FormTrip from "../../components/dashboard/form/FormTrip";
 import Button from "@/app/components/ui/button/Button";
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
-  const id = Number(params.trip_id);
-  const updateTripWidthId = updateTrip.bind(null, id);
-  const trip = await getTrip(params.trip_id);
+  const tripId = Number(params.trip_id);
+  const updateTripWidthId = updateTrip.bind(null, tripId);
+  const trip = await getTrip(tripId);
+
+  if (!trip) {
+    console.error("個別の旅行データの取得に失敗しました。");
+    return;
+  }
 
   return (
     <>

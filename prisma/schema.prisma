@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -20,6 +19,8 @@ model User {
   role                String?
   accounts            Account[]
   Trips               Trip[]
+  memos               Memo[]
+  itineraries         Itinerary[] 
 }
 
 model Account {
@@ -62,6 +63,8 @@ model Memo {
   isCompleted         Boolean @default(false)
   trip                Trip @relation(fields: [tripId], references: [id], onDelete:Cascade)
   tripId              Int
+  user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
+  userId              Int
 }
 
 model Itinerary {
@@ -78,6 +81,8 @@ model Itinerary {
   altText             String?
   trip                Trip @relation(fields: [tripId], references: [id], onDelete:Cascade)
   tripId              Int
+  user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
+  userId              Int
 }
 
 model Post {

@@ -16,12 +16,20 @@ const Page = async ({
   params: { memo_id: string; trip_id: string };
 }) => {
   const memoId = Number(params.memo_id);
-  const memo = await getMemo(params.memo_id);
+  const tripId = Number(params.trip_id);
 
-  const trip = await getTrip(params.trip_id);
+  const memo = await getMemo(memoId);
+
+  if (!memo) {
+    console.error("個別のメモの取得に失敗しました。");
+    return;
+  }
+  
+  const trip = await getTrip(tripId);
 
   if (!trip) {
-    return <div>旅行データが見つかりません。</div>;
+    console.error("個別の旅行データの取得に失敗しました。");
+    return;
   }
 
   const updateMemoWidthId = updateMemo.bind(null, memoId);

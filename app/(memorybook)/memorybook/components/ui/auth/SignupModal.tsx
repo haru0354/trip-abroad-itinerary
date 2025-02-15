@@ -13,6 +13,7 @@ import Input from "@/app/components/ui/form/Input";
 import Button from "@/app/components/ui/button/Button";
 
 import type { UserFormType } from "../../../types/formType";
+import FormLayout from "../../layout/FormLayout";
 
 type SignupModalProps = {
   textButton?: boolean;
@@ -59,10 +60,13 @@ const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
       buttonName="しおりを作成"
       textButton={textButton}
     >
-      <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
-        アカウント作成
-      </p>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full py-3">
+      <FormLayout
+        formTitle="アカウント作成"
+        buttonName="アカウント作成"
+        buttonSize="auth"
+        onSubmit={handleSubmit(onSubmit)}
+        modalLayout={true}
+      >
         <Input
           label="ニックネーム"
           name="name"
@@ -92,10 +96,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
           error={errors.password?.message}
         />
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-        <Button color="blue" size="normal" className="rounded mt-4">
-          アカウント作成
-        </Button>
-      </form>
+      </FormLayout>
     </Modal>
   );
 };

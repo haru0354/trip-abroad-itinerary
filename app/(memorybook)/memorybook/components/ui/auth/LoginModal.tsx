@@ -11,6 +11,7 @@ import Input from "@/app/components/ui/form/Input";
 import Button from "@/app/components/ui/button/Button";
 
 import type { LoginFormType } from "../../../types/formType";
+import FormLayout from "../../layout/FormLayout";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -103,10 +104,13 @@ const LoginModal = () => {
               className="relative w-full max-w-[400px] mx-2 p-4 border rounded border-gray-500 bg-white"
               onClick={(e) => e.stopPropagation()}
             >
-              <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
-                ログインフォーム
-              </p>
-              <form onSubmit={handleSubmit(onSubmit)} className="w-full py-3">
+              <FormLayout
+                formTitle="ログインフォーム"
+                buttonName="ログイン"
+                buttonSize="auth"
+                onSubmit={handleSubmit(onSubmit)}
+                modalLayout={true}
+              >
                 <Input
                   type="email"
                   label="メールアドレス"
@@ -128,10 +132,7 @@ const LoginModal = () => {
                   error={errors.password?.message}
                 />
                 {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-                <Button color="blue" size="auth" className="rounded mt-6">
-                  ログイン
-                </Button>
-              </form>
+              </FormLayout>
               <Button
                 onClick={handleGoogleSignIn}
                 color="blue"

@@ -9,7 +9,8 @@ type FormLayoutProps = {
   action?: (
     data: FormData
   ) => Promise<{ message?: undefined } | { message: string }>;
-  modalLayout: boolean;
+  modalLayout?: boolean;
+  buttonSize?: "normal" | "auth";
   children: React.ReactNode;
 };
 
@@ -19,7 +20,8 @@ const FormLayout: React.FC<FormLayoutProps> = ({
   onSubmit,
   action,
   maxWidth = "max-w-[620px]",
-  modalLayout,
+  modalLayout = false,
+  buttonSize = "normal",
   children,
 }) => {
   const formProps = action ? { action } : onSubmit ? { onSubmit } : {};
@@ -33,7 +35,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({
           </p>
           <form className="w-full py-3" {...formProps}>
             {children}
-            <Button color="blue" size="normal" className="rounded mt-4">
+            <Button color="blue" size={buttonSize} className="rounded mt-4">
               {buttonName}
             </Button>
           </form>
@@ -48,7 +50,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({
             </p>
             <form className="w-full py-3" {...formProps}>
               {children}
-              <Button color="blue" size="normal" className="rounded mt-4">
+              <Button color="blue" size={buttonSize} className="rounded mt-4">
                 {buttonName}
               </Button>
             </form>

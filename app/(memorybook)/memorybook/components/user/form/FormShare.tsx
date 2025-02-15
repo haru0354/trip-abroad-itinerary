@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import Checkbox from "@/app/components/ui/form/Checkbox";
-import Button from "@/app/components/ui/button/Button";
 import FormLayout from "../../layout/FormLayout";
 
 type FormShareProps = {

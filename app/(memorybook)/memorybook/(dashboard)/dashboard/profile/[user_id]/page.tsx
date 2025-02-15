@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { updateProfile } from "@/app/(memorybook)/memorybook/action/actionProfile";
 import { updatePassword } from "@/app/(memorybook)/memorybook/action/actionProfile";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
@@ -6,7 +7,7 @@ import prisma from "@/app/lib/prisma";
 import FormProfile from "@/app/(memorybook)/memorybook/components/user/form/FormProfile";
 import FormPassword from "@/app/(memorybook)/memorybook/components/user/form/FormPassword";
 import Button from "@/app/components/ui/button/Button";
-import DeleteUserModal from "@/app/(memorybook)/memorybook/components/dashboard/DeleteUserModal";
+import DeleteUserModal from "@/app/(memorybook)/memorybook/components/user/DeleteUserModal";
 
 const Page = async () => {
   const userId = await getCurrentUserId();

@@ -1,9 +1,10 @@
 import { Suspense } from "react";
+
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { addTrip } from "@/app/(memorybook)/memorybook/action/actionTrip";
-import FormTrip from "../../components/dashboard/form/FormTrip";
-import ListTrip from "../../components/dashboard/list/ListTrip";
-import ListShare from "../../components/dashboard/list/ListShare";
+import FormTrip from "../../components/trip/FormTrip";
+import ListTrip from "../../components/trip/ListTrip";
+import ListShare from "../../components/user/list/ListShare";
 import Loading from "@/app/Loading";
 
 const page = async () => {

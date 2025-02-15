@@ -1,17 +1,17 @@
 "use client";
 
-import { useState, ChangeEvent, useEffect } from "react";
+import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-
+import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+
 import Button from "@/app/components/ui/button/Button";
 import Input from "@/app/components/ui/form/Input";
+import FormLayout from "../../layout/FormLayout";
 
 import type { PasswordFormState } from "@/app/(memorybook)/memorybook/types/formState";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { passwordFormType } from "../../../types/formType";
-import FormLayout from "../../layout/FormLayout";
+import type { passwordFormType } from "@/app/(memorybook)/memorybook/types/formType";
 
 type FormPasswordProps = {
   buttonName: string;

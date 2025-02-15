@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/app/lib/getCurrentUser";
-import ListProfile from "../../../components/dashboard/list/ListProfile";
+import ListProfile from "../../../components/user/list/ListProfile";
 
 const page = async () => {
   const currentUser = await getCurrentUser();

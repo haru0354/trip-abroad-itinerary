@@ -265,16 +265,3 @@ export const updateItinerary = async (
     return { message: "旅程を追加する際にエラーが発生しました" };
   }
 };
-
-export const showContent = async (data: FormData) => {
-  const id = data.get("id") as string;
-  const isShowContent = data.get("isShowContent") === "false";
-  await prisma.itinerary.update({
-    where: {
-      id: Number(id),
-    },
-    data: {
-      isShowContent,
-    },
-  });
-};

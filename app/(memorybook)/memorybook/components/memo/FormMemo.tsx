@@ -21,6 +21,7 @@ type FormMemoProps = {
   buttonName: string;
   formAction: (state: MemoFormState, data: FormData) => Promise<MemoFormState>;
   tripId: number | undefined;
+  modalLayout?: boolean;
 };
 
 type Memo = {
@@ -34,6 +35,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
   buttonName,
   formAction,
   tripId,
+  modalLayout = false,
 }) => {
   const router = useRouter();
   const { closeModal } = useModal();
@@ -80,6 +82,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
       formTitle="メモのフォーム"
       buttonName={buttonName}
       onSubmit={handleSubmit(onSubmit)}
+      modalLayout={modalLayout}
     >
       <Input
         label="メモタイトル"

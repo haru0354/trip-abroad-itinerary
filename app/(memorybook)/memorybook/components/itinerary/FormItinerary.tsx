@@ -26,6 +26,7 @@ type FormItineraryProps = {
     data: FormData
   ) => Promise<ItineraryFormState>;
   tripId: number | undefined;
+  modalLayout?: boolean;
 };
 
 type Itinerary = {
@@ -45,6 +46,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   buttonName,
   formAction,
   tripId,
+  modalLayout = false,
 }) => {
   const router = useRouter();
   const { closeModal } = useModal();
@@ -114,6 +116,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
       formTitle="旅程表のフォーム"
       buttonName={buttonName}
       onSubmit={handleSubmit(onSubmit)}
+      modalLayout={modalLayout}
     >
       <Date
         label="日付"

@@ -6,14 +6,14 @@ import { useFormState } from "react-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-import Button from "@/app/components/ui/button/Button";
+import { useModal } from "@/app/hooks/useModal";
+import FormLayout from "../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 import TextArea from "@/app/components/ui/form/TextArea";
 import InputHidden from "@/app/components/ui/form/InputHidden";
 
 import type { MemoFormState } from "../../types/formState";
 import type { MemoFormType } from "../../types/formType";
-import { useModal } from "@/app/hooks/useModal";
 
 type FormMemoProps = {
   memos?: Memo[] | undefined | null;
@@ -44,7 +44,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
   } = useForm<MemoFormType>({
     mode: "onBlur",
   });
-  
+
   const initialState = { message: null, errors: { name: undefined } };
   const [state, dispatch] = useFormState<MemoFormState, FormData>(
     formAction,
@@ -76,39 +76,33 @@ const FormMemo: React.FC<FormMemoProps> = ({
   }, [state.message]);
 
   return (
-    <>
-      <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
-        メモのフォーム
-      </p>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full py-3">
-        <Input
-          label="メモタイトル"
-          name="name"
-          placeholder="メモタイトルを記載しましょう。"
-          defaultValue={memo?.name}
-          register={register}
-          required={true}
-          error={errors.name?.message || state.errors?.name}
-        />
-        <TextArea
-          label="メモする内容"
-          name="content"
-          placeholder="メモする内容を記載しましょう。"
-          defaultValue={memo?.content}
-          register={register}
-          error={state.errors?.name}
-        />
-        <InputHidden name="tripId" value={tripId} register={register} />
-        {state.message &&
-          state.message !== "edit" &&
-          state.message !== "add" && (
-            <p className="text-red-500">{state.message}</p>
-          )}
-        <Button color="blue" size="normal" className="rounded mt-4">
-          {buttonName}
-        </Button>
-      </form>
-    </>
+    <FormLayout
+      formTitle="メモのフォーム"
+      buttonName={buttonName}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <Input
+        label="メモタイトル"
+        name="name"
+        placeholder="メモタイトルを記載しましょう。"
+        defaultValue={memo?.name}
+        register={register}
+        required={true}
+        error={errors.name?.message || state.errors?.name}
+      />
+      <TextArea
+        label="メモする内容"
+        name="content"
+        placeholder="メモする内容を記載しましょう。"
+        defaultValue={memo?.content}
+        register={register}
+        error={state.errors?.name}
+      />
+      <InputHidden name="tripId" value={tripId} register={register} />
+      {state.message && state.message !== "edit" && state.message !== "add" && (
+        <p className="text-red-500">{state.message}</p>
+      )}
+    </FormLayout>
   );
 };
 

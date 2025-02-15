@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { FormEvent, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -67,41 +67,37 @@ const FormPassword: React.FC<FormPasswordProps> = ({
   return (
     <>
       <h2 className="bg-itinerary-heading">パスワードの変更</h2>
-      <FormLayout>
-        <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
-          パスワード
-        </p>
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full py-3">
-          <Input
-            label="パスワード"
-            name="password"
-            type="password"
-            placeholder="変更するパスワードを記載してください。"
-            register={register}
-            required={true}
-            minLength={6}
-            error={errors.password?.message || state.errors?.password}
-          />
-          <Input
-            label="パスワード（確認用）"
-            name="passwordConfirmation"
-            type="password"
-            placeholder="確認の為パスワードをもう一度記載してください。"
-            register={register}
-            required={true}
-            minLength={6}
-            error={
-              errors.passwordConfirmation?.message ||
-              state.errors?.passwordConfirmation
-            }
-          />
-          {state.errors && state.message !== "edit" && (
-            <p className="text-red-500">{state.message}</p>
-          )}
-          <Button color="blue" size="normal" className="rounded mt-4">
-            {buttonName}
-          </Button>
-        </form>
+      <FormLayout
+        formTitle="パスワードのフォーム"
+        buttonName={buttonName}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Input
+          label="パスワード"
+          name="password"
+          type="password"
+          placeholder="変更するパスワードを記載してください。"
+          register={register}
+          required={true}
+          minLength={6}
+          error={errors.password?.message || state.errors?.password}
+        />
+        <Input
+          label="パスワード（確認用）"
+          name="passwordConfirmation"
+          type="password"
+          placeholder="確認の為パスワードをもう一度記載してください。"
+          register={register}
+          required={true}
+          minLength={6}
+          error={
+            errors.passwordConfirmation?.message ||
+            state.errors?.passwordConfirmation
+          }
+        />
+        {state.errors && state.message !== "edit" && (
+          <p className="text-red-500">{state.message}</p>
+        )}
       </FormLayout>
     </>
   );

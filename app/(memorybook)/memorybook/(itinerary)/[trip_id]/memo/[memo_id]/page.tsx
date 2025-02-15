@@ -8,7 +8,6 @@ import {
 import FormMemo from "@/app/(memorybook)/memorybook/components/memo/FormMemo";
 import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 import Button from "@/app/components/ui/button/Button";
-import FormLayout from "@/app/(memorybook)/memorybook/components/layout/FormLayout";
 
 const Page = async ({
   params,
@@ -24,7 +23,7 @@ const Page = async ({
     console.error("個別のメモの取得に失敗しました。");
     return;
   }
-  
+
   const trip = await getTrip(tripId);
 
   if (!trip) {
@@ -42,14 +41,12 @@ const Page = async ({
       <h3 className="p-5 my-4 text-xl font-semibold rounded text-white bg-itinerary-heading">
         メモの編集
       </h3>
-      <FormLayout>
-        <FormMemo
-          formAction={updateMemoWidthId}
-          memo={memo}
-          buttonName="保存"
-          tripId={trip.id}
-        />
-      </FormLayout>
+      <FormMemo
+        formAction={updateMemoWidthId}
+        memo={memo}
+        buttonName="保存"
+        tripId={trip.id}
+      />
       <Link href={`/memorybook/${trip.id}/memo`}>
         <Button color="gray" size="normal" className="rounded mt-4">
           キャンセル

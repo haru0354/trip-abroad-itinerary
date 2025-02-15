@@ -4,8 +4,11 @@ import Button from "@/app/components/ui/button/Button";
 type FormLayoutProps = {
   formTitle: string;
   buttonName: string;
-  onSubmit: FormEventHandler<HTMLFormElement>;
   maxWidth?: string;
+  onSubmit?: FormEventHandler<HTMLFormElement>;
+  action?: (
+    data: FormData
+  ) => Promise<{ message?: undefined } | { message: string }>;
   children: React.ReactNode;
 };
 
@@ -13,9 +16,12 @@ const FormLayout: React.FC<FormLayoutProps> = ({
   formTitle,
   buttonName,
   onSubmit,
+  action,
   maxWidth = "max-w-[620px]",
   children,
 }) => {
+  const formProps = action ? { action } : onSubmit ? { onSubmit } : {};
+
   return (
     <div className="flex items-center justify-center">
       <div
@@ -24,7 +30,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({
         <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
           {formTitle}
         </p>
-        <form onSubmit={onSubmit} className="w-full py-3">
+        <form className="w-full py-3" {...formProps}>
           {children}
           <Button color="blue" size="normal" className="rounded mt-4">
             {buttonName}

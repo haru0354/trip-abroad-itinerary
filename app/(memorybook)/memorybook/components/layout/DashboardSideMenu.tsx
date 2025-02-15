@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Button from "@/app/components/ui/button/Button";
 
-type SideMenuProps = {
+type DashboardSideMenuProps = {
   trips: Trips[] | undefined;
 };
 
@@ -21,7 +21,7 @@ type Trips = {
   name: string;
 };
 
-const SideMenu: React.FC<SideMenuProps> = ({ trips }) => {
+const DashboardSideMenu: React.FC<DashboardSideMenuProps> = ({ trips }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -160,4 +160,4 @@ const SideMenu: React.FC<SideMenuProps> = ({ trips }) => {
   );
 };
 
-export default SideMenu;
+export default DashboardSideMenu;

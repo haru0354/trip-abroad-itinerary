@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 
 import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import SideMenu from "../../components/dashboard/side-menu/SideMenu";
+import DashboardSideMenu from "../../components/layout/DashboardSideMenu";
 import Loading from "@/app/Loading";
 
 const brandTItle = process.env.NEXT_PUBLIC_ITINERARY_BRAND_TITLE;
@@ -31,7 +31,7 @@ export default async function RootLayout({
           <div className="w-full">{children}</div>
         </div>
         <Suspense fallback={<Loading />}>
-          <SideMenu trips={trips} />
+          <DashboardSideMenu trips={trips} />
         </Suspense>
       </div>
     </>

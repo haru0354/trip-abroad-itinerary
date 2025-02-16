@@ -9,10 +9,10 @@ import LoginModal from "../auth/LoginModal";
 import SignupModal from "../auth/SignupModal";
 
 type MenuProps = {
-  currentUser: number | null;
+  currentUserId?: number | null;
 };
 
-const Menu: React.FC<MenuProps> = ({ currentUser }) => {
+const Menu: React.FC<MenuProps> = ({ currentUserId }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -21,11 +21,11 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
 
   useEffect(() => {
     setIsOpen(false);
-  }, [currentUser]);
+  }, [currentUserId]);
 
   return (
     <>
-      {currentUser ? (
+      {currentUserId ? (
         <>
           <div style={{ position: "relative" }}>
             <div onClick={toggleOpen}>

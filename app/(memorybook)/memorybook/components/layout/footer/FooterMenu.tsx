@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { addItinerary } from "../../action/actionItinerary";
-import { addMemo } from "../../action/actionMemo";
+import { addItinerary } from "../../../action/actionItinerary";
+import { addMemo } from "../../../action/actionMemo";
 import Modal from "@/app/components/ui/modal/Modal";
-import FormItinerary from "../itinerary/FormItinerary";
-import FormMemo from "../memo/FormMemo";
+import FormItinerary from "../../itinerary/FormItinerary";
+import FormMemo from "../../memo/FormMemo";
 import ButtonImage from "@/app/components/ui/button/ButtonImage";
 
 type FooterMenuProps = {

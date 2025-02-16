@@ -8,9 +8,6 @@ import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateSchema } from "../../../lib/validateSchema";
 
-import { passwordSchema, profileSchema } from "../schema/userSchema";
-import type { PasswordFormState, ProfileFormState } from "../types/formState";
-
 export const deleteUser = async () => {
   const userId = await getCurrentUserId();
 

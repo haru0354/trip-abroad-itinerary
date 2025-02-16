@@ -6,6 +6,7 @@ import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 import LogoutButton from "../../ui/auth/LogoutButton";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type HamburgerMenuProps = {
   trips: Trips[] | undefined;
@@ -47,7 +48,11 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
         />
       </button>
       {isOpen && (
-        <div className="fixed top-0 left-0 w-full h-screen bg-gray-500 px-10 pt-12 overflow-y-auto">
+        <AnimatedItem
+          className="fixed top-0 left-0 w-full h-screen bg-gray-500 px-10 pt-12 overflow-y-auto"
+          elementType="div"
+          animation="fadeInLeftVariants"
+        >
           <p className="py-2 border-b text-white">ダッシュボード</p>
           <ul className="text-white">
             <Link href="/memorybook">
@@ -77,7 +82,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
             );
           })}
           <LogoutButton />
-        </div>
+        </AnimatedItem>
       )}
     </>
   );

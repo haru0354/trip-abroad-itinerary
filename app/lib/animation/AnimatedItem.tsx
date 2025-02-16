@@ -60,7 +60,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       x: 0,
       transition: {
         delay: delay || 0,
-        duration: 1.8,
+        duration: 0.8,
       },
     },
   };

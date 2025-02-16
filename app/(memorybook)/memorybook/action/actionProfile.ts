@@ -16,7 +16,7 @@ export const deleteUser = async () => {
 
   if (!userId) {
     console.error("認証がされていません。");
-    return;
+    return { message: "再度ログインのやり直しが必要です。" };
   }
 
   try {
@@ -44,7 +44,7 @@ export const updateProfile = async (
 
   if (!userId) {
     console.error("認証がされていません。");
-    return {};
+    return { message: "再度ログインのやり直しが必要です。" };
   }
 
   const validateDate = {
@@ -88,7 +88,7 @@ export const updatePassword = async (
 
   if (!userId) {
     console.error("認証がされていません。");
-    return {};
+    return { message: "再度ログインのやり直しが必要です。" };
   }
 
   const validateDate = {

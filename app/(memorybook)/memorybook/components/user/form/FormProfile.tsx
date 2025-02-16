@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-import Button from "@/app/components/ui/button/Button";
+import FormLayout from "../../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 
 import type { ProfileFormState } from "@/app/(memorybook)/memorybook/types/formState";
@@ -68,39 +68,33 @@ const FormProfile: React.FC<FormProfileProps> = ({
   return (
     <>
       <h2 className="bg-itinerary-heading">プロフィール</h2>
-      <div className="flex items-center justify-center">
-        <div className="w-full border py-4 px-6 border-itinerary-borderGray rounded bg-white max-w-[620px]">
-          <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
-            プロフィール
-          </p>
-          <form onSubmit={handleSubmit(onSubmit)} className="w-full py-3">
-            <Input
-              name="name"
-              label="名前(ニックネーム)"
-              placeholder="名前(ニックネーム)を記載してください。"
-              register={register}
-              required={true}
-              error={errors.name?.message || state.errors?.name}
-            />
-            <Input
-              type="email"
-              name="email"
-              label="メールアドレス"
-              placeholder="メールアドレスを記載してください。"
-              register={register}
-              required={true}
-              pattern="email"
-              error={errors.email?.message || state.errors?.email}
-            />
-            {state.message && state.message !== "edit" && (
-              <p className="text-red-500">{state.message}</p>
-            )}
-            <Button color="blue" size="normal" className="rounded mt-4">
-              {buttonName}
-            </Button>
-          </form>
-        </div>
-      </div>
+      <FormLayout
+        formTitle="プロフィールのフォーム"
+        buttonName={buttonName}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Input
+          name="name"
+          label="名前(ニックネーム)"
+          placeholder="名前(ニックネーム)を記載してください。"
+          register={register}
+          required={true}
+          error={errors.name?.message || state.errors?.name}
+        />
+        <Input
+          type="email"
+          name="email"
+          label="メールアドレス"
+          placeholder="メールアドレスを記載してください。"
+          register={register}
+          required={true}
+          pattern="email"
+          error={errors.email?.message || state.errors?.email}
+        />
+        {state.message && state.message !== "edit" && (
+          <p className="text-red-500">{state.message}</p>
+        )}
+      </FormLayout>
     </>
   );
 };

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-import Button from "@/app/components/ui/button/Button";
+import FormLayout from "../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 import Date from "@/app/components/ui/form/Date";
 
@@ -76,52 +76,46 @@ const FormTrip: React.FC<FormTripProps> = ({
   }, [state.message]);
 
   return (
-    <div>
+    <>
       <h2 className="bg-itinerary-heading">旅行の追加</h2>
-      <div className="flex items-center justify-center">
-        <div className="w-full border py-4 px-6 border-itinerary-borderGray rounded bg-white max-w-[620px]">
-          <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
-            旅行のフォーム
-          </p>
-          <form onSubmit={handleSubmit(onSubmit)} className="w-full py-3">
-            <Date
-              name="startDate"
-              label="出発日(未記入も可)"
-              defaultValue={trip?.startDate || ""}
-              register={register}
-            />
-            <Date
-              name="endDate"
-              label="帰宅日(未記入も可)"
-              defaultValue={trip?.endDate || ""}
-              register={register}
-            />
-            <Input
-              label="旅行タイトル"
-              name="name"
-              placeholder="旅行タイトルを入力。例)初海外旅行"
-              defaultValue={trip?.name || ""}
-              register={register}
-              required
-              error={errors.name?.message || state.errors?.name}
-            />
-            <Input
-              label="旅行先(未記入も可)"
-              name="destination"
-              placeholder="旅行先が決まっていれば入力"
-              register={register}
-              defaultValue={trip?.destination || ""}
-            />
-            {state.errors && state.message && (
-              <p className="text-red-500">{state.message}</p>
-            )}
-            <Button color="blue" size="normal" className="rounded mt-4">
-              {buttonName}
-            </Button>
-          </form>
-        </div>
-      </div>
-    </div>
+      <FormLayout
+        formTitle="旅行のしおりフォーム"
+        buttonName={buttonName}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Date
+          name="startDate"
+          label="出発日(未記入も可)"
+          defaultValue={trip?.startDate || ""}
+          register={register}
+        />
+        <Date
+          name="endDate"
+          label="帰宅日(未記入も可)"
+          defaultValue={trip?.endDate || ""}
+          register={register}
+        />
+        <Input
+          label="旅行タイトル"
+          name="name"
+          placeholder="旅行タイトルを入力。例)初海外旅行"
+          defaultValue={trip?.name || ""}
+          register={register}
+          required
+          error={errors.name?.message || state.errors?.name}
+        />
+        <Input
+          label="旅行先(未記入も可)"
+          name="destination"
+          placeholder="旅行先が決まっていれば入力"
+          register={register}
+          defaultValue={trip?.destination || ""}
+        />
+        {state.errors && state.message && (
+          <p className="text-red-500">{state.message}</p>
+        )}
+      </FormLayout>
+    </>
   );
 };
 

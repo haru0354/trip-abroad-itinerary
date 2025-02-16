@@ -2,16 +2,18 @@ import { getCurrentUser } from "@/app/lib/getCurrentUser";
 import ListProfile from "../../../components/user/list/ListProfile";
 
 const page = async () => {
-  const currentUser = await getCurrentUser();
-  const userId = currentUser?.id;
-  const userName = currentUser?.name;
-  const userEmail = currentUser?.email;
+  const user = await getCurrentUser();
+
+  if (!user) {
+    console.error("ログイン中のユーザーデータが見つかりませんでした。");
+    return;
+  }
 
   return (
     <ListProfile
-      userEmail={userEmail || undefined}
-      userName={userName || undefined}
-      userId={userId}
+      userEmail={user?.email || undefined}
+      userName={user?.name || undefined}
+      userId={user?.id}
     />
   );
 };

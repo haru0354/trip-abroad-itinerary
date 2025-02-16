@@ -3,11 +3,7 @@ import Link from "next/link";
 import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import Button from "@/app/components/ui/button/Button";
 
-type ListShareProps = {
-  userId?: number | undefined;
-};
-
-const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
+const ListShare = async () => {
   const trips = await getTrips();
 
   return (
@@ -22,7 +18,10 @@ const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
       </p>
       {trips?.map((trip) => {
         return (
-          <div key={trip.id} className="border border-itinerary-borderBlack mb-6">
+          <div
+            key={trip.id}
+            className="border border-itinerary-borderBlack mb-6"
+          >
             <div className="flex justify-between flex-col sm:flex-row border-b border-dashed border-itinerary-borderBlack w-full p-4">
               <div className="flex justify-center items-center pt-2 ">
                 <p className="mb-0">
@@ -39,14 +38,14 @@ const ListShare: React.FC<ListShareProps> = async ({ userId }) => {
             </div>
             <div className="flex justify-center py-2 items-center">
               {trip.share && (
-                <Link href={`/memorybook/share/${userId}/${trip.id}`}>
+                <Link href={`/memorybook/share/${trip.userId}/${trip.id}`}>
                   <Button color="blue" size="small">
                     共有ページ
                   </Button>
                 </Link>
               )}
               {trip.blog && (
-                <Link href={`travelogue/${userId}/${trip.id}`}>
+                <Link href={`travelogue/${trip.userId}/${trip.id}`}>
                   <Button color="blue" size="small">
                     ブログ
                   </Button>

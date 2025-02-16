@@ -30,7 +30,7 @@ const AnimatedImage: React.FC<AnimatedImageProps> = ({
       x: "0%",
       transition: {
         delay: delay || 0,
-        duration: 3,
+        duration: 1.8,
       },
     },
   };

@@ -5,11 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-import Button from "@/app/components/ui/button/Button";
+import LogoutButton from "../../ui/auth/LogoutButton";
 
 type HamburgerMenuProps = {
   trips: Trips[] | undefined;
-  handleLogout: () => Promise<void>;
 };
 
 type Trips = {
@@ -17,10 +16,7 @@ type Trips = {
   name: string;
 };
 
-const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
-  trips,
-  handleLogout,
-}) => {
+const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -51,46 +47,37 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
         />
       </button>
       {isOpen && (
-        <>
-          <div className="fixed top-0 left-0 w-full h-screen bg-gray-500 px-10 pt-12 overflow-y-auto">
-            <p className="py-2 border-b text-white">ダッシュボード</p>
-            <ul className="text-white">
-              <Link href="/memorybook">
-                <li className="py-2 mx-4">TOPページ</li>
-              </Link>
-              <Link href="/memorybook/dashboard/">
-                <li className="py-2 mx-4" onClick={toggleMenu}>
-                  ダッシュボード
-                </li>
-              </Link>
-              <Link href="/memorybook/dashboard/profile">
-                <li className="py-2 mx-4" onClick={toggleMenu}>
-                  プロフィール
-                </li>
-              </Link>
-            </ul>
-            <p className="py-2 border-b mt-3 text-white">作成した旅行</p>
-            {trips?.map((trip) => {
-              return (
-                <ul key={trip.id} className="text-white">
-                  <Link href={`/memorybook/${trip.id}/itinerary`}>
-                    <li key={trip.id} className="py-2 mx-4">
-                      {trip.name}
-                    </li>
-                  </Link>
-                </ul>
-              );
-            })}
-            <Button
-              onClick={handleLogout}
-              color="white"
-              size="normal"
-              className="rounded mt-4"
-            >
-              ログアウト
-            </Button>
-          </div>
-        </>
+        <div className="fixed top-0 left-0 w-full h-screen bg-gray-500 px-10 pt-12 overflow-y-auto">
+          <p className="py-2 border-b text-white">ダッシュボード</p>
+          <ul className="text-white">
+            <Link href="/memorybook">
+              <li className="py-2 mx-4">TOPページ</li>
+            </Link>
+            <Link href="/memorybook/dashboard/">
+              <li className="py-2 mx-4" onClick={toggleMenu}>
+                ダッシュボード
+              </li>
+            </Link>
+            <Link href="/memorybook/dashboard/profile">
+              <li className="py-2 mx-4" onClick={toggleMenu}>
+                プロフィール
+              </li>
+            </Link>
+          </ul>
+          <p className="py-2 border-b mt-3 text-white">作成した旅行</p>
+          {trips?.map((trip) => {
+            return (
+              <ul key={trip.id} className="text-white">
+                <Link href={`/memorybook/${trip.id}/itinerary`}>
+                  <li key={trip.id} className="py-2 mx-4">
+                    {trip.name}
+                  </li>
+                </Link>
+              </ul>
+            );
+          })}
+          <LogoutButton />
+        </div>
       )}
     </>
   );

@@ -4,8 +4,8 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlaneDeparture, faHouse } from "@fortawesome/free-solid-svg-icons";
-import Button from "@/app/components/ui/button/Button";
 import HamburgerMenu from "./side-menu/HamburgerMenu";
+import LogoutButton from "../ui/auth/LogoutButton";
 
 type DashboardSideMenuProps = {
   trips: Trips[] | undefined;
@@ -17,10 +17,6 @@ type Trips = {
 };
 
 const DashboardSideMenu: React.FC<DashboardSideMenuProps> = ({ trips }) => {
-  const handleLogout = async () => {
-    await signOut({ callbackUrl: "/memorybook" });
-  };
-
   return (
     <>
       <div className="hidden sm:block fixed top-0 left-0 h-screen w-72 flex-col sm:flex-row sm:justify-around bg-gray-700">
@@ -72,17 +68,10 @@ const DashboardSideMenu: React.FC<DashboardSideMenuProps> = ({ trips }) => {
               })}
             </ul>
           </div>
-          <Button
-            onClick={handleLogout}
-            color="white"
-            size="normal"
-            className="rounded mt-4"
-          >
-            ログアウト
-          </Button>
+          <LogoutButton />
         </nav>
       </div>
-      <HamburgerMenu trips={trips} handleLogout={handleLogout} />
+      <HamburgerMenu trips={trips} />
     </>
   );
 };

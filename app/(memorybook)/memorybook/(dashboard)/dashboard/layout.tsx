@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 
 import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import DashboardSideMenu from "../../components/layout/DashboardSideMenu";
+import DashboardSideMenu from "../../components/layout/side-menu/DashboardSideMenu";
 import Loading from "@/app/Loading";
 
 const brandTItle = process.env.NEXT_PUBLIC_ITINERARY_BRAND_TITLE;

@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { signOut } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlaneDeparture, faHouse } from "@fortawesome/free-solid-svg-icons";
-import HamburgerMenu from "./side-menu/HamburgerMenu";
-import LogoutButton from "../ui/auth/LogoutButton";
+
+import HamburgerMenu from "./HamburgerMenu";
+import LogoutButton from "../../ui/auth/LogoutButton";
 
 type DashboardSideMenuProps = {
   trips: Trips[] | undefined;

@@ -3,12 +3,13 @@ import Link from "next/link";
 import { faCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import HideContent from "./HideContent";
-import ButtonImage from "@/app/components/ui/button/ButtonImage";
 import Manual from "../Manual";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import AnimatedImage from "@/app/lib/animation/AnimatedImage";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
+import ButtonImage from "@/app/components/ui/button/ButtonImage";
 
 type ListItineraryProps = {
   tripId: number | undefined;
@@ -44,24 +45,14 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
       <>
         <Manual
           title="旅程表の使い方"
-          content1="このページでは旅程表を登録することができます。"
-          content2="まずは試しに登録をしてみてください。"
-          li1="「いつ・何をするのか」登録をしていきましょう。"
-          li2="補足情報には色々とメモしたい項目を登録できます。"
+          content="このページでは旅程表を登録することができます。"
+          explanation="まずは試しに登録をしてみてください。"
+          lists={[
+            "「いつ・何をするのか」登録をしていきましょう。",
+            "補足情報には色々とメモしたい項目を登録できます。",
+          ]}
         />
-        <div className="flex flex-col justify-center items-center border border-dashed border-itinerary-borderBlack my-4 p-4 text-center">
-          画面最下部のメニュー「追加」より旅程表の登録ができます。
-          <Image
-            src="/manual.JPG"
-            alt="マニュアル"
-            width={347}
-            height={57}
-            style={{
-              width: "347px",
-              height: "auto",
-            }}
-          />
-        </div>
+        
         <p className="pt-6 font-bold text-center">サンプル</p>
         <Image
           src="/sample-itinerary.jpg"
@@ -100,9 +91,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
               </div>
             )}
             {isShare || (
-              <Link
-                href={`/memorybook/${tripId}/itinerary/${itinerary.id}`}
-              >
+              <Link href={`/memorybook/${tripId}/itinerary/${itinerary.id}`}>
                 <ButtonImage
                   className="rounded mb-[-8px]"
                   size="small"

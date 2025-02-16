@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import FooterMenu from "../../components/layout/FooterMenu";
 import Header from "../../components/layout/Header";
-import Footer from "../../components/layout/Footer";
+import Footer from "../../components/layout/footer/Footer";
 
 const brandTItle = process.env.NEXT_PUBLIC_ITINERARY_BRAND_TITLE;
 

@@ -7,7 +7,7 @@ import CallToAction from "@/app/components/layout/CallToAction";
 import QuestionAndAnswer from "@/app/components/layout/QuestionAndAnswer";
 import Hero from "@/app/components/layout/Hero";
 import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
+import Footer from "./components/layout/footer/Footer";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Section from "@/app/components/layout/Section";
 import Loading from "@/app/Loading";

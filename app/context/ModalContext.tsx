@@ -3,9 +3,9 @@
 import { createContext, useEffect, useState } from "react";
 
 type ModalContextType = {
-  isModalOpen: boolean;
-  openModal: () => void;
-  closeModal: () => void;
+  openModal: (id: string) => void;
+  closeModal: (id: string) => void;
+  isModalOpen: (id: string) => boolean;
 };
 
 type ModalProviderProps = {
@@ -15,25 +15,29 @@ type ModalProviderProps = {
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modals, setModals] = useState<Record<string, boolean>>({});
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = (id: string) => {
+    setModals((prev) => ({ ...prev, [id]: true }));
+  };
+
+  const closeModal = (id: string) => {
+    setModals((prev) => ({ ...prev, [id]: false }));
+  };
+
+  const isModalOpen = (id: string) => !!modals[id];
 
   useEffect(() => {
-    if (isModalOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
+    const isAnyModalOpen = Object.values(modals).some((state) => state);
+    document.body.classList.toggle("overflow-hidden", isAnyModalOpen);
 
     return () => {
       document.body.classList.remove("overflow-hidden");
     };
-  }, [isModalOpen]);
+  }, [modals]);
 
   return (
-    <ModalContext.Provider value={{ isModalOpen, openModal, closeModal }}>
+    <ModalContext.Provider value={{ openModal, closeModal, isModalOpen }}>
       {children}
     </ModalContext.Provider>
   );

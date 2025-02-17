@@ -18,10 +18,14 @@ import type { SignupFormState } from "../../../types/formState";
 import type { UserFormType } from "../../../types/formType";
 
 type SignupModalProps = {
+  id: string;
   textButton?: boolean;
 };
 
-const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
+const SignupModal: React.FC<SignupModalProps> = ({
+  textButton = false,
+  id,
+}) => {
   const router = useRouter();
   const { closeModal } = useModal();
 
@@ -76,7 +80,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
           }
 
           toast.success("アカウントを作成しました。管理画面へ移動します。");
-          closeModal();
+          closeModal("signup");
           router.push("/memorybook/dashboard");
         } catch (error) {
           console.error("サインインエラー:", error);
@@ -90,6 +94,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
 
   return (
     <Modal
+      id={id}
       maxWidth="max-w-[400px]"
       buttonName="しおりを作成"
       textButton={textButton}
@@ -133,7 +138,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
           <p className="text-red-500">{state.message}</p>
         )}
       </FormLayout>
-      <GoogleLoginButton />
+      <GoogleLoginButton closeModal={() => closeModal(id)} />
     </Modal>
   );
 };

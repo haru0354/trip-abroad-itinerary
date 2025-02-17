@@ -7,6 +7,7 @@ import Button from "../button/Button";
 import ButtonImage from "../button/ButtonImage";
 
 type ModalProps = {
+  id: string;
   maxWidth: string;
   buttonName: string;
   closeButtonName?: string;
@@ -19,6 +20,7 @@ type ModalProps = {
 };
 
 const Modal: React.FC<ModalProps> = ({
+  id,
   maxWidth,
   buttonName,
   closeButtonName = "閉じる",
@@ -38,19 +40,19 @@ const Modal: React.FC<ModalProps> = ({
     <>
       {iconButton ? (
         <div className="w-full h-full">
-          <ButtonImage icon="plus" size="footer" onClick={openModal}>
+          <ButtonImage icon="plus" size="footer" onClick={() => openModal(id)}>
             {buttonName}
           </ButtonImage>
         </div>
       ) : (
         <>
           {textButton ? (
-            <p onClick={openModal} className="cursor-pointer mb-0">
+            <p onClick={() => openModal(id)} className="cursor-pointer mb-0">
               {buttonName}
             </p>
           ) : (
             <Button
-              onClick={openModal}
+              onClick={() => openModal(id)}
               color={color}
               size={size}
               className="rounded my-4"
@@ -60,11 +62,10 @@ const Modal: React.FC<ModalProps> = ({
           )}
         </>
       )}
-
-      {isModalOpen &&
+      {isModalOpen(id) &&
         createPortal(
           <div
-            onClick={closeModal}
+            onClick={() => closeModal(id)}
             className="fixed flex z-[200] justify-center items-center w-full h-full top-0 left-0 bg-gray-500 bg-opacity-80"
           >
             <div
@@ -73,7 +74,7 @@ const Modal: React.FC<ModalProps> = ({
             >
               {children}
               <Button
-                onClick={closeModal}
+                onClick={() => closeModal(id)}
                 color="gray"
                 size="normal"
                 className={`rounded ${closeButtonPosition}`}

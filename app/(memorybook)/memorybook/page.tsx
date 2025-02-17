@@ -174,7 +174,7 @@ export default function Home() {
               animation="fadeInAndScaleVariants"
               className="text-center py-4"
             >
-              <SignupModal />
+              <SignupModal id="last-signup"/>
             </AnimatedItem>
           </Section>
         </div>

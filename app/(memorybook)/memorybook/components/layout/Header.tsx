@@ -23,7 +23,7 @@ const Header = async () => {
               />
             </h1>
           </Link>
-          <Menu currentUser={currentUserId} />
+          <Menu currentUserId={currentUserId} />
         </div>
       </div>
     </header>

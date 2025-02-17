@@ -32,6 +32,20 @@ export type ItineraryFormState = {
   };
 };
 
+export type SignupFormState = {
+  message?: string | null;
+  errors?: {
+    name?: string[] | undefined;
+    email?: string[] | undefined;
+    password?: string[] | undefined;
+  };
+  user?: {
+    name?: string | null;
+    email?: string | null;
+    password?: string | null;
+  };
+};
+
 export type ProfileFormState = {
   message?: string | null;
   errors?: {

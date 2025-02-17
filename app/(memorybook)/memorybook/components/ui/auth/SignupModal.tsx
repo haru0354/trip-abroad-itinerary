@@ -1,19 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import axios from "axios";
+import { useFormState } from "react-dom";
+import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
+import { createUser } from "../../../action/actionProfile";
 import Modal from "@/app/components/ui/modal/Modal";
-import Input from "@/app/components/ui/form/Input";
-import Button from "@/app/components/ui/button/Button";
-
-import type { UserFormType } from "../../../types/formType";
 import FormLayout from "../../layout/FormLayout";
+import Input from "@/app/components/ui/form/Input";
+import GoogleLoginButton from "./GoogleLoginButton";
+
+import type { SignupFormState } from "../../../types/formState";
+import type { UserFormType } from "../../../types/formType";
 
 type SignupModalProps = {
   textButton?: boolean;
@@ -31,28 +33,60 @@ const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
     mode: "onBlur",
   });
 
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const initialState = {
+    message: null,
+    errors: {
+      name: undefined,
+      email: undefined,
+      password: undefined,
+    },
+  };
+
+  const [state, dispatch] = useFormState<SignupFormState, FormData>(
+    createUser,
+    initialState
+  );
 
   const onSubmit: SubmitHandler<UserFormType> = async (data) => {
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+
     try {
-      const res = await axios.post("/api/signup", data);
-
-      if (res.status === 200) {
-        toast.success("アカウントを作成しました！");
-
-        await signIn("itinerary", {
-          ...data,
-          redirect: false,
-        });
-      }
-
-      closeModal();
-      router.push("/memorybook/dashboard");
+      dispatch(formData);
     } catch (error) {
-      setErrorMessage("エラーが発生しました。もう一度お試しください。");
+      console.error("エラーが発生しました。もう一度お試しください。");
       toast.error("エラーが発生しました。" + error);
     }
   };
+
+  useEffect(() => {
+    const signInUser = async () => {
+      if (state.message === "success") {
+        try {
+          const result = await signIn("itinerary", {
+            email: state.user?.email,
+            password: state.user?.password,
+            redirect: false,
+          });
+
+          if (result?.error) {
+            throw new Error(result.error);
+          }
+
+          toast.success("アカウントを作成しました。管理画面へ移動します。");
+          closeModal();
+          router.push("/memorybook/dashboard");
+        } catch (error) {
+          console.error("サインインエラー:", error);
+          toast.error("ログインに失敗しました。");
+        }
+      }
+    };
+
+    signInUser();
+  }, [state.message]);
 
   return (
     <Modal
@@ -73,7 +107,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
           placeholder="ニックネームを記載してください。"
           register={register}
           required
-          error={errors.name?.message}
+          error={errors.name?.message || state.errors?.name}
         />
         <Input
           type="email"
@@ -82,7 +116,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
           placeholder="メールアドレスを記載してください。"
           register={register}
           required
-          error={errors.email?.message}
+          error={errors.email?.message || state.errors?.email}
           pattern="email"
         />
         <Input
@@ -93,10 +127,13 @@ const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
           register={register}
           required
           minLength={6}
-          error={errors.password?.message}
+          error={errors.password?.message || state.errors?.password}
         />
-        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+        {state.message && state.message !== "success" && (
+          <p className="text-red-500">{state.message}</p>
+        )}
       </FormLayout>
+      <GoogleLoginButton />
     </Modal>
   );
 };

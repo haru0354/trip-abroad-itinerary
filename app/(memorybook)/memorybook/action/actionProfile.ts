@@ -8,8 +8,61 @@ import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateSchema } from "../../../lib/validateSchema";
 
-import { passwordSchema, profileSchema } from "../schema/userSchema";
-import type { PasswordFormState, ProfileFormState } from "../types/formState";
+import {
+  createAccountSchema,
+  passwordSchema,
+  profileSchema,
+} from "../schema/userSchema";
+import type {
+  PasswordFormState,
+  ProfileFormState,
+  SignupFormState,
+} from "../types/formState";
+
+export const createUser = async (state: SignupFormState, data: FormData) => {
+  const name = data.get("name") as string;
+  const email = data.get("email") as string;
+  const password = data.get("password") as string;
+  const role = "itineraryUser";
+
+  const hashedPassword = await bcrypt.hash(password, 12);
+
+  const validateDate = {
+    name,
+    email,
+    password,
+  };
+
+  const validated = validateSchema(createAccountSchema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return { errors: validated.errors };
+  }
+
+  try {
+    await prisma.user.create({
+      data: {
+        email,
+        name,
+        hashedPassword,
+        role,
+      },
+    });
+
+    const formData = {
+      name,
+      email,
+      password,
+    };
+
+    console.log("アカウントの作成に成功しました。");
+    return { message: "success", user: { name, email, password } };
+  } catch (error) {
+    console.error("アカウントの作成中にエラーが発生しました:", error);
+    return { message: "アカウントの作成中にエラーが発生しました" };
+  }
+};
 
 export const deleteUser = async () => {
   const userId = await getCurrentUserId();

@@ -7,11 +7,12 @@ import { signIn } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
+import FormLayout from "../../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 import Button from "@/app/components/ui/button/Button";
+import GoogleLoginButton from "./GoogleLoginButton";
 
 import type { LoginFormType } from "../../../types/formType";
-import FormLayout from "../../layout/FormLayout";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -69,26 +70,6 @@ const LoginModal = () => {
     }
   };
 
-  const handleGoogleSignIn = async () => {
-    try {
-      const result = await signIn("google", {
-        redirect: false,
-      });
-
-      if (!result?.error) {
-        toast.success("ログインしました！");
-        toggleModal();
-        router.replace(`/memorybook/dashboard`);
-      } else {
-        toast.error("エラーが発生しました。" + result.error);
-        setErrorMessage(result.error);
-      }
-    } catch (error) {
-      console.error("Googleログイン中にエラーが発生:", error);
-      toast.error("Googleログイン中にエラーが発生しました。" + error);
-    }
-  };
-
   return (
     <>
       <p onClick={toggleModal} className="cursor-pointer mb-0">
@@ -133,14 +114,7 @@ const LoginModal = () => {
                 />
                 {errorMessage && <p className="text-red-500">{errorMessage}</p>}
               </FormLayout>
-              <Button
-                onClick={handleGoogleSignIn}
-                color="blue"
-                size="auth"
-                className="rounded mb-6"
-              >
-                Googleでログイン
-              </Button>
+              <GoogleLoginButton />
               <Button
                 onClick={toggleModal}
                 color="gray"

@@ -44,7 +44,7 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({
     <>
       <Button
         onClick={handleGoogleSignIn}
-        color="blue"
+        color="gray"
         size="auth"
         className="rounded mb-6"
       >

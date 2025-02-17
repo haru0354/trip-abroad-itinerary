@@ -10,8 +10,9 @@ import toast from "react-hot-toast";
 import { useModal } from "@/app/hooks/useModal";
 import { createUser } from "../../../action/actionProfile";
 import Modal from "@/app/components/ui/modal/Modal";
-import Input from "@/app/components/ui/form/Input";
 import FormLayout from "../../layout/FormLayout";
+import Input from "@/app/components/ui/form/Input";
+import GoogleLoginButton from "./GoogleLoginButton";
 
 import type { SignupFormState } from "../../../types/formState";
 import type { UserFormType } from "../../../types/formType";
@@ -132,6 +133,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ textButton = false }) => {
           <p className="text-red-500">{state.message}</p>
         )}
       </FormLayout>
+      <GoogleLoginButton />
     </Modal>
   );
 };

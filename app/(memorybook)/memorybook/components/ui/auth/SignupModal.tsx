@@ -80,7 +80,7 @@ const SignupModal: React.FC<SignupModalProps> = ({
           }
 
           toast.success("アカウントを作成しました。管理画面へ移動します。");
-          closeModal("signup");
+          closeModal(id);
           router.push("/memorybook/dashboard");
         } catch (error) {
           console.error("サインインエラー:", error);

@@ -66,7 +66,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ tripId }) => {
               tripId={tripId}
               buttonName="旅程を追加"
               formAction={addItinerary}
-              modalLayout={true}
+              modalId="itinerary"
             />
           </Modal>
         ) : null}

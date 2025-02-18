@@ -26,7 +26,7 @@ type FormItineraryProps = {
     data: FormData
   ) => Promise<ItineraryFormState>;
   tripId: number | undefined;
-  modalLayout?: boolean;
+  modalId?: string;
 };
 
 type Itinerary = {
@@ -46,8 +46,9 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
   buttonName,
   formAction,
   tripId,
-  modalLayout = false,
+  modalId,
 }) => {
+  const modalLayout = modalId ? true : false;
   const router = useRouter();
   const { closeModal } = useModal();
 
@@ -104,9 +105,16 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     if (state.message === "add") {
       setFormSubmitted((prev) => !prev);
       toast.success("旅程を保存しました！");
-      closeModal();
+
+      if (modalId) {
+        closeModal(modalId);
+      }
     } else if (state.message === "edit") {
       toast.success("旅程を編集しました！");
+
+      if (modalId) {
+        closeModal(modalId);
+      }
       router.replace(`/memorybook/${tripId}/itinerary/`);
     }
   }, [state.message]);

@@ -25,7 +25,7 @@ const Input: React.FC<InputProps> = ({
   error,
   pattern,
 }) => {
-  const errorFiledColor = error ? "border-red-500" : "";
+  const borderColor = error ? "border-red-500" : "border-gray-300";
 
   return (
     <>
@@ -38,7 +38,7 @@ const Input: React.FC<InputProps> = ({
         name={name}
         placeholder={placeholder}
         defaultValue={defaultValue}
-        className={`w-full py-2 px-3 shadow border rounded ${errorFiledColor}`}
+        className={`w-full py-2 px-3 shadow border rounded ${borderColor} `}
         {...register(name, {
           required: required && `${label}の入力は必須です。`,
           maxLength: maxLength && {

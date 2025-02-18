@@ -1,22 +1,13 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
-import { addItinerary } from "../../../action/actionItinerary";
-import { addMemo } from "../../../action/actionMemo";
-import Modal from "@/app/components/ui/modal/Modal";
-import FormItineraryModal from "../../itinerary/FormItineraryModal";
-import FormMemo from "../../memo/FormMemo";
+import FooterFormModal from "./FooterFormModal";
 import ButtonImage from "@/app/components/ui/button/ButtonImage";
-import FormMemoModal from "../../memo/FormMemoModal";
 
 type FooterMenuProps = {
   tripId: number;
 };
 
 const FooterMenu: React.FC<FooterMenuProps> = ({ tripId }) => {
-  const path = usePathname();
 
   return (
     <div className="fixed z-[100] bottom-0 w-full h-16 bg-white border-t border-itinerary-borderGray shadow">
@@ -42,19 +33,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ tripId }) => {
             </ButtonImage>
           </Link>
         </div>
-        {path === `/memorybook/${tripId}/memo` ? (
-          <FormMemoModal
-            tripId={tripId}
-            buttonName="メモを追加"
-            formAction={addMemo}
-          />
-        ) : path === `/memorybook/${tripId}/itinerary` ? (
-          <FormItineraryModal
-            tripId={tripId}
-            buttonName="旅程を追加"
-            formAction={addItinerary}
-          />
-        ) : null}
+        <FooterFormModal tripId={tripId} />
       </div>
     </div>
   );

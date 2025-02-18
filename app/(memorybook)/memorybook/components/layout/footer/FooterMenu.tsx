@@ -42,7 +42,12 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ tripId }) => {
           </Link>
         </div>
         {path === `/memorybook/${tripId}/memo` ? (
-          <Modal maxWidth="max-w-[620px]" buttonName="追加" iconButton={true}>
+          <Modal
+            maxWidth="max-w-[620px]"
+            buttonName="追加"
+            iconButton={true}
+            id="memo"
+          >
             <FormMemo
               tripId={tripId}
               buttonName="メモを追加"
@@ -51,7 +56,12 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ tripId }) => {
             />
           </Modal>
         ) : path === `/memorybook/${tripId}/itinerary` ? (
-          <Modal maxWidth="max-w-[620px]" buttonName="追加" iconButton={true}>
+          <Modal
+            maxWidth="max-w-[620px]"
+            buttonName="追加"
+            iconButton={true}
+            id="itinerary"
+          >
             <FormItinerary
               tripId={tripId}
               buttonName="旅程を追加"

@@ -1,20 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
+import { useModal } from "@/app/hooks/useModal";
+import Modal from "@/app/components/ui/modal/Modal";
 import FormLayout from "../../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
-import Button from "@/app/components/ui/button/Button";
 import GoogleLoginButton from "./GoogleLoginButton";
 
 import type { LoginFormType } from "../../../types/formType";
-import Modal from "@/app/components/ui/modal/Modal";
-import { useModal } from "@/app/hooks/useModal";
 
 const LoginModal = () => {
   const router = useRouter();

@@ -40,6 +40,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
   const modalLayout = modalId ? true : false;
   const router = useRouter();
   const { closeModal } = useModal();
+  
   const {
     register,
     handleSubmit,

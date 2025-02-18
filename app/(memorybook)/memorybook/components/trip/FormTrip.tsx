@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
+import { useModal } from "@/app/hooks/useModal";
 import FormLayout from "../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 import Date from "@/app/components/ui/form/Date";
@@ -17,6 +18,8 @@ type FormTripProps = {
   trip?: Trip | null;
   buttonName: string;
   formAction: (state: TripFormState, data: FormData) => Promise<TripFormState>;
+  modalLayout?: boolean;
+  modalId?: string;
 };
 
 type Trip = {
@@ -32,7 +35,11 @@ const FormTrip: React.FC<FormTripProps> = ({
   trip,
   buttonName,
   formAction,
+  modalLayout,
+  modalId,
 }) => {
+  const { closeModal } = useModal();
+
   const router = useRouter();
   const {
     register,
@@ -66,22 +73,31 @@ const FormTrip: React.FC<FormTripProps> = ({
   useEffect(() => {
     if (state.message === "add") {
       toast.success("旅行を保存しました！");
-      router.replace(`/memorybook/${state.createdTripId}/itinerary`);
       state.message = "";
+
+      if (modalId) {
+        closeModal(modalId);
+      }
+
+      router.replace(`/memorybook/${state.createdTripId}/itinerary`);
     } else if (state.message === "edit") {
       toast.success("旅行を編集しました！");
       state.message = "";
+
+      if (modalId) {
+        closeModal(modalId);
+      }
       router.replace("/memorybook/dashboard");
     }
   }, [state.message]);
 
   return (
     <>
-      <h2 className="bg-itinerary-heading">旅行の追加</h2>
       <FormLayout
         formTitle="旅行のしおりフォーム"
         buttonName={buttonName}
         onSubmit={handleSubmit(onSubmit)}
+        modalLayout={modalLayout}
       >
         <Date
           name="startDate"

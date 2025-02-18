@@ -34,7 +34,7 @@ const Modal: React.FC<ModalProps> = ({
   const { isModalOpen, openModal, closeModal } = useModal();
 
   const padding = paddingNothing ? "" : "p-4";
-  const closeButtonPosition = paddingNothing ? "my-4" : "";
+  const closeButtonPosition = paddingNothing ? "my-4" : "my-4";
 
   return (
     <>

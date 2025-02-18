@@ -5,6 +5,7 @@ import FormTrip from "../../components/trip/FormTrip";
 import ListTrip from "../../components/trip/ListTrip";
 import ListShare from "../../components/user/list/ListShare";
 import Loading from "@/app/Loading";
+import Modal from "@/app/components/ui/modal/Modal";
 
 const page = () => {
   return (
@@ -12,7 +13,9 @@ const page = () => {
       <Suspense fallback={<Loading message="作成した旅行のしおり" />}>
         <ListTrip />
       </Suspense>
-      <FormTrip buttonName="追加" formAction={addTrip} />
+      <Modal maxWidth="max-w-[620px]" buttonName="旅行のしおりの追加" id="trip">
+        <FormTrip buttonName="追加" formAction={addTrip} modalLayout={true} modalId="trip"/>
+      </Modal>
       <Suspense fallback={<Loading message="共有リスト" />}>
         <ListShare />
       </Suspense>

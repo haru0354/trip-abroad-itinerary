@@ -21,7 +21,7 @@ type FormMemoProps = {
   buttonName: string;
   formAction: (state: MemoFormState, data: FormData) => Promise<MemoFormState>;
   tripId: number | undefined;
-  modalLayout?: boolean;
+  modalId?: string;
 };
 
 type Memo = {
@@ -35,8 +35,9 @@ const FormMemo: React.FC<FormMemoProps> = ({
   buttonName,
   formAction,
   tripId,
-  modalLayout = false,
+  modalId,
 }) => {
+  const modalLayout = modalId ? true : false;
   const router = useRouter();
   const { closeModal } = useModal();
   const {
@@ -70,9 +71,17 @@ const FormMemo: React.FC<FormMemoProps> = ({
   useEffect(() => {
     if (state.message === "add") {
       toast.success("メモを保存しました！");
-      closeModal();
+
+      if (modalId) {
+        closeModal(modalId);
+      }
     } else if (state.message === "edit") {
       toast.success("メモを編集しました！");
+
+      if (modalId) {
+        closeModal(modalId);
+      }
+
       router.replace(`/memorybook/${tripId}/memo`);
     }
   }, [state.message]);

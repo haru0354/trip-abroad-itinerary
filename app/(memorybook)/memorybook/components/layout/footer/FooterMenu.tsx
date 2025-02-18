@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { addItinerary } from "../../../action/actionItinerary";
 import { addMemo } from "../../../action/actionMemo";
 import Modal from "@/app/components/ui/modal/Modal";
-import FormItinerary from "../../itinerary/FormItinerary";
+import FormItineraryModal from "../../itinerary/FormItineraryModal";
 import FormMemo from "../../memo/FormMemo";
 import ButtonImage from "@/app/components/ui/button/ButtonImage";
 
@@ -56,19 +56,11 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ tripId }) => {
             />
           </Modal>
         ) : path === `/memorybook/${tripId}/itinerary` ? (
-          <Modal
-            maxWidth="max-w-[620px]"
-            buttonName="追加"
-            iconButton={true}
-            id="itinerary"
-          >
-            <FormItinerary
-              tripId={tripId}
-              buttonName="旅程を追加"
-              formAction={addItinerary}
-              modalId="itinerary"
-            />
-          </Modal>
+          <FormItineraryModal
+            tripId={tripId}
+            formAction={addItinerary}
+            buttonName="旅程を追加"
+          />
         ) : null}
       </div>
     </div>

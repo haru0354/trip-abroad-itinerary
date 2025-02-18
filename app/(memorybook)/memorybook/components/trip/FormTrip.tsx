@@ -18,7 +18,6 @@ type FormTripProps = {
   trip?: Trip | null;
   buttonName: string;
   formAction: (state: TripFormState, data: FormData) => Promise<TripFormState>;
-  modalLayout?: boolean;
   modalId?: string;
 };
 
@@ -35,12 +34,12 @@ const FormTrip: React.FC<FormTripProps> = ({
   trip,
   buttonName,
   formAction,
-  modalLayout,
   modalId,
 }) => {
+  const modalLayout = modalId ? true : false;
   const { closeModal } = useModal();
-
   const router = useRouter();
+  
   const {
     register,
     handleSubmit,

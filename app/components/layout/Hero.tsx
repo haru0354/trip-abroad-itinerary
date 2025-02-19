@@ -52,7 +52,7 @@ const Hero: React.FC<HeroProps> = ({
             </>
           )}
           {signUp ? (
-            <SignupModal />
+            <SignupModal id="hero-signup" />
           ) : (
             href && (
               <Button color="blue" size="normal" className="mt-4">

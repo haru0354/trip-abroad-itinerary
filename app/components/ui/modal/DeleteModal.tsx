@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import toast from "react-hot-toast";
 
+import { useModal } from "@/app/hooks/useModal";
 import Modal from "./Modal";
 import Button from "@/app/components/ui/button/Button";
 
@@ -12,7 +13,7 @@ type DeleteModalProps = {
   formAction: (data: FormData) => Promise<{ message: string } | undefined>;
   id?: number | undefined;
   tripId?: number | undefined;
-  isItem?: boolean
+  isItem?: boolean;
 };
 
 const DeleteModal: React.FC<DeleteModalProps> = ({
@@ -23,12 +24,15 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
   id,
   isItem = true,
 }) => {
+  const { closeModal } = useModal();
+
   if (isItem && !id) {
     return <p>削除対象の{DeleteName}がありません。</p>;
   }
 
-  const deleteToast = () => {
+  const handleSubmit = () => {
     toast.success(`${DeleteName}を削除しました！`);
+    closeModal(String(id));
   };
 
   return (
@@ -38,6 +42,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
       closeButtonName="キャンセル"
       color="red"
       paddingNothing={true}
+      id={String(id)}
     >
       <div className="flex justify-center">
         <Image
@@ -50,10 +55,12 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
       <div className="my-6 text-center font-bold">
         <p>「{name}」</p>
         <p>削除しますか？</p>
-        <p className="text-red-500">登録されたデータは削除されます。削除されたデータは元に戻すことはできません。</p>
+        <p className="text-red-500">
+          登録されたデータは削除されます。削除されたデータは元に戻すことはできません。
+        </p>
       </div>
       <div className="pb-2">
-        <form onSubmit={deleteToast}>
+        <form onSubmit={handleSubmit}>
           <input type="hidden" name="id" value={id} />
           {tripId && <input type="hidden" name="tripId" value={tripId} />}
           <Button

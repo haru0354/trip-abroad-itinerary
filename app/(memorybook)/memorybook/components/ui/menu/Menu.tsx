@@ -60,7 +60,7 @@ const Menu: React.FC<MenuProps> = ({ currentUserId }) => {
             <LoginModal />
           </li>
           <li className="mx-2">
-            <SignupModal textButton={true} />
+            <SignupModal textButton={true} id="header-signup" />
           </li>
         </ul>
       )}

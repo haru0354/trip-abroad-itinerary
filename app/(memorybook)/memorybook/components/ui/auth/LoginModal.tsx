@@ -1,21 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
+import { useModal } from "@/app/hooks/useModal";
+import Modal from "@/app/components/ui/modal/Modal";
 import FormLayout from "../../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
-import Button from "@/app/components/ui/button/Button";
 import GoogleLoginButton from "./GoogleLoginButton";
 
 import type { LoginFormType } from "../../../types/formType";
 
 const LoginModal = () => {
   const router = useRouter();
+  const { closeModal } = useModal();
+
   const {
     register,
     handleSubmit,
@@ -25,29 +27,6 @@ const LoginModal = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-  const toggleModal = () => {
-    setIsModalOpen((prev) => !prev);
-  };
-
-  const closeModal = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      toggleModal();
-    }
-  };
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, [isModalOpen]);
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     try {
@@ -58,7 +37,7 @@ const LoginModal = () => {
 
       if (!result?.error) {
         toast.success("ログインしました！");
-        toggleModal();
+        closeModal("ログイン");
         router.replace(`/memorybook/dashboard`);
       } else {
         toast.error("エラーが発生しました。" + result.error);
@@ -71,63 +50,43 @@ const LoginModal = () => {
   };
 
   return (
-    <>
-      <p onClick={toggleModal} className="cursor-pointer mb-0">
-        ログイン
-      </p>
-      {isModalOpen &&
-        createPortal(
-          <div
-            onClick={closeModal}
-            className="fixed flex z-[200] justify-center items-center w-full h-full top-0 left-0 bg-gray-500 bg-opacity-90"
-          >
-            <div
-              className="relative w-full max-w-[400px] mx-2 p-4 border rounded border-gray-500 bg-white"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <FormLayout
-                formTitle="ログインフォーム"
-                buttonName="ログイン"
-                buttonSize="auth"
-                onSubmit={handleSubmit(onSubmit)}
-                modalLayout={true}
-              >
-                <Input
-                  type="email"
-                  label="メールアドレス"
-                  name="email"
-                  placeholder="メールアドレスを記載してください。"
-                  register={register}
-                  required
-                  error={errors.email?.message}
-                  pattern="email"
-                />
-                <Input
-                  type="password"
-                  label="パスワード"
-                  name="password"
-                  placeholder="パスワードを記載してください。"
-                  register={register}
-                  required
-                  minLength={6}
-                  error={errors.password?.message}
-                />
-                {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-              </FormLayout>
-              <GoogleLoginButton />
-              <Button
-                onClick={toggleModal}
-                color="gray"
-                size="normal"
-                className="rounded"
-              >
-                閉じる
-              </Button>
-            </div>
-          </div>,
-          document.body
-        )}
-    </>
+    <Modal
+      id="ログイン"
+      maxWidth="max-w-[400px]"
+      buttonName="ログイン"
+      textButton={true}
+    >
+      <FormLayout
+        formTitle="ログインフォーム"
+        buttonName="ログイン"
+        buttonSize="auth"
+        onSubmit={handleSubmit(onSubmit)}
+        modalLayout={true}
+      >
+        <Input
+          type="email"
+          label="メールアドレス"
+          name="email"
+          placeholder="メールアドレスを記載してください。"
+          register={register}
+          required
+          error={errors.email?.message}
+          pattern="email"
+        />
+        <Input
+          type="password"
+          label="パスワード"
+          name="password"
+          placeholder="パスワードを記載してください。"
+          register={register}
+          required
+          minLength={6}
+          error={errors.password?.message}
+        />
+        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+      </FormLayout>
+      <GoogleLoginButton closeModal={() => closeModal("ログイン")} />
+    </Modal>
   );
 };
 

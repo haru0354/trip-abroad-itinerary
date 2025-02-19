@@ -42,7 +42,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
           animation="fadeInAndScaleVariants"
           className="text-center py-4"
         >
-          <SignupModal />
+          <SignupModal id="cta-signup" />
         </AnimatedItem>
       ) : (
         href && (

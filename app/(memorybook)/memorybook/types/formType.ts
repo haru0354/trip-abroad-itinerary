@@ -4,6 +4,11 @@ export type UserFormType = {
   password: string;
 };
 
+export type DeleteUserFormType = {
+  password: string;
+  passwordConfirmation: string;
+};
+
 export type LoginFormType = {
   email: string;
   password: string;

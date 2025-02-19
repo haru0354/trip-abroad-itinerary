@@ -46,11 +46,11 @@ export type SignupFormState = {
   };
 };
 
-export type ProfileFormState = {
+export type DeleteUserState = {
   message?: string | null;
   errors?: {
-    name?: string[] | undefined;
-    email?: string[] | undefined;
+    password?: string[] | undefined;
+    passwordConfirmation?: string[] | undefined;
   };
 };
 
@@ -69,5 +69,13 @@ export type PasswordFormState = {
     password?: string[] | undefined;
     newPassword?: string[] | undefined;
     passwordConfirmation?: string[] | undefined;
+  };
+};
+
+export type ProfileFormState = {
+  message?: string | null;
+  errors?: {
+    name?: string[] | undefined;
+    email?: string[] | undefined;
   };
 };

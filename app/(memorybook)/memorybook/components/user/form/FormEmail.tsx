@@ -2,29 +2,18 @@
 
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
-import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
+import { updateEmail } from "../../../action/actionProfile";
 import FormLayout from "../../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 
 import type { ChangeEmailState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { ChangeEmailFormType } from "@/app/(memorybook)/memorybook/types/formType";
 
-type FormProfileProps = {
-  buttonName: string;
-  formAction: (
-    state: ChangeEmailState,
-    data: FormData
-  ) => Promise<ChangeEmailState>;
-  userEmail: string | undefined;
-  userName: string | undefined;
-};
-
-const FormEmail: React.FC<FormProfileProps> = ({ buttonName, formAction }) => {
-  const router = useRouter();
+const FormEmail = () => {
   const {
     register,
     handleSubmit,
@@ -35,11 +24,15 @@ const FormEmail: React.FC<FormProfileProps> = ({ buttonName, formAction }) => {
 
   const initialState = {
     message: null,
-    errors: { name: undefined, email: undefined },
+    errors: {
+      email: undefined,
+      emailConfirmation: undefined,
+      password: undefined,
+    },
   };
 
   const [state, dispatch] = useFormState<ChangeEmailState, FormData>(
-    formAction,
+    updateEmail,
     initialState
   );
 
@@ -68,7 +61,7 @@ const FormEmail: React.FC<FormProfileProps> = ({ buttonName, formAction }) => {
     <>
       <FormLayout
         formTitle="メールアドレスのフォーム"
-        buttonName={buttonName}
+        buttonName="変更する"
         onSubmit={handleSubmit(onSubmit)}
       >
         <Input
@@ -103,7 +96,7 @@ const FormEmail: React.FC<FormProfileProps> = ({ buttonName, formAction }) => {
           minLength={6}
           error={errors.password?.message || state.errors?.password}
         />
-        {state.message && state.message !== "edit" && (
+        {state.message && state.message !== "success" && (
           <p className="text-red-500">{state.message}</p>
         )}
       </FormLayout>

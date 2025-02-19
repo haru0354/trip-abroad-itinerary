@@ -9,11 +9,13 @@ import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateSchema } from "../../../lib/validateSchema";
 
 import {
+  changeEmailSchema,
   createAccountSchema,
   passwordSchema,
   profileSchema,
 } from "../schema/userSchema";
 import type {
+  ChangeEmailState,
   PasswordFormState,
   ProfileFormState,
   SignupFormState,
@@ -85,6 +87,77 @@ export const deleteUser = async () => {
     return { message: "アカウントの削除中にエラーが発生しました" };
   }
   redirect(`/memorybook/`);
+};
+
+export const updateEmail = async (state: ChangeEmailState, data: FormData) => {
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return { message: "再度ログインのやり直しが必要です。" };
+  }
+
+  const email = data.get("email") as string;
+  const emailConfirmation = data.get("emailConfirmation") as string;
+  const password = data.get("password") as string;
+
+  const validateDate = {
+    email,
+    emailConfirmation,
+    password,
+  };
+
+  const validated = validateSchema(changeEmailSchema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return { errors: validated.errors };
+  }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!user) {
+    console.error("ユーザーが見つかりませんでした。");
+    return {
+      message:
+        "ユーザーデータの確認に失敗しました。再度ログインのやり直しが必要です。",
+    };
+  }
+
+  if (!user.hashedPassword) {
+    console.error("パスワードが登録されていません。");
+    return { message: "パスワードが登録されていません。" };
+  }
+
+  const isPasswordValid = user.hashedPassword
+    ? await bcrypt.compare(password, user.hashedPassword)
+    : false;
+
+  if (!isPasswordValid) {
+    console.error("パスワードが正しくありません。");
+    return { message: "パスワードが正しくありません。" };
+  }
+
+  try {
+    await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        email,
+      },
+    });
+
+    console.log("メールアドレスの変更に成功しました。");
+    return { message: "success" };
+  } catch (error) {
+    console.error("メールアドレスを編集する際にエラーが発生しました:", error);
+    return { message: "メールアドレスを編集する際にエラーが発生しました" };
+  }
 };
 
 export const updateProfile = async (

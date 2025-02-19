@@ -11,6 +11,23 @@ export const profileSchema = z.object({
   email: z.string().email({ message: "メールアドレスの形式ではありません。" }),
 });
 
+export const changeEmailSchema = z
+  .object({
+    email: z
+      .string()
+      .email({ message: "メールアドレスの形式ではありません。" }),
+    emailConfirmation: z
+      .string()
+      .email({ message: "メールアドレスの形式ではありません。" }),
+    password: z
+      .string()
+      .min(6, { message: "6文字以上入力する必要があります。" }),
+  })
+  .refine((data) => data.email === data.emailConfirmation, {
+    message: "「メールアドレス」と「確認用メールアドレス」が一致しません。",
+    path: ["emailConfirmation"],
+  });
+
 export const passwordSchema = z.object({
   password: z.string().min(6, { message: "6文字以上入力する必要があります。" }),
   passwordConfirmation: z

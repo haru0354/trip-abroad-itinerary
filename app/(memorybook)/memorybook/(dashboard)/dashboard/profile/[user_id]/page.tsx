@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { updatePassword } from "@/app/(memorybook)/memorybook/action/actionProfile";
 import FormEmail from "@/app/(memorybook)/memorybook/components/user/form/FormEmail";
 import FormPassword from "@/app/(memorybook)/memorybook/components/user/form/FormPassword";
 import DeleteUserModal from "@/app/(memorybook)/memorybook/components/user/DeleteUserModal";
@@ -16,7 +15,8 @@ const Page = async () => {
           キャンセル
         </Button>
       </Link>
-      <FormPassword formAction={updatePassword} buttonName="保存する" />
+      <h2 className="bg-itinerary-heading">パスワードの変更</h2>
+      <FormPassword />
       <DeleteUserModal />
     </>
   );

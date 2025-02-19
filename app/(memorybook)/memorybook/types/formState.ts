@@ -67,6 +67,7 @@ export type PasswordFormState = {
   message?: string | null;
   errors?: {
     password?: string[] | undefined;
+    newPassword?: string[] | undefined;
     passwordConfirmation?: string[] | undefined;
   };
 };

@@ -11,6 +11,7 @@ export type LoginFormType = {
 
 export type passwordFormType = {
   password: string;
+  newPassword: string;
   passwordConfirmation: string;
 };
 

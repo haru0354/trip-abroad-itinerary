@@ -12,8 +12,14 @@ import Input from "@/app/components/ui/form/Input";
 
 import type { ChangeEmailState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { ChangeEmailFormType } from "@/app/(memorybook)/memorybook/types/formType";
+import { useModal } from "@/app/hooks/useModal";
 
-const FormEmail = () => {
+type FormEmailProps = {
+  modalId?: string;
+};
+
+const FormEmail: React.FC<FormEmailProps> = ({ modalId }) => {
+  const { closeModal } = useModal();
   const {
     register,
     handleSubmit,
@@ -21,6 +27,8 @@ const FormEmail = () => {
   } = useForm<ChangeEmailFormType>({
     mode: "onBlur",
   });
+
+  const modalLayout = modalId ? true : false;
 
   const initialState = {
     message: null,
@@ -52,6 +60,11 @@ const FormEmail = () => {
   useEffect(() => {
     if (state.message === "success") {
       toast.success("メールアドレスが変更しました！ログアウトが実行されます。");
+
+      if (modalId) {
+        closeModal(modalId);
+      }
+      
       state.message = "";
       signOut({ callbackUrl: "/memorybook" });
     }
@@ -63,6 +76,7 @@ const FormEmail = () => {
         formTitle="メールアドレスのフォーム"
         buttonName="変更する"
         onSubmit={handleSubmit(onSubmit)}
+        modalLayout={modalLayout}
       >
         <Input
           type="email"

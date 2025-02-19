@@ -7,13 +7,13 @@ import bcrypt from "bcrypt";
 import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateSchema } from "../../../lib/validateSchema";
-
 import {
   changeEmailSchema,
   createAccountSchema,
   passwordSchema,
   profileSchema,
 } from "../schema/userSchema";
+
 import type {
   ChangeEmailState,
   PasswordFormState,
@@ -51,12 +51,6 @@ export const createUser = async (state: SignupFormState, data: FormData) => {
         role,
       },
     });
-
-    const formData = {
-      name,
-      email,
-      password,
-    };
 
     console.log("アカウントの作成に成功しました。");
     return { message: "success", user: { name, email, password } };
@@ -152,11 +146,85 @@ export const updateEmail = async (state: ChangeEmailState, data: FormData) => {
       },
     });
 
-    console.log("メールアドレスの変更に成功しました。");
     return { message: "success" };
   } catch (error) {
     console.error("メールアドレスを編集する際にエラーが発生しました:", error);
     return { message: "メールアドレスを編集する際にエラーが発生しました" };
+  }
+};
+
+export const updatePassword = async (
+  state: PasswordFormState,
+  data: FormData
+) => {
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return { message: "再度ログインのやり直しが必要です。" };
+  }
+
+  const password = data.get("password") as string;
+  const newPassword = data.get("newPassword") as string;
+  const passwordConfirmation = data.get("passwordConfirmation") as string;
+
+  const validateDate = {
+    password,
+    newPassword,
+    passwordConfirmation,
+  };
+
+  const validated = validateSchema(passwordSchema, validateDate);
+
+  if (!validated.success) {
+    console.log(validated.errors);
+    return { errors: validated.errors };
+  }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!user) {
+    console.error("ユーザーが見つかりませんでした。");
+    return {
+      message:
+        "ユーザーデータの確認に失敗しました。再度ログインのやり直しが必要です。",
+    };
+  }
+
+  if (!user.hashedPassword) {
+    console.error("パスワードが登録されていません。");
+    return { message: "パスワードが登録されていません。" };
+  }
+
+  const isPasswordValid = user.hashedPassword
+    ? await bcrypt.compare(password, user.hashedPassword)
+    : false;
+
+  if (!isPasswordValid) {
+    console.error("パスワードが正しくありません。");
+    return { message: "パスワードが正しくありません。" };
+  }
+
+  const hashedNewPassword = await bcrypt.hash(newPassword, 12);
+
+  try {
+    await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        hashedPassword: hashedNewPassword,
+      },
+    });
+
+    return { message: "success" };
+  } catch (error) {
+    console.error("パスワードを編集する際にエラーが発生しました:", error);
+    return { message: "パスワードを編集する際にエラーが発生しました" };
   }
 };
 
@@ -200,55 +268,5 @@ export const updateProfile = async (
   } catch (error) {
     console.error("プロフィールを編集する際にエラーが発生しました:", error);
     return { message: "プロフィールを編集する際にエラーが発生しました" };
-  }
-};
-
-export const updatePassword = async (
-  state: PasswordFormState,
-  data: FormData
-) => {
-  const password = data.get("password") as string;
-  const passwordConfirmation = data.get("passwordConfirmation") as string;
-
-  const userId = await getCurrentUserId();
-
-  if (!userId) {
-    console.error("認証がされていません。");
-    return { message: "再度ログインのやり直しが必要です。" };
-  }
-
-  const validateDate = {
-    password,
-    passwordConfirmation,
-  };
-
-  const validated = validateSchema(passwordSchema, validateDate);
-
-  if (!validated.success) {
-    console.log(validated.errors);
-    return { errors: validated.errors };
-  }
-
-  if (password !== passwordConfirmation) {
-    console.error("パスワードが一致しませんでした");
-    return { message: "パスワードが一致しませんでした" };
-  }
-
-  const hashedPassword = await bcrypt.hash(password, 12);
-
-  try {
-    await prisma.user.update({
-      where: {
-        id: userId,
-      },
-      data: {
-        hashedPassword,
-      },
-    });
-    revalidatePath("/memorybook/dashboard/profile");
-    return { message: "edit" };
-  } catch (error) {
-    console.error("パスワードを編集する際にエラーが発生しました:", error);
-    return { message: "パスワードを編集する際にエラーが発生しました" };
   }
 };

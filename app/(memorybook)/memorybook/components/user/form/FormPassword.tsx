@@ -96,7 +96,7 @@ const FormPassword = () => {
           state.errors?.passwordConfirmation
         }
       />
-      {state.errors && state.message !== "success" && (
+      {state.message && state.message !== "success" && (
         <p className="text-red-500">{state.message}</p>
       )}
     </FormLayout>

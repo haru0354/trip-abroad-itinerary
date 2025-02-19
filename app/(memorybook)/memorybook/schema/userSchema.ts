@@ -28,9 +28,31 @@ export const changeEmailSchema = z
     path: ["emailConfirmation"],
   });
 
-export const passwordSchema = z.object({
-  password: z.string().min(6, { message: "6文字以上入力する必要があります。" }),
-  passwordConfirmation: z
-    .string()
-    .min(6, { message: "6文字以上入力する必要があります。" }),
-});
+export const passwordSchema = z
+  .object({
+    password: z
+      .string()
+      .min(6, { message: "6文字以上入力する必要があります。" }),
+    newPassword: z
+      .string()
+      .min(6, { message: "6文字以上入力する必要があります。" }),
+    passwordConfirmation: z
+      .string()
+      .min(6, { message: "6文字以上入力する必要があります。" }),
+  })
+  .superRefine(({ password, newPassword, passwordConfirmation }, ctx) => {
+    if (newPassword !== passwordConfirmation) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["passwordConfirmation"],
+        message: "「新しいパスワード」と「確認用パスワード」が一致しません。",
+      });
+    }
+    if (password === newPassword) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["newPassword"],
+        message: "現在のパスワードと同じものは使用できません。",
+      });
+    }
+  });

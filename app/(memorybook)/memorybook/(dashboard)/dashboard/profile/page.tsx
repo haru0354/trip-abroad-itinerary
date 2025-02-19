@@ -1,8 +1,8 @@
-import { getCurrentUser } from "@/app/lib/getCurrentUser";
+import { getUserProfile } from "@/app/lib/getCurrentUser";
 import ListProfile from "../../../components/user/list/ListProfile";
 
 const page = async () => {
-  const user = await getCurrentUser();
+  const user = await getUserProfile();
 
   if (!user) {
     console.error("ログイン中のユーザーデータが見つかりませんでした。");

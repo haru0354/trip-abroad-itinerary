@@ -10,11 +10,12 @@ const page = async () => {
   }
 
   return (
-    <ListProfile
-      userEmail={user?.email || undefined}
-      userName={user?.name || undefined}
-      userId={user?.id}
-    />
+    <>
+      <ListProfile
+        userEmail={user?.email}
+        userName={user?.name}
+      />
+    </>
   );
 };
 

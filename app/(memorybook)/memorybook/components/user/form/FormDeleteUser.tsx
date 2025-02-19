@@ -6,14 +6,14 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
-import { updatePassword } from "../../../action/actionProfile";
+import { deleteUser } from "../../../action/actionProfile";
 import Input from "@/app/components/ui/form/Input";
 import FormLayout from "../../layout/FormLayout";
 
 import type { DeleteUserState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { DeleteUserFormType } from "@/app/(memorybook)/memorybook/types/formType";
 
-const FormPassword = () => {
+const FormDeleteUser = () => {
   const {
     register,
     handleSubmit,
@@ -32,7 +32,7 @@ const FormPassword = () => {
   };
 
   const [state, dispatch] = useFormState<DeleteUserState, FormData>(
-    updatePassword,
+    deleteUser,
     initialState
   );
 
@@ -58,15 +58,15 @@ const FormPassword = () => {
 
   return (
     <FormLayout
-      formTitle="パスワードのフォーム"
-      buttonName="変更する"
+      formTitle="アカウント削除のフォーム"
+      buttonName="削除する"
       onSubmit={handleSubmit(onSubmit)}
     >
       <Input
-        label="パスワード（登録済みのパスワード）"
+        label="パスワード"
         name="password"
         type="password"
-        placeholder="登録済みのパスワードを確認の為記載してください。"
+        placeholder="登録済みのパスワードを記載してください。"
         register={register}
         required={true}
         minLength={6}
@@ -92,4 +92,4 @@ const FormPassword = () => {
   );
 };
 
-export default FormPassword;
+export default FormDeleteUser;

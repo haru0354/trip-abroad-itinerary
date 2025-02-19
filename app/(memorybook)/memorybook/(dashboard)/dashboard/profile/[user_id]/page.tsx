@@ -4,6 +4,7 @@ import FormEmail from "@/app/(memorybook)/memorybook/components/user/form/FormEm
 import FormPassword from "@/app/(memorybook)/memorybook/components/user/form/FormPassword";
 import DeleteUserModal from "@/app/(memorybook)/memorybook/components/user/DeleteUserModal";
 import Button from "@/app/components/ui/button/Button";
+import FormDeleteUser from "@/app/(memorybook)/memorybook/components/user/form/FormDeleteUser";
 
 const Page = async () => {
   return (
@@ -17,7 +18,8 @@ const Page = async () => {
       </Link>
       <h2 className="bg-itinerary-heading">パスワードの変更</h2>
       <FormPassword />
-      <DeleteUserModal />
+      <h2 className="bg-itinerary-heading">アカウントの削除</h2>
+      <FormDeleteUser />
     </>
   );
 };

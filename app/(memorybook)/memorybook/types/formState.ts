@@ -54,6 +54,15 @@ export type ProfileFormState = {
   };
 };
 
+export type ChangeEmailState = {
+  message?: string | null;
+  errors?: {
+    email?: string[] | undefined;
+    emailConfirmation?: string[] | undefined;
+    password?: string[] | undefined;
+  };
+};
+
 export type PasswordFormState = {
   message?: string | null;
   errors?: {

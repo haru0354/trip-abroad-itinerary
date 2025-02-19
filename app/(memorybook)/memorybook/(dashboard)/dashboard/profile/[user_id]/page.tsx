@@ -7,18 +7,20 @@ import FormProfile from "@/app/(memorybook)/memorybook/components/user/form/Form
 import FormPassword from "@/app/(memorybook)/memorybook/components/user/form/FormPassword";
 import Button from "@/app/components/ui/button/Button";
 import DeleteUserModal from "@/app/(memorybook)/memorybook/components/user/DeleteUserModal";
+import FormEmail from "@/app/(memorybook)/memorybook/components/user/form/FormEmail";
 
 const Page = async () => {
   const user = await getCurrentUser();
 
   if (!user) {
-    console.error("");
+    console.error("ログイン中のユーザーデータが見つかりませんでした。");
     return;
   }
 
   return (
     <>
-      <FormProfile
+      <h2 className="bg-itinerary-heading">メールアドレスの変更</h2>
+      <FormEmail
         formAction={updateProfile}
         buttonName="保存する"
         userName={user?.name || undefined}

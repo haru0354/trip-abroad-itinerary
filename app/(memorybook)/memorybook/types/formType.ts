@@ -19,6 +19,12 @@ export type ProfileFormType = {
   email: string;
 };
 
+export type ChangeEmailFormType = {
+  email: string;
+  emailConfirmation: string;
+  password: string;
+};
+
 export type TripFormType = {
   startDate?: string;
   endDate?: string;

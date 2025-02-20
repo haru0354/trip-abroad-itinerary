@@ -2,34 +2,12 @@ import HeadingTwo from "../../../ui/dashboard/HeadingTwo";
 import TitleList from "../../../layout/dashboard/list/TitleList";
 import ListItem from "../../../layout/dashboard/list/ListItem";
 
+import type { PostWithCategory } from "@/app/(blog)/types/PostTypes";
+
 type ListPostsProps = {
   draft: boolean;
-  posts: Post[];
+  posts: PostWithCategory[];
   title: string;
-};
-
-type Post = {
-  id: number;
-  createdDate: Date;
-  updatedDate: Date;
-  title: string;
-  content: string;
-  categoryId: number;
-  description: string;
-  slug: string;
-  postImageId: number | null;
-  draft: boolean;
-  category: {
-    id: number;
-    name: string;
-    slug: string;
-    title: string | null;
-    content: string | null;
-    description: string | null;
-    postImageId: number | null;
-    createdDate: Date;
-    updatedDate: Date;
-  };
 };
 
 const ListPosts: React.FC<ListPostsProps> = async ({ draft, posts, title }) => {

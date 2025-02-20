@@ -4,39 +4,15 @@ import ArticleContentArea from "./parts/ArticleContentArea";
 import RelatedArticles from "./related-articles/RelatedArticles";
 import NotFound from "../../../not-found";
 
+import type { PostWithCategoryAndImage } from "../../types/PostTypes";
+import type { CategoryWithPostsAndImage } from "../../types/categoryTypes";
+
 type LeftColumnProps = {
   categoryPage: boolean;
-  category?: Category;
-  post?: Post;
+  category?: CategoryWithPostsAndImage;
+  post?: PostWithCategoryAndImage;
   formattedCreatedDate?: string;
   filteredCategoryInArticles?: Article[];
-};
-
-type Category = {
-  name: string;
-  slug: string;
-  title: string | null;
-  content?: string | null;
-  postImage?: {
-    url: string;
-    altText: string;
-  } | null;
-  posts?: Article[];
-};
-
-type Post = {
-  title: string;
-  content: string;
-  slug: string;
-  createdDate: string | Date;
-  postImage?: {
-    url: string;
-    altText: string;
-  } | null;
-  category: {
-    name: string;
-    slug: string;
-  };
 };
 
 type Article = {

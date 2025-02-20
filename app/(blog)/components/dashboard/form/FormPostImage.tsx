@@ -7,6 +7,7 @@ import FormContainer from "../../layout/dashboard/FormContainer";
 import Button from "@/app/components/ui/button/Button";
 import FormImage from "@/app/components/ui/form/FormImage";
 
+import type { PostImage } from "@prisma/client";
 import type { ImageFormState } from "@/app/(blog)/types/formState";
 import type { PostImageFormType } from "@/app/(blog)/types/formTypes";
 
@@ -19,10 +20,6 @@ type FormPostImageProps = {
   ) => Promise<ImageFormState>;
 };
 
-type PostImage = {
-  url: string;
-  altText: string;
-};
 
 const FormPostImage: React.FC<FormPostImageProps> = ({
   postImage,

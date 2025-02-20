@@ -5,21 +5,14 @@ import { useState } from "react";
 import Checkbox from "@/app/components/ui/form/Checkbox";
 import FormLayout from "../../layout/FormLayout";
 
+import type { Trip } from "@prisma/client";
+
 type FormShareProps = {
   trip: Trip | null;
   formAction: (
     data: FormData
   ) => Promise<{ message?: undefined } | { message: string }>;
   buttonName: string;
-};
-
-type Trip = {
-  id: number;
-  startDate?: string | null;
-  endDate?: string | null;
-  name: string;
-  destination?: string | null;
-  share: boolean;
 };
 
 const FormShare: React.FC<FormShareProps> = ({

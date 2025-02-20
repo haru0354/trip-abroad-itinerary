@@ -4,6 +4,11 @@ export type UserFormType = {
   password: string;
 };
 
+export type DeleteUserFormType = {
+  password: string;
+  passwordConfirmation: string;
+};
+
 export type LoginFormType = {
   email: string;
   password: string;
@@ -11,12 +16,19 @@ export type LoginFormType = {
 
 export type passwordFormType = {
   password: string;
+  newPassword: string;
   passwordConfirmation: string;
 };
 
 export type ProfileFormType = {
   name: string;
   email: string;
+};
+
+export type ChangeEmailFormType = {
+  email: string;
+  emailConfirmation: string;
+  password: string;
 };
 
 export type TripFormType = {

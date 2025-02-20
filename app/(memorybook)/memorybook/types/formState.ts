@@ -46,11 +46,20 @@ export type SignupFormState = {
   };
 };
 
-export type ProfileFormState = {
+export type DeleteUserState = {
   message?: string | null;
   errors?: {
-    name?: string[] | undefined;
+    password?: string[] | undefined;
+    passwordConfirmation?: string[] | undefined;
+  };
+};
+
+export type ChangeEmailState = {
+  message?: string | null;
+  errors?: {
     email?: string[] | undefined;
+    emailConfirmation?: string[] | undefined;
+    password?: string[] | undefined;
   };
 };
 
@@ -58,6 +67,15 @@ export type PasswordFormState = {
   message?: string | null;
   errors?: {
     password?: string[] | undefined;
+    newPassword?: string[] | undefined;
     passwordConfirmation?: string[] | undefined;
+  };
+};
+
+export type ProfileFormState = {
+  message?: string | null;
+  errors?: {
+    name?: string[] | undefined;
+    email?: string[] | undefined;
   };
 };

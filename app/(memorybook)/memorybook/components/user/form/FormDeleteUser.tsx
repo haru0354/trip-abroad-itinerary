@@ -6,26 +6,25 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
+import { deleteUser } from "../../../action/actionProfile";
 import { useModal } from "@/app/hooks/useModal";
-import { updatePassword } from "../../../action/actionProfile";
 import Input from "@/app/components/ui/form/Input";
 import FormLayout from "../../layout/FormLayout";
 
-import type { PasswordFormState } from "@/app/(memorybook)/memorybook/types/formState";
-import type { passwordFormType } from "@/app/(memorybook)/memorybook/types/formType";
+import type { DeleteUserState } from "@/app/(memorybook)/memorybook/types/formState";
+import type { DeleteUserFormType } from "@/app/(memorybook)/memorybook/types/formType";
 
-type FormPasswordProps = {
+type FormDeleteUserProps = {
   modalId?: string;
 };
 
-const FormPassword: React.FC<FormPasswordProps> = ({ modalId }) => {
+const FormDeleteUser: React.FC<FormDeleteUserProps> = ({ modalId }) => {
   const { closeModal } = useModal();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<passwordFormType>({
+  } = useForm<DeleteUserFormType>({
     mode: "onBlur",
   });
 
@@ -40,66 +39,55 @@ const FormPassword: React.FC<FormPasswordProps> = ({ modalId }) => {
     },
   };
 
-  const [state, dispatch] = useFormState<PasswordFormState, FormData>(
-    updatePassword,
+  const [state, dispatch] = useFormState<DeleteUserState, FormData>(
+    deleteUser,
     initialState
   );
 
-  const onSubmit: SubmitHandler<passwordFormType> = (data) => {
+  const onSubmit: SubmitHandler<DeleteUserFormType> = (data) => {
     try {
       const formData = new FormData();
       formData.append("password", data.password);
-      formData.append("newPassword", data.newPassword);
       formData.append("passwordConfirmation", data.passwordConfirmation);
       dispatch(formData);
     } catch (error) {
-      console.error("パスワードの変更中にエラーが発生しました:", error);
-      toast.error("パスワードの変更中にエラーが発生しました。" + error);
+      console.error("アカウントの削除中にエラーが発生しました:", error);
+      toast.error("アカウントの削除中にエラーが生しました。" + error);
     }
   };
 
   useEffect(() => {
     if (state.message === "success") {
-      toast.success("パスワードを変更しました！ログアウトが実行されます。");
+      toast.success("アカウントを削除しました！ログアウトが実行されます。");
+      state.message = "";
 
       if (modalId) {
         closeModal(modalId);
       }
 
-      state.message = "";
       signOut({ callbackUrl: "/memorybook" });
     }
   }, [state.message]);
 
   return (
     <FormLayout
-      formTitle="パスワードのフォーム"
-      buttonName="変更する"
+      formTitle="アカウント削除のフォーム"
+      buttonName="削除する"
       onSubmit={handleSubmit(onSubmit)}
       modalLayout={modalLayout}
     >
       <Input
-        label="パスワード（登録済みのパスワード）"
+        label="パスワード"
         name="password"
         type="password"
-        placeholder="登録済みのパスワードを確認の為記載してください。"
+        placeholder="登録済みのパスワードを記載してください。"
         register={register}
         required={true}
         minLength={6}
         error={errors.password?.message || state.errors?.password}
       />
       <Input
-        label="パスワード（新しいパスワード）"
-        name="newPassword"
-        type="password"
-        placeholder="変更する新しいパスワードを記載してください。"
-        register={register}
-        required={true}
-        minLength={6}
-        error={errors.newPassword?.message || state.errors?.newPassword}
-      />
-      <Input
-        label="パスワード（新しいパスワード確認用）"
+        label="パスワード（確認用）"
         name="passwordConfirmation"
         type="password"
         placeholder="確認の為パスワードをもう一度記載してください。"
@@ -118,4 +106,4 @@ const FormPassword: React.FC<FormPasswordProps> = ({ modalId }) => {
   );
 };
 
-export default FormPassword;
+export default FormDeleteUser;

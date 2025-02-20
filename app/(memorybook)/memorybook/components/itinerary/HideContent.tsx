@@ -1,46 +1,42 @@
 "use client";
 
 import { useState } from "react";
+
 import ButtonImage from "@/app/components/ui/button/ButtonImage";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 
-type Itinerary = {
-  hideContent: string | null;
-  isShowContent: boolean | null;
-};
-
 type HideContentProps = {
-  itinerary?: Itinerary;
+  hideContent: string;
 };
 
-const HideContent: React.FC<HideContentProps> = ({ itinerary }) => {
+const HideContent: React.FC<HideContentProps> = ({ hideContent }) => {
   const [isShowContent, setIsShowContent] = useState<boolean>(false);
 
   const toggleShowContent = () => {
-    setIsShowContent(!isShowContent);
+    setIsShowContent((prev) => !prev);
   };
 
   return (
     <>
-      {itinerary && itinerary.hideContent && (
+      {hideContent && (
         <>
           {isShowContent ? (
             <>
               <AnimatedItem
                 elementType="div"
                 animation="fadeInAndScaleVariants"
-                className="border border-dashed border-itinerary-borderBlack rounded p-4 mt-6"
+                className="p-4 mt-6 border border-dashed border-itinerary-borderBlack rounded"
               >
                 <p>
-                  <SplitTextLines text={itinerary?.hideContent} />
+                  <SplitTextLines text={hideContent} />
                 </p>
               </AnimatedItem>
               <ButtonImage
                 onClick={toggleShowContent}
                 icon="up"
                 size="small"
-                className="m-auto py-1 mt-4 mb-2"
+                className="mx-auto py-1 mt-4 mb-2"
                 iconClassName="mr-2 w-[12px] h-[12px]"
               >
                 閉じる
@@ -51,7 +47,7 @@ const HideContent: React.FC<HideContentProps> = ({ itinerary }) => {
               onClick={toggleShowContent}
               icon="down"
               size="small"
-              className="m-auto py-1 mt-4 mb-2"
+              className="mx-auto py-1 mt-4 mb-2"
               iconClassName="mr-2 w-[12px] h-[12px]"
             >
               補足情報を開く

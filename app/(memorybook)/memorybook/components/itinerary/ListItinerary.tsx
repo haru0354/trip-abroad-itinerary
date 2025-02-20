@@ -137,7 +137,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
                   </div>
                 </div>
                 {itinerary && itinerary.hideContent && (
-                  <HideContent itinerary={itinerary} />
+                  <HideContent hideContent={itinerary.hideContent} />
                 )}
               </div>
             </AnimatedItem>

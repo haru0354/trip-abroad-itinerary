@@ -28,6 +28,8 @@ const FormDeleteUser: React.FC<FormDeleteUserProps> = ({ modalId }) => {
     mode: "onBlur",
   });
 
+  const modalLayout = modalId ? true : false;
+
   const initialState = {
     message: null,
     errors: {
@@ -72,6 +74,7 @@ const FormDeleteUser: React.FC<FormDeleteUserProps> = ({ modalId }) => {
       formTitle="アカウント削除のフォーム"
       buttonName="削除する"
       onSubmit={handleSubmit(onSubmit)}
+      modalLayout={modalLayout}
     >
       <Input
         label="パスワード"

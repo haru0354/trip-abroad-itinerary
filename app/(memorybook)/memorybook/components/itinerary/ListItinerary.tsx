@@ -11,22 +11,12 @@ import AnimatedImage from "@/app/lib/animation/AnimatedImage";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 import ButtonImage from "@/app/components/ui/button/ButtonImage";
 
+import type { Itinerary } from "@prisma/client";
+
 type ListItineraryProps = {
   tripId: number | undefined;
-  itineraries: Itineraries[] | undefined;
+  itineraries: Itinerary[] | undefined;
   isShare?: boolean;
-};
-
-type Itineraries = {
-  id: number;
-  date: string;
-  time: string;
-  name: string;
-  content: string | null;
-  hideContent: string | null;
-  isShowContent: boolean | null;
-  url: string | null;
-  altText: string | null;
 };
 
 const ListItinerary: React.FC<ListItineraryProps> = ({
@@ -34,7 +24,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
   itineraries,
   isShare,
 }) => {
-  const sortItineraryByDateTime = (a: Itineraries, b: Itineraries) =>
+  const sortItineraryByDateTime = (a: Itinerary, b: Itinerary) =>
     new Date(a.date + " " + a.time).getTime() -
     new Date(b.date + " " + b.time).getTime();
 

@@ -6,7 +6,7 @@ export type PostWithCategoryAndImage = Post & {
 };
 
 export type PostWithPostImage = Post & {
-  postImag?: PostImage | null;
+  postImage?: PostImage | null;
 };
 
 export type PostWithCategory = Post & {

@@ -2,11 +2,11 @@ import type { Post, Category, PostImage } from "@prisma/client";
 
 export type PostWithCategoryAndImage = Post & {
   category: Category;
-  postImage: PostImage;
+  postImage?: PostImage | null;
 };
 
 export type PostWithPostImage = Post & {
-  postImage: PostImage;
+  postImag?: PostImage | null;
 };
 
 export type PostWithCategory = Post & {

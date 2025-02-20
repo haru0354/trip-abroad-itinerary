@@ -4,6 +4,7 @@ import ArticleContentArea from "./parts/ArticleContentArea";
 import RelatedArticles from "./related-articles/RelatedArticles";
 import NotFound from "../../../not-found";
 
+import type { Post } from "@prisma/client";
 import type { PostWithCategoryAndImage } from "../../types/PostTypes";
 import type { CategoryWithPostsAndImage } from "../../types/categoryTypes";
 
@@ -12,20 +13,7 @@ type LeftColumnProps = {
   category?: CategoryWithPostsAndImage;
   post?: PostWithCategoryAndImage;
   formattedCreatedDate?: string;
-  filteredCategoryInArticles?: Article[];
-};
-
-type Article = {
-  id: number;
-  createdDate: string | Date;
-  updatedDate: string | Date;
-  title: string;
-  content: string;
-  categoryId: number;
-  description: string;
-  slug: string;
-  postImageId: number | null;
-  draft: boolean;
+  filteredCategoryInArticles?: Post[];
 };
 
 const LeftColumn: React.FC<LeftColumnProps> = ({

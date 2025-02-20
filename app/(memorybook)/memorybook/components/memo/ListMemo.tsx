@@ -5,15 +5,11 @@ import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
 import ButtonImage from "@/app/components/ui/button/ButtonImage";
 
+import type { Memo } from "@prisma/client";
+
 type ListMemoProps = {
   tripId: number | undefined;
   memos: Memo[] | undefined;
-};
-
-type Memo = {
-  id: number;
-  name: string;
-  content: string;
 };
 
 const ListMemo: React.FC<ListMemoProps> = async ({ memos, tripId }) => {

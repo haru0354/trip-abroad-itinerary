@@ -12,6 +12,7 @@ import Input from "@/app/components/ui/form/Input";
 import TextArea from "@/app/components/ui/form/TextArea";
 import InputHidden from "@/app/components/ui/form/InputHidden";
 
+import type { Memo } from "@prisma/client";
 import type { MemoFormState } from "../../types/formState";
 import type { MemoFormType } from "../../types/formType";
 
@@ -24,12 +25,6 @@ type FormMemoProps = {
   modalId?: string;
 };
 
-type Memo = {
-  id: number;
-  name: string;
-  content: string;
-};
-
 const FormMemo: React.FC<FormMemoProps> = ({
   memo,
   buttonName,
@@ -40,7 +35,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
   const modalLayout = modalId ? true : false;
   const router = useRouter();
   const { closeModal } = useModal();
-  
+
   const {
     register,
     handleSubmit,

@@ -1,5 +1,5 @@
-import { deleteUser } from "@/app/(memorybook)/memorybook/action/actionProfile";
-import DeleteModal from "@/app/components/ui/modal/DeleteModal";
+import Modal from "@/app/components/ui/modal/Modal";
+import FormDeleteUser from "../form/FormDeleteUser";
 
 const DeleteUserModal = () => {
   return (
@@ -16,12 +16,13 @@ const DeleteUserModal = () => {
       <p className="text-red-500 font-semibold">
         削除をするとこれらのデータは完全に消去され、復旧をすることはできなくなります。
       </p>
-      <DeleteModal
-        DeleteName="アカウント"
-        name="アカウント"
-        formAction={deleteUser}
-        isItem={false}
-      />
+      <Modal
+        maxWidth="max-w-[620px]"
+        buttonName="アカウントの削除"
+        id="delete-user"
+      >
+        <FormDeleteUser modalId="delete-user" />
+      </Modal>
     </>
   );
 };

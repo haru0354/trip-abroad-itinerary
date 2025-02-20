@@ -7,13 +7,19 @@ import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import { deleteUser } from "../../../action/actionProfile";
+import { useModal } from "@/app/hooks/useModal";
 import Input from "@/app/components/ui/form/Input";
 import FormLayout from "../../layout/FormLayout";
 
 import type { DeleteUserState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { DeleteUserFormType } from "@/app/(memorybook)/memorybook/types/formType";
 
-const FormDeleteUser = () => {
+type FormDeleteUserProps = {
+  modalId?: string;
+};
+
+const FormDeleteUser: React.FC<FormDeleteUserProps> = ({ modalId }) => {
+  const { closeModal } = useModal();
   const {
     register,
     handleSubmit,
@@ -52,6 +58,11 @@ const FormDeleteUser = () => {
     if (state.message === "success") {
       toast.success("アカウントを削除しました！ログアウトが実行されます。");
       state.message = "";
+
+      if (modalId) {
+        closeModal(modalId);
+      }
+
       signOut({ callbackUrl: "/memorybook" });
     }
   }, [state.message]);

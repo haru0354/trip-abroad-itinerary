@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import FormEmail from "@/app/(memorybook)/memorybook/components/user/form/FormEmail";
 import FormPassword from "@/app/(memorybook)/memorybook/components/user/form/FormPassword";
-import DeleteUserModal from "@/app/(memorybook)/memorybook/components/user/DeleteUserModal";
+import DeleteUserModal from "@/app/(memorybook)/memorybook/components/user/modal/DeleteUserModal";
 import Button from "@/app/components/ui/button/Button";
 import FormDeleteUser from "@/app/(memorybook)/memorybook/components/user/form/FormDeleteUser";
 

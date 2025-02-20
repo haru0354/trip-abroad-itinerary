@@ -1,7 +1,7 @@
 import { getUserProfile } from "@/app/lib/getCurrentUser";
 import ListProfile from "../../../components/user/list/ListProfile";
-import Button from "@/app/components/ui/button/Button";
 import ChangeEmailFormModal from "../../../components/user/modal/ChangeEmailFormModal";
+import ChangePasswordFormModal from "../../../components/user/modal/ChangePasswordFormModal";
 
 const page = async () => {
   const user = await getUserProfile();
@@ -15,13 +15,10 @@ const page = async () => {
     <>
       <h2 className="bg-itinerary-heading">プロフィール</h2>
       <ListProfile userEmail={user?.email} userName={user?.name} />
-      <ChangeEmailFormModal />
-      <Button color="blue" size="normal">
-        メールアドレスの変更
-      </Button>
-      <Button color="blue" size="normal">
-        パスワードの変更
-      </Button>
+      <div className="flex flex-col items-center justify-center md:flex-row max-w-[620px] mx-auto my-8">
+        <ChangeEmailFormModal />
+        <ChangePasswordFormModal />
+      </div>
     </>
   );
 };

@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
+import { useModal } from "@/app/hooks/useModal";
 import { updatePassword } from "../../../action/actionProfile";
 import Input from "@/app/components/ui/form/Input";
 import FormLayout from "../../layout/FormLayout";
@@ -13,7 +14,13 @@ import FormLayout from "../../layout/FormLayout";
 import type { PasswordFormState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { passwordFormType } from "@/app/(memorybook)/memorybook/types/formType";
 
-const FormPassword = () => {
+type FormPasswordProps = {
+  modalId?: string;
+};
+
+const FormPassword: React.FC<FormPasswordProps> = ({ modalId }) => {
+  const { closeModal } = useModal();
+
   const {
     register,
     handleSubmit,
@@ -21,6 +28,8 @@ const FormPassword = () => {
   } = useForm<passwordFormType>({
     mode: "onBlur",
   });
+
+  const modalLayout = modalId ? true : false;
 
   const initialState = {
     message: null,
@@ -52,6 +61,11 @@ const FormPassword = () => {
   useEffect(() => {
     if (state.message === "success") {
       toast.success("パスワードを変更しました！ログアウトが実行されます。");
+
+      if (modalId) {
+        closeModal(modalId);
+      }
+
       state.message = "";
       signOut({ callbackUrl: "/memorybook" });
     }
@@ -62,6 +76,7 @@ const FormPassword = () => {
       formTitle="パスワードのフォーム"
       buttonName="変更する"
       onSubmit={handleSubmit(onSubmit)}
+      modalLayout={modalLayout}
     >
       <Input
         label="パスワード（登録済みのパスワード）"

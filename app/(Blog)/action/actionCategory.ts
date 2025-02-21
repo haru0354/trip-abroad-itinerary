@@ -91,11 +91,12 @@ export const addCategory = async (state: CategoryFormState, data: FormData) => {
     if (image && image.size > 0) {
       revalidatePath(`/dashboard/image`);
     }
+
+    return { message: "add" };
   } catch (error) {
     console.error("カテゴリを追加する際にエラーが発生しました");
     return { message: "カテゴリを追加する際にエラーが発生しました" };
   }
-  redirect("/dashboard/category");
 };
 
 export const deleteCategory = async (data: FormData) => {
@@ -262,9 +263,10 @@ export const updateCategory = async (
     if (image && image.size > 0) {
       revalidatePath(`/dashboard/image`);
     }
+
+    return { message: "edit" };
   } catch (error) {
     console.error("カテゴリを編集する際にエラーが発生しました");
     return { message: "カテゴリを編集する際にエラーが発生しました" };
   }
-  redirect("/dashboard/category");
 };

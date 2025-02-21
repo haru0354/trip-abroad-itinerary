@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, ChangeEvent, useEffect } from "react";
+import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
@@ -10,9 +11,9 @@ import Input from "@/app/components/ui/form/Input";
 import Button from "@/app/components/ui/button/Button";
 import TextArea from "@/app/components/ui/form/TextArea";
 
+import type { DashboardMemoFormType } from "@/app/(blog)/types/formTypes";
 import type { DashboardFormState } from "@/app/(blog)/types/formState";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { DashboardMemoFormType } from "@/app/(blog)/types/formTypes";
+import type { DashboardMemo } from "@prisma/client"
 
 type FormMemoProps = {
   dashboardMemo?: DashboardMemo | null;
@@ -21,12 +22,6 @@ type FormMemoProps = {
     state: DashboardFormState,
     data: FormData
   ) => Promise<DashboardFormState>;
-};
-
-type DashboardMemo = {
-  id: number;
-  name: string;
-  content: string;
 };
 
 const FormDashboardMemo: React.FC<FormMemoProps> = ({

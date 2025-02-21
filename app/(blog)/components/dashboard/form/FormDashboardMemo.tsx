@@ -70,37 +70,28 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
   }, [state.message]);
 
   return (
-    <>
-      <FormContainer>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            label="メモの見出し"
-            name="name"
-            placeholder="メモの見出しを記載しましょう。"
-            defaultValue={dashboardMemo?.name}
-            register={register}
-            required={true}
-            error={errors.name?.message || state.errors?.name}
-          />
-          <TextArea
-            label="メモする内容"
-            name="content"
-            placeholder="メモする内容を記載しましょう。"
-            defaultValue={dashboardMemo?.content}
-            register={register}
-            error={errors.content?.message || state.errors?.content}
-          />
-          {state.message &&
-            state.message !== "edit" &&
-            state.message !== "add" && (
-              <p className="text-red-500">{state.message}</p>
-            )}
-          <Button color="blue" size="normal" className="rounded mt-4">
-            {buttonName}
-          </Button>
-        </form>
-      </FormContainer>
-    </>
+    <FormContainer onSubmit={handleSubmit(onSubmit)} buttonName={buttonName}>
+      <Input
+        label="メモの見出し"
+        name="name"
+        placeholder="メモの見出しを記載しましょう。"
+        defaultValue={dashboardMemo?.name}
+        register={register}
+        required={true}
+        error={errors.name?.message || state.errors?.name}
+      />
+      <TextArea
+        label="メモする内容"
+        name="content"
+        placeholder="メモする内容を記載しましょう。"
+        defaultValue={dashboardMemo?.content}
+        register={register}
+        error={errors.content?.message || state.errors?.content}
+      />
+      {state.message && state.message !== "edit" && state.message !== "add" && (
+        <p className="text-red-500">{state.message}</p>
+      )}
+    </FormContainer>
   );
 };
 

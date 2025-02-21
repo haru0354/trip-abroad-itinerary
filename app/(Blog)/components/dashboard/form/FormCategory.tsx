@@ -87,74 +87,67 @@ const FormCategory: React.FC<FormCategoryProps> = ({
   }, [state.message]);
 
   return (
-    <FormContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          name="name"
-          label="カテゴリ名"
-          placeholder="カテゴリ名を入力してください。"
-          defaultValue={category?.name}
-          register={register}
-          required={true}
-          error={errors.name?.message || state.errors?.name}
-        />
-        <Input
-          name="slug"
-          label="スラッグ"
-          placeholder={"スラッグを半角小文字の英数字で入力してください。"}
-          defaultValue={category?.slug}
-          register={register}
-          required={true}
-          error={errors.slug?.message || state.errors?.slug}
-        />
-        <TextArea
-          name="description"
-          label="カテゴリの説明(description)"
-          placeholder={
-            "カテゴリの説明(description)を入力してください。この項目は必須ではありません。"
-          }
-          defaultValue={category?.description ?? ""}
-          register={register}
-          error={errors.description?.message || state.errors?.description}
-        />
-        <p className="border-b my-5 pb-2 font-semibold">
-          カテゴリを記事にする(カテゴリにコンテンツを表示)
-        </p>
-        <TextArea
-          name="title"
-          label="カテゴリのタイトル"
-          placeholder={
-            "カテゴリのタイトルを入力してください。カテゴリページにタイトルが表示されます。この項目は必須ではありません。"
-          }
-          defaultValue={category?.title || undefined}
-          register={register}
-          error={errors.title?.message || state.errors?.title}
-        />
-        <TextArea
-          name="content"
-          label="カテゴリの内容"
-          placeholder={
-            "カテゴリの内容を入力してください。カテゴリページに表示がされます。この項目は必須ではありません。"
-          }
-          defaultValue={category?.content || undefined}
-          register={register}
-          error={errors.content?.message || state.errors?.content}
-        />
-        <FormImage
-          state={state}
-          selectImage={category?.postImage}
-          register={register}
-          defaultValue={category?.postImage?.altText}
-        />
-        {state.message &&
-          state.message !== "add" &&
-          state.message !== "edit" && (
-            <p className="text-red-500">{state.message}</p>
-          )}
-        <Button color="blue" size="normal" className="rounded mt-4">
-          {buttonName}
-        </Button>
-      </form>
+    <FormContainer onSubmit={handleSubmit(onSubmit)} buttonName={buttonName}>
+      <Input
+        name="name"
+        label="カテゴリ名"
+        placeholder="カテゴリ名を入力してください。"
+        defaultValue={category?.name}
+        register={register}
+        required={true}
+        error={errors.name?.message || state.errors?.name}
+      />
+      <Input
+        name="slug"
+        label="スラッグ"
+        placeholder={"スラッグを半角小文字の英数字で入力してください。"}
+        defaultValue={category?.slug}
+        register={register}
+        required={true}
+        error={errors.slug?.message || state.errors?.slug}
+      />
+      <TextArea
+        name="description"
+        label="カテゴリの説明(description)"
+        placeholder={
+          "カテゴリの説明(description)を入力してください。この項目は必須ではありません。"
+        }
+        defaultValue={category?.description ?? ""}
+        register={register}
+        error={errors.description?.message || state.errors?.description}
+      />
+      <p className="border-b my-5 pb-2 font-semibold">
+        カテゴリを記事にする(カテゴリにコンテンツを表示)
+      </p>
+      <TextArea
+        name="title"
+        label="カテゴリのタイトル"
+        placeholder={
+          "カテゴリのタイトルを入力してください。カテゴリページにタイトルが表示されます。この項目は必須ではありません。"
+        }
+        defaultValue={category?.title || undefined}
+        register={register}
+        error={errors.title?.message || state.errors?.title}
+      />
+      <TextArea
+        name="content"
+        label="カテゴリの内容"
+        placeholder={
+          "カテゴリの内容を入力してください。カテゴリページに表示がされます。この項目は必須ではありません。"
+        }
+        defaultValue={category?.content || undefined}
+        register={register}
+        error={errors.content?.message || state.errors?.content}
+      />
+      <FormImage
+        state={state}
+        selectImage={category?.postImage}
+        register={register}
+        defaultValue={category?.postImage?.altText}
+      />
+      {state.message && state.message !== "add" && state.message !== "edit" && (
+        <p className="text-red-500">{state.message}</p>
+      )}
     </FormContainer>
   );
 };

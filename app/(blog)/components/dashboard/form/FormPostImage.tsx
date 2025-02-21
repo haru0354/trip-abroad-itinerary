@@ -82,25 +82,21 @@ const FormPostImage: React.FC<FormPostImageProps> = ({
   }, [state.message]);
 
   return (
-    <FormContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormImage
-          selectImage={postImage}
-          state={state}
-          register={register}
-          defaultValue={postImage?.altText}
-          required={true}
-          error={errors.altText?.message}
-        />
-        {state.message &&
-          state.message !== "edit" &&
-          state.message !== "add" && (
-            <p className="text-red-500">{state.message}</p>
-          )}
-        <Button color="blue" size="normal" className="rounded mt-4">
-          {buttonName}
-        </Button>
-      </form>
+    <FormContainer onSubmit={handleSubmit(onSubmit)} buttonName={buttonName}>
+      <FormImage
+        selectImage={postImage}
+        state={state}
+        register={register}
+        defaultValue={postImage?.altText}
+        required={true}
+        error={errors.altText?.message}
+      />
+      {state.message && state.message !== "edit" && state.message !== "add" && (
+        <p className="text-red-500">{state.message}</p>
+      )}
+      <Button color="blue" size="normal" className="rounded mt-4">
+        {buttonName}
+      </Button>
     </FormContainer>
   );
 };

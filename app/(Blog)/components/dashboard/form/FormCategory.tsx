@@ -34,6 +34,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
   } = useForm<CategoryFormType>({
     mode: "onBlur",
   });
+
   const initialState = {
     message: null,
     errors: { name: undefined, slug: undefined, altText: undefined },
@@ -63,6 +64,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
       dispatch(formData);
     } catch (error) {
       console.error("エラーが発生しました:", error);
+      state.message = "エラーが発生しました。もう一度お試しください。";
     }
   };
 

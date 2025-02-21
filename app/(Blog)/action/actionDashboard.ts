@@ -18,7 +18,7 @@ export const addDashboardMemo = async (
 
   if (!isAdmin) {
     console.error("ダッシュボードメモ追加の権限が必要です。");
-    return {};
+    return { message: "権限エラー。再度ログインをし直してください。" };
   }
 
   const name = data.get("name") as string;
@@ -43,6 +43,7 @@ export const addDashboardMemo = async (
         content,
       },
     });
+
     revalidatePath("/dashboard");
     return { message: "add" };
   } catch {
@@ -56,7 +57,7 @@ export const deleteDashboardMemo = async (data: FormData) => {
 
   if (!isAdmin) {
     console.error("ダッシュボードメモ削除の権限が必要です。");
-    return { message: "ダッシュボードメモ削除の権限がありません。" };
+    return { message: "権限エラー。再度ログインをし直してください。" };
   }
 
   const id = data.get("id") as string;
@@ -67,6 +68,7 @@ export const deleteDashboardMemo = async (data: FormData) => {
         id: Number(id),
       },
     });
+
     revalidatePath("/dashboard");
   } catch (error) {
     console.error("メモの削除中にエラーが発生しました:", error);
@@ -84,7 +86,7 @@ export const updateDashboardMemo = async (
 
   if (!isAdmin) {
     console.error("ダッシュボードメモ編集の権限が必要です。");
-    return {};
+    return { message: "権限エラー。再度ログインをし直してください。" };
   }
 
   const name = data.get("name") as string;
@@ -112,6 +114,7 @@ export const updateDashboardMemo = async (
         content,
       },
     });
+    
     revalidatePath("/dashboard");
     return { message: "edit" };
   } catch {

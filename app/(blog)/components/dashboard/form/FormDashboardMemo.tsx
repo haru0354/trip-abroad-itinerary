@@ -13,7 +13,7 @@ import TextArea from "@/app/components/ui/form/TextArea";
 
 import type { DashboardMemoFormType } from "@/app/(blog)/types/formTypes";
 import type { DashboardFormState } from "@/app/(blog)/types/formState";
-import type { DashboardMemo } from "@prisma/client"
+import type { DashboardMemo } from "@prisma/client";
 
 type FormMemoProps = {
   dashboardMemo?: DashboardMemo | null;
@@ -53,7 +53,8 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
       dispatch(formData);
     } catch (error) {
       console.error("エラーが発生しました:", error);
-      toast.error("エラーが発生しました。" + error);
+      toast.error("エラーが発生しました。");
+      state.message = "エラーが発生しました。もう一度お試しください。";
     }
   };
 

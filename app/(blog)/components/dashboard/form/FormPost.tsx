@@ -3,6 +3,8 @@
 import { useFormState } from "react-dom";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import DOMPurify from "dompurify";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
@@ -17,9 +19,6 @@ import type { Category } from "@prisma/client";
 import type { PostWithCategoryAndImage } from "@/app/(blog)/types/PostTypes";
 import type { PostFormState } from "@/app/(blog)/types/formState";
 import type { PostFormType } from "@/app/(blog)/types/formTypes";
-import toast from "react-hot-toast";
-import Router from "next/router";
-import { useRouter } from "next/navigation";
 
 type FormPostProps = {
   post?: PostWithCategoryAndImage | null;
@@ -35,6 +34,7 @@ const FormPost: React.FC<FormPostProps> = ({
   buttonName,
 }) => {
   const router = useRouter();
+
   const {
     register,
     handleSubmit,

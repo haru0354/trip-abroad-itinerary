@@ -92,12 +92,11 @@ export const addPost = async (state: PostFormState, data: FormData) => {
     revalidatePath(`/dashboard/post`);
     await revalidatePostsAndCategories();
 
-    console.log("記事の登録に成功しました。");
+    return { message: "add" };
   } catch (error) {
     console.error("記事を投稿する際にエラーが発生しました", error);
     return { message: "記事を投稿する際にエラーが発生しました" };
   }
-  redirect("/dashboard/post");
 };
 
 export const deletePost = async (data: FormData) => {
@@ -105,7 +104,7 @@ export const deletePost = async (data: FormData) => {
 
   if (!isAdmin) {
     console.error("記事の削除の権限が必要です。");
-    return;
+    return { message: "権限エラー。再度ログインをし直してください。" };
   }
 
   const id = data.get("id") as string;
@@ -131,6 +130,7 @@ export const deletePost = async (data: FormData) => {
         id: Number(id),
       },
     });
+
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
     revalidatePath(`/${post?.category.slug}/${post?.slug}`);
@@ -139,8 +139,6 @@ export const deletePost = async (data: FormData) => {
     if (post?.postImage?.url) {
       revalidatePath(`/dashboard/image`);
     }
-
-    console.log("記事が正常に削除されました");
   } catch (error) {
     console.error("記事の削除中にエラーが発生しました:", error);
     return { message: "記事の削除中にエラーが発生しました" };
@@ -157,7 +155,7 @@ export const updatePost = async (
 
   if (!isAdmin) {
     console.error("記事の編集の権限が必要です。");
-    return {};
+    return { message: "権限エラー。再度ログインをし直してください。" };
   }
 
   const title = data.get("title") as string;
@@ -214,10 +212,9 @@ export const updatePost = async (
           },
         });
         postData.postImage = { connect: { id: createdImage.id } };
-        console.log("画像の追加に成功しました。");
       }
     } catch (error) {
-      console.log("画像の追加にエラーが発生しました。", error);
+      console.error("画像の追加にエラーが発生しました。", error);
       return { message: "画像の追加時にエラーが発生しました。" };
     }
 
@@ -230,7 +227,6 @@ export const updatePost = async (
         const directory = "travel-memory-life";
         const saveFileUrl = `${directory}/${fileName}`;
         await supabase.storage.from("blog").remove([saveFileUrl]);
-        console.log("登録していた画像の削除に成功しました");
       } catch (error) {
         console.error("登録していた画像の削除中にエラーが発生しました:", error);
         return { message: "登録していた画像の削除中にエラーが発生しました" };
@@ -242,7 +238,6 @@ export const updatePost = async (
             id: post.postImage.id,
           },
         });
-        console.log("関連する画像ライブラリの削除に成功しました。");
       } catch (error) {
         console.error(
           "関連する画像ライブラリの削除中にエラーが発生しました:",
@@ -262,6 +257,7 @@ export const updatePost = async (
       },
       data: postData,
     });
+
     revalidatePath(`/`);
     revalidatePath(`/dashboard/post`);
     await revalidatePostsAndCategories();
@@ -270,10 +266,9 @@ export const updatePost = async (
       revalidatePath(`/dashboard/image`);
     }
 
-    console.log("記事が正常に編集されました。");
+    return { message: "edit" };
   } catch (error) {
     console.error("記事を編集する際にエラーが発生しました", error);
     return { message: "記事を編集する際にエラーが発生しました" };
   }
-  redirect("/dashboard/post");
 };

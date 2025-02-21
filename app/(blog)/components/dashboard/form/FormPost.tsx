@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormState } from "react-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import DOMPurify from "dompurify";
 
@@ -17,6 +17,9 @@ import type { Category } from "@prisma/client";
 import type { PostWithCategoryAndImage } from "@/app/(blog)/types/PostTypes";
 import type { PostFormState } from "@/app/(blog)/types/formState";
 import type { PostFormType } from "@/app/(blog)/types/formTypes";
+import toast from "react-hot-toast";
+import Router from "next/router";
+import { useRouter } from "next/navigation";
 
 type FormPostProps = {
   post?: PostWithCategoryAndImage | null;
@@ -31,6 +34,7 @@ const FormPost: React.FC<FormPostProps> = ({
   formAction,
   buttonName,
 }) => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -95,8 +99,22 @@ const FormPost: React.FC<FormPostProps> = ({
       dispatch(formData);
     } catch (error) {
       console.error("エラーが発生しました:", error);
+      toast.error("エラーが発生しました。");
+      state.message = "エラーが発生しました。もう一度お試しください。";
     }
   };
+
+  useEffect(() => {
+    if (state.message === "add") {
+      state.message = "";
+      toast.success("新規記事を追加しました！");
+      router.replace("/dashboard/post");
+    } else if (state.message === "edit") {
+      state.message = "";
+      toast.success("既存の記事を編集しました！");
+      router.replace("/dashboard/post");
+    }
+  }, [state.message]);
 
   return (
     <FormContainer>
@@ -159,7 +177,11 @@ const FormPost: React.FC<FormPostProps> = ({
           label="記事の公開設定"
           onChange={handleToggle}
         />
-        {state.message && <p className="text-red-500">{state.message}</p>}
+        {state.message &&
+          state.message !== "add" &&
+          state.message !== "edit" && (
+            <p className="text-red-500">{state.message}</p>
+          )}
         <Button color="blue" size="normal" className="rounded mt-4">
           {buttonName}
         </Button>

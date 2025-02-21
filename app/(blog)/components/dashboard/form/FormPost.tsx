@@ -13,35 +13,16 @@ import Select from "@/app/components/ui/form/Select";
 import FormImage from "@/app/components/ui/form/FormImage";
 import Checkbox from "@/app/components/ui/form/Checkbox";
 
+import type { Category } from "@prisma/client";
+import type { PostWithCategoryAndImage } from "@/app/(blog)/types/PostTypes";
 import type { PostFormState } from "@/app/(blog)/types/formState";
 import type { PostFormType } from "@/app/(blog)/types/formTypes";
 
 type FormPostProps = {
-  post?: (Post & { category: Category; postImage: PostImage | null }) | null;
+  post?: PostWithCategoryAndImage | null;
   categories?: Category[] | null;
   formAction: (state: PostFormState, data: FormData) => Promise<PostFormState>;
   buttonName: string;
-};
-
-type Category = {
-  id: number;
-  name: string;
-};
-
-type PostImage = {
-  id: number;
-  altText: string;
-  name: string;
-  url: string;
-};
-
-type Post = {
-  id: number;
-  title: string;
-  content: string;
-  slug: string;
-  description: string;
-  draft: boolean;
 };
 
 const FormPost: React.FC<FormPostProps> = ({

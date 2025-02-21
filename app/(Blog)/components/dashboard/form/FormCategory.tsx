@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormState } from "react-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Input from "@/app/components/ui/form/Input";
@@ -9,31 +10,16 @@ import TextArea from "@/app/components/ui/form/TextArea";
 import FormImage from "@/app/components/ui/form/FormImage";
 
 import type { CategoryFormState } from "@/app/(blog)/types/formState";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { CategoryFormType } from "@/app/(blog)/types/formTypes";
+import type { CategoryFormType } from "@/app/(blog)/types/formTypes";
+import type { CategoryWithPostImage } from "@/app/(blog)/types/categoryTypes";
 
 type FormCategoryProps = {
-  category?: (Category & { postImage: PostImage | null }) | null;
+  category?: CategoryWithPostImage | null;
   buttonName: string;
   formAction: (
     state: CategoryFormState,
     data: FormData
   ) => Promise<CategoryFormState>;
-};
-
-type Category = {
-  name: string;
-  slug: string;
-  content: string | null;
-  description: string | null;
-  title: string | null;
-};
-
-type PostImage = {
-  id: number;
-  altText: string;
-  name: string;
-  url: string;
 };
 
 const FormCategory: React.FC<FormCategoryProps> = ({
@@ -95,9 +81,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
         <Input
           name="slug"
           label="スラッグ"
-          placeholder={
-            "スラッグを半角小文字の英数字で入力してください。"
-          }
+          placeholder={"スラッグを半角小文字の英数字で入力してください。"}
           defaultValue={category?.slug}
           register={register}
           required={true}

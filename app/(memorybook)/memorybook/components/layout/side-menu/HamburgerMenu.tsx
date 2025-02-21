@@ -8,13 +8,10 @@ import Link from "next/link";
 import LogoutButton from "../../ui/auth/LogoutButton";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
-type HamburgerMenuProps = {
-  trips: Trips[] | undefined;
-};
+import type { Trip } from "@prisma/client";
 
-type Trips = {
-  id: number;
-  name: string;
+type HamburgerMenuProps = {
+  trips: Trip[] | undefined;
 };
 
 const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {

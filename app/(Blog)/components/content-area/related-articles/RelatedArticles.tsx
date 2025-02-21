@@ -1,23 +1,11 @@
 import Link from "next/link";
 import Card from "./Card";
+import type { Post } from "@prisma/client";
 
 type RelatedArticlesProps = {
-  articles: Article[];
+  articles: Post[];
   categorySlug: string;
   categoryName?: string;
-};
-
-type Article = {
-  id: number;
-  createdDate: string | Date;
-  updatedDate: string | Date;
-  title: string;
-  content: string;
-  categoryId: number;
-  description: string;
-  slug: string;
-  postImageId?: number | null;
-  draft: boolean;
 };
 
 const RelatedArticles: React.FC<RelatedArticlesProps> = async ({

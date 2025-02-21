@@ -1,17 +1,9 @@
 import Image from "next/image";
 
-type Post = {
-  title: string;
-  description: string;
-  draft: boolean;
-  postImage?: {
-    url: string;
-    altText: string;
-  } | null;
-};
+import type { PostWithPostImage } from "@/app/(blog)/types/PostTypes";
 
 type CardProps = {
-  post: Post;
+  post: PostWithPostImage;
 };
 
 const Card: React.FC<CardProps> = ({ post }) => {

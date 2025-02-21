@@ -15,6 +15,7 @@ import Date from "@/app/components/ui/form/Date";
 import Time from "@/app/components/ui/form/Time";
 import FormImage from "@/app/components/ui/form/FormImage";
 
+import type { Itinerary } from "@prisma/client";
 import type { ItineraryFormState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { ItineraryFormType } from "../../types/formType";
 
@@ -27,18 +28,6 @@ type FormItineraryProps = {
   ) => Promise<ItineraryFormState>;
   tripId: number | undefined;
   modalId?: string;
-};
-
-type Itinerary = {
-  id: number;
-  date: string;
-  time: string;
-  name: string;
-  content?: string | null;
-  hideContent?: string | null;
-  isShowContent: boolean;
-  url?: string | null;
-  altText?: string | null;
 };
 
 const FormItinerary: React.FC<FormItineraryProps> = ({

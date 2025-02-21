@@ -11,6 +11,7 @@ import FormLayout from "../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 import Date from "@/app/components/ui/form/Date";
 
+import type { Trip } from "@prisma/client";
 import type { TripFormState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { TripFormType } from "../../types/formType";
 
@@ -19,15 +20,6 @@ type FormTripProps = {
   buttonName: string;
   formAction: (state: TripFormState, data: FormData) => Promise<TripFormState>;
   modalId?: string;
-};
-
-type Trip = {
-  id: number;
-  startDate?: string | null;
-  endDate?: string | null;
-  name: string;
-  destination?: string | null;
-  share: boolean;
 };
 
 const FormTrip: React.FC<FormTripProps> = ({

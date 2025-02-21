@@ -7,13 +7,10 @@ import { faPlaneDeparture, faHouse } from "@fortawesome/free-solid-svg-icons";
 import HamburgerMenu from "./HamburgerMenu";
 import LogoutButton from "../../ui/auth/LogoutButton";
 
-type DashboardSideMenuProps = {
-  trips: Trips[] | undefined;
-};
+import type { Trip } from "@prisma/client";
 
-type Trips = {
-  id: number;
-  name: string;
+type DashboardSideMenuProps = {
+  trips: Trip[] | undefined;
 };
 
 const DashboardSideMenu: React.FC<DashboardSideMenuProps> = ({ trips }) => {

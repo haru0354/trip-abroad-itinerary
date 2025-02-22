@@ -1,15 +1,8 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { signOut } from "next-auth/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faList,
   faPen,
   faImage,
   faHouse,
-  faBars,
-  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 import MenuBox from "../../ui/MenuBox";
@@ -17,28 +10,6 @@ import HamburgerMenu from "./HamburgerMenu";
 import BlogLogoutButton from "../../ui/BlogLogoutButton";
 
 const DashboardSideMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [isOpen]);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleLogout = async () => {
-    await signOut({ callbackUrl: "/admin" });
-  };
-
   return (
     <>
       <div className="hidden sm:block fixed top-0 left-0 h-screen w-72 flex-col sm:flex-row sm:justify-around bg-blog-black overflow-y-auto">
@@ -106,31 +77,7 @@ const DashboardSideMenu = () => {
           <BlogLogoutButton />
         </nav>
       </div>
-      <div>
-        <button
-          className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-blog-black border-blog-borderBlack fixed"
-          onClick={toggleMenu}
-        >
-          <FontAwesomeIcon
-            icon={faBars}
-            style={{ width: "14px", height: "16px" }}
-          />
-        </button>
-        {isOpen && (
-          <>
-            <button
-              className="block sm:hidden text-white p-2 w-12 h-12 border rounded bg-blog-black border-blog-borderBlack fixed z-50"
-              onClick={toggleMenu}
-            >
-              <FontAwesomeIcon
-                icon={faXmark}
-                style={{ width: "14px", height: "16px" }}
-              />
-            </button>
-            <HamburgerMenu toggleMenu={toggleMenu} />
-          </>
-        )}
-      </div>
+      <HamburgerMenu />
     </>
   );
 };

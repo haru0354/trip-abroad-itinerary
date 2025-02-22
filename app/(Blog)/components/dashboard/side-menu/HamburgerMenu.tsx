@@ -1,16 +1,11 @@
-import { signOut } from "next-auth/react";
-import Button from "@/app/components/ui/button/Button";
 import Items from "./Items";
+import BlogLogoutButton from "../../ui/BlogLogoutButton";
 
 type HamburgerMenuProps = {
   toggleMenu: () => void;
 };
 
 const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ toggleMenu }) => {
-  const handleLogout = async () => {
-    await signOut({ callbackUrl: "/admin" });
-  };
-
   return (
     <div
       className="w-full h-full bg-white fixed top-0 left-0 "
@@ -48,15 +43,8 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ toggleMenu }) => {
             { name: "画像追加", href: "/dashboard/image/new-image" },
           ]}
         />
-        <Button
-          onClick={handleLogout}
-          color="white"
-          size="normal"
-          className="rounded mt-4"
-        >
-          ログアウト
-        </Button>
-      </div>{" "}
+        <BlogLogoutButton />
+      </div>
     </div>
   );
 };

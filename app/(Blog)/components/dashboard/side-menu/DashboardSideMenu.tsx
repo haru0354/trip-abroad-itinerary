@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faList,
@@ -9,11 +11,10 @@ import {
   faBars,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
-import { signOut } from "next-auth/react";
-import Button from "@/app/components/ui/button/Button";
+
 import MenuBox from "../../ui/MenuBox";
 import HamburgerMenu from "./HamburgerMenu";
+import BlogLogoutButton from "../../ui/BlogLogoutButton";
 
 const DashboardSideMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -102,14 +103,7 @@ const DashboardSideMenu = () => {
               },
             ]}
           />
-          <Button
-            onClick={handleLogout}
-            color="white"
-            size="normal"
-            className="rounded mt-4"
-          >
-            ログアウト
-          </Button>
+          <BlogLogoutButton />
         </nav>
       </div>
       <div>

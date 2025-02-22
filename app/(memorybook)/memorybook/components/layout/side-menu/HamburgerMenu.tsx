@@ -36,12 +36,12 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
   return (
     <>
       <button
-        className="fixed top-0 left-0 block sm:hidden text-white p-2 w-12 h-12 ml-[2px] border rounded bg-gray-700 border-itinerary-borderBlack z-10"
+        className="fixed top-0 left-0 block sm:hidden text-white p-3 w-12 h-12 ml-[2px] border rounded bg-gray-700 border-itinerary-borderBlack z-10"
         onClick={toggleMenu}
       >
         <FontAwesomeIcon
           icon={isOpen ? faXmark : faBars}
-          style={{ width: "14px", height: "16px" }}
+          style={{ width: "14px", height: "22px" }}
         />
       </button>
       {isOpen && (
@@ -53,15 +53,15 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
           <p className="py-2 border-b text-white">ダッシュボード</p>
           <ul className="text-white">
             <Link href="/memorybook">
-              <li className="py-2 mx-4">TOPページ</li>
+              <li className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">TOPページ</li>
             </Link>
             <Link href="/memorybook/dashboard/">
-              <li className="py-2 mx-4" onClick={toggleMenu}>
+              <li className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900" onClick={toggleMenu}>
                 ダッシュボード
               </li>
             </Link>
             <Link href="/memorybook/dashboard/profile">
-              <li className="py-2 mx-4" onClick={toggleMenu}>
+              <li className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900" onClick={toggleMenu}>
                 プロフィール
               </li>
             </Link>
@@ -71,7 +71,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
             return (
               <ul key={trip.id} className="text-white">
                 <Link href={`/memorybook/${trip.id}/itinerary`}>
-                  <li key={trip.id} className="py-2 mx-4">
+                  <li key={trip.id} className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
                     {trip.name}
                   </li>
                 </Link>

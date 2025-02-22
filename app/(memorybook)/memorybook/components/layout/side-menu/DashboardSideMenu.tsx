@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlaneDeparture, faHouse } from "@fortawesome/free-solid-svg-icons";

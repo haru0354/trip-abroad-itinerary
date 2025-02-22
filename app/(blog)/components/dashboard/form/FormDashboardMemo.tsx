@@ -13,7 +13,7 @@ import TextArea from "@/app/components/ui/form/TextArea";
 
 import type { DashboardMemoFormType } from "@/app/(blog)/types/formTypes";
 import type { DashboardFormState } from "@/app/(blog)/types/formState";
-import type { DashboardMemo } from "@prisma/client"
+import type { DashboardMemo } from "@prisma/client";
 
 type FormMemoProps = {
   dashboardMemo?: DashboardMemo | null;
@@ -53,7 +53,8 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
       dispatch(formData);
     } catch (error) {
       console.error("エラーが発生しました:", error);
-      toast.error("エラーが発生しました。" + error);
+      toast.error("エラーが発生しました。");
+      state.message = "エラーが発生しました。もう一度お試しください。";
     }
   };
 
@@ -69,37 +70,28 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
   }, [state.message]);
 
   return (
-    <>
-      <FormContainer>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            label="メモの見出し"
-            name="name"
-            placeholder="メモの見出しを記載しましょう。"
-            defaultValue={dashboardMemo?.name}
-            register={register}
-            required={true}
-            error={errors.name?.message || state.errors?.name}
-          />
-          <TextArea
-            label="メモする内容"
-            name="content"
-            placeholder="メモする内容を記載しましょう。"
-            defaultValue={dashboardMemo?.content}
-            register={register}
-            error={errors.content?.message || state.errors?.content}
-          />
-          {state.message &&
-            state.message !== "edit" &&
-            state.message !== "add" && (
-              <p className="text-red-500">{state.message}</p>
-            )}
-          <Button color="blue" size="normal" className="rounded mt-4">
-            {buttonName}
-          </Button>
-        </form>
-      </FormContainer>
-    </>
+    <FormContainer onSubmit={handleSubmit(onSubmit)} buttonName={buttonName}>
+      <Input
+        label="メモの見出し"
+        name="name"
+        placeholder="メモの見出しを記載しましょう。"
+        defaultValue={dashboardMemo?.name}
+        register={register}
+        required={true}
+        error={errors.name?.message || state.errors?.name}
+      />
+      <TextArea
+        label="メモする内容"
+        name="content"
+        placeholder="メモする内容を記載しましょう。"
+        defaultValue={dashboardMemo?.content}
+        register={register}
+        error={errors.content?.message || state.errors?.content}
+      />
+      {state.message && state.message !== "edit" && state.message !== "add" && (
+        <p className="text-red-500">{state.message}</p>
+      )}
+    </FormContainer>
   );
 };
 

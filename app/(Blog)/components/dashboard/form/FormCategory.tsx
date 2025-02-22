@@ -12,6 +12,9 @@ import FormImage from "@/app/components/ui/form/FormImage";
 import type { CategoryFormState } from "@/app/(blog)/types/formState";
 import type { CategoryFormType } from "@/app/(blog)/types/formTypes";
 import type { CategoryWithPostImage } from "@/app/(blog)/types/categoryTypes";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 type FormCategoryProps = {
   category?: CategoryWithPostImage | null;
@@ -27,6 +30,8 @@ const FormCategory: React.FC<FormCategoryProps> = ({
   buttonName,
   formAction,
 }) => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -34,6 +39,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
   } = useForm<CategoryFormType>({
     mode: "onBlur",
   });
+
   const initialState = {
     message: null,
     errors: { name: undefined, slug: undefined, altText: undefined },
@@ -63,74 +69,85 @@ const FormCategory: React.FC<FormCategoryProps> = ({
       dispatch(formData);
     } catch (error) {
       console.error("エラーが発生しました:", error);
+      toast.error("エラーが発生しました。");
+      state.message = "エラーが発生しました。もう一度お試しください。";
     }
   };
 
+  useEffect(() => {
+    if (state.message === "add") {
+      state.message = "";
+      toast.success("カテゴリを追加しました！");
+      router.replace("/dashboard/category");
+    } else if (state.message === "edit") {
+      toast.success("カテゴリを編集しました！");
+      state.message = "";
+      router.replace("/dashboard/category");
+    }
+  }, [state.message]);
+
   return (
-    <FormContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          name="name"
-          label="カテゴリ名"
-          placeholder="カテゴリ名を入力してください。"
-          defaultValue={category?.name}
-          register={register}
-          required={true}
-          error={errors.name?.message || state.errors?.name}
-        />
-        <Input
-          name="slug"
-          label="スラッグ"
-          placeholder={"スラッグを半角小文字の英数字で入力してください。"}
-          defaultValue={category?.slug}
-          register={register}
-          required={true}
-          error={errors.slug?.message || state.errors?.slug}
-        />
-        <TextArea
-          name="description"
-          label="カテゴリの説明(description)"
-          placeholder={
-            "カテゴリの説明(description)を入力してください。この項目は必須ではありません。"
-          }
-          defaultValue={category?.description ?? ""}
-          register={register}
-          error={errors.description?.message || state.errors?.description}
-        />
-        <p className="border-b my-5 pb-2 font-semibold">
-          カテゴリを記事にする(カテゴリにコンテンツを表示)
-        </p>
-        <TextArea
-          name="title"
-          label="カテゴリのタイトル"
-          placeholder={
-            "カテゴリのタイトルを入力してください。カテゴリページにタイトルが表示されます。この項目は必須ではありません。"
-          }
-          defaultValue={category?.title || undefined}
-          register={register}
-          error={errors.title?.message || state.errors?.title}
-        />
-        <TextArea
-          name="content"
-          label="カテゴリの内容"
-          placeholder={
-            "カテゴリの内容を入力してください。カテゴリページに表示がされます。この項目は必須ではありません。"
-          }
-          defaultValue={category?.content || undefined}
-          register={register}
-          error={errors.content?.message || state.errors?.content}
-        />
-        <FormImage
-          state={state}
-          selectImage={category?.postImage}
-          register={register}
-          defaultValue={category?.postImage?.altText}
-        />
-        {state.message && <p className="text-red-500">{state.message}</p>}
-        <Button color="blue" size="normal" className="rounded mt-4">
-          {buttonName}
-        </Button>
-      </form>
+    <FormContainer onSubmit={handleSubmit(onSubmit)} buttonName={buttonName}>
+      <Input
+        name="name"
+        label="カテゴリ名"
+        placeholder="カテゴリ名を入力してください。"
+        defaultValue={category?.name}
+        register={register}
+        required={true}
+        error={errors.name?.message || state.errors?.name}
+      />
+      <Input
+        name="slug"
+        label="スラッグ"
+        placeholder={"スラッグを半角小文字の英数字で入力してください。"}
+        defaultValue={category?.slug}
+        register={register}
+        required={true}
+        error={errors.slug?.message || state.errors?.slug}
+      />
+      <TextArea
+        name="description"
+        label="カテゴリの説明(description)"
+        placeholder={
+          "カテゴリの説明(description)を入力してください。この項目は必須ではありません。"
+        }
+        defaultValue={category?.description ?? ""}
+        register={register}
+        error={errors.description?.message || state.errors?.description}
+      />
+      <p className="border-b my-5 pb-2 font-semibold">
+        カテゴリを記事にする(カテゴリにコンテンツを表示)
+      </p>
+      <TextArea
+        name="title"
+        label="カテゴリのタイトル"
+        placeholder={
+          "カテゴリのタイトルを入力してください。カテゴリページにタイトルが表示されます。この項目は必須ではありません。"
+        }
+        defaultValue={category?.title || undefined}
+        register={register}
+        error={errors.title?.message || state.errors?.title}
+      />
+      <TextArea
+        name="content"
+        label="カテゴリの内容"
+        placeholder={
+          "カテゴリの内容を入力してください。カテゴリページに表示がされます。この項目は必須ではありません。"
+        }
+        defaultValue={category?.content || undefined}
+        register={register}
+        error={errors.content?.message || state.errors?.content}
+      />
+      <FormImage
+        state={state}
+        selectImage={category?.postImage}
+        register={register}
+        defaultValue={category?.postImage?.altText}
+      />
+      {state.message && state.message !== "add" && state.message !== "edit" && (
+        <p className="text-red-500">{state.message}</p>
+      )}
     </FormContainer>
   );
 };

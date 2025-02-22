@@ -18,7 +18,7 @@ export const addPostImage = async (state: ImageFormState, data: FormData) => {
 
   if (!isAdmin) {
     console.error("画像追加の権限が必要です。");
-    return {};
+    return { message: "権限エラー。再度ログインをし直してください。" };
   }
 
   const image = data.get("image") as File;
@@ -47,8 +47,10 @@ export const addPostImage = async (state: ImageFormState, data: FormData) => {
           altText,
         },
       });
+
       revalidatePath(`/dashboard/image`);
-      console.log("画像の追加に成功しました");
+
+      return { message: "add" };
     } else {
       if (result.errors) {
         console.error("画像のバリデーションエラー:", result.errors);
@@ -62,7 +64,6 @@ export const addPostImage = async (state: ImageFormState, data: FormData) => {
     console.error("画像を追加する際にエラーが発生しました");
     return { message: "画像を追加する際にエラーが発生しました" };
   }
-  redirect("/dashboard/image");
 };
 
 export const deletePostImage = async (data: FormData) => {
@@ -70,7 +71,7 @@ export const deletePostImage = async (data: FormData) => {
 
   if (!isAdmin) {
     console.error("画像削除の権限が必要です。");
-    return;
+    return { message: "権限エラー。再度ログインをし直してください。" };
   }
 
   const id = data.get("id") as string;
@@ -79,7 +80,7 @@ export const deletePostImage = async (data: FormData) => {
 
   if (!postImage) {
     console.error("指定した画像が見つかりませんでした。");
-    return;
+    return { message: "指定した画像が見つかりませんでした。" };
   }
 
   try {
@@ -87,7 +88,6 @@ export const deletePostImage = async (data: FormData) => {
     const directory = "travel-memory-life";
     const saveFileUrl = `${directory}/${fileName}`;
     await supabase.storage.from("blog").remove([saveFileUrl]);
-    console.log("画像の削除に成功しました");
   } catch (error) {
     console.error("画像の削除中にエラーが発生しました:", error);
     return { message: "画像の削除中にエラーが発生しました" };
@@ -99,6 +99,7 @@ export const deletePostImage = async (data: FormData) => {
         id: Number(id),
       },
     });
+
     revalidatePath(`/dashboard/image`);
   } catch (error) {
     console.error("画像の削除中にエラーが発生しました:", error);
@@ -116,7 +117,7 @@ export const updatePostImage = async (
 
   if (!isAdmin) {
     console.error("画像編集の権限が必要です。");
-    return {};
+    return { message: "権限エラー。再度ログインをし直してください。" };
   }
 
   const image = data.get("image") as File;
@@ -144,6 +145,8 @@ export const updatePostImage = async (
           altText,
         },
       });
+
+      return { message: "edit" };
     } catch (error) {
       console.error("altTextを更新する際にエラーが発生しました");
       return { message: "altTextを更新する際にエラーが発生しました" };
@@ -160,7 +163,6 @@ export const updatePostImage = async (
       const directory = "travel-memory-life";
       const saveFileUrl = `${directory}/${fileName}`;
       await supabase.storage.from("blog").remove([saveFileUrl]);
-      console.log("画像の削除に成功しました");
     } catch (error) {
       console.error("画像の削除中にエラーが発生しました:", error);
       return { message: "画像の削除中にエラーが発生しました" };
@@ -180,7 +182,10 @@ export const updatePostImage = async (
             altText,
           },
         });
+
         revalidatePath(`/dashboard/image`);
+
+        return { message: "edit" };
       } else {
         if (result.errors) {
           console.error("画像のバリデーションエラー:", result.errors);
@@ -195,5 +200,4 @@ export const updatePostImage = async (
       return { message: "画像を編集する際にエラーが発生しました" };
     }
   }
-  redirect("/dashboard/image");
 };

@@ -1,7 +1,10 @@
 "use client";
 
+import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Button from "@/app/components/ui/button/Button";
@@ -20,12 +23,13 @@ type FormPostImageProps = {
   ) => Promise<ImageFormState>;
 };
 
-
 const FormPostImage: React.FC<FormPostImageProps> = ({
   postImage,
   buttonName,
   formAction,
 }) => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -60,25 +64,39 @@ const FormPostImage: React.FC<FormPostImageProps> = ({
       dispatch(formData);
     } catch (error) {
       console.error("エラーが発生しました:", error);
+      toast.error("エラーが発生しました。");
+      state.message = "エラーが発生しました。もう一度お試しください。";
     }
   };
 
+  useEffect(() => {
+    if (state.message === "add") {
+      state.message = "";
+      toast.success("画像を保存しました！");
+      router.replace("/dashboard/image");
+    } else if (state.message === "edit") {
+      state.message = "";
+      toast.success("画像を編集しました！");
+      router.replace("/dashboard/image");
+    }
+  }, [state.message]);
+
   return (
-    <FormContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormImage
-          selectImage={postImage}
-          state={state}
-          register={register}
-          defaultValue={postImage?.altText}
-          required={true}
-          error={errors.altText?.message || state.errors?.altText}
-        />
-        {state.message && <p className="text-red-500">{state.message}</p>}
-        <Button color="blue" size="normal" className="rounded mt-4">
-          {buttonName}
-        </Button>
-      </form>
+    <FormContainer onSubmit={handleSubmit(onSubmit)} buttonName={buttonName}>
+      <FormImage
+        selectImage={postImage}
+        state={state}
+        register={register}
+        defaultValue={postImage?.altText}
+        required={true}
+        error={errors.altText?.message}
+      />
+      {state.message && state.message !== "edit" && state.message !== "add" && (
+        <p className="text-red-500">{state.message}</p>
+      )}
+      <Button color="blue" size="normal" className="rounded mt-4">
+        {buttonName}
+      </Button>
     </FormContainer>
   );
 };

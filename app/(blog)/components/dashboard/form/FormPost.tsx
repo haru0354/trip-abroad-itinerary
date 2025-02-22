@@ -1,8 +1,10 @@
 "use client";
 
 import { useFormState } from "react-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import DOMPurify from "dompurify";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
@@ -31,6 +33,8 @@ const FormPost: React.FC<FormPostProps> = ({
   formAction,
   buttonName,
 }) => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -95,75 +99,86 @@ const FormPost: React.FC<FormPostProps> = ({
       dispatch(formData);
     } catch (error) {
       console.error("エラーが発生しました:", error);
+      toast.error("エラーが発生しました。");
+      state.message = "エラーが発生しました。もう一度お試しください。";
     }
   };
 
+  useEffect(() => {
+    if (state.message === "add") {
+      state.message = "";
+      toast.success("新規記事を追加しました！");
+      router.replace("/dashboard/post");
+    } else if (state.message === "edit") {
+      state.message = "";
+      toast.success("既存の記事を編集しました！");
+      router.replace("/dashboard/post");
+    }
+  }, [state.message]);
+
   return (
-    <FormContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          name="title"
-          label="記事のタイトル"
-          defaultValue={post?.title}
-          placeholder="記事のタイトルを31文字を目安に入力してください。"
-          register={register}
-          required={true}
-          error={errors.title?.message || state.errors?.title}
-        />
-        <Select
-          label="カテゴリ"
-          name="categoryId"
-          categories={categories}
-          defaultValue={category?.id}
-          register={register}
-          required={true}
-          error={errors.categoryId?.message || state.errors?.categoryId}
-        />
-        <Input
-          name="slug"
-          label="スラッグ"
-          defaultValue={post?.slug}
-          placeholder="記事のスラッグを入力してください。"
-          register={register}
-          required={true}
-          error={errors.slug?.message || state.errors?.slug}
-        />
-        <TextArea
-          name="content"
-          label="記事の内容"
-          defaultValue={post?.content}
-          placeholder="記事の内容をこちらに入力してください。"
-          register={register}
-          required={true}
-          error={errors.content?.message || state.errors?.content}
-        />
-        <TextArea
-          name="description"
-          label="記事の説明(description)"
-          defaultValue={post?.description}
-          placeholder="120文字を目安に記入してください。"
-          register={register}
-          required={true}
-          error={errors.description?.message || state.errors?.description}
-        />
-        <FormImage
-          selectImage={post?.postImage}
-          state={state}
-          register={register}
-          defaultValue={post?.postImage?.altText}
-        />
-        <Checkbox
-          checked={isDraft}
-          name="draft"
-          item="公開(未選択状態は下書き保存されます)"
-          label="記事の公開設定"
-          onChange={handleToggle}
-        />
-        {state.message && <p className="text-red-500">{state.message}</p>}
-        <Button color="blue" size="normal" className="rounded mt-4">
-          {buttonName}
-        </Button>
-      </form>
+    <FormContainer onSubmit={handleSubmit(onSubmit)} buttonName={buttonName}>
+      <Input
+        name="title"
+        label="記事のタイトル"
+        defaultValue={post?.title}
+        placeholder="記事のタイトルを31文字を目安に入力してください。"
+        register={register}
+        required={true}
+        error={errors.title?.message || state.errors?.title}
+      />
+      <Select
+        label="カテゴリ"
+        name="categoryId"
+        categories={categories}
+        defaultValue={category?.id}
+        register={register}
+        required={true}
+        error={errors.categoryId?.message || state.errors?.categoryId}
+      />
+      <Input
+        name="slug"
+        label="スラッグ"
+        defaultValue={post?.slug}
+        placeholder="記事のスラッグを入力してください。"
+        register={register}
+        required={true}
+        error={errors.slug?.message || state.errors?.slug}
+      />
+      <TextArea
+        name="content"
+        label="記事の内容"
+        defaultValue={post?.content}
+        placeholder="記事の内容をこちらに入力してください。"
+        register={register}
+        required={true}
+        error={errors.content?.message || state.errors?.content}
+      />
+      <TextArea
+        name="description"
+        label="記事の説明(description)"
+        defaultValue={post?.description}
+        placeholder="120文字を目安に記入してください。"
+        register={register}
+        required={true}
+        error={errors.description?.message || state.errors?.description}
+      />
+      <FormImage
+        selectImage={post?.postImage}
+        state={state}
+        register={register}
+        defaultValue={post?.postImage?.altText}
+      />
+      <Checkbox
+        checked={isDraft}
+        name="draft"
+        item="公開(未選択状態は下書き保存されます)"
+        label="記事の公開設定"
+        onChange={handleToggle}
+      />
+      {state.message && state.message !== "add" && state.message !== "edit" && (
+        <p className="text-red-500">{state.message}</p>
+      )}
     </FormContainer>
   );
 };

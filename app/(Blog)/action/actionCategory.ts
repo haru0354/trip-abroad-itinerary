@@ -19,7 +19,7 @@ export const addCategory = async (state: CategoryFormState, data: FormData) => {
 
   if (!isAdmin) {
     console.error("カテゴリ追加の権限が必要です。");
-    return {};
+    return { message: "権限エラー。再度ログインをし直してください。" };
   }
 
   const name = data.get("name") as string;
@@ -66,7 +66,6 @@ export const addCategory = async (state: CategoryFormState, data: FormData) => {
           },
         });
         CategoryData.postImage = { connect: { id: createdImage.id } };
-        console.log("画像の追加に成功しました。");
       } else {
         if (result.errors) {
           console.error("画像のバリデーションエラー:", result.errors);
@@ -93,12 +92,11 @@ export const addCategory = async (state: CategoryFormState, data: FormData) => {
       revalidatePath(`/dashboard/image`);
     }
 
-    console.log("カテゴリの登録に成功しました。");
+    return { message: "add" };
   } catch (error) {
     console.error("カテゴリを追加する際にエラーが発生しました");
     return { message: "カテゴリを追加する際にエラーが発生しました" };
   }
-  redirect("/dashboard/category");
 };
 
 export const deleteCategory = async (data: FormData) => {
@@ -106,7 +104,7 @@ export const deleteCategory = async (data: FormData) => {
 
   if (!isAdmin) {
     console.error("カテゴリ削除の権限が必要です。");
-    return;
+    return { message: "権限エラー。再度ログインをし直してください。" };
   }
 
   const id = data.get("id") as string;
@@ -119,7 +117,6 @@ export const deleteCategory = async (data: FormData) => {
       const directory = "travel-memory-life";
       const saveFileUrl = `${directory}/${fileName}`;
       await supabase.storage.from("blog").remove([saveFileUrl]);
-      console.log("画像の削除に成功しました");
     } catch (error) {
       console.error("画像の削除中にエラーが発生しました:", error);
       return { message: "画像の削除中にエラーが発生しました" };
@@ -131,7 +128,6 @@ export const deleteCategory = async (data: FormData) => {
           id: category.postImage.id,
         },
       });
-      console.log("関連する画像ライブラリの削除に成功しました。");
     } catch (error) {
       console.error(
         "関連する画像ライブラリの削除中にエラーが発生しました:",
@@ -149,6 +145,7 @@ export const deleteCategory = async (data: FormData) => {
         id: Number(id),
       },
     });
+
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
     await revalidatePostsAndCategories();
@@ -156,8 +153,6 @@ export const deleteCategory = async (data: FormData) => {
     if (category?.postImage?.url) {
       revalidatePath(`/dashboard/image`);
     }
-
-    console.log("カテゴリが正常に削除されました。");
   } catch (error) {
     console.error("カテゴリの削除中にエラーが発生しました:", error);
     return { message: "カテゴリの削除中にエラーが発生しました" };
@@ -174,7 +169,7 @@ export const updateCategory = async (
 
   if (!isAdmin) {
     console.error("カテゴリ編集の権限が必要です。");
-    return { message: "カテゴリ編集の権限がありません。" };
+    return { message: "権限エラー。再度ログインをし直してください。" };
   }
 
   const name = data.get("name") as string;
@@ -221,7 +216,6 @@ export const updateCategory = async (
           },
         });
         CategoryData.postImage = { connect: { id: createdImage.id } };
-        console.log("画像が正常に追加されました。");
       } else {
         if (result.errors) {
           console.error("画像のバリデーションエラー:", result.errors);
@@ -232,7 +226,7 @@ export const updateCategory = async (
         }
       }
     } catch (error) {
-      console.log("画像の追加にエラーが発生しました。", error);
+      console.error("画像の追加にエラーが発生しました。", error);
       return { message: "画像の追加時にエラーが発生しました。" };
     }
 
@@ -260,6 +254,7 @@ export const updateCategory = async (
       },
       data: CategoryData,
     });
+
     revalidatePath(`/`);
     revalidatePath(`/dashboard/category`);
     revalidatePath(`/dashboard/post/new-post`);
@@ -269,10 +264,9 @@ export const updateCategory = async (
       revalidatePath(`/dashboard/image`);
     }
 
-    console.log("カテゴリが正常に編集されました。");
+    return { message: "edit" };
   } catch (error) {
     console.error("カテゴリを編集する際にエラーが発生しました");
     return { message: "カテゴリを編集する際にエラーが発生しました" };
   }
-  redirect("/dashboard/category");
 };

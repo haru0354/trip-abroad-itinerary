@@ -6,6 +6,7 @@ import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import Items from "./Items";
 import BlogLogoutButton from "../../ui/BlogLogoutButton";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,7 @@ const HamburgerMenu = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const closeMenu = (e: React.MouseEvent<HTMLDivElement>) => {
+  const closeMenu = (e: React.MouseEvent<HTMLElement>) => {
     if (e.currentTarget === e.target) {
       toggleMenu();
     }
@@ -48,8 +49,10 @@ const HamburgerMenu = () => {
           className="w-full h-full  fixed top-0 left-0 bg-gray-500 bg-opacity-90"
           onClick={closeMenu}
         >
-          <div
-            className="max-w-[300px] w-[80%] h-screen bg-blog-black px-10 pt-12 overflow-y-auto  z-10"
+          <AnimatedItem
+            elementType="div"
+            animation="fadeInLeftVariants"
+            className="max-w-[300px] w-[80%] h-screen bg-blog-black px-8 pt-12 overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <Items
@@ -84,7 +87,7 @@ const HamburgerMenu = () => {
               ]}
             />
             <BlogLogoutButton />
-          </div>
+          </AnimatedItem>
         </div>
       )}
     </>

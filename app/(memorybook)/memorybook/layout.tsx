@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+
+import { ModalProvider } from "@/app/context/ModalContext";
 import AuthContext from "../../context/AuthContext";
 import ToastContext from "../../context/ToastContext";
-import { ModalProvider } from "@/app/context/ModalContext";
 
 config.autoAddCss = false;
 

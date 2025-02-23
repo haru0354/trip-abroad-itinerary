@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type ThreeImageAndContentsProps = {

@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type SectionProps = {

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQ, faA, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type QuestionAndAnswerProps = {

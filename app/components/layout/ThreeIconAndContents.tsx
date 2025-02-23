@@ -4,6 +4,7 @@ import {
   faPlaneDeparture,
   faCartFlatbedSuitcase,
 } from "@fortawesome/free-solid-svg-icons";
+
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type ThreeIconAndContentsProps = {

@@ -1,6 +1,7 @@
 import Image from "next/image";
-import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Link from "next/link";
+
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Button from "@/app/components/ui/button/Button";
 
 type FlexImageAndContentsProps = {

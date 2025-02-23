@@ -14,7 +14,7 @@ const page = () => {
         <ListTrip />
       </Suspense>
       <Modal maxWidth="max-w-[620px]" buttonName="旅行のしおりの追加" id="trip">
-        <FormTrip buttonName="追加" formAction={addTrip} modalLayout={true} modalId="trip"/>
+        <FormTrip buttonName="追加" formAction={addTrip} modalId="trip"/>
       </Modal>
       <Suspense fallback={<Loading message="共有リスト" />}>
         <ListShare />

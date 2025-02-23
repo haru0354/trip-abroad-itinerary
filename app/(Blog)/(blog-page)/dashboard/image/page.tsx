@@ -1,6 +1,7 @@
+import Link from "next/link";
+
 import ListImages from "@/app/(blog)/components/dashboard/list/ListImages";
 import Button from "@/app/components/ui/button/Button";
-import Link from "next/link";
 
 const page = () => {
   return (

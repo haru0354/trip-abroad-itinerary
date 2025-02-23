@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { getCategory } from "../../lib/service/blogServiceUnique";
 import Header from "../../components/layout/blog/Header";
 import Footer from "../../components/layout/blog/Footer";

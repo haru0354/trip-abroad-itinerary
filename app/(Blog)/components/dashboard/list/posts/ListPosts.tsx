@@ -2,7 +2,7 @@ import HeadingTwo from "../../../ui/dashboard/HeadingTwo";
 import TitleList from "../../../layout/dashboard/list/TitleList";
 import ListItem from "../../../layout/dashboard/list/ListItem";
 
-import type { PostWithCategory } from "@/app/(blog)/types/PostTypes";
+import type { PostWithCategory } from "@/app/(blog)/types/postTypes";
 
 type ListPostsProps = {
   draft: boolean;

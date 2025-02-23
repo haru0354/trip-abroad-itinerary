@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import type { PostWithPostImage } from "@/app/(blog)/types/PostTypes";
+import type { PostWithPostImage } from "@/app/(blog)/types/postTypes";
 
 type CardProps = {
   post: PostWithPostImage;

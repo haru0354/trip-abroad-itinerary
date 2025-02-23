@@ -5,7 +5,7 @@ import RelatedArticles from "./related-articles/RelatedArticles";
 import NotFound from "../../../not-found";
 
 import type { Post } from "@prisma/client";
-import type { PostWithCategoryAndImage } from "../../types/PostTypes";
+import type { PostWithCategoryAndImage } from "../../types/postTypes";
 import type { CategoryWithPostsAndImage } from "../../types/categoryTypes";
 
 type LeftColumnProps = {

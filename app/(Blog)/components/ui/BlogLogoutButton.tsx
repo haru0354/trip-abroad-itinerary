@@ -1,6 +1,7 @@
 "use client";
 
 import { signOut } from "next-auth/react";
+
 import Button from "@/app/components/ui/button/Button";
 
 const BlogLogoutButton = () => {

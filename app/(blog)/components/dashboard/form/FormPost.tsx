@@ -10,13 +10,12 @@ import DOMPurify from "dompurify";
 import FormContainer from "../../layout/dashboard/FormContainer";
 import Input from "@/app/components/ui/form/Input";
 import TextArea from "@/app/components/ui/form/TextArea";
-import Button from "@/app/components/ui/button/Button";
 import Select from "@/app/components/ui/form/Select";
 import FormImage from "@/app/components/ui/form/FormImage";
 import Checkbox from "@/app/components/ui/form/Checkbox";
 
 import type { Category } from "@prisma/client";
-import type { PostWithCategoryAndImage } from "@/app/(blog)/types/PostTypes";
+import type { PostWithCategoryAndImage } from "@/app/(blog)/types/postTypes";
 import type { PostFormState } from "@/app/(blog)/types/formState";
 import type { PostFormType } from "@/app/(blog)/types/formTypes";
 

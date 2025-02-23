@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import { generateTocId } from "@/app/(blog)/lib/generateToc";
 
 type TocItem = {

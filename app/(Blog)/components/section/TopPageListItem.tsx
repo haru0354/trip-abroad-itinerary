@@ -1,6 +1,7 @@
-import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Image from "next/image";
 import Link from "next/link";
+
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 interface TopPageListItemProps {
   href: string;

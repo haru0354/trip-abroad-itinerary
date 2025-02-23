@@ -6,10 +6,10 @@ import { redirect } from "next/navigation";
 import prisma from "@/app/lib/prisma";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";
 import { validateSchema } from "../../../lib/validateSchema";
+import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 
 import { memoSchema } from "../schema/memoSchema";
 import type { MemoFormState } from "../types/formState";
-import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 
 export const addMemo = async (state: MemoFormState, data: FormData) => {
   const name = data.get("name") as string;

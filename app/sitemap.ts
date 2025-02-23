@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+
 import { getPosts } from "./(blog)/lib/service/blogServiceMany";
 import { getCategories } from "./(blog)/lib/service/blogServiceMany";
 

@@ -1,4 +1,5 @@
 import { revalidatePath } from "next/cache";
+
 import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
 
 export async function revalidatePostsAndCategories() {

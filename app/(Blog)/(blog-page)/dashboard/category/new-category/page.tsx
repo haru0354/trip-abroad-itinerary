@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { addCategory } from "@/app/(blog)/action/actionCategory";
 import FormCategory from "@/app/(blog)/components/dashboard/form/FormCategory";
 import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";

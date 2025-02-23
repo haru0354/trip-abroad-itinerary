@@ -6,13 +6,13 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
+import { useModal } from "@/app/hooks/useModal";
 import { updateEmail } from "../../../action/actionProfile";
 import FormLayout from "../../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 
 import type { ChangeEmailState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { ChangeEmailFormType } from "@/app/(memorybook)/memorybook/types/formType";
-import { useModal } from "@/app/hooks/useModal";
 
 type FormEmailProps = {
   modalId?: string;

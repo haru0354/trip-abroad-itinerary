@@ -12,7 +12,7 @@ type AnimatedItemProps = {
     | "fadeInAndScaleVariants"
     | "fadeInLeftVariants"
     | "borderVariants";
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   imageUrl?: string;
   delay?: number;
 };

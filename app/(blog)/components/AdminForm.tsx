@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 
 import FormContainer from "./layout/dashboard/FormContainer";
 import Input from "@/app/components/ui/form/Input";
-import Button from "@/app/components/ui/button/Button";
 
 import type { LoginFormType } from "../types/formTypes";
 

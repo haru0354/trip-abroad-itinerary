@@ -3,10 +3,10 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";
 import { validateSchema } from "../../../lib/validateSchema";
+import prisma from "@/app/lib/prisma";
 
 import { tripSchema } from "../schema/tripSchema";
 import type { TripFormState } from "../types/formState";

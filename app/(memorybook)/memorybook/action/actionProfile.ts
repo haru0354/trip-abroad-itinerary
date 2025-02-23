@@ -1,10 +1,8 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import bcrypt from "bcrypt";
 
-import prisma from "@/app/lib/prisma";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 import { validateSchema } from "../../../lib/validateSchema";
 import {
@@ -14,6 +12,7 @@ import {
   passwordSchema,
   profileSchema,
 } from "../schema/userSchema";
+import prisma from "@/app/lib/prisma";
 
 import type {
   ChangeEmailState,

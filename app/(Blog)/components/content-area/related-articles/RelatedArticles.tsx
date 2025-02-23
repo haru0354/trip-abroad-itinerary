@@ -1,5 +1,7 @@
 import Link from "next/link";
+
 import Card from "./Card";
+
 import type { Post } from "@prisma/client";
 
 type RelatedArticlesProps = {

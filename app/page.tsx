@@ -1,10 +1,9 @@
-import Link from "next/link";
 import Header from "./(blog)/components/layout/blog/Header";
+import HeaderImage from "./(blog)/components/layout/blog/HeaderImage";
 import FlexImageAndContents from "./components/layout/FlexImageAndContents";
 import CategoryList from "./(blog)/components/section/CategoryList";
 import NewArticleList from "./(blog)/components/section/NewArticleList";
 import Footer from "./(blog)/components/layout/blog/Footer";
-import HeaderImage from "./(blog)/components/layout/blog/HeaderImage";
 
 export default function Home() {
   return (

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import FooterMenu from "../../components/layout/footer/FooterMenu";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/footer/Footer";

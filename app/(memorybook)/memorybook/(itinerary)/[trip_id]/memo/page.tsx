@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+
 import { getTrip } from "../../../lib/memoryBookService";
 import ListMemo from "../../../components/memo/ListMemo";
 import Loading from "@/app/Loading";

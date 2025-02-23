@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { getCategories } from "../../lib/service/blogServiceMany";
 
 const page = async () => {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import Header from "../components/layout/blog/Header";
 import Footer from "../components/layout/blog/Footer";
 

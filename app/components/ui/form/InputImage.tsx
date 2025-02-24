@@ -17,7 +17,7 @@ const InputImage: React.FC<InputImageProps> = ({
   register,
   required,
 }) => {
-  const errorFiledColor = error ? "border-red-500" : "";
+  const errorFiledColor = error ? "border rounded border-red-500" : "";
 
   return (
     <>
@@ -29,7 +29,7 @@ const InputImage: React.FC<InputImageProps> = ({
         id={label}
         name={name}
         onChange={onChange}
-        className={`w-full py-2 px-3 shadow border rounded ${errorFiledColor}`}
+        className={`w-full py-2 px-3 ${errorFiledColor}`}
         {...register(name, {
           required: required && `${label}の選択は必須です。`,
         })}

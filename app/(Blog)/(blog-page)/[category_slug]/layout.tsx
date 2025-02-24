@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 
+import { blogBrandTitle, siteDescription } from "../../config/blogConfig";
 import { getCategory } from "../../lib/service/blogServiceUnique";
 import Header from "../../components/layout/blog/Header";
 import Footer from "../../components/layout/blog/Footer";
@@ -9,9 +10,6 @@ export const generateMetadata = async ({
 }: {
   params: { category_slug: string };
 }): Promise<Metadata> => {
-  const brandTItle = process.env.NEXT_PUBLIC_WEBSITE_BRAND_TITLE;
-  const siteDescription = process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION;
-
   const category = await getCategory("slug", params.category_slug, "posts");
 
   if (category?.title) {
@@ -24,7 +22,7 @@ export const generateMetadata = async ({
     (category.posts.length > 0 && category.posts.every((post) => !post.draft))
   ) {
     return {
-      title: `カテゴリが存在しません | ${brandTItle}`,
+      title: `カテゴリが存在しません | ${blogBrandTitle}`,
       description: `${siteDescription}`,
       robots: {
         index: false,

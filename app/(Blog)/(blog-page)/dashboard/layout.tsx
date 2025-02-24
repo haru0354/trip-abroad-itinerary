@@ -1,15 +1,14 @@
 import { Metadata } from "next";
 
+import { blogBrandTitle } from "../../config/blogConfig";
 import { ModalProvider } from "@/app/context/ModalContext";
 import ToastContext from "@/app/context/ToastContext";
 import DashboardSideMenu from "../../components/dashboard/side-menu/DashboardSideMenu";
 
-const brandTItle = process.env.NEXT_PUBLIC_WEBSITE_BRAND_TITLE;
-
 export const metadata: Metadata = {
   title: {
     default: "ダッシュボードメモ",
-    template: `%s | ${brandTItle}`,
+    template: `%s | ${blogBrandTitle}`,
   },
   robots: {
     index: false,

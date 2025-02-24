@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer = () => {
-  const siteTItle = process.env.NEXT_PUBLIC_WEBSITE_TITLE;
+import { siteTitle } from "@/app/(blog)/config/blogConfig";
 
+const Footer = () => {
   return (
     <>
       <div className="bg-blog-bgColor">
@@ -30,7 +30,7 @@ const Footer = () => {
             </li>
           </ul>
           <span className="text-xs text-black">
-            &copy; {siteTItle}
+            &copy; {siteTitle}
           </span>
         </div>
       </footer>

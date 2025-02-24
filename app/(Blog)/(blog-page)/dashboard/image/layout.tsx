@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
-
-const brandTItle = process.env.NEXT_PUBLIC_WEBSITE_BRAND_TITLE;
+import { Metadata } from "next";
+import { blogBrandTitle } from "@/app/(blog)/config/blogConfig";
 
 export const metadata: Metadata = {
   title: {
     default: "画像ライブラリー",
-    template: `%s | ${brandTItle}`,
+    template: `%s | ${blogBrandTitle}`,
   },
 };
 

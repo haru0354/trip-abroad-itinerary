@@ -1,8 +1,7 @@
 import Link from "next/link";
+import { siteTitle } from "../../config/blogConfig";
 
 const page = () => {
-  const siteTItle = process.env.NEXT_PUBLIC_WEBSITE_TITLE;
-
   return (
     <>
       <h2>プライバシーポリシー</h2>
@@ -13,7 +12,7 @@ const page = () => {
         </Link>
         」とブログ「
         <Link href="/" className="text-blue-600 font-medium">
-          {siteTItle}
+          {siteTitle}
         </Link>
         」の利用に関する情報収集、利用、および開示に関する方針を説明します。
       </p>

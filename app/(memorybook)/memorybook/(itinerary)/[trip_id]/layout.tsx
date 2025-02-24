@@ -3,13 +3,12 @@ import { Metadata } from "next";
 import FooterMenu from "../../components/layout/footer/FooterMenu";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/footer/Footer";
-
-const brandTItle = process.env.NEXT_PUBLIC_ITINERARY_BRAND_TITLE;
+import { itineraryBrandTitle } from "../../config/itineraryConfig";
 
 export const metadata: Metadata = {
   title: {
     default: "旅行の編集",
-    template: `%s | ${brandTItle}`,
+    template: `%s | ${itineraryBrandTitle}`,
   },
   robots: {
     index: false,

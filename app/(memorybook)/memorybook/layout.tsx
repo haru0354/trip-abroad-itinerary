@@ -3,21 +3,18 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 
 import { ModalProvider } from "@/app/context/ModalContext";
+import { itineraryBrandTitle, itinerarySiteDescription, itinerarySiteTItle } from "./config/itineraryConfig";
 import AuthContext from "../../context/AuthContext";
 import ToastContext from "../../context/ToastContext";
 
 config.autoAddCss = false;
 
-const siteTItle = process.env.NEXT_PUBLIC_ITINERARY_TITLE;
-const brandTItle = process.env.NEXT_PUBLIC_ITINERARY_BRAND_TITLE;
-const siteDescription = process.env.NEXT_PUBLIC_ITINERARY_DESCRIPTION;
-
 export const metadata: Metadata = {
   title: {
-    default: `${siteTItle}`,
-    template: `%s | ${brandTItle}`,
+    default: `${itinerarySiteTItle}`,
+    template: `%s | ${itineraryBrandTitle}`,
   },
-  description: `${siteDescription}`,
+  description: `${itinerarySiteDescription}`,
 };
 
 export default async function RootLayout({

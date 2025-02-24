@@ -42,7 +42,7 @@ export const addPost = async (state: PostFormState, data: FormData) => {
   const validated = validateSchema(postSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 
@@ -76,7 +76,6 @@ export const addPost = async (state: PostFormState, data: FormData) => {
           },
         });
         postData.postImage = { connect: { id: createdImage.id } };
-        console.log("画像の追加に成功しました。");
       }
     } catch (error) {
       console.error("画像の追加時にエラーが発生しました", error);
@@ -117,7 +116,6 @@ export const deletePost = async (data: FormData) => {
       const directory = "travel-memory-life";
       const saveFileUrl = `${directory}/${fileName}`;
       await supabase.storage.from("blog").remove([saveFileUrl]);
-      console.log("画像の削除に成功しました");
     } catch (error) {
       console.error("画像の削除中にエラーが発生しました:", error);
       return { message: "画像の削除中にエラーが発生しました" };
@@ -178,7 +176,7 @@ export const updatePost = async (
   const validated = validateSchema(postSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 

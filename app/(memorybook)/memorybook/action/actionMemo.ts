@@ -37,7 +37,7 @@ export const addMemo = async (state: MemoFormState, data: FormData) => {
   const validated = validateSchema(memoSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 
@@ -88,7 +88,6 @@ export const deleteMemo = async (data: FormData) => {
       },
     });
 
-    console.log("メモの削除に成功しました");
   } catch (error) {
     console.error("メモの削除中にエラーが発生しました:", error);
     return { message: "メモの削除中にエラーが発生しました" };
@@ -126,7 +125,7 @@ export const updateMemo = async (
   const validated = validateSchema(memoSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 

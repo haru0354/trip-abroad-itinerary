@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-
-const brandTItle = process.env.NEXT_PUBLIC_ITINERARY_BRAND_TITLE;
+import { itineraryBrandTitle } from "../../../config/itineraryConfig";
 
 export const metadata: Metadata = {
   title: {
     default: "プロフィール",
-    template: `%s | ${brandTItle}`,
+    template: `%s | ${itineraryBrandTitle}`,
   },
 };
 

@@ -14,7 +14,6 @@ export const fileSaveBlogUtils = async (image: File) => {
 
     const fileUrl = data.publicUrl
 
-    console.log("画像の保存に成功しました。");
     return { fileUrl, fileName };
   } catch (error) {
     console.error("画像を保存時にエラーが発生しました", error);
@@ -33,7 +32,6 @@ export const fileSaveItineraryUtils = async (image: File, userId: number) => {
     const { data } = supabase.storage.from('itinerary').getPublicUrl(saveFileUrl);
     const fileUrl = data.publicUrl
 
-    console.log("画像の保存に成功しました。");
     return { fileUrl, fileName };
   } catch (error) {
     console.error("画像を保存時にエラーが発生しました", error);

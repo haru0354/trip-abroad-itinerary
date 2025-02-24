@@ -2,9 +2,9 @@ import { MetadataRoute } from "next";
 
 import { getPosts } from "./(blog)/lib/service/blogServiceMany";
 import { getCategories } from "./(blog)/lib/service/blogServiceMany";
+import { siteURL } from "./(blog)/config/blogConfig";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteURL = process.env.NEXT_PUBLIC_URL;
   const _lastModified = new Date();
 
   const posts = await getPosts();

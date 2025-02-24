@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { itinerarySiteTItle } from "../../../config/itineraryConfig";
+
 type FooterProps = {
   isTopAppDirectory?: boolean;
 };
 
 const Footer: React.FC<FooterProps> = ({ isTopAppDirectory }) => {
-  const siteTItle = process.env.NEXT_PUBLIC_ITINERARY_TITLE
-
   return (
     <>
       <div className="bg-itinerary-bgColor pt-8">
@@ -34,7 +34,7 @@ const Footer: React.FC<FooterProps> = ({ isTopAppDirectory }) => {
             </li>
           </ul>
           <span className="text-xs text-black">
-            &copy; {siteTItle}
+            &copy; {itinerarySiteTItle}
           </span>
         </div>
       </footer>

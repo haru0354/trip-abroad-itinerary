@@ -1,3 +1,4 @@
+import { headerImageConfig } from "./(blog)/config/blogConfig";
 import Header from "./(blog)/components/layout/blog/Header";
 import HeaderImage from "./(blog)/components/layout/blog/HeaderImage";
 import FlexImageAndContents from "./components/layout/FlexImageAndContents";
@@ -5,11 +6,11 @@ import CategoryList from "./(blog)/components/section/CategoryList";
 import NewArticleList from "./(blog)/components/section/NewArticleList";
 import Footer from "./(blog)/components/layout/blog/Footer";
 
-export default function Home() {
+export default function Home() {  
   return (
     <>
       <Header isTopPage={true} />
-      {process.env.NEXT_PUBLIC_HEADER_IMAGE === "true" && <HeaderImage />}
+      {headerImageConfig && <HeaderImage />}
       <main>
         <div className="w-full">
           <section className="bg-white">

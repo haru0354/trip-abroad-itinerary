@@ -2,15 +2,14 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 
 import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
+import { itineraryBrandTitle } from "../../config/itineraryConfig";
 import DashboardSideMenu from "../../components/layout/side-menu/DashboardSideMenu";
 import Loading from "@/app/Loading";
-
-const brandTItle = process.env.NEXT_PUBLIC_ITINERARY_BRAND_TITLE;
 
 export const metadata: Metadata = {
   title: {
     default: "旅行の一覧",
-    template: `%s | ${brandTItle}`,
+    template: `%s | ${itineraryBrandTitle}`,
   },
   robots: {
     index: false,

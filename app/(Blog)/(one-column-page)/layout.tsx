@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 
-import { blogBrandTitle } from "../config/blogConfig";
+import { blogBrandTitle, siteTitle } from "../config/blogConfig";
 import Header from "../components/layout/blog/Header";
 import Footer from "../components/layout/blog/Footer";
 
-const siteTItle = process.env.NEXT_PUBLIC_WEBSITE_TITLE;
-
 export const metadata: Metadata = {
   title: {
-    default: `${siteTItle}`,
+    default: `${siteTitle}`,
     template: `%s | ${blogBrandTitle}`,
   },
 };

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
 import { notoSansJp } from "./util/font";
+import { siteTitle } from "./(blog)/config/blogConfig";
 
-const siteTItle = process.env.NEXT_PUBLIC_WEBSITE_TITLE;
 const siteDescription = process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION;
 
 export const metadata: Metadata = {
-  title: `${siteTItle}`,
+  title: `${siteTitle}`,
   description: `${siteDescription}`,
 };
 

@@ -58,7 +58,7 @@ export const addItinerary = async (
   const validated = validateSchema(itinerarySchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 
@@ -139,7 +139,6 @@ export const deleteItinerary = async (data: FormData) => {
       const directory = `itinerary/${userId}`;
       const saveFileUrl = `${directory}/${fileName}`;
       await supabase.storage.from("itinerary").remove([saveFileUrl]);
-      console.log("画像の削除に成功しました");
     } catch (error) {
       console.error("画像の削除中にエラーが発生しました:", error);
       return { message: "画像の削除中にエラーが発生しました" };
@@ -152,7 +151,6 @@ export const deleteItinerary = async (data: FormData) => {
         id: Number(itineraryId),
       },
     });
-    console.log("旅程を削除しました。");
   } catch (error) {
     console.error("旅程の削除中にエラーが発生しました:", error);
     return { message: "旅程の削除中にエラーが発生しました" };
@@ -205,7 +203,7 @@ export const updateItinerary = async (
   const validated = validateSchema(itinerarySchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 
@@ -243,7 +241,6 @@ export const updateItinerary = async (
         const directory = `itinerary/${userId}`;
         const saveFileUrl = `${directory}/${fileName}`;
         await supabase.storage.from("itinerary").remove([saveFileUrl]);
-        console.log("画像の削除に成功しました");
       } catch (error) {
         console.error("画像の削除中にエラーが発生しました:", error);
         return { message: "画像の削除中にエラーが発生しました" };

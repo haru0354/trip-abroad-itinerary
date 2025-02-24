@@ -32,7 +32,7 @@ export const addDashboardMemo = async (
   const validated = validateSchema(dashboardMemoSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 
@@ -100,7 +100,7 @@ export const updateDashboardMemo = async (
   const validated = validateSchema(dashboardMemoSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 

@@ -32,7 +32,7 @@ export const addPostImage = async (state: ImageFormState, data: FormData) => {
   const validated = validateSchema(imageSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 
@@ -130,7 +130,7 @@ export const updatePostImage = async (
   const validated = validateSchema(updateImageSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 

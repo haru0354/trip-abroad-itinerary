@@ -41,7 +41,7 @@ export const addCategory = async (state: CategoryFormState, data: FormData) => {
   const validated = validateSchema(categorySchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 
@@ -191,7 +191,7 @@ export const updateCategory = async (
   const validated = validateSchema(categorySchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 
@@ -239,7 +239,6 @@ export const updateCategory = async (
         const directory = "travel-memory-life";
         const saveFileUrl = `${directory}/${fileName}`;
         await supabase.storage.from("blog").remove([saveFileUrl]);
-        console.log("画像の削除に成功しました");
       } catch (error) {
         console.error("画像の削除中にエラーが発生しました:", error);
         return { message: "画像の削除中にエラーが発生しました" };

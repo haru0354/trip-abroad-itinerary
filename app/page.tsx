@@ -6,9 +6,7 @@ import CategoryList from "./(blog)/components/section/CategoryList";
 import NewArticleList from "./(blog)/components/section/NewArticleList";
 import Footer from "./(blog)/components/layout/blog/Footer";
 
-export default function Home() {
-  console.log(headerImageConfig);
-  
+export default function Home() {  
   return (
     <>
       <Header isTopPage={true} />

@@ -39,7 +39,7 @@ export const createUser = async (state: SignupFormState, data: FormData) => {
   const validated = validateSchema(createAccountSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 
@@ -53,7 +53,6 @@ export const createUser = async (state: SignupFormState, data: FormData) => {
       },
     });
 
-    console.log("アカウントの作成に成功しました。");
     return { message: "success", user: { name, email, password } };
   } catch (error) {
     console.error("アカウントの作成中にエラーが発生しました:", error);
@@ -80,7 +79,7 @@ export const deleteUser = async (state: DeleteUserState, data: FormData) => {
   const validated = validateSchema(deleteUserSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 
@@ -147,7 +146,7 @@ export const updateEmail = async (state: ChangeEmailState, data: FormData) => {
   const validated = validateSchema(changeEmailSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 
@@ -220,7 +219,7 @@ export const updatePassword = async (
   const validated = validateSchema(passwordSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 
@@ -292,7 +291,7 @@ export const updateProfile = async (
   const validated = validateSchema(profileSchema, validateDate);
 
   if (!validated.success) {
-    console.log(validated.errors);
+    console.error(validated.errors);
     return { errors: validated.errors };
   }
 

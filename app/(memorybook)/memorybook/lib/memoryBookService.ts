@@ -17,13 +17,13 @@ export async function getTrips() {
     });
 
     if (trips.length === 0) {
-      console.log("旅行データの一覧が見つかりませんでした。");
+      console.error("旅行データの一覧が見つかりませんでした。");
       return [];
     }
 
     return trips;
   } catch (error) {
-    console.log("旅行の一覧の取得に失敗しました。");
+    console.error("旅行の一覧の取得に失敗しました。");
     return;
   }
 }
@@ -76,7 +76,7 @@ export async function getTrip(
 
     return trip;
   } catch (error) {
-    console.log("個別の旅行データの取得に失敗しました。", error);
+    console.error("個別の旅行データの取得に失敗しました。", error);
     return;
   }
 }
@@ -108,7 +108,7 @@ export async function getMemo(memoId: number) {
 
     return memo;
   } catch (error) {
-    console.log("個別のメモの取得に失敗しました。", error);
+    console.error("個別のメモの取得に失敗しました。", error);
     return;
   }
 }
@@ -140,7 +140,7 @@ export async function getItinerary(itineraryId: number) {
 
     return itinerary;
   } catch (error) {
-    console.log("個別の旅程の取得に失敗しました。", error);
+    console.error("個別の旅程の取得に失敗しました。", error);
     return;
   }
 }

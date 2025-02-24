@@ -1,0 +1,1 @@
+export const itineraryBrandTitle = process.env.NEXT_PUBLIC_ITINERARY_BRAND_TITLE;

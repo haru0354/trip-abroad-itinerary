@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { notoSansJp } from "./util/font";
-import { siteTitle } from "./(blog)/config/blogConfig";
-
-const siteDescription = process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION;
+import { siteDescription, siteTitle } from "./(blog)/config/blogConfig";
 
 export const metadata: Metadata = {
   title: `${siteTitle}`,

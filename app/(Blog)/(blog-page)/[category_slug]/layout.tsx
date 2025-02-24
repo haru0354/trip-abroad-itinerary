@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { blogBrandTitle } from "../../config/blogConfig";
+import { blogBrandTitle, siteDescription } from "../../config/blogConfig";
 import { getCategory } from "../../lib/service/blogServiceUnique";
 import Header from "../../components/layout/blog/Header";
 import Footer from "../../components/layout/blog/Footer";
@@ -10,8 +10,6 @@ export const generateMetadata = async ({
 }: {
   params: { category_slug: string };
 }): Promise<Metadata> => {
-  const siteDescription = process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION;
-
   const category = await getCategory("slug", params.category_slug, "posts");
 
   if (category?.title) {

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { blogBrandTitle } from "@/app/(blog)/config/blogConfig";
+import { blogBrandTitle, siteDescription } from "@/app/(blog)/config/blogConfig";
 import { getPost } from "@/app/(blog)/lib/service/blogServiceUnique";
 
 export const generateMetadata = async ({
@@ -8,7 +8,6 @@ export const generateMetadata = async ({
 }: {
   params: { post_slug: string };
 }): Promise<Metadata> => {
-  const siteDescription = process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION;
   const post = await getPost("slug", params.post_slug);
 
   if (!post?.draft) {

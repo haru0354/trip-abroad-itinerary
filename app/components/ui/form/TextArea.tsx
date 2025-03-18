@@ -25,7 +25,7 @@ const TextArea: React.FC<TextAreaProps> = ({
   minLength,
   error,
 }) => {
-  const errorFiledColor = error ? "border-red-500" : "";
+  const borderColor = error ? "border-red-500" : "border-gray-300";
 
   return (
     <>
@@ -33,7 +33,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         {label}
       </label>
       <TextareaAutosize
-        className={`w-full min-h-[100px] h-26 py-2 px-3 border rounded shadow ${errorFiledColor}`}
+        className={`w-full min-h-[100px] h-26 py-2 px-3 border rounded shadow ${borderColor}`}
         name={name}
         id={label}
         placeholder={placeholder}

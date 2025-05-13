@@ -1,11 +1,9 @@
-import React from "react";
-import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 
 import { getDashboardMemos } from "@/app/(blog)/lib/service/blogServiceMany";
-import ButtonImage from "@/app/components/ui/button/ButtonImage";
 import HeadingTwo from "../../ui/dashboard/HeadingTwo";
+import ButtonImageLink from "@/app/components/ui/button/ButtonImageLink";
 
 const ListDashboardMemo = async () => {
   const dashboardMemos = await getDashboardMemos();
@@ -74,22 +72,25 @@ const ListDashboardMemo = async () => {
       <HeadingTwo>サイト制作のメモ一覧</HeadingTwo>
       {sortedDashboardMemos.map((memo) => {
         return (
-          <React.Fragment key={memo.id}>
-            <ButtonImage
-              className="rounded"
-              size="small"
-              icon="pen"
-              iconClassName="w-[13px] h-[13px] mr-2"
-            >
-              <Link href={`/dashboard/${memo.id}`}>編集 </Link>
-            </ButtonImage>
+          <div key={memo.id}>
+            <div className="text-right">
+              <ButtonImageLink
+                href={`/dashboard/${memo.id}`}
+                className="rounded"
+                size="small"
+                icon="pen"
+                iconClassName="w-[13px] h-[13px] mr-2"
+              >
+                編集
+              </ButtonImageLink>
+            </div>
             <div className="px-8 py-8 mb-10 bg-gray-200 shadow-md rounded">
               <div className="flex justify-between mb-2 border-b-2 border-blog-borderGray">
                 <div>{memo.name}</div>
               </div>
               <div>{memo.content}</div>
             </div>
-          </React.Fragment>
+          </div>
         );
       })}
     </>

@@ -1,8 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
-import Button from "@/app/components/ui/button/Button";
+import ButtonNextLink from "../ui/button/ButtonNextLink";
 
 type FlexImageAndContentsProps = {
   src: string;
@@ -58,11 +57,11 @@ const FlexImageAndContents: React.FC<FlexImageAndContentsProps> = ({
         </div>
       </div>
       {buttonText && buttonHref && (
-        <Link href={buttonHref}>
-          <Button color="blue" size="normal">
+        <div className="text-center">
+          <ButtonNextLink href={buttonHref} className="rounded">
             {buttonText}
-          </Button>
-        </Link>
+          </ButtonNextLink>
+        </div>
       )}
     </AnimatedItem>
   );

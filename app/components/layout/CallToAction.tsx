@@ -3,7 +3,7 @@ import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import SignupModal from "@/app/(memorybook)/memorybook/components/ui/auth/SignupModal";
-import Button from "@/app/components/ui/button/Button";
+import ButtonNextLink from "../ui/button/ButtonNextLink";
 
 type CallToActionProps = {
   lists: string[];
@@ -46,9 +46,11 @@ const CallToAction: React.FC<CallToActionProps> = ({
         </AnimatedItem>
       ) : (
         href && (
-          <Button color="blue" size="normal">
-            詳細はコチラ
-          </Button>
+          <div className="text-center">
+            <ButtonNextLink href={href} className="rounded">
+              詳細はコチラ
+            </ButtonNextLink>
+          </div>
         )
       )}
     </AnimatedItem>

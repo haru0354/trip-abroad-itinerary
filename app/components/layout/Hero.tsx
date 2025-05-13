@@ -1,8 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import SignupModal from "@/app/(memorybook)/memorybook/components/ui/auth/SignupModal";
-import Button from "@/app/components/ui/button/Button";
+import ButtonNextLink from "../ui/button/ButtonNextLink";
 
 type HeroProps = {
   src: string;
@@ -55,9 +54,11 @@ const Hero: React.FC<HeroProps> = ({
             <SignupModal id="hero-signup" />
           ) : (
             href && (
-              <Button color="blue" size="normal" className="mt-4">
-                <Link href={href}>詳細はコチラ</Link>
-              </Button>
+              <div className="text-center">
+                <ButtonNextLink href={href} className="mt-4 rounded">
+                  詳細はコチラ
+                </ButtonNextLink>
+              </div>
             )
           )}
         </div>

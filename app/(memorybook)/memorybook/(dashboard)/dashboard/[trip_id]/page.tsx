@@ -1,9 +1,7 @@
-import Link from "next/link";
-
 import { getTrip } from "../../../lib/memoryBookService";
 import { updateShare } from "../../../action/actionTrip";
-import Button from "@/app/components/ui/button/Button";
 import FormShare from "../../../components/user/form/FormShare";
+import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
   const tripId = Number(params.trip_id);
@@ -22,11 +20,15 @@ const Page = async ({ params }: { params: { trip_id: string } }) => {
         formAction={updateShareWidthId}
         buttonName="保存"
       />
-      <Link href="/memorybook/dashboard">
-        <Button color="gray" size="normal" className="rounded mt-4">
+      <div className="text-center">
+        <ButtonNextLink
+          href="/memorybook/dashboard"
+          color="gray"
+          className="mt-4 rounded"
+        >
           キャンセル
-        </Button>
-      </Link>
+        </ButtonNextLink>
+      </div>
     </>
   );
 };

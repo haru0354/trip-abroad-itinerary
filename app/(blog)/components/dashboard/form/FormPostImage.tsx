@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 import FormContainer from "../../layout/dashboard/FormContainer";
-import Button from "@/app/components/ui/button/Button";
 import FormImage from "@/app/components/ui/form/FormImage";
 
 import type { PostImage } from "@prisma/client";
@@ -94,9 +93,7 @@ const FormPostImage: React.FC<FormPostImageProps> = ({
       {state.message && state.message !== "edit" && state.message !== "add" && (
         <p className="text-red-500">{state.message}</p>
       )}
-      <Button color="blue" size="normal" className="rounded mt-4">
-        {buttonName}
-      </Button>
+
     </FormContainer>
   );
 };

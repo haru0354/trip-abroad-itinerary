@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Metadata } from "next";
 
 import {
@@ -6,9 +5,11 @@ import {
   updateDashboardMemo,
 } from "@/app/(blog)/action/actionDashboard";
 import { getDashboardMemo } from "@/app/(blog)/lib/service/blogServiceUnique";
+
 import FormDashboardMemo from "@/app/(blog)/components/dashboard/form/FormDashboardMemo";
-import Button from "@/app/components/ui/button/Button";
 import DeleteModal from "@/app/components/ui/modal/DeleteModal";
+import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
+import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";
 
 export const metadata: Metadata = {
   title: "個別のメモ",
@@ -21,16 +22,17 @@ const Page = async ({ params }: { params: { memo_id: string } }) => {
 
   return (
     <>
+      <HeadingTwo>メモの編集</HeadingTwo>
       <FormDashboardMemo
         formAction={updateDashboardMemoWidthId}
         dashboardMemo={dashboardMemo}
         buttonName={"保存"}
       />
-      <Link href="/dashboard/">
-        <Button color="gray" size="normal" className="rounded mt-4">
+      <div className="text-center">
+        <ButtonNextLink href="/dashboard" color="gray" className="mt-4 rounded">
           キャンセル
-        </Button>
-      </Link>
+        </ButtonNextLink>
+      </div>
       <DeleteModal
         DeleteName="メモ"
         name={dashboardMemo?.name}

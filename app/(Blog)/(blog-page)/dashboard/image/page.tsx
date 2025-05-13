@@ -1,15 +1,15 @@
-import Link from "next/link";
-
 import ListImages from "@/app/(blog)/components/dashboard/list/ListImages";
-import Button from "@/app/components/ui/button/Button";
+import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
 
 const page = () => {
   return (
     <>
       <ListImages />
-      <Button color="blue" size="normal" className="my-6">
-        <Link href="/dashboard/image/new-image">画像の追加へ</Link>
-      </Button>
+      <div className="text-center">
+        <ButtonNextLink href="/dashboard/image/new-image" className="my-+6 rounded">
+          画像の追加へ
+        </ButtonNextLink>
+      </div>
     </>
   );
 };

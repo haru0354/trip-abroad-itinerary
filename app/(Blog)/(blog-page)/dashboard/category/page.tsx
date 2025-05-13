@@ -1,15 +1,18 @@
-import Link from "next/link";
-
 import ListCategory from "@/app/(blog)/components/dashboard/list/ListCategory";
-import Button from "@/app/components/ui/button/Button";
+import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
 
 const page = () => {
   return (
     <>
       <ListCategory />
-      <Button color="blue" size="normal" className="my-6">
-        <Link href="/dashboard/category/new-category">カテゴリの追加へ</Link>
-      </Button>
+      <div className="text-center">
+        <ButtonNextLink
+          href="/dashboard/category/new-category"
+          className="rounded"
+        >
+          カテゴリの追加へ
+        </ButtonNextLink>
+      </div>
     </>
   );
 };

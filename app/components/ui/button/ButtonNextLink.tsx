@@ -24,13 +24,13 @@ const ButtonNextLink: React.FC<ButtonNextLinkProps> = ({
 
   const sizes = {
     normal: "min-w-[170px] px-10 py-2",
-    small: "min-w-[100px] px-6 py-1",
+    small: "min-w-[100px] px-6 py-1 mx-2",
   };
 
   return (
     <Link
       href={href}
-      className={`inline-block mx-auto font-semibold border shadow text-white hover:text-black hover:bg-white transition duration-300 
+      className={`inline-block text-center mx-auto font-semibold border shadow text-white hover:text-black hover:bg-white transition duration-300 
         ${className}
         ${sizes[size]}
         ${colors[color]}`}

@@ -1,6 +1,4 @@
-import Link from "next/link";
-
-import Button from "@/app/components/ui/button/Button";
+import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
 
 type ListItemProps = {
   items: Item[];
@@ -32,20 +30,16 @@ const ListItem: React.FC<ListItemProps> = ({ items, editHref, pageHref }) => {
           </p>
         ))}
       </div>
-      <div className="flex sm:justify-end items-center my-4 sm:max-w-[240px]">
+      <div className="flex sm:justify-end items-center w-full sm:max-w-[240px] my-4 ">
         {pageHref && (
-          <Link href={pageHref}>
-            <Button color="blue" size="small">
-              ページ
-            </Button>
-          </Link>
+          <ButtonNextLink href={pageHref} size="small">
+            ページ
+          </ButtonNextLink>
         )}
         {editHref && (
-          <Link href={editHref}>
-            <Button color="gray" size="small">
-              編集
-            </Button>
-          </Link>
+          <ButtonNextLink href={editHref} color="gray" size="small">
+            編集
+          </ButtonNextLink>
         )}
       </div>
     </div>

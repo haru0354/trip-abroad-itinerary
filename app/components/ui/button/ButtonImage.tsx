@@ -16,6 +16,7 @@ type ButtonImageProps = {
   onClick?: () => void;
   className?: string;
   iconClassName?: string;
+  type?: "submit" | "button";
   size: "footer" | "small";
   icon: "pen" | "house" | "plane" | "plus" | "down" | "up";
 };
@@ -24,6 +25,7 @@ const ButtonImage: React.FC<ButtonImageProps> = ({
   children,
   className,
   iconClassName,
+  type = "button",
   size,
   icon,
   onClick,
@@ -53,6 +55,7 @@ const ButtonImage: React.FC<ButtonImageProps> = ({
        ${className}  ${sizes[size]} ${pending ? "opacity-30" : ""}`}
       disabled={pending}
       onClick={onClick}
+      type={type}
     >
       <FontAwesomeIcon
         icon={selectedIcon}

@@ -67,6 +67,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
             formAction={formAction}
             color="red"
             size="normal"
+            type="submit"
             className="rounded"
           >
             削除

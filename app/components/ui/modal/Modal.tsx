@@ -40,7 +40,12 @@ const Modal: React.FC<ModalProps> = ({
     <>
       {iconButton ? (
         <div className="w-full h-full">
-          <ButtonImage icon="plus" size="footer" onClick={() => openModal(id)}>
+          <ButtonImage
+            icon="plus"
+            size="footer"
+            type="button"
+            onClick={() => openModal(id)}
+          >
             {buttonName}
           </ButtonImage>
         </div>
@@ -55,6 +60,7 @@ const Modal: React.FC<ModalProps> = ({
               onClick={() => openModal(id)}
               color={color}
               size={size}
+              type="button"
               className="rounded my-4"
             >
               {buttonName}
@@ -77,6 +83,7 @@ const Modal: React.FC<ModalProps> = ({
                 onClick={() => closeModal(id)}
                 color="gray"
                 size="normal"
+                type="button"
                 className={`rounded ${closeButtonPosition}`}
               >
                 {closeButtonName}

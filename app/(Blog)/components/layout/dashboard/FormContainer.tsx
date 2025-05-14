@@ -28,7 +28,7 @@ const FormContainer: React.FC<FormContainerProps> = ({
       >
         <form className="w-full py-3" {...formProps}>
           {children}
-          <Button color="blue" size="normal" className="rounded mt-4">
+          <Button color="blue" size="normal" type="submit" className="rounded mt-4">
             {buttonName}
           </Button>
         </form>

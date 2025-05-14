@@ -14,6 +14,7 @@ const BlogLogoutButton = () => {
       onClick={handleLogout}
       color="white"
       size="normal"
+      type="button"
       className="rounded mt-4"
     >
       ログアウト

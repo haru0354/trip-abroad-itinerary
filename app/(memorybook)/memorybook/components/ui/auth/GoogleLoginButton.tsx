@@ -46,6 +46,7 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({
         onClick={handleGoogleSignIn}
         color="gray"
         size="auth"
+        type="button"
         className="rounded mb-6"
       >
         Googleでログイン

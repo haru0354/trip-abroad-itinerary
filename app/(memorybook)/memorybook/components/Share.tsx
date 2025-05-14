@@ -27,6 +27,7 @@ const Share = () => {
             onClick={handleCopy}
             size="small"
             color="blue"
+            type="button"
             className="rounded"
           >
             URLをコピー

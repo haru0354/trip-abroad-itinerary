@@ -51,7 +51,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({
             </p>
             <form className="w-full py-3" {...formProps}>
               {children}
-              <Button color="blue" size={buttonSize} className="rounded mt-4">
+              <Button color="blue" size={buttonSize} type="submit" className="rounded mt-4">
                 {buttonName}
               </Button>
             </form>

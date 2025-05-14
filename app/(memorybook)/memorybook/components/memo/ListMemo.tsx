@@ -1,9 +1,7 @@
-import Link from "next/link";
-
 import Manual from "../Manual";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import SplitTextLines from "@/app/(memorybook)/memorybook/lib/SplitTextLines";
-import ButtonImage from "@/app/components/ui/button/ButtonImage";
+import ButtonImageLink from "@/app/components/ui/button/ButtonImageLink";
 
 import type { Memo } from "@prisma/client";
 
@@ -52,16 +50,17 @@ const ListMemo: React.FC<ListMemoProps> = async ({ memos, tripId }) => {
             className="min-h-[200px] bg-top bg-no-repeat pt-[44px] w-full "
             imageUrl="/memo-image.png"
           >
-            <Link href={`/memorybook/${tripId}/memo/${memo.id}`}>
-              <ButtonImage
+            <div className="text-right mb-[-2px]">
+              <ButtonImageLink
+                href={`/memorybook/${tripId}/memo/${memo.id}`}
                 className="rounded"
                 size="small"
                 icon="pen"
                 iconClassName="mr-2"
               >
                 編集
-              </ButtonImage>
-            </Link>
+              </ButtonImageLink>
+            </div>
             <div className="bg-gray-50 border border-itinerary-borderGray shadow-md rounded px-8 py-5 mb-10 ">
               <div className="border-b border-itinerary-borderGray">
                 <h3 className="text-center font-semibold">{memo.name}</h3>

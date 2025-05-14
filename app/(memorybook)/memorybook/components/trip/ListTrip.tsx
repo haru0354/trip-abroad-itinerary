@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
 
 import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import ButtonImage from "@/app/components/ui/button/ButtonImage";
+import ButtonImageLink from "@/app/components/ui/button/ButtonImageLink";
 
 const ListTrip = async () => {
   const trips = await getTrips();
@@ -63,16 +63,15 @@ const ListTrip = async () => {
                 className="flex flex-col items-center mx-4 max-w-[370px] "
               >
                 <div className="ml-auto">
-                  <Link href={`/memorybook/${trip.id}`}>
-                    <ButtonImage
-                      className="rounded py-1"
-                      size="small"
-                      icon="pen"
-                      iconClassName="mr-2"
-                    >
-                      編集
-                    </ButtonImage>
-                  </Link>
+                  <ButtonImageLink
+                    href={`/memorybook/${trip.id}`}
+                    className="py-1 rounded"
+                    size="small"
+                    icon="pen"
+                    iconClassName="mr-2"
+                  >
+                    編集
+                  </ButtonImageLink>
                 </div>
                 <Link href={`/memorybook/${trip.id}/itinerary`}>
                   <div className="flex flex-col w-full min-w-[340px] min-h-[300px] mb-10 px-8 pt-6 border-2 rounded border-sky-600 hover:bg-itinerary-hoverBlue transition duration-300">

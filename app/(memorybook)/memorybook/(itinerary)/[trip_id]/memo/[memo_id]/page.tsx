@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { deleteMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import { updateMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import {
@@ -8,7 +6,7 @@ import {
 } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import FormMemo from "@/app/(memorybook)/memorybook/components/memo/FormMemo";
 import DeleteModal from "@/app/components/ui/modal/DeleteModal";
-import Button from "@/app/components/ui/button/Button";
+import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
 
 const Page = async ({
   params,
@@ -48,11 +46,15 @@ const Page = async ({
         buttonName="保存"
         tripId={trip.id}
       />
-      <Link href={`/memorybook/${trip.id}/memo`}>
-        <Button color="gray" size="normal" className="rounded mt-4">
+      <div className="text-center">
+        <ButtonNextLink
+          href={`/memorybook/${trip.id}/memo`}
+          color="gray"
+          className="mt-4 rounded"
+        >
           キャンセル
-        </Button>
-      </Link>
+        </ButtonNextLink>
+      </div>
       <DeleteModal
         DeleteName="メモ"
         name={memo?.name}

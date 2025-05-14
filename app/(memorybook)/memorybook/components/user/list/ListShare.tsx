@@ -1,7 +1,5 @@
-import Link from "next/link";
-
 import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
-import Button from "@/app/components/ui/button/Button";
+import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
 
 const ListShare = async () => {
   const trips = await getTrips();
@@ -36,26 +34,33 @@ const ListShare = async () => {
                 </p>
               </div>
             </div>
-            <div className="flex justify-center py-2 items-center">
+            <div className="flex justify-center items-center py-2">
               {trip.share && (
-                <Link href={`/memorybook/share/${trip.userId}/${trip.id}`}>
-                  <Button color="blue" size="small">
-                    共有ページ
-                  </Button>
-                </Link>
+                <ButtonNextLink
+                  href={`/memorybook/share/${trip.userId}/${trip.id}`}
+                  size="small"
+                  className="rounded"
+                >
+                  共有ページ
+                </ButtonNextLink>
               )}
               {trip.blog && (
-                <Link href={`travelogue/${trip.userId}/${trip.id}`}>
-                  <Button color="blue" size="small">
-                    ブログ
-                  </Button>
-                </Link>
+                <ButtonNextLink
+                  href={`travelogue/${trip.userId}/${trip.id}`}
+                  size="small"
+                  className="rounded"
+                >
+                  ブログ
+                </ButtonNextLink>
               )}
-              <Link href={`/memorybook/dashboard/${trip.id}`}>
-                <Button color="gray" size="small">
-                  編集
-                </Button>
-              </Link>
+              <ButtonNextLink
+                href={`/memorybook/dashboard/${trip.id}`}
+                size="small"
+                color="gray"
+                className="rounded"
+              >
+                編集
+              </ButtonNextLink>
             </div>
           </div>
         );

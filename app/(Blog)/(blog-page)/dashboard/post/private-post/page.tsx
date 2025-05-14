@@ -1,15 +1,15 @@
-import Link from "next/link";
-
 import ListDraftFalsePosts from "@/app/(blog)/components/dashboard/list/posts/ListDraftFalsePosts";
-import Button from "@/app/components/ui/button/Button";
+import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
 
 const page = () => {
   return (
     <>
       <ListDraftFalsePosts />
-      <Button color="blue" size="normal" className="my-6">
-        <Link href="/dashboard/post/">公開記事に切り替え</Link>
-      </Button>
+      <div className="text-center">
+        <ButtonNextLink href="/dashboard/post/" className="my-6 rounded">
+          公開記事に切り替え
+        </ButtonNextLink>
+      </div>
     </>
   );
 };

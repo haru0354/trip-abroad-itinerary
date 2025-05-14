@@ -36,6 +36,7 @@ const HideContent: React.FC<HideContentProps> = ({ hideContent }) => {
                 onClick={toggleShowContent}
                 icon="up"
                 size="small"
+                type="button"
                 className="mx-auto py-1 mt-4 mb-2"
                 iconClassName="mr-2 w-[12px] h-[12px]"
               >
@@ -47,6 +48,7 @@ const HideContent: React.FC<HideContentProps> = ({ hideContent }) => {
               onClick={toggleShowContent}
               icon="down"
               size="small"
+              type="button"
               className="mx-auto py-1 mt-4 mb-2"
               iconClassName="mr-2 w-[12px] h-[12px]"
             >

@@ -1,6 +1,4 @@
-"use client";
-
-import { useFormStatus } from "react-dom";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlane,
@@ -11,31 +9,26 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 
-type ButtonImageProps = {
+type ButtonImageLinkProps = {
   children: React.ReactNode;
-  onClick?: () => void;
+  href: string;
   className?: string;
   iconClassName?: string;
-  type?: "submit" | "button";
   size: "footer" | "small";
   icon: "pen" | "house" | "plane" | "plus" | "down" | "up";
 };
 
-const ButtonImage: React.FC<ButtonImageProps> = ({
+const ButtonImageLink: React.FC<ButtonImageLinkProps> = ({
   children,
+  href,
   className,
   iconClassName,
-  type = "button",
   size,
   icon,
-  onClick,
 }) => {
-  const { pending } = useFormStatus();
-
   const sizes = {
     footer: "flex flex-1 flex-col items-center justify-center w-full h-full",
-    small:
-      "block px-4 ml-auto text-sm border rounded border-dashed border-gray-400",
+    small: "px-4 text-sm border rounded border-dashed border-gray-400",
   };
 
   const iconImages = {
@@ -50,21 +43,19 @@ const ButtonImage: React.FC<ButtonImageProps> = ({
   const selectedIcon = iconImages[icon];
 
   return (
-    <button
+    <Link
+      href={href}
       className={`hover:bg-gray-300 transition duration-300
-       ${className}  ${sizes[size]} ${pending ? "opacity-30" : ""}`}
-      disabled={pending}
-      onClick={onClick}
-      type={type}
+       ${className}  ${sizes[size]} `}
     >
       <FontAwesomeIcon
         icon={selectedIcon}
         className={`
        ${iconClassName}`}
       />
-      <span>{children}</span>
-    </button>
+      {children}
+    </Link>
   );
 };
 
-export default ButtonImage;
+export default ButtonImageLink;

@@ -1,12 +1,11 @@
-import Link from "next/link";
-
 import { getPost } from "@/app/(blog)/lib/service/blogServiceUnique";
 import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
 import { deletePost, updatePost } from "@/app/(blog)/action/actionPost";
+
 import FormPost from "@/app/(blog)/components/dashboard/form/FormPost";
 import DeleteModal from "@/app/components/ui/modal/DeleteModal";
-import Button from "@/app/components/ui/button/Button";
 import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";
+import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
 
 const page = async ({ params }: { params: { post_id: string } }) => {
   const id = Number(params.post_id);
@@ -23,11 +22,15 @@ const page = async ({ params }: { params: { post_id: string } }) => {
         categories={categories}
         buttonName={"編集内容を保存"}
       />
-      <Link href="/dashboard/post/">
-        <Button color="gray" size="normal" className="rounded mt-4">
+      <div className="text-center">
+        <ButtonNextLink
+          href="/dashboard/post"
+          color="gray"
+          className="mt-4 rounded"
+        >
           キャンセル
-        </Button>
-      </Link>
+        </ButtonNextLink>
+      </div>
       <DeleteModal
         DeleteName="記事"
         name={post?.title}

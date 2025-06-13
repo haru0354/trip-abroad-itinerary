@@ -3,7 +3,11 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 
 import { ModalProvider } from "@/app/context/ModalContext";
-import { itineraryBrandTitle, itinerarySiteDescription, itinerarySiteTItle } from "./config/itineraryConfig";
+import {
+  itineraryBrandTitle,
+  itinerarySiteDescription,
+  itinerarySiteTItle,
+} from "./config/itineraryConfig";
 import ToastContext from "../../context/ToastContext";
 
 config.autoAddCss = false;
@@ -22,11 +26,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-        <ModalProvider>
-          <ToastContext />
-          {children}
-        </ModalProvider>
-    </>
+    <ModalProvider>
+      <ToastContext />
+      {children}
+    </ModalProvider>
   );
 }

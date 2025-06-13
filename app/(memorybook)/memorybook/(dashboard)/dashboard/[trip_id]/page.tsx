@@ -1,7 +1,13 @@
+import { Metadata } from "next";
+
 import { getTrip } from "../../../lib/memoryBookService";
 import { updateShare } from "../../../action/actionTrip";
 import FormShare from "../../../components/user/form/FormShare";
 import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
+
+export const metadata: Metadata = {
+  title: "旅程表の共有設定",
+};
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
   const tripId = Number(params.trip_id);

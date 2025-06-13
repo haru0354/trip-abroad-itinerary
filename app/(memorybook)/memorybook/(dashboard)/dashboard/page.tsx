@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Suspense } from "react";
 
 import { addTrip } from "@/app/(memorybook)/memorybook/action/actionTrip";
@@ -7,6 +8,10 @@ import ListShare from "../../components/user/list/ListShare";
 import Loading from "@/app/Loading";
 import Modal from "@/app/components/ui/modal/Modal";
 
+export const metadata: Metadata = {
+  title: "旅行の一覧",
+};
+
 const page = () => {
   return (
     <>
@@ -14,7 +19,7 @@ const page = () => {
         <ListTrip />
       </Suspense>
       <Modal maxWidth="max-w-[620px]" buttonName="旅行のしおりの追加" id="trip">
-        <FormTrip buttonName="追加" formAction={addTrip} modalId="trip"/>
+        <FormTrip buttonName="追加" formAction={addTrip} modalId="trip" />
       </Modal>
       <Suspense fallback={<Loading message="共有リスト" />}>
         <ListShare />

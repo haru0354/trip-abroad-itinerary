@@ -1,7 +1,16 @@
+import { Metadata } from "next";
+
 import { getTrip } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import ListItinerary from "@/app/(memorybook)/memorybook/components/itinerary/ListItinerary";
 import Share from "@/app/(memorybook)/memorybook/components/Share";
 import NotFound from "@/app/not-found";
+
+export const metadata: Metadata = {
+  title: "共有された旅行記",
+  robots: {
+    index: false,
+  },
+};
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
   const tripId = Number(params.trip_id);

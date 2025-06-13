@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 import {
   deleteTrip,
   updateTrip,
@@ -6,6 +8,10 @@ import { getTrip } from "../../lib/memoryBookService";
 import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 import FormTrip from "../../components/trip/FormTrip";
 import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
+
+export const metadata: Metadata = {
+  title: "旅行の編集",
+};
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
   const tripId = Number(params.trip_id);

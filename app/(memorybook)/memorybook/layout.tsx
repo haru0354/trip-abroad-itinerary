@@ -4,7 +4,6 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 
 import { ModalProvider } from "@/app/context/ModalContext";
 import { itineraryBrandTitle, itinerarySiteDescription, itinerarySiteTItle } from "./config/itineraryConfig";
-import AuthContext from "../../context/AuthContext";
 import ToastContext from "../../context/ToastContext";
 
 config.autoAddCss = false;
@@ -24,12 +23,10 @@ export default async function RootLayout({
 }>) {
   return (
     <>
-      <AuthContext>
         <ModalProvider>
           <ToastContext />
           {children}
         </ModalProvider>
-      </AuthContext>
     </>
   );
 }

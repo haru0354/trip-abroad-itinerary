@@ -1,13 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { getCurrentUserId } from "@/app/lib/getCurrentUser";
-import { itinerarySiteTItle } from "../../config/itineraryConfig";
-import Menu from "../ui/menu/Menu";
+import { itinerarySiteTItle } from "../../../config/itineraryConfig";
+import AuthContext from "@/app/context/AuthContext";
+import HeaderMenu from "./HeaderMenu";
 
 const Header = async () => {
-  const currentUserId = await getCurrentUserId();
-
   return (
     <header className="w-full bg-itinerary-bgColor">
       <div className="max-w-[1120px] mx-auto">
@@ -24,7 +22,9 @@ const Header = async () => {
               />
             </h1>
           </Link>
-          <Menu currentUserId={currentUserId} />
+          <AuthContext>
+            <HeaderMenu />
+          </AuthContext>
         </div>
       </div>
     </header>

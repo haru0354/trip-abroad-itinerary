@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 import FooterMenu from "../../components/layout/footer/FooterMenu";
-import Header from "../../components/layout/Header";
+import Header from "../../components/layout/header/Header";
 import Footer from "../../components/layout/footer/Footer";
 import { itineraryBrandTitle } from "../../config/itineraryConfig";
 

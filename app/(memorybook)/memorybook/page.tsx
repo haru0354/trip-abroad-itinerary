@@ -7,18 +7,16 @@ import ThreeImageAndContents from "@/app/components/layout/ThreeImageAndContents
 import CallToAction from "@/app/components/layout/CallToAction";
 import QuestionAndAnswer from "@/app/components/layout/QuestionAndAnswer";
 import Hero from "@/app/components/layout/Hero";
-import Header from "./components/layout/Header";
+
+import Header from "./components/layout/header/Header";
 import Footer from "./components/layout/footer/Footer";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Section from "@/app/components/layout/Section";
-import Loading from "@/app/Loading";
 
 export default function Home() {
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <Header />
-      </Suspense>
+      <Header />
       <Hero
         src="/hero_image.JPG"
         alt="メモリーブックのHERO画像"
@@ -175,7 +173,7 @@ export default function Home() {
               animation="fadeInAndScaleVariants"
               className="text-center py-4"
             >
-              <SignupModal id="last-signup"/>
+              <SignupModal id="last-signup" />
             </AnimatedItem>
           </Section>
         </div>

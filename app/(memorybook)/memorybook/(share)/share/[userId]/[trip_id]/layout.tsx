@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import Header from "@/app/(memorybook)/memorybook/components/layout/Header";
+import Header from "@/app/(memorybook)/memorybook/components/layout/header/Header";
 import Footer from "@/app/(memorybook)/memorybook/components/layout/footer/Footer";
 
 export const metadata: Metadata = {

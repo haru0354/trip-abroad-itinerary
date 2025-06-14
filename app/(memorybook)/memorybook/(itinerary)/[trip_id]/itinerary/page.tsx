@@ -1,8 +1,13 @@
+import { Metadata } from "next";
 import { Suspense } from "react";
 
 import { getTrip } from "../../../lib/memoryBookService";
 import ListItinerary from "../../../components/itinerary/ListItinerary";
 import Loading from "@/app/Loading";
+
+export const metadata: Metadata = {
+  title: "旅程表",
+};
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
   const tripId = Number(params.trip_id);

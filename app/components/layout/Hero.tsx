@@ -1,6 +1,8 @@
 import Image from "next/image";
 
-import SignupModal from "@/app/(memorybook)/memorybook/components/ui/auth/SignupModal";
+import AuthContext from "@/app/context/AuthContext";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
+import SignupOrDashboardButton from "@/app/(memorybook)/memorybook/components/ui/auth/SignupOrDashboardButton";
 import ButtonNextLink from "../ui/button/ButtonNextLink";
 
 type HeroProps = {
@@ -34,7 +36,11 @@ const Hero: React.FC<HeroProps> = ({
         }}
       />
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex-col justify-center items-center md:w-[440px] w-[340px] md:h-[260px] h-[240px]  py-4 px-2 bg-white md:opacity-90 opacity-80 rounded text-center">
+        <AnimatedItem
+          elementType="div"
+          animation="fadeInVariants"
+          className="flex-col justify-center items-center md:w-[440px] w-[340px] md:h-[260px] h-[240px] py-4 px-2 text-center rounded bg-white md:opacity-90 opacity-80"
+        >
           <p className="font-semibold mb-3 text-lg md:text-2xl">{title}</p>
           {secondTitle && (
             <p className="font-bold mb-3 text-lg md:text-2xl text-sky-500">
@@ -51,7 +57,9 @@ const Hero: React.FC<HeroProps> = ({
             </>
           )}
           {signUp ? (
-            <SignupModal id="hero-signup" />
+            <AuthContext>
+              <SignupOrDashboardButton />
+            </AuthContext>
           ) : (
             href && (
               <div className="text-center">
@@ -61,7 +69,7 @@ const Hero: React.FC<HeroProps> = ({
               </div>
             )
           )}
-        </div>
+        </AnimatedItem>
       </div>
     </div>
   );

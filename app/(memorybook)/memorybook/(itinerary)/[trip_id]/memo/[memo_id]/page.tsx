@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 import { deleteMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import { updateMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import {
@@ -7,6 +9,10 @@ import {
 import FormMemo from "@/app/(memorybook)/memorybook/components/memo/FormMemo";
 import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
+
+export const metadata: Metadata = {
+  title: "メモの編集",
+};
 
 const Page = async ({
   params,

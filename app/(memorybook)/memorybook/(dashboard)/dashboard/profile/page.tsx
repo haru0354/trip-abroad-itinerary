@@ -1,8 +1,14 @@
+import { Metadata } from "next";
+
 import { getUserProfile } from "@/app/lib/getCurrentUser";
 import ListProfile from "../../../components/user/list/ListProfile";
 import ChangeEmailFormModal from "../../../components/user/modal/ChangeEmailFormModal";
 import ChangePasswordFormModal from "../../../components/user/modal/ChangePasswordFormModal";
 import DeleteUserModal from "../../../components/user/modal/DeleteUserModal";
+
+export const metadata: Metadata = {
+  title: "プロフィール",
+};
 
 const page = async () => {
   const user = await getUserProfile();

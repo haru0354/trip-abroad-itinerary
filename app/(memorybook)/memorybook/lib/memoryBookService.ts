@@ -16,11 +16,6 @@ export async function getTrips() {
       },
     });
 
-    if (trips.length === 0) {
-      console.error("旅行データの一覧が見つかりませんでした。");
-      return [];
-    }
-
     return trips;
   } catch (error) {
     console.error("旅行の一覧の取得に失敗しました。");

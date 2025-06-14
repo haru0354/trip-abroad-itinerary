@@ -35,7 +35,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       y: 0,
       transition: {
         delay: delay || 0,
-        duration: 1.0,
+        duration: 0.5,
       },
     },
   };
@@ -48,7 +48,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       scale: 1,
       transition: {
         delay: delay || 0,
-        duration: 1.0,
+        duration: 0.5,
       },
     },
   };
@@ -60,7 +60,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       x: 0,
       transition: {
         delay: delay || 0,
-        duration: 0.8,
+        duration: 0.5,
       },
     },
   };
@@ -74,7 +74,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
       width: "100%",
       x: "0%",
       transition: {
-        duration: 7.0,
+        duration: 0.5,
       },
     },
   };

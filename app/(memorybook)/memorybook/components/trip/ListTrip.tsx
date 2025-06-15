@@ -60,9 +60,9 @@ const ListTrip = async () => {
             return (
               <div
                 key={trip.id}
-                className="flex flex-col items-center mx-4 max-w-[370px] "
+                className="group flex flex-col items-center mx-4 max-w-[370px] "
               >
-                <div className="ml-auto">
+                <div className="ml-auto group-hover:-translate-y-2 transition duration-300">
                   <ButtonImageLink
                     href={`/memorybook/${trip.id}`}
                     className="py-1 rounded"
@@ -74,7 +74,7 @@ const ListTrip = async () => {
                   </ButtonImageLink>
                 </div>
                 <Link href={`/memorybook/${trip.id}/itinerary`}>
-                  <div className="flex flex-col w-full min-w-[340px] min-h-[300px] mb-10 px-8 pt-6 border-2 rounded border-sky-600 hover:bg-itinerary-hoverBlue transition duration-300">
+                  <div className="flex flex-col w-full min-w-[340px] px-8 py-12 border-2 shadow-xl rounded border-sky-600 hover:-translate-y-2 transition duration-300">
                     <span className="flex justify-center mb-6 text-blue-500">
                       <FontAwesomeIcon
                         icon={faPlaneDeparture}
@@ -91,9 +91,6 @@ const ListTrip = async () => {
                       <li>帰宅日：{trip.endDate}</li>
                       <li>旅行先：{trip.destination}</li>
                     </ul>
-                    <p className="min-w-[100px] px-6 py-1 mt-5 mx-auto shadow font-bold text-white border rounded border-sky-900 bg-sky-700">
-                      旅程表へ
-                    </p>
                   </div>
                 </Link>
               </div>

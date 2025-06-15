@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import LoginModal from "../../ui/auth/LoginModal";
 import SignupModal from "../../ui/auth/SignupModal";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 const HeaderMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -36,17 +37,19 @@ const HeaderMenu = () => {
             />
           </div>
           {isOpen && (
-            <ul className="absolute right-0 w-40 mt-2 p-2 bg-white z-10 cursor-pointer">
-              <li className="p-2 transition duration-300 hover:bg-itinerary-hoverBlue">
-                <Link href="/memorybook/dashboard">管理画面</Link>
-              </li>
-              <li
-                onClick={handleLogout}
-                className="p-2 transition duration-300 hover:bg-itinerary-hoverBlue"
-              >
-                ログアウト
-              </li>
-            </ul>
+            <AnimatedItem elementType="div" animation="fadeInAndScaleVariants">
+              <ul className="absolute right-0 w-40 mt-2 p-2 border shadow-lg bg-white z-10 cursor-pointer">
+                <li className="p-2 transition duration-300 hover:bg-itinerary-hoverBlue">
+                  <Link href="/memorybook/dashboard">管理画面</Link>
+                </li>
+                <li
+                  onClick={handleLogout}
+                  className="p-2 transition duration-300 hover:bg-itinerary-hoverBlue"
+                >
+                  ログアウト
+                </li>
+              </ul>
+            </AnimatedItem>
           )}
         </div>
       ) : (

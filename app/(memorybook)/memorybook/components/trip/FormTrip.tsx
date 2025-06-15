@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
@@ -34,7 +34,6 @@ const FormTrip: React.FC<FormTripProps> = ({
   
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<TripFormType>({
     mode: "onBlur",
@@ -45,21 +44,6 @@ const FormTrip: React.FC<FormTripProps> = ({
     formAction,
     initialState
   );
-
-  const onSubmit: SubmitHandler<TripFormType> = (data) => {
-    try {
-      const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("startDate", data.startDate || "");
-      formData.append("endDate", data.endDate || "");
-      formData.append("destination", data.destination || "");
-
-      dispatch(formData);
-    } catch (error) {
-      console.error("旅行の追加中にエラーが発生:", error);
-      toast.error("Googleログイン中にエラーが発生しました。" + error);
-    }
-  };
 
   useEffect(() => {
     if (state.message === "add") {
@@ -87,7 +71,7 @@ const FormTrip: React.FC<FormTripProps> = ({
       <FormLayout
         formTitle="旅行のしおりフォーム"
         buttonName={buttonName}
-        onSubmit={handleSubmit(onSubmit)}
+        action={dispatch}
         modalLayout={modalLayout}
       >
         <Date

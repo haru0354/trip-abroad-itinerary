@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import FormLayout from "../../layout/FormLayout";
@@ -29,7 +29,6 @@ const FormProfile: React.FC<FormProfileProps> = ({
   const router = useRouter();
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<ProfileFormType>({
     mode: "onBlur",
@@ -45,18 +44,6 @@ const FormProfile: React.FC<FormProfileProps> = ({
     initialState
   );
 
-  const onSubmit: SubmitHandler<ProfileFormType> = (data) => {
-    try {
-      const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("email", data.email);
-      dispatch(formData);
-    } catch (error) {
-      console.error("プロフィール変更中にエラーが発生しました:", error);
-      toast.error("プロフィール変更中にエラーが発生しました。" + error);
-    }
-  };
-
   useEffect(() => {
     if (state.message === "edit") {
       toast.success("プロフィールを編集しました！");
@@ -71,7 +58,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
       <FormLayout
         formTitle="プロフィールのフォーム"
         buttonName={buttonName}
-        onSubmit={handleSubmit(onSubmit)}
+        action={dispatch}
       >
         <Input
           name="name"

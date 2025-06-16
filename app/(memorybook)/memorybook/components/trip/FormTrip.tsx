@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
@@ -11,6 +12,7 @@ import FormLayout from "../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 import Date from "@/app/components/ui/form/Date";
 
+import { tripSchema } from "../../schema/tripSchema";
 import type { Trip } from "@prisma/client";
 import type { TripFormState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { TripFormType } from "../../types/formType";
@@ -37,10 +39,11 @@ const FormTrip: React.FC<FormTripProps> = ({
     formState: { errors },
   } = useForm<TripFormType>({
     mode: "onBlur",
+    resolver: zodResolver(tripSchema),
   });
 
   const initialState = { message: null, errors: { name: undefined } };
-  
+
   const [state, dispatch] = useFormState<TripFormState, FormData>(
     formAction,
     initialState
@@ -92,7 +95,6 @@ const FormTrip: React.FC<FormTripProps> = ({
         placeholder="旅行タイトルを入力。例)初海外旅行"
         defaultValue={trip?.name || ""}
         register={register}
-        required
         error={errors.name?.message || state.errors?.name}
       />
       <Input

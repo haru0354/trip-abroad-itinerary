@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
@@ -22,7 +22,6 @@ const FormDeleteUser: React.FC<FormDeleteUserProps> = ({ modalId }) => {
   const { closeModal } = useModal();
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<DeleteUserFormType>({
     mode: "onBlur",
@@ -44,18 +43,6 @@ const FormDeleteUser: React.FC<FormDeleteUserProps> = ({ modalId }) => {
     initialState
   );
 
-  const onSubmit: SubmitHandler<DeleteUserFormType> = (data) => {
-    try {
-      const formData = new FormData();
-      formData.append("password", data.password);
-      formData.append("passwordConfirmation", data.passwordConfirmation);
-      dispatch(formData);
-    } catch (error) {
-      console.error("アカウントの削除中にエラーが発生しました:", error);
-      toast.error("アカウントの削除中にエラーが生しました。" + error);
-    }
-  };
-
   useEffect(() => {
     if (state.message === "success") {
       toast.success("アカウントを削除しました！ログアウトが実行されます。");
@@ -73,7 +60,7 @@ const FormDeleteUser: React.FC<FormDeleteUserProps> = ({ modalId }) => {
     <FormLayout
       formTitle="アカウント削除のフォーム"
       buttonName="削除する"
-      onSubmit={handleSubmit(onSubmit)}
+      action={dispatch}
       modalLayout={modalLayout}
     >
       <Input

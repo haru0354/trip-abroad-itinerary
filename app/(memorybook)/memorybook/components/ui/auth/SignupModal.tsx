@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useFormState } from "react-dom";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
@@ -31,7 +31,6 @@ const SignupModal: React.FC<SignupModalProps> = ({
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<UserFormType>({
     mode: "onBlur",
@@ -50,20 +49,6 @@ const SignupModal: React.FC<SignupModalProps> = ({
     createUser,
     initialState
   );
-
-  const onSubmit: SubmitHandler<UserFormType> = async (data) => {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("email", data.email);
-    formData.append("password", data.password);
-
-    try {
-      dispatch(formData);
-    } catch (error) {
-      console.error("エラーが発生しました。もう一度お試しください。");
-      toast.error("エラーが発生しました。" + error);
-    }
-  };
 
   useEffect(() => {
     const signInUser = async () => {
@@ -103,7 +88,7 @@ const SignupModal: React.FC<SignupModalProps> = ({
         formTitle="アカウント作成"
         buttonName="アカウント作成"
         buttonSize="auth"
-        onSubmit={handleSubmit(onSubmit)}
+        action={dispatch}
         modalLayout={true}
       >
         <Input

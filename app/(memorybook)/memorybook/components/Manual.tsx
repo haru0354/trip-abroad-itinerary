@@ -22,8 +22,8 @@ const Manual: React.FC<ManualProps> = ({
       </h2>
       <p>{content}</p>
       <ul className="my-6 p-4 border">
-        {lists?.map((list) => (
-          <li className="flex py-3 px-2 text-red-500  ">
+        {lists?.map((list, index) => (
+          <li className="flex py-3 px-2 text-red-500" key={index}>
             <FontAwesomeIcon
               icon={faPenToSquare}
               className="text-sky-700 mr-4 w-5 h-4 mt-1"

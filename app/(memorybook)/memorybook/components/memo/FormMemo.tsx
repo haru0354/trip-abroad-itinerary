@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
@@ -38,7 +38,6 @@ const FormMemo: React.FC<FormMemoProps> = ({
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<MemoFormType>({
     mode: "onBlur",
@@ -49,20 +48,6 @@ const FormMemo: React.FC<FormMemoProps> = ({
     formAction,
     initialState
   );
-
-  const onSubmit: SubmitHandler<MemoFormType> = (data) => {
-    try {
-      const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("content", data.content || "");
-      formData.append("tripId", data.tripId);
-
-      dispatch(formData);
-    } catch (error) {
-      console.error("エラーが発生しました:", error);
-      toast.error("エラーが発生しました。" + error);
-    }
-  };
 
   useEffect(() => {
     if (state.message === "add") {
@@ -86,7 +71,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
     <FormLayout
       formTitle="メモのフォーム"
       buttonName={buttonName}
-      onSubmit={handleSubmit(onSubmit)}
+      action={dispatch}
       modalLayout={modalLayout}
     >
       <Input
@@ -104,7 +89,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
         placeholder="メモする内容を記載しましょう。"
         defaultValue={memo?.content}
         register={register}
-        error={state.errors?.name}
+        error={state.errors?.content}
       />
       <InputHidden name="tripId" value={tripId} register={register} />
       {state.message && state.message !== "edit" && state.message !== "add" && (

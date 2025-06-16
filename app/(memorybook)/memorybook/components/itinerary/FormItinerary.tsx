@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
@@ -43,7 +43,6 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<ItineraryFormType>({
     mode: "onBlur",
@@ -64,31 +63,6 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     formAction,
     initialState
   );
-
-  const onSubmit: SubmitHandler<ItineraryFormType> = (data) => {
-    try {
-      const formData = new FormData();
-      formData.append("date", data.date);
-      formData.append("time", data.time);
-      formData.append("name", data.name);
-      formData.append("content", data.content || "");
-      formData.append("hideContent", data.hideContent || "");
-      if (data.image) {
-        if (data.image instanceof FileList) {
-          formData.append("image", data.image[0]);
-        } else if (data.image instanceof File) {
-          formData.append("image", data.image);
-        }
-      }
-      if (data.altText) formData.append("altText", data.altText);
-      formData.append("tripId", data.tripId);
-
-      dispatch(formData);
-    } catch (error) {
-      console.error("エラーが発生しました:", error);
-      toast.error("エラーが発生しました。" + error);
-    }
-  };
 
   useEffect(() => {
     if (state.message === "add") {
@@ -112,7 +86,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     <FormLayout
       formTitle="旅程表のフォーム"
       buttonName={buttonName}
-      onSubmit={handleSubmit(onSubmit)}
+      action={dispatch}
       modalLayout={modalLayout}
     >
       <Date

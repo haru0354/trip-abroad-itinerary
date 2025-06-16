@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
@@ -31,35 +31,20 @@ const FormTrip: React.FC<FormTripProps> = ({
   const modalLayout = modalId ? true : false;
   const { closeModal } = useModal();
   const router = useRouter();
-  
+
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<TripFormType>({
     mode: "onBlur",
   });
 
   const initialState = { message: null, errors: { name: undefined } };
+  
   const [state, dispatch] = useFormState<TripFormState, FormData>(
     formAction,
     initialState
   );
-
-  const onSubmit: SubmitHandler<TripFormType> = (data) => {
-    try {
-      const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("startDate", data.startDate || "");
-      formData.append("endDate", data.endDate || "");
-      formData.append("destination", data.destination || "");
-
-      dispatch(formData);
-    } catch (error) {
-      console.error("旅行の追加中にエラーが発生:", error);
-      toast.error("Googleログイン中にエラーが発生しました。" + error);
-    }
-  };
 
   useEffect(() => {
     if (state.message === "add") {
@@ -83,46 +68,44 @@ const FormTrip: React.FC<FormTripProps> = ({
   }, [state.message]);
 
   return (
-    <>
-      <FormLayout
-        formTitle="旅行のしおりフォーム"
-        buttonName={buttonName}
-        onSubmit={handleSubmit(onSubmit)}
-        modalLayout={modalLayout}
-      >
-        <Date
-          name="startDate"
-          label="出発日(未記入も可)"
-          defaultValue={trip?.startDate || ""}
-          register={register}
-        />
-        <Date
-          name="endDate"
-          label="帰宅日(未記入も可)"
-          defaultValue={trip?.endDate || ""}
-          register={register}
-        />
-        <Input
-          label="旅行タイトル"
-          name="name"
-          placeholder="旅行タイトルを入力。例)初海外旅行"
-          defaultValue={trip?.name || ""}
-          register={register}
-          required
-          error={errors.name?.message || state.errors?.name}
-        />
-        <Input
-          label="旅行先(未記入も可)"
-          name="destination"
-          placeholder="旅行先が決まっていれば入力"
-          register={register}
-          defaultValue={trip?.destination || ""}
-        />
-        {state.errors && state.message && (
-          <p className="text-red-500">{state.message}</p>
-        )}
-      </FormLayout>
-    </>
+    <FormLayout
+      formTitle="旅行のしおりフォーム"
+      buttonName={buttonName}
+      action={dispatch}
+      modalLayout={modalLayout}
+    >
+      <Date
+        name="startDate"
+        label="出発日(未記入も可)"
+        defaultValue={trip?.startDate || ""}
+        register={register}
+      />
+      <Date
+        name="endDate"
+        label="帰宅日(未記入も可)"
+        defaultValue={trip?.endDate || ""}
+        register={register}
+      />
+      <Input
+        label="旅行タイトル"
+        name="name"
+        placeholder="旅行タイトルを入力。例)初海外旅行"
+        defaultValue={trip?.name || ""}
+        register={register}
+        required
+        error={errors.name?.message || state.errors?.name}
+      />
+      <Input
+        label="旅行先(未記入も可)"
+        name="destination"
+        placeholder="旅行先が決まっていれば入力"
+        register={register}
+        defaultValue={trip?.destination || ""}
+      />
+      {state.errors && state.message && (
+        <p className="text-red-500">{state.message}</p>
+      )}
+    </FormLayout>
   );
 };
 

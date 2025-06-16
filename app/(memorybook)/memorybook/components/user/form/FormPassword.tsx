@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
@@ -23,7 +23,6 @@ const FormPassword: React.FC<FormPasswordProps> = ({ modalId }) => {
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<passwordFormType>({
     mode: "onBlur",
@@ -45,19 +44,6 @@ const FormPassword: React.FC<FormPasswordProps> = ({ modalId }) => {
     initialState
   );
 
-  const onSubmit: SubmitHandler<passwordFormType> = (data) => {
-    try {
-      const formData = new FormData();
-      formData.append("password", data.password);
-      formData.append("newPassword", data.newPassword);
-      formData.append("passwordConfirmation", data.passwordConfirmation);
-      dispatch(formData);
-    } catch (error) {
-      console.error("パスワードの変更中にエラーが発生しました:", error);
-      toast.error("パスワードの変更中にエラーが発生しました。" + error);
-    }
-  };
-
   useEffect(() => {
     if (state.message === "success") {
       toast.success("パスワードを変更しました！ログアウトが実行されます。");
@@ -75,7 +61,7 @@ const FormPassword: React.FC<FormPasswordProps> = ({ modalId }) => {
     <FormLayout
       formTitle="パスワードのフォーム"
       buttonName="変更する"
-      onSubmit={handleSubmit(onSubmit)}
+      action={dispatch}
       modalLayout={modalLayout}
     >
       <Input

@@ -89,7 +89,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
         placeholder="メモする内容を記載しましょう。"
         defaultValue={memo?.content}
         register={register}
-        error={state.errors?.name}
+        error={state.errors?.content}
       />
       <InputHidden name="tripId" value={tripId} register={register} />
       {state.message && state.message !== "edit" && state.message !== "add" && (

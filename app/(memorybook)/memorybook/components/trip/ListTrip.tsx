@@ -33,7 +33,7 @@ const ListTrip = async () => {
                 key={trip.id}
                 className="group flex flex-col items-center max-w-[370px] mx-4 mb-6 "
               >
-                <div className="ml-auto group-hover:-translate-y-2 transition duration-300">
+                <div className="ml-auto ">
                   <ButtonImageLink
                     href={`/memorybook/${trip.id}`}
                     className="py-1 rounded"
@@ -45,7 +45,7 @@ const ListTrip = async () => {
                   </ButtonImageLink>
                 </div>
                 <Link href={`/memorybook/${trip.id}/itinerary`}>
-                  <div className="flex flex-col w-full min-w-[340px] px-8 py-12 border-2 shadow-xl rounded border-sky-600 hover:-translate-y-2 transition duration-300">
+                  <div className="flex flex-col w-full min-w-[340px] px-8 py-12 border-2 shadow-xl rounded border-sky-600 bg-white hover:-translate-y-5 transition duration-300">
                     <span className="flex justify-center mb-6 text-blue-500">
                       <FontAwesomeIcon
                         icon={faPlaneDeparture}

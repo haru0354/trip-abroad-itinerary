@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useForm } from "react-hook-form";
 import { signOut } from "next-auth/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
@@ -11,6 +12,7 @@ import { updatePassword } from "../../../action/actionProfile";
 import Input from "@/app/components/ui/form/Input";
 import FormLayout from "../../layout/FormLayout";
 
+import { passwordSchema } from "../../../schema/userSchema";
 import type { PasswordFormState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { passwordFormType } from "@/app/(memorybook)/memorybook/types/formType";
 
@@ -26,6 +28,7 @@ const FormPassword: React.FC<FormPasswordProps> = ({ modalId }) => {
     formState: { errors },
   } = useForm<passwordFormType>({
     mode: "onBlur",
+    resolver: zodResolver(passwordSchema),
   });
 
   const modalLayout = modalId ? true : false;
@@ -70,8 +73,6 @@ const FormPassword: React.FC<FormPasswordProps> = ({ modalId }) => {
         type="password"
         placeholder="登録済みのパスワードを確認の為記載してください。"
         register={register}
-        required={true}
-        minLength={6}
         error={errors.password?.message || state.errors?.password}
       />
       <Input
@@ -80,8 +81,6 @@ const FormPassword: React.FC<FormPasswordProps> = ({ modalId }) => {
         type="password"
         placeholder="変更する新しいパスワードを記載してください。"
         register={register}
-        required={true}
-        minLength={6}
         error={errors.newPassword?.message || state.errors?.newPassword}
       />
       <Input
@@ -90,8 +89,6 @@ const FormPassword: React.FC<FormPasswordProps> = ({ modalId }) => {
         type="password"
         placeholder="確認の為パスワードをもう一度記載してください。"
         register={register}
-        required={true}
-        minLength={6}
         error={
           errors.passwordConfirmation?.message ||
           state.errors?.passwordConfirmation

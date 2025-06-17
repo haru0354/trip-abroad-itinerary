@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
@@ -15,6 +16,7 @@ import Date from "@/app/components/ui/form/Date";
 import Time from "@/app/components/ui/form/Time";
 import FormImage from "@/app/components/ui/form/FormImage";
 
+import { itinerarySchema } from "../../schema/itinerarySchema";
 import type { Itinerary } from "@prisma/client";
 import type { ItineraryFormState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { ItineraryFormType } from "../../types/formType";
@@ -46,6 +48,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
     formState: { errors },
   } = useForm<ItineraryFormType>({
     mode: "onBlur",
+    resolver: zodResolver(itinerarySchema),
   });
 
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -94,7 +97,6 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         name="date"
         defaultValue={itinerary?.date}
         register={register}
-        required={true}
         error={errors.date?.message || state.errors?.date}
       />
       <Time
@@ -102,7 +104,6 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         name="time"
         defaultValue={itinerary?.time}
         register={register}
-        required={true}
         error={errors.time?.message || state.errors?.time}
       />
       <Input
@@ -111,7 +112,6 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         placeholder="観光なら「観光地名」移動なら「電車名」など"
         defaultValue={itinerary?.name}
         register={register}
-        required={true}
         error={errors.name?.message || state.errors?.name}
       />
       <TextArea

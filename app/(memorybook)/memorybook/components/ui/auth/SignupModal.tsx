@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { useFormState } from "react-dom";
 import { signIn } from "next-auth/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
@@ -14,6 +15,7 @@ import FormLayout from "../../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 import GoogleLoginButton from "./GoogleLoginButton";
 
+import { createAccountSchema } from "../../../schema/userSchema";
 import type { SignupFormState } from "../../../types/formState";
 import type { UserFormType } from "../../../types/formType";
 
@@ -34,6 +36,7 @@ const SignupModal: React.FC<SignupModalProps> = ({
     formState: { errors },
   } = useForm<UserFormType>({
     mode: "onBlur",
+    resolver: zodResolver(createAccountSchema),
   });
 
   const initialState = {
@@ -96,7 +99,6 @@ const SignupModal: React.FC<SignupModalProps> = ({
           name="name"
           placeholder="ニックネームを記載してください。"
           register={register}
-          required
           error={errors.name?.message || state.errors?.name}
         />
         <Input
@@ -105,9 +107,7 @@ const SignupModal: React.FC<SignupModalProps> = ({
           name="email"
           placeholder="メールアドレスを記載してください。"
           register={register}
-          required
           error={errors.email?.message || state.errors?.email}
-          pattern="email"
         />
         <Input
           type="password"
@@ -115,8 +115,6 @@ const SignupModal: React.FC<SignupModalProps> = ({
           name="password"
           placeholder="パスワードを記載してください。"
           register={register}
-          required
-          minLength={6}
           error={errors.password?.message || state.errors?.password}
         />
         {state.message && state.message !== "success" && (

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useForm } from "react-hook-form";
 import { signOut } from "next-auth/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
 import { deleteUser } from "../../../action/actionProfile";
@@ -11,6 +12,7 @@ import { useModal } from "@/app/hooks/useModal";
 import Input from "@/app/components/ui/form/Input";
 import FormLayout from "../../layout/FormLayout";
 
+import { deleteUserSchema } from "../../../schema/userSchema";
 import type { DeleteUserState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { DeleteUserFormType } from "@/app/(memorybook)/memorybook/types/formType";
 
@@ -25,6 +27,7 @@ const FormDeleteUser: React.FC<FormDeleteUserProps> = ({ modalId }) => {
     formState: { errors },
   } = useForm<DeleteUserFormType>({
     mode: "onBlur",
+    resolver: zodResolver(deleteUserSchema),
   });
 
   const modalLayout = modalId ? true : false;
@@ -69,8 +72,6 @@ const FormDeleteUser: React.FC<FormDeleteUserProps> = ({ modalId }) => {
         type="password"
         placeholder="登録済みのパスワードを記載してください。"
         register={register}
-        required={true}
-        minLength={6}
         error={errors.password?.message || state.errors?.password}
       />
       <Input
@@ -79,8 +80,6 @@ const FormDeleteUser: React.FC<FormDeleteUserProps> = ({ modalId }) => {
         type="password"
         placeholder="確認の為パスワードをもう一度記載してください。"
         register={register}
-        required={true}
-        minLength={6}
         error={
           errors.passwordConfirmation?.message ||
           state.errors?.passwordConfirmation

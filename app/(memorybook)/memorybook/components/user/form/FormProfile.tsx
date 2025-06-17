@@ -4,11 +4,13 @@ import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
 import FormLayout from "../../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 
+import { profileSchema } from "../../../schema/userSchema";
 import type { ProfileFormState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { ProfileFormType } from "@/app/(memorybook)/memorybook/types/formType";
 
@@ -32,6 +34,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
     formState: { errors },
   } = useForm<ProfileFormType>({
     mode: "onBlur",
+    resolver: zodResolver(profileSchema),
   });
 
   const initialState = {
@@ -65,7 +68,6 @@ const FormProfile: React.FC<FormProfileProps> = ({
           label="名前(ニックネーム)"
           placeholder="名前(ニックネーム)を記載してください。"
           register={register}
-          required={true}
           error={errors.name?.message || state.errors?.name}
         />
         <Input
@@ -74,8 +76,6 @@ const FormProfile: React.FC<FormProfileProps> = ({
           label="メールアドレス"
           placeholder="メールアドレスを記載してください。"
           register={register}
-          required={true}
-          pattern="email"
           error={errors.email?.message || state.errors?.email}
         />
         {state.message && state.message !== "edit" && (

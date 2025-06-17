@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
@@ -12,6 +13,7 @@ import Input from "@/app/components/ui/form/Input";
 import TextArea from "@/app/components/ui/form/TextArea";
 import InputHidden from "@/app/components/ui/form/InputHidden";
 
+import { memoSchema } from "../../schema/memoSchema";
 import type { Memo } from "@prisma/client";
 import type { MemoFormState } from "../../types/formState";
 import type { MemoFormType } from "../../types/formType";
@@ -41,6 +43,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
     formState: { errors },
   } = useForm<MemoFormType>({
     mode: "onBlur",
+    resolver: zodResolver(memoSchema),
   });
 
   const initialState = { message: null, errors: { name: undefined } };
@@ -80,7 +83,6 @@ const FormMemo: React.FC<FormMemoProps> = ({
         placeholder="メモタイトルを記載しましょう。"
         defaultValue={memo?.name}
         register={register}
-        required={true}
         error={errors.name?.message || state.errors?.name}
       />
       <TextArea

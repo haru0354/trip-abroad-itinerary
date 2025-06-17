@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { useForm } from "react-hook-form";
 import { signOut } from "next-auth/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
@@ -11,6 +12,7 @@ import { updateEmail } from "../../../action/actionProfile";
 import FormLayout from "../../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 
+import { changeEmailSchema } from "../../../schema/userSchema";
 import type { ChangeEmailState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { ChangeEmailFormType } from "@/app/(memorybook)/memorybook/types/formType";
 
@@ -25,6 +27,7 @@ const FormEmail: React.FC<FormEmailProps> = ({ modalId }) => {
     formState: { errors },
   } = useForm<ChangeEmailFormType>({
     mode: "onBlur",
+    resolver: zodResolver(changeEmailSchema),
   });
 
   const modalLayout = modalId ? true : false;
@@ -67,10 +70,8 @@ const FormEmail: React.FC<FormEmailProps> = ({ modalId }) => {
         type="email"
         name="email"
         label="メールアドレス"
-        placeholder="変更したいメールアドレスを記載してください。"
+        placeholder="新しいメールアドレスを記載してください。"
         register={register}
-        required={true}
-        pattern="email"
         error={errors.email?.message || state.errors?.email}
       />
       <Input
@@ -79,8 +80,6 @@ const FormEmail: React.FC<FormEmailProps> = ({ modalId }) => {
         label="メールアドレス（確認用）"
         placeholder="確認の為メールアドレスをもう一度記載してください。"
         register={register}
-        required={true}
-        pattern="email"
         error={
           errors.emailConfirmation?.message || state.errors?.emailConfirmation
         }
@@ -91,8 +90,6 @@ const FormEmail: React.FC<FormEmailProps> = ({ modalId }) => {
         type="password"
         placeholder="登録しているパスワードを記載してください。"
         register={register}
-        required={true}
-        minLength={6}
         error={errors.password?.message || state.errors?.password}
       />
       {state.message && state.message !== "success" && (

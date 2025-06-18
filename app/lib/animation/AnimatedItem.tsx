@@ -8,6 +8,7 @@ type AnimatedItemProps = {
   className?: string;
   children: ReactNode;
   animation:
+    | "fadeInOpacity"
     | "fadeInVariants"
     | "fadeInAndScaleVariants"
     | "fadeInLeftVariants"
@@ -27,6 +28,17 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
   delay,
 }) => {
   const MotionComponent = motion[elementType];
+
+  const fadeInOpacity = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delay: delay || 0,
+        duration: 0.5,
+      },
+    },
+  };
 
   const fadeInVariants = {
     hidden: { opacity: 0, y: 40 },
@@ -80,6 +92,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
   };
 
   const animations = {
+    fadeInOpacity,
     fadeInVariants,
     fadeInAndScaleVariants,
     fadeInLeftVariants,

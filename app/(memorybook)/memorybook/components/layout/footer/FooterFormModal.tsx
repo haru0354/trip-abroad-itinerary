@@ -6,6 +6,7 @@ import { addMemo } from "../../../action/actionMemo";
 import { addItinerary } from "../../../action/actionItinerary";
 import FormMemoModal from "../../memo/FormMemoModal";
 import FormItineraryModal from "../../itinerary/FormItineraryModal";
+import ButtonImage from "@/app/components/ui/button/ButtonImage";
 
 type FooterFormModalProps = {
   tripId: number;
@@ -28,7 +29,18 @@ const FooterFormModal: React.FC<FooterFormModalProps> = ({ tripId }) => {
           buttonName="旅程を追加"
           formAction={addItinerary}
         />
-      ) : null}
+      ) : (
+        <div className="w-full h-full">
+          <ButtonImage
+            icon="plus"
+            size="footer"
+            type="button"
+            className="cursor-not-allowed opacity-60"
+          >
+            追加
+          </ButtonImage>
+        </div>
+      )}
     </>
   );
 };

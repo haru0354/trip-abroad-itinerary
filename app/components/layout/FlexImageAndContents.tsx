@@ -25,30 +25,30 @@ const FlexImageAndContents: React.FC<FlexImageAndContentsProps> = ({
   isPriority = false,
 }) => {
   return (
-    <AnimatedItem elementType="div" animation="fadeInVariants">
-      <h3 className="my-6 w-[80%] flex justify-center pb-2 text-xl md:text-2xl font-semibold border-b text-center border-itinerary-borderBlack border-dashed mx-auto">
+    <AnimatedItem elementType="div" animation="fadeInVariants" className="mb-4">
+      <h3 className="w-[80%] mx-auto my-6 pb-2 text-xl md:text-2xl text-center font-semibold border-b  border-dashed border-itinerary-borderBlack">
         {name}
       </h3>
       <div
-        className={`flex justify-center w-full py-1 md:py-4 mb-4 rounded flex-wrap ${
+        className={`flex justify-center w-full rounded flex-wrap ${
           imageLeft ? "flex-row" : "flex-row-reverse"
         }`}
       >
-        <div className="w-full flex justify-center items-center py-4 max-w-[400px]">
+        <div className="w-full flex justify-center items-center py-4 md:max-w-[400px]">
           <Image
             src={src}
             alt={alt}
-            width={360}
+            width={400}
             height={260}
             style={{
-              width: "365px",
+              width: "400",
               height: "auto",
             }}
             priority={isPriority}
             className="border border-itinerary-borderGray"
           />
         </div>
-        <div className="w-full py-2 md:py-8 md:mx-6 max-w-[400px] justify-center items-center">
+        <div className="w-full py-2 md:py-8 md:mx-8 md:max-w-[400px] justify-center items-center">
           {contents.map((content) => (
             <p key={content} className="mb-6">
               {content}

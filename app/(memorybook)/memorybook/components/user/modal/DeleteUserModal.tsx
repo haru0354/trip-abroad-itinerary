@@ -3,16 +3,14 @@ import FormDeleteUser from "../form/FormDeleteUser";
 
 const DeleteUserModal = () => {
   return (
-    <>
-
-      <Modal
-        maxWidth="max-w-[620px]"
-        buttonName="アカウントの削除"
-        id="delete-user"
-      >
-        <FormDeleteUser modalId="delete-user" />
-      </Modal>
-    </>
+    <Modal
+      maxWidth="max-w-[620px]"
+      buttonName="アカウントの削除"
+      id="delete-user"
+      color="red"
+    >
+      <FormDeleteUser modalId="delete-user" />
+    </Modal>
   );
 };
 

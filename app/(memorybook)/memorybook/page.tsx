@@ -28,42 +28,36 @@ export default function Home() {
       />
       <main>
         <div className="w-full">
-          <section className="bg-white">
-            <div className="max-w-[1150px] w-full py-2 md:py-6 px-4 mx-auto">
-              <div className="flex items-center mx-0 py-8">
-                <span className="flex-grow h-1 w-5 md:w-0 mr-1 md:mr-4 bg-gradient-to-l from-gray-600 to-transparent"></span>
-                <h2 className="text-2xl md:text-3xl py-0 my-5 text-itinerary-black text-center font-bold bg-transparent">
-                  しおりアプリ「旅のメモリーブック」の機能の一部
-                </h2>
-                <span className="flex-grow h-1 w-5 md:w-0 mr-1 md:mr-4 bg-gradient-to-r from-gray-600 to-transparent"></span>
-              </div>
-              <ThreeImageAndContents
-                items={[
-                  {
-                    title: "旅程表の作成",
-                    content:
-                      "旅程表が簡単に作成可能!!日付や時間で自動で並び変えるので面倒な作業はいりません。必要なのは「いつ・何をする」を記載することだけです。",
-                    imageUrl: "/itinerary.jpg",
-                    imageAlt: "旅程表の作成",
-                  },
-                  {
-                    title: "メモの作成",
-                    content:
-                      "旅行準備は出発前のパスポートの取得や持ち物の準備、旅行中の海外旅行保険の連絡先など様々です。簡単にメモができるので必要なことがすぐに確認可能。",
-                    imageUrl: "/memo-create.jpg",
-                    imageAlt: "旅行準備のメモ",
-                  },
-                  {
-                    title: "共有機能",
-                    content:
-                      "作成した旅程表は共有することが可能です。同行者がスケジュールを確認したり、LineやfacebookなどSNSでの共有が簡単に可能。共有するかしないかは切り替えれます。",
-                    imageUrl: "/Itinerary-share.jpg",
-                    imageAlt: "メモの切り替え",
-                  },
-                ]}
-              />
-            </div>
-          </section>
+          <Section
+            name="しおりアプリ「旅のメモリーブック」の機能の一部"
+            bgColor="bg-sky-50"
+          >
+            <ThreeImageAndContents
+              items={[
+                {
+                  title: "旅程表の作成",
+                  content:
+                    "旅程表が簡単に作成可能!!日付や時間で自動で並び変えるので面倒な作業はいりません。必要なのは「いつ・何をする」を記載することだけです。",
+                  imageUrl: "/itinerary.jpg",
+                  imageAlt: "旅程表の作成",
+                },
+                {
+                  title: "メモの作成",
+                  content:
+                    "旅行準備は出発前のパスポートの取得や持ち物の準備、旅行中の海外旅行保険の連絡先など様々です。簡単にメモができるので必要なことがすぐに確認可能。",
+                  imageUrl: "/memo-create.jpg",
+                  imageAlt: "旅行準備のメモ",
+                },
+                {
+                  title: "共有機能",
+                  content:
+                    "作成した旅程表は共有することが可能です。同行者がスケジュールを確認したり、LineやfacebookなどSNSでの共有が簡単に可能。共有するかしないかは切り替えれます。",
+                  imageUrl: "/Itinerary-share.jpg",
+                  imageAlt: "メモの切り替え",
+                },
+              ]}
+            />
+          </Section>
           <Section
             name="「旅のメモリーブック」がおすすめな人"
             bgColor="bg-sky-50"
@@ -150,21 +144,28 @@ export default function Home() {
           </Section>
           <Section name="よくある質問" bgColor="bg-white">
             <QuestionAndAnswer
-              title="アカウントの作成に必要なのは何ですか？"
-              content="2種類のアカウントの作成方法に対応しています。メールアドレス・Googleアカウントを利用した方法があります。必要となるのはニックネーム・メールアドレス・パスワードの3つ、またはGoogleアカウントだけです。わずらわしい作業はなしで「すぐにでも簡単に旅程表を作成できる」をコンセプトの1つとして作られています。"
-            />
-            <QuestionAndAnswer
-              title="本当に無料で利用できますか？"
-              content="旅のメモリーブックは完全に無料で利用できるアプリとなっています。アカウントを10秒ほどで作成後はすぐにアプリの全機能を利用することが可能で、すぐにでも国内・海外旅行のしおりとして旅程表の作成などできます。"
-            />
-            <QuestionAndAnswer
-              title="「iphone」や「android」で使用できますか？"
-              content="はい。もちろん可能です。PC・スマートフォン・タブレットの端末で使用をすることができます。そのため、iphone・androidで作成途中のアプリを、同じアカウントを使用してPCのwindowsやmacでの編集をすることも可能です。"
-            />
-            <QuestionAndAnswer
-              title="pcで作成したのをスマホで閲覧できますか？"
-              content="PC・スマホ・タブレットで閲覧・作成ができます。作成したアカウントでログインをすればどの端末からでも閲覧・作成・編集が可能です。
-            "
+              items={[
+                {
+                  title: "PCで作成したのをスマホで閲覧できますか？",
+                  content:
+                    "PC・スマホ・タブレットで閲覧・作成ができます。作成したアカウントでログインをすればどの端末からでも閲覧・作成・編集が可能です。",
+                },
+                {
+                  title: "アカウントの作成に必要なのは何ですか？",
+                  content:
+                    "2種類のアカウントの作成方法に対応しています。メールアドレス・Googleアカウントを利用した方法があります。必要となるのはニックネーム・メールアドレス・パスワードの3つ、またはGoogleアカウントだけです。わずらわしい作業はなしで「すぐにでも簡単に旅程表を作成できる」をコンセプトの1つとして作られています。",
+                },
+                {
+                  title: "本当に無料で利用できますか？",
+                  content:
+                    "旅のメモリーブックは完全に無料で利用できるアプリとなっています。アカウントを10秒ほどで作成後はすぐにアプリの全機能を利用することが可能で、すぐにでも国内・海外旅行のしおりとして旅程表の作成などできます。",
+                },
+                {
+                  title: "「iphone」や「android」で使用できますか？",
+                  content:
+                    "はい。もちろん可能です。PC・スマートフォン・タブレットの端末で使用をすることができます。そのため、iphone・androidで作成途中のアプリを、同じアカウントを使用してPCのwindowsやmacでの編集をすることも可能です。",
+                },
+              ]}
             />
             <AnimatedItem
               elementType="div"

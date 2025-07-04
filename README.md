@@ -1,18 +1,129 @@
 
-# 概要
+# 旅程表作成アプリの概要
 
-以下の2つのアプリが含まれています。
+|旅のしおり一覧| 旅程表画面 |
+|-------|-------|
+| ![旅のしおり一覧](/public/thumbnail/shiori01.jpg) | ![旅程表画面](/public/thumbnail/itinerary_thumbnail_02.jpg) |
 
-- ユーザーが作成できる旅程表アプリ
-- 管理者のみ投稿できるブログ
+「英語が話せない人でも安心して行ける海外旅行へ」をコンセプトに制作している、旅程表アプリとなっています。
 
-## 使用している主な技術
+私自身が英会話ができないですが、何度も海外旅行をしてきました。
+
+英語が話せない同行する友人とでも楽しめるように、色々と事前に調べごとをしてメモを取っていくなどして、旅を楽しんできました。
+
+その経験を元に、「私自身が使用する為」でもあり、「英語が話せない人でも海外旅行へ行きたい人」の為に制作しています。
+
+Next.jsを利用したフルスタックアプリとして開発している旅程表アプリとなっています。
+
+このリポジトリには以下の2つのアプリが含まれています。
+
+- 旅程表アプリ
+- Next.jsのISRブログ
+
+ブログは旅程表アプリのマーケティングとして利用をする為、管理者のみが投稿できる仕様になっています。（ユーザーは作成した旅程表から帰国後にブログを作成できる機能を追加予定）
+
+## 主な機能
+
+旅程表
+
+- ユーザー認証機能
+- 旅のしおりのCRUD
+  - 旅程表のCRUD 
+  - 旅のメモのCRUD
+- 作成した旅程表の共有機能
+- 旅程に画像の投稿
+- 旅程が同じ日付なら1度日付表示し並び変え
+- 旅程を時間で並び替え
+- フォームバリデーション 
+- 各種アニメーション
+
+ブログ
+
+- 管理者のみの認証機能
+- バリデーション
+- 
+- 
+
+## 使用技術
 
 - Next.js 14
+- Next.js Server Actions
 - node.js
-- Tailwind CSS
-- NextAuth
-- prisma/supabase(DB/画像のストレージ)
+- Tailwind CSS（スタイル）
+- NextAuth(認証)
+- Supabase (画像のストレージ)
+- PostgreSQL(Supabase )(DB)
+
+## アプリのサムネイル画像
+
+
+|旅のしおり一覧| 旅程表の共有設定 |
+|-------|-------|
+| ![旅のしおり一覧](/public/thumbnail/shiori01.jpg) | ![旅程表の共有設定](/public/thumbnail/share.jpg) |
+
+|旅程表画面 | メモ表示画面 |
+|-------|-------|
+| ![旅程表画面](/public/thumbnail/itinerary_thumbnail_02.jpg) | ![メモ表示画面](/public/thumbnail/memo.jpg) |
+
+|初回マニュアル表示 | 日時で並び替え |
+|-------|-------|
+| ![初回マニュアル表示](/public/thumbnail/manual.jpg) | ![日時で並び替え](/public/thumbnail/auto-date01.jpg) |
+
+|スマホサイズの旅程表/メモ | スマホサイズのフォーム |
+|-------|-------|
+| ![スマホサイズの旅程表/メモ](/public/thumbnail/sumaho.jpg) | ![スマホサイズのフォーム](/public/thumbnail/sumaho-form.jpg) |
+
+|旅程表作成フォーム | メモ作成フォーム |
+|-------|-------|
+| ![旅程表作成フォーム](/public/thumbnail/itinerary-create.jpg) | ![メモ作成フォーム](/public/thumbnail/memo-create.jpg) |
+
+|プロフィール変更 | フォームバリデーション |
+|-------|-------|
+| ![プロフィール変更](/public/thumbnail/profile.jpg) | ![フォームバリデーション](/public/thumbnail/balidate.jpg) |
+
+|トップページ | ブログトップページ |
+|-------|-------|
+| ![トップページ](/public/thumbnail/itinerary_thumbnail.jpg) | ![ブログトップページ](/public/thumbnail/isr_thumbnail.jpg) |
+
+
+## セットアップ手順
+
+1. リポジトリをクローン：
+
+```
+git clone https://github.com/haru0354/trip-abroad-itinerary.git
+
+cd trip-abroad-itinerary
+```
+
+2. 依存関係をインストール：
+
+```
+npm install
+```
+
+3. 環境ファイルを用意
+
+```
+cp .env.sample .env
+
+env ファイルへの記載
+```
+
+4. サーバーを起動
+
+```
+npm run dev
+```
+
+### コマンドの概要
+
+| コマンド      | 説明                                       |
+| ------------- | ------------------------------------------ |
+| `npm install` | フロントエンドの依存関係をインストール     |
+| `npm run dev` | フロント・バックのサーバー起動と監視を開始 |
+
+
 
 ## hタグの構造
 

@@ -83,8 +83,8 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
       }
       router.replace(`/memorybook/${tripId}/itinerary/`);
     }
-  }, [state.message]);
-
+  }, [state.message, modalId, closeModal, router, tripId]);
+  
   return (
     <FormLayout
       formTitle="旅程表のフォーム"

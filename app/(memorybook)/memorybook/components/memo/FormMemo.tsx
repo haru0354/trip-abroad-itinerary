@@ -68,7 +68,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
 
       router.replace(`/memorybook/${tripId}/memo`);
     }
-  }, [state.message]);
+  }, [state.message, modalId, closeModal, router, tripId]);
 
   return (
     <FormLayout

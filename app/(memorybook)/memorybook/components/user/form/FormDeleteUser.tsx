@@ -57,7 +57,7 @@ const FormDeleteUser: React.FC<FormDeleteUserProps> = ({ modalId }) => {
 
       signOut({ callbackUrl: "/memorybook" });
     }
-  }, [state.message]);
+  }, [state.message, closeModal, modalId]);
 
   return (
     <FormLayout

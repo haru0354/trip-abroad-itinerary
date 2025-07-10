@@ -83,7 +83,7 @@ const FormCategory: React.FC<FormCategoryProps> = ({
       state.message = "";
       router.replace("/dashboard/category");
     }
-  }, [state.message]);
+  }, [state.message, state, router]);
 
   return (
     <FormContainer onSubmit={handleSubmit(onSubmit)} buttonName={buttonName}>

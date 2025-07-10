@@ -66,7 +66,7 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
       state.message = "";
       router.replace("/dashboard");
     }
-  }, [state.message]);
+  }, [state.message, state, router]);
 
   return (
     <FormContainer onSubmit={handleSubmit(onSubmit)} buttonName={buttonName}>

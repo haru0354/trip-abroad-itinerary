@@ -20,9 +20,13 @@ Next.jsを利用したフルスタックアプリとして開発している旅�
 
 ブログは旅程表アプリのマーケティングとして利用をする為、管理者のみが投稿できる仕様になっています。
 
+
 デプロイ先
-URL: 
-ブログURL: 
+
+URL: https://www.my-travel-memory.com/memorybook
+
+ブログURL: https://www.my-travel-memory.com/
+
 
 ## 主な機能・特徴
 

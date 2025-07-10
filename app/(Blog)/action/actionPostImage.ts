@@ -200,4 +200,6 @@ export const updatePostImage = async (
       return { message: "画像を編集する際にエラーが発生しました" };
     }
   }
+  
+  return { message: "処理が完了しました", errors: {} };
 };

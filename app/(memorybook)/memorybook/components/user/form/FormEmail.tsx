@@ -57,7 +57,7 @@ const FormEmail: React.FC<FormEmailProps> = ({ modalId }) => {
       state.message = "";
       signOut({ callbackUrl: "/memorybook" });
     }
-  }, [state.message]);
+  }, [state.message, closeModal, modalId]);
 
   return (
     <FormLayout

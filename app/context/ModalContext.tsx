@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 
 type ModalContextType = {
   openModal: (id: string) => void;
@@ -17,15 +17,15 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined);
 const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   const [modals, setModals] = useState<Record<string, boolean>>({});
 
-  const openModal = (id: string) => {
+  const openModal = useCallback((id: string) => {
     setModals((prev) => ({ ...prev, [id]: true }));
-  };
+  }, []);
 
-  const closeModal = (id: string) => {
+  const closeModal = useCallback((id: string) => {
     setModals((prev) => ({ ...prev, [id]: false }));
-  };
+  }, []);
 
-  const isModalOpen = (id: string) => !!modals[id];
+  const isModalOpen = useCallback((id: string) => !!modals[id], [modals]);
 
   useEffect(() => {
     const isAnyModalOpen = Object.values(modals).some((state) => state);

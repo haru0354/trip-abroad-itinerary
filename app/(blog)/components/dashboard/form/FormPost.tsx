@@ -113,7 +113,7 @@ const FormPost: React.FC<FormPostProps> = ({
       toast.success("既存の記事を編集しました！");
       router.replace("/dashboard/post");
     }
-  }, [state.message]);
+  }, [state.message, state, router]);
 
   return (
     <FormContainer onSubmit={handleSubmit(onSubmit)} buttonName={buttonName}>

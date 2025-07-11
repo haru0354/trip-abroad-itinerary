@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { siteTitle } from "@/app/(blog)/config/blogConfig";
+import { blogTitle } from "@/app/(blog)/config/blogConfig";
 
 const Footer = () => {
   return (
@@ -30,7 +30,7 @@ const Footer = () => {
             </li>
           </ul>
           <span className="text-xs text-black">
-            &copy; {siteTitle}
+            &copy; {blogTitle}
           </span>
         </div>
       </footer>

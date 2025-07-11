@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { getCategories } from "../../lib/service/blogServiceMany";
-import { siteTitle } from "../../config/blogConfig";
+import { blogTitle } from "../../config/blogConfig";
 
 const page = async () => {
   const categories = await getCategories("posts");
@@ -16,7 +16,7 @@ const page = async () => {
       </p>
       <div className="p-4 mb-6 border border-dashed border-blog-borderGray">
         <p className="font-semibold text-[#2a7bdf]">
-          <Link href="/">{siteTitle}</Link>
+          <Link href="/">{blogTitle}</Link>
         </p>
         {categories.map((category) => {
           const sortedDraftTruePosts = category.posts

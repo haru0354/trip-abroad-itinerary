@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { blogBrandTitle, siteDescription } from "@/app/(blog)/config/blogConfig";
+import { blogBrandTitle, blogDescription } from "@/app/(blog)/config/blogConfig";
 import { getPost } from "@/app/(blog)/lib/service/blogServiceUnique";
 
 export const generateMetadata = async ({
@@ -13,7 +13,7 @@ export const generateMetadata = async ({
   if (!post?.draft) {
     return {
       title: `投稿が存在しません | ${blogBrandTitle}`,
-      description: `${siteDescription}`,
+      description: `${blogDescription}`,
       robots: {
         index: false,
       },

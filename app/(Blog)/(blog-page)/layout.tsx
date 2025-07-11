@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { blogBrandTitle, siteTitle } from "../config/blogConfig";
+import { blogBrandTitle, blogTitle } from "../config/blogConfig";
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteTitle}`,
+    default: `${blogTitle}`,
     template: `%s | ${blogBrandTitle}`,
   },
 };

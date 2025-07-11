@@ -1,7 +1,7 @@
-export const siteURL = process.env.NEXT_PUBLIC_URL;
-export const blogBrandTitle = process.env.NEXT_PUBLIC_WEBSITE_BRAND_TITLE;
-export const siteTitle = process.env.NEXT_PUBLIC_WEBSITE_TITLE;
-export const siteDescription = process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION;
+export const siteURL = "https://www.my-travel-memory.com/"
+export const blogBrandTitle = "トラベルメモリー"
+export const blogTitle = "英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」"
+export const blogDescription = "海外旅行は記憶に残る最高の思い出になります。そのためにも必要となるのが旅行前の準備と当日の計画をしておくことです。特に英語が話せない人には必要なことでもあります。「トラベルメモリー」では初めての海外旅行や英語が話せない人向けに旅行計画の準備を紹介してます。"
 
-export const headerImageConfig =
-  process.env.NEXT_PUBLIC_HEADER_IMAGE === "true" ? true : false;
+// trueと記載の場合のみTOPヘッダーイメージ画像を表示
+export const headerImageConfig = true 

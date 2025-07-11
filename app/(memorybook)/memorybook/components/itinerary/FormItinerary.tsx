@@ -28,7 +28,7 @@ type FormItineraryProps = {
     state: ItineraryFormState,
     data: FormData
   ) => Promise<ItineraryFormState>;
-  tripId: number | undefined;
+  tripId: string | undefined;
   modalId?: string;
 };
 

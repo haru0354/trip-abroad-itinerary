@@ -9,7 +9,7 @@ import FormItineraryModal from "../../itinerary/FormItineraryModal";
 import ButtonImage from "@/app/components/ui/button/ButtonImage";
 
 type FooterFormModalProps = {
-  tripId: number;
+  tripId: string;
 };
 
 const FooterFormModal: React.FC<FooterFormModalProps> = ({ tripId }) => {

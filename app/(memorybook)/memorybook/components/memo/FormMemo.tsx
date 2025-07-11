@@ -23,7 +23,7 @@ type FormMemoProps = {
   memo?: Memo | null;
   buttonName: string;
   formAction: (state: MemoFormState, data: FormData) => Promise<MemoFormState>;
-  tripId: number | undefined;
+  tripId: string | undefined;
   modalId?: string;
 };
 

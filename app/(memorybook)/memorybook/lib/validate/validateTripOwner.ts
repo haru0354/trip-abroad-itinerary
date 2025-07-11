@@ -12,7 +12,7 @@ export const validateTripOwner = async (tripId: string): Promise<boolean> => {
 
     const validateOwner = await prisma.trip.findUnique({
       where: {
-        id: Number(tripId),
+        id: tripId,
         userId: userId,
       },
     });

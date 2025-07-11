@@ -13,7 +13,7 @@ import ButtonImageLink from "@/app/components/ui/button/ButtonImageLink";
 import type { Itinerary } from "@prisma/client";
 
 type ListItineraryProps = {
-  tripId: number | undefined;
+  tripId: string | undefined;
   itineraries: Itinerary[] | undefined;
   isShare?: boolean;
 };

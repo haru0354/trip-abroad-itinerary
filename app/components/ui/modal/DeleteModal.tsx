@@ -11,8 +11,8 @@ type DeleteModalProps = {
   DeleteName: string;
   name: string | undefined;
   formAction: (data: FormData) => Promise<{ message: string } | undefined>;
-  id?: number | undefined;
-  tripId?: number | undefined;
+  id?: string | undefined;
+  tripId?: string | undefined;
   isItem?: boolean;
 };
 

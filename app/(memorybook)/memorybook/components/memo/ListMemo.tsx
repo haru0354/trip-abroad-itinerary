@@ -6,14 +6,12 @@ import ButtonImageLink from "@/app/components/ui/button/ButtonImageLink";
 import type { Memo } from "@prisma/client";
 
 type ListMemoProps = {
-  tripId: number | undefined;
+  tripId: string | undefined;
   memos: Memo[] | undefined;
 };
 
 const ListMemo: React.FC<ListMemoProps> = async ({ memos, tripId }) => {
-  const sortedMemos = memos?.sort((a, b) => a.id - b.id);
-
-  if (sortedMemos && sortedMemos.length === 0) {
+  if ( memos?.length === 0) {
     return (
       <>
         <Manual
@@ -40,7 +38,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({ memos, tripId }) => {
     <>
       <h2 className="bg-itinerary-heading text-center">メモの一覧</h2>
       <div className="grid md:grid-cols-2 gap-4">
-        {sortedMemos?.map((memo) => {
+        {memos?.map((memo) => {
           return (
             <AnimatedItem
               elementType="div"

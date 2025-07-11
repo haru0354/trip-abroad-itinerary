@@ -76,7 +76,7 @@ export const deleteTrip = async (data: FormData) => {
   try {
     await prisma.trip.delete({
       where: {
-        id: Number(id),
+        id: id,
       },
     });
 
@@ -88,7 +88,7 @@ export const deleteTrip = async (data: FormData) => {
 };
 
 export const updateTrip = async (
-  id: number,
+  id: string,
   state: TripFormState,
   data: FormData
 ) => {
@@ -135,7 +135,7 @@ export const updateTrip = async (
         endDate,
         name,
         destination,
-        user: { connect: { id: Number(userId) } },
+        user: { connect: { id: userId } },
       },
     });
 
@@ -147,7 +147,7 @@ export const updateTrip = async (
   }
 };
 
-export const updateShare = async (id: number, data: FormData) => {
+export const updateShare = async (id: string, data: FormData) => {
   const share = data.get("share") === "on";
   const userId = await getCurrentUserId();
 

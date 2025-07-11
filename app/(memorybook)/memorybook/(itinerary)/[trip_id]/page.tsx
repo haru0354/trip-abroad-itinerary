@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
-  const tripId = Number(params.trip_id);
+  const tripId = params.trip_id;
   const updateTripWidthId = updateTrip.bind(null, tripId);
   const trip = await getTrip(tripId);
 

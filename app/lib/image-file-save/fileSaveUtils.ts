@@ -8,10 +8,16 @@ export const fileSaveBlogUtils = async (image: File) => {
     const directory = "travel-memory-life";
     const saveFileUrl = `/${directory}/${fileName}`;
 
-    await supabase.storage.from("blog").upload(saveFileUrl, image);
+    const { error: uploadError } = await supabase.storage
+      .from("blog")
+      .upload(saveFileUrl, image);
+
+    if (uploadError) {
+      console.error("アップロードエラー:", uploadError.message);
+      throw uploadError;
+    }
 
     const { data } = supabase.storage.from('blog').getPublicUrl(saveFileUrl)
-
     const fileUrl = data.publicUrl
 
     return { fileUrl, fileName };
@@ -21,7 +27,7 @@ export const fileSaveBlogUtils = async (image: File) => {
   }
 };
 
-export const fileSaveItineraryUtils = async (image: File, userId: number) => {
+export const fileSaveItineraryUtils = async (image: File, userId: string) => {
   try {
     const fileName = `${Date.now()}_${image.name}`;
     const directory = `itinerary/${userId}`;

@@ -4,7 +4,7 @@ import FormItinerary from "./FormItinerary";
 import type { ItineraryFormState } from "../../types/formState";
 
 type FormItineraryModalProps = {
-  tripId: number;
+  tripId: string;
   buttonName: string;
   formAction: (
     state: ItineraryFormState,

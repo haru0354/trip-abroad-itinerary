@@ -13,7 +13,7 @@ const ImageSchema = z.object({
 export const fileSaveAndValidate = async (
   image: File,
   altText: string,
-  userId?: number
+  userId?: string
 ): Promise<
   | {
       result: true;

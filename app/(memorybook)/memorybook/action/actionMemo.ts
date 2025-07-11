@@ -53,7 +53,7 @@ export const addMemo = async (state: MemoFormState, data: FormData) => {
       data: {
         name,
         content,
-        trip: { connect: { id: Number(tripId) } },
+        trip: { connect: { id: tripId } },
         user: { connect: { id: userId } },
       },
     });
@@ -84,7 +84,7 @@ export const deleteMemo = async (data: FormData) => {
   try {
     await prisma.memo.delete({
       where: {
-        id: Number(memoId),
+        id: memoId,
       },
     });
 
@@ -96,7 +96,7 @@ export const deleteMemo = async (data: FormData) => {
 };
 
 export const updateMemo = async (
-  memoId: number,
+  memoId: string,
   state: MemoFormState,
   data: FormData
 ) => {

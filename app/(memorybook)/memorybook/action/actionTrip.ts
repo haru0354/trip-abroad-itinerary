@@ -44,7 +44,7 @@ export const addTrip = async (state: TripFormState, data: FormData) => {
         endDate,
         name,
         destination,
-        user: { connect: { id: Number(userId) } },
+        user: { connect: { id: userId } },
       },
     });
 

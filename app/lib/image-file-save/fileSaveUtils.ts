@@ -27,8 +27,15 @@ export const fileSaveItineraryUtils = async (image: File, userId: number) => {
     const directory = `itinerary/${userId}`;
     const saveFileUrl = `${directory}/${fileName}`;
 
-    await supabase.storage.from("itinerary").upload(saveFileUrl, image);
+    const { error: uploadError } = await supabase.storage
+      .from("itinerary")
+      .upload(saveFileUrl, image);
 
+    if (uploadError) {
+      console.error("アップロードエラー:", uploadError.message);
+      throw uploadError;
+    }
+    
     const { data } = supabase.storage.from('itinerary').getPublicUrl(saveFileUrl);
     const fileUrl = data.publicUrl
 

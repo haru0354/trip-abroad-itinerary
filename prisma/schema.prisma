@@ -9,7 +9,7 @@ datasource db {
 }
 
 model User {
-  id                  Int    @id @default(autoincrement())
+  id                  String     @id @default(uuid())
   name                String?
   email               String?   @unique
   emailVerified       DateTime?
@@ -25,8 +25,8 @@ model User {
 }
 
 model Account {
-  id                  Int    @id @default(autoincrement())
-  userId              Int
+  id                  String     @id @default(uuid())
+  userId              String
   type                String
   provider            String
   providerAccountId   String
@@ -44,13 +44,13 @@ model Account {
 }
 
 model Trip  {
-  id                  Int      @id @default(autoincrement())
+  id                  String       @id @default(uuid())
   startDate           String?
   endDate             String?
   name                String
   destination         String?
   user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
-  userId              Int
+  userId              String
   memos               Memo[]
   itineraries         Itinerary[]
   blog                Boolean @default(false)
@@ -58,18 +58,18 @@ model Trip  {
 }
 
 model Memo {
-  id                  Int     @id @default(autoincrement())
+  id                  String      @id @default(uuid())
   name                String
   content             String
   isCompleted         Boolean @default(false)
   trip                Trip @relation(fields: [tripId], references: [id], onDelete:Cascade)
-  tripId              Int
+  tripId              String
   user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
-  userId              Int
+  userId              String
 }
 
 model Itinerary {
-  id                  Int     @id @default(autoincrement())
+  id                  String      @id @default(uuid())
   date                String
   time                String
   name                String
@@ -81,28 +81,28 @@ model Itinerary {
   url                 String?
   altText             String?
   trip                Trip @relation(fields: [tripId], references: [id], onDelete:Cascade)
-  tripId              Int
+  tripId              String
   user                User @relation(fields: [userId], references: [id], onDelete:Cascade)
-  userId              Int
+  userId              String
 }
 
 model Post {
-  id                  Int     @id @default(autoincrement())
+  id                  String      @id @default(uuid())
   createdDate         DateTime  @default(now())  
   updatedDate         DateTime  @updatedAt  
   title               String
   content             String
   category            Category @relation(fields: [categoryId], references: [id])
-  categoryId          Int
+  categoryId          String
   description         String
   slug                String  @unique
   postImage           PostImage? @relation(fields: [postImageId], references: [id])
-  postImageId         Int?
+  postImageId         String?
   draft               Boolean @default(false)
 }
 
 model Category {
-  id                  Int     @id @default(autoincrement())
+  id                  String      @id @default(uuid())
   name                String
   slug                String  @unique
   title               String?
@@ -110,20 +110,20 @@ model Category {
   description         String?
   posts               Post[]
   postImage           PostImage? @relation(fields: [postImageId], references: [id])
-  postImageId         Int?
+  postImageId         String?
   createdDate         DateTime  @default(now())  
   updatedDate         DateTime  @updatedAt  
 }
 
 model DashboardMemo {
-  id                  Int     @id @default(autoincrement())
+  id                  String      @id @default(uuid())
   name                String
   content             String
   isCompleted         Boolean @default(false)
 }
 
 model PostImage {
-  id                  Int      @id @default(autoincrement())
+  id                  String       @id @default(uuid())
   name                String
   url                 String
   altText             String

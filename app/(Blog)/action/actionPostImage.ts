@@ -98,7 +98,7 @@ export const deletePostImage = async (data: FormData) => {
   try {
     await prisma.postImage.delete({
       where: {
-        id: Number(id),
+        id,
       },
     });
 
@@ -111,7 +111,7 @@ export const deletePostImage = async (data: FormData) => {
 };
 
 export const updatePostImage = async (
-  id: number,
+  id: string,
   state: ImageFormState,
   data: FormData
 ) => {
@@ -157,8 +157,7 @@ export const updatePostImage = async (
 
   // 画像がある場合は保存してfileUrlを変更
   if (image && image.size > 0) {
-    const stringNumber = id.toString();
-    const postImage = await getPostImage(stringNumber);
+    const postImage = await getPostImage(id);
 
     try {
       const fileName = postImage?.name;

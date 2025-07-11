@@ -142,7 +142,7 @@ export const deleteCategory = async (data: FormData) => {
   try {
     await prisma.category.delete({
       where: {
-        id: Number(id),
+        id,
       },
     });
 
@@ -161,7 +161,7 @@ export const deleteCategory = async (data: FormData) => {
 };
 
 export const updateCategory = async (
-  id: number,
+  id: string,
   state: CategoryFormState,
   data: FormData
 ) => {
@@ -230,8 +230,7 @@ export const updateCategory = async (
       return { message: "画像の追加時にエラーが発生しました。" };
     }
 
-    const stringNumber = id.toString();
-    const category = await getCategory("id", stringNumber, "postImage");
+    const category = await getCategory("id", id, "postImage");
 
     if (category?.postImage?.url) {
       try {

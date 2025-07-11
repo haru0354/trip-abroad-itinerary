@@ -52,7 +52,7 @@ export const addPost = async (state: PostFormState, data: FormData) => {
     description,
     slug,
     draft,
-    category: { connect: { id: Number(categoryId) } },
+    category: { connect: { id: categoryId } },
   };
 
   if (image && image.size > 0) {
@@ -125,7 +125,7 @@ export const deletePost = async (data: FormData) => {
   try {
     await prisma.post.delete({
       where: {
-        id: Number(id),
+        id,
       },
     });
 
@@ -145,7 +145,7 @@ export const deletePost = async (data: FormData) => {
 };
 
 export const updatePost = async (
-  id: number,
+  id: string,
   state: PostFormState,
   data: FormData
 ) => {
@@ -186,7 +186,7 @@ export const updatePost = async (
     description,
     slug,
     draft,
-    category: { connect: { id: Number(categoryId) } },
+    category: { connect: { id: categoryId } },
   };
 
   if (image && image.size > 0) {
@@ -216,8 +216,7 @@ export const updatePost = async (
       return { message: "画像の追加時にエラーが発生しました。" };
     }
 
-    const stringNumber = id.toString();
-    const post = await getPost("id", stringNumber, "categoryAndPostImage");
+    const post = await getPost("id", id, "categoryAndPostImage");
 
     if (post?.postImage?.url) {
       try {

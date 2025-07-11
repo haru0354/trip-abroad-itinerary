@@ -26,11 +26,11 @@ export async function getPost(
         break;
     }
 
-    let whereSelect: { id: number } | { slug: string };
+    let whereSelect: { id: string } | { slug: string };
 
     if (whereOptions === "id") {
       whereSelect = {
-        id: Number(whereValue),
+        id: whereValue as string,
       };
     } else if (whereOptions === "slug") {
       whereSelect = {
@@ -88,11 +88,11 @@ export async function getCategory(
         break;
     }
 
-    let whereSelect: { id: number } | { slug: string };
+    let whereSelect: { id: string } | { slug: string };
 
     if (whereOptions === "id") {
       whereSelect = {
-        id: Number(whereValue),
+        id: whereValue as string,
       };
     } else if (whereOptions === "slug") {
       whereSelect = {
@@ -116,11 +116,9 @@ export async function getCategory(
 
 export async function getPostImage(postImageId: string) {
   try {
-    const id = Number(postImageId);
-
     const postImage = await prisma.postImage.findUnique({
       where: {
-        id,
+        id: postImageId,
       },
     });
 
@@ -133,11 +131,9 @@ export async function getPostImage(postImageId: string) {
 
 export async function getDashboardMemo(dashboardMemoId: string) {
   try {
-    const id = Number(dashboardMemoId);
-
     const dashboardMemo = await prisma.dashboardMemo.findUnique({
       where: {
-        id,
+        id: dashboardMemoId,
       },
     });
     

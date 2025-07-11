@@ -6,14 +6,12 @@ import ListItem from "../../layout/dashboard/list/ListItem";
 const ListCategory = async () => {
   const categories = await getCategories();
 
-  const sortedCategories = categories.sort((a, b) => a.id - b.id);
-
   return (
     <>
       <HeadingTwo>カテゴリの一覧</HeadingTwo>
       <TitleList titles={["カテゴリ名", "スラッグ", "説明文"]} />
       <div className="mb-10">
-        {sortedCategories.map((category) => {
+        {categories.map((category) => {
           return (
             <ListItem
               key={category.id}

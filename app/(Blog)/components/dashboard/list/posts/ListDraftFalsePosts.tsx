@@ -4,15 +4,13 @@ import ListPosts from "./ListPosts";
 const ListDraftFalsePosts = async ({}) => {
   const posts = await getPosts("category");
 
-  const sortedDraftFalsePosts = posts
-    .filter((post) => post.draft === false)
-    .sort((a, b) => b.id - a.id);
+  const draftFalsePosts = posts.filter((post) => post.draft === false);
 
   return (
     <>
       <ListPosts
         draft={false}
-        posts={sortedDraftFalsePosts}
+        posts={draftFalsePosts}
         title="未公開記事(下書き保存) "
       />
     </>

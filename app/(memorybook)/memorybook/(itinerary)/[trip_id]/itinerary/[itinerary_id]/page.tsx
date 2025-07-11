@@ -18,8 +18,8 @@ const page = async ({
 }: {
   params: { itinerary_id: string; trip_id: string };
 }) => {
-  const itineraryId = Number(params.itinerary_id);
-  const tripId = Number(params.trip_id);
+  const itineraryId = params.itinerary_id;
+  const tripId = params.trip_id;
 
   const updateItineraryWithId = updateItinerary.bind(null, itineraryId);
 

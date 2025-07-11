@@ -7,13 +7,11 @@ import HeadingTwo from "../../ui/dashboard/HeadingTwo";
 const ListImages = async () => {
   const images = await getPostImages();
 
-  const sortedImages = images.sort((a, b) => b.id - a.id);
-
   return (
     <>
       <HeadingTwo>画像ライブラリー</HeadingTwo>
       <div className="flex flex-wrap w-full items-center justify-start">
-        {sortedImages.map((image) => {
+        {images.map((image) => {
           return (
             <Link href={`/dashboard/image/${image.id}`} key={image.id}>
               <div className="mx-4 my-4">

@@ -6,7 +6,7 @@ export type TripFormState = {
     name?: string[] | undefined;
     destination?: string[] | undefined;
   };
-  createdTripId?: number | null;
+  createdTripId?: string | null;
 };
 
 export type MemoFormState = {

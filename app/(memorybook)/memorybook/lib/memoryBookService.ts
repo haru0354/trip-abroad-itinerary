@@ -24,7 +24,7 @@ export async function getTrips() {
 }
 
 export async function getTrip(
-  tripId: number,
+  tripId: string,
   includeOptions?: "itineraries" | "memos"
 ) {
   try {
@@ -76,7 +76,7 @@ export async function getTrip(
   }
 }
 
-export async function getMemo(memoId: number) {
+export async function getMemo(memoId: string) {
   try {
     const sessionUserId = await getCurrentUserId();
 
@@ -108,7 +108,7 @@ export async function getMemo(memoId: number) {
   }
 }
 
-export async function getItinerary(itineraryId: number) {
+export async function getItinerary(itineraryId: string) {
   try {
     const sessionUserId = await getCurrentUserId();
 

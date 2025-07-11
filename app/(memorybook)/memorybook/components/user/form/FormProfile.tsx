@@ -53,7 +53,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
       state.message = "";
       router.replace("/memorybook/");
     }
-  }, [state.message]);
+  }, [state.message, router]);
 
   return (
     <>

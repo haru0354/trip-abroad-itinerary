@@ -10,5 +10,5 @@ export const postSchema = z.object({
       message: "スラッグは半角小文字の英数字で入力してください",
     }),
   description: z.string().min(1, { message: "記事の説明の入力は必須です" }),
-  categoryId: z.string().transform((val) => Number(val)),
+  categoryId: z.string().transform((val) => (val)),
 });

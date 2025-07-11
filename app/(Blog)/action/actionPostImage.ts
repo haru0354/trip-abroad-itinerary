@@ -64,6 +64,8 @@ export const addPostImage = async (state: ImageFormState, data: FormData) => {
     console.error("画像を追加する際にエラーが発生しました");
     return { message: "画像を追加する際にエラーが発生しました" };
   }
+  
+  return { message: "処理が完了しました", errors: {} };
 };
 
 export const deletePostImage = async (data: FormData) => {
@@ -96,7 +98,7 @@ export const deletePostImage = async (data: FormData) => {
   try {
     await prisma.postImage.delete({
       where: {
-        id: Number(id),
+        id,
       },
     });
 
@@ -109,7 +111,7 @@ export const deletePostImage = async (data: FormData) => {
 };
 
 export const updatePostImage = async (
-  id: number,
+  id: string,
   state: ImageFormState,
   data: FormData
 ) => {
@@ -155,8 +157,7 @@ export const updatePostImage = async (
 
   // 画像がある場合は保存してfileUrlを変更
   if (image && image.size > 0) {
-    const stringNumber = id.toString();
-    const postImage = await getPostImage(stringNumber);
+    const postImage = await getPostImage(id);
 
     try {
       const fileName = postImage?.name;
@@ -200,4 +201,6 @@ export const updatePostImage = async (
       return { message: "画像を編集する際にエラーが発生しました" };
     }
   }
+
+  return { message: "処理が完了しました", errors: {} };
 };

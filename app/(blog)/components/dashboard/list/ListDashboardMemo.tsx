@@ -8,9 +8,7 @@ import ButtonImageLink from "@/app/components/ui/button/ButtonImageLink";
 const ListDashboardMemo = async () => {
   const dashboardMemos = await getDashboardMemos();
 
-  const sortedDashboardMemos = dashboardMemos.sort((a, b) => a.id - b.id);
-
-  if (sortedDashboardMemos.length === 0) {
+  if (dashboardMemos.length === 0) {
     return (
       <>
         <HeadingTwo>メモの使い方</HeadingTwo>
@@ -70,7 +68,7 @@ const ListDashboardMemo = async () => {
   return (
     <>
       <HeadingTwo>サイト制作のメモ一覧</HeadingTwo>
-      {sortedDashboardMemos.map((memo) => {
+      {dashboardMemos.map((memo) => {
         return (
           <div key={memo.id}>
             <div className="text-right">

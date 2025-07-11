@@ -4,7 +4,7 @@ import FormMemo from "./FormMemo";
 import type { MemoFormState } from "../../types/formState";
 
 type FormItineraryModalProps = {
-  tripId: number;
+  tripId: string;
   buttonName: string;
   formAction: (state: MemoFormState, data: FormData) => Promise<MemoFormState>;
 };

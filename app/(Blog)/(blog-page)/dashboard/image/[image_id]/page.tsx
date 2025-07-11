@@ -10,7 +10,7 @@ import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";
 import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
 
 const page = async ({ params }: { params: { image_id: string } }) => {
-  const id = Number(params.image_id);
+  const id = params.image_id;
   const updatePostImageWidthId = updatePostImage.bind(null, id);
   const postImage = await getPostImage(params.image_id);
 

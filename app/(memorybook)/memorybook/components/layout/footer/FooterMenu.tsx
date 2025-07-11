@@ -2,7 +2,7 @@ import FooterFormModal from "./FooterFormModal";
 import ButtonImageLink from "@/app/components/ui/button/ButtonImageLink";
 
 type FooterMenuProps = {
-  tripId: number;
+  tripId: string;
 };
 
 const FooterMenu: React.FC<FooterMenuProps> = ({ tripId }) => {

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const page = async ({ params }: { params: { category_id: string } }) => {
-  const id = Number(params.category_id);
+  const id = params.category_id;
   const updateCategoryWidthId = updateCategory.bind(null, id);
 
   const category = await getCategory("id", params.category_id, "postImage");

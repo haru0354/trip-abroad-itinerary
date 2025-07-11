@@ -17,7 +17,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { trip_id: string };
 }>) {
-  const tripId = Number(params.trip_id);
+  const tripId = params.trip_id;
 
   return (
     <>

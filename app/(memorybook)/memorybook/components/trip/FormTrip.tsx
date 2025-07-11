@@ -68,7 +68,7 @@ const FormTrip: React.FC<FormTripProps> = ({
       }
       router.replace("/memorybook/dashboard");
     }
-  }, [state.message]);
+  }, [state.message, modalId, closeModal, router]);
 
   return (
     <FormLayout

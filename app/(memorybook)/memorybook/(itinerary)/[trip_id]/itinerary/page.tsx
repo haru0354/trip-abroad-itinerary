@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const Page = async ({ params }: { params: { trip_id: string } }) => {
-  const tripId = Number(params.trip_id);
+  const tripId = params.trip_id;
   const trip = await getTrip(tripId, "itineraries");
 
   if (!trip) {

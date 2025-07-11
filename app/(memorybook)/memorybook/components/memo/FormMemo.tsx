@@ -23,7 +23,7 @@ type FormMemoProps = {
   memo?: Memo | null;
   buttonName: string;
   formAction: (state: MemoFormState, data: FormData) => Promise<MemoFormState>;
-  tripId: number | undefined;
+  tripId: string | undefined;
   modalId?: string;
 };
 
@@ -68,7 +68,7 @@ const FormMemo: React.FC<FormMemoProps> = ({
 
       router.replace(`/memorybook/${tripId}/memo`);
     }
-  }, [state.message]);
+  }, [state.message, modalId, closeModal, router, tripId]);
 
   return (
     <FormLayout

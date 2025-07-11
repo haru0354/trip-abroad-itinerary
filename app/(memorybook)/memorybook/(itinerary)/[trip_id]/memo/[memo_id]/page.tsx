@@ -19,8 +19,8 @@ const Page = async ({
 }: {
   params: { memo_id: string; trip_id: string };
 }) => {
-  const memoId = Number(params.memo_id);
-  const tripId = Number(params.trip_id);
+  const memoId = params.memo_id;
+  const tripId = params.trip_id;
 
   const memo = await getMemo(memoId);
 

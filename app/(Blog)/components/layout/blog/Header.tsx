@@ -1,4 +1,4 @@
-import { siteTitle } from "@/app/(blog)/config/blogConfig";
+import { blogTitle } from "@/app/(blog)/config/blogConfig";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
             <h1>
               <Image
                 src="/logo_blog.png"
-                alt={siteTitle || "サイトタイトルが未設定"}
+                alt={blogTitle || "サイトタイトルが未設定"}
                 width={350}
                 height={90}
                 priority
@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
           ) : (
             <Image
               src="/logo_blog.png"
-              alt={siteTitle || "サイトタイトルが未設定"}
+              alt={blogTitle || "サイトタイトルが未設定"}
               width={350}
               height={90}
               priority

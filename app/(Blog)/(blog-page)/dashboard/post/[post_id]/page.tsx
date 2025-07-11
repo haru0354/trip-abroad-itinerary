@@ -8,9 +8,9 @@ import HeadingTwo from "@/app/(blog)/components/ui/dashboard/HeadingTwo";
 import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
 
 const page = async ({ params }: { params: { post_id: string } }) => {
-  const id = Number(params.post_id);
-  const updatePostWidthId = updatePost.bind(null, id);
-  const post = await getPost("id", params.post_id, "categoryAndPostImage");
+  const postId = params.post_id;
+  const updatePostWidthId = updatePost.bind(null, postId);
+  const post = await getPost("id", postId, "categoryAndPostImage");
   const categories = await getCategories();
 
   return (

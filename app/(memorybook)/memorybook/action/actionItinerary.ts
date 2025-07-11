@@ -68,7 +68,7 @@ export const addItinerary = async (
     name,
     content,
     hideContent,
-    trip: { connect: { id: Number(tripId) } },
+    trip: { connect: { id: tripId } },
     user: { connect: { id: userId } },
   };
 
@@ -125,8 +125,7 @@ export const deleteItinerary = async (data: FormData) => {
     return { message: "権限のエラー。再度ログインのやり直しが必要です。" };
   }
 
-  const itineraryNumber = Number(itineraryId);
-  const itinerary = await getItinerary(itineraryNumber);
+  const itinerary = await getItinerary(itineraryId);
 
   if (!itinerary) {
     console.error("指定した旅程が見つかりませんでした。");
@@ -148,7 +147,7 @@ export const deleteItinerary = async (data: FormData) => {
   try {
     await prisma.itinerary.delete({
       where: {
-        id: Number(itineraryId),
+        id: itineraryId,
       },
     });
   } catch (error) {
@@ -159,7 +158,7 @@ export const deleteItinerary = async (data: FormData) => {
 };
 
 export const updateItinerary = async (
-  itineraryId: number,
+  itineraryId: string,
   state: ItineraryFormState,
   data: FormData
 ) => {
@@ -213,7 +212,7 @@ export const updateItinerary = async (
     name,
     content,
     hideContent,
-    trip: { connect: { id: Number(tripId) } },
+    trip: { connect: { id: tripId } },
   };
 
   if (image && image.size > 0) {

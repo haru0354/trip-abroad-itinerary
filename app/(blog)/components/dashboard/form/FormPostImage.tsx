@@ -78,7 +78,7 @@ const FormPostImage: React.FC<FormPostImageProps> = ({
       toast.success("画像を編集しました！");
       router.replace("/dashboard/image");
     }
-  }, [state.message]);
+  }, [state.message, state, router]);
 
   return (
     <FormContainer onSubmit={handleSubmit(onSubmit)} buttonName={buttonName}>
@@ -93,7 +93,6 @@ const FormPostImage: React.FC<FormPostImageProps> = ({
       {state.message && state.message !== "edit" && state.message !== "add" && (
         <p className="text-red-500">{state.message}</p>
       )}
-
     </FormContainer>
   );
 };

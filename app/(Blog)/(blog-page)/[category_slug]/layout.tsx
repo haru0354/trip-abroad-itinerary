@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { blogBrandTitle, siteDescription } from "../../config/blogConfig";
+import { blogBrandTitle, blogDescription } from "../../config/blogConfig";
 import { getCategory } from "../../lib/service/blogServiceUnique";
 import Header from "../../components/layout/blog/Header";
 import Footer from "../../components/layout/blog/Footer";
@@ -23,7 +23,7 @@ export const generateMetadata = async ({
   ) {
     return {
       title: `カテゴリが存在しません | ${blogBrandTitle}`,
-      description: `${siteDescription}`,
+      description: `${blogDescription}`,
       robots: {
         index: false,
       },

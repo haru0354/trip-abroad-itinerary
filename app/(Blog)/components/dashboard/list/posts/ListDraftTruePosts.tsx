@@ -4,17 +4,11 @@ import ListPosts from "./ListPosts";
 const ListDraftTruePosts = async ({}) => {
   const posts = await getPosts("category");
 
-  const sortedDraftTruePosts = posts
-    .filter((post) => post.draft === true)
-    .sort((a, b) => b.id - a.id);
-
+  const draftTruePosts = posts.filter((post) => post.draft === true);
+  
   return (
     <>
-      <ListPosts
-        draft={true}
-        posts={sortedDraftTruePosts}
-        title="公開記事"
-      />
+      <ListPosts draft={true} posts={draftTruePosts} title="公開記事" />
     </>
   );
 };

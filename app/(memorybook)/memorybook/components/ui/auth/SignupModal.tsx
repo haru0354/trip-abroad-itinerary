@@ -78,7 +78,14 @@ const SignupModal: React.FC<SignupModalProps> = ({
     };
 
     signInUser();
-  }, [state.message]);
+  }, [
+    state.message,
+    state.user?.email,
+    state.user?.password,
+    closeModal,
+    id,
+    router,
+  ]);
 
   return (
     <Modal

@@ -4,13 +4,13 @@ type SelectProps = {
   register: any;
   required?: boolean;
   categories?: Category[] | null;
-  defaultValue?: number;
+  defaultValue?: string;
   post?: Category | null;
   error?: string | string[];
 };
 
 type Category = {
-  id: number;
+  id: string;
   name: string;
 };
 

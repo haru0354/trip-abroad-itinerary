@@ -14,8 +14,8 @@ const Items: React.FC<ItemsProps> = ({ title, items }) => {
   return (
     <ul className="text-white">
       <li className="py-2 border-b">{title}</li>
-      {items.map((item) => (
-        <Link href={item.href}>
+      {items.map((item, index) => (
+        <Link href={item.href} key={index}>
           <li className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
             {item.name}
           </li>

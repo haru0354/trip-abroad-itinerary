@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
-import { blogBrandTitle, siteTitle } from "../config/blogConfig";
+import { blogBrandTitle, blogTitle } from "../config/blogConfig";
 import Header from "../components/layout/blog/Header";
 import Footer from "../components/layout/blog/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteTitle}`,
+    default: `${blogTitle}`,
     template: `%s | ${blogBrandTitle}`,
   },
 };

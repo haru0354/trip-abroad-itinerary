@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { siteTitle } from "../../config/blogConfig";
+import { blogTitle } from "../../config/blogConfig";
 
 const page = () => {
   return (
@@ -12,7 +12,7 @@ const page = () => {
         </Link>
         」とブログ「
         <Link href="/" className="text-blue-600 font-medium">
-          {siteTitle}
+          {blogTitle}
         </Link>
         」の利用に関する情報収集、利用、および開示に関する方針を説明します。
       </p>

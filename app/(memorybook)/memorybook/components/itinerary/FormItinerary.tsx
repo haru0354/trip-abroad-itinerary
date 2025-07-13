@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
 import { deleteItineraryImage } from "../../action/actionItinerary";
+import DeleteImageModal from "@/app/components/ui/modal/DeleteImageModal";
 import FormLayout from "../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 import InputHidden from "@/app/components/ui/form/InputHidden";
@@ -16,13 +17,11 @@ import TextArea from "@/app/components/ui/form/TextArea";
 import Date from "@/app/components/ui/form/Date";
 import Time from "@/app/components/ui/form/Time";
 import FormImage from "@/app/components/ui/form/FormImage";
-import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 
 import { itinerarySchema } from "../../schema/itinerarySchema";
 import type { Itinerary } from "@prisma/client";
 import type { ItineraryFormState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { ItineraryFormType } from "../../types/formType";
-
 
 type FormItineraryProps = {
   itinerary?: Itinerary | null;
@@ -138,13 +137,13 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         register={register}
         defaultValue={itinerary?.altText}
       />
-      {itinerary?.url && itinerary?.altText && (
-        <DeleteModal
-          DeleteName="画像"
-          name={`画像ファイル (${itinerary?.altText})`}
+      {itinerary?.url && itinerary?.altText && tripId && (
+        <DeleteImageModal
+          imageUrl={itinerary.url}
+          imageAlt={itinerary.altText}
           tripId={tripId}
+          itineraryId={itinerary.id}
           formAction={deleteItineraryImage}
-          isItem={false}
         />
       )}
       <InputHidden name="tripId" value={tripId} register={register} />

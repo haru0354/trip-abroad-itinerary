@@ -52,17 +52,25 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
         >
           <p className="py-2 border-b text-white">ダッシュボード</p>
           <ul className="text-white">
-            <Link href="/memorybook">
-              <li className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">TOPページ</li>
-            </Link>
             <Link href="/memorybook/dashboard/">
-              <li className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900" onClick={toggleMenu}>
+              <li
+                className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900"
+                onClick={toggleMenu}
+              >
                 ダッシュボード
               </li>
             </Link>
             <Link href="/memorybook/dashboard/profile">
-              <li className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900" onClick={toggleMenu}>
+              <li
+                className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900"
+                onClick={toggleMenu}
+              >
                 プロフィール
+              </li>
+            </Link>
+            <Link href="/">
+              <li className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
+                旅の役立ちブログ「トラベルメモリー」
               </li>
             </Link>
           </ul>
@@ -71,7 +79,10 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
             return (
               <ul key={trip.id} className="text-white">
                 <Link href={`/memorybook/${trip.id}/itinerary`}>
-                  <li key={trip.id} className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
+                  <li
+                    key={trip.id}
+                    className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900"
+                  >
                     {trip.name}
                   </li>
                 </Link>

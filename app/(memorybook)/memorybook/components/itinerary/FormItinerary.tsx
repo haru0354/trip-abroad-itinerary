@@ -8,6 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
+import { deleteItineraryImage } from "../../action/actionItinerary";
+import DeleteImageModal from "@/app/components/ui/modal/DeleteImageModal";
 import FormLayout from "../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 import InputHidden from "@/app/components/ui/form/InputHidden";
@@ -84,7 +86,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
       router.replace(`/memorybook/${tripId}/itinerary/`);
     }
   }, [state.message, modalId, closeModal, router, tripId]);
-  
+
   return (
     <FormLayout
       formTitle="旅程表のフォーム"
@@ -135,6 +137,15 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         register={register}
         defaultValue={itinerary?.altText}
       />
+      {itinerary?.url && itinerary?.altText && tripId && (
+        <DeleteImageModal
+          imageUrl={itinerary.url}
+          imageAlt={itinerary.altText}
+          tripId={tripId}
+          itineraryId={itinerary.id}
+          formAction={deleteItineraryImage}
+        />
+      )}
       <InputHidden name="tripId" value={tripId} register={register} />
       {state.message && state.message !== "edit" && state.message !== "add" && (
         <p className="text-red-500">{state.message}</p>

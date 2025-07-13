@@ -21,12 +21,6 @@ const DashboardSideMenu: React.FC<DashboardSideMenuProps> = ({ trips }) => {
               ダッシュボード
             </h3>
             <ul>
-              <Link href="/memorybook">
-                <li className="flex py-2 px-2 text-white transition duration-300 hover:text-itinerary-black hover:bg-gray-300 ">
-                  <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
-                  TOPページ
-                </li>
-              </Link>
               <Link href="/memorybook/dashboard/">
                 <li className="flex py-2 px-2 text-white transition duration-300 hover:text-itinerary-black hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
@@ -37,6 +31,12 @@ const DashboardSideMenu: React.FC<DashboardSideMenuProps> = ({ trips }) => {
                 <li className="flex py-2 px-2 text-white transition duration-300 hover:text-itinerary-black hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
                   プロフィール
+                </li>
+              </Link>
+              <Link href="/">
+                <li className="flex py-2 px-2 text-white transition duration-300 hover:text-itinerary-black hover:bg-gray-300 ">
+                  <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
+                  旅の役立ちブログ「トラベルメモリー」
                 </li>
               </Link>
             </ul>

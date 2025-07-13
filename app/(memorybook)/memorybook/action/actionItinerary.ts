@@ -157,6 +157,66 @@ export const deleteItinerary = async (data: FormData) => {
   redirect(`/memorybook/${tripId}/itinerary/`);
 };
 
+export const deleteItineraryImage = async (data: FormData) => {
+  const itineraryId = data.get("id") as string;
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    console.error("認証がされていません。");
+    return { message: "再度ログインのやり直しが必要です。" };
+  }
+
+  const tripId = data.get("tripId") as string;
+
+  if (!tripId) {
+    console.error("旅行プランの指定が正しくありません");
+    return { message: "画像の削除をやり直してください。" };
+  }
+
+  const idValidTripOwner = await validateTripOwner(tripId);
+
+  if (!idValidTripOwner) {
+    console.error("権限の確認に失敗しました");
+    return { message: "権限のエラー。再度ログインのやり直しが必要です。" };
+  }
+
+  const itinerary = await getItinerary(itineraryId);
+
+  if (!itinerary) {
+    console.error("指定した旅程が見つかりませんでした。");
+    return { message: "指定した旅程が見つかりませんでした。" };
+  }
+
+  if (itinerary.url) {
+    try {
+      const fileName = itinerary.imageName;
+      const directory = `itinerary/${userId}`;
+      const saveFileUrl = `${directory}/${fileName}`;
+      await supabase.storage.from("itinerary").remove([saveFileUrl]);
+    } catch (error) {
+      console.error("画像の削除中にエラーが発生しました:", error);
+      return { message: "画像の削除中にエラーが発生しました" };
+    }
+  }
+
+  try {
+    await prisma.itinerary.update({
+      where: {
+        id: itineraryId,
+      },
+      data: {
+        imageName: "",
+        url: "",
+        altText: "",
+      },
+    });
+  } catch (error) {
+    console.error("旅程の画像の削除中にエラーが発生しました:", error);
+    return { message: "旅程の画像の削除中にエラーが発生しました" };
+  }
+  redirect(`/memorybook/${tripId}/itinerary/`);
+};
+
 export const updateItinerary = async (
   itineraryId: string,
   state: ItineraryFormState,

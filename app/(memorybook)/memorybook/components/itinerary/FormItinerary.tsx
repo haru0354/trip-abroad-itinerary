@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
 import { useModal } from "@/app/hooks/useModal";
+import { deleteItineraryImage } from "../../action/actionItinerary";
 import FormLayout from "../layout/FormLayout";
 import Input from "@/app/components/ui/form/Input";
 import InputHidden from "@/app/components/ui/form/InputHidden";
@@ -15,11 +16,13 @@ import TextArea from "@/app/components/ui/form/TextArea";
 import Date from "@/app/components/ui/form/Date";
 import Time from "@/app/components/ui/form/Time";
 import FormImage from "@/app/components/ui/form/FormImage";
+import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 
 import { itinerarySchema } from "../../schema/itinerarySchema";
 import type { Itinerary } from "@prisma/client";
 import type { ItineraryFormState } from "@/app/(memorybook)/memorybook/types/formState";
 import type { ItineraryFormType } from "../../types/formType";
+
 
 type FormItineraryProps = {
   itinerary?: Itinerary | null;
@@ -84,7 +87,7 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
       router.replace(`/memorybook/${tripId}/itinerary/`);
     }
   }, [state.message, modalId, closeModal, router, tripId]);
-  
+
   return (
     <FormLayout
       formTitle="旅程表のフォーム"
@@ -135,6 +138,15 @@ const FormItinerary: React.FC<FormItineraryProps> = ({
         register={register}
         defaultValue={itinerary?.altText}
       />
+      {itinerary?.url && itinerary?.altText && (
+        <DeleteModal
+          DeleteName="画像"
+          name={`画像ファイル (${itinerary?.altText})`}
+          tripId={tripId}
+          formAction={deleteItineraryImage}
+          isItem={false}
+        />
+      )}
       <InputHidden name="tripId" value={tripId} register={register} />
       {state.message && state.message !== "edit" && state.message !== "add" && (
         <p className="text-red-500">{state.message}</p>

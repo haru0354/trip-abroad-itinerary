@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Header from "./(memorybook)/memorybook/components/layout/header/Header";
 import Footer from "./(memorybook)/memorybook/components/layout/footer/Footer";
 import AnimatedItem from "./lib/animation/AnimatedItem";
+import BackButton from "./components/ui/button/BackButton";
 
 export const metadata: Metadata = {
   robots: {
@@ -38,6 +39,7 @@ const NotFound = () => {
                 (旅のお役立ちブログ)
               </li>
             </ul>
+            <BackButton />
           </div>
         </AnimatedItem>
       </main>

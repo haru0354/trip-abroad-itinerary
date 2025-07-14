@@ -19,7 +19,7 @@ export async function getTrips() {
     return trips;
   } catch (error) {
     console.error("旅行の一覧の取得に失敗しました。");
-    return;
+    return null;
   }
 }
 
@@ -61,18 +61,18 @@ export async function getTrip(
 
     if (sessionUserId !== trip?.userId) {
       console.error("権限の確認に失敗しました。");
-      return;
+      return null;
     }
 
     if (!trip) {
       console.error("個別の旅行データが取得できませんでした。");
-      return;
+      return null;
     }
 
     return trip;
   } catch (error) {
     console.error("個別の旅行データの取得に失敗しました。", error);
-    return;
+    return null;
   }
 }
 
@@ -93,18 +93,18 @@ export async function getMemo(memoId: string) {
 
     if (!memo) {
       console.error("個別のメモが取得できませんでした。");
-      return;
+      return null;
     }
 
     if (sessionUserId !== memo?.userId) {
       console.error("権限の確認に失敗しました。");
-      return;
+      return null;
     }
 
     return memo;
   } catch (error) {
     console.error("個別のメモの取得に失敗しました。", error);
-    return;
+    return null;
   }
 }
 
@@ -125,17 +125,50 @@ export async function getItinerary(itineraryId: string) {
 
     if (!itinerary) {
       console.error("個別の旅程が取得できませんでした。");
-      return;
+      return null;
     }
 
     if (sessionUserId !== itinerary?.userId) {
       console.error("権限の確認に失敗しました。");
-      return;
+      return null;
     }
 
     return itinerary;
   } catch (error) {
     console.error("個別の旅程の取得に失敗しました。", error);
-    return;
+    return null;
+  }
+}
+
+export async function getShareTrip(tripId: string) {
+  try {
+    if (!tripId) {
+      console.error("tripIdが指定されていません。");
+      return null;
+    }
+
+    const shareTrip = await prisma.trip.findUnique({
+      where: {
+        id: tripId,
+      },
+      include: {
+        itineraries: true,
+      },
+    });
+
+    if (!shareTrip) {
+      console.error("共有された旅程表が見つかりませんでした。");
+      return null;
+    }
+
+    if (shareTrip.share === false) {
+      console.error("共有されていない旅程表です。");
+      return null;
+    }
+
+    return shareTrip;
+  } catch (error) {
+    console.error("共有された旅行データの取得に失敗しました。", error);
+    return null;
   }
 }

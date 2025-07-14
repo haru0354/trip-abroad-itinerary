@@ -35,7 +35,7 @@ const ListShare = async () => {
               <div className="flex flex-wrap justify-end gap-2 px-6 py-4 bg-white">
                 {trip.share && (
                   <ButtonNextLink
-                    href={`/memorybook/share/${trip.userId}/${trip.id}`}
+                    href={`/memorybook/share/${trip.id}`}
                     size="small"
                     className="rounded"
                   >

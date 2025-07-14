@@ -59,13 +59,13 @@ export async function getTrip(
       include: include,
     });
 
-    if (sessionUserId !== trip?.userId) {
-      console.error("権限の確認に失敗しました。");
+    if (!trip) {
+      console.error("個別の旅行データが見つかりませんでした。");
       return null;
     }
 
-    if (!trip) {
-      console.error("個別の旅行データが取得できませんでした。");
+    if (sessionUserId !== trip?.userId) {
+      console.error("権限の確認に失敗しました。");
       return null;
     }
 

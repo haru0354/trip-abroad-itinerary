@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { getTrip } from "../../../lib/memoryBookService";
 import ListItinerary from "../../../components/itinerary/ListItinerary";
 import Loading from "@/app/Loading";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "旅程表",
@@ -14,8 +15,7 @@ const Page = async ({ params }: { params: { trip_id: string } }) => {
   const trip = await getTrip(tripId, "itineraries");
 
   if (!trip) {
-    console.error("個別の旅行データの取得に失敗しました。");
-    return;
+    notFound();
   }
 
   return (

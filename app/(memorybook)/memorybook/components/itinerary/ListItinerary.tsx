@@ -13,13 +13,11 @@ import ButtonImageLink from "@/app/components/ui/button/ButtonImageLink";
 import type { Itinerary } from "@prisma/client";
 
 type ListItineraryProps = {
-  tripId: string | undefined;
   itineraries: Itinerary[] | undefined;
   isShare?: boolean;
 };
 
 const ListItinerary: React.FC<ListItineraryProps> = ({
-  tripId,
   itineraries,
   isShare,
 }) => {
@@ -95,7 +93,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
               <div className="relative flex-1 flex-col ml-8 my-2 p-2 shadow bg-gray-50 border  border-gray-200 rounded">
                 {isShare || (
                   <ButtonImageLink
-                    href={`/memorybook/${tripId}/itinerary/${itinerary.id}`}
+                    href={`/memorybook/${itinerary.tripId}/itinerary/${itinerary.id}`}
                     className="absolute top-0 right-0 rounded"
                     size="small"
                     icon="pen"

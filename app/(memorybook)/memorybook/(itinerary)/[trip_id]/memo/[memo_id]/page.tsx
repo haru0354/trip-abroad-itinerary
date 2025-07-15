@@ -1,11 +1,11 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 import { deleteMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import { updateMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import {
-  getTrip,
   getMemo,
 } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
+import { notFound } from "next/navigation";
 import FormMemo from "@/app/(memorybook)/memorybook/components/memo/FormMemo";
 import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
@@ -20,29 +20,16 @@ const Page = async ({
   params: { memo_id: string; trip_id: string };
 }) => {
   const memoId = params.memo_id;
-  const tripId = params.trip_id;
+  const updateMemoWidthId = updateMemo.bind(null, memoId);
 
   const memo = await getMemo(memoId);
 
   if (!memo) {
-    console.error("個別のメモの取得に失敗しました。");
-    return;
+    notFound();
   }
-
-  const trip = await getTrip(tripId);
-
-  if (!trip) {
-    console.error("個別の旅行データの取得に失敗しました。");
-    return;
-  }
-
-  const updateMemoWidthId = updateMemo.bind(null, memoId);
 
   return (
     <>
-      <h2 className="bg-white text-2xl text-center text-black border-b border-solid border-blue-800">
-        {trip?.name}
-      </h2>
       <h3 className="p-5 my-4 text-xl font-semibold rounded text-white bg-itinerary-heading">
         メモの編集
       </h3>
@@ -50,11 +37,11 @@ const Page = async ({
         formAction={updateMemoWidthId}
         memo={memo}
         buttonName="保存"
-        tripId={trip.id}
+        tripId={memo.tripId}
       />
       <div className="text-center">
         <ButtonNextLink
-          href={`/memorybook/${trip.id}/memo`}
+          href={`/memorybook/${memo.tripId}/memo`}
           color="gray"
           className="mt-4 rounded"
         >
@@ -64,7 +51,7 @@ const Page = async ({
       <DeleteModal
         DeleteName="メモ"
         name={memo?.name}
-        tripId={trip.id}
+        tripId={memo.tripId}
         formAction={deleteMemo}
         id={memo?.id}
       />

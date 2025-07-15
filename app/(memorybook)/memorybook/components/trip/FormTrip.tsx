@@ -42,7 +42,7 @@ const FormTrip: React.FC<FormTripProps> = ({
     resolver: zodResolver(tripSchema),
   });
 
-  const initialState = { message: null, errors: { name: undefined } };
+  const initialState = { message: null, errors: { name: undefined, destination: undefined } };
 
   const [state, dispatch] = useFormState<TripFormState, FormData>(
     formAction,
@@ -103,6 +103,7 @@ const FormTrip: React.FC<FormTripProps> = ({
         placeholder="旅行先が決まっていれば入力"
         register={register}
         defaultValue={trip?.destination || ""}
+        error={errors.destination?.message || state.errors?.destination}
       />
       {state.errors && state.message && (
         <p className="text-red-500">{state.message}</p>

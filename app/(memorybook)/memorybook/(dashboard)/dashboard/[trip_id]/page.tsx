@@ -1,7 +1,8 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 import { getTrip } from "../../../lib/memoryBookService";
 import { updateShare } from "../../../action/actionTrip";
+import { notFound } from "next/navigation";
 import FormShare from "../../../components/user/form/FormShare";
 import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
 
@@ -15,8 +16,7 @@ const Page = async ({ params }: { params: { trip_id: string } }) => {
   const trip = await getTrip(tripId);
 
   if (!trip) {
-    console.error("個別の旅行データの取得に失敗しました。");
-    return;
+    notFound();
   }
 
   return (

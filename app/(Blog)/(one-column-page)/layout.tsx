@@ -19,7 +19,7 @@ export default async function RootLayout({
   return (
     <>
       <Header />
-      <main className="bg-sky-50">
+      <main className="flex-1 bg-blog-bgColor">
         <div className="main-contents-area rounded">
           <div className="w-full px-1 md:px-4">{children}</div>
         </div>

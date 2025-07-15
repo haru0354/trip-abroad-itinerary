@@ -6,11 +6,10 @@ import ButtonImageLink from "@/app/components/ui/button/ButtonImageLink";
 import type { Memo } from "@prisma/client";
 
 type ListMemoProps = {
-  tripId: string | undefined;
   memos: Memo[] | undefined;
 };
 
-const ListMemo: React.FC<ListMemoProps> = async ({ memos, tripId }) => {
+const ListMemo: React.FC<ListMemoProps> = async ({ memos }) => {
   if ( memos?.length === 0) {
     return (
       <>
@@ -49,7 +48,7 @@ const ListMemo: React.FC<ListMemoProps> = async ({ memos, tripId }) => {
             >
               <div className="text-right mb-[-2px]">
                 <ButtonImageLink
-                  href={`/memorybook/${tripId}/memo/${memo.id}`}
+                  href={`/memorybook/${memo.tripId}/memo/${memo.id}`}
                   className="rounded"
                   size="small"
                   icon="pen"

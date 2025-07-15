@@ -30,8 +30,9 @@ const config: Config = {
           borderBlack: "rgb(107 114 128)",
           borderGray: "rgb(209 213 219)",
           heading: "rgb(96 165 250)",
+          linkBlue: "#2a7bdf",
           hoverBlue: "rgb(219 231 245)",
-          bgColor: "rgb(239 246 255)"
+          bgColor: "rgb(239 246 255)",
         },
       },
     },

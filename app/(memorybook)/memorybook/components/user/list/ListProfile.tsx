@@ -1,9 +1,9 @@
 type ListProfileProps = {
-  userName: string | undefined;
-  userEmail: string | undefined;
+  userName: string | null;
+  userEmail: string | null;
 };
 
-const ListProfile: React.FC<ListProfileProps> = async ({
+const ListProfile: React.FC<ListProfileProps> = ({
   userName,
   userEmail,
 }) => {
@@ -14,9 +14,9 @@ const ListProfile: React.FC<ListProfileProps> = async ({
           プロフィール
         </p>
         <p className="font-bold mb-1 mt-6">名前(ニックネーム)</p>
-        <p className="my-4">{userName}</p>
+        <p className="my-4">{userName || "未設定"}</p>
         <p className="font-bold mb-1 mt-6">メールアドレス</p>
-        <p className="my-4">{userEmail}</p>
+        <p className="my-4">{userEmail || "未設定"}</p>
       </div>
     </div>
   );

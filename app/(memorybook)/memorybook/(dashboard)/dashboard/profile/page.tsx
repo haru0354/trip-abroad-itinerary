@@ -21,7 +21,7 @@ const page = async () => {
   return (
     <>
       <h2 className="mb-10 bg-itinerary-heading">プロフィール</h2>
-      <ListProfile userEmail={user?.email} userName={user?.name} />
+      <ListProfile userEmail={user.email} userName={user.name} />
       <div className="flex flex-col items-center justify-center md:flex-row max-w-[620px] mx-auto my-8">
         <ChangeEmailFormModal />
         <ChangePasswordFormModal />

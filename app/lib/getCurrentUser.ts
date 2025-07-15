@@ -78,15 +78,14 @@ export async function getUserProfile() {
     const name = response.name;
     const email = response.email;
 
-    const maskedName = name ? `${name.substring(0, 2)}*****` : "";
     const maskedEmail = email
-      ? `${email.substring(0, email.indexOf("@"))}@*****${email.substring(
+      ? `${email.substring(0, email.indexOf("@"))}@***${email.substring(
           email.indexOf(".")
         )}`
       : "";
 
     return {
-      name: maskedName,
+      name,
       email: maskedEmail,
     };
   } catch (error) {

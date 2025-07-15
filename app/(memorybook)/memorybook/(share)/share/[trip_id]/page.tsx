@@ -28,7 +28,6 @@ const Page = async ({ params }: { params: { trip_id: string } }) => {
       </h2>
       <ListItinerary
         itineraries={shareTrip?.itineraries}
-        tripId={shareTrip?.id}
         isShare={true}
       />
       <Share />

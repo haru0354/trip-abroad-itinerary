@@ -29,7 +29,7 @@ export default async function RootLayout({
   return (
     <>
       <Header />
-      <main className="bg-itinerary-bgColor">
+      <main className="flex-1 bg-itinerary-bgColor">
         <div className="main-contents-area">
           <div className="px-1 md:px-8 w-full">
             <h2 className="mt-0 md:mt-8 p-2 text-lg md:text-2xl text-center border-b border-solid text-black border-blue-800 bg-white">

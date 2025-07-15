@@ -11,7 +11,7 @@ import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import type { Trip } from "@prisma/client";
 
 type HamburgerMenuProps = {
-  trips: Trip[] | undefined;
+  trips: Trip[] | null;
 };
 
 const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {

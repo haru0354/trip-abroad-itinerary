@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 import { getShareTrip } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
+import { notFound } from "next/navigation";
 import ListItinerary from "@/app/(memorybook)/memorybook/components/itinerary/ListItinerary";
 import Share from "@/app/(memorybook)/memorybook/components/Share";
-import NotFound from "@/app/not-found";
 
 export const metadata: Metadata = {
   title: "共有された旅行記",
@@ -18,7 +18,7 @@ const Page = async ({ params }: { params: { trip_id: string } }) => {
   const shareTrip = await getShareTrip(tripId);
 
   if (!shareTrip) {
-    return <NotFound />;
+    notFound();
   }
 
   return (

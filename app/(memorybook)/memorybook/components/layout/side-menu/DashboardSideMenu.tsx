@@ -8,7 +8,7 @@ import LogoutButton from "../../ui/auth/LogoutButton";
 import type { Trip } from "@prisma/client";
 
 type DashboardSideMenuProps = {
-  trips: Trip[] | undefined;
+  trips: Trip[] | null;
 };
 
 const DashboardSideMenu: React.FC<DashboardSideMenuProps> = ({ trips }) => {

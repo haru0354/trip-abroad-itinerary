@@ -1,10 +1,12 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+
 import { updateItinerary } from "@/app/(memorybook)/memorybook/action/actionItinerary";
 import { deleteItinerary } from "@/app/(memorybook)/memorybook/action/actionItinerary";
 import {
   getTrip,
   getItinerary,
 } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
+import { notFound } from "next/navigation";
 import FormItinerary from "@/app/(memorybook)/memorybook/components/itinerary/FormItinerary";
 import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
@@ -26,15 +28,13 @@ const page = async ({
   const trip = await getTrip(tripId);
 
   if (!trip) {
-    console.error("個別の旅行データが取得できませんでした。");
-    return;
+    notFound();
   }
 
   const itinerary = await getItinerary(itineraryId);
 
   if (!itinerary) {
-    console.error("個別の旅程が取得できませんでした。");
-    return;
+    notFound();
   }
 
   return (

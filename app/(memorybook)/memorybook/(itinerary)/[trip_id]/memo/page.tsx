@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 import { getTrip } from "../../../lib/memoryBookService";
+import { notFound } from "next/navigation";
 import ListMemo from "../../../components/memo/ListMemo";
 import Loading from "@/app/Loading";
 
@@ -15,8 +16,7 @@ const Page = async ({ params }: { params: { trip_id: string } }) => {
   const trip = await getTrip(tripId, "memos");
 
   if (!trip) {
-    console.error("個別の旅行データの取得に失敗しました。");
-    return;
+    notFound();
   }
 
   return (

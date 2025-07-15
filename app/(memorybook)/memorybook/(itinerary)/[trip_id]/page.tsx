@@ -1,10 +1,11 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 import {
   deleteTrip,
   updateTrip,
 } from "@/app/(memorybook)/memorybook/action/actionTrip";
 import { getTrip } from "../../lib/memoryBookService";
+import { notFound } from "next/navigation";
 import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 import FormTrip from "../../components/trip/FormTrip";
 import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
@@ -19,8 +20,7 @@ const Page = async ({ params }: { params: { trip_id: string } }) => {
   const trip = await getTrip(tripId);
 
   if (!trip) {
-    console.error("個別の旅行データの取得に失敗しました。");
-    return;
+    notFound();
   }
 
   return (

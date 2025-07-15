@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 import { deleteMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
 import { updateMemo } from "@/app/(memorybook)/memorybook/action/actionMemo";
@@ -6,6 +6,7 @@ import {
   getTrip,
   getMemo,
 } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
+import { notFound } from "next/navigation";
 import FormMemo from "@/app/(memorybook)/memorybook/components/memo/FormMemo";
 import DeleteModal from "@/app/components/ui/modal/DeleteModal";
 import ButtonNextLink from "@/app/components/ui/button/ButtonNextLink";
@@ -25,15 +26,13 @@ const Page = async ({
   const memo = await getMemo(memoId);
 
   if (!memo) {
-    console.error("個別のメモの取得に失敗しました。");
-    return;
+    notFound();
   }
 
   const trip = await getTrip(tripId);
 
   if (!trip) {
-    console.error("個別の旅行データの取得に失敗しました。");
-    return;
+    notFound();
   }
 
   const updateMemoWidthId = updateMemo.bind(null, memoId);

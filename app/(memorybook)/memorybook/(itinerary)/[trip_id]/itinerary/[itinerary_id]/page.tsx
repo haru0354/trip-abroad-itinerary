@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { updateItinerary } from "@/app/(memorybook)/memorybook/action/actionItinerary";
 import { deleteItinerary } from "@/app/(memorybook)/memorybook/action/actionItinerary";
 import {
-  getTrip,
   getItinerary,
 } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import { notFound } from "next/navigation";
@@ -21,15 +20,7 @@ const page = async ({
   params: { itinerary_id: string; trip_id: string };
 }) => {
   const itineraryId = params.itinerary_id;
-  const tripId = params.trip_id;
-
   const updateItineraryWithId = updateItinerary.bind(null, itineraryId);
-
-  const trip = await getTrip(tripId);
-
-  if (!trip) {
-    notFound();
-  }
 
   const itinerary = await getItinerary(itineraryId);
 
@@ -39,9 +30,6 @@ const page = async ({
 
   return (
     <>
-      <h2 className="bg-white text-2xl text-center text-black border-b border-solid border-blue-800">
-        {trip?.name}
-      </h2>
       <h3 className="p-5 my-4 text-xl font-semibold rounded text-white bg-itinerary-heading">
         旅程の編集
       </h3>
@@ -49,11 +37,11 @@ const page = async ({
         itinerary={itinerary}
         formAction={updateItineraryWithId}
         buttonName="保存"
-        tripId={trip.id}
+        tripId={itinerary.tripId}
       />
       <div className="text-center">
         <ButtonNextLink
-          href={`/memorybook/${trip.id}/itinerary`}
+          href={`/memorybook/${itinerary.tripId}/itinerary`}
           color="gray"
           className="mt-4 rounded"
         >
@@ -63,7 +51,7 @@ const page = async ({
       <DeleteModal
         DeleteName="旅程"
         name={itinerary?.name}
-        tripId={trip.id}
+        tripId={itinerary.tripId}
         formAction={deleteItinerary}
         id={itinerary?.id}
       />

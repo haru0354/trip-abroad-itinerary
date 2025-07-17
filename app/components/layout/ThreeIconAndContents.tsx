@@ -22,16 +22,16 @@ const ThreeIconAndContents: React.FC<ThreeIconAndContentsProps> = ({
   const icons = [faEarthAsia, faPlaneDeparture, faCartFlatbedSuitcase];
 
   return (
-    <div className="flex w-full my-10 flex-wrap items-center justify-center">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 w-full my-4 md:my-8">
       {items.map((item, index) => (
         <AnimatedItem
           animation="fadeInVariants"
           elementType="div"
-          className="border-2 border-sky-600 rounded w-[28%] mx-2 my-4 px-4 md:px-8 py-6 flex flex-col min-w-[330px] min-h-[330px]"
+          className="h-full px-4 md:px-8 py-4 md:py-6 border-2 rounded border-sky-600"
           delay={0.2 * (index + 1)}
           key={item.title}
         >
-          <span className="text-blue-500  flex justify-center mb-6">
+          <span className="text-blue-500 flex justify-center mb-6">
             <FontAwesomeIcon
               icon={icons[index % icons.length]}
               style={{ fontSize: "2em" }}
@@ -40,7 +40,7 @@ const ThreeIconAndContents: React.FC<ThreeIconAndContentsProps> = ({
           <h3 className="mb-6 text-center text-xl font-semibold">
             {item.title}
           </h3>
-          <p className="mb-6">{item.content}</p>
+          <p>{item.content}</p>
         </AnimatedItem>
       ))}
     </div>

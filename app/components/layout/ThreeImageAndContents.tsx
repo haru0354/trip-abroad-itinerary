@@ -17,41 +17,27 @@ const ThreeImageAndContents: React.FC<ThreeImageAndContentsProps> = ({
   items,
 }) => {
   return (
-    <div className="flex w-full my-8 flex-wrap items-center justify-center">
+    <div className="grid grid-cols-1  md:grid-cols-3 gap-8 md:gap-10 w-full my-4 md:my-8">
       {items.map((item, index) => {
         return (
           <AnimatedItem
             key={item.title}
             elementType="div"
             animation="fadeInVariants"
-            className="flex flex-col items-center w-[320px] my-6 mx-4"
+            className="w-full h-full"
             delay={0.2 * (index + 1)}
           >
-            <div className="h-[222px] border justify-centers">
-              <figure
-                style={{
-                  position: "relative",
-                  width: "320px",
-                  height: "220px",
-                }}
-              >
-                <Image
-                  src={item.imageUrl}
-                  alt={item.imageAlt}
-                  fill
-                  sizes="(max-height: 220px)"
-                  style={{
-                    objectFit: "cover",
-                  }}
-                />
-              </figure>
-            </div>
-            <div className="min-h-[130px] ">
-              <h3 className="my-6 text-center text-xl font-semibold">
-                {item.title}
-              </h3>
-              <p className="my-2">{item.content}</p>
-            </div>
+            <Image
+              src={item.imageUrl}
+              alt={item.imageAlt}
+              width={350}
+              height={240}
+              className="border border-itinerary-borderGray mx-auto"
+            />
+            <h3 className="my-4 md:my-6 text-center text-xl font-semibold">
+              {item.title}
+            </h3>
+            <p>{item.content}</p>
           </AnimatedItem>
         );
       })}

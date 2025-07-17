@@ -37,21 +37,21 @@ export default function Home() {
                   title: "旅程表の作成",
                   content:
                     "旅程表が簡単に作成可能!!日付や時間で自動で並び変えるので面倒な作業はいりません。必要なのは「いつ・何をする」を記載することだけです。",
-                  imageUrl: "/itinerary.jpg",
+                  imageUrl: "/itinerary_thumbnail_02.jpg",
                   imageAlt: "旅程表の作成",
                 },
                 {
                   title: "メモの作成",
                   content:
                     "旅行準備は出発前のパスポートの取得や持ち物の準備、旅行中の海外旅行保険の連絡先など様々です。簡単にメモができるので必要なことがすぐに確認可能。",
-                  imageUrl: "/memo-create.jpg",
+                  imageUrl: "/itinerary-memo.jpg",
                   imageAlt: "旅行準備のメモ",
                 },
                 {
                   title: "共有機能",
                   content:
                     "作成した旅程表は共有することが可能です。同行者がスケジュールを確認したり、LineやfacebookなどSNSでの共有が簡単に可能。共有するかしないかは切り替えれます。",
-                  imageUrl: "/Itinerary-share.jpg",
+                  imageUrl: "/itinerary-share01.jpg",
                   imageAlt: "メモの切り替え",
                 },
               ]}

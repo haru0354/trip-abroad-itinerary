@@ -1,10 +1,10 @@
+import Header from "./components/layout/header/Header";
+import Hero from "@/app/components/layout/Hero";
 import FlexImageAndContents from "@/app/components/layout/FlexImageAndContents";
 import ThreeIconAndContents from "@/app/components/layout/ThreeIconAndContents";
 import ThreeImageAndContents from "@/app/components/layout/ThreeImageAndContents";
 import CallToAction from "@/app/components/layout/CallToAction";
 import QuestionAndAnswer from "@/app/components/layout/QuestionAndAnswer";
-import Hero from "@/app/components/layout/Hero";
-import Header from "./components/layout/header/Header";
 import Footer from "./components/layout/footer/Footer";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Section from "@/app/components/layout/Section";
@@ -17,7 +17,6 @@ export default function Home() {
       <Header />
       <Hero
         src="/hero_image.JPG"
-        alt="メモリーブックのHERO画像"
         title="旅程表が作成できるしおりアプリ"
         secondTitle="「旅のメモリーブック」"
         contents={[

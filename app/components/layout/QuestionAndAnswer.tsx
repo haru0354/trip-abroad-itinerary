@@ -29,28 +29,33 @@ const QuestionAndAnswer: React.FC<QuestionAndAnswerProps> = ({ items }) => {
           <AnimatedItem
             elementType="div"
             animation="fadeInVariants"
-            className="cursor-pointer p-8 border rounded border-itinerary-borderBlack"
+            className=" px-2 py-2 md:p-6 border rounded-lg shadow-sm hover:shadow-xl border-itinerary-borderBlack bg-white transition-all duration-300 cursor-pointer"
           >
             <div
               className="flex items-center w-full mb-4"
               onClick={() => toggleShowContent(index)}
             >
-              <FontAwesomeIcon icon={faQ} className="mr-4" />
-              <h3 className="w-full py-2 border-b border-dashed border-itinerary-borderBlack">
+              <div className="bg-gray-200 rounded-full p-2 mr-2 md:mr-4">
+                <FontAwesomeIcon icon={faQ} />
+              </div>
+              <h3 className="flex-1 py-2 border-b border-dashed border-itinerary-borderBlack text-lg font-semibold">
                 {item.title}
               </h3>
               <FontAwesomeIcon
                 icon={isShowContent === index ? faMinus : faPlus}
               />
             </div>
+
             {isShowContent === index && (
               <AnimatedItem
                 elementType="div"
                 animation="fadeInVariants"
                 className="flex items-start justify-start"
               >
-                <FontAwesomeIcon icon={faA} className="mr-4 py-6" />
-                <p className="py-4 leading-loose">{item.content}</p>
+                <div className="bg-gray-200 rounded-full p-2 mr-4 mt-2 hidden sm:block">
+                  <FontAwesomeIcon icon={faA} />
+                </div>
+                <p className="py-2 leading-relaxed">{item.content}</p>
               </AnimatedItem>
             )}
           </AnimatedItem>

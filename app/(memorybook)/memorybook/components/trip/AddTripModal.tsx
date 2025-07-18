@@ -17,14 +17,14 @@ const AddTripModal = () => {
     <>
       <button
         onClick={() => openModal("trip")}
-        className="group flex flex-col items-center justify-center w-[330px] h-[347px] mx-4 mt-7 mb-6 border-2 rounded shadow-xl border-gray-400 bg-gradient-to-br from-sky-50 to-indigo-100 hover:from-indigo-200 hover:to-sky-100 hover:text-white transition duration-300"
+        className="group flex flex-col items-center justify-center w-full max-w-[330px] h-[347px] mt-7 mb-6 border-2 rounded shadow-xl border-gray-400 bg-gradient-to-br from-sky-50 to-indigo-100 hover:from-indigo-200 hover:to-sky-100 hover:text-white transition duration-300"
       >
         <FontAwesomeIcon
           icon={faPlus}
           className="text-sky-600 group-hover:opacity-80 transition duration-300"
           style={{ fontSize: "8em" }}
         />
-        <span className="mt-2 font-bold text-2xl text-gray-700 group-hover:opacity-80 transition duration-300">
+        <span className="mt-2 px-8 font-bold text-2xl text-gray-700 group-hover:opacity-80 transition duration-300">
           旅行のしおりを追加
         </span>
       </button>

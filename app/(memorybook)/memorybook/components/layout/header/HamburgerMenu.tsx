@@ -6,15 +6,15 @@ import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Button from "@/app/components/ui/button/Button";
+import LoginModal from "../../ui/auth/LoginModal";
+import SignupModal from "../../ui/auth/SignupModal";
 
 type HamburgerMenuProps = {
-  children: React.ReactNode;
   color: "black" | "white";
   positionLeft?: boolean;
 };
 
 const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
-  children,
   color,
   positionLeft = false,
 }) => {
@@ -61,7 +61,14 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
             positionLeft ? "fadeInLeftVariants" : "fadeInRightVariants"
           }
         >
-          {children}
+          <ul className="text-white">
+            <li className="my-2 px-4 py-2 border-b hover:bg-white hover:text-gray-700 transition-colors duration-300">
+              <LoginModal />
+            </li>
+            <li className="my-2 px-4 py-2 border-b hover:bg-white hover:text-gray-700 transition-colors duration-300">
+              <SignupModal textButton={true} id="header-signup" />
+            </li>
+          </ul>{" "}
           <Button
             color="white"
             size="normal"

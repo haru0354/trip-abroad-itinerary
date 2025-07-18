@@ -54,16 +54,17 @@ const HeaderMenu = () => {
           )}
         </div>
       ) : (
-        <HamburgerMenu color="white">
-          <ul className="text-white">
-            <li className="my-2 px-4 py-2 border-b hover:bg-white hover:text-gray-700 transition-colors duration-300">
+        <>
+          <ul className="hidden sm:flex items-center justify-center">
+            <li className="mx-2">
               <LoginModal />
             </li>
-            <li className="my-2 px-4 py-2 border-b hover:bg-white hover:text-gray-700 transition-colors duration-300">
+            <li className="mx-2">
               <SignupModal textButton={true} id="header-signup" />
             </li>
           </ul>
-        </HamburgerMenu>
+          <HamburgerMenu color="white" />
+        </>
       )}
     </>
   );

@@ -8,6 +8,8 @@ import Link from "next/link";
 import LoginModal from "../../ui/auth/LoginModal";
 import SignupModal from "../../ui/auth/SignupModal";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
+import HamburgerMenu from "../HamburgerMenu";
+import Button from "@/app/components/ui/button/Button";
 
 const HeaderMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -53,14 +55,16 @@ const HeaderMenu = () => {
           )}
         </div>
       ) : (
-        <ul className="flex items-center justify-center">
-          <li className="mx-2">
-            <LoginModal />
-          </li>
-          <li className="mx-2">
-            <SignupModal textButton={true} id="header-signup" />
-          </li>
-        </ul>
+        <HamburgerMenu color="white">
+          <ul className="text-white">
+            <li className="my-2 px-4 py-2 border-b hover:bg-white hover:text-gray-700 transition-colors duration-300">
+              <LoginModal />
+            </li>
+            <li className="my-2 px-4 py-2 border-b hover:bg-white hover:text-gray-700 transition-colors duration-300">
+              <SignupModal textButton={true} id="header-signup" />
+            </li>
+          </ul>
+        </HamburgerMenu>
       )}
     </>
   );

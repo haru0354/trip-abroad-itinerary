@@ -12,6 +12,7 @@ type AnimatedItemProps = {
     | "fadeInVariants"
     | "fadeInAndScaleVariants"
     | "fadeInLeftVariants"
+    | "fadeInRightVariants"
     | "borderVariants";
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   imageUrl?: string;
@@ -77,6 +78,18 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
     },
   };
 
+  const fadeInRightVariants = {
+    hidden: { opacity: 0, x: 300 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: delay || 0,
+        duration: 0.5,
+      },
+    },
+  };
+
   const borderVariants = {
     hidden: {
       width: 0,
@@ -96,6 +109,7 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
     fadeInVariants,
     fadeInAndScaleVariants,
     fadeInLeftVariants,
+    fadeInRightVariants,
     borderVariants,
   };
 

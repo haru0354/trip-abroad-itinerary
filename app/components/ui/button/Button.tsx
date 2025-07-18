@@ -24,10 +24,10 @@ const Button: React.FC<ButtonProps> = ({
   const { pending } = useFormStatus();
 
   const colors = {
-    blue: "border-sky-900 bg-sky-700",
-    gray: "border-gray-900 bg-gray-700",
-    red: "border-red-900 bg-red-700",
-    white: "border-gray-900 bg-gray-500",
+    blue: "text-white hover:text-black border-sky-900 bg-sky-700 hover:bg-white",
+    gray: "text-white hover:text-black border-gray-900 bg-gray-700 hover:bg-white",
+    red: "text-white hover:text-black border-red-900 bg-red-700 hover:bg-white",
+    white: "text-black hover:text-white border-gray-900 bg-gray-200 hover:bg-gray-700",
   };
 
   const sizes = {
@@ -38,7 +38,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`font-bold border shadow text-white hover:text-black hover:bg-white transition duration-300
+      className={`font-bold border shadow   transition duration-300
       ${className} 
       ${colors[color]} 
       ${sizes[size]} 

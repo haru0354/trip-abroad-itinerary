@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { itinerarySiteTItle } from "../../../config/itineraryConfig";
+import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 type FooterProps = {
   isTopAppDirectory?: boolean;
@@ -10,30 +11,31 @@ type FooterProps = {
 const Footer: React.FC<FooterProps> = ({ isTopAppDirectory }) => {
   return (
     <>
-      <div className="bg-itinerary-bgColor pt-8">
+      <AnimatedItem
+        elementType="div"
+        animation="fadeInOpacity"
+        className="bg-itinerary-bgColor pt-8"
+      >
         <Image
           alt="飛行機で旅行の画像"
           src="/footer-image.png"
           width={1000}
           height={370}
-          style={{
-            maxWidth: "100%",
-            height: "auto",
-          }}
-          className="block mx-auto"
+          className="mx-auto"
+          sizes="(max-width: 768px) 100vw, 1000px"
         />
-      </div>
+      </AnimatedItem>
       <footer className={`${isTopAppDirectory || "mb-[64px]"}`}>
-        <div className="bg-blue-500 min-h-[68px] w-full flex flex-col items-center justify-center bottom-0">
-          <ul className="flex text-xs text-center">
-            <li className="mx-6 text-white">
+        <div className="flex flex-col items-center justify-center bottom-0 w-full min-h-[68px] bg-blue-500">
+          <ul className="flex flex-col md:flex-row text-center my-2 text-xs">
+            <li className="mx-6 py-1 md:py-0 text-white hover:text-sky-100">
               <Link href="/privacypolicy">プライバシーポリシー・免責事項</Link>
             </li>
-            <li className="mb-2 text-white">
+            <li className="mx-6 py-1 md:py-0 text-white hover:text-sky-100">
               <Link href="/sitemaps">サイトマップ</Link>
             </li>
           </ul>
-          <span className="text-xs text-black">
+          <span className="px-2 py-1 text-center text-xs text-black">
             &copy; {itinerarySiteTItle}
           </span>
         </div>

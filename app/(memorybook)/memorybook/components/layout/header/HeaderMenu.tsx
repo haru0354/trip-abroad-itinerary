@@ -8,8 +8,7 @@ import Link from "next/link";
 import LoginModal from "../../ui/auth/LoginModal";
 import SignupModal from "../../ui/auth/SignupModal";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
-import HamburgerMenu from "../HamburgerMenu";
-import Button from "@/app/components/ui/button/Button";
+import HamburgerMenu from "./HamburgerMenu";
 
 const HeaderMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

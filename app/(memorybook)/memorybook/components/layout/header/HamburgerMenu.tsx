@@ -68,7 +68,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
             className="rounded mt-12"
             onClick={toggleMenu}
           >
-            ← Close
+            閉じる
           </Button>
         </AnimatedItem>
       )}

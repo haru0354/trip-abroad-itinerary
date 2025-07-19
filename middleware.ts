@@ -19,11 +19,17 @@ export default async function middleware(
   req: NextRequest,
   event: NextFetchEvent
 ) {
-  if (req.nextUrl.pathname.startsWith("/dashboard")) {
+  const pathname = req.nextUrl.pathname;
+
+  if (pathname.startsWith("/memorybook/share")) {
+    return NextResponse.next();
+  }
+
+  if (pathname.startsWith("/dashboard")) {
     return adminMiddleware(req as NextRequestWithAuth, event);
   }
 
-  if (req.nextUrl.pathname.startsWith("/memorybook/")) {
+  if (pathname.startsWith("/memorybook/")) {
     return itineraryUserMiddleware(req as NextRequestWithAuth, event);
   }
 

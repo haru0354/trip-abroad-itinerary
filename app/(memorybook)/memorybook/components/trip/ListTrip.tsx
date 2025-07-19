@@ -25,7 +25,7 @@ const ListTrip = async () => {
   return (
     <>
       <h2 className="bg-itinerary-heading">旅行のしおり一覧</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 place-items-center">
         {sortedTrips?.map((trip) => {
           return (
             <div

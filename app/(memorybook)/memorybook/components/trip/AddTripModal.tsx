@@ -9,6 +9,7 @@ import { useModal } from "@/app/hooks/useModal";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import FormTrip from "./FormTrip";
 import Button from "@/app/components/ui/button/Button";
+import CloseButton from "@/app/components/ui/button/CloseButton";
 
 const AddTripModal = () => {
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -41,6 +42,10 @@ const AddTripModal = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <FormTrip buttonName="追加" formAction={addTrip} modalId="trip" />
+              <CloseButton
+                onClick={() => closeModal("trip")}
+                className="absolute top-2 right-2"
+              />
               <Button
                 onClick={() => closeModal("trip")}
                 color="gray"

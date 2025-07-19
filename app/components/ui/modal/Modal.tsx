@@ -6,6 +6,7 @@ import { useModal } from "@/app/hooks/useModal";
 import Button from "../button/Button";
 import ButtonImage from "../button/ButtonImage";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
+import CloseButton from "../button/CloseButton";
 
 type ModalProps = {
   id: string;
@@ -78,10 +79,11 @@ const Modal: React.FC<ModalProps> = ({
             animation="fadeInVariants"
           >
             <div
-              className={`relative w-full mx-2 border rounded border-gray-500  max-h-[70vh]  overflow-y-auto bg-white ${padding} ${maxWidth}`}
+              className={`relative w-full mx-2 border rounded border-gray-500 max-h-[70vh] overflow-y-auto bg-white ${padding} ${maxWidth}`}
               onClick={(e) => e.stopPropagation()}
             >
               {children}
+              <CloseButton onClick={() => closeModal(id)} className="absolute top-2 right-2"/>
               <Button
                 onClick={() => closeModal(id)}
                 color="gray"

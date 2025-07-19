@@ -1,7 +1,7 @@
-import AuthContext from "@/app/context/AuthContext";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
-import SignupOrDashboardButton from "@/app/(memorybook)/memorybook/components/ui/auth/SignupOrDashboardButton";
 import ButtonNextLink from "../ui/button/ButtonNextLink";
+import SignupModal from "@/app/(memorybook)/memorybook/components/ui/auth/SignupModal";
+import SignupModalTrigger from "@/app/(memorybook)/memorybook/components/ui/auth/SignupModalTrigger ";
 
 type HeroProps = {
   src: string;
@@ -43,9 +43,7 @@ const Hero: React.FC<HeroProps> = ({
             </p>
           ))}
         {signUp ? (
-          <AuthContext>
-            <SignupOrDashboardButton />
-          </AuthContext>
+          <SignupModalTrigger id="last-signup" />
         ) : (
           href && (
             <div className="text-center">

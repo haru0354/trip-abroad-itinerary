@@ -1,3 +1,6 @@
+import { redirect } from "next/navigation";
+
+import { getCurrentUserRole } from "@/app/lib/getCurrentUser";
 import Header from "./components/layout/header/Header";
 import Hero from "@/app/components/layout/Hero";
 import FlexImageAndContents from "@/app/components/layout/FlexImageAndContents";
@@ -8,10 +11,15 @@ import QuestionAndAnswer from "@/app/components/layout/QuestionAndAnswer";
 import Footer from "./components/layout/footer/Footer";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Section from "@/app/components/layout/Section";
-import SignupOrDashboardButton from "./components/ui/auth/SignupOrDashboardButton";
-import AuthContext from "@/app/context/AuthContext";
+import SignupModal from "./components/ui/auth/SignupModal";
 
-export default function Home() {
+export default async function Home() {
+  const userRole = await getCurrentUserRole();
+
+  if (userRole === "itineraryUser") {
+    redirect("/memorybook/dashboard");
+  }
+
   return (
     <>
       <Header />
@@ -171,9 +179,7 @@ export default function Home() {
               animation="fadeInAndScaleVariants"
               className="text-center py-4"
             >
-              <AuthContext>
-                <SignupOrDashboardButton />
-              </AuthContext>
+              <SignupModal id="last-signup" />
             </AnimatedItem>
           </Section>
         </div>

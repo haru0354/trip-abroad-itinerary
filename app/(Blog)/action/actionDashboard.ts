@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import prisma from "@/app/lib/prisma";
@@ -44,7 +43,6 @@ export const addDashboardMemo = async (
       },
     });
 
-    revalidatePath("/dashboard");
     return { message: "add" };
   } catch {
     console.error("メモを追加する際にエラーが発生しました");
@@ -69,7 +67,6 @@ export const deleteDashboardMemo = async (data: FormData) => {
       },
     });
 
-    revalidatePath("/dashboard");
   } catch (error) {
     console.error("メモの削除中にエラーが発生しました:", error);
     return { message: "メモの削除中にエラーが発生しました" };
@@ -115,7 +112,6 @@ export const updateDashboardMemo = async (
       },
     });
     
-    revalidatePath("/dashboard");
     return { message: "edit" };
   } catch {
     console.error("メモを編集する際にエラーが発生しました");

@@ -8,10 +8,15 @@ import Link from "next/link";
 import LoginModal from "../../ui/auth/LoginModal";
 import SignupModal from "../../ui/auth/SignupModal";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
+import HamburgerMenu from "./HamburgerMenu";
 
-const HeaderMenu = () => {
+type HeaderMenuProps = {
+  itineraryLoginUser: boolean;
+};
+
+const HeaderMenu: React.FC<HeaderMenuProps> = ({ itineraryLoginUser }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   if (status === "loading") return null;
 
@@ -26,7 +31,7 @@ const HeaderMenu = () => {
 
   return (
     <>
-      {session ? (
+      {itineraryLoginUser ? (
         <div className="relative">
           <div onClick={toggleOpen} className="cursor-pointer">
             <Image
@@ -53,14 +58,17 @@ const HeaderMenu = () => {
           )}
         </div>
       ) : (
-        <ul className="flex items-center justify-center">
-          <li className="mx-2">
-            <LoginModal />
-          </li>
-          <li className="mx-2">
-            <SignupModal textButton={true} id="header-signup" />
-          </li>
-        </ul>
+        <>
+          <ul className="hidden sm:flex items-center justify-center">
+            <li className="mx-2">
+              <LoginModal />
+            </li>
+            <li className="mx-2">
+              <SignupModal textButton={true} id="header-signup" />
+            </li>
+          </ul>
+          <HamburgerMenu color="white" />
+        </>
       )}
     </>
   );

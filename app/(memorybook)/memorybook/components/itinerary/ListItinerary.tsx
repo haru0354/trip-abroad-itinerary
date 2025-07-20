@@ -62,7 +62,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
         const isFirstItem =
           index === 0 || itinerary.date !== sortedItineraries[index - 1].date;
         return (
-          <div key={itinerary.id} className="overflow-x-hidden">
+          <div key={itinerary.id} className="w-full min-w-[280px] sm:min-w-0">
             {isFirstItem && (
               <div className="flex items-center justify-start md:justify-center border-b border-sky-600 text-xl text-center font-bold mb-1 mt-10">
                 {itinerary.date}
@@ -81,30 +81,30 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
               animation="fadeInLeftVariants"
               className="flex w-full"
             >
-              <div className="relative text-white items-center justify-center flex">
+              <div className="relative flex items-center justify-center text-white ">
                 <FontAwesomeIcon
                   icon={faCircleDown}
                   className="z-20 bg-blue-500 w-[16px] h-[16px]"
                 />
-                <div className="h-full w-4 absolute inset-0 flex items-center justify-center z-10">
+                <div className="absolute inset-0 flex items-center justify-center h-full w-4 z-10">
                   <div className="h-full w-1 bg-blue-100"></div>
                 </div>
               </div>
-              <div className="relative flex-1 flex-col ml-8 my-2 p-2 shadow bg-gray-50 border  border-gray-200 rounded">
+              <div className="relative w-full ml-4 md:ml-8  my-2 border shadow rounded border-gray-200 bg-gray-50">
                 {isShare || (
                   <ButtonImageLink
                     href={`/memorybook/${itinerary.tripId}/itinerary/${itinerary.id}`}
                     className="absolute top-0 right-0 rounded"
                     size="small"
                     icon="pen"
-                    iconClassName="mr-2"
+                    iconClassName="mr-2 z-[400]"
                   >
                     編集
                   </ButtonImageLink>
                 )}
-                <div className="flex mb-2 flex-wrap md:flex-nowrap">
+                <div className="flex w-full mb-2 flex-wrap md:flex-nowrap">
                   {itinerary && itinerary.url && itinerary.altText && (
-                    <div className="min-w-[250px] max-w-[250px] m-auto md:m-0">
+                    <div className="w-full max-w-[260px] mx-auto md:m-0">
                       <Image
                         src={itinerary.url}
                         alt={itinerary.altText}
@@ -122,7 +122,7 @@ const ListItinerary: React.FC<ListItineraryProps> = ({
                         icon={faClock}
                         className="inline-block mr-2 w-[16px] h-[16px]"
                       />
-                      <p className=" mb-0 inline-block">{itinerary.time}</p>
+                      <p className="mb-0 inline-block">{itinerary.time}</p>
                     </div>
                     <div className="flex">
                       <p>

@@ -18,7 +18,7 @@ const Date: React.FC<DateProps> = ({
   const borderColor = error ? " border-red-500" : "border-gray-300";
 
   return (
-    <>
+    <div>
       <label className="block mb-1 mt-4 text-sm font-bold" htmlFor={label}>
         {label}
       </label>
@@ -33,7 +33,7 @@ const Date: React.FC<DateProps> = ({
         className={`py-1 px-2 shadow border rounded ${borderColor}`}
       />
       {error && <p className="text-red-500 text-sm my-2">{error}</p>}
-    </>
+    </div>
   );
 };
 

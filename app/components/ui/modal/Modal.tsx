@@ -6,6 +6,7 @@ import { useModal } from "@/app/hooks/useModal";
 import Button from "../button/Button";
 import ButtonImage from "../button/ButtonImage";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
+import CloseButton from "../button/CloseButton";
 
 type ModalProps = {
   id: string;
@@ -73,15 +74,16 @@ const Modal: React.FC<ModalProps> = ({
         createPortal(
           <AnimatedItem
             onClick={() => closeModal(id)}
-            className="fixed flex z-[200] justify-center items-center w-full h-full top-0 left-0 bg-gray-500 bg-opacity-90"
+            className="fixed flex z-[200] justify-center items-center w-full h-full top-0 left-0 px-2 bg-gray-500 bg-opacity-90"
             elementType="div"
             animation="fadeInVariants"
           >
             <div
-              className={`relative w-full mx-2 border rounded border-gray-500  max-h-[70vh]  overflow-y-auto bg-white ${padding} ${maxWidth}`}
+              className={`relative w-full border rounded border-gray-500 max-h-[70vh] overflow-y-auto bg-white ${padding} ${maxWidth}`}
               onClick={(e) => e.stopPropagation()}
             >
               {children}
+              <CloseButton onClick={() => closeModal(id)} className="absolute top-2 right-2"/>
               <Button
                 onClick={() => closeModal(id)}
                 color="gray"

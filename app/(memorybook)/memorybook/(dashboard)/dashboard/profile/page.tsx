@@ -29,7 +29,7 @@ const page = async () => {
       <h2 className="bg-itinerary-heading">アカウントの削除</h2>
       <p>アカウントの削除はこちらより行うことができます</p>
       <p>アカウントの削除と共に下記の項目も全て削除されます。</p>
-      <ul className="my-4 mx-10 px-12 py-4 list-decimal border rounded shadow-md border-itinerary-borderBlack">
+      <ul className="my-4 md:mx-10 px-8 md:px-12 py-4 list-decimal border rounded shadow-md border-itinerary-borderBlack">
         <li>登録したアカウント</li>
         <li>作成した旅行</li>
         <li>作成した旅程表</li>

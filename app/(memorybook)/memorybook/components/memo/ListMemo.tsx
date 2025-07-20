@@ -10,7 +10,7 @@ type ListMemoProps = {
 };
 
 const ListMemo: React.FC<ListMemoProps> = async ({ memos }) => {
-  if ( memos?.length === 0) {
+  if (memos?.length === 0) {
     return (
       <>
         <Manual
@@ -36,14 +36,14 @@ const ListMemo: React.FC<ListMemoProps> = async ({ memos }) => {
   return (
     <>
       <h2 className="bg-itinerary-heading text-center">メモの一覧</h2>
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
         {memos?.map((memo) => {
           return (
             <AnimatedItem
               elementType="div"
               animation="fadeInLeftVariants"
               key={memo.id}
-              className="pt-[44px] mt-[22px] bg-top bg-no-repeat"
+              className="w-full min-w-[280px] sm:min-w-0 pt-[44px] bg-top bg-no-repeat"
               imageUrl="/memo-image.png"
             >
               <div className="text-right mb-[-2px]">

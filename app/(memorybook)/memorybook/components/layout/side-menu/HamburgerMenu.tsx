@@ -9,6 +9,7 @@ import LogoutButton from "../../ui/auth/LogoutButton";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 
 import type { Trip } from "@prisma/client";
+import Button from "@/app/components/ui/button/Button";
 
 type HamburgerMenuProps = {
   trips: Trip[] | null;
@@ -36,7 +37,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
   return (
     <>
       <button
-        className="fixed top-0 left-0 block sm:hidden text-white p-3 w-12 h-12 ml-[2px] border rounded bg-gray-700 border-itinerary-borderBlack z-10"
+        className="fixed top-2 right-2 block sm:hidden text-gray-700 bg-white border-itinerary-borderBlack p-3 w-12 h-12 ml-[2px] border rounded z-10"
         onClick={toggleMenu}
       >
         <FontAwesomeIcon
@@ -48,7 +49,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
         <AnimatedItem
           className="fixed top-0 left-0 w-full h-screen bg-gray-500 px-10 pt-12 overflow-y-auto"
           elementType="div"
-          animation="fadeInLeftVariants"
+          animation="fadeInRightVariants"
         >
           <p className="py-2 border-b text-white">ダッシュボード</p>
           <ul className="text-white">
@@ -89,7 +90,17 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
               </ul>
             );
           })}
-          <LogoutButton />
+          <div className="mt-8">
+            <LogoutButton />
+            <Button
+              color="white"
+              size="normal"
+              className="mt-6 rounded"
+              onClick={toggleMenu}
+            >
+              閉じる
+            </Button>
+          </div>
         </AnimatedItem>
       )}
     </>

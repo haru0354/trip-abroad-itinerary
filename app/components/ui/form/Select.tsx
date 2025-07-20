@@ -26,7 +26,7 @@ const Select: React.FC<SelectProps> = ({
   const errorBorderColor = error ? " border-red-500" : "border-gray-300";
 
   return (
-    <>
+    <div>
       <label className="block mb-1 mt-4 text-sm font-bold" htmlFor={label}>
         {label}
       </label>
@@ -45,7 +45,7 @@ const Select: React.FC<SelectProps> = ({
         ))}
       </select>
       {error && <p className="text-red-500 text-sm my-2">{error}</p>}
-    </>
+    </div>
   );
 };
 

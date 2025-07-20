@@ -28,7 +28,7 @@ const Input: React.FC<InputProps> = ({
   const borderColor = error ? "border-red-500" : "border-gray-300";
 
   return (
-    <>
+    <div>
       <label className="block mb-1 mt-4 text-sm font-bold" htmlFor={label}>
         {label}
       </label>
@@ -57,7 +57,7 @@ const Input: React.FC<InputProps> = ({
         })}
       />
       {error && <p className="text-red-500 text-sm my-2">{error}</p>}
-    </>
+    </div>
   );
 };
 

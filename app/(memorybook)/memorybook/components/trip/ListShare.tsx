@@ -16,7 +16,7 @@ const ListShare = async () => {
           return (
             <div
               key={trip.id}
-              className="mb-6 border rounded shadow-lg border-itinerary-borderBlack  bg-white"
+              className="mb-6 border rounded shadow-lg border-itinerary-borderBlack bg-white"
             >
               <div className="flex justify-between flex-col sm:flex-row border-b border-dashed border-itinerary-borderBlack w-full p-4">
                 <div className="flex justify-center items-center pt-2 ">
@@ -26,7 +26,7 @@ const ListShare = async () => {
                       : trip.name}
                   </p>
                 </div>
-                <div className="flex justify-center items-center pt-2 sm:border-l min-w-[180px] ">
+                <div className="flex justify-center items-center pt-2 sm:pl-4 sm:border-l">
                   <p className="mb-0">
                     {trip.share ? "🌍 旅程表：共有" : "🔒 旅程表：共有しない"}
                   </p>

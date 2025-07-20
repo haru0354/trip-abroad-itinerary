@@ -1,11 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import { getCurrentUserRole } from "@/app/lib/getCurrentUser";
 import { itinerarySiteTItle } from "../../../config/itineraryConfig";
 import AuthContext from "@/app/context/AuthContext";
 import HeaderMenu from "./HeaderMenu";
 
 const Header = async () => {
+  const userRole = await getCurrentUserRole();
+
+  let itineraryLoginUser = false;
+
+  if (userRole === "itineraryUser") {
+    itineraryLoginUser = true;
+  }
+
   return (
     <header className="w-full bg-itinerary-bgColor">
       <div className="max-w-[1120px] mx-auto">
@@ -23,7 +32,7 @@ const Header = async () => {
             </h1>
           </Link>
           <AuthContext>
-            <HeaderMenu />
+            <HeaderMenu itineraryLoginUser={itineraryLoginUser} />
           </AuthContext>
         </div>
       </div>

@@ -4,8 +4,7 @@ import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import SignupModal from "@/app/(memorybook)/memorybook/components/ui/auth/SignupModal";
 import ButtonNextLink from "../ui/button/ButtonNextLink";
-import AuthContext from "@/app/context/AuthContext";
-import SignupOrDashboardButton from "@/app/(memorybook)/memorybook/components/ui/auth/SignupOrDashboardButton";
+import SignupModalTrigger from "@/app/(memorybook)/memorybook/components/ui/auth/SignupModalTrigger ";
 
 type CallToActionProps = {
   lists: string[];
@@ -44,9 +43,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
           animation="fadeInAndScaleVariants"
           className="text-center py-4"
         >
-          <AuthContext>
-            <SignupOrDashboardButton />
-          </AuthContext>
+          <SignupModalTrigger id="last-signup" />
         </AnimatedItem>
       ) : (
         href && (

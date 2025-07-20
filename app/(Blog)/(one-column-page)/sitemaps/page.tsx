@@ -24,6 +24,10 @@ const page = async () => {
           const draftTruePosts = category.posts.filter(
             (post) => post.draft === true
           );
+
+          if (draftTruePosts.length === 0) {
+            return null;
+          }
           return (
             <div className="px-8" key={category.id}>
               <ul className="text-[#2a7bdf]">

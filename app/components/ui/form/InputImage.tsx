@@ -20,7 +20,7 @@ const InputImage: React.FC<InputImageProps> = ({
   const errorFiledColor = error ? "border rounded border-red-500" : "";
 
   return (
-    <>
+    <div>
       <label className="block mb-1 mt-4 text-sm font-bold" htmlFor={label}>
         {label}
       </label>
@@ -35,7 +35,7 @@ const InputImage: React.FC<InputImageProps> = ({
         })}
       />
       {error && <p className="text-red-500 text-sm my-2">{error}</p>}
-    </>
+    </div>
   );
 };
 

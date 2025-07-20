@@ -28,7 +28,7 @@ const TextArea: React.FC<TextAreaProps> = ({
   const borderColor = error ? "border-red-500" : "border-gray-300";
 
   return (
-    <>
+    <div>
       <label htmlFor={label} className="block mb-1 mt-4 text-sm font-bold">
         {label}
       </label>
@@ -52,7 +52,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         })}
       />
       {error && <p className="text-red-500 text-sm my-2">{error}</p>}
-    </>
+    </div>
   );
 };
 

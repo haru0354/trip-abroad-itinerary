@@ -7,8 +7,8 @@ type FooterMenuProps = {
 
 const FooterMenu: React.FC<FooterMenuProps> = ({ tripId }) => {
   return (
-    <div className="fixed z-[100] bottom-0 w-full h-16 bg-white border-t border-itinerary-borderGray shadow">
-      <div className="max-w-lg flex h-full  justify-center items-center mx-auto ">
+    <div className="fixed z-[100] bottom-0 w-full h-16 bg-white border-t border-itinerary-borderGray shadow will-change-transform">
+      <div className="max-w-lg flex h-full justify-center items-center mx-auto ">
         <div className="w-full h-full">
           <ButtonImageLink
             href="/memorybook/dashboard"

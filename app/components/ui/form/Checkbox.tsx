@@ -18,7 +18,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   explanationTextRed,
 }) => {
   return (
-    <>
+    <div>
       <p className="block mb-1 mt-4 text-sm font-bold">{label}</p>
       <p className="my-2">
         <input
@@ -38,7 +38,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

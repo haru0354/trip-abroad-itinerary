@@ -4,14 +4,14 @@ import { notFound } from "next/navigation";
 import LeftColumn from "../../components/content-area/LeftColumn";
 import SideMenu from "../../components/side-menu/SideMenu";
 
+export const dynamicParams = true;
+export const revalidate = 60 * 60 * 24 * 15;
+
 export async function generateStaticParams() {
   const categories = await getCategories("categoryAndPostImage");
 
   return categories.map((category) => ({
-    params: {
-      category_slug: category.slug,
-    },
-    revalidate: 60 * 60 * 24 * 15,
+    category_slug: category.slug,
   }));
 }
 
@@ -26,10 +26,7 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
     !category ||
     (!category.title && category.posts.every((post) => !post.draft))
   ) {
-    return (
-    notFound()
-    )
-    
+    return notFound();
   }
 
   return (

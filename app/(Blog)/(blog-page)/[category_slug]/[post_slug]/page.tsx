@@ -7,14 +7,14 @@ import LeftColumn from "@/app/(blog)/components/content-area/LeftColumn";
 import SideMenu from "@/app/(blog)/components/side-menu/SideMenu";
 import NotFound from "@/app/not-found";
 
+export const dynamicParams = true;
+export const revalidate = 60 * 60 * 24 * 15;
+
 export async function generateStaticParams() {
   const posts = await getPosts("categoryAndPostImage");
 
   return posts.map((post) => ({
-    params: {
-      post_slug: post.slug,
-    },
-    revalidate: 60 * 60 * 24 * 15,
+    post_slug: post.slug,
   }));
 }
 

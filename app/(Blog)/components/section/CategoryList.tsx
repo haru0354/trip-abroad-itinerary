@@ -1,9 +1,19 @@
-import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
 import Section from "@/app/components/layout/Section";
 import TopPageListItem from "./TopPageListItem";
 
-const CategoryList = async () => {
-  const categories = await getCategories("postsAndPostImage");
+import type { Prisma } from "@prisma/client";
+
+type CategoryListProps = {
+  categories: CategoryWithPostsAndImage[];
+};
+
+type CategoryWithPostsAndImage = Prisma.CategoryGetPayload<{
+  include: {
+    posts: true;
+    postImage: true;
+  };
+}>;
+const CategoryList: React.FC<CategoryListProps> = async ({ categories }) => {
 
   return (
     <Section bgColor="bg-white" name="カテゴリ">

@@ -1,10 +1,20 @@
-import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
 import Section from "@/app/components/layout/Section";
 import TopPageListItem from "./TopPageListItem";
 
-const NewArticleList = async () => {
-  const posts = await getPosts("categoryAndPostImage", 6);
+import type { Prisma } from "@prisma/client";
 
+type NewArticleListProps = {
+  posts: PostWithCategoryAndImage[];
+}
+
+type PostWithCategoryAndImage = Prisma.PostGetPayload<{
+  include: {
+    category: true;
+    postImage: true;
+  };
+}>;
+
+const NewArticleList:React.FC<NewArticleListProps> = ({posts}) => {
   return (
     <Section bgColor="bg-sky-50" name="新着記事">
       <div className="flex w-full my-8 flex-wrap items-center justify-center">

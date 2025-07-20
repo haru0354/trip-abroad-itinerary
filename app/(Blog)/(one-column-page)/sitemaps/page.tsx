@@ -3,13 +3,15 @@ import Link from "next/link";
 import { getCategories } from "../../lib/service/blogServiceMany";
 import { blogTitle } from "../../config/blogConfig";
 
+export const revalidate = 60 * 60 * 24 * 15;
+
 const page = async () => {
   const categories = await getCategories("posts");
 
   return (
     <>
       <h2>サイトマップ</h2>
-      <p className="font-semibold text-[#2a7bdf]">
+      <p className="font-semibold text-[#0b0b0c]">
         <Link href="/memorybook">
           国内旅行・海外旅行の旅程表作成しおりアプリ「旅のメモリーブック」
         </Link>

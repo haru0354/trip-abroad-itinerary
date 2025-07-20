@@ -5,8 +5,14 @@ import FlexImageAndContents from "./components/layout/FlexImageAndContents";
 import CategoryList from "./(blog)/components/section/CategoryList";
 import NewArticleList from "./(blog)/components/section/NewArticleList";
 import Footer from "./(blog)/components/layout/blog/Footer";
+import { getCategories, getPosts } from "./(blog)/lib/service/blogServiceMany";
 
-export default function Home() {  
+export const revalidate = 60 * 60 * 24 * 15;
+
+export default async function Home() {
+  const categoriesWithPostAndImage = await getCategories("postsAndPostImage");
+  const postsWithCategoryAndPostImage = await getPosts("categoryAndPostImage", 6);
+
   return (
     <>
       <Header isTopPage={true} />
@@ -37,8 +43,8 @@ export default function Home() {
               />
             </div>
           </section>
-          <NewArticleList />
-          <CategoryList />
+          <NewArticleList posts={postsWithCategoryAndPostImage} />
+          <CategoryList categories={categoriesWithPostAndImage} />
         </div>
       </main>
       <Footer />

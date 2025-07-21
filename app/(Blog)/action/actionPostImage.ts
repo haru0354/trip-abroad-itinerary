@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import prisma from "@/app/lib/prisma";
@@ -47,8 +46,6 @@ export const addPostImage = async (state: ImageFormState, data: FormData) => {
           altText,
         },
       });
-
-      revalidatePath(`/dashboard/image`);
 
       return { message: "add" };
     } else {
@@ -102,7 +99,6 @@ export const deletePostImage = async (data: FormData) => {
       },
     });
 
-    revalidatePath(`/dashboard/image`);
   } catch (error) {
     console.error("画像の削除中にエラーが発生しました:", error);
     return { message: "画像の削除中にエラーが発生しました" };
@@ -183,8 +179,6 @@ export const updatePostImage = async (
             altText,
           },
         });
-
-        revalidatePath(`/dashboard/image`);
 
         return { message: "edit" };
       } else {

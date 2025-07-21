@@ -1,16 +1,15 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getCategory } from "../lib/service/blogServiceUnique";
-import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
 import { checkUserRole } from "@/app/lib/checkUserRole";
 import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
+import { revalidateSiteContents } from "../lib/revalidateSiteContents";
 import { categorySchema } from "../schema/categorySchema";
 import type { CategoryFormState } from "../types/formState";
 
@@ -85,12 +84,8 @@ export const addCategory = async (state: CategoryFormState, data: FormData) => {
     await prisma.category.create({
       data: CategoryData,
     });
-    revalidatePath(`/dashboard/category`);
-    revalidatePath(`/dashboard/post/new-post`);
 
-    if (image && image.size > 0) {
-      revalidatePath(`/dashboard/image`);
-    }
+    await revalidateSiteContents();
 
     return { message: "add" };
   } catch (error) {
@@ -146,13 +141,7 @@ export const deleteCategory = async (data: FormData) => {
       },
     });
 
-    revalidatePath(`/dashboard/category`);
-    revalidatePath(`/dashboard/post/new-post`);
-    await revalidatePostsAndCategories();
-
-    if (category?.postImage?.url) {
-      revalidatePath(`/dashboard/image`);
-    }
+    await revalidateSiteContents();
   } catch (error) {
     console.error("カテゴリの削除中にエラーが発生しました:", error);
     return { message: "カテゴリの削除中にエラーが発生しました" };
@@ -253,14 +242,7 @@ export const updateCategory = async (
       data: CategoryData,
     });
 
-    revalidatePath(`/`);
-    revalidatePath(`/dashboard/category`);
-    revalidatePath(`/dashboard/post/new-post`);
-    await revalidatePostsAndCategories();
-
-    if (image && image.size > 0) {
-      revalidatePath(`/dashboard/image`);
-    }
+    await revalidateSiteContents();
 
     return { message: "edit" };
   } catch (error) {

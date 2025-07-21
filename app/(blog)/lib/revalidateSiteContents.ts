@@ -1,9 +1,12 @@
 import { revalidatePath } from "next/cache";
 
-import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
+import { getPosts } from "./service/blogServiceMany";
 
-export async function revalidatePostsAndCategories() {
+export async function revalidateSiteContents() {
   try {
+    revalidatePath("/");
+    revalidatePath("/sitemaps");
+
     const posts = await getPosts("category");
     const filteredPosts = posts.filter((post) => post.draft);
 

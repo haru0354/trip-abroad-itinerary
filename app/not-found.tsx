@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
+import { ModalProvider } from "./context/ModalContext";
 import Header from "./(memorybook)/memorybook/components/layout/header/Header";
 import Footer from "./(memorybook)/memorybook/components/layout/footer/Footer";
 import AnimatedItem from "./lib/animation/AnimatedItem";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 
 const NotFound = () => {
   return (
-    <>
+    <ModalProvider>
       <Header />
       <main>
         <AnimatedItem
@@ -44,7 +45,7 @@ const NotFound = () => {
         </AnimatedItem>
       </main>
       <Footer isTopAppDirectory={true} />
-    </>
+    </ModalProvider>
   );
 };
 

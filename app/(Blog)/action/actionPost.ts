@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getPost } from "../lib/service/blogServiceUnique";
-import { revalidatePostsAndCategories } from "@/app/(blog)/lib/revalidatePostsAndCategories";
+import { revalidateSiteContents } from "@/app/(blog)/lib/revalidateSiteContents";
 import { checkUserRole } from "@/app/lib/checkUserRole";
 import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
@@ -87,9 +87,8 @@ export const addPost = async (state: PostFormState, data: FormData) => {
     await prisma.post.create({
       data: postData,
     });
-    revalidatePath(`/`);
-    revalidatePath(`/dashboard/post`);
-    await revalidatePostsAndCategories();
+
+    await revalidateSiteContents();
 
     return { message: "add" };
   } catch (error) {
@@ -129,14 +128,8 @@ export const deletePost = async (data: FormData) => {
       },
     });
 
-    revalidatePath(`/`);
-    revalidatePath(`/dashboard/post`);
-    revalidatePath(`/${post?.category.slug}/${post?.slug}`);
-    await revalidatePostsAndCategories();
+    await revalidateSiteContents();
 
-    if (post?.postImage?.url) {
-      revalidatePath(`/dashboard/image`);
-    }
   } catch (error) {
     console.error("記事の削除中にエラーが発生しました:", error);
     return { message: "記事の削除中にエラーが発生しました" };
@@ -255,13 +248,7 @@ export const updatePost = async (
       data: postData,
     });
 
-    revalidatePath(`/`);
-    revalidatePath(`/dashboard/post`);
-    await revalidatePostsAndCategories();
-
-    if (image && image.size > 0) {
-      revalidatePath(`/dashboard/image`);
-    }
+    await revalidateSiteContents();
 
     return { message: "edit" };
   } catch (error) {

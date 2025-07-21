@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { blogTitle } from "../../config/blogConfig";
 
+export const dynamic = "force-static";
+
 const page = () => {
   return (
     <>

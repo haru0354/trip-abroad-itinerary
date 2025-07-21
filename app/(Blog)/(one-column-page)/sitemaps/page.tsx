@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getCategories } from "../../lib/service/blogServiceMany";
 import { blogTitle } from "../../config/blogConfig";
 
+export const dynamic = "force-static"
 export const revalidate = 60 * 60 * 24 * 15;
 
 const page = async () => {

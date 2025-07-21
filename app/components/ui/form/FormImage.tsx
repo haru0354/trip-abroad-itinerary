@@ -41,9 +41,9 @@ const FormImage: React.FC<FormImageProps> = ({
   const [fileInputKey, setFileInputKey] = useState(Date.now());
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const imageTypes = ["image/jpeg", "image/png", "image/gif"];
+    const imageTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
     const selectedFile = e.target.files ? e.target.files[0] : null;
-    const maxSizeInBytes = 1024 * 1024;
+    const maxSizeInBytes = 5 * 1024 * 1024;
 
     if (selectedFile) {
       if (!imageTypes.includes(selectedFile.type)) {
@@ -56,7 +56,7 @@ const FormImage: React.FC<FormImageProps> = ({
 
       if (selectedFile.size > maxSizeInBytes) {
         setFileErrorMessage(
-          "画像サイズが大きすぎます。アップロードできる画像は1MBです。"
+          "画像サイズが大きすぎます。アップロードできる画像は5MBです。"
         );
         e.target.value = "";
         return;

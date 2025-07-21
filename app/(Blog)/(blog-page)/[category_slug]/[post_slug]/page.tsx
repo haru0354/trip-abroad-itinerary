@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import {
   getCategory,
   getPost,
@@ -5,7 +7,6 @@ import {
 import { getPosts } from "@/app/(blog)/lib/service/blogServiceMany";
 import LeftColumn from "@/app/(blog)/components/content-area/LeftColumn";
 import SideMenu from "@/app/(blog)/components/side-menu/SideMenu";
-import NotFound from "@/app/not-found";
 
 export const dynamicParams = true;
 export const revalidate = 60 * 60 * 24 * 15;
@@ -26,12 +27,7 @@ const Page = async ({
   const post = await getPost("slug", params.post_slug, "categoryAndPostImage");
 
   if (!post || post.draft === false) {
-    return (
-      <div>
-        <NotFound />
-        <p>記事が存在しないか削除された可能性があります。</p>
-      </div>
-    );
+    return notFound();
   }
 
   const formattedCreatedDate = new Date(post.createdDate).toLocaleDateString();
@@ -46,13 +42,9 @@ const Page = async ({
     !category ||
     (!category.title && category.posts.every((post) => !post.draft))
   ) {
-    return (
-      <div>
-        <NotFound />
-        <p>カテゴリが存在しないか削除された可能性があります。</p>
-      </div>
-    );
+    return notFound();
   }
+
   const filteredCategoryInArticles = category.posts.filter(
     (post) => post.slug !== params.post_slug
   );

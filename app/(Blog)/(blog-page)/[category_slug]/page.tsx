@@ -1,6 +1,7 @@
+import { notFound } from "next/navigation";
+
 import { getCategory } from "@/app/(blog)/lib/service/blogServiceUnique";
 import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
-import { notFound } from "next/navigation";
 import LeftColumn from "../../components/content-area/LeftColumn";
 import SideMenu from "../../components/side-menu/SideMenu";
 

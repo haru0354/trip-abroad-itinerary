@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
+import { useFormState } from "react-dom";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import toast from "react-hot-toast";
 
@@ -7,10 +10,15 @@ import { useModal } from "@/app/hooks/useModal";
 import Modal from "./Modal";
 import Button from "@/app/components/ui/button/Button";
 
+import type { DeleteFormState } from "@/app/(blog)/types/formState";
+
 type DeleteModalProps = {
   DeleteName: string;
   name: string | undefined;
-  formAction: (data: FormData) => Promise<{ message: string } | undefined>;
+  formAction: (
+    state: DeleteFormState,
+    data: FormData
+  ) => Promise<DeleteFormState>;
   id?: string | undefined;
   tripId?: string | undefined;
   isItem?: boolean;
@@ -24,16 +32,34 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
   id,
   isItem = true,
 }) => {
+  const router = useRouter();
   const { closeModal } = useModal();
+
+  const initialState = {
+    message: null,
+    redirectUrl: null,
+  };
+
+  const [state, dispatch] = useFormState<DeleteFormState, FormData>(
+    formAction,
+    initialState
+  );
+
+  useEffect(() => {
+    if (!state.message) return;
+
+    if (state.message === "success") {
+      toast.success(`${DeleteName}を削除しました！`);
+      closeModal(String(id));
+      router.push(`${state.redirectUrl}`);
+    } else {
+      toast.error(state.message);
+    }
+  }, [state.message]);
 
   if (isItem && !id) {
     return <p>削除対象の{DeleteName}がありません。</p>;
   }
-
-  const handleSubmit = () => {
-    toast.success(`${DeleteName}を削除しました！`);
-    closeModal(String(id));
-  };
 
   return (
     <Modal
@@ -60,16 +86,10 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
         </p>
       </div>
       <div className="pb-2">
-        <form onSubmit={handleSubmit}>
+        <form action={dispatch}>
           <input type="hidden" name="id" value={id} />
           {tripId && <input type="hidden" name="tripId" value={tripId} />}
-          <Button
-            formAction={formAction}
-            color="red"
-            size="normal"
-            type="submit"
-            className="rounded"
-          >
+          <Button color="red" size="normal" type="submit" className="rounded">
             削除
           </Button>
         </form>

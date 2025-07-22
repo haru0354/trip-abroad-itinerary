@@ -1,7 +1,5 @@
 "use server";
 
-import { redirect } from "next/navigation";
-
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getCategory } from "../lib/service/blogServiceUnique";
@@ -11,8 +9,9 @@ import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValida
 
 import { revalidateSiteContents } from "../lib/revalidateSiteContents";
 import { categorySchema } from "../schema/categorySchema";
-import type { CategoryFormState } from "../types/formState";
 import { getCategoryInPostCount } from "../lib/service/getCategoryInPostCount";
+
+import type { CategoryFormState, DeleteFormState } from "../types/formState";
 
 export const addCategory = async (state: CategoryFormState, data: FormData) => {
   const isAdmin = await checkUserRole("admin");
@@ -95,7 +94,10 @@ export const addCategory = async (state: CategoryFormState, data: FormData) => {
   }
 };
 
-export const deleteCategory = async (data: FormData) => {
+export const deleteCategory = async (
+  state: DeleteFormState,
+  data: FormData
+) => {
   const isAdmin = await checkUserRole("admin");
 
   if (!isAdmin) {
@@ -162,13 +164,14 @@ export const deleteCategory = async (data: FormData) => {
         id,
       },
     });
-
-    await revalidateSiteContents();
   } catch (error) {
     console.error("カテゴリの削除中にエラーが発生しました:", error);
     return { message: "カテゴリの削除中にエラーが発生しました" };
   }
-  redirect("/dashboard/category");
+
+  await revalidateSiteContents();
+
+  return { message: "success", redirectUrl: "/dashboard/category" };
 };
 
 export const updateCategory = async (

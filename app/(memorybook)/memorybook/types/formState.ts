@@ -79,3 +79,8 @@ export type ProfileFormState = {
     email?: string[] | undefined;
   };
 };
+
+export type DeleteFormState = {
+  message?: string | null;
+  redirectUrl?: string | null;
+};

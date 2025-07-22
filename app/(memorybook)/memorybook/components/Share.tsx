@@ -10,7 +10,7 @@ const Share = () => {
   const path = usePathname();
   const [copied, setCopied] = useState(false);
 
-  const fullPath = `https://www.travel-memory-life.com${path}`;
+  const fullPath = `https://www.my-travel-memory.com${path}`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(fullPath);

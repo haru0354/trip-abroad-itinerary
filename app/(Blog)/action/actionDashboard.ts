@@ -1,13 +1,11 @@
 "use server";
 
-import { redirect } from "next/navigation";
-
 import prisma from "@/app/lib/prisma";
 import { checkUserRole } from "@/app/lib/checkUserRole";
 import { validateSchema } from "@/app/lib/validateSchema";
 
 import { dashboardMemoSchema } from "../schema/dashboardMemoSchema";
-import type { DashboardFormState } from "../types/formState";
+import type { DashboardFormState, DeleteFormState } from "../types/formState";
 
 export const addDashboardMemo = async (
   state: DashboardFormState,
@@ -50,7 +48,10 @@ export const addDashboardMemo = async (
   }
 };
 
-export const deleteDashboardMemo = async (data: FormData) => {
+export const deleteDashboardMemo = async (
+  state: DeleteFormState,
+  data: FormData
+) => {
   const isAdmin = await checkUserRole("admin");
 
   if (!isAdmin) {
@@ -66,12 +67,11 @@ export const deleteDashboardMemo = async (data: FormData) => {
         id,
       },
     });
-
   } catch (error) {
     console.error("メモの削除中にエラーが発生しました:", error);
     return { message: "メモの削除中にエラーが発生しました" };
   }
-  redirect("/dashboard");
+  return { message: "success", redirectUrl: "/dashboard" };
 };
 
 export const updateDashboardMemo = async (
@@ -111,7 +111,7 @@ export const updateDashboardMemo = async (
         content,
       },
     });
-    
+
     return { message: "edit" };
   } catch {
     console.error("メモを編集する際にエラーが発生しました");

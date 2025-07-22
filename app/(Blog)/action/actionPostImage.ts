@@ -1,7 +1,5 @@
 "use server";
 
-import { redirect } from "next/navigation";
-
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getPostImage } from "../lib/service/blogServiceUnique";
@@ -10,7 +8,7 @@ import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
 import { imageSchema, updateImageSchema } from "../schema/imageSchema";
-import type { ImageFormState } from "../types/formState";
+import type { DeleteFormState, ImageFormState } from "../types/formState";
 
 export const addPostImage = async (state: ImageFormState, data: FormData) => {
   const isAdmin = await checkUserRole("admin");
@@ -61,11 +59,14 @@ export const addPostImage = async (state: ImageFormState, data: FormData) => {
     console.error("画像を追加する際にエラーが発生しました");
     return { message: "画像を追加する際にエラーが発生しました" };
   }
-  
+
   return { message: "処理が完了しました", errors: {} };
 };
 
-export const deletePostImage = async (data: FormData) => {
+export const deletePostImage = async (
+  state: DeleteFormState,
+  data: FormData
+) => {
   const isAdmin = await checkUserRole("admin");
 
   if (!isAdmin) {
@@ -98,12 +99,11 @@ export const deletePostImage = async (data: FormData) => {
         id,
       },
     });
-
   } catch (error) {
     console.error("画像の削除中にエラーが発生しました:", error);
     return { message: "画像の削除中にエラーが発生しました" };
   }
-  redirect("/dashboard/image");
+  return { message: "success", redirectUrl: "/dashboard/image" };
 };
 
 export const updatePostImage = async (

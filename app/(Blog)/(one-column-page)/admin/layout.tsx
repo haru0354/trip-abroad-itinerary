@@ -16,7 +16,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
       <AuthContext>
         <ToastContext />
         {children}

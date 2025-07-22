@@ -1,8 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getPost } from "../lib/service/blogServiceUnique";
@@ -12,7 +9,7 @@ import { validateSchema } from "@/app/lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
 import { postSchema } from "../schema/postSchema";
-import type { PostFormState } from "../types/formState";
+import type { DeleteFormState, PostFormState } from "../types/formState";
 
 export const addPost = async (state: PostFormState, data: FormData) => {
   const isAdmin = await checkUserRole("admin");
@@ -97,7 +94,7 @@ export const addPost = async (state: PostFormState, data: FormData) => {
   }
 };
 
-export const deletePost = async (data: FormData) => {
+export const deletePost = async (state: DeleteFormState, data: FormData) => {
   const isAdmin = await checkUserRole("admin");
 
   if (!isAdmin) {
@@ -129,12 +126,11 @@ export const deletePost = async (data: FormData) => {
     });
 
     await revalidateSiteContents();
-
   } catch (error) {
     console.error("記事の削除中にエラーが発生しました:", error);
     return { message: "記事の削除中にエラーが発生しました" };
   }
-  redirect("/dashboard/post");
+  return { message: "success", redirectUrl: "/dashboard/post" };
 };
 
 export const updatePost = async (

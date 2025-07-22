@@ -12,7 +12,7 @@ import { validateSchema } from "../../../lib/validateSchema";
 import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValidate";
 
 import { itinerarySchema } from "../schema/itinerarySchema";
-import type { ItineraryFormState } from "../types/formState";
+import type { DeleteFormState, ItineraryFormState } from "../types/formState";
 
 export const addItinerary = async (
   state: ItineraryFormState,
@@ -102,7 +102,7 @@ export const addItinerary = async (
   }
 };
 
-export const deleteItinerary = async (data: FormData) => {
+export const deleteItinerary = async (state: DeleteFormState, data: FormData) => {
   const itineraryId = data.get("id") as string;
   const userId = await getCurrentUserId();
 
@@ -154,7 +154,7 @@ export const deleteItinerary = async (data: FormData) => {
     console.error("旅程の削除中にエラーが発生しました:", error);
     return { message: "旅程の削除中にエラーが発生しました" };
   }
-  redirect(`/memorybook/${tripId}/itinerary/`);
+  return { message: "success", redirectUrl: `/memorybook/${tripId}/itinerary/` };
 };
 
 export const deleteItineraryImage = async (data: FormData) => {

@@ -1,12 +1,13 @@
 import { headerImageConfig } from "./(blog)/config/blogConfig";
+import { getCategories, getPosts } from "./(blog)/lib/service/blogServiceMany";
 import Header from "./(blog)/components/layout/blog/Header";
 import HeaderImage from "./(blog)/components/layout/blog/HeaderImage";
 import FlexImageAndContents from "./components/layout/FlexImageAndContents";
 import CategoryList from "./(blog)/components/section/CategoryList";
 import NewArticleList from "./(blog)/components/section/NewArticleList";
 import Footer from "./(blog)/components/layout/blog/Footer";
-import { getCategories, getPosts } from "./(blog)/lib/service/blogServiceMany";
 
+export const dynamic = "force-static"
 export const revalidate = 60 * 60 * 24 * 15;
 
 export default async function Home() {

@@ -40,3 +40,8 @@ export type ImageFormState = {
     altText?: string[] | undefined;
   };
 };
+
+export type DeleteFormState = {
+  message?: string | null;
+  redirectUrl?: string | null;
+};

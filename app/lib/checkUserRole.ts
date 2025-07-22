@@ -5,7 +5,6 @@ export const checkUserRole = async (role: string) => {
     const userRole = await getCurrentUserRole();
 
     if (!userRole || userRole !== role) {
-      console.error("権限が必要です。");
       return false;
     }
 

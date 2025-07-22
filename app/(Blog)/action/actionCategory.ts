@@ -1,7 +1,5 @@
 "use server";
 
-import { redirect } from "next/navigation";
-
 import prisma from "@/app/lib/prisma";
 import { supabase } from "@/app/util/supabase";
 import { getCategory } from "../lib/service/blogServiceUnique";
@@ -11,7 +9,9 @@ import { fileSaveAndValidate } from "@/app/lib/image-file-save/fileSaveAndValida
 
 import { revalidateSiteContents } from "../lib/revalidateSiteContents";
 import { categorySchema } from "../schema/categorySchema";
-import type { CategoryFormState } from "../types/formState";
+import { getCategoryInPostCount } from "../lib/service/getCategoryInPostCount";
+
+import type { CategoryFormState, DeleteFormState } from "../types/formState";
 
 export const addCategory = async (state: CategoryFormState, data: FormData) => {
   const isAdmin = await checkUserRole("admin");
@@ -94,7 +94,10 @@ export const addCategory = async (state: CategoryFormState, data: FormData) => {
   }
 };
 
-export const deleteCategory = async (data: FormData) => {
+export const deleteCategory = async (
+  state: DeleteFormState,
+  data: FormData
+) => {
   const isAdmin = await checkUserRole("admin");
 
   if (!isAdmin) {
@@ -104,7 +107,28 @@ export const deleteCategory = async (data: FormData) => {
 
   const id = data.get("id") as string;
 
-  const category = await getCategory("id", id, "postImage");
+  const categoryInPostCount = await getCategoryInPostCount(id);
+
+  if (categoryInPostCount === undefined) {
+    console.error("カテゴリの中に属する投稿件数の取得に失敗しました");
+    return {
+      message:
+        "カテゴリの中に属する投稿件数の取得に失敗しました。削除のし直しをしてください。",
+    };
+  }
+
+  if (categoryInPostCount > 0) {
+    return {
+      message:
+        "カテゴリの中の記事を削除して、空の状態にしないと削除できません。",
+    };
+  }
+
+  const category = await getCategory("id", id, "postsImage");
+
+  if (!category) {
+    return { message: "指定されたカテゴリが見つかりませんでした。" };
+  }
 
   if (category?.postImage?.url) {
     try {
@@ -140,13 +164,14 @@ export const deleteCategory = async (data: FormData) => {
         id,
       },
     });
-
-    await revalidateSiteContents();
   } catch (error) {
     console.error("カテゴリの削除中にエラーが発生しました:", error);
     return { message: "カテゴリの削除中にエラーが発生しました" };
   }
-  redirect("/dashboard/category");
+
+  await revalidateSiteContents();
+
+  return { message: "success", redirectUrl: "/dashboard/category" };
 };
 
 export const updateCategory = async (

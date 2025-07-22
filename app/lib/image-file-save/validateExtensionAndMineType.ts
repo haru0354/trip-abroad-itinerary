@@ -3,12 +3,12 @@
 // アップロードしたファイルの拡張子とmineタイプをバリデーション
 export const validateExtensionAndMineType = async (file: File) => {
   try {
-    const allowedExtensions = ["jpg", "jpeg", "png", "gif"];
+    const allowedExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
     const allowedMimeTypes = [
       "image/jpeg",
-      "image/jpg",
       "image/png",
       "image/gif",
+      "image/webp",
     ];
 
     // ファイル名から拡張子を取得

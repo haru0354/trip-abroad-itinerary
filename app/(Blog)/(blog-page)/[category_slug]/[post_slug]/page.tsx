@@ -15,6 +15,7 @@ export async function generateStaticParams() {
   const posts = await getPosts("categoryAndPostImage");
 
   return posts.map((post) => ({
+    category_slug: post.category.slug,
     post_slug: post.slug,
   }));
 }
@@ -45,7 +46,7 @@ const Page = async ({
     return notFound();
   }
 
-  const filteredCategoryInArticles = category.posts.filter(
+  const filteredCategoryInArticles = (category.posts || []).filter(
     (post) => post.slug !== params.post_slug
   );
 

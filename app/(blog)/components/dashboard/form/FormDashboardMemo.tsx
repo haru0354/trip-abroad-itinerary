@@ -58,13 +58,17 @@ const FormDashboardMemo: React.FC<FormMemoProps> = ({
   };
 
   useEffect(() => {
+    console.log(state.message);
+
     if (state.message === "add") {
       state.message = "";
       toast.success("メモを保存しました！");
+      router.refresh();
     } else if (state.message === "edit") {
       toast.success("メモを編集しました！");
       state.message = "";
       router.replace("/dashboard");
+      router.refresh();
     }
   }, [state.message, state, router]);
 

@@ -9,7 +9,7 @@ import { validateSchema } from "../../../lib/validateSchema";
 import prisma from "@/app/lib/prisma";
 
 import { tripSchema } from "../schema/tripSchema";
-import type { TripFormState } from "../types/formState";
+import type { DeleteFormState, TripFormState } from "../types/formState";
 
 export const addTrip = async (state: TripFormState, data: FormData) => {
   const startDate = data.get("startDate") as string;
@@ -57,7 +57,7 @@ export const addTrip = async (state: TripFormState, data: FormData) => {
   }
 };
 
-export const deleteTrip = async (data: FormData) => {
+export const deleteTrip = async (state: DeleteFormState, data: FormData) => {
   const id = data.get("id") as string;
   const userId = await getCurrentUserId();
 
@@ -79,12 +79,11 @@ export const deleteTrip = async (data: FormData) => {
         id: id,
       },
     });
-
   } catch (error) {
     console.error("旅行の削除中にエラーが発生しました:", error);
     return { message: "旅行の削除中にエラーが発生しました" };
   }
-  redirect("/memorybook/dashboard");
+  return { message: "success", redirectUrl: "/memorybook/dashboard" };
 };
 
 export const updateTrip = async (
@@ -174,7 +173,6 @@ export const updateShare = async (id: string, data: FormData) => {
         user: { connect: { id: userId } },
       },
     });
-
   } catch (err) {
     console.error("共有の変更に失敗しました", err);
     return { message: "共有の変更に失敗しました" };

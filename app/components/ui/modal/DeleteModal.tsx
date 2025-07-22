@@ -10,7 +10,7 @@ import { useModal } from "@/app/hooks/useModal";
 import Modal from "./Modal";
 import Button from "@/app/components/ui/button/Button";
 
-import type { DeleteFormState } from "@/app/(blog)/types/formState";
+import type { DeleteFormState } from "@/app/(memorybook)/memorybook/types/formState";
 
 type DeleteModalProps = {
   DeleteName: string;
@@ -48,10 +48,12 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
   useEffect(() => {
     if (!state.message) return;
 
-    if (state.message === "success") {
+    const redirectUrl = state.redirectUrl;
+    if (state.message === "success" && typeof redirectUrl === "string") {
       toast.success(`${DeleteName}を削除しました！`);
       closeModal(String(id));
-      router.push(`${state.redirectUrl}`);
+      router.push(redirectUrl);
+      router.refresh();
     } else {
       toast.error(state.message);
     }

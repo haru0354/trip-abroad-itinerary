@@ -1,7 +1,6 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 import prisma from "@/app/lib/prisma";
 import { validateTripOwner } from "../lib/validate/validateTripOwner";
@@ -9,7 +8,7 @@ import { validateSchema } from "../../../lib/validateSchema";
 import { getCurrentUserId } from "@/app/lib/getCurrentUser";
 
 import { memoSchema } from "../schema/memoSchema";
-import type { MemoFormState } from "../types/formState";
+import type { DeleteFormState, MemoFormState } from "../types/formState";
 
 export const addMemo = async (state: MemoFormState, data: FormData) => {
   const name = data.get("name") as string;
@@ -65,7 +64,7 @@ export const addMemo = async (state: MemoFormState, data: FormData) => {
   }
 };
 
-export const deleteMemo = async (data: FormData) => {
+export const deleteMemo = async (state: DeleteFormState, data: FormData) => {
   const memoId = data.get("id") as string;
   const tripId = data.get("tripId") as string;
 
@@ -87,12 +86,11 @@ export const deleteMemo = async (data: FormData) => {
         id: memoId,
       },
     });
-
   } catch (error) {
     console.error("メモの削除中にエラーが発生しました:", error);
     return { message: "メモの削除中にエラーが発生しました" };
   }
-  redirect(`/memorybook/${tripId}/memo`);
+  return { message: "success", redirectUrl: `/memorybook/${tripId}/memo` };
 };
 
 export const updateMemo = async (

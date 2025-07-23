@@ -19,30 +19,28 @@ const SideNewArticles = async () => {
             post.draft && (
               <li
                 key={post.id}
-                className="my-6 p-3 border-b border-blog-borderBlack border-dashed hover:bg-blog-hoverBlue transition duration-300"
+                className="border-b border-blog-borderBlack border-dashed hover:bg-blog-hoverBlue transition duration-300"
               >
-                <Link href={`/${post.category.slug}/${post.slug}`}>
+                <Link
+                  href={`/${post.category.slug}/${post.slug}`}
+                  className="block px-2 py-4"
+                >
                   {post.postImage &&
                     post.postImage.url &&
                     post.postImage.altText && (
                       <Image
                         src={post.postImage.url}
                         alt={post.postImage.altText}
-                        width={240}
-                        height={160}
-                        style={{
-                          width: "240px",
-                          height: "auto",
-                          aspectRatio: "240 / 160",
-                        }}
-                        className="block mx-auto max-h-[160px]"
+                        width={270}
+                        height={176}
+                        className="block mx-auto mb-4"
                       />
                     )}
-                  {post.title && post.title.length > 36 ? (
-                    <p className="my-2">{post.title.slice(0, 36)}...</p>
-                  ) : (
-                    <p className="my-2">{post.title}</p>
-                  )}
+                  <span className="w-full mb-0">
+                    {post.title.length > 36
+                      ? `${post.title.slice(0, 36)}...`
+                      : post.title}
+                  </span>
                 </Link>
               </li>
             )

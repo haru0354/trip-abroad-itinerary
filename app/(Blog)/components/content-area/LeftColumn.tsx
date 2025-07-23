@@ -1,6 +1,4 @@
-import Breadcrumbs from "./parts/Breadcrumbs";
-import ArticleTop from "./parts/ArticleTop";
-import ArticleContentArea from "./parts/ArticleContentArea";
+import ContentsArea from "./parts/ContentArea";
 import RelatedArticles from "./related-articles/RelatedArticles";
 
 import type { Post } from "@prisma/client";
@@ -24,66 +22,27 @@ const LeftColumn: React.FC<LeftColumnProps> = ({
 }) => {
   return (
     <div className="blog w-full md:max-w-[818px] bg-white rounded py-4 px-4 md:px-12 mr-8">
-      {categoryPage && category ? (
-        <>
-          <section>
-            <Breadcrumbs
-              categoryName={category.name}
-              categorySlug={category.slug}
-              isCategoryDirectory={true}
-            />
-            {category.title ? (
-              <h1>{category.title}</h1>
-            ) : (
-              <h1>「{category.name}」のカテゴリ</h1>
-            )}
-            {category.postImage?.url && (
-              <ArticleTop
-                src={category.postImage.url}
-                alt={category.postImage.altText}
-              />
-            )}
-            {category.content && (
-              <ArticleContentArea content={category.content} />
-            )}
-          </section>
-          {category.posts && (
-            <RelatedArticles
-              articles={category.posts}
-              categorySlug={category.slug}
-              categoryName={category.name}
-            />
-          )}
-        </>
-      ) : post ? (
-        <>
-          <section>
-            <Breadcrumbs
-              categoryName={post.category.name}
-              categorySlug={post.category.slug}
-            />
-            <h1>{post.title}</h1>
-            {post.postImage?.url && (
-              <ArticleTop
-                src={post.postImage.url}
-                alt={post.postImage.altText}
-              />
-            )}
-            {formattedCreatedDate && (
-              <p className="text-gray-500 mb-5">
-                記事の投稿日：{formattedCreatedDate}
-              </p>
-            )}
-            <ArticleContentArea content={post.content} />
-          </section>
-          {filteredCategoryInArticles && (
-            <RelatedArticles
-              articles={filteredCategoryInArticles}
-              categorySlug={post.category.slug}
-            />
-          )}
-        </>
-      ) : null}
+      <ContentsArea
+        categoryPage={categoryPage}
+        category={category}
+        post={post}
+        formattedCreatedDate={formattedCreatedDate}
+      />
+
+      {categoryPage && category?.posts && (
+        <RelatedArticles
+          articles={category.posts}
+          categorySlug={category.slug}
+          categoryName={category.name}
+        />
+      )}
+
+      {!categoryPage && filteredCategoryInArticles && post && (
+        <RelatedArticles
+          articles={filteredCategoryInArticles}
+          categorySlug={post.category.slug}
+        />
+      )}
     </div>
   );
 };

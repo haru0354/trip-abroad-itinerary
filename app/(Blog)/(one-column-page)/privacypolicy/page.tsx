@@ -19,7 +19,7 @@ const page = () => {
         」の利用に関する情報収集、利用、および開示に関する方針を説明します。
       </p>
       <h3 className="font-bold text-lg my-6">1. 収集される情報</h3>
-      <ul className="border border-dashed border-blog-borderBlack p-6 mb-6 mx-1 md:mx-16">
+      <ul className="border border-dashed border-blog-borderBlack p-3 md:p-6 mb-6 mx-1 md:mx-16">
         <li className="my-2">
           <p className="font-bold">ニックネーム</p>
           <p>

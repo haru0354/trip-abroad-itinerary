@@ -30,13 +30,13 @@ const page = async () => {
             return null;
           }
           return (
-            <div className="px-8" key={category.id}>
+            <div className="px-2 sm:px-4 md:px-8" key={category.id}>
               <ul className="text-[#2a7bdf]">
                 <li className="my-4 font-semibold">
                   <Link href={`/${category.slug}`}>{category.name}</Link>
                 </li>
                 {draftTruePosts.map((post) => (
-                  <li key={post.id} className="my-4 ml-4 list-disc list-inside">
+                  <li key={post.id} className="my-4 ml-2 md:ml-4 list-disc list-inside">
                     <Link href={`/${category.slug}/${post.slug}`}>
                       {post.title}
                     </Link>

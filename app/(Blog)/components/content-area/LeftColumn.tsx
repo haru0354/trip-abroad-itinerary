@@ -26,25 +26,27 @@ const LeftColumn: React.FC<LeftColumnProps> = ({
     <div className="blog w-full md:max-w-[818px] bg-white rounded py-4 px-4 md:px-12 mr-8">
       {categoryPage && category ? (
         <>
-          <Breadcrumbs
-            categoryName={category.name}
-            categorySlug={category.slug}
-            isCategoryDirectory={true}
-          />
-          {category.title ? (
-            <h1>{category.title}</h1>
-          ) : (
-            <h1>「{category.name}」のカテゴリ</h1>
-          )}
-          {category.postImage?.url && (
-            <ArticleTop
-              src={category.postImage.url}
-              alt={category.postImage.altText}
+          <section>
+            <Breadcrumbs
+              categoryName={category.name}
+              categorySlug={category.slug}
+              isCategoryDirectory={true}
             />
-          )}
-          {category.content && (
-            <ArticleContentArea content={category.content} />
-          )}
+            {category.title ? (
+              <h1>{category.title}</h1>
+            ) : (
+              <h1>「{category.name}」のカテゴリ</h1>
+            )}
+            {category.postImage?.url && (
+              <ArticleTop
+                src={category.postImage.url}
+                alt={category.postImage.altText}
+              />
+            )}
+            {category.content && (
+              <ArticleContentArea content={category.content} />
+            )}
+          </section>
           {category.posts && (
             <RelatedArticles
               articles={category.posts}
@@ -55,20 +57,25 @@ const LeftColumn: React.FC<LeftColumnProps> = ({
         </>
       ) : post ? (
         <>
-          <Breadcrumbs
-            categoryName={post.category.name}
-            categorySlug={post.category.slug}
-          />
-          <h1>{post.title}</h1>
-          {post.postImage?.url && (
-            <ArticleTop src={post.postImage.url} alt={post.postImage.altText} />
-          )}
-          {formattedCreatedDate && (
-            <p className="text-gray-500 mb-5">
-              記事の投稿日：{formattedCreatedDate}
-            </p>
-          )}
-          <ArticleContentArea content={post.content} />
+          <section>
+            <Breadcrumbs
+              categoryName={post.category.name}
+              categorySlug={post.category.slug}
+            />
+            <h1>{post.title}</h1>
+            {post.postImage?.url && (
+              <ArticleTop
+                src={post.postImage.url}
+                alt={post.postImage.altText}
+              />
+            )}
+            {formattedCreatedDate && (
+              <p className="text-gray-500 mb-5">
+                記事の投稿日：{formattedCreatedDate}
+              </p>
+            )}
+            <ArticleContentArea content={post.content} />
+          </section>
           {filteredCategoryInArticles && (
             <RelatedArticles
               articles={filteredCategoryInArticles}
@@ -76,7 +83,7 @@ const LeftColumn: React.FC<LeftColumnProps> = ({
             />
           )}
         </>
-      ) : null }
+      ) : null}
     </div>
   );
 };

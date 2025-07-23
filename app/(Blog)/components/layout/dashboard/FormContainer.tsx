@@ -7,9 +7,7 @@ type FormContainerProps = {
   buttonName: string;
   maxWidth?: string;
   onSubmit?: FormEventHandler<HTMLFormElement>;
-  action?: (
-    data: FormData
-  ) => Promise<{ message?: undefined } | { message: string }>;
+  action?: string | ((formData: FormData) => void | Promise<void>);
 };
 
 const FormContainer: React.FC<FormContainerProps> = ({
@@ -28,7 +26,12 @@ const FormContainer: React.FC<FormContainerProps> = ({
       >
         <form className="w-full py-3" {...formProps}>
           {children}
-          <Button color="blue" size="normal" type="submit" className="rounded mt-4">
+          <Button
+            color="blue"
+            size="normal"
+            type="submit"
+            className="rounded mt-4"
+          >
             {buttonName}
           </Button>
         </form>

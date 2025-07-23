@@ -23,7 +23,7 @@ const SideImage: React.FC<SideImageProps> = ({ src, alt, href, textTitle }) => {
           alt={alt}
           width={270}
           height={176}
-          className="block mx-auto mb-4"
+          className="w-full h-auto block mx-auto mb-4"
         />
         {textTitle && <p className="text-center my-2">{textTitle}</p>}
       </Link>

@@ -33,14 +33,12 @@ const SideNewArticles = async () => {
                         alt={post.postImage.altText}
                         width={270}
                         height={176}
-                        className="block mx-auto mb-4"
+                        className="w-full h-auto block mx-auto mb-4"
                       />
                     )}
-                  <span className="w-full mb-0">
-                    {post.title.length > 36
-                      ? `${post.title.slice(0, 36)}...`
-                      : post.title}
-                  </span>
+                  {post.title.length > 36
+                    ? `${post.title.slice(0, 36)}...`
+                    : post.title}
                 </Link>
               </li>
             )

@@ -9,13 +9,17 @@ const Card: React.FC<CardProps> = ({ post }) => {
   if (!post.draft) return null;
 
   return (
-    <div className="flex flex-col md:flex-row items-start justify-center w-full my-4  shadow-sm hover:shadow-md hover:rounded-lg border border-gray-200 bg-white hover:scale-105 transition">
+    <div className="flex flex-col md:flex-row items-start justify-center w-full my-4 shadow-sm hover:shadow-md hover:rounded-lg border border-gray-200 bg-white hover:scale-105 transition">
       <div className="w-full max-w-[280px] mx-auto ">
         <Image
           src={post.postImage?.url || "/no_image.jpg"}
           alt={post.postImage?.altText || "画像の準備中"}
-          width={280}
-          height={180}
+          width={270}
+          height={150}
+          style={{
+            width: "100%",
+            height: "auto",
+          }}
         />
       </div>
 

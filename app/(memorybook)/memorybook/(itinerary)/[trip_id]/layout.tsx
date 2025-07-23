@@ -5,6 +5,7 @@ import Header from "../../components/layout/header/Header";
 import Footer from "../../components/layout/footer/Footer";
 import { getTrip } from "../../lib/memoryBookService";
 import { notFound } from "next/navigation";
+import MainContainer from "@/app/components/layout/MainContainer";
 
 export const metadata: Metadata = {
   robots: {
@@ -29,15 +30,15 @@ export default async function RootLayout({
   return (
     <>
       <Header />
-      <main className="flex-1 bg-itinerary-bgColor">
-        <div className="main-contents-area">
+      <main className="flex-1 px-2 bg-itinerary-bgColor">
+        <MainContainer>
           <div className="px-1 md:px-8 w-full">
             <h2 className="mt-0 md:mt-8 p-2 text-lg md:text-2xl text-center border-b border-solid text-black border-blue-800 bg-white">
               {trip?.name}
             </h2>
             {children}
           </div>
-        </div>
+        </MainContainer>
       </main>
       <Footer />
       <FooterMenu tripId={tripId} />

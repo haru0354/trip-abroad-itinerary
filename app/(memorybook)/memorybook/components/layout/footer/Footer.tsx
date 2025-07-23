@@ -25,7 +25,7 @@ const Footer: React.FC<FooterProps> = ({ isTopAppDirectory }) => {
           sizes="(max-width: 768px) 100vw, 1000px"
         />
       </AnimatedItem>
-      <footer className={`${isTopAppDirectory || "mb-[0px]"}`}>
+      <footer className={`${isTopAppDirectory || "mb-[64px]"}`}>
         <div className="flex flex-col items-center justify-center bottom-0 w-full min-h-[68px] bg-blue-500">
           <ul className="flex flex-col md:flex-row text-center my-2 text-xs">
             <li className="mx-6 py-1 md:py-0 text-white hover:text-sky-100">

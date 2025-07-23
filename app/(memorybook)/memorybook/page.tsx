@@ -37,7 +37,7 @@ export default async function Home() {
         <div className="w-full">
           <Section
             name="しおりアプリ「旅のメモリーブック」の機能の一部"
-            bgColor="bg-sky-50"
+            bgColor="bg-zinc-50"
           >
             <ThreeImageAndContents
               items={[
@@ -91,7 +91,7 @@ export default async function Home() {
               imageLeft={false}
             />
           </Section>
-          <Section name="旅のメモリーブックとは" bgColor="bg-gray-50">
+          <Section name="旅のメモリーブックとは" bgColor="bg-white">
             <CallToAction
               lists={[
                 "PC・スマホ・タブレットから利用できる無料のアプリ",
@@ -105,7 +105,7 @@ export default async function Home() {
               signUp={true}
             />
           </Section>
-          <Section name="旅のメモリーブック3つの特徴" bgColor="bg-white">
+          <Section name="旅のメモリーブック3つの特徴" bgColor="bg-zinc-50">
             <ThreeIconAndContents
               items={[
                 {
@@ -149,7 +149,7 @@ export default async function Home() {
               imageLeft={false}
             />
           </Section>
-          <Section name="よくある質問" bgColor="bg-white">
+          <Section name="よくある質問" bgColor="bg-zinc-50">
             <QuestionAndAnswer
               items={[
                 {

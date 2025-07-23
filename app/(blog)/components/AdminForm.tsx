@@ -44,35 +44,33 @@ const AdminForm = () => {
   };
 
   return (
-    <>
-      <FormContainer
-        onSubmit={handleSubmit(onSubmit)}
-        maxWidth="max-w-[400px]"
-        buttonName="ログイン"
-      >
-        <h2 className="py-2 my-1 text-center text-base font-semibold border-b text-blog-black bg-white border-blog-borderGray">
-          ログインフォーム
-        </h2>
-        <Input
-          label="ID"
-          name="id"
-          placeholder="ID"
-          register={register}
-          required={true}
-          error={errors.id?.message}
-        />
-        <Input
-          label="パスワード"
-          type="password"
-          name="password"
-          placeholder="パスワード"
-          register={register}
-          required={true}
-          error={errors.password?.message}
-        />
-        {errorMessage && <p className="text-red-500 pt-4">{errorMessage}</p>}
-      </FormContainer>
-    </>
+    <FormContainer
+      onSubmit={handleSubmit(onSubmit)}
+      maxWidth="max-w-[400px]"
+      buttonName="ログイン"
+    >
+      <h2 className="py-2 my-1 text-center text-base font-semibold border-b text-blog-black bg-white border-blog-borderGray">
+        ログインフォーム
+      </h2>
+      <Input
+        label="ID"
+        name="id"
+        placeholder="ID"
+        register={register}
+        required={true}
+        error={errors.id?.message}
+      />
+      <Input
+        label="パスワード"
+        type="password"
+        name="password"
+        placeholder="パスワード"
+        register={register}
+        required={true}
+        error={errors.password?.message}
+      />
+      {errorMessage && <p className="text-red-500 pt-4">{errorMessage}</p>}
+    </FormContainer>
   );
 };
 

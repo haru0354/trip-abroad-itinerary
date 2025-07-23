@@ -37,17 +37,18 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
   return (
     <>
       <button
-        className="fixed top-2 right-2 block sm:hidden text-gray-700 bg-white border-itinerary-borderBlack p-3 w-12 h-12 ml-[2px] border rounded z-10"
+        className="fixed sm:hidden top-2 right-2 flex flex-col items-center justify-center w-12 h-12 border rounded text-gray-700 bg-white border-itinerary-borderBlack z-10"
         onClick={toggleMenu}
       >
         <FontAwesomeIcon
           icon={isOpen ? faXmark : faBars}
-          style={{ width: "14px", height: "22px" }}
+          style={{ width: "18px", height: "22px" }}
         />
+        <span className="text-xs text-center">MENU</span>
       </button>
       {isOpen && (
         <AnimatedItem
-          className="fixed top-0 left-0 w-full h-screen bg-gray-500 px-10 pt-12 overflow-y-auto"
+          className="fixed top-0 left-0 w-full h-screen bg-gray-500 px-8 py-12 overflow-y-auto"
           elementType="div"
           animation="fadeInRightVariants"
         >
@@ -90,7 +91,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
               </ul>
             );
           })}
-          <div className="mt-8">
+          <div className="my-10">
             <LogoutButton />
             <Button
               color="white"

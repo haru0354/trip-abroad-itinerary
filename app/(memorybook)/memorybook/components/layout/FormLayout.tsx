@@ -29,10 +29,10 @@ const FormLayout: React.FC<FormLayoutProps> = ({
     <>
       {modalLayout ? (
         <>
-          <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
+          <span className="block pb-4 mb-1 text-center font-semibold border-b border-itinerary-borderGray">
             {formTitle}
-          </p>
-          <form className="w-full py-3" {...formProps}>
+          </span>
+          <form className="w-full" {...formProps}>
             {children}
             <Button color="blue" size={buttonSize} className="rounded mt-4">
               {buttonName}
@@ -44,10 +44,10 @@ const FormLayout: React.FC<FormLayoutProps> = ({
           <div
             className={`w-full py-4 px-6 border rounded border-itinerary-borderGray  bg-white ${maxWidth} `}
           >
-            <p className="text-center border-b pb-4 border-itinerary-borderGray font-semibold">
+            <span className="block pb-4 text-center font-semibold border-b border-itinerary-borderGray">
               {formTitle}
-            </p>
-            <form className="w-full py-3" {...formProps}>
+            </span>
+            <form className="w-full" {...formProps}>
               {children}
               <Button
                 color="blue"

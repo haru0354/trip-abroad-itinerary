@@ -10,11 +10,7 @@ const page = async () => {
     redirect("/dashboard");
   }
 
-  return (
-    <>
-      <AdminForm />
-    </>
-  );
+  return <AdminForm />;
 };
 
 export default page;

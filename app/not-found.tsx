@@ -17,11 +17,11 @@ const NotFound = () => {
   return (
     <ModalProvider>
       <Header />
-      <main>
+      <main className="flex-1 px-2 bg-itinerary-bgColor">
         <AnimatedItem
           elementType="div"
           animation="fadeInVariants"
-          className="main-contents-area"
+          className="flex flex-col items-center justify-center max-w-[1150px] w-full h-full mt-8 mb-8 p-4 rounded bg-white"
         >
           <h1 className="text-2xl py-8 text-gray-700 font-bold">404NotFound</h1>
           <p>指定されたファイルまたはディレクトリは存在しません。</p>

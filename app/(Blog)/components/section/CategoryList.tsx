@@ -14,10 +14,9 @@ type CategoryWithPostsAndImage = Prisma.CategoryGetPayload<{
   };
 }>;
 const CategoryList: React.FC<CategoryListProps> = async ({ categories }) => {
-
   return (
     <Section bgColor="bg-white" name="カテゴリ">
-      <div className="flex w-full my-8 flex-wrap items-center justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full my-8 gap-4">
         {categories.map((category) => {
           if (
             !category ||

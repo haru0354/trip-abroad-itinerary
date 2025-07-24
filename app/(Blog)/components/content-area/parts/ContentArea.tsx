@@ -54,7 +54,7 @@ const ContentsArea: React.FC<ContentsAreaProps> = ({
           <ArticleTop src={post.postImage.url} alt={post.postImage.altText} />
         )}
         {formattedCreatedDate && (
-          <p className="text-gray-500 mb-5">
+          <p className="text-sm text-right text-gray-500 mb-5">
             記事の投稿日：{formattedCreatedDate}
           </p>
         )}

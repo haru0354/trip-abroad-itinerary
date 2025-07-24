@@ -9,7 +9,7 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
   return (
     <header>
-      <div className="flex items-center justify-center bg-blog-bgColor">
+      <div className="flex items-center justify-center">
         <Link href="/">
           {isTopPage ? (
             <h1>

@@ -16,7 +16,7 @@ const Header = async () => {
   }
 
   return (
-    <header className="w-full bg-itinerary-bgColor">
+    <header className="w-full">
       <div className="max-w-[1120px] mx-auto">
         <div className="flex justify-between items-center mx-2 h-16">
           <Link href="/memorybook">

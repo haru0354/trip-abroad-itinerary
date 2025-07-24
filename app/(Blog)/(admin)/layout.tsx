@@ -22,7 +22,7 @@ export default async function RootLayout({
   return (
     <>
       <Header />
-      <main className="flex-1 px-2 bg-blog-bgColor">
+      <main className="flex-1 px-2 ">
         <MainContainer bgNone={true}>
           <div className="w-full px-1 md:px-4">
             <AuthContext>

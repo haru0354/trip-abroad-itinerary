@@ -14,7 +14,6 @@ const Footer: React.FC<FooterProps> = ({ isTopAppDirectory }) => {
       <AnimatedItem
         elementType="div"
         animation="fadeInOpacity"
-        className="bg-itinerary-bgColor"
       >
         <Image
           alt="飛行機で旅行の画像"

@@ -4,7 +4,6 @@ import { useFormStatus } from "react-dom";
 
 type ButtonProps = {
   children: React.ReactNode;
-  formAction?: (data: FormData) => Promise<{ message: string } | undefined>;
   onClick?: () => void;
   className?: string;
   type?: "submit" | "button";
@@ -14,7 +13,6 @@ type ButtonProps = {
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  formAction,
   onClick,
   className,
   type = "submit",
@@ -44,7 +42,6 @@ const Button: React.FC<ButtonProps> = ({
       ${sizes[size]} 
       ${pending ? "opacity-30" : ""}`}
       type={type}
-      formAction={formAction}
       disabled={pending}
       onClick={onClick}
     >

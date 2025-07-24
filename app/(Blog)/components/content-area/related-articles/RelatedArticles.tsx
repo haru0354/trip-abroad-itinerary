@@ -20,7 +20,7 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = async ({
   }
 
   return (
-    <>
+    <section className="mt-10">
       {categoryName ? <h2>{categoryName}の記事一覧</h2> : <h2>関連記事</h2>}
       {articles.map((article) => {
         return (
@@ -29,7 +29,7 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = async ({
           </Link>
         );
       })}
-    </>
+    </section>
   );
 };
 

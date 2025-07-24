@@ -6,13 +6,17 @@ import FlexImageAndContents from "./components/layout/FlexImageAndContents";
 import CategoryList from "./(blog)/components/section/CategoryList";
 import NewArticleList from "./(blog)/components/section/NewArticleList";
 import Footer from "./(blog)/components/layout/blog/Footer";
+import Section from "./components/layout/Section";
 
-export const dynamic = "force-static"
+export const dynamic = "force-static";
 export const revalidate = 60 * 60 * 24 * 15;
 
 export default async function Home() {
   const categoriesWithPostAndImage = await getCategories("postsAndPostImage");
-  const postsWithCategoryAndPostImage = await getPosts("categoryAndPostImage", 6);
+  const postsWithCategoryAndPostImage = await getPosts(
+    "categoryAndPostImage",
+    6
+  );
 
   return (
     <>
@@ -20,15 +24,7 @@ export default async function Home() {
       {headerImageConfig && <HeaderImage />}
       <main>
         <div className="w-full">
-          <section className="bg-white">
-            <div className="max-w-[1150px] w-full py-2 md:py-6 px-4 mx-auto">
-              <div className="flex items-center mx-0 py-8">
-                <span className="flex-grow h-1 w-5 md:w-0 mr-1 md:mr-4 bg-gradient-to-l from-gray-600 to-transparent"></span>
-                <h2 className="text-2xl md:text-3xl py-0 my-5 text-gray-700 text-center font-bold bg-transparent">
-                  しおりアプリ「旅のメモリーブック」の機能の一部
-                </h2>
-                <span className="flex-grow h-1 w-5 md:w-0 mr-1 md:mr-4 bg-gradient-to-r from-gray-600 to-transparent"></span>
-              </div>
+          <Section bgColor="bg-white" name="リリース情報">
               <FlexImageAndContents
                 src="/travel_memory_thumbnail.jpg"
                 alt="旅のメモリーブックのサムネイル"
@@ -42,8 +38,7 @@ export default async function Home() {
                 buttonHref="/memorybook"
                 isPriority={true}
               />
-            </div>
-          </section>
+          </Section>
           <NewArticleList posts={postsWithCategoryAndPostImage} />
           <CategoryList categories={categoriesWithPostAndImage} />
         </div>

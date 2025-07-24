@@ -32,7 +32,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
     }
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.classList.remove("overflow-hidden");
     };
   }, [isOpen]);
 
@@ -45,13 +45,14 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   return (
     <>
       <button
-        className={`${buttonPositions} ${colors[color]} fixed top-2 block sm:hidden p-3 w-12 h-12 ml-[2px] border border-gray-200 rounded z-10`}
+        className={`${buttonPositions} ${colors[color]} fixed sm:hidden top-2 right-2 flex flex-col items-center justify-center w-12 h-12 border rounded  border-itinerary-borderBlack z-10`}
         onClick={toggleMenu}
       >
         <FontAwesomeIcon
           icon={isOpen ? faXmark : faBars}
-          style={{ width: "14px", height: "22px" }}
+          style={{ width: "18px", height: "22px" }}
         />
+        <span className="text-xs text-center">MENU</span>
       </button>
       {isOpen && (
         <AnimatedItem

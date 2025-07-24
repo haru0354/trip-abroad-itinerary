@@ -20,52 +20,29 @@ const TopPageListItem: React.FC<TopPageListItemProps> = ({
     <AnimatedItem
       elementType="div"
       animation="fadeInVariants"
-      className="flex flex-col items-center"
+      className="flex items-center justify-center"
     >
-      <Link href={href}>
-        <div className="flex flex-col items-center max-w-[330px] min-w-[330px] mx-5 my-6 rounded hover:bg-blog-hoverBlue transition duration-300">
-          <div className="min-h-[222px] max-h-[222px] border">
-            {imageUrl && altText ? (
-              <figure
-                style={{
-                  position: "relative",
-                  width: "330px",
-                  height: "220px",
-                }}
-              >
-                <Image
-                  src={imageUrl}
-                  alt={altText}
-                  fill
-                  sizes="(max-hight: 220px)"
-                  style={{
-                    objectFit: "cover",
-                  }}
-                />
-              </figure>
-            ) : (
-              <figure
-                style={{
-                  position: "relative",
-                  width: "330px",
-                  height: "220px",
-                }}
-              >
-                <Image
-                  src="/no_image.jpg"
-                  alt="画像の準備中"
-                  fill
-                  sizes="(max-hight: 220px)"
-                  style={{
-                    objectFit: "cover",
-                  }}
-                />
-              </figure>
-            )}
+      <Link
+        href={href}
+        className="w-full  transition duration-300 transform hover:-translate-y-2 hover:bg-white hover:rounded-lg"
+      >
+        <div className="flex flex-col items-center hover:shadow-lg transition-all duration-300 max-h-[340px]">
+          <div className="">
+            <Image
+              src={imageUrl ? imageUrl : "/no_image.jpg"}
+              alt={altText ? altText : "画像の準備中"}
+              width={330}
+              height={215}
+              className="mx-auto"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
           </div>
-          <div className="min-h-[80px] px-3">
-            <h3 className="my-3 text-center text-xl font-semibold">
-              {title.length > 12 ? <>{title.slice(0, 12)}...</> : <>{title}</>}
+          <div className="w-full my-3 p-2">
+            <h3 className="text-center text-xl font-semibold">
+              {title.length > 24 ? <>{title.slice(0, 24)}...</> : <>{title}</>}
             </h3>
           </div>
         </div>

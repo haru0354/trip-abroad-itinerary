@@ -13,7 +13,10 @@ export const generateTocId = (contents: string): TocItem[] => {
   $("h2, h3").each((index, element) => {
     let id = $(element).attr("id");
     const text = $(element).text();
-    const tag = $(element).prop("tagName").toLowerCase();
+    const tagName = $(element).prop("tagName");
+    if (!tagName) return;
+    
+    const tag = tagName.toLowerCase();
 
     if (!id) {
       const generatedId = `${index}`;
@@ -44,5 +47,3 @@ export const addGenerateContentId = (contents: string) => {
 
   return $.html();
 };
-
-

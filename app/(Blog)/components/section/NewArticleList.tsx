@@ -17,7 +17,7 @@ type PostWithCategoryAndImage = Prisma.PostGetPayload<{
 const NewArticleList:React.FC<NewArticleListProps> = ({posts}) => {
   return (
     <Section bgColor="bg-sky-50" name="新着記事">
-      <div className="flex w-full my-8 flex-wrap items-center justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full my-8 gap-4">
         {posts.map((post) => {
           return (
             post.draft && (

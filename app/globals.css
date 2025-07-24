@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (max-width: 639px) {
+@media (max-width: 640px) {
   .md:flex-wrap {
     flex-direction: column;
   }
@@ -13,6 +13,11 @@
 body {
   line-height: 1.7rem;
   color: rgb(75 85 99);
+  background-color: rgb(250, 250, 250);
+
+  @media (max-width: 640px) {
+    background-color: rgb(244, 244, 245);
+  }
 }
 
 p {
@@ -59,15 +64,14 @@ h2 {
 .blog h3 {
   font-size: 1.25rem;
   font-weight: bold;
-  border-bottom: 2px solid theme('colors.blog.heading');
+  border-bottom: 2px solid theme("colors.blog.heading");
   padding: 1rem;
-  
 }
 
 .blog h4 {
   text-align: center;
   font-size: 1.25rem;
-  border-bottom: 2px dashed theme('colors.blog.heading');
+  border-bottom: 2px dashed theme("colors.blog.heading");
   padding: 1rem;
   margin: 0 auto;
 }

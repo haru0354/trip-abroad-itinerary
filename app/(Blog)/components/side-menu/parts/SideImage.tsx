@@ -21,13 +21,9 @@ const SideImage: React.FC<SideImageProps> = ({ src, alt, href, textTitle }) => {
         <Image
           src={src}
           alt={alt}
-          width={240}
-          height={174}
-          style={{
-            width: "240px",
-            height: "auto",
-          }}
-          className="block mx-auto"
+          width={270}
+          height={176}
+          className="w-full h-auto block mx-auto mb-4"
         />
         {textTitle && <p className="text-center my-2">{textTitle}</p>}
       </Link>

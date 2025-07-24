@@ -10,7 +10,7 @@ export default async function RootLayout({
   return (
     <>
       <Header />
-      <main className="flex-1 px-2 bg-itinerary-bgColor">
+      <main className="flex-1 px-2">
         <MainContainer>
           <div className="w-full px-1 md:px-4">{children}</div>
         </MainContainer>

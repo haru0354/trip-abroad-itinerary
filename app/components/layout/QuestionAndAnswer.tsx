@@ -30,11 +30,10 @@ const QuestionAndAnswer: React.FC<QuestionAndAnswerProps> = ({ items }) => {
             elementType="div"
             animation="fadeInVariants"
             className=" px-2 py-2 md:p-6 border rounded-lg shadow-sm hover:shadow-xl border-itinerary-borderBlack bg-white transition-all duration-300 cursor-pointer"
+            delay={0.1 * (index + 1)}
+            onClick={() => toggleShowContent(index)}
           >
-            <div
-              className="flex items-center w-full mb-4"
-              onClick={() => toggleShowContent(index)}
-            >
+            <div className="flex items-center w-full mb-4">
               <div className="bg-gray-200 rounded-full p-2 mr-2 md:mr-4">
                 <FontAwesomeIcon icon={faQ} />
               </div>

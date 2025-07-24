@@ -19,7 +19,7 @@ export default async function RootLayout({
   const trips = await getTrips();
 
   return (
-    <main className="flex-1 px-2 bg-itinerary-bgColor">
+    <main className="flex-1 px-2">
       <div className="flex justify-center items-start w-full max-w-[1200px] ml-0 sm:ml-96 p-5 mx-auto my-8 border rounded bg-white border-itinerary-borderGray">
         <div className="w-full">{children}</div>
       </div>

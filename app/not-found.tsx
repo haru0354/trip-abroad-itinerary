@@ -17,7 +17,7 @@ const NotFound = () => {
   return (
     <ModalProvider>
       <Header />
-      <main className="flex-1 px-2 bg-itinerary-bgColor">
+      <main className="flex-1 px-2">
         <AnimatedItem
           elementType="div"
           animation="fadeInVariants"

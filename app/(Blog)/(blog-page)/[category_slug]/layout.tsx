@@ -44,8 +44,8 @@ export default function RootLayout({
   return (
     <>
       <Header />
-      <main className="flex-1 bg-blog-bgColor py-8">
-        <div className="max-w-[1150px] mx-auto flex flex-col md:flex-row mb-8">
+      <main className="flex-1 px-2 md:pt-4">
+        <div className="w-full max-w-[1150px] mx-auto flex flex-col md:flex-row mb-8">
           {children}
         </div>
       </main>

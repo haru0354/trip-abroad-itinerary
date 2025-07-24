@@ -36,7 +36,6 @@ const Modal: React.FC<ModalProps> = ({
   const { isModalOpen, openModal, closeModal } = useModal();
 
   const padding = paddingNothing ? "" : "p-4";
-  const closeButtonPosition = paddingNothing ? "my-4" : "my-4";
 
   return (
     <>
@@ -83,13 +82,17 @@ const Modal: React.FC<ModalProps> = ({
               onClick={(e) => e.stopPropagation()}
             >
               {children}
-              <CloseButton onClick={() => closeModal(id)} className="absolute top-2 right-2"/>
+              <CloseButton
+                onClick={() => closeModal(id)}
+                className="absolute top-2 right-2"
+              />
+              <div className="border-t border-itinerary-borderGray border-dashed my-4" />
               <Button
                 onClick={() => closeModal(id)}
-                color="gray"
+                color="neutral"
                 size="normal"
                 type="button"
-                className={`rounded ${closeButtonPosition}`}
+                className="rounded"
               >
                 {closeButtonName}
               </Button>

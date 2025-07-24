@@ -48,7 +48,7 @@ const AddTripModal = () => {
               />
               <Button
                 onClick={() => closeModal("trip")}
-                color="gray"
+                color="neutral"
                 size="normal"
                 type="button"
                 className="my-4 rounded"

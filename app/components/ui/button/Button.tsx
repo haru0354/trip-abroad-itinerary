@@ -7,7 +7,7 @@ type ButtonProps = {
   onClick?: () => void;
   className?: string;
   type?: "submit" | "button";
-  color: "blue" | "gray" | "red" | "white";
+  color: "blue" | "gray" | "red" | "white" | "neutral";
   size: "normal" | "small" | "auth";
 };
 
@@ -22,10 +22,13 @@ const Button: React.FC<ButtonProps> = ({
   const { pending } = useFormStatus();
 
   const colors = {
+    neutral:
+      "text-white hover:text-black border-neutral-900 bg-neutral-500 hover:bg-white",
     blue: "text-white hover:text-black border-sky-900 bg-sky-700 hover:bg-white",
     gray: "text-white hover:text-black border-gray-900 bg-gray-700 hover:bg-white",
     red: "text-white hover:text-black border-red-900 bg-red-700 hover:bg-white",
-    white: "text-black hover:text-white border-gray-900 bg-gray-200 hover:bg-gray-700",
+    white:
+      "text-black hover:text-white border-gray-900 bg-gray-200 hover:bg-gray-700",
   };
 
   const sizes = {

@@ -102,7 +102,10 @@ export const addItinerary = async (
   }
 };
 
-export const deleteItinerary = async (state: DeleteFormState, data: FormData) => {
+export const deleteItinerary = async (
+  state: DeleteFormState,
+  data: FormData
+) => {
   const itineraryId = data.get("id") as string;
   const userId = await getCurrentUserId();
 
@@ -154,10 +157,16 @@ export const deleteItinerary = async (state: DeleteFormState, data: FormData) =>
     console.error("旅程の削除中にエラーが発生しました:", error);
     return { message: "旅程の削除中にエラーが発生しました" };
   }
-  return { message: "success", redirectUrl: `/memorybook/${tripId}/itinerary/` };
+  return {
+    message: "success",
+    redirectUrl: `/memorybook/${tripId}/itinerary/`,
+  };
 };
 
-export const deleteItineraryImage = async (data: FormData) => {
+export const deleteItineraryImage = async (
+  state: DeleteFormState,
+  data: FormData
+) => {
   const itineraryId = data.get("id") as string;
   const userId = await getCurrentUserId();
 
@@ -214,7 +223,10 @@ export const deleteItineraryImage = async (data: FormData) => {
     console.error("旅程の画像の削除中にエラーが発生しました:", error);
     return { message: "旅程の画像の削除中にエラーが発生しました" };
   }
-  redirect(`/memorybook/${tripId}/itinerary/`);
+  return {
+    message: "success",
+    redirectUrl: `/memorybook/${tripId}/itinerary/`,
+  };
 };
 
 export const updateItinerary = async (

@@ -5,6 +5,8 @@ import {
 import { siteURL } from "@/app/(blog)/config/blogConfig";
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const posts = await getPosts("categoryAndPostImage");
   const categories = await getCategories();

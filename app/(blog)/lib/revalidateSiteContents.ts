@@ -4,7 +4,7 @@ import { getPosts } from "./service/blogServiceMany";
 
 export async function revalidateSiteContents() {
   try {
-    revalidatePath("/");
+    revalidatePath("/blog");
     revalidatePath("/sitemaps");
 
     // sitemap.xmlの再検証

@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { blogTitle } from "../../config/blogConfig";
+
+import { blogTitle } from "@/app/(blog)/config/blogConfig";
 
 export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+  title: "プライバシーポリシー・免責事項",
+  robots: {
+    index: false,
+  },
+};
 
 const page = () => {
   return (
@@ -9,11 +18,11 @@ const page = () => {
       <h2>プライバシーポリシー</h2>
       <p>
         このプライバシーポリシーは、旅程表作成アプリ「
-        <Link href="/memorybook" className="text-blue-600 font-medium">
+        <Link href="/" className="text-blue-600 font-medium">
           旅のメモリーブック
         </Link>
         」とブログ「
-        <Link href="/" className="text-blue-600 font-medium">
+        <Link href="/blog" className="text-blue-600 font-medium">
           {blogTitle}
         </Link>
         」の利用に関する情報収集、利用、および開示に関する方針を説明します。

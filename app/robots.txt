@@ -5,4 +5,4 @@ Disallow: /dashboard
 Disallow: /memorybook/dashboard
 Allow: /memorybook
 
-Sitemap: https://www.travel-memory-life.com/sitemap.xml
+Sitemap: https://www.my-travel-memory.com/api/sitemap

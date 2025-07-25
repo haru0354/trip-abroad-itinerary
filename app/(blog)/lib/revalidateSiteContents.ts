@@ -7,6 +7,9 @@ export async function revalidateSiteContents() {
     revalidatePath("/");
     revalidatePath("/sitemaps");
 
+    // sitemap.xmlの再検証
+    revalidatePath("/sitemap"); 
+
     const posts = await getPosts("category");
     const filteredPosts = posts.filter((post) => post.draft);
 

@@ -11,6 +11,7 @@ import {
 import ToastContext from "../../context/ToastContext";
 
 config.autoAddCss = false;
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: {

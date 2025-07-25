@@ -5,6 +5,8 @@ import { ModalProvider } from "@/app/context/ModalContext";
 import ToastContext from "@/app/context/ToastContext";
 import DashboardSideMenu from "../../components/dashboard/side-menu/DashboardSideMenu";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: {
     default: "ダッシュボードメモ",

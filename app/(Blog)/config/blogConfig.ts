@@ -1,4 +1,4 @@
-export const siteURL = "https://www.my-travel-memory.com/";
+export const siteURL = "https://www.my-travel-memory.com";
 export const blogBrandTitle = "トラベルメモリー";
 export const blogTitle =
   "英語なしで最高の海外旅行の思い出を作る「トラベルメモリー」";

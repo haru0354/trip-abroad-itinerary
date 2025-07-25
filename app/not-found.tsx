@@ -7,6 +7,8 @@ import Footer from "./(memorybook)/memorybook/components/layout/footer/Footer";
 import AnimatedItem from "./lib/animation/AnimatedItem";
 import BackButton from "./components/ui/button/BackButton";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   robots: {
     index: false,

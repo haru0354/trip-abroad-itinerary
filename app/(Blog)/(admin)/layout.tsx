@@ -7,6 +7,8 @@ import MainContainer from "@/app/components/layout/MainContainer";
 import AuthContext from "@/app/context/AuthContext";
 import ToastContext from "@/app/context/ToastContext";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: {
     default: `${blogTitle}`,

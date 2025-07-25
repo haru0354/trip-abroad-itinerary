@@ -11,7 +11,7 @@ export default async function RootLayout({
     <>
       <Header />
       <main className="flex-1 px-2">
-        <MainContainer>
+        <MainContainer itineraryPage={true}>
           <div className="w-full px-1 md:px-4">{children}</div>
         </MainContainer>
       </main>

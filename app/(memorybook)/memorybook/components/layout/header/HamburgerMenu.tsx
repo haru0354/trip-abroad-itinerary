@@ -45,7 +45,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   return (
     <>
       <button
-        className={`${buttonPositions} ${colors[color]} fixed sm:hidden top-2 right-2 flex flex-col items-center justify-center w-12 h-12 border rounded  border-itinerary-borderBlack z-10`}
+        className={`${buttonPositions} ${colors[color]} fixed sm:hidden top-2 right-2 flex flex-col items-center justify-center w-12 h-12 border rounded  border-itinerary-borderBlack z-[100]`}
         onClick={toggleMenu}
       >
         <FontAwesomeIcon
@@ -56,7 +56,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
       </button>
       {isOpen && (
         <AnimatedItem
-          className="sm:hidden fixed top-0 left-0 w-full h-screen px-10 pt-16 bg-gray-500 overflow-y-auto"
+          className="sm:hidden fixed top-0 left-0 w-full h-screen px-10 pt-16 bg-gray-500 overflow-y-auto z-50"
           elementType="div"
           animation={
             positionLeft ? "fadeInLeftVariants" : "fadeInRightVariants"
@@ -69,7 +69,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
             <li className="my-2 px-4 py-2 border-b hover:bg-white hover:text-gray-700 transition-colors duration-300">
               <SignupModal textButton={true} id="header-signup" />
             </li>
-          </ul>{" "}
+          </ul>
           <Button
             color="white"
             size="normal"

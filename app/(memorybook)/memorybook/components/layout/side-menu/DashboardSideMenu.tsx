@@ -33,7 +33,7 @@ const DashboardSideMenu: React.FC<DashboardSideMenuProps> = ({ trips }) => {
                   プロフィール
                 </li>
               </Link>
-              <Link href="/">
+              <Link href="/blog">
                 <li className="flex py-2 px-2 text-white transition duration-300 hover:text-itinerary-black hover:bg-gray-300 ">
                   <FontAwesomeIcon icon={faHouse} className="mr-2 w-5 mt-1" />
                   旅の役立ちブログ「トラベルメモリー」

@@ -5,7 +5,7 @@ import Button from "@/app/components/ui/button/Button";
 
 const LogoutButton = () => {
   const handleLogout = async () => {
-    await signOut({ callbackUrl: "/memorybook" });
+    await signOut({ callbackUrl: "/" });
   };
 
   return (

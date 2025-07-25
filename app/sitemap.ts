@@ -18,11 +18,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: _lastModified,
     },
     {
-      url: `${siteURL}/privacypolicy`,
+      url: `${siteURL}/blog`,
       lastModified: _lastModified,
     },
     {
-      url: `${siteURL}/memorybook`,
+      url: `${siteURL}/sitemaps`,
+      lastModified: _lastModified,
+    },
+    {
+      url: `${siteURL}/privacypolicy`,
       lastModified: _lastModified,
     },
   ];

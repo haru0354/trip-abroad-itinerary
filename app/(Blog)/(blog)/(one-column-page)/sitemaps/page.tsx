@@ -17,14 +17,18 @@ const page = async () => {
   return (
     <>
       <h2>サイトマップ</h2>
-      <p className="font-semibold text-[#0b0b0c]">
-        <Link href="/">
+      <p>
+        <Link href="/" className=" font-semibold text-[#2a7bdf]">
           国内旅行・海外旅行の旅程表作成しおりアプリ「旅のメモリーブック」
         </Link>
+        (旅程表作成アプリ)
       </p>
       <div className="p-4 mb-6 border border-dashed border-blog-borderGray">
-        <p className="font-semibold text-[#2a7bdf]">
-          <Link href="/blog">{blogTitle}</Link>
+        <p>
+          <Link href="/blog" className="font-semibold text-[#2a7bdf]">
+            {blogTitle}
+          </Link>
+          (旅の役立ちblog)
         </p>
         {categories.map((category) => {
           const draftTruePosts = category.posts.filter(

@@ -70,7 +70,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ trips }) => {
                 プロフィール
               </li>
             </Link>
-            <Link href="/">
+            <Link href="/blog">
               <li className="py-2 px-4 transition duration-300 hover:bg-gray-300 hover:text-gray-900">
                 旅の役立ちブログ「トラベルメモリー」
               </li>

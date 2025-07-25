@@ -4,8 +4,6 @@ import { blogBrandTitle, blogDescription, blogTitle } from "../config/blogConfig
 import Header from "../components/layout/blog/Header";
 import Footer from "../components/layout/blog/Footer";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: {
     default: `${blogTitle}`,

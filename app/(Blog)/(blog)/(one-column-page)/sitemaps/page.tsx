@@ -4,7 +4,6 @@ import Link from "next/link";
 import { getCategories } from "@/app/(blog)/lib/service/blogServiceMany";
 import { blogTitle } from "@/app/(blog)/config/blogConfig";
 
-export const dynamic = "force-static";
 export const revalidate = 60 * 60 * 24 * 15;
 
 export const metadata: Metadata = {

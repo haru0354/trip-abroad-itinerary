@@ -3,8 +3,6 @@ import Link from "next/link";
 
 import { blogTitle } from "@/app/(blog)/config/blogConfig";
 
-export const dynamic = "force-static";
-
 export const metadata: Metadata = {
   title: "プライバシーポリシー・免責事項",
   robots: {

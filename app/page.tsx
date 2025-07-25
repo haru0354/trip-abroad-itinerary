@@ -17,6 +17,8 @@ import AnimatedItem from "@/app/lib/animation/AnimatedItem";
 import Section from "@/app/components/layout/Section";
 import SignupModal from "./(memorybook)/memorybook/components/ui/auth/SignupModal";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: `${itinerarySiteTItle}`,
   description: `${itinerarySiteDescription}`,

@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { getTrip } from "../../../lib/memoryBookService";
 import { notFound } from "next/navigation";
 import ListMemo from "../../../components/memo/ListMemo";
-import Loading from "@/app/Loading";
+import Loading from "@/app/loading";
 
 export const metadata: Metadata = {
   title: "メモの一覧",

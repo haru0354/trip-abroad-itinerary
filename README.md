@@ -23,9 +23,9 @@ Next.jsを利用したフルスタックアプリとして開発している旅�
 
 デプロイ先
 
-URL: https://www.my-travel-memory.com/memorybook
+旅程表アプリURL: https://www.my-travel-memory.com/
 
-ブログURL: https://www.my-travel-memory.com/
+ブログURL: https://www.my-travel-memory.com/blog
 
 
 ## 主な機能・特徴

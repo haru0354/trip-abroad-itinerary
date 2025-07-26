@@ -6,6 +6,7 @@ import FooterMenu from "../../components/layout/footer/FooterMenu";
 import Header from "../../components/layout/header/Header";
 import Footer from "../../components/layout/footer/Footer";
 import MainContainer from "@/app/components/layout/MainContainer";
+import BackToTopButton from "@/app/components/ui/button/BackToTopButton";
 
 export const metadata: Metadata = {
   robots: {
@@ -39,6 +40,7 @@ export default async function RootLayout({
             {children}
           </div>
         </MainContainer>
+        <BackToTopButton itineraryPage={true} />
       </main>
       <Footer />
       <FooterMenu tripId={tripId} />

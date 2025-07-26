@@ -1,5 +1,7 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { blogBrandTitle, blogDescription } from "@/app/(blog)/config/blogConfig";
 import {
   getCategory,
   getPost,
@@ -10,6 +12,28 @@ import SideMenu from "@/app/(blog)/components/side-menu/SideMenu";
 
 export const dynamicParams = true;
 export const revalidate = 60 * 60 * 24 * 15;
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { post_slug: string };
+}): Promise<Metadata> => {
+  const post = await getPost("slug", params.post_slug);
+
+  if (!post?.draft) {
+    return {
+      title: "投稿が存在しません",
+      robots: {
+        index: false,
+      },
+    };
+  } else {
+    return {
+      title: `${post?.title}`,
+      description: post?.description,
+    };
+  }
+};
 
 export async function generateStaticParams() {
   const posts = await getPosts("categoryAndPostImage");

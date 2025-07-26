@@ -13,8 +13,9 @@ export async function GET() {
 
   const urls = [
     `${siteURL}`,
+    `${siteURL}/blog`,
+    `${siteURL}/sitemaps`,
     `${siteURL}/privacypolicy`,
-    `${siteURL}/memorybook`,
     ...posts.map(
       (post) => `${siteURL}/${post.category?.slug ?? "unknown"}/${post.slug}`
     ),

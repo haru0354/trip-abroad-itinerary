@@ -10,7 +10,7 @@ const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
   return (
     <header>
       <div className="flex items-center justify-center">
-        <Link href="/">
+        <Link href="/blog">
           {isTopPage ? (
             <h1>
               <Image

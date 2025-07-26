@@ -8,7 +8,7 @@ const SideMenu = () => {
       <SideImage
         src="/travel_memory_thumbnail.jpg"
         alt="旅のメモリーブックのサムネイル"
-        href="/memorybook"
+        href="/"
         textTitle="海外旅行のしおりアプリ"
       />
       <SideCategoryMenu />

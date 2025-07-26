@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { getTrip } from "../../../lib/memoryBookService";
 import { notFound } from "next/navigation";
 import ListItinerary from "../../../components/itinerary/ListItinerary";
-import Loading from "@/app/Loading";
+import Loading from "@/app/loading";
 
 export const metadata: Metadata = {
   title: "旅程表",

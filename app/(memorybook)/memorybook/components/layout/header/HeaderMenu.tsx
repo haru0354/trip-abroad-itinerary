@@ -25,7 +25,7 @@ const HeaderMenu: React.FC<HeaderMenuProps> = ({ itineraryLoginUser }) => {
   };
 
   const handleLogout = async () => {
-    await signOut({ callbackUrl: "/memorybook" });
+    await signOut({ callbackUrl: "/" });
     setIsOpen(false);
   };
 

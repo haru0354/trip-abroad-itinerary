@@ -3,7 +3,7 @@ import { Suspense } from "react";
 
 import { getTrips } from "@/app/(memorybook)/memorybook/lib/memoryBookService";
 import DashboardSideMenu from "../../components/layout/side-menu/DashboardSideMenu";
-import Loading from "@/app/Loading";
+import Loading from "@/app/loading";
 
 export const metadata: Metadata = {
   robots: {

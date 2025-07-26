@@ -30,13 +30,13 @@ const NotFound = () => {
           <div>
             <ul>
               <li className="my-4">
-                <Link href="/memorybook" className="text-itinerary-linkBlue">
+                <Link href="/" className="text-itinerary-linkBlue">
                   旅のメモリーブック
                 </Link>
                 (旅程表アプリ)
               </li>
               <li className="my-4">
-                <Link href="/" className="text-itinerary-linkBlue">
+                <Link href="/blog" className="text-itinerary-linkBlue">
                   トラベルメモリー
                 </Link>
                 (旅のお役立ちブログ)

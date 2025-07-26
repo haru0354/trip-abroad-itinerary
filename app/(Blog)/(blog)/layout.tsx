@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 
-import { blogBrandTitle, blogTitle } from "../config/blogConfig";
+import { blogBrandTitle, blogDescription, blogTitle } from "../config/blogConfig";
 import Header from "../components/layout/blog/Header";
 import Footer from "../components/layout/blog/Footer";
-import MainContainer from "@/app/components/layout/MainContainer";
+import BackToTopButton from "@/app/components/ui/button/BackToTopButton";
 
 export const metadata: Metadata = {
   title: {
     default: `${blogTitle}`,
     template: `%s | ${blogBrandTitle}`,
   },
+  description: `${blogDescription}`,
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -20,11 +21,10 @@ export default async function RootLayout({
   return (
     <>
       <Header />
-      <main className="flex-1 px-2">
-        <MainContainer>
-          <div className="w-full px-1 md:px-4">{children}</div>
-        </MainContainer>
+      <main className="flex-1 px-2 md:pt-4">
+          {children}
       </main>
+      <BackToTopButton />
       <Footer />
     </>
   );
